@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../data/resources/colors.dart';
 
-
 class ContainerShimmer extends StatelessWidget {
   const ContainerShimmer({
     Key? key,
@@ -19,7 +18,7 @@ class ContainerShimmer extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: AppColor.bgCardColor),
+          borderRadius: BorderRadius.circular(50), color: AppColor.gray),
     );
   }
 }

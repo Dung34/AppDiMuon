@@ -22,7 +22,7 @@ class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.title,
       this.actions,
       this.leading,
-      this.canPop = false,
+      this.canPop = true,
       this.onBackPressed,
       this.onChangeText,
       this.centerTitle = false,
@@ -51,9 +51,10 @@ class _PrimaryAppBarState extends State<PrimaryAppBar> {
   @override
   AppBar build(BuildContext context) {
     return AppBar(
-      backgroundColor: widget.backgroundColor ?? AppColor.primaryColor,
-      title: Text(title ?? '', style: AppTextTheme.textAppBarPrimary),
-      elevation: widget.elevation ?? 2,
+      backgroundColor:
+          widget.backgroundColor ?? AppColor.primaryBackgroundColor,
+      title: Text(title ?? '', style: AppTextTheme.robotoMedium16),
+      elevation: widget.elevation ?? 0,
       leading: widget.leading ??
           (widget.canPop
               ? BackButtonCustom(

@@ -14,7 +14,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
     extends State<T> {
   final UserCubit userCubit = getIt.get<UserCubit>();
   final CommonCubit _commonCubit = CommonCubit();
-  late C cubit;
+  C get cubit => getIt.get<C>();
 
   /// use safe area or not
   bool get useSafeArea => true;
@@ -27,6 +27,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
 
   EdgeInsets get padding => const EdgeInsets.symmetric(horizontal: 16);
 
+  PreferredSizeWidget? get appBar => null;
+
   void showLoading({bool dismissible = false}) {
     _commonCubit.showLoading(dismissible: dismissible);
   }
@@ -35,19 +37,25 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
 
   @override
   void initState() {
-    // if (useBlocProviderValue)
-    cubit = getIt.get<C>();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _commonCubit,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => _commonCubit,
+        ),
+        BlocProvider.value(
+          value: userCubit,
+        ),
+      ],
       child: Scaffold(
         backgroundColor: AppColor.primaryBackgroundColor,
         extendBodyBehindAppBar: true,
         extendBody: true,
+        appBar: appBar,
         body: SafeArea(
           top: useSafeArea,
           child: Padding(

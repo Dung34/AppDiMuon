@@ -18,13 +18,12 @@ class EndPoints {
   static const String getUserInfoSSO = '/user/updateinfo';
   static const String deactiveUser = '/user/de-active';
 
-  // static const String baseDomain = "https://dms.fitolabs.vn";
-  // static const String idBaseUrl = "https://id.fitolabs.vn";
-  // static const String appBaseUrl = "https://dms-m.fitolabs.vn";
   static const String publicAddressBaseUrl =
       "https://provinces.open-api.vn/api/p";
 
   // user related
+  static const String getCurrentUser = '/gateway/user/current';
+  static const String getUser = '/gateway/user';
   static const String login = '/api/authenticate';
   static const String getAccountInfo = '/api/account';
   static const String changePassword = '/api/account/change-password';
@@ -42,17 +41,9 @@ class EndPoints {
 
 class SSOConfig {
   static const String clientId = "localhost_identity";
-
-  // static const String clientId = "eztek_resource_planning";
   static const String redirectUrl = "com.eztek.trueconnect://login-callback";
-
-  // static const String redirectUrl = "https:google.com";
   static const String issuer = 'https://id-test.trueconnect.vn';
-
-  // static const String issuer = 'https://id.eztek.net';
   static const String clientSecret = 'no_important';
-
-  // static const String clientSecret = 'M)rVENCz5GFT@yPR';
   static const List<String> scope = [
     "openid",
     "profile",
@@ -64,7 +55,7 @@ class SSOConfig {
 
 class AppConfig {
   static const String appName = "CEO.HN7";
-  static const String fontFamily = "Lato";
+  static const String fontFamily = "Roboto";
   static const Color primaryColor = AppColor.primaryColor;
   static const MaterialColor primarySwatch = AppColor.primarySwatch;
   static const double primaryFontSize = 14;

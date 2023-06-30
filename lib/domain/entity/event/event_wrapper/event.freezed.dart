@@ -23,13 +23,16 @@ mixin _$Event {
   String? get id => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get background => throw _privateConstructorUsedError;
-  bool? get concerned => throw _privateConstructorUsedError;
+  bool get checked => throw _privateConstructorUsedError;
+  int get status => throw _privateConstructorUsedError;
+  String get statusStr => throw _privateConstructorUsedError;
+  int get totalUserCount => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
-  String? get userFullname => throw _privateConstructorUsedError;
   String? get startTime => throw _privateConstructorUsedError;
   String? get endTime => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  List<ConcernedUser>? get concernedUser => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,13 +48,16 @@ abstract class $EventCopyWith<$Res> {
       {String? id,
       String? type,
       String? background,
-      bool? concerned,
+      bool checked,
+      int status,
+      String statusStr,
+      int totalUserCount,
       String? userId,
-      String? userFullname,
       String? startTime,
       String? endTime,
+      String? title,
       String? description,
-      List<ConcernedUser>? concernedUser});
+      String? location});
 }
 
 /// @nodoc
@@ -70,13 +76,16 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
     Object? id = freezed,
     Object? type = freezed,
     Object? background = freezed,
-    Object? concerned = freezed,
+    Object? checked = null,
+    Object? status = null,
+    Object? statusStr = null,
+    Object? totalUserCount = null,
     Object? userId = freezed,
-    Object? userFullname = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? title = freezed,
     Object? description = freezed,
-    Object? concernedUser = freezed,
+    Object? location = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -91,17 +100,25 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
               as String?,
-      concerned: freezed == concerned
-          ? _value.concerned
-          : concerned // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      checked: null == checked
+          ? _value.checked
+          : checked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      statusStr: null == statusStr
+          ? _value.statusStr
+          : statusStr // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalUserCount: null == totalUserCount
+          ? _value.totalUserCount
+          : totalUserCount // ignore: cast_nullable_to_non_nullable
+              as int,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userFullname: freezed == userFullname
-          ? _value.userFullname
-          : userFullname // ignore: cast_nullable_to_non_nullable
               as String?,
       startTime: freezed == startTime
           ? _value.startTime
@@ -111,14 +128,18 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      concernedUser: freezed == concernedUser
-          ? _value.concernedUser
-          : concernedUser // ignore: cast_nullable_to_non_nullable
-              as List<ConcernedUser>?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -133,13 +154,16 @@ abstract class _$$_EventCopyWith<$Res> implements $EventCopyWith<$Res> {
       {String? id,
       String? type,
       String? background,
-      bool? concerned,
+      bool checked,
+      int status,
+      String statusStr,
+      int totalUserCount,
       String? userId,
-      String? userFullname,
       String? startTime,
       String? endTime,
+      String? title,
       String? description,
-      List<ConcernedUser>? concernedUser});
+      String? location});
 }
 
 /// @nodoc
@@ -154,13 +178,16 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
     Object? id = freezed,
     Object? type = freezed,
     Object? background = freezed,
-    Object? concerned = freezed,
+    Object? checked = null,
+    Object? status = null,
+    Object? statusStr = null,
+    Object? totalUserCount = null,
     Object? userId = freezed,
-    Object? userFullname = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? title = freezed,
     Object? description = freezed,
-    Object? concernedUser = freezed,
+    Object? location = freezed,
   }) {
     return _then(_$_Event(
       id: freezed == id
@@ -175,17 +202,25 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
               as String?,
-      concerned: freezed == concerned
-          ? _value.concerned
-          : concerned // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      checked: null == checked
+          ? _value.checked
+          : checked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      statusStr: null == statusStr
+          ? _value.statusStr
+          : statusStr // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalUserCount: null == totalUserCount
+          ? _value.totalUserCount
+          : totalUserCount // ignore: cast_nullable_to_non_nullable
+              as int,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userFullname: freezed == userFullname
-          ? _value.userFullname
-          : userFullname // ignore: cast_nullable_to_non_nullable
               as String?,
       startTime: freezed == startTime
           ? _value.startTime
@@ -195,14 +230,18 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      concernedUser: freezed == concernedUser
-          ? _value._concernedUser
-          : concernedUser // ignore: cast_nullable_to_non_nullable
-              as List<ConcernedUser>?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -214,14 +253,16 @@ class _$_Event implements _Event {
       {this.id,
       this.type,
       this.background,
-      this.concerned,
+      this.checked = false,
+      this.status = 0,
+      this.statusStr = '',
+      this.totalUserCount = 0,
       this.userId,
-      this.userFullname,
       this.startTime,
       this.endTime,
+      this.title,
       this.description,
-      final List<ConcernedUser>? concernedUser})
-      : _concernedUser = concernedUser;
+      this.location});
 
   factory _$_Event.fromJson(Map<String, dynamic> json) =>
       _$$_EventFromJson(json);
@@ -233,30 +274,33 @@ class _$_Event implements _Event {
   @override
   final String? background;
   @override
-  final bool? concerned;
+  @JsonKey()
+  final bool checked;
+  @override
+  @JsonKey()
+  final int status;
+  @override
+  @JsonKey()
+  final String statusStr;
+  @override
+  @JsonKey()
+  final int totalUserCount;
   @override
   final String? userId;
-  @override
-  final String? userFullname;
   @override
   final String? startTime;
   @override
   final String? endTime;
   @override
-  final String? description;
-  final List<ConcernedUser>? _concernedUser;
+  final String? title;
   @override
-  List<ConcernedUser>? get concernedUser {
-    final value = _concernedUser;
-    if (value == null) return null;
-    if (_concernedUser is EqualUnmodifiableListView) return _concernedUser;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final String? description;
+  @override
+  final String? location;
 
   @override
   String toString() {
-    return 'Event(id: $id, type: $type, background: $background, concerned: $concerned, userId: $userId, userFullname: $userFullname, startTime: $startTime, endTime: $endTime, description: $description, concernedUser: $concernedUser)';
+    return 'Event(id: $id, type: $type, background: $background, checked: $checked, status: $status, statusStr: $statusStr, totalUserCount: $totalUserCount, userId: $userId, startTime: $startTime, endTime: $endTime, title: $title, description: $description, location: $location)';
   }
 
   @override
@@ -268,18 +312,21 @@ class _$_Event implements _Event {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.background, background) ||
                 other.background == background) &&
-            (identical(other.concerned, concerned) ||
-                other.concerned == concerned) &&
+            (identical(other.checked, checked) || other.checked == checked) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusStr, statusStr) ||
+                other.statusStr == statusStr) &&
+            (identical(other.totalUserCount, totalUserCount) ||
+                other.totalUserCount == totalUserCount) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.userFullname, userFullname) ||
-                other.userFullname == userFullname) &&
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality()
-                .equals(other._concernedUser, _concernedUser));
+            (identical(other.location, location) ||
+                other.location == location));
   }
 
   @JsonKey(ignore: true)
@@ -289,13 +336,16 @@ class _$_Event implements _Event {
       id,
       type,
       background,
-      concerned,
+      checked,
+      status,
+      statusStr,
+      totalUserCount,
       userId,
-      userFullname,
       startTime,
       endTime,
+      title,
       description,
-      const DeepCollectionEquality().hash(_concernedUser));
+      location);
 
   @JsonKey(ignore: true)
   @override
@@ -316,13 +366,16 @@ abstract class _Event implements Event {
       {final String? id,
       final String? type,
       final String? background,
-      final bool? concerned,
+      final bool checked,
+      final int status,
+      final String statusStr,
+      final int totalUserCount,
       final String? userId,
-      final String? userFullname,
       final String? startTime,
       final String? endTime,
+      final String? title,
       final String? description,
-      final List<ConcernedUser>? concernedUser}) = _$_Event;
+      final String? location}) = _$_Event;
 
   factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
 
@@ -333,19 +386,25 @@ abstract class _Event implements Event {
   @override
   String? get background;
   @override
-  bool? get concerned;
+  bool get checked;
+  @override
+  int get status;
+  @override
+  String get statusStr;
+  @override
+  int get totalUserCount;
   @override
   String? get userId;
-  @override
-  String? get userFullname;
   @override
   String? get startTime;
   @override
   String? get endTime;
   @override
+  String? get title;
+  @override
   String? get description;
   @override
-  List<ConcernedUser>? get concernedUser;
+  String? get location;
   @override
   @JsonKey(ignore: true)
   _$$_EventCopyWith<_$_Event> get copyWith =>

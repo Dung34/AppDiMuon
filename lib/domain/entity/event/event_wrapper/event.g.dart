@@ -10,26 +10,30 @@ _$_Event _$$_EventFromJson(Map<String, dynamic> json) => _$_Event(
       id: json['id'] as String?,
       type: json['type'] as String?,
       background: json['background'] as String?,
-      concerned: json['concerned'] as bool?,
+      checked: json['checked'] as bool? ?? false,
+      status: json['status'] as int? ?? 0,
+      statusStr: json['statusStr'] as String? ?? '',
+      totalUserCount: json['totalUserCount'] as int? ?? 0,
       userId: json['userId'] as String?,
-      userFullname: json['userFullname'] as String?,
       startTime: json['startTime'] as String?,
       endTime: json['endTime'] as String?,
+      title: json['title'] as String?,
       description: json['description'] as String?,
-      concernedUser: (json['concernedUser'] as List<dynamic>?)
-          ?.map((e) => ConcernedUser.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      location: json['location'] as String?,
     );
 
 Map<String, dynamic> _$$_EventToJson(_$_Event instance) => <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
       'background': instance.background,
-      'concerned': instance.concerned,
+      'checked': instance.checked,
+      'status': instance.status,
+      'statusStr': instance.statusStr,
+      'totalUserCount': instance.totalUserCount,
       'userId': instance.userId,
-      'userFullname': instance.userFullname,
       'startTime': instance.startTime,
       'endTime': instance.endTime,
+      'title': instance.title,
       'description': instance.description,
-      'concernedUser': instance.concernedUser,
+      'location': instance.location,
     };

@@ -68,3 +68,26 @@ class ViewUtils {
         ],
       );
 }
+
+class MembershipVIPClipper extends CustomClipper<Path> {
+  @override
+  getClip(Size size) {
+    final double width = size.width;
+    final double height = size.height;
+
+    final Path path = Path();
+    // draw the ticket border
+    path
+      ..lineTo(0, height / 2)
+      ..cubicTo(width / 4, height, width * 3 / 4, height / 2, width, height)
+      ..lineTo(width, 0)
+      ..lineTo(0, 0)
+      ..close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper oldClipper) {
+    return oldClipper != this;
+  }
+}

@@ -30,7 +30,7 @@ class PrimaryTextField extends StatefulWidget {
     this.onSubmitted,
     this.isDense = false,
     this.fillColor,
-    this.borderColor = AppColor.transparent,
+    this.borderColor = AppColor.secondary100,
     this.maxLength,
     this.minLines = 1,
     this.maxLines = 20,
@@ -198,7 +198,7 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                     errorMaxLines: 2,
                     border: const OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: AppColor.transparent, width: 0),
+                            BorderSide(color: AppColor.transparent, width: 1),
                         borderRadius: BorderRadius.all(
                             Radius.circular(AppConfig.defaultRadius))),
                     enabledBorder: OutlineInputBorder(
@@ -206,8 +206,14 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                             BorderSide(color: widget.borderColor, width: 0),
                         borderRadius: const BorderRadius.all(
                             Radius.circular(AppConfig.defaultRadius))),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: AppColor.primary200, width: 2),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(AppConfig.defaultRadius))),
                     filled: true,
-                    fillColor: widget.fillColor ?? AppColor.third11Color,
+                    fillColor:
+                        widget.fillColor ?? AppColor.primaryBackgroundColor,
                     alignLabelWithHint: true,
                     prefixIcon: widget.prefixIcon == null
                         ? null

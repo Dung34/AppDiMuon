@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../shared/utils/dialog_helper.dart';
 import '../../../shared/utils/view_utils.dart';
 import '../../../shared/widgets/button/primary_button.dart';
 import '../../../shared/widgets/text_field/primary_text_field.dart';
@@ -29,18 +28,23 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     onLoginPressed() {
-      context.showAppDialog(getLoadingDialog());
+      // context.showAppDialog(getLoadingDialog());
 
-      final c1 = usernameFormKey.currentState?.validate() ?? false;
-      final c2 = passwordFormKey.currentState?.validate() ?? false;
-      if (!c1 || !c2) {
-        context.pop();
-        return;
-      }
-      authBloc.add(AuthLoginRequestEvent(
-        username: usernameController.text.trim(),
-        password: passwordController.text.trim(),
-      ));
+      // final c1 = usernameFormKey.currentState?.validate() ?? false;
+      // final c2 = passwordFormKey.currentState?.validate() ?? false;
+      // if (!c1 || !c2) {
+      //   context.pop();
+      //   return;
+      // }
+      // authBloc.add(AuthLoginRequestEvent(
+      //   username: usernameController.text.trim(),
+      //   password: passwordController.text.trim(),
+      // ));
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoute.main,
+        (route) => false,
+      );
     }
 
     return BlocProvider<AuthBloc>(
@@ -71,42 +75,60 @@ class LoginScreen extends StatelessWidget {
                       opacityEnabled: 1,
                       opacityDisabled: 0,
                       duration: const Duration(milliseconds: 1200),
-                      child: Image.asset(
-                        Assets.imAppLogo,
+                      child: Center(
+                        child: Image.asset(
+                          height: 200,
+                          Assets.imAppLogoVertical,
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(
                     height: 25,
                   ),
-                  BlocListener<AuthBloc, AuthState>(
-                    listener: (context, state) {
-                      if (state is AuthFieldRequiredState) {
-                        ViewUtils.toastWarning(
-                            'Tên đăng nhập và mật khẩu không được bỏ trống');
-                      }
-                      if (state is AuthLoadingState) {}
-                      if (state is AuthLoginSuccessState) {
-                        WidgetsBinding.instance
-                            .addPostFrameCallback(((timeStamp) {
-                          context.pop();
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            AppRoute.home,
-                            (route) => false,
-                          );
-                        }));
-                      }
-                      if (state is AuthLoginFailedState) {
-                        context.pop();
-                        // context.pop();
-                        // ViewUtils.toastWarning(state.message!);
-                      }
-                      if (state is AuthGetLocalInfoState) {
-                        usernameController.text = state.username;
-                        passwordController.text = state.password;
-                      }
-                    },
+                  MultiBlocListener(
+                    listeners: [
+                      BlocListener<AuthBloc, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthFieldRequiredState) {
+                            ViewUtils.toastWarning(
+                                'Tên đăng nhập và mật khẩu không được bỏ trống');
+                          }
+                          if (state is AuthLoadingState) {}
+                          if (state is AuthLoginSuccessState) {
+                            WidgetsBinding.instance
+                                .addPostFrameCallback(((timeStamp) {
+                              context.pop();
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                AppRoute.main,
+                                (route) => false,
+                              );
+                            }));
+                          }
+                          if (state is AuthLoginFailedState) {
+                            context.pop();
+                            // context.pop();
+                            // ViewUtils.toastWarning(state.message!);
+                          }
+                          if (state is AuthLoginBySSOSuccessState) {
+                            WidgetsBinding.instance
+                                .addPostFrameCallback(((timeStamp) {
+                              context.pop();
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                AppRoute.main,
+                                (route) => false,
+                              );
+                            }));
+                          }
+                          if (state is AuthGetLocalInfoState) {
+                            usernameController.text = state.username;
+                            passwordController.text = state.password;
+                          }
+                        },
+                      ),
+                    ],
                     child: const SizedBox(
                       height: 0,
                     ),
@@ -205,7 +227,7 @@ class LoginScreen extends StatelessWidget {
                         child: RichText(
                           text: TextSpan(
                             text: 'Quên mật khẩu?',
-                            style: AppTextTheme.textPrimaryBlue,
+                            style: AppTextTheme.textPrimaryBold,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 // Navigator.push(

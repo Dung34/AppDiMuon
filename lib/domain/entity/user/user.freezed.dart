@@ -32,18 +32,12 @@ mixin _$UserEntity {
   set position(String? value) => throw _privateConstructorUsedError;
   String? get company => throw _privateConstructorUsedError;
   set company(String? value) => throw _privateConstructorUsedError;
-  String? get userMembership => throw _privateConstructorUsedError;
-  set userMembership(String? value) => throw _privateConstructorUsedError;
-  String? get product => throw _privateConstructorUsedError;
-  set product(String? value) => throw _privateConstructorUsedError;
+  String? get roleStr => throw _privateConstructorUsedError;
+  set roleStr(String? value) => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   set bio(String? value) => throw _privateConstructorUsedError;
-  bool? get showProduct => throw _privateConstructorUsedError;
-  set showProduct(bool? value) => throw _privateConstructorUsedError;
-  bool? get showBio => throw _privateConstructorUsedError;
-  set showBio(bool? value) => throw _privateConstructorUsedError;
-  int? get membershipType => throw _privateConstructorUsedError;
-  set membershipType(int? value) => throw _privateConstructorUsedError;
+  int? get role => throw _privateConstructorUsedError;
+  set role(int? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,12 +58,9 @@ abstract class $UserEntityCopyWith<$Res> {
       String? coverImage,
       String? position,
       String? company,
-      String? userMembership,
-      String? product,
+      String? roleStr,
       String? bio,
-      bool? showProduct,
-      bool? showBio,
-      int? membershipType});
+      int? role});
 }
 
 /// @nodoc
@@ -91,12 +82,9 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? coverImage = freezed,
     Object? position = freezed,
     Object? company = freezed,
-    Object? userMembership = freezed,
-    Object? product = freezed,
+    Object? roleStr = freezed,
     Object? bio = freezed,
-    Object? showProduct = freezed,
-    Object? showBio = freezed,
-    Object? membershipType = freezed,
+    Object? role = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -123,29 +111,17 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as String?,
-      userMembership: freezed == userMembership
-          ? _value.userMembership
-          : userMembership // ignore: cast_nullable_to_non_nullable
-              as String?,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
+      roleStr: freezed == roleStr
+          ? _value.roleStr
+          : roleStr // ignore: cast_nullable_to_non_nullable
               as String?,
       bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String?,
-      showProduct: freezed == showProduct
-          ? _value.showProduct
-          : showProduct // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showBio: freezed == showBio
-          ? _value.showBio
-          : showBio // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      membershipType: freezed == membershipType
-          ? _value.membershipType
-          : membershipType // ignore: cast_nullable_to_non_nullable
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -166,12 +142,9 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String? coverImage,
       String? position,
       String? company,
-      String? userMembership,
-      String? product,
+      String? roleStr,
       String? bio,
-      bool? showProduct,
-      bool? showBio,
-      int? membershipType});
+      int? role});
 }
 
 /// @nodoc
@@ -191,12 +164,9 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? coverImage = freezed,
     Object? position = freezed,
     Object? company = freezed,
-    Object? userMembership = freezed,
-    Object? product = freezed,
+    Object? roleStr = freezed,
     Object? bio = freezed,
-    Object? showProduct = freezed,
-    Object? showBio = freezed,
-    Object? membershipType = freezed,
+    Object? role = freezed,
   }) {
     return _then(_$_UserEntity(
       id: freezed == id
@@ -223,29 +193,17 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as String?,
-      userMembership: freezed == userMembership
-          ? _value.userMembership
-          : userMembership // ignore: cast_nullable_to_non_nullable
-              as String?,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
+      roleStr: freezed == roleStr
+          ? _value.roleStr
+          : roleStr // ignore: cast_nullable_to_non_nullable
               as String?,
       bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String?,
-      showProduct: freezed == showProduct
-          ? _value.showProduct
-          : showProduct // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showBio: freezed == showBio
-          ? _value.showBio
-          : showBio // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      membershipType: freezed == membershipType
-          ? _value.membershipType
-          : membershipType // ignore: cast_nullable_to_non_nullable
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -261,12 +219,9 @@ class _$_UserEntity implements _UserEntity {
       this.coverImage,
       this.position,
       this.company,
-      this.userMembership,
-      this.product,
+      this.roleStr,
       this.bio,
-      this.showProduct,
-      this.showBio,
-      this.membershipType});
+      this.role});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -284,21 +239,15 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? company;
   @override
-  String? userMembership;
-  @override
-  String? product;
+  String? roleStr;
   @override
   String? bio;
   @override
-  bool? showProduct;
-  @override
-  bool? showBio;
-  @override
-  int? membershipType;
+  int? role;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, fullname: $fullname, avatar: $avatar, coverImage: $coverImage, position: $position, company: $company, userMembership: $userMembership, product: $product, bio: $bio, showProduct: $showProduct, showBio: $showBio, membershipType: $membershipType)';
+    return 'UserEntity(id: $id, fullname: $fullname, avatar: $avatar, coverImage: $coverImage, position: $position, company: $company, roleStr: $roleStr, bio: $bio, role: $role)';
   }
 
   @JsonKey(ignore: true)
@@ -323,12 +272,9 @@ abstract class _UserEntity implements UserEntity {
       String? coverImage,
       String? position,
       String? company,
-      String? userMembership,
-      String? product,
+      String? roleStr,
       String? bio,
-      bool? showProduct,
-      bool? showBio,
-      int? membershipType}) = _$_UserEntity;
+      int? role}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -352,23 +298,14 @@ abstract class _UserEntity implements UserEntity {
   String? get company;
   set company(String? value);
   @override
-  String? get userMembership;
-  set userMembership(String? value);
-  @override
-  String? get product;
-  set product(String? value);
+  String? get roleStr;
+  set roleStr(String? value);
   @override
   String? get bio;
   set bio(String? value);
   @override
-  bool? get showProduct;
-  set showProduct(bool? value);
-  @override
-  bool? get showBio;
-  set showBio(bool? value);
-  @override
-  int? get membershipType;
-  set membershipType(int? value);
+  int? get role;
+  set role(int? value);
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +34,7 @@ class SplashScreen extends StatelessWidget {
             if (state is AuthSessionValidState) {
               Timer(const Duration(seconds: 1), () {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, AppRoute.home, (route) => false);
+                    context, AppRoute.main, (route) => false);
               });
             } else if (state is AuthSessionInvalidState) {
               Future.delayed(const Duration(seconds: 1), () {
@@ -51,7 +53,7 @@ class SplashScreen extends StatelessWidget {
                 child: SizedBox(
                   width: 200,
                   height: 200,
-                  child: Image.asset(Assets.imSplash),
+                  child: SvgPicture.asset(Assets.imAppLogoVertical),
                 ),
               ),
             ),

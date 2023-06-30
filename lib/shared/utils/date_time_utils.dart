@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeUtils {
-  static String formatDate(String strDate) {
+  static String formatDate(String strDate,
+      {bool showTime = false, bool showOnlyTime = false}) {
     try {
-      var dateFormat = DateFormat('dd/MM/yyyy');
+      var dateFormat = DateFormat(showOnlyTime
+          ? 'hh:mm'
+          : showTime
+              ? 'hh:mm - dd/MM/yyyy'
+              : 'dd/MM/yyyy');
       return dateFormat.format(DateTime.parse(strDate)).toString();
     } catch (e) {
       return strDate;

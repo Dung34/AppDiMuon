@@ -5,10 +5,13 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/config.dart';
+import '../../../di/di.dart';
 import '../../../domain/entity/user/user.dart';
+import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
 import '../../model/login/login_response.dart';
+import '../../model/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../local/local_data_access.dart';
 import 'repository.dart';
@@ -16,6 +19,7 @@ import 'repository.dart';
 class UserRepositoryImpl implements UserRepository {
   final Dio dio;
   final LocalDataAccess localDataAccess;
+  final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
 
   UserRepositoryImpl({
     required this.dio,
@@ -29,6 +33,8 @@ class UserRepositoryImpl implements UserRepository {
     dio.options =
         DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
   }
+
+  String accessToken = '';
 
   @override
   Future<ResponseWrapper<LoginResponse>> loginRequest({
@@ -175,30 +181,31 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<ResponseWrapper<UserEntity>> getUser({String? userId}) async {
-    // accessToken = await localDataAccess.getAccessToken();
-
-    // final response = await dio.get(
-    //   EndPoints.getUser,
-    //   queryParameters: {
-    //     'user-id': userId,
-    //   }..removeWhere((key, value) => value == null),
-    //   options: Options(
-    //     headers: {'Authorization': 'Bearer $accessToken'},
-    //   ),
-    // );
-    // try {
-    //   if (response.statusCode == 200) {
-    //     return ResponseWrapper.success(
-    //         data: _userDataMapper
-    //             .mapToEntity(UserResponse.fromJson(response.data)));
-    //   }
-    //   return ResponseWrapper.error(message: "");
-    // } catch (e) {
-    //   handleException(e);
-    //   return ResponseWrapper.error(message: "");
-    // }
-
-    throw UnimplementedError();
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.get(
+      userId != null
+          ? '${EndPoints.getUser}/$userId'
+          : EndPoints.getCurrentUser,
+      queryParameters: userId == null
+          ? ({
+              'user-id': userId,
+            }..removeWhere((key, value) => value == null))
+          : null,
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
+      ),
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _userDataMapper
+                .mapToEntity(UserResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override

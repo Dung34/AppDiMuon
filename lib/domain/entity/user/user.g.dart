@@ -14,12 +14,9 @@ _$_UserEntity _$$_UserEntityFromJson(Map<String, dynamic> json) =>
       coverImage: json['coverImage'] as String?,
       position: json['position'] as String?,
       company: json['company'] as String?,
-      userMembership: json['userMembership'] as String?,
-      product: json['product'] as String?,
+      roleStr: json['roleStr'] as String?,
       bio: json['bio'] as String?,
-      showProduct: json['showProduct'] as bool?,
-      showBio: json['showBio'] as bool?,
-      membershipType: json['membershipType'] as int?,
+      role: json['role'] as int?,
     );
 
 Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
@@ -30,10 +27,7 @@ Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
       'coverImage': instance.coverImage,
       'position': instance.position,
       'company': instance.company,
-      'userMembership': instance.userMembership,
-      'product': instance.product,
+      'roleStr': instance.roleStr,
       'bio': instance.bio,
-      'showProduct': instance.showProduct,
-      'showBio': instance.showBio,
-      'membershipType': instance.membershipType,
+      'role': instance.role,
     };

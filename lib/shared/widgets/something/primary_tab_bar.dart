@@ -27,7 +27,7 @@ class PrimaryTabBar extends StatelessWidget {
                 labelPadding: const EdgeInsets.all(3),
                 labelColor: AppColor.primaryColor,
                 labelStyle: AppTextTheme.textPrimaryBold,
-                indicatorColor: AppColor.orange,
+                indicatorColor: AppColor.secondaryColor,
                 tabs: tabs
                     .map((tabTitle) => Padding(
                         padding: const EdgeInsets.all(8.0),

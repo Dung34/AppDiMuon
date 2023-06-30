@@ -55,10 +55,10 @@ class PrimaryButton extends StatelessWidget {
           fixedSize:
               isCircle ? MaterialStateProperty.all(const Size(0, 0)) : null,
           backgroundColor: MaterialStateProperty.all(
-            backgroundColor ?? AppColor.primaryColor,
+            backgroundColor ?? AppColor.secondary400,
           ),
           padding: MaterialStateProperty.all(EdgeInsets.all(contentPadding)),
-          elevation: MaterialStateProperty.all(4),
+          elevation: MaterialStateProperty.all(0),
           shape: MaterialStateProperty.all(
             isCircle
                 ? CircleBorder(

@@ -7,18 +7,21 @@ part 'event.g.dart';
 
 @freezed
 class Event with _$Event {
-	factory Event({
-		String? id,
-		String? type,
-		String? background,
-		bool? concerned,
-		String? userId,
-		String? userFullname,
-		String? startTime,
-		String? endTime,
-		String? description,
-		List<ConcernedUser>? concernedUser,
-	}) = _Event;
+  factory Event({
+    String? id,
+    String? type,
+    String? background,
+    @Default(false) bool checked,
+    @Default(0) int status,
+    @Default('') String statusStr,
+    @Default(0) int totalUserCount,
+    String? userId,
+    String? startTime,
+    String? endTime,
+    String? title,
+    String? description,
+    String? location,
+  }) = _Event;
 
-	factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
+  factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 }

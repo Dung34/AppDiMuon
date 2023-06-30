@@ -66,7 +66,7 @@ class _PrimaryDropDownFormFieldState extends State<PrimaryDropDownFormField> {
                     if (value.prefixWidget != null) value.prefixWidget!,
                     if (value.prefixWidget != null) const SizedBox(width: 8),
                     Text(value.valueStr ?? 'not_defined',
-                        style: AppTextTheme.textPrimaryColor),
+                        style: AppTextTheme.textPrimaryBold),
                   ],
                 )
               : widget.child!.call(value),

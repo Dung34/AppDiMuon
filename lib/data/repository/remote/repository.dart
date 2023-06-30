@@ -8,3 +8,7 @@ export 'utility_repository.dart';
 export 'utility_repository_impl.dart';
 export 'open_id_repository.dart';
 export 'open_id_repository_impl.dart';
+export 'event_repository.dart';
+export 'event_repository_impl.dart';
+export 'profile_repository.dart';
+export 'profile_repository_impl.dart';
