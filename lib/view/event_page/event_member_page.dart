@@ -28,9 +28,6 @@ class _EventMemberPageState extends BasePageState<EventMemberPage, EventCubit> {
       );
 
   @override
-  bool get useBlocProviderValue => true;
-
-  @override
   Widget buildPage(BuildContext context) {
     final args = context.arguments as EventMemberPageArgs;
     cubit.getAllCheckedInMember(args.eventId);
@@ -51,7 +48,9 @@ class _EventMemberPageState extends BasePageState<EventMemberPage, EventCubit> {
             itemCount: eventMembers.length,
           );
         } else {
-          return const EventMemberItemShimmer();
+          return const EventMemberItemShimmer(
+            showAvatar: false,
+          );
         }
       },
     );

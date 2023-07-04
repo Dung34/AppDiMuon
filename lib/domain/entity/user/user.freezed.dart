@@ -32,6 +32,8 @@ mixin _$UserEntity {
   set position(String? value) => throw _privateConstructorUsedError;
   String? get company => throw _privateConstructorUsedError;
   set company(String? value) => throw _privateConstructorUsedError;
+  String? get dob => throw _privateConstructorUsedError;
+  set dob(String? value) => throw _privateConstructorUsedError;
   String? get roleStr => throw _privateConstructorUsedError;
   set roleStr(String? value) => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
@@ -58,6 +60,7 @@ abstract class $UserEntityCopyWith<$Res> {
       String? coverImage,
       String? position,
       String? company,
+      String? dob,
       String? roleStr,
       String? bio,
       int? role});
@@ -82,6 +85,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? coverImage = freezed,
     Object? position = freezed,
     Object? company = freezed,
+    Object? dob = freezed,
     Object? roleStr = freezed,
     Object? bio = freezed,
     Object? role = freezed,
@@ -110,6 +114,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       company: freezed == company
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
               as String?,
       roleStr: freezed == roleStr
           ? _value.roleStr
@@ -142,6 +150,7 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String? coverImage,
       String? position,
       String? company,
+      String? dob,
       String? roleStr,
       String? bio,
       int? role});
@@ -164,6 +173,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? coverImage = freezed,
     Object? position = freezed,
     Object? company = freezed,
+    Object? dob = freezed,
     Object? roleStr = freezed,
     Object? bio = freezed,
     Object? role = freezed,
@@ -193,6 +203,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
       roleStr: freezed == roleStr
           ? _value.roleStr
           : roleStr // ignore: cast_nullable_to_non_nullable
@@ -219,6 +233,7 @@ class _$_UserEntity implements _UserEntity {
       this.coverImage,
       this.position,
       this.company,
+      this.dob,
       this.roleStr,
       this.bio,
       this.role});
@@ -239,6 +254,8 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? company;
   @override
+  String? dob;
+  @override
   String? roleStr;
   @override
   String? bio;
@@ -247,7 +264,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, fullname: $fullname, avatar: $avatar, coverImage: $coverImage, position: $position, company: $company, roleStr: $roleStr, bio: $bio, role: $role)';
+    return 'UserEntity(id: $id, fullname: $fullname, avatar: $avatar, coverImage: $coverImage, position: $position, company: $company, dob: $dob, roleStr: $roleStr, bio: $bio, role: $role)';
   }
 
   @JsonKey(ignore: true)
@@ -272,6 +289,7 @@ abstract class _UserEntity implements UserEntity {
       String? coverImage,
       String? position,
       String? company,
+      String? dob,
       String? roleStr,
       String? bio,
       int? role}) = _$_UserEntity;
@@ -297,6 +315,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   String? get company;
   set company(String? value);
+  @override
+  String? get dob;
+  set dob(String? value);
   @override
   String? get roleStr;
   set roleStr(String? value);

@@ -8,8 +8,8 @@ class PrimarySwitch extends StatefulWidget {
     Key? key,
     required this.onToggle,
     this.width = 50,
-    this.height = 24,
-    this.toggleSize = 16,
+    this.height = 28,
+    this.toggleSize = 18,
     this.initialValue = true,
     this.readOnly = false,
   }) : super(key: key);
@@ -43,7 +43,7 @@ class _PrimarySwitchState extends State<PrimarySwitch> {
       // activeText: 'Hiện',
       // inactiveText: 'Ẩn',
       valueFontSize: 8,
-      activeColor: AppColor.primaryColor,
+      activeColor: AppColor.secondary400,
 
       onToggle: (value) {
         setState(() {

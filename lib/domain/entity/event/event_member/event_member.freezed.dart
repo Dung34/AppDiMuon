@@ -24,6 +24,7 @@ mixin _$EventMember {
   String get userId => throw _privateConstructorUsedError;
   String? get fullname => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
+  String? get eventTitle => throw _privateConstructorUsedError;
   String? get checkedInLocation => throw _privateConstructorUsedError;
   String? get checkedInDate => throw _privateConstructorUsedError;
 
@@ -44,6 +45,7 @@ abstract class $EventMemberCopyWith<$Res> {
       String userId,
       String? fullname,
       String? avatar,
+      String? eventTitle,
       String? checkedInLocation,
       String? checkedInDate});
 }
@@ -65,6 +67,7 @@ class _$EventMemberCopyWithImpl<$Res, $Val extends EventMember>
     Object? userId = null,
     Object? fullname = freezed,
     Object? avatar = freezed,
+    Object? eventTitle = freezed,
     Object? checkedInLocation = freezed,
     Object? checkedInDate = freezed,
   }) {
@@ -84,6 +87,10 @@ class _$EventMemberCopyWithImpl<$Res, $Val extends EventMember>
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      eventTitle: freezed == eventTitle
+          ? _value.eventTitle
+          : eventTitle // ignore: cast_nullable_to_non_nullable
               as String?,
       checkedInLocation: freezed == checkedInLocation
           ? _value.checkedInLocation
@@ -110,6 +117,7 @@ abstract class _$$_EventMemberCopyWith<$Res>
       String userId,
       String? fullname,
       String? avatar,
+      String? eventTitle,
       String? checkedInLocation,
       String? checkedInDate});
 }
@@ -129,6 +137,7 @@ class __$$_EventMemberCopyWithImpl<$Res>
     Object? userId = null,
     Object? fullname = freezed,
     Object? avatar = freezed,
+    Object? eventTitle = freezed,
     Object? checkedInLocation = freezed,
     Object? checkedInDate = freezed,
   }) {
@@ -148,6 +157,10 @@ class __$$_EventMemberCopyWithImpl<$Res>
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      eventTitle: freezed == eventTitle
+          ? _value.eventTitle
+          : eventTitle // ignore: cast_nullable_to_non_nullable
               as String?,
       checkedInLocation: freezed == checkedInLocation
           ? _value.checkedInLocation
@@ -169,6 +182,7 @@ class _$_EventMember implements _EventMember {
       this.userId = '',
       this.fullname,
       this.avatar,
+      this.eventTitle,
       this.checkedInLocation,
       this.checkedInDate});
 
@@ -185,13 +199,15 @@ class _$_EventMember implements _EventMember {
   @override
   final String? avatar;
   @override
+  final String? eventTitle;
+  @override
   final String? checkedInLocation;
   @override
   final String? checkedInDate;
 
   @override
   String toString() {
-    return 'EventMember(id: $id, userId: $userId, fullname: $fullname, avatar: $avatar, checkedInLocation: $checkedInLocation, checkedInDate: $checkedInDate)';
+    return 'EventMember(id: $id, userId: $userId, fullname: $fullname, avatar: $avatar, eventTitle: $eventTitle, checkedInLocation: $checkedInLocation, checkedInDate: $checkedInDate)';
   }
 
   @override
@@ -204,6 +220,8 @@ class _$_EventMember implements _EventMember {
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.eventTitle, eventTitle) ||
+                other.eventTitle == eventTitle) &&
             (identical(other.checkedInLocation, checkedInLocation) ||
                 other.checkedInLocation == checkedInLocation) &&
             (identical(other.checkedInDate, checkedInDate) ||
@@ -213,7 +231,7 @@ class _$_EventMember implements _EventMember {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, userId, fullname, avatar,
-      checkedInLocation, checkedInDate);
+      eventTitle, checkedInLocation, checkedInDate);
 
   @JsonKey(ignore: true)
   @override
@@ -235,6 +253,7 @@ abstract class _EventMember implements EventMember {
       final String userId,
       final String? fullname,
       final String? avatar,
+      final String? eventTitle,
       final String? checkedInLocation,
       final String? checkedInDate}) = _$_EventMember;
 
@@ -249,6 +268,8 @@ abstract class _EventMember implements EventMember {
   String? get fullname;
   @override
   String? get avatar;
+  @override
+  String? get eventTitle;
   @override
   String? get checkedInLocation;
   @override

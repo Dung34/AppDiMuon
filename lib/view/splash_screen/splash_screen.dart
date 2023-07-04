@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                 child: SizedBox(
                   width: 200,
                   height: 200,
-                  child: SvgPicture.asset(Assets.imAppLogoVertical),
+                  child: Image.asset(Assets.imAppLogoVertical),
                 ),
               ),
             ),

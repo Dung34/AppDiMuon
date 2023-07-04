@@ -16,13 +16,11 @@ class EventCubit extends Cubit<EventState> {
 
   EventCubit() : super(EventInitial());
 
-  final eventTypes = <EventType>[];
-
-  getAllEvent({int type = 0}) async {
+  getAllEvent({int type = 0, String? date}) async {
     emit(EventInitial());
     final response = await _eventRepository.getAllEvent(type: type);
     if (response.status == ResponseStatus.success) {
-      await Future.delayed(const Duration(milliseconds: 200));
+      log('get all${response.data ?? []}');
       emit(EventGetAllEventSuccessState(response.data ?? []));
     } else {
       emit(EventGetAllEventFailedState());
@@ -33,10 +31,18 @@ class EventCubit extends Cubit<EventState> {
     final response =
         await _eventRepository.getAllCheckedInMember(eventId: eventId);
     if (response.status == ResponseStatus.success) {
-      log('message2: $state');
       await Future.delayed(const Duration(milliseconds: 200));
       emit(EventGetAllMemberSuccessState(response.data ?? []));
-      log('message3: $state');
+    } else {
+      emit(EventGetAllMemberFailedState());
+    }
+  }
+
+  getAllHistory() async {
+    final response = await _eventRepository.getAllHistory();
+
+    if (response.status == ResponseStatus.success) {
+      emit(EventGetAllHistorySuccessState(response.data ?? []));
     } else {
       emit(EventGetAllMemberFailedState());
     }

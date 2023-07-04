@@ -50,6 +50,9 @@ class PrimaryTextField extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.focusNode,
+    this.border,
+    this.inputTextStyle,
+    this.hintTextStyle,
   }) : super(key: key);
 
   // final String? label;
@@ -74,6 +77,7 @@ class PrimaryTextField extends StatefulWidget {
   final bool isDense;
   final bool obscureText;
   final Color? fillColor;
+  final InputBorder? border;
   final Color borderColor;
   final int? maxLength;
   final int? minLines;
@@ -81,6 +85,8 @@ class PrimaryTextField extends StatefulWidget {
   final String? counterText;
   final String? label;
   final TextStyle? labelStyle;
+  final TextStyle? inputTextStyle;
+  final TextStyle? hintTextStyle;
   final bool isRequired;
   final Function(String? value)? onChanged;
   final Function(DateTime value)? onDateSelected;
@@ -140,7 +146,9 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                                 )
                               : widget.labelIcon
                           : const SizedBox(),
-                      Text(widget.label!, style: widget.labelStyle),
+                      Text(widget.label!,
+                          style:
+                              widget.labelStyle ?? AppTextTheme.robotoMedium16),
                       widget.isRequired
                           ? Text(
                               ' *',
@@ -168,7 +176,7 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                   focusNode: widget.focusNode,
                   onTap: widget.onTap,
                   readOnly: widget.readOnly,
-                  style: AppTextTheme.textPrimary,
+                  style: widget.inputTextStyle ?? AppTextTheme.textPrimary,
                   controller: widget.controller,
                   validator: widget.validator,
                   obscureText: widget.obscureText,
@@ -193,7 +201,8 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                     contentPadding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 16),
                     hintText: widget.hintText,
-                    hintStyle: AppTextTheme.textHintPrimary,
+                    hintStyle:
+                        widget.hintTextStyle ?? AppTextTheme.textHintPrimary,
                     labelStyle: AppTextTheme.textPrimary,
                     errorMaxLines: 2,
                     border: const OutlineInputBorder(
@@ -201,16 +210,19 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                             BorderSide(color: AppColor.transparent, width: 1),
                         borderRadius: BorderRadius.all(
                             Radius.circular(AppConfig.defaultRadius))),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: widget.borderColor, width: 0),
-                        borderRadius: const BorderRadius.all(
-                            Radius.circular(AppConfig.defaultRadius))),
-                    focusedBorder: const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: AppColor.primary200, width: 2),
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(AppConfig.defaultRadius))),
+                    enabledBorder: widget.border ??
+                        OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: widget.borderColor, width: 0),
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(AppConfig.defaultRadius))),
+                    focusedBorder: widget.border != InputBorder.none
+                        ? const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColor.primary200, width: 2),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(AppConfig.defaultRadius)))
+                        : widget.border,
                     filled: true,
                     fillColor:
                         widget.fillColor ?? AppColor.primaryBackgroundColor,
@@ -285,16 +297,22 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                             hintText: widget.hintText,
                             labelStyle: AppTextTheme.textPrimary,
                             filled: true,
-                            fillColor: widget.fillColor,
+                            fillColor: widget.fillColor ??
+                                AppColor.primaryBackgroundColor,
                             border: const OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: AppColor.transparent, width: 0),
+                                    color: AppColor.transparent, width: 1),
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(AppConfig.defaultRadius))),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                     color: widget.borderColor, width: 0),
                                 borderRadius: const BorderRadius.all(
+                                    Radius.circular(AppConfig.defaultRadius))),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColor.primary200, width: 2),
+                                borderRadius: BorderRadius.all(
                                     Radius.circular(AppConfig.defaultRadius))),
                             errorMaxLines: 2,
                             prefixIcon: widget.prefixIcon == null

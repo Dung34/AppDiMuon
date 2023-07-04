@@ -12,6 +12,7 @@ _$_EventMember _$$_EventMemberFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String? ?? '',
       fullname: json['fullname'] as String?,
       avatar: json['avatar'] as String?,
+      eventTitle: json['eventTitle'] as String?,
       checkedInLocation: json['checkedInLocation'] as String?,
       checkedInDate: json['checkedInDate'] as String?,
     );
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$_EventMemberToJson(_$_EventMember instance) =>
       'userId': instance.userId,
       'fullname': instance.fullname,
       'avatar': instance.avatar,
+      'eventTitle': instance.eventTitle,
       'checkedInLocation': instance.checkedInLocation,
       'checkedInDate': instance.checkedInDate,
     };

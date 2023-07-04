@@ -29,6 +29,7 @@ mixin _$UserResponse {
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
   String? get company => throw _privateConstructorUsedError;
+  String? get dob => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
@@ -54,6 +55,7 @@ abstract class $UserResponseCopyWith<$Res> {
       String? phoneNumber,
       String? avatar,
       String? company,
+      String? dob,
       String? type,
       dynamic error});
 }
@@ -80,6 +82,7 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
     Object? phoneNumber = freezed,
     Object? avatar = freezed,
     Object? company = freezed,
+    Object? dob = freezed,
     Object? type = freezed,
     Object? error = freezed,
   }) {
@@ -120,6 +123,10 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -150,6 +157,7 @@ abstract class _$$_UserResponseCopyWith<$Res>
       String? phoneNumber,
       String? avatar,
       String? company,
+      String? dob,
       String? type,
       dynamic error});
 }
@@ -174,6 +182,7 @@ class __$$_UserResponseCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? avatar = freezed,
     Object? company = freezed,
+    Object? dob = freezed,
     Object? type = freezed,
     Object? error = freezed,
   }) {
@@ -214,6 +223,10 @@ class __$$_UserResponseCopyWithImpl<$Res>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -239,6 +252,7 @@ class _$_UserResponse implements _UserResponse {
       this.phoneNumber,
       this.avatar,
       this.company,
+      this.dob,
       this.type,
       this.error});
 
@@ -264,13 +278,15 @@ class _$_UserResponse implements _UserResponse {
   @override
   final String? company;
   @override
+  final String? dob;
+  @override
   final String? type;
   @override
   final dynamic error;
 
   @override
   String toString() {
-    return 'UserResponse(id: $id, username: $username, fullname: $fullname, address: $address, major: $major, email: $email, phoneNumber: $phoneNumber, avatar: $avatar, company: $company, type: $type, error: $error)';
+    return 'UserResponse(id: $id, username: $username, fullname: $fullname, address: $address, major: $major, email: $email, phoneNumber: $phoneNumber, avatar: $avatar, company: $company, dob: $dob, type: $type, error: $error)';
   }
 
   @override
@@ -290,6 +306,7 @@ class _$_UserResponse implements _UserResponse {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.company, company) || other.company == company) &&
+            (identical(other.dob, dob) || other.dob == dob) &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
@@ -307,6 +324,7 @@ class _$_UserResponse implements _UserResponse {
       phoneNumber,
       avatar,
       company,
+      dob,
       type,
       const DeepCollectionEquality().hash(error));
 
@@ -335,6 +353,7 @@ abstract class _UserResponse implements UserResponse {
       final String? phoneNumber,
       final String? avatar,
       final String? company,
+      final String? dob,
       final String? type,
       final dynamic error}) = _$_UserResponse;
 
@@ -359,6 +378,8 @@ abstract class _UserResponse implements UserResponse {
   String? get avatar;
   @override
   String? get company;
+  @override
+  String? get dob;
   @override
   String? get type;
   @override

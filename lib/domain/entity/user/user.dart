@@ -12,6 +12,7 @@ class UserEntity with _$UserEntity {
     String? coverImage,
     String? position,
     String? company,
+    String? dob,
     String? roleStr,
     String? bio,
     int? role,

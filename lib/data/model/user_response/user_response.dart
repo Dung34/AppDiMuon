@@ -15,6 +15,7 @@ class UserResponse with _$UserResponse {
     String? phoneNumber,
     String? avatar,
     String? company,
+    String? dob,
     String? type,
     dynamic error,
   }) = _UserResponse;

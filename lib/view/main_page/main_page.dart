@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/resources/resources.dart';
+import '../event_page/calendar/calendar_page.dart';
 import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
 import '../setting_page/setting_page.dart';
@@ -37,8 +38,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final tabs = [
     const EventPage(),
     const MembershipPage(),
-    const EventPage(),
-    const SettingPage(),
+    const CalendarPage(),
+    SettingPage(),
   ];
 
   @override

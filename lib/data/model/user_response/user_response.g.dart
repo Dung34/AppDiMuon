@@ -17,6 +17,7 @@ _$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phoneNumber'] as String?,
       avatar: json['avatar'] as String?,
       company: json['company'] as String?,
+      dob: json['dob'] as String?,
       type: json['type'] as String?,
       error: json['error'],
     );
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
       'phoneNumber': instance.phoneNumber,
       'avatar': instance.avatar,
       'company': instance.company,
+      'dob': instance.dob,
       'type': instance.type,
       'error': instance.error,
     };

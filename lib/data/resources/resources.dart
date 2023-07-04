@@ -19,6 +19,7 @@ class Assets {
   static const String icFilter = '$iconPrefix/ic_filter.svg';
   static const String icHome = '$iconPrefix/ic_home.svg';
   static const String icIdCard = '$iconPrefix/ic_id_card.svg';
+  static const String icInfo = '$iconPrefix/ic_info.svg';
   static const String icInterest = '$iconPrefix/ic_interest.svg';
 
   static const String icLogo = '$iconPrefix/ic_logo.svg';
@@ -50,4 +51,5 @@ class Assets {
       '$imagePrefix/im_logo_ceohn7_horizontal.png';
   static const String imAppLogoHorizontalWhite =
       '$imagePrefix/im_logo_ceohn7_horizontal_white.png';
+  static const String imQrBounder = '$imagePrefix/im_qr_bounder.png';
 }

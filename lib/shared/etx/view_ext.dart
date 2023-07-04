@@ -11,6 +11,24 @@ extension BuildContextExt on BuildContext {
           builder: (context) => dialog,
           barrierDismissible: barrierDismissible);
 
+  dynamic showAppBottomSheet(Widget dialog, {bool barrierDismissible = true}) =>
+      showModalBottomSheet(
+        context: this,
+        // isScrollControlled: true,
+        isDismissible: barrierDismissible,
+        useSafeArea: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
+        ),
+        clipBehavior: Clip.hardEdge,
+
+        builder: (context) => dialog,
+        // barrierDismissible: barrierDismissible,
+      );
+
   void pop([dynamic result]) {
     if (Navigator.of(this).canPop()) Navigator.of(this).pop(result);
   }

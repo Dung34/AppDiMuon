@@ -14,6 +14,10 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>CEO.HN7</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Ứng dụng muốn sử dụng quyền truy cập dữ liệu ảnh đa phương tiện của bạn.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Ứng dụng muốn sử dụng quyền truy cập dữ liệu ảnh đa phương tiện của bạn.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

@@ -86,12 +86,12 @@ class AppTextTheme {
     fontSize: 12,
   );
   static const TextStyle robotoRegular14 = TextStyle(
-    color: AppColor.black,
+    color: AppColor.primary500,
     fontWeight: FontWeight.w400,
     fontSize: 14,
   );
   static const TextStyle robotoRegular16 = TextStyle(
-    color: AppColor.black,
+    color: AppColor.primary500,
     fontWeight: FontWeight.w400,
     fontSize: 16,
   );
@@ -100,10 +100,20 @@ class AppTextTheme {
     fontWeight: FontWeight.w300,
     fontSize: 12,
   );
+  static const TextStyle robotoLight16 = TextStyle(
+    color: AppColor.primary400,
+    fontWeight: FontWeight.w300,
+    fontSize: 16,
+  );
   static const TextStyle robotoLight18 = TextStyle(
-    color: AppColor.black,
+    color: AppColor.primary500,
     fontWeight: FontWeight.w300,
     fontSize: 18,
+  );
+  static const TextStyle robotoLight24 = TextStyle(
+    color: AppColor.primary500,
+    fontWeight: FontWeight.w300,
+    fontSize: 24,
   );
   static const TextStyle robotoMedium12 = TextStyle(
     color: AppColor.black,
@@ -125,6 +135,11 @@ class AppTextTheme {
     fontWeight: FontWeight.w500,
     fontSize: 18,
   );
+  static const TextStyle robotoMedium24 = TextStyle(
+    color: AppColor.primary500,
+    fontWeight: FontWeight.w500,
+    fontSize: 24,
+  );
   static const TextStyle robotoBold16 = TextStyle(
     color: AppColor.black,
     fontWeight: FontWeight.w700,
@@ -136,12 +151,24 @@ class AppTextTheme {
     fontSize: 18,
   );
 
+  static const TextStyle robotoBold20 = TextStyle(
+    color: AppColor.black,
+    fontWeight: FontWeight.w700,
+    fontSize: 20,
+  );
+
   static const TextStyle robotoBold24 = TextStyle(
     color: AppColor.black,
     fontWeight: FontWeight.w700,
     fontSize: 24,
   );
 
+  static const TextStyle lexendBold16 = TextStyle(
+    fontFamily: 'Lexend',
+    color: AppColor.primary500,
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+  );
   static const TextStyle lexendBold18 = TextStyle(
     fontFamily: 'Lexend',
     color: AppColor.black,
@@ -150,13 +177,13 @@ class AppTextTheme {
   );
   static const TextStyle lexendBold24 = TextStyle(
     fontFamily: 'Lexend',
-    color: AppColor.black,
+    color: AppColor.primary500,
     fontWeight: FontWeight.w700,
     fontSize: 24,
   );
   static const TextStyle lexendBold30 = TextStyle(
     fontFamily: 'Lexend',
-    color: AppColor.black,
+    color: AppColor.secondary500,
     fontWeight: FontWeight.w700,
     fontSize: 30,
   );

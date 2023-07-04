@@ -29,3 +29,11 @@ class EventGetAllMemberSuccessState extends EventState {
 }
 
 class EventGetAllMemberFailedState extends EventState {}
+
+class EventGetAllHistorySuccessState extends EventState {
+  final List<EventMember> eventMembers;
+
+  const EventGetAllHistorySuccessState(this.eventMembers);
+}
+
+class EventGetAllHistoryFailedState extends EventState {}

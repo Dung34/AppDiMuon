@@ -5,7 +5,8 @@ import 'container_shimmer.dart';
 import 'primary_shimmer.dart';
 
 class EventMemberItemShimmer extends StatelessWidget {
-  const EventMemberItemShimmer({super.key});
+  final bool showAvatar;
+  const EventMemberItemShimmer({super.key, this.showAvatar = true});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,11 @@ class EventMemberItemShimmer extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CircleAvatar(radius: 20),
-            const SizedBox(
-              width: 10,
-            ),
+            if (showAvatar) const CircleAvatar(radius: 20),
+            if (showAvatar)
+              const SizedBox(
+                width: 10,
+              ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

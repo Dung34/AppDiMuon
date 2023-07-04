@@ -7,6 +7,16 @@ enum UIState {
   end;
 }
 
+class UserRole {
+  static const int user = 0;
+  static const int admin = 1;
+}
+
+class UserRoleStr {
+  static const String user = "Thành viên";
+  static const String admin = "Quản trị viên";
+}
+
 class EventStatus {
   static const int notStarted = 0;
   static const int begining = 1;

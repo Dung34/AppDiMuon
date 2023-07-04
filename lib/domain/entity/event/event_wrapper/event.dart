@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'concerned_user.dart';
-
 part 'event.freezed.dart';
 part 'event.g.dart';
 

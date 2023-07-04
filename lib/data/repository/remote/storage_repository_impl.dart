@@ -25,8 +25,7 @@ class StorageRepositoryImpl implements StorageRepository {
       requestBody: true,
       requestHeader: true,
     ));
-    dio.options =
-        DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
+    dio.options = DioBaseOptions(baseUrl: Environment.cdnBaseUrl).baseOption;
   }
 
   @override

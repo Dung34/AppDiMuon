@@ -10,6 +10,7 @@ class EventMember with _$EventMember {
     @Default('') String userId,
     String? fullname,
     String? avatar,
+    String? eventTitle,
     String? checkedInLocation,
     String? checkedInDate,
   }) = _EventMember;

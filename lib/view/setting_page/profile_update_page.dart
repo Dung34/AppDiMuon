@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/constant/enum.dart';
 import '../../domain/entity/user/user.dart';
 import '../../shared/etx/view_ext.dart';
+import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/validation_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
@@ -13,8 +14,12 @@ import '../base/bloc/user/user_cubit.dart';
 import 'component/profile_update_image.dart';
 
 class ProfileUpdatePage extends StatefulWidget {
-  final UserCubit userCubit;
-  const ProfileUpdatePage({super.key, required this.userCubit});
+  // final UserCubit userCubit;
+  const ProfileUpdatePage({
+    super.key,
+
+    // required this.userCubit,
+  });
 
   @override
   State<ProfileUpdatePage> createState() => _ProfileUpdatePageState();
@@ -25,7 +30,7 @@ class _ProfileUpdatePageState
   @override
   bool get useBlocProviderValue => true;
   @override
-  UserCubit get cubit => widget.userCubit;
+  UserCubit get cubit => context.read<UserCubit>();
   @override
   EdgeInsets get padding => EdgeInsets.zero;
   @override
@@ -38,9 +43,9 @@ class _ProfileUpdatePageState
   late UserEntity user;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController companyController = TextEditingController();
-  final TextEditingController positionController = TextEditingController();
-  final TextEditingController productController = TextEditingController();
-  final TextEditingController bioController = TextEditingController();
+  final TextEditingController dobController = TextEditingController();
+  // final TextEditingController productController = TextEditingController();
+  // final TextEditingController bioController = TextEditingController();
 
   final nameFormKey = GlobalKey<FormState>();
 
@@ -52,7 +57,8 @@ class _ProfileUpdatePageState
     userUpdate = user.copyWith();
     nameController.text = user.fullname ?? ' ';
     companyController.text = user.company ?? ' ';
-    bioController.text = user.bio ?? ' ';
+    dobController.text = DateTimeUtils.formatDate(user.dob ?? '');
+    // bioController.text = user.bio ?? ' ';
   }
 
   final getImageBloc = GetImageBloc();
@@ -101,25 +107,21 @@ class _ProfileUpdatePageState
                   validator: ValidationUtils.textEmptyValidator,
                   textCapitalization: TextCapitalization.words,
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
+                PrimaryTextField(
+                  controller: dobController,
+                  inputType: AppInputType.datePicker,
+                  label: 'Ngày sinh',
+                  hintText: 'Nhập ngày sinh',
+                  context: context,
+                ),
+                const SizedBox(height: 20),
                 PrimaryTextField(
                   controller: companyController,
                   label: 'Công ty',
                   hintText: 'Nhập công ty',
                 ),
-                const SizedBox(height: 24),
-                PrimaryTextField(
-                  controller: productController,
-                  label: 'Sản phẩm',
-                  hintText: 'Nhập sản phẩm',
-                ),
-                const SizedBox(height: 24),
-                PrimaryTextField(
-                  controller: bioController,
-                  label: 'Sứ mệnh',
-                  hintText: 'Nhập sứ mệnh',
-                ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 BlocListener<UserCubit, UserState>(
                   listener: (context, state) {
                     if (state is UserUpdateSuccessState) {
@@ -139,7 +141,7 @@ class _ProfileUpdatePageState
                       showLoading(dismissible: false);
                       userUpdate.fullname = nameController.text.trim();
                       userUpdate.company = companyController.text.trim();
-                      userUpdate.bio = bioController.text.trim();
+                      userUpdate.dob = dobController.text.trim();
                       cubit.updateUser(userUpdate);
                     },
                     label: 'Lưu thông tin',

@@ -141,12 +141,12 @@ class _AddressDialogUiState extends State<AddressDialogUi> {
 // }
 
 Dialog getLoadingDialog() {
-  return Dialog(
+  return const Dialog(
     elevation: 0.0,
     backgroundColor: Colors.transparent,
     child: Column(
       mainAxisSize: MainAxisSize.min,
-      children: const [
+      children: [
         Loading(),
       ],
     ),
@@ -205,6 +205,8 @@ Dialog getAlertDialog({
   required BuildContext context,
   required String title,
   required String message,
+  Function? onPositivePressed,
+  Function? onNegativePressed,
 }) {
   return Dialog(
     elevation: 0.0,
@@ -221,7 +223,7 @@ Dialog getAlertDialog({
         children: [
           Text(
             title,
-            style: AppTextTheme.textPrimaryBold,
+            style: AppTextTheme.textPageTitle,
           ),
           const SizedBox(
             height: 15,
@@ -234,20 +236,25 @@ Dialog getAlertDialog({
             height: 25,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               PrimaryButton(
                 context: context,
                 onPressed: () {
                   Navigator.pop(context);
+                  onNegativePressed?.call();
                 },
                 label: 'Đóng',
                 backgroundColor: AppColor.secondaryColor,
+              ),
+              const SizedBox(
+                width: 10,
               ),
               PrimaryButton(
                   context: context,
                   onPressed: () {
                     Navigator.pop(context, true);
+                    onPositivePressed?.call();
                   },
                   label: 'Đồng ý')
             ],

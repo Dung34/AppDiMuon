@@ -56,12 +56,13 @@ class ViewUtils {
         ],
         uiSettings: [
           AndroidUiSettings(
-              toolbarTitle: 'Chỉnh sửa',
-              toolbarColor: AppColor.primaryColor,
-              activeControlsWidgetColor: AppColor.primaryColor,
-              showCropGrid: false,
-              toolbarWidgetColor: Colors.white,
-              lockAspectRatio: false),
+            toolbarTitle: 'Chỉnh sửa',
+            toolbarColor: AppColor.primaryColor,
+            activeControlsWidgetColor: AppColor.primaryColor,
+            showCropGrid: false,
+            toolbarWidgetColor: Colors.white,
+            lockAspectRatio: false,
+          ),
           IOSUiSettings(
             title: 'Chỉnh sửa',
           ),

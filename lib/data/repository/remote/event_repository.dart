@@ -3,7 +3,10 @@ import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../model/api/base_response.dart';
 
 abstract class EventRepository {
-  Future<ResponseWrapper<List<Event>>> getAllEvent({int type = 0});
+  Future<ResponseWrapper<List<Event>>> getAllEvent(
+      {int type = 0, String? date});
   Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
       {required String eventId});
+
+  Future<ResponseWrapper<List<EventMember>>> getAllHistory();
 }

@@ -8,6 +8,7 @@ import '../../../../data/model/api/base_response.dart';
 import '../../../../data/repository/local/local_data_access.dart';
 import '../../../../data/repository/remote/repository.dart';
 import '../../../../di/di.dart';
+import '../../../../shared/utils/view_utils.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -16,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository = getIt.get<UserRepository>();
   final OpenIDRepository openIDRepository = getIt.get<OpenIDRepository>();
   LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
+  bool _rememberMe = false;
 
   AuthBloc() : super(AuthInitial()) {
     on<AuthCheckCurrentSessionEvent>(_onCheckCurrentSession);
@@ -35,6 +37,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthShowPasswordEvent>((event, emit) {
       emit(AuthShowPasswordState(showPassword: event.showPassword));
     });
+
+    on<AuthLogoutRequestEvent>(_onLogOutEvent);
+
+    on<AuthRequestAccoutDeletionEvent>(_onRequestAccountDeletion);
   }
 
   FutureOr<void> _onCheckCurrentSession(
@@ -57,6 +63,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         username: accountRemember ? username : '',
         password: accountRemember ? password : '',
         accountRemember: accountRemember));
+
     emit(AuthShowPasswordState(showPassword: false));
     emit(AuthRememberState(accountRemember));
     emit(AuthCheckPolicyState(false));
@@ -68,22 +75,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthFieldRequiredState());
     } else {
       emit(AuthLoadingState());
-      final response = await userRepository.loginRequest(
+      final response = await openIDRepository.loginRequest(
           username: event.username.toString(),
           password: event.password.toString(),
           rememberMe: event.rememberMe);
 
       if (response.status == ResponseStatus.success && response.data != null) {
-        emit(AuthLoginSuccessState());
-        localDataAccess.setAccessToken(response.data!.idToken);
+        localDataAccess.setAccessToken(response.data!.data?.accessToken ?? '');
+        localDataAccess
+            .setRefreshToken(response.data!.data?.refreshToken ?? '');
         localDataAccess.setUsername(event.username.toString());
-        localDataAccess.setPassword(event.password.toString());
-        localDataAccess.setAccountRemember(event.rememberMe);
+        localDataAccess.setAccountRemember(_rememberMe);
+        emit(AuthLoginSuccessState());
 
         // await NotificationHelper.instance
         //     .initSignalrConnection(response.data!.idToken);
       } else if (response.status == ResponseStatus.error) {
         emit(AuthLoginFailedState(message: response.message));
+        ViewUtils.toastWarning(response.message ?? '');
       }
     }
   }
@@ -99,8 +108,45 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
+  FutureOr<void> _onRequestAccountDeletion(
+      AuthRequestAccoutDeletionEvent event, Emitter<AuthState> emit) async {
+    final response = await openIDRepository.requestDeactive(isDeactive: true);
+    if (response.status == ResponseStatus.success) {
+      // final response2 = await openIDRepository.endSession();
+      // if (response2.status == ResponseStatus.success) {
+      String username = localDataAccess.getUserName().toString();
+      bool accountRemember = localDataAccess.getAccountRemember();
+      localDataAccess.clearData();
+      localDataAccess.setUsername(username);
+      localDataAccess.setAccountRemember(accountRemember);
+      // emit(SettingLogoutSuccessState());
+      emit(AuthRequestDeletionSuccessState());
+      ViewUtils.toastSuccess('Yêu cầu xoá tài khoản thành công');
+      // }
+    } else {
+      emit(AuthRequestDeletionFailedState());
+      ViewUtils.toastWarning('Yêu cầu xoá tài khoản thất bại');
+    }
+  }
+
+  FutureOr<void> _onLogOutEvent(
+      AuthLogoutRequestEvent event, Emitter<AuthState> emit) async {
+    // final response = await _openIDRepository.endSession();
+    // if (response.status == ResponseStatus.success) {
+    String username = localDataAccess.getUserName().toString();
+    bool accountRemember = localDataAccess.getAccountRemember();
+    await localDataAccess.clearData();
+    localDataAccess.setUsername(username);
+    localDataAccess.setAccountRemember(accountRemember);
+    username = localDataAccess.getUserName().toString();
+    accountRemember = localDataAccess.getAccountRemember();
+    emit(AuthLogoutSuccessState());
+    // }
+  }
+
   FutureOr<void> _onAuthRememberEvent(
       AuthRememberEvent event, Emitter<AuthState> emit) {
+    _rememberMe = event.rememberMe;
     emit(AuthRememberState(event.rememberMe));
   }
 

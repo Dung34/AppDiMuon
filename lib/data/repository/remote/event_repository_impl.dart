@@ -27,7 +27,9 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Event>>> getAllEvent({int type = 0}) async {
+  Future<ResponseWrapper<List<Event>>> getAllEvent(
+      {int type = 0, String? date}) async {
+    await Future.delayed(const Duration(milliseconds: 200));
     return ResponseWrapper.success(data: [
       Event(
         id: '',
@@ -110,6 +112,42 @@ class EventpRepositoryImpl implements EventRepository {
       EventMember(
         id: '',
         fullname: 'Vương Tùng Giang',
+        avatar:
+            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
+        checkedInDate: '2023-06-13T10:19:32Z',
+        checkedInLocation:
+            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
+      ),
+    ]);
+  }
+
+  @override
+  Future<ResponseWrapper<List<EventMember>>> getAllHistory() async {
+    return ResponseWrapper.success(data: [
+      EventMember(
+        id: '',
+        fullname: 'Vương Tùng Giang',
+        eventTitle: 'Buổi 1',
+        avatar:
+            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
+        checkedInDate: '2023-06-13T10:19:32Z',
+        checkedInLocation:
+            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
+      ),
+      EventMember(
+        id: '',
+        fullname: 'Vương Tùng Giang Vương Tùng Giang',
+        eventTitle: 'Buổi 12',
+        avatar:
+            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
+        checkedInDate: '2023-06-13T10:19:32Z',
+        checkedInLocation:
+            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
+      ),
+      EventMember(
+        id: '',
+        fullname: 'Vương Tùng Giang',
+        eventTitle: 'Buổi 13',
         avatar:
             'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
         checkedInDate: '2023-06-13T10:19:32Z',

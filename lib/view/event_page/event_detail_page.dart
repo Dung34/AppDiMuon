@@ -7,11 +7,22 @@ import '../../data/resources/resources.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
+import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
+import '../base/base_page_sate.dart';
+import 'cubit/event_cubit.dart';
 
-class EventDetailPage extends StatelessWidget {
+class EventDetailPage extends StatefulWidget {
   const EventDetailPage({super.key});
+
+  @override
+  State<EventDetailPage> createState() => _EventDetailPageState();
+}
+
+class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
+  @override
+  bool get useBlocProviderValue => true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +32,17 @@ class EventDetailPage extends StatelessWidget {
       backgroundColor: AppColor.primaryBackgroundColor,
       appBar: PrimaryAppBar(
         title: 'Thông tin chi tiết',
+        actions: [
+          if (userCubit.currentUser?.role == UserRole.admin)
+            PrimaryIconButton(
+              context: context,
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoute.eventQr,
+                    arguments: EventQrPageArgs(event: event));
+              },
+              icon: Assets.icQrCode,
+            )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   static const Color primaryColor = Color(0xff10316B);
+  static const Color primary50 = Color(0xffE7EAF0);
   static const Color primary100 = Color(0xffB5BFD1);
   static const Color primary200 = Color(0xff91A0BB);
   static const Color primary400 = Color(0xff405A89);
@@ -14,6 +15,7 @@ class AppColor {
   static const Color secondary500 = Color(0xff0B409C);
   static const Color secondary600 = Color(0xff0F2D61);
   static const Color third400 = Color(0xffFDCB5D);
+  static const Color fourth200 = Color(0xffEBEBEB);
   static const Color fourth300 = Color(0xffE2E2E2);
   static const Color fourth600 = Color(0xffC1C1C1);
   static const Color fourth700 = Color(0xff979797);
@@ -31,15 +33,16 @@ class AppColor {
   static const Color errorColor = Color(0xFFD82F1A);
 
   static const Color neutral5 = Color(0xFFD9D9D9);
+  static const Color neutral10 = Color(0xFFFAFAFA);
   static const Color red = Color(0xFFFF4D4F);
   static const Color gray04 = Color(0xFF727276);
   static const Color gray05 = Color(0xFF8E8E93);
   static const Color gray09 = Color(0xFFDDDDDF);
 
   static const List<Color> primaryGradient = [
-    Color(0xFF000000),
-    Color(0xFFC10000),
-    Color(0xFFD11818),
+    Color(0xFF1850AE),
+    Color(0xFF051B42),
+    // Color(0xFFD11818),
     // Color(0xffA6FFCB),
   ];
 

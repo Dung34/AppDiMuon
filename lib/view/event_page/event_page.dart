@@ -5,6 +5,8 @@ import '../../data/resources/resources.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
+import '../../shared/widgets/shimmer/container_shimmer.dart';
+import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/user/user_cubit.dart';
@@ -78,7 +80,31 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                                 ),
                               ],
                             )
-                          : const SizedBox();
+                          : const PrimaryShimmer(
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 20,
+                                  ),
+                                  SizedBox(width: 16),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ContainerShimmer(
+                                          height: 16,
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        ContainerShimmer(width: 200),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
                     },
                   ),
                 ),

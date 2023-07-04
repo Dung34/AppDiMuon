@@ -69,3 +69,9 @@ class AuthShowPasswordState extends AuthState {
   bool showPassword;
   AuthShowPasswordState({required this.showPassword});
 }
+
+class AuthRequestDeletionSuccessState extends AuthState {}
+
+class AuthRequestDeletionFailedState extends AuthState {}
+
+class AuthLogoutSuccessState extends AuthState {}

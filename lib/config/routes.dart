@@ -4,10 +4,13 @@ import 'package:flutter/cupertino.dart';
 
 import '../view/auth/login/login_page.dart';
 import '../view/event_page/event_detail_page.dart';
+import '../view/event_page/event_history_page.dart';
 import '../view/event_page/event_member_history.dart';
 import '../view/event_page/event_member_page.dart';
+import '../view/event_page/event_qr_page.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
+import '../view/setting_page/profile_update_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -18,7 +21,10 @@ class AppRoute {
   static const String register = "/register";
   static const String eventDetail = "/eventDetail";
   static const String eventMember = "/eventMember";
+  static const String eventHistory = "/eventHistory";
+  static const String eventQr = "/eventQr";
   static const String eventMemberHistory = "/eventMemberHistory";
+  static const String profileUpdate = "/profileUpdate";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -28,8 +34,11 @@ class AppRoute {
         AppRoute.register: (context) => RegisterPage(),
         AppRoute.eventDetail: (context) => const EventDetailPage(),
         AppRoute.eventMember: (context) => const EventMemberPage(),
+        AppRoute.eventHistory: (context) => const EventHistoryPage(),
+        AppRoute.eventQr: (context) => const EventQrPage(),
         AppRoute.eventMemberHistory: (context) =>
             const EventMemberHistoryPage(),
+        AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -53,6 +62,12 @@ class EventMemberPageArgs {
   final String eventId;
 
   EventMemberPageArgs({required this.eventId});
+}
+
+class EventQrPageArgs {
+  final Event event;
+
+  EventQrPageArgs({required this.event});
 }
 
 class EventMemberHistoryPageArgs {

@@ -7,6 +7,7 @@ class PrimaryContainer extends StatelessWidget {
   final Color? backgroundColor;
   final Color? borderColor;
   final double? borderRadius;
+  final double? borderWidth;
   final double? width;
   final double? height;
   final EdgeInsets? padding;
@@ -15,7 +16,8 @@ class PrimaryContainer extends StatelessWidget {
       this.child,
       this.backgroundColor = AppColor.white,
       this.borderColor,
-      this.borderRadius = 2,
+      this.borderRadius = 8,
+      this.borderWidth = 1,
       this.padding,
       this.width,
       this.height})
@@ -30,7 +32,9 @@ class PrimaryContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(borderRadius!),
-        border: borderColor != null ? Border.all(color: borderColor!) : null,
+        border: borderColor != null
+            ? Border.all(color: borderColor!, width: borderWidth!)
+            : null,
       ),
       child: child,
     );

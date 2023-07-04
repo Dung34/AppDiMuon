@@ -42,3 +42,7 @@ class AuthLoginRequestEvent extends AuthEvent {
 }
 
 class AuthLoginBySSORequestEvent extends AuthEvent {}
+
+class AuthLogoutRequestEvent extends AuthEvent {}
+
+class AuthRequestAccoutDeletionEvent extends AuthEvent {}

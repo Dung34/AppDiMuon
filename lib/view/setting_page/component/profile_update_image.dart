@@ -60,6 +60,7 @@ class ProfileUpdateImage extends StatelessWidget {
             bottom: 96,
             child: PrimaryIconButton(
               context: context,
+              backgroundColor: AppColor.transparent,
               onPressed: () {
                 getImageBloc.add(GetImagePickerEvent(
                     shouldCrop: true, type: ImageType.cover));

@@ -1,10 +1,10 @@
-// ignore_for_file: use_build_context_synchronously, empty_catches
-
 import 'package:animated_widgets/animated_widgets.dart';
 import '../../../config/config.dart';
 import '../../../config/routes.dart';
 import '../../../data/resources/resources.dart';
+import '../../../di/di.dart';
 import '../../../shared/etx/app_ext.dart';
+import '../../../shared/utils/dialog_helper.dart';
 import '../../../shared/utils/validation_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +16,9 @@ import '../../../shared/widgets/button/primary_button.dart';
 import '../../../shared/widgets/text_field/primary_text_field.dart';
 import '../../base/bloc/auth/auth_bloc.dart';
 
-// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-  final AuthBloc authBloc = AuthBloc()..add(AuthInitEvent());
+  final AuthBloc authBloc = getIt.get<AuthBloc>()..add(AuthInitEvent());
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final usernameFormKey = GlobalKey<FormState>();
@@ -28,28 +27,22 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     onLoginPressed() {
-      // context.showAppDialog(getLoadingDialog());
-
-      // final c1 = usernameFormKey.currentState?.validate() ?? false;
-      // final c2 = passwordFormKey.currentState?.validate() ?? false;
-      // if (!c1 || !c2) {
-      //   context.pop();
-      //   return;
-      // }
-      // authBloc.add(AuthLoginRequestEvent(
-      //   username: usernameController.text.trim(),
-      //   password: passwordController.text.trim(),
-      // ));
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        AppRoute.main,
-        (route) => false,
-      );
+      final c1 = usernameFormKey.currentState?.validate() ?? false;
+      final c2 = passwordFormKey.currentState?.validate() ?? false;
+      context.showAppDialog(getLoadingDialog());
+      if (!c1 || !c2) {
+        context.pop();
+        return;
+      }
+      authBloc.add(AuthLoginRequestEvent(
+        username: usernameController.text.trim(),
+        password: passwordController.text.trim(),
+      ));
+      // Navigator.of(context).pushNamed(AppRoute.main);
     }
 
-    return BlocProvider<AuthBloc>(
-      create: (context) => authBloc,
-      lazy: false,
+    return BlocProvider.value(
+      value: authBloc,
       child: Scaffold(
         backgroundColor: AppColor.primaryBackgroundColor,
         body: SafeArea(

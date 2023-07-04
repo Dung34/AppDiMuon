@@ -14,7 +14,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
     extends State<T> {
   final UserCubit userCubit = getIt.get<UserCubit>();
   final CommonCubit _commonCubit = CommonCubit();
-  C get cubit => getIt.get<C>();
+  late C cubit;
 
   /// use safe area or not
   bool get useSafeArea => true;
@@ -38,6 +38,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
   @override
   void initState() {
     super.initState();
+    if (!useBlocProviderValue) cubit = getIt.get<C>();
+    // log('base page state: ${cubit.runtimeType} ${cubit.hashCode}');
   }
 
   @override

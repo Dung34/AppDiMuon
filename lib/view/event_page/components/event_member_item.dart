@@ -9,7 +9,14 @@ import '../../../shared/widgets/image/primary_circle_image.dart';
 
 class EventMemberItem extends StatelessWidget {
   final EventMember eventMember;
-  const EventMemberItem({super.key, required this.eventMember});
+  final bool showAvatar;
+  final bool showTitle;
+  const EventMemberItem({
+    super.key,
+    required this.eventMember,
+    this.showAvatar = true,
+    this.showTitle = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +30,16 @@ class EventMemberItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: AppColor.secondary500,
-              child: PrimaryCircleImage(
-                radius: 18,
-                imageUrl: eventMember.avatar ?? '',
+            if (showAvatar)
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: AppColor.secondary500,
+                child: PrimaryCircleImage(
+                  radius: 18,
+                  imageUrl: eventMember.avatar ?? '',
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
+            if (showAvatar) const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +48,9 @@ class EventMemberItem extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Text(
-                        eventMember.fullname ?? '',
+                        showTitle
+                            ? eventMember.eventTitle ?? ''
+                            : eventMember.fullname ?? '',
                         maxLines: 2,
                         style: AppTextTheme.robotoBold16.copyWith(
                             color: AppColor.primary500,

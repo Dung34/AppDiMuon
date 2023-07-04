@@ -8,15 +8,18 @@ import '../../../shared/widgets/button/back_button.dart';
 import '../../../shared/widgets/image/primary_circle_image.dart';
 import '../../../shared/widgets/image/primary_image.dart';
 import '../../../shared/widgets/something/loading.dart';
+import '../../../shared/widgets/something/user_role_badge.dart';
 import '../../base/base_page_sate.dart';
 import '../../base/bloc/user/user_cubit.dart';
 
 class ProfileViewHeader extends StatefulWidget {
   final Widget child;
+  final bool canPop;
 
   /// id user id is null, this is current user
   final String? userId;
-  const ProfileViewHeader({super.key, required this.child, this.userId});
+  const ProfileViewHeader(
+      {super.key, required this.child, this.userId, this.canPop = false});
 
   @override
   State<StatefulWidget> createState() => _ProfileViewHeaderState();
@@ -33,7 +36,8 @@ class _ProfileViewHeaderState
   EdgeInsets get padding => EdgeInsets.zero;
 
   @override
-  UserCubit get cubit => widget.userId != null ? UserCubit() : super.cubit;
+  UserCubit get cubit =>
+      widget.userId != null ? UserCubit() : context.read<UserCubit>();
 
   @override
   bool get useBlocProviderValue => widget.userId == null;
@@ -89,6 +93,7 @@ class _ProfileViewHeaderState
                       : AppColor.transparent,
                   elevation: 0,
                   expandedHeight: expandedHeight,
+
                   shadowColor: Colors.black.withOpacity(0.25),
                   forceElevated: true,
                   flexibleSpace: FlexibleSpaceBar(
@@ -99,7 +104,7 @@ class _ProfileViewHeaderState
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Row(
                               children: [
-                                const BackButtonCustom(),
+                                if (widget.canPop) const BackButtonCustom(),
                                 PrimaryCircleImage(
                                   radius: 20,
                                   imageUrl: user.avatar ?? '',
@@ -115,24 +120,12 @@ class _ProfileViewHeaderState
                           )
                         : Container(
                             alignment: Alignment.bottomCenter,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(20.0),
-                              ),
-                            ),
                             width: context.screenWidth,
                             height: expandedHeight,
                             child: Stack(
                               children: [
                                 Container(
                                   alignment: Alignment.bottomCenter,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                  ),
                                   height: expandedHeight,
                                   child: PrimaryNetworkImage(
                                     imageUrl: user.coverImage,
@@ -142,10 +135,6 @@ class _ProfileViewHeaderState
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
                                     gradient: LinearGradient(
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter,
@@ -157,35 +146,45 @@ class _ProfileViewHeaderState
                                   left: 16,
                                   bottom: 16,
                                   right: 16,
-                                  child: SizedBox(
+                                  child: Container(
                                     width: context.screenWidth,
-                                    height: expandedHeight + kToolbarHeight,
-                                    child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                            radius: 56,
-                                            backgroundColor: AppColor.white,
-                                            child: PrimaryCircleImage(
-                                              radius: 50,
-                                              imageUrl: user.avatar ?? '',
-                                            ),
+                                    height: expandedHeight,
+                                    alignment: Alignment.bottomCenter,
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 56,
+                                          backgroundColor: AppColor.white,
+                                          child: PrimaryCircleImage(
+                                            radius: 50,
+                                            imageUrl: user.avatar ?? '',
                                           ),
-                                          const SizedBox(width: 16),
-                                          Expanded(
-                                            child: Text(
-                                              user.fullname ?? '',
-                                              style: AppTextTheme.robotoBold24
-                                                  .copyWith(
-                                                overflow: TextOverflow.ellipsis,
-                                                color: AppColor.white,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                user.fullname ?? '',
+                                                style: AppTextTheme.robotoBold20
+                                                    .copyWith(
+                                                        color:
+                                                            AppColor.neutral10),
+                                                maxLines: 2,
                                               ),
-                                              maxLines: 2,
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              UserRoleBadge(
+                                                type: user.role!,
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -196,7 +195,7 @@ class _ProfileViewHeaderState
                   pinned: true,
                   // floating: true,
                   // snap: true,
-                  automaticallyImplyLeading: false,
+                  automaticallyImplyLeading: widget.canPop,
                   centerTitle: false,
                 );
               } else {

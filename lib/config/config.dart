@@ -24,7 +24,7 @@ class EndPoints {
   // user related
   static const String getCurrentUser = '/gateway/user/current';
   static const String getUser = '/gateway/user';
-  static const String login = '/api/authenticate';
+  static const String login = '/connect/login';
   static const String getAccountInfo = '/api/account';
   static const String changePassword = '/api/account/change-password';
 
@@ -36,14 +36,21 @@ class EndPoints {
   static const String getMemberBasicInfo = '/api/getInformation';
 
   // storage repository
-  static const String uploadImage = "/gateway/Image/Upload";
+  static const String uploadImage = "/gateway/Media/Upload";
 }
 
 class SSOConfig {
-  static const String clientId = "localhost_identity";
-  static const String redirectUrl = "com.eztek.trueconnect://login-callback";
-  static const String issuer = 'https://id-test.trueconnect.vn';
-  static const String clientSecret = 'no_important';
+  static String fileName =
+      kDebugMode ? 'app_config_test.env' : 'app_config_product.env';
+
+  static String issuer = dotenv.env['SSO_ISSUER'] ?? '';
+  static String clientId = dotenv.env['SSO_CLIENT_ID'] ?? '';
+  static String clientSecret = dotenv.env['SSO_CLIENT_SECRET'] ?? '';
+  static String ssoApiUrl = dotenv.env['SSO_API_URL'] ?? '';
+  static String redirectUrl = dotenv.env['SSO_REDIRECT_URL'] ?? '';
+  static const String postLogoutRedirectUrl =
+      "com.eztek.trueconnect://logout-callback";
+
   static const List<String> scope = [
     "openid",
     "profile",
@@ -51,6 +58,8 @@ class SSOConfig {
     "roles",
     "offline_access"
   ];
+
+  static String register = '$issuer/Account/Register';
 }
 
 class AppConfig {
