@@ -5,8 +5,10 @@ import '../../../config/config.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
-import '../../constant/constants.dart';
+import '../../../domain/mapper/event_data_mapper.dart';
+import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
+import '../../model/event_response/event_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../local/local_data_access.dart';
 import 'event_repository.dart';
@@ -15,6 +17,7 @@ class EventpRepositoryImpl implements EventRepository {
   final Dio dio = getIt.get<Dio>();
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
+  final EventDataMapper _eventDataMapper = getIt.get<EventDataMapper>();
 
   EventpRepositoryImpl() {
     dio.interceptors.add(PrettyDioLogger(
@@ -23,68 +26,69 @@ class EventpRepositoryImpl implements EventRepository {
       requestHeader: true,
     ));
     dio.options =
-        DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
+        // DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
+        DioBaseOptions(baseUrl: 'https://api-ceo.hn7.eztek.net').baseOption;
   }
 
   @override
   Future<ResponseWrapper<List<Event>>> getAllEvent(
-      {int type = 0, String? date}) async {
-    await Future.delayed(const Duration(milliseconds: 200));
-    return ResponseWrapper.success(data: [
-      Event(
-        id: '',
-        // userFullname: 'CEO Vũ Trường Giang',
-        // userAvatar:
-        //     'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=2000',
-        type: 'Công nghệ',
-        title: 'Lớp học CEO HN Tháng 7 - Buổi 1',
-        description: 'Ra mắt TrueConnect ',
-        location: '66A, Nguyễn Sỹ Sách, Q. Tân Bình, TPHCM',
-        background:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checked: true,
-        status: EventStatus.begining,
-        statusStr: EventStatusStr.begining,
-        startTime: '2023-06-13T02:19:32Z',
-        endTime: '2023-06-13T010:19:32Z',
-        totalUserCount: 123,
+      {String? keyword, int type = 0, String? date, bool? isOpening}) async {
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.post(
+      EndPoints.getAllEvent,
+      data: {
+        "title": keyword,
+        "searchDate": date,
+      }..removeWhere((key, value) => value == null),
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
       ),
-      Event(
-        id: '',
-        // userFullname: 'CEO Vũ Trường Giang',
-        // userAvatar:
-        //     'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=2000',
-        type: 'Công nghệ',
-        title: 'Lớp học CEO HN Tháng 7 - Buổi 2',
-        description: 'EPL is back | Premier league, League, Movies',
-        location: '66A, Nguyễn Sỹ Sách, Q. Tân Bình, TPHCM',
-        status: EventStatus.notStarted,
-        statusStr: EventStatusStr.notStarted,
-        background:
-            'https://i.pinimg.com/originals/85/9e/09/859e09d484ef4e43c522052682db0550.jpg',
-        checked: false,
-        startTime: '2023-06-13T02:19:32Z',
-        endTime: '2023-06-13T010:19:32Z',
-        totalUserCount: 210,
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data as List).map(
+              (e) => _eventDataMapper.mapToEntity(
+                EventResponse.fromJson(e),
+              ),
+            ),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<Event>> createEvent(Event event) async {
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.post(
+      EndPoints.createEvent,
+      data: _eventDataMapper.mapToData(event).toJson()
+        ..removeWhere(
+          (key, value) => value == null,
+        ),
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
       ),
-      Event(
-        id: '',
-        // userFullname: 'CEO Vũ Trường Giang',
-        // userAvatar:
-        //     'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=2000',
-        type: 'Công nghệ',
-        description: 'Công nghệ',
-        location: '66A, Nguyễn Sỹ Sách, Q. Tân Bình, TPHCM',
-        status: EventStatus.finished,
-        statusStr: EventStatusStr.finished,
-        background:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checked: true,
-        startTime: '2023-06-13T02:19:32Z',
-        endTime: '2023-06-13T010:19:32Z',
-        totalUserCount: 210,
-      ),
-    ]);
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: _eventDataMapper.mapToEntity(
+            EventResponse.fromJson(response.data),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override

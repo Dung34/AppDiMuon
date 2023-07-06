@@ -12,7 +12,12 @@ import '../../../shared/widgets/image/primary_image.dart';
 
 class EventItem extends StatelessWidget {
   final Event event;
-  const EventItem({super.key, required this.event});
+  final bool inCheckInPage;
+  const EventItem({
+    super.key,
+    required this.event,
+    this.inCheckInPage = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,37 +60,52 @@ class EventItem extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                PrimaryButton(
-                  context: context,
-                  onPressed: () {},
-                  label: event.statusStr,
-                  backgroundColor: event.status == EventStatus.notStarted
-                      ? AppColor.third400
-                      : event.status == EventStatus.begining
-                          ? AppColor.secondary400
-                          : event.status == EventStatus.finished
-                              ? AppColor.fourth600
-                              : AppColor.error400,
-                  contentPadding: 8,
-                ),
-                const SizedBox(width: 10),
-                PrimaryButton(
-                  context: context,
-                  onPressed: () {},
-                  icon: event.checked ? Assets.icStar : null,
-                  iconColor: AppColor.white,
-                  backgroundColor: event.checked
-                      ? AppColor.third400
-                      : event.status == EventStatus.finished && !event.checked
-                          ? AppColor.error400
-                          : AppColor.fourth600,
-                  label: event.checked
-                      ? 'Đã tham dự'
-                      : event.status == EventStatus.finished && !event.checked
-                          ? 'Không tham dự'
-                          : 'Chưa tham dự',
-                  contentPadding: 8,
-                ),
+                if (!inCheckInPage)
+                  PrimaryButton(
+                    context: context,
+                    onPressed: () {},
+                    label: event.statusStr,
+                    backgroundColor: event.status == EventStatus.notStarted
+                        ? AppColor.third400
+                        : event.status == EventStatus.begining
+                            ? AppColor.secondary400
+                            : event.status == EventStatus.finished
+                                ? AppColor.fourth600
+                                : AppColor.error400,
+                    contentPadding: 8,
+                  ),
+                if (!inCheckInPage) const SizedBox(width: 10),
+                if (!inCheckInPage)
+                  PrimaryButton(
+                    context: context,
+                    onPressed: () {},
+                    icon: event.checked ? Assets.icStar : null,
+                    iconColor: AppColor.white,
+                    backgroundColor: event.checked
+                        ? AppColor.third400
+                        : event.status == EventStatus.finished && !event.checked
+                            ? AppColor.error400
+                            : AppColor.fourth600,
+                    label: event.checked
+                        ? 'Đã tham dự'
+                        : event.status == EventStatus.finished && !event.checked
+                            ? 'Không tham dự'
+                            : 'Chưa tham dự',
+                    contentPadding: 8,
+                  ),
+                if (inCheckInPage)
+                  PrimaryButton(
+                    context: context,
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(AppRoute.qrScanner,
+                          arguments:
+                              QrScannerPageArgs(userRole: UserRole.admin));
+                    },
+                    icon: Assets.icQrCode,
+                    iconColor: AppColor.white,
+                    label: 'Quét mã',
+                    contentPadding: 8,
+                  ),
               ],
             ),
             const SizedBox(height: 10),

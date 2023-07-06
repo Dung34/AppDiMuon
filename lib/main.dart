@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: const [Locale('vi')],
           title: AppConfig.appName,
           themeMode: ThemeMode.light,
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder(),

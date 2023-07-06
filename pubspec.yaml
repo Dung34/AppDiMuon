@@ -31,12 +31,18 @@ dependencies:
   flutter_switch: ^0.3.2
   #shimmer
   shimmer: ^2.0.0
+  location: ^4.4.0
+  geocoding: ^2.1.0
+  permission_handler: ^10.4.1
 
   #image
   image_picker: ^0.8.5+3
   file_picker: ^5.2.5
   image_cropper: ^3.0.0
   qr_flutter: ^4.1.0
+  qr_code_scanner: ^1.0.1
+  dotted_border: ^2.0.0+2
+  reorderable_grid_view: ^2.2.6
 
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.1.1+1

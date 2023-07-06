@@ -32,7 +32,7 @@ class EventQrPage extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             PrimaryQrView(data: args.event.id ?? ''),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Text(
               args.event.title ?? '',
               textAlign: TextAlign.center,
@@ -43,9 +43,7 @@ class EventQrPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(Assets.icClock),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 Text(
                   DateTimeUtils.formatDate(
                     args.event.startTime ?? '',

@@ -1,8 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../config/routes.dart';
+import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
+import '../base/bloc/user/user_cubit.dart';
 import '../event_page/calendar/calendar_page.dart';
 import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
@@ -49,7 +53,13 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.primaryColor,
         elevation: 4,
-        onPressed: () {},
+        onPressed: () {
+          if (context.read<UserCubit>().currentUser?.role == UserRole.admin) {
+            Navigator.of(context).pushNamed(AppRoute.eventOpening);
+          } else {
+            Navigator.of(context).pushNamed(AppRoute.qrScanner);
+          }
+        },
         child: Container(
           height: 100,
           width: 100,

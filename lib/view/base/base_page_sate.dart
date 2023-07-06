@@ -35,6 +35,14 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
 
   void hideLoading() => _commonCubit.hideLoading();
 
+  showToast(String message) {
+    _commonCubit.showToast(message);
+  }
+
+  hideToast() {
+    _commonCubit.hideToast();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +61,48 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
           value: userCubit,
         ),
       ],
-      child: Scaffold(
+      child: isUseLoading
+          ? Stack(
+              children: [
+                _baseScaffoldPage(),
+                BlocBuilder<CommonCubit, CommonState>(
+                  buildWhen: (previous, current) =>
+                      current is CommonShowLoadingState,
+                  builder: (context, state) {
+                    if (state is CommonShowLoadingState) {
+                      return Stack(
+                        children: [
+                          Visibility(
+                            visible: state.isLoading,
+                            child: ModalBarrier(
+                              color: Colors.black.withOpacity(0.5),
+                              dismissible: state.isdismissible,
+                              barrierSemanticsDismissible: state.isdismissible,
+                              onDismiss: () {
+                                _commonCubit.hideLoading();
+                              },
+                            ),
+                          ),
+                          if (state.isLoading)
+                            const Center(
+                              child: Loading(),
+                            )
+                        ],
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
+              ],
+            )
+          : _baseScaffoldPage(),
+    );
+  }
+
+  Widget buildPage(BuildContext context) => const SizedBox();
+
+  Widget _baseScaffoldPage() => Scaffold(
         backgroundColor: AppColor.primaryBackgroundColor,
         extendBodyBehindAppBar: true,
         extendBody: true,
@@ -62,68 +111,16 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
           top: useSafeArea,
           child: Padding(
             padding: padding,
-            child: Column(
-              children: [
-                isUseLoading
-                    ? Expanded(
-                        child: Stack(
-                          children: [
-                            useBlocProviderValue
-                                ? BlocProvider.value(
-                                    value: cubit,
-                                    child: buildPage(context),
-                                  )
-                                : BlocProvider(
-                                    create: (context) => cubit,
-                                    child: buildPage(context),
-                                  ),
-                            BlocBuilder<CommonCubit, CommonState>(
-                              buildWhen: (previous, current) =>
-                                  previous.isLoading != current.isLoading,
-                              builder: (context, state) {
-                                return Stack(
-                                  children: [
-                                    Visibility(
-                                      visible: state.isLoading,
-                                      child: ModalBarrier(
-                                        color: Colors.black.withOpacity(0.5),
-                                        dismissible: state.isdismissible,
-                                        barrierSemanticsDismissible:
-                                            state.isdismissible,
-                                        onDismiss: () {
-                                          _commonCubit.hideLoading();
-                                        },
-                                      ),
-                                    ),
-                                    if (state.isLoading)
-                                      const Center(
-                                        child: Loading(),
-                                      )
-                                  ],
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      )
-                    : Expanded(
-                        child: useBlocProviderValue
-                            ? BlocProvider.value(
-                                value: cubit,
-                                child: buildPage(context),
-                              )
-                            : BlocProvider(
-                                create: (context) => cubit,
-                                child: buildPage(context),
-                              ),
-                      ),
-              ],
-            ),
+            child: useBlocProviderValue
+                ? BlocProvider.value(
+                    value: cubit,
+                    child: buildPage(context),
+                  )
+                : BlocProvider(
+                    create: (context) => cubit,
+                    child: buildPage(context),
+                  ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildPage(BuildContext context) => const SizedBox();
+      );
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../config/routes.dart';
 import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
-import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/button/primary_icon_button.dart';
 import '../../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../../shared/widgets/shimmer/primary_shimmer.dart';
@@ -12,7 +10,8 @@ import '../../../shared/widgets/something/no_data.dart';
 import '../../../shared/widgets/something/primary_calendar.dart';
 import '../../base/base_page_sate.dart';
 import '../cubit/event_cubit.dart';
-import 'calendar_add_page.dart';
+import '../event_add_page.dart';
+import 'components/calendar_event_item.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
@@ -28,13 +27,16 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
     cubit.getAllEvent(date: DateTime.now().toString());
   }
 
+  DateTime currentSelectedDate = DateTime.now();
+
   @override
   Widget buildPage(BuildContext context) {
     return Column(
       children: [
         PrimaryCalendar(
           onSelectedDate: (date) {
-            cubit.getAllEvent(date: date.toString());
+            currentSelectedDate = date;
+            cubit.getAllEvent(date: currentSelectedDate.toString());
           },
           actions: [
             if (userCubit.currentUser?.role == UserRole.admin)
@@ -62,72 +64,21 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
                         // shrinkWrap: true,
                         itemBuilder: (context, index) {
                           final event = events[index];
-                          return Row(
-                            children: [
-                              Text(
-                                DateTimeUtils.formatDate(event.startTime ?? '',
-                                    showOnlyTime: true),
-                                style: AppTextTheme.robotoBold18
-                                    .copyWith(color: AppColor.secondary400),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      color: AppColor.primary50,
-                                      border: Border(
-                                        left: BorderSide(
-                                          color: AppColor.secondary400,
-                                          width: 4,
-                                        ),
-                                      )),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 16, horizontal: 8),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              event.title ?? '',
-                                              style: AppTextTheme.lexendBold16,
-                                            ),
-                                            const SizedBox(
-                                              height: 4,
-                                            ),
-                                            Text(
-                                              event.location ?? '',
-                                              style:
-                                                  AppTextTheme.robotoRegular14,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      if (userCubit.currentUser?.role ==
-                                          UserRole.admin)
-                                        const SizedBox(width: 4),
-                                      if (userCubit.currentUser?.role ==
-                                          UserRole.admin)
-                                        PrimaryIconButton(
-                                          context: context,
-                                          backgroundColor: AppColor.transparent,
-                                          onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                              AppRoute.eventQr,
-                                              arguments:
-                                                  EventQrPageArgs(event: event),
-                                            );
-                                          },
-                                          icon: Assets.icQrCode,
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          );
+                          return index < events.length - 1
+                              ? CalendarEventItem(
+                                  event: event,
+                                  userRole: userCubit.currentUser?.role ?? 0)
+                              : Column(
+                                  children: [
+                                    CalendarEventItem(
+                                        event: event,
+                                        userRole:
+                                            userCubit.currentUser?.role ?? 0),
+                                    const SizedBox(
+                                      height: 100,
+                                    ),
+                                  ],
+                                );
                         },
                         separatorBuilder: (context, index) => const SizedBox(
                           height: 10,
@@ -180,6 +131,7 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => CalendarAddPage(
         eventCubit: cubit,
+        currentSelectedDate: currentSelectedDate,
       ),
     ));
   }

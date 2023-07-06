@@ -6,6 +6,15 @@ abstract class EventState {
 
 class EventInitial extends EventState {}
 
+class EventCurrentLocationDeniedForeverState extends EventState {}
+
+class EventHasPermissionState extends EventState {
+  final bool hasPermission;
+  final CurrentLocation? currentLocation;
+
+  EventHasPermissionState({required this.hasPermission, this.currentLocation});
+}
+
 class EventGetAllEventSuccessState extends EventState {
   final List<Event> events;
 
@@ -37,3 +46,29 @@ class EventGetAllHistorySuccessState extends EventState {
 }
 
 class EventGetAllHistoryFailedState extends EventState {}
+
+class EventAddEventSuccessState extends EventState {
+  final Event event;
+
+  const EventAddEventSuccessState(this.event);
+}
+
+class EventAddEventFailedState extends EventState {}
+
+class EventShowFullDayState extends EventState {
+  final bool isShow;
+
+  EventShowFullDayState(this.isShow);
+}
+
+class EventCheckedRangeDateTimeState extends EventState {
+  final bool isSastified;
+  final String startTime;
+  final String endTime;
+
+  EventCheckedRangeDateTimeState({
+    required this.isSastified,
+    required this.startTime,
+    required this.endTime,
+  });
+}

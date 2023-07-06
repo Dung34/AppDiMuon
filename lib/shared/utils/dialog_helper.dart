@@ -205,6 +205,8 @@ Dialog getAlertDialog({
   required BuildContext context,
   required String title,
   required String message,
+  String positiveText = 'Đồng ý',
+  String negativeText = 'Huỷ',
   Function? onPositivePressed,
   Function? onNegativePressed,
 }) {
@@ -244,7 +246,7 @@ Dialog getAlertDialog({
                   Navigator.pop(context);
                   onNegativePressed?.call();
                 },
-                label: 'Đóng',
+                label: negativeText,
                 backgroundColor: AppColor.secondaryColor,
               ),
               const SizedBox(
@@ -256,7 +258,7 @@ Dialog getAlertDialog({
                     Navigator.pop(context, true);
                     onPositivePressed?.call();
                   },
-                  label: 'Đồng ý')
+                  label: positiveText)
             ],
           )
         ],

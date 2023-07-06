@@ -8,9 +8,9 @@ class DateTimeUtils {
       {bool showTime = false, bool showOnlyTime = false}) {
     try {
       var dateFormat = DateFormat(showOnlyTime
-          ? 'hh:mm'
+          ? 'HH:mm'
           : showTime
-              ? 'hh:mm - dd/MM/yyyy'
+              ? 'HH:mm - dd/MM/yyyy'
               : 'dd/MM/yyyy');
       return dateFormat.format(DateTime.parse(strDate)).toString();
     } catch (e) {
@@ -30,6 +30,15 @@ class DateTimeUtils {
     } catch (e) {
       log(e.toString());
       return strDate;
+    }
+  }
+
+  static DateTime toDateTime(String strDate) {
+    try {
+      var dateFormatIso = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
+      return dateFormatIso.parse(strDate).toLocal();
+    } catch (e) {
+      return DateTime.now();
     }
   }
 

@@ -11,7 +11,7 @@ extension BuildContextExt on BuildContext {
           builder: (context) => dialog,
           barrierDismissible: barrierDismissible);
 
-  dynamic showAppBottomSheet(Widget dialog, {bool barrierDismissible = true}) =>
+  Future showAppBottomSheet(Widget dialog, {bool barrierDismissible = true}) =>
       showModalBottomSheet(
         context: this,
         // isScrollControlled: true,
@@ -24,8 +24,7 @@ extension BuildContextExt on BuildContext {
           ),
         ),
         clipBehavior: Clip.hardEdge,
-
-        builder: (context) => dialog,
+        builder: (context) => Wrap(children: [dialog]),
         // barrierDismissible: barrierDismissible,
       );
 

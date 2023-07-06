@@ -100,6 +100,11 @@ class AppTextTheme {
     fontWeight: FontWeight.w300,
     fontSize: 12,
   );
+  static const TextStyle robotoLight14 = TextStyle(
+    color: AppColor.primary400,
+    fontWeight: FontWeight.w300,
+    fontSize: 14,
+  );
   static const TextStyle robotoLight16 = TextStyle(
     color: AppColor.primary400,
     fontWeight: FontWeight.w300,

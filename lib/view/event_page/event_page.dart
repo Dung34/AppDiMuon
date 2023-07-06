@@ -156,7 +156,10 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                 } else if (state is EventGetAllEventFailedState) {
                   return const NoData();
                 } else {
-                  return const EventListShimmer();
+                  return const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: EventListShimmer(),
+                  );
                 }
               },
             ),

@@ -9,12 +9,14 @@ import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/dialog_helper.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../base/bloc/auth/auth_bloc.dart';
+import '../base/bloc/user/user_cubit.dart';
 import 'component/profile_view_header.dart';
 
 class SettingPage extends StatelessWidget {
   SettingPage({super.key});
 
   final AuthBloc authBloc = getIt.get<AuthBloc>();
+  late final UserCubit userCubit = getIt.get<UserCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +118,7 @@ class SettingPage extends StatelessWidget {
               BlocListener<AuthBloc, AuthState>(
                 listener: (context, state) {
                   if (state is AuthLogoutSuccessState) {
+                    userCubit.currentUser = null;
                     Navigator.popAndPushNamed(context, AppRoute.login);
                   }
                   if (state is AuthRequestDeletionSuccessState) {

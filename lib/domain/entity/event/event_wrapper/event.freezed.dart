@@ -21,18 +21,31 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Event {
   String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
+  set type(String? value) => throw _privateConstructorUsedError;
   String? get background => throw _privateConstructorUsedError;
+  set background(String? value) => throw _privateConstructorUsedError;
   bool get checked => throw _privateConstructorUsedError;
+  set checked(bool value) => throw _privateConstructorUsedError;
   int get status => throw _privateConstructorUsedError;
+  set status(int value) => throw _privateConstructorUsedError;
   String get statusStr => throw _privateConstructorUsedError;
+  set statusStr(String value) => throw _privateConstructorUsedError;
   int get totalUserCount => throw _privateConstructorUsedError;
+  set totalUserCount(int value) => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
+  set userId(String? value) => throw _privateConstructorUsedError;
   String? get startTime => throw _privateConstructorUsedError;
+  set startTime(String? value) => throw _privateConstructorUsedError;
   String? get endTime => throw _privateConstructorUsedError;
+  set endTime(String? value) => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
+  set title(String? value) => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  set description(String? value) => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
+  set location(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -268,84 +281,40 @@ class _$_Event implements _Event {
       _$$_EventFromJson(json);
 
   @override
-  final String? id;
+  String? id;
   @override
-  final String? type;
+  String? type;
   @override
-  final String? background;
-  @override
-  @JsonKey()
-  final bool checked;
+  String? background;
   @override
   @JsonKey()
-  final int status;
+  bool checked;
   @override
   @JsonKey()
-  final String statusStr;
+  int status;
   @override
   @JsonKey()
-  final int totalUserCount;
+  String statusStr;
   @override
-  final String? userId;
+  @JsonKey()
+  int totalUserCount;
   @override
-  final String? startTime;
+  String? userId;
   @override
-  final String? endTime;
+  String? startTime;
   @override
-  final String? title;
+  String? endTime;
   @override
-  final String? description;
+  String? title;
   @override
-  final String? location;
+  String? description;
+  @override
+  String? location;
 
   @override
   String toString() {
     return 'Event(id: $id, type: $type, background: $background, checked: $checked, status: $status, statusStr: $statusStr, totalUserCount: $totalUserCount, userId: $userId, startTime: $startTime, endTime: $endTime, title: $title, description: $description, location: $location)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Event &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.background, background) ||
-                other.background == background) &&
-            (identical(other.checked, checked) || other.checked == checked) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.statusStr, statusStr) ||
-                other.statusStr == statusStr) &&
-            (identical(other.totalUserCount, totalUserCount) ||
-                other.totalUserCount == totalUserCount) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
-            (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.location, location) ||
-                other.location == location));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      type,
-      background,
-      checked,
-      status,
-      statusStr,
-      totalUserCount,
-      userId,
-      startTime,
-      endTime,
-      title,
-      description,
-      location);
 
   @JsonKey(ignore: true)
   @override
@@ -363,48 +332,61 @@ class _$_Event implements _Event {
 
 abstract class _Event implements Event {
   factory _Event(
-      {final String? id,
-      final String? type,
-      final String? background,
-      final bool checked,
-      final int status,
-      final String statusStr,
-      final int totalUserCount,
-      final String? userId,
-      final String? startTime,
-      final String? endTime,
-      final String? title,
-      final String? description,
-      final String? location}) = _$_Event;
+      {String? id,
+      String? type,
+      String? background,
+      bool checked,
+      int status,
+      String statusStr,
+      int totalUserCount,
+      String? userId,
+      String? startTime,
+      String? endTime,
+      String? title,
+      String? description,
+      String? location}) = _$_Event;
 
   factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
 
   @override
   String? get id;
+  set id(String? value);
   @override
   String? get type;
+  set type(String? value);
   @override
   String? get background;
+  set background(String? value);
   @override
   bool get checked;
+  set checked(bool value);
   @override
   int get status;
+  set status(int value);
   @override
   String get statusStr;
+  set statusStr(String value);
   @override
   int get totalUserCount;
+  set totalUserCount(int value);
   @override
   String? get userId;
+  set userId(String? value);
   @override
   String? get startTime;
+  set startTime(String? value);
   @override
   String? get endTime;
+  set endTime(String? value);
   @override
   String? get title;
+  set title(String? value);
   @override
   String? get description;
+  set description(String? value);
   @override
   String? get location;
+  set location(String? value);
   @override
   @JsonKey(ignore: true)
   _$$_EventCopyWith<_$_Event> get copyWith =>

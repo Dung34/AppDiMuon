@@ -201,8 +201,9 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                     contentPadding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 16),
                     hintText: widget.hintText,
-                    hintStyle:
-                        widget.hintTextStyle ?? AppTextTheme.textHintPrimary,
+                    hintStyle: widget.hintTextStyle ??
+                        AppTextTheme.robotoLight14
+                            .copyWith(color: AppColor.fourth700),
                     labelStyle: AppTextTheme.textPrimary,
                     errorMaxLines: 2,
                     border: const OutlineInputBorder(
@@ -216,13 +217,12 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                                 BorderSide(color: widget.borderColor, width: 0),
                             borderRadius: const BorderRadius.all(
                                 Radius.circular(AppConfig.defaultRadius))),
-                    focusedBorder: widget.border != InputBorder.none
-                        ? const OutlineInputBorder(
+                    focusedBorder: widget.border ??
+                        const OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: AppColor.primary200, width: 2),
                             borderRadius: BorderRadius.all(
-                                Radius.circular(AppConfig.defaultRadius)))
-                        : widget.border,
+                                Radius.circular(AppConfig.defaultRadius))),
                     filled: true,
                     fillColor:
                         widget.fillColor ?? AppColor.primaryBackgroundColor,

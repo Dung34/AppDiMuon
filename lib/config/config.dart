@@ -28,6 +28,14 @@ class EndPoints {
   static const String getAccountInfo = '/api/account';
   static const String changePassword = '/api/account/change-password';
 
+  // event
+  static const String getMeetingByUserId = '/gateway/meeting/current';
+  static const String createEvent = '/gateway/event/create';
+  static const String getAllEvent = '/gateway/events';
+  static const String getAllFrames = '/gateway/activity/frames';
+  static const String joinShow = '/gateway/meeting-join/create';
+  static const String getShowHistory = '/gateway/meeting-joins';
+
   // employee related
   static const String getEmployeeByIdForUser =
       '/gw/Employee/GetEmployeeByIdForUser';

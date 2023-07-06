@@ -110,8 +110,9 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
             user?.company ?? '',
             style: AppTextTheme.robotoLight18,
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           PrimaryQrView(data: user?.id ?? ''),
+          const SizedBox(height: 20),
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'event.freezed.dart';
 part 'event.g.dart';
 
-@freezed
+@unfreezed
 class Event with _$Event {
   factory Event({
     String? id,

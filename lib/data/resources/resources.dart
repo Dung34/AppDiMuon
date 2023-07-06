@@ -25,6 +25,7 @@ class Assets {
   static const String icLogo = '$iconPrefix/ic_logo.svg';
   static const String icLocation = '$iconPrefix/ic_location.svg';
   static const String icLock = '$iconPrefix/ic_lock.svg';
+  static const String icList = '$iconPrefix/ic_list.svg';
   static const String icMenuDot = '$iconPrefix/ic_menu_dot.svg';
   static const String icNoData = '$iconPrefix/ic_no_data.svg';
   static const String icNotification = '$iconPrefix/ic_notification.svg';

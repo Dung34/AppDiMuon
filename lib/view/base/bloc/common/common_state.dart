@@ -1,14 +1,24 @@
 part of 'common_cubit.dart';
 
-class CommonState extends Equatable {
+abstract class CommonState {}
+
+class CommonInitial extends CommonState {}
+
+class CommonShowLoadingState extends CommonState {
   final bool isLoading;
   final bool isdismissible;
 
-  const CommonState({
+  CommonShowLoadingState({
     required this.isLoading,
     this.isdismissible = true,
   });
+}
 
-  @override
-  List<Object> get props => [isLoading, isdismissible];
+class CommonToastMessage extends CommonState {
+  final bool isShow;
+  final String? message;
+  CommonToastMessage({
+    required this.isShow,
+    this.message,
+  });
 }

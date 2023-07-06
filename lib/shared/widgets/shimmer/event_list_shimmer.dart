@@ -10,75 +10,33 @@ class EventListShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sw = context.screenWidth;
-    final sh = context.screenHeight;
     return PrimaryShimmer(
-      child: SingleChildScrollView(
-        child: Column(
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            Row(
-              children: [
-                ContainerShimmer(
-                  width: sw * 0.5,
-                ),
-                const Spacer(),
-                ContainerShimmer(
-                  width: sw * 0.2,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: ContainerShimmer(
-                    height: sh * 0.3,
-                    width: sw * 0.7,
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ContainerShimmer(
-                  height: sh * 0.3,
-                  width: sw * 0.2,
-                ),
-              ],
+            ContainerShimmer(
+              height: sw * 9 / 16,
+              radius: 8,
+              width: sw,
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
-            Row(
-              children: [
-                ContainerShimmer(
-                  width: sw * 0.5,
-                ),
-                const Spacer(),
-                ContainerShimmer(
-                  width: sw * 0.2,
-                ),
-              ],
+            ContainerShimmer(
+              width: sw * 0.8,
             ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: ContainerShimmer(
-                    height: sh * 0.3,
-                    width: sw * 0.7,
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ContainerShimmer(
-                  height: sh * 0.3,
-                  width: sw * 0.2,
-                ),
-              ],
+            const SizedBox(height: 10),
+            ContainerShimmer(
+              width: sw * 0.7,
+              height: 16,
+            ),
+            const SizedBox(height: 10),
+            ContainerShimmer(
+              width: sw * 0.5,
+              height: 16,
             ),
           ],
         ),

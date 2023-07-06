@@ -5,7 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repository/local/shared_pref_helper.dart';
 import '../data/repository/remote/repository.dart';
+import '../domain/mapper/event_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
+import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
@@ -45,8 +47,11 @@ configureInjection() async {
   getIt.registerLazySingleton<LocalDataAccess>(
       () => SharePrefHelper(sharedPref: sharedPref));
 
+  getIt.registerFactory<GeocodingHelper>(() => GeocodingHelper());
+
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
+  getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
 
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());
