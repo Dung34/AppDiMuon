@@ -60,7 +60,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
   Barcode? barcode;
   QRViewController? controller;
   late final args = context.arguments as QrScannerPageArgs;
-  late final String currentLocationStr;
+  late String currentLocationStr = '';
   String lastestUserId = '';
   String lastestEventId = '';
 
