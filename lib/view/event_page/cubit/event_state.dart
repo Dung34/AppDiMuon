@@ -18,10 +18,25 @@ class EventHasPermissionState extends EventState {
 class EventGetAllEventSuccessState extends EventState {
   final List<Event> events;
 
-  const EventGetAllEventSuccessState(this.events);
+  /// if isGetRange -> return all events count 6 weeks to show in the calendar page
+  final bool isGetRange;
+
+  const EventGetAllEventSuccessState(this.events, {this.isGetRange = false});
 }
 
 class EventGetAllEventFailedState extends EventState {}
+
+class EventGetAllEventRangeSuccessState extends EventState {
+  final List<Event> events;
+
+  /// if isGetRange -> return all events count 6 weeks to show in the calendar page
+  final bool isGetRange;
+
+  const EventGetAllEventRangeSuccessState(this.events,
+      {this.isGetRange = false});
+}
+
+class EventGetAllEventRangeFailedState extends EventState {}
 
 class EventGetAllEventTypeSuccessState extends EventState {
   final List<EventType> eventTypes;
@@ -54,6 +69,16 @@ class EventAddEventSuccessState extends EventState {
 }
 
 class EventAddEventFailedState extends EventState {}
+
+class EventJoinEventSuccessState extends EventState {
+  final UserEventJoined userEventJoined;
+  final bool isUserScan;
+
+  const EventJoinEventSuccessState(this.userEventJoined,
+      {this.isUserScan = false});
+}
+
+class EventJoinEventFailedState extends EventState {}
 
 class EventShowFullDayState extends EventState {
   final bool isShow;

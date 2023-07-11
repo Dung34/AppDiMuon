@@ -11,7 +11,7 @@ import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
 import '../../model/login/login_response.dart';
-import '../../model/user_response/user_response.dart';
+import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../local/local_data_access.dart';
 import 'repository.dart';
@@ -147,18 +147,28 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Response> changePassword(
-      {required String currentPassword, required String newPassword}) async {
+  Future<ResponseWrapper<bool>> changePassword(
+      {required String newPassword, required String rePassword}) async {
     final String accessToken = await localDataAccess.getAccessToken();
-    final response = await dio.post(EndPoints.changePassword,
+    final response = await dio.post(
+        'https://id-api-test.trueconnect.vn/users/reset-password',
         data: {
-          "currentPassword": currentPassword,
+          "login": localDataAccess.getUserName(),
           "newPassword": newPassword,
+          "rePassword": rePassword
         },
         options: Options(
           headers: {'Authorization': 'Bearer $accessToken'},
         ));
-    return response;
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: true);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -211,6 +221,27 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<ResponseWrapper<UserEntity>> updateUser(
       {required UserEntity user}) async {
-    return ResponseWrapper.success(data: user);
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.patch(
+      EndPoints.updateUser,
+      data: _userDataMapper.mapToData(user).toJson()
+        ..removeWhere(
+          (key, value) => value == null,
+        ),
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
+      ),
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _userDataMapper
+                .mapToEntity(UserResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 }

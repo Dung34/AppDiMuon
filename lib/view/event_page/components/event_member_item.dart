@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/routes.dart';
-import '../../../data/resources/colors.dart';
-import '../../../data/resources/themes.dart';
+import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/image/primary_circle_image.dart';
@@ -11,20 +11,25 @@ class EventMemberItem extends StatelessWidget {
   final EventMember eventMember;
   final bool showAvatar;
   final bool showTitle;
+  final bool canPressed;
   const EventMemberItem({
     super.key,
     required this.eventMember,
     this.showAvatar = true,
     this.showTitle = false,
+    this.canPressed = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, AppRoute.eventMemberHistory,
-            arguments: EventMemberHistoryPageArgs(userId: eventMember.userId));
-      },
+      onTap: canPressed
+          ? () {
+              Navigator.pushNamed(context, AppRoute.eventMemberHistory,
+                  arguments:
+                      EventMemberHistoryPageArgs(userId: eventMember.userId));
+            }
+          : null,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
@@ -69,12 +74,20 @@ class EventMemberItem extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    eventMember.checkedInLocation ?? '',
-                    style: AppTextTheme.robotoLight12.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    maxLines: 2,
+                  Row(
+                    children: [
+                      SvgPicture.asset(Assets.icLocation),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          eventMember.checkedInLocation ?? '',
+                          style: AppTextTheme.robotoLight12.copyWith(
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -37,8 +37,8 @@ abstract class UserRepository {
 
   Future<Response> getInformation();
 
-  Future<Response> changePassword(
-      {required String currentPassword, required String newPassword});
+  Future<ResponseWrapper<bool>> changePassword(
+      {required String newPassword, required String rePassword});
 
   Future<ResponseWrapper<UserEntity>> getUser({String? userId});
 

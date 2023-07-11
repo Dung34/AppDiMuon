@@ -31,7 +31,7 @@ class EventQrPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-            PrimaryQrView(data: args.event.id ?? ''),
+            PrimaryQrView(data: 'event:${args.event.id}'),
             const SizedBox(height: 40),
             Text(
               args.event.title ?? '',

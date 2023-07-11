@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/model/api/base_response.dart';
@@ -22,9 +24,10 @@ class UserCubit extends Cubit<UserState> {
       emit(UserGetUserSuccessState(userEntity: currentUser!));
       return;
     }
+    emit(UserInitial());
 
     final response = await _userRepository.getUser(userId: userId);
-
+    log('cubit: $hashCode');
     if (response.status == ResponseStatus.success) {
       if (userId == null) {
         currentUser = response.data!;
@@ -37,7 +40,6 @@ class UserCubit extends Cubit<UserState> {
   }
 
   updateUser(UserEntity userEntity) async {
-    await Future.delayed(const Duration(milliseconds: 250));
     final response = await _userRepository.updateUser(user: userEntity);
 
     if (response.status == ResponseStatus.success) {
@@ -46,8 +48,23 @@ class UserCubit extends Cubit<UserState> {
       emit(UserUpdateSuccessState(userEntity: response.data!));
       emit(UserGetUserSuccessState(userEntity: currentUser!));
     } else {
-      ViewUtils.toastSuccess(AlertText.updateFailed);
+      ViewUtils.toastWarning(AlertText.updateFailed);
       emit(UserUpdateFailedState());
+    }
+  }
+
+  changePassword(
+      {required String newPassword, required String rePassword}) async {
+    final response = await _userRepository.changePassword(
+        newPassword: newPassword, rePassword: rePassword);
+
+    if (response.status == ResponseStatus.success) {
+      emit(UserChangePasswordSuccessState());
+      ViewUtils.toastSuccess('Đổi mật khẩu thành công');
+    } else {
+      ViewUtils.toastWarning(AlertText.updateFailed);
+      emit(UserChangePasswordFailedState());
+      ViewUtils.toastSuccess('Đổi mật khẩu thất bại');
     }
   }
 }

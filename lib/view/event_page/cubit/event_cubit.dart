@@ -6,6 +6,7 @@ import '../../../di/di.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_type/event_type.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
+import '../../../domain/entity/event/user_event_joined.dart/user_event_joined.dart';
 import '../../../shared/utils/geocoding_helper.dart';
 
 part 'event_state.dart';
@@ -40,15 +41,28 @@ class EventCubit extends Cubit<EventState> {
     ));
   }
 
-  getAllEvent({int type = 0, String? date, bool? isOpening}) async {
-    emit(EventInitial());
+  getAllEvent(
+      {int type = 0,
+      String? date,
+      String? startDate,
+      String? endDate,
+      bool? isOpening}) async {
+    if (startDate == null || endDate == null) emit(EventInitial());
     final response = await _eventRepository.getAllEvent(
       type: type,
       date: date,
       isOpening: isOpening,
+      startDate: startDate,
+      endDate: endDate,
     );
     if (response.status == ResponseStatus.success) {
-      emit(EventGetAllEventSuccessState(response.data ?? []));
+      if (startDate != null && endDate != null) {
+        emit(EventGetAllEventRangeSuccessState(response.data ?? []));
+      } else {
+        emit(EventGetAllEventSuccessState(
+          response.data ?? [],
+        ));
+      }
     } else {
       emit(EventGetAllEventFailedState());
     }
@@ -65,8 +79,8 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
-  getAllHistory() async {
-    final response = await _eventRepository.getAllHistory();
+  getAllHistory({String? userId}) async {
+    final response = await _eventRepository.getAllHistory(userId: userId);
 
     if (response.status == ResponseStatus.success) {
       emit(EventGetAllHistorySuccessState(response.data ?? []));
@@ -87,6 +101,19 @@ class EventCubit extends Cubit<EventState> {
 
   showFullDay(bool isShow) {
     emit(EventShowFullDayState(isShow));
+  }
+
+  joinEvent(String eventId, String? userId, String? location,
+      {bool isUserScan = false}) async {
+    final response = await _eventRepository.joinEvent(
+        eventId: eventId, userId: userId, location: location);
+
+    if (response.status == ResponseStatus.success) {
+      emit(EventJoinEventSuccessState(response.data ?? UserEventJoined(),
+          isUserScan: isUserScan));
+    } else {
+      emit(EventJoinEventFailedState());
+    }
   }
 
   onCheckRangeDateTime(String startTime, String endTime) {

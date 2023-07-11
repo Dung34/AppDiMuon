@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/resources/resources.dart';
 import '../../shared/widgets/shimmer/event_list_shimmer.dart';
+import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import '../event_page/components/event_item.dart';
 import '../event_page/cubit/event_cubit.dart';
@@ -19,26 +19,21 @@ class _EventOpeningPageState
   @override
   void initState() {
     super.initState();
-    cubit.getAllEvent(isOpening: true);
+    cubit.getAllEvent(isOpening: false);
   }
 
   @override
   EdgeInsets get padding => EdgeInsets.zero;
 
   @override
+  PreferredSizeWidget? get appBar => PrimaryAppBar(
+        title: 'Sự kiện đang diễn ra',
+      );
+
+  @override
   Widget buildPage(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 20,
-        ),
-        const Text(
-          'Sự kiện đang diễn ra',
-          style: AppTextTheme.lexendBold16,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
         Expanded(
           child: BlocBuilder<EventCubit, EventState>(
             builder: (context, state) {

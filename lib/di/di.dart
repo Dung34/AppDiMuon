@@ -52,6 +52,8 @@ configureInjection() async {
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
   getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
+  getIt.registerLazySingleton<EventMemberDataMapper>(
+      () => EventMemberDataMapper());
 
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());

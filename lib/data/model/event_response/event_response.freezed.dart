@@ -28,6 +28,7 @@ mixin _$EventResponse {
   String? get endDate => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
+  bool? get checked => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   String? get createdDate => throw _privateConstructorUsedError;
   String? get lastModifiedDate => throw _privateConstructorUsedError;
@@ -53,6 +54,7 @@ abstract class $EventResponseCopyWith<$Res> {
       String? endDate,
       int? status,
       int? quantity,
+      bool? checked,
       String? id,
       String? createdDate,
       String? lastModifiedDate});
@@ -79,6 +81,7 @@ class _$EventResponseCopyWithImpl<$Res, $Val extends EventResponse>
     Object? endDate = freezed,
     Object? status = freezed,
     Object? quantity = freezed,
+    Object? checked = freezed,
     Object? id = freezed,
     Object? createdDate = freezed,
     Object? lastModifiedDate = freezed,
@@ -116,6 +119,10 @@ class _$EventResponseCopyWithImpl<$Res, $Val extends EventResponse>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int?,
+      checked: freezed == checked
+          ? _value.checked
+          : checked // ignore: cast_nullable_to_non_nullable
+              as bool?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -149,6 +156,7 @@ abstract class _$$_EventResponseCopyWith<$Res>
       String? endDate,
       int? status,
       int? quantity,
+      bool? checked,
       String? id,
       String? createdDate,
       String? lastModifiedDate});
@@ -173,6 +181,7 @@ class __$$_EventResponseCopyWithImpl<$Res>
     Object? endDate = freezed,
     Object? status = freezed,
     Object? quantity = freezed,
+    Object? checked = freezed,
     Object? id = freezed,
     Object? createdDate = freezed,
     Object? lastModifiedDate = freezed,
@@ -210,6 +219,10 @@ class __$$_EventResponseCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int?,
+      checked: freezed == checked
+          ? _value.checked
+          : checked // ignore: cast_nullable_to_non_nullable
+              as bool?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -238,6 +251,7 @@ class _$_EventResponse implements _EventResponse {
       this.endDate,
       this.status,
       this.quantity,
+      this.checked,
       this.id,
       this.createdDate,
       this.lastModifiedDate});
@@ -262,6 +276,8 @@ class _$_EventResponse implements _EventResponse {
   @override
   final int? quantity;
   @override
+  final bool? checked;
+  @override
   final String? id;
   @override
   final String? createdDate;
@@ -270,7 +286,7 @@ class _$_EventResponse implements _EventResponse {
 
   @override
   String toString() {
-    return 'EventResponse(title: $title, background: $background, location: $location, description: $description, startDate: $startDate, endDate: $endDate, status: $status, quantity: $quantity, id: $id, createdDate: $createdDate, lastModifiedDate: $lastModifiedDate)';
+    return 'EventResponse(title: $title, background: $background, location: $location, description: $description, startDate: $startDate, endDate: $endDate, status: $status, quantity: $quantity, checked: $checked, id: $id, createdDate: $createdDate, lastModifiedDate: $lastModifiedDate)';
   }
 
   @override
@@ -291,6 +307,7 @@ class _$_EventResponse implements _EventResponse {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.checked, checked) || other.checked == checked) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
@@ -310,6 +327,7 @@ class _$_EventResponse implements _EventResponse {
       endDate,
       status,
       quantity,
+      checked,
       id,
       createdDate,
       lastModifiedDate);
@@ -338,6 +356,7 @@ abstract class _EventResponse implements EventResponse {
       final String? endDate,
       final int? status,
       final int? quantity,
+      final bool? checked,
       final String? id,
       final String? createdDate,
       final String? lastModifiedDate}) = _$_EventResponse;
@@ -361,6 +380,8 @@ abstract class _EventResponse implements EventResponse {
   int? get status;
   @override
   int? get quantity;
+  @override
+  bool? get checked;
   @override
   String? get id;
   @override

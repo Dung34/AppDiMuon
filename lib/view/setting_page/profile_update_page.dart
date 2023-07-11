@@ -113,6 +113,9 @@ class _ProfileUpdatePageState
                   inputType: AppInputType.datePicker,
                   label: 'Ngày sinh',
                   hintText: 'Nhập ngày sinh',
+                  onDateSelected: (value) {
+                    userUpdate.dob = value.toIso8601String();
+                  },
                   context: context,
                 ),
                 const SizedBox(height: 20),
@@ -141,7 +144,7 @@ class _ProfileUpdatePageState
                       showLoading(dismissible: false);
                       userUpdate.fullname = nameController.text.trim();
                       userUpdate.company = companyController.text.trim();
-                      userUpdate.dob = dobController.text.trim();
+                      // userUpdate.dob = dobController.text.trim();
                       cubit.updateUser(userUpdate);
                     },
                     label: 'Lưu thông tin',

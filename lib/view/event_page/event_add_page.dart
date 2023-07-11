@@ -175,6 +175,14 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
                   widget.eventCubit
                       .getAllEvent(date: eventStartDateTime.toIso8601String());
                 }
+
+                // get all event in month to show marker in calendar
+                final today = DateTime.now();
+                widget.eventCubit.getAllEvent(
+                    startDate:
+                        DateTime(today.year, today.month, -7).toIso8601String(),
+                    endDate: DateTime(today.year, today.month, 37)
+                        .toIso8601String());
               }
               if (state is EventAddEventFailedState) {
                 hideLoading();

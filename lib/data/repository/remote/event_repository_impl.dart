@@ -5,9 +5,11 @@ import '../../../config/config.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
+import '../../../domain/entity/event/user_event_joined.dart/user_event_joined.dart';
 import '../../../domain/mapper/event_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
+import '../../model/event_response/event_member_response.dart';
 import '../../model/event_response/event_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../local/local_data_access.dart';
@@ -18,6 +20,9 @@ class EventpRepositoryImpl implements EventRepository {
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
   final EventDataMapper _eventDataMapper = getIt.get<EventDataMapper>();
+  final EventMemberDataMapper _eventMemberDataMapper =
+      getIt.get<EventMemberDataMapper>();
+  // final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
 
   EventpRepositoryImpl() {
     dio.interceptors.add(PrettyDioLogger(
@@ -26,19 +31,27 @@ class EventpRepositoryImpl implements EventRepository {
       requestHeader: true,
     ));
     dio.options =
-        // DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
-        DioBaseOptions(baseUrl: 'https://api-ceo.hn7.eztek.net').baseOption;
+        DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
+    // DioBaseOptions(baseUrl: 'https://api-ceo.hn7.eztek.net').baseOption;
   }
 
   @override
   Future<ResponseWrapper<List<Event>>> getAllEvent(
-      {String? keyword, int type = 0, String? date, bool? isOpening}) async {
+      {String? keyword,
+      int type = 0,
+      String? startDate,
+      String? endDate,
+      String? date,
+      bool? isOpening}) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.post(
       EndPoints.getAllEvent,
       data: {
         "title": keyword,
         "searchDate": date,
+        "isComing": isOpening,
+        "startDate": startDate,
+        "endDate": endDate
       }..removeWhere((key, value) => value == null),
       options: Options(
         headers: {'Authorization': 'Bearer $accessToken'},
@@ -94,70 +107,89 @@ class EventpRepositoryImpl implements EventRepository {
   @override
   Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
       {required String eventId}) async {
-    return ResponseWrapper.success(data: [
-      EventMember(
-        id: '',
-        fullname: 'Vương Tùng Giang',
-        avatar:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checkedInDate: '2023-06-13T10:19:32Z',
-        checkedInLocation:
-            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.get(
+      '${EndPoints.getMemberJoined}$eventId',
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
       ),
-      EventMember(
-        id: '',
-        fullname: 'Vương Tùng Giang Vương Tùng Giang',
-        avatar:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checkedInDate: '2023-06-13T10:19:32Z',
-        checkedInLocation:
-            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
-      ),
-      EventMember(
-        id: '',
-        fullname: 'Vương Tùng Giang',
-        avatar:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checkedInDate: '2023-06-13T10:19:32Z',
-        checkedInLocation:
-            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
-      ),
-    ]);
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data as List).map(
+              (e) => _eventMemberDataMapper.mapToEntity(
+                EventMemberResponse.fromJson(e),
+              ),
+            ),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
-  Future<ResponseWrapper<List<EventMember>>> getAllHistory() async {
-    return ResponseWrapper.success(data: [
-      EventMember(
-        id: '',
-        fullname: 'Vương Tùng Giang',
-        eventTitle: 'Buổi 1',
-        avatar:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checkedInDate: '2023-06-13T10:19:32Z',
-        checkedInLocation:
-            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
+  Future<ResponseWrapper<List<EventMember>>> getAllHistory(
+      {String? userId}) async {
+    accessToken = await localDataAccess.getAccessToken();
+    final String currentUserId = localDataAccess.getUserId();
+    final response = await dio.get(
+      '${EndPoints.getShowHistory}${userId ?? currentUserId}',
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
       ),
-      EventMember(
-        id: '',
-        fullname: 'Vương Tùng Giang Vương Tùng Giang',
-        eventTitle: 'Buổi 12',
-        avatar:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checkedInDate: '2023-06-13T10:19:32Z',
-        checkedInLocation:
-            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data as List).map(
+              (e) => _eventMemberDataMapper.mapToEntity(
+                EventMemberResponse.fromJson(e),
+              ),
+            ),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<UserEventJoined>> joinEvent(
+      {String? userId, String? eventId, String? location}) async {
+    final String currentUserId = localDataAccess.getUserId();
+
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.post(
+      EndPoints.joinShow,
+      data: {
+        "userId": userId ?? currentUserId,
+        "eventId": eventId,
+        "location": location,
+      }..removeWhere((key, value) => value == null),
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
       ),
-      EventMember(
-        id: '',
-        fullname: 'Vương Tùng Giang',
-        eventTitle: 'Buổi 13',
-        avatar:
-            'https://knowtechie.com/wp-content/uploads/2023/01/premier-league-soccer-banner-1600x900.webp',
-        checkedInDate: '2023-06-13T10:19:32Z',
-        checkedInLocation:
-            '89 Hoàng Văn Thái, Khuong Trung, Thanh Xuân, Hà Nội',
-      ),
-    ]);
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: UserEventJoined.fromJson(response.data),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 }

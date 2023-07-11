@@ -22,11 +22,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   int _bottomNavIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   final icons = [
     Assets.icHome,
     Assets.icIdCard,
@@ -57,7 +52,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           if (context.read<UserCubit>().currentUser?.role == UserRole.admin) {
             Navigator.of(context).pushNamed(AppRoute.eventOpening);
           } else {
-            Navigator.of(context).pushNamed(AppRoute.qrScanner);
+            Navigator.of(context).pushNamed(AppRoute.qrScanner,
+                arguments: QrScannerPageArgs(
+                  userRole: UserRole.user,
+                ));
           }
         },
         child: Container(

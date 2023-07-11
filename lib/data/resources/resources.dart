@@ -46,8 +46,8 @@ class Assets {
   static const String imAppLogo = '$imagePrefix/im_logo_ceohn7.png';
   static const String imAppLogoVertical =
       '$imagePrefix/im_logo_ceohn7_vertical.png';
-  static const String imAppLogoVerticalWhite =
-      '$imagePrefix/im_logo_ceohn7_white.png';
+  static const String imAppLogoVerticalFull =
+      '$imagePrefix/im_logo_ceohn7_vertical_full.png';
   static const String imAppLogoHorizontal =
       '$imagePrefix/im_logo_ceohn7_horizontal.png';
   static const String imAppLogoHorizontalWhite =

@@ -97,9 +97,13 @@ class EventItem extends StatelessWidget {
                   PrimaryButton(
                     context: context,
                     onPressed: () {
-                      Navigator.of(context).pushNamed(AppRoute.qrScanner,
-                          arguments:
-                              QrScannerPageArgs(userRole: UserRole.admin));
+                      Navigator.of(context).pushNamed(
+                        AppRoute.qrScanner,
+                        arguments: QrScannerPageArgs(
+                          userRole: UserRole.admin,
+                          eventId: event.id,
+                        ),
+                      );
                     },
                     icon: Assets.icQrCode,
                     iconColor: AppColor.white,
@@ -138,7 +142,7 @@ class EventItem extends StatelessWidget {
                           SvgPicture.asset(Assets.icLocation),
                           const SizedBox(width: 4),
                           Text(
-                            event.location ?? 'Chưa cập nhật',
+                            event.location!,
                             textAlign: TextAlign.start,
                             style: AppTextTheme.robotoMedium12.copyWith(
                               color: AppColor.secondary500,

@@ -12,7 +12,7 @@ class DateTimeUtils {
           : showTime
               ? 'HH:mm - dd/MM/yyyy'
               : 'dd/MM/yyyy');
-      return dateFormat.format(DateTime.parse(strDate)).toString();
+      return dateFormat.format(DateTime.parse(strDate).toLocal()).toString();
     } catch (e) {
       return strDate;
     }

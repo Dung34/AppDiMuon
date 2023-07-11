@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,17 +38,18 @@ class _ProfileViewHeaderState
   EdgeInsets get padding => EdgeInsets.zero;
 
   @override
-  UserCubit get cubit =>
-      widget.userId != null ? UserCubit() : context.read<UserCubit>();
-
-  @override
   bool get useBlocProviderValue => widget.userId == null;
 
   @override
   void initState() {
     super.initState();
+    if (widget.userId != null) {
+      setCubit = UserCubit();
+    } else {
+      setCubit = context.read<UserCubit>();
+    }
+
     cubit.getUser(userId: widget.userId);
-    // cubit.getProfileOverView();
     _scrollController.addListener(_scrollListener);
   }
 
@@ -85,6 +88,7 @@ class _ProfileViewHeaderState
             buildWhen: (previous, current) =>
                 current is UserGetUserSuccessState,
             builder: (context, state) {
+              log('state: $state');
               if (state is UserGetUserSuccessState) {
                 user = state.userEntity;
                 return SliverAppBar(

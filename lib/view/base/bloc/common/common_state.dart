@@ -17,8 +17,10 @@ class CommonShowLoadingState extends CommonState {
 class CommonToastMessage extends CommonState {
   final bool isShow;
   final String? message;
+  final Widget? child;
   CommonToastMessage({
     required this.isShow,
     this.message,
+    this.child,
   });
 }

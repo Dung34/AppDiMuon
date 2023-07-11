@@ -24,6 +24,7 @@ class EndPoints {
   // user related
   static const String getCurrentUser = '/gateway/user/current';
   static const String getUser = '/gateway/user';
+  static const String updateUser = '/gateway/user/update';
   static const String login = '/connect/login';
   static const String getAccountInfo = '/api/account';
   static const String changePassword = '/api/account/change-password';
@@ -33,8 +34,9 @@ class EndPoints {
   static const String createEvent = '/gateway/event/create';
   static const String getAllEvent = '/gateway/events';
   static const String getAllFrames = '/gateway/activity/frames';
-  static const String joinShow = '/gateway/meeting-join/create';
-  static const String getShowHistory = '/gateway/meeting-joins';
+  static const String joinShow = '/gateway/event-join/create';
+  static const String getMemberJoined = '/gateway/event-join/';
+  static const String getShowHistory = '/gateway/event-joined/';
 
   // employee related
   static const String getEmployeeByIdForUser =

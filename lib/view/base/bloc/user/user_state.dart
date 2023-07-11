@@ -21,3 +21,7 @@ class UserUpdateSuccessState extends UserState {
 }
 
 class UserUpdateFailedState extends UserState {}
+
+class UserChangePasswordSuccessState extends UserState {}
+
+class UserChangePasswordFailedState extends UserState {}

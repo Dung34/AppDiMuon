@@ -8,7 +8,8 @@ import 'components/event_member_item.dart';
 import 'cubit/event_cubit.dart';
 
 class EventHistoryPage extends StatefulWidget {
-  const EventHistoryPage({super.key});
+  final bool useAppBar;
+  const EventHistoryPage({super.key, this.useAppBar = true});
 
   @override
   State<EventHistoryPage> createState() => _EventHistoryPageState();
@@ -23,10 +24,12 @@ class _EventHistoryPageState
   }
 
   @override
-  PreferredSizeWidget? get appBar => PrimaryAppBar(
-        title: 'Lịch sử sự kiện',
-        canPop: true,
-      );
+  PreferredSizeWidget? get appBar => widget.useAppBar
+      ? PrimaryAppBar(
+          title: 'Lịch sử sự kiện',
+          canPop: true,
+        )
+      : null;
 
   @override
   Widget buildPage(BuildContext context) {
@@ -42,6 +45,7 @@ class _EventHistoryPageState
                     eventMember: state.eventMembers[index],
                     showTitle: true,
                     showAvatar: false,
+                    canPressed: false,
                   );
                 },
               )

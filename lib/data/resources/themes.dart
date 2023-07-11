@@ -136,7 +136,7 @@ class AppTextTheme {
     fontSize: 16,
   );
   static const TextStyle robotoMedium18 = TextStyle(
-    color: AppColor.black,
+    color: AppColor.primary500,
     fontWeight: FontWeight.w500,
     fontSize: 18,
   );
@@ -144,6 +144,11 @@ class AppTextTheme {
     color: AppColor.primary500,
     fontWeight: FontWeight.w500,
     fontSize: 24,
+  );
+  static const TextStyle robotoBold14 = TextStyle(
+    color: AppColor.primary500,
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
   );
   static const TextStyle robotoBold16 = TextStyle(
     color: AppColor.black,
@@ -168,6 +173,12 @@ class AppTextTheme {
     fontSize: 24,
   );
 
+  static const TextStyle lexendRegular14 = TextStyle(
+    fontFamily: 'Lexend',
+    color: AppColor.primary500,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+  );
   static const TextStyle lexendBold16 = TextStyle(
     fontFamily: 'Lexend',
     color: AppColor.primary500,

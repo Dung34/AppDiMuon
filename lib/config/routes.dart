@@ -12,6 +12,7 @@ import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
+import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 
@@ -21,6 +22,7 @@ class AppRoute {
   static const String home = "/home";
   static const String login = "/login";
   static const String register = "/register";
+  static const String changePassword = "/changePassword";
   static const String eventDetail = "/eventDetail";
   static const String eventMember = "/eventMember";
   static const String eventHistory = "/eventHistory";
@@ -36,6 +38,7 @@ class AppRoute {
         AppRoute.home: (context) => const HomeScreen(),
         AppRoute.splash: (context) => const SplashScreen(),
         AppRoute.register: (context) => RegisterPage(),
+        AppRoute.changePassword: (context) => const ProfileChangePasswordPage(),
         AppRoute.eventDetail: (context) => const EventDetailPage(),
         AppRoute.eventMember: (context) => const EventMemberPage(),
         AppRoute.eventHistory: (context) => const EventHistoryPage(),
@@ -84,6 +87,10 @@ class EventMemberHistoryPageArgs {
 
 class QrScannerPageArgs {
   final int userRole;
+  final String? eventId;
 
-  QrScannerPageArgs({required this.userRole});
+  QrScannerPageArgs({
+    required this.userRole,
+    this.eventId,
+  });
 }

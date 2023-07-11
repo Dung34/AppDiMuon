@@ -1,17 +1,24 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
+import '../../utils/date_time_utils.dart';
 
 class PrimaryCalendar extends StatefulWidget {
   final Function(DateTime date) onSelectedDate;
+  final Function(DateTime date) onPageChanged;
   final List<Widget>? actions;
+  final List<Event> initialEvent;
+  final DateTime? focusedDay;
   const PrimaryCalendar(
-      {super.key, required this.onSelectedDate, this.actions});
+      {super.key,
+      required this.onSelectedDate,
+      this.actions,
+      required this.onPageChanged,
+      this.initialEvent = const [],
+      this.focusedDay});
 
   @override
   State<PrimaryCalendar> createState() => _PrimaryCalendarState();
@@ -19,7 +26,13 @@ class PrimaryCalendar extends StatefulWidget {
 
 class _PrimaryCalendarState extends State<PrimaryCalendar> {
   DateTime _selectedDay = DateTime.now();
-  DateTime _focusedDay = DateTime.now();
+  late DateTime _focusedDay;
+  @override
+  void initState() {
+    _focusedDay = widget.focusedDay ?? DateTime.now();
+    super.initState();
+  }
+
   CalendarFormat _calendarFormat = CalendarFormat.month;
   @override
   Widget build(BuildContext context) {
@@ -43,10 +56,6 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
         CalendarFormat.month: 'Tháng',
         CalendarFormat.week: 'Tuần',
       },
-      // eventLoader: (day) {
-      //   // log('day: $day ${_getEventsForDay(day)}');
-      //   return _getEventsForDay(day);
-      // },
       onDaySelected: (selectedDay, focusedDay) {
         if (isSameDay(_selectedDay, selectedDay)) return;
         setState(() {
@@ -55,10 +64,18 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
         });
         widget.onSelectedDate.call(_selectedDay);
       },
+      onPageChanged: (focusedDay) {
+        widget.onPageChanged.call(focusedDay);
+      },
       calendarFormat: _calendarFormat,
       calendarBuilders: CalendarBuilders(
         markerBuilder: (context, day, events) {
-          return events.isNotEmpty
+          final dayMapper = widget.initialEvent.firstWhere(
+            (element) => DateTimeUtils.isSameDay(
+                element.startTime ?? '', day.toIso8601String()),
+            orElse: () => Event(),
+          );
+          return dayMapper.id != null
               ? Container(
                   width: 8,
                   height: 8,
@@ -101,33 +118,4 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
       ),
     );
   }
-}
-
-List<Event> _getEventsForDay(DateTime day) {
-  // Implementation example
-  return kEvents[day] ?? [];
-}
-
-final kEvents = LinkedHashMap<DateTime, List<Event>>(
-  equals: isSameDay,
-  hashCode: getHashCode,
-)..addAll(_kEventSource);
-
-final _kEventSource = {
-  for (var item in List.generate(50, (index) => index))
-    DateTime.utc(2023, 7, item): List.generate(
-      1,
-      (index) => Event(
-        title: 'Event $item | ${index + 1}',
-      ),
-    )
-}..addAll({
-    DateTime.now(): [
-      Event(title: 'Today\'s Event 1'),
-      Event(title: 'Today\'s Event 2'),
-    ],
-  });
-
-int getHashCode(DateTime key) {
-  return key.day * 1000000 + key.month * 10000 + key.year;
 }

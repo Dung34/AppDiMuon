@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'common_state.dart';
@@ -13,8 +14,8 @@ class CommonCubit extends Cubit<CommonState> {
     emit(CommonShowLoadingState(isLoading: false));
   }
 
-  showToast(String message) {
-    emit(CommonToastMessage(isShow: true, message: message));
+  showToast(String message, {Widget? child}) {
+    emit(CommonToastMessage(isShow: true, message: message, child: child));
   }
 
   hideToast() {

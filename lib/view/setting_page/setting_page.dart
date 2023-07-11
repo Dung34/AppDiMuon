@@ -86,7 +86,9 @@ class SettingPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     SettingItem(
                       title: 'Đổi mật khẩu',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoute.changePassword);
+                      },
                     ),
                     const Divider(),
                     SettingItem(

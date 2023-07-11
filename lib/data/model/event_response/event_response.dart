@@ -14,6 +14,7 @@ class EventResponse with _$EventResponse {
     String? endDate,
     int? status,
     int? quantity,
+    bool? checked,
     String? id,
     String? createdDate,
     String? lastModifiedDate,

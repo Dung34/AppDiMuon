@@ -9,15 +9,16 @@ class UserResponse with _$UserResponse {
     String? id,
     String? username,
     String? fullname,
-    String? address,
-    String? major,
+    String? avatar,
+    String? coverImage,
+    String? dob,
+    int? role,
+    String? createdDate,
+    String? position,
+    String? company,
     String? email,
     String? phoneNumber,
-    String? avatar,
-    String? company,
-    String? dob,
-    String? type,
-    dynamic error,
+    DateTime? lastModifiedDate,
   }) = _UserResponse;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>

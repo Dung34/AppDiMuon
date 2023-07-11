@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/resources/resources.dart';
 import '../../di/di.dart';
+import '../../shared/etx/view_ext.dart';
+import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/something/loading.dart';
 import 'bloc/common/common_cubit.dart';
 import 'bloc/user/user_cubit.dart';
@@ -15,6 +17,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
   final UserCubit userCubit = getIt.get<UserCubit>();
   final CommonCubit _commonCubit = CommonCubit();
   late C cubit;
+
+  set setCubit(C c) => cubit = c;
 
   /// use safe area or not
   bool get useSafeArea => true;
@@ -35,8 +39,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
 
   void hideLoading() => _commonCubit.hideLoading();
 
-  showToast(String message) {
-    _commonCubit.showToast(message);
+  showToast(String message, {Widget? child}) {
+    _commonCubit.showToast(message, child: child);
   }
 
   hideToast() {
@@ -89,6 +93,29 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
                             )
                         ],
                       );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
+                BlocBuilder<CommonCubit, CommonState>(
+                  buildWhen: (previous, current) =>
+                      current is CommonToastMessage,
+                  builder: (context, state) {
+                    if (state is CommonToastMessage && state.isShow) {
+                      return Positioned(
+                          top: 56,
+                          left: 16,
+                          right: 16,
+                          child: PrimaryContainer(
+                            padding: const EdgeInsets.all(16),
+                            width: context.screenWidth,
+                            child: state.child ??
+                                Text(
+                                  state.message ?? '',
+                                  style: AppTextTheme.lexendRegular14,
+                                ),
+                          ));
                     } else {
                       return const SizedBox();
                     }

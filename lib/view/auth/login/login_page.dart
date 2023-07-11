@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                       child: Center(
                         child: Image.asset(
                           height: 200,
-                          Assets.imAppLogoVertical,
+                          Assets.imAppLogoHorizontal,
                         ),
                       ),
                     ),
@@ -215,23 +215,23 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'Quên mật khẩu?',
-                            style: AppTextTheme.textPrimaryBold,
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             ForgotPassword()));
-                              },
-                          ),
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.centerRight,
+                      //   child: RichText(
+                      //     text: TextSpan(
+                      //       text: 'Quên mật khẩu?',
+                      //       style: AppTextTheme.textPrimaryBold,
+                      //       recognizer: TapGestureRecognizer()
+                      //         ..onTap = () {
+                      //           // Navigator.push(
+                      //           //     context,
+                      //           //     MaterialPageRoute(
+                      //           //         builder: (context) =>
+                      //           //             ForgotPassword()));
+                      //         },
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(
@@ -242,34 +242,34 @@ class LoginScreen extends StatelessWidget {
                     onPressed: onLoginPressed,
                     label: "Đăng Nhập",
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  BlocBuilder<AuthBloc, AuthState>(
-                    buildWhen: (pre, current) =>
-                        current is AuthLoginBySSOLoadingState ||
-                        current is AuthLoginBySSOSuccessState ||
-                        current is AuthLoginBySSOErrorState,
-                    builder: (context, state) {
-                      if (state is AuthLoginBySSOLoadingState) {
-                        return PrimaryButton(
-                            context: context,
-                            isLoading: true,
-                            backgroundColor: AppColor.secondaryColor,
-                            onPressed: () => null,
-                            label: '');
-                      } else {
-                        return PrimaryButton(
-                          context: context,
-                          backgroundColor: AppColor.secondaryColor,
-                          onPressed: () {
-                            authBloc.add(AuthLoginBySSORequestEvent());
-                          },
-                          label: "Đăng Nhập Với True Connect",
-                        );
-                      }
-                    },
-                  ),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
+                  // BlocBuilder<AuthBloc, AuthState>(
+                  //   buildWhen: (pre, current) =>
+                  //       current is AuthLoginBySSOLoadingState ||
+                  //       current is AuthLoginBySSOSuccessState ||
+                  //       current is AuthLoginBySSOErrorState,
+                  //   builder: (context, state) {
+                  //     if (state is AuthLoginBySSOLoadingState) {
+                  //       return PrimaryButton(
+                  //           context: context,
+                  //           isLoading: true,
+                  //           backgroundColor: AppColor.secondaryColor,
+                  //           onPressed: () => null,
+                  //           label: '');
+                  //     } else {
+                  //       return PrimaryButton(
+                  //         context: context,
+                  //         backgroundColor: AppColor.secondaryColor,
+                  //         onPressed: () {
+                  //           authBloc.add(AuthLoginBySSORequestEvent());
+                  //         },
+                  //         label: "Đăng Nhập Với True Connect",
+                  //       );
+                  //     }
+                  //   },
+                  // ),
                   const SizedBox(
                     height: 30,
                   ),
