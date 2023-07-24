@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../utils/date_time_utils.dart';
+import '../table_calendar/table_calendar.dart';
 
 class PrimaryCalendar extends StatefulWidget {
   final Function(DateTime date) onSelectedDate;

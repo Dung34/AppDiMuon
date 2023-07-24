@@ -1,4 +1,5 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../config/routes.dart';
 import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
+import '../../shared/widgets/animated_bottom_navigation/animated_bottom_navigation_bar.dart';
+import '../base/base_page_sate.dart';
+import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
 import '../event_page/calendar/calendar_page.dart';
 import '../event_page/event_page.dart';
@@ -19,8 +23,21 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+class _MainPageState extends BasePageState<MainPage, CommonCubit>
+    with TickerProviderStateMixin {
   int _bottomNavIndex = 0;
+
+  @override
+  bool get useBlocProviderValue => true;
+
+  @override
+  EdgeInsets get padding => EdgeInsets.zero;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setCubit = context.read<CommonCubit>();
+  }
 
   final icons = [
     Assets.icHome,
@@ -42,7 +59,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildPage(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.primaryBackgroundColor,
       floatingActionButton: FloatingActionButton(
@@ -119,6 +136,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           setState(
             () => _bottomNavIndex = index,
           );
+          if (index == 0) cubit.onBottomNavigationPressed(index);
+          log('main: ${cubit.hashCode}');
         },
       ),
       body: tabs[_bottomNavIndex],

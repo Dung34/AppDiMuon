@@ -14,7 +14,7 @@ dependencies:
 
   #animation
   animated_widgets: ^1.1.0
-  animated_bottom_navigation_bar: ^1.2.0
+  # animated_bottom_navigation_bar: ^1.2.0
   lottie: ^2.3.0
   flutter_staggered_animations: ^1.1.1
   # add Locale
@@ -61,7 +61,8 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   page_transition: ^2.0.9
   cached_network_image: ^3.2.3
-  table_calendar: ^3.0.9
+  # table_calendar: ^3.0.9
+  simple_gesture_detector: ^0.2.0
 
   #OAuth2 + openId
   flutter_appauth: ^4.2.1

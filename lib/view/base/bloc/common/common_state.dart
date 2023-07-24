@@ -24,3 +24,9 @@ class CommonToastMessage extends CommonState {
     this.child,
   });
 }
+
+class CommonOnBottomNavigationPressed extends CommonState {
+  final int index;
+
+  CommonOnBottomNavigationPressed({required this.index});
+}

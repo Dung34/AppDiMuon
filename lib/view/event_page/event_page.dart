@@ -9,6 +9,7 @@ import '../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../base/base_page_sate.dart';
+import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
 import 'components/event_item.dart';
 import '../../shared/widgets/shimmer/event_list_shimmer.dart';
@@ -35,9 +36,31 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  final ScrollController scrollController = ScrollController();
+
+  @override
   Widget buildPage(BuildContext context) {
     return Column(
       children: [
+        BlocProvider.value(
+          value: context.read<CommonCubit>(),
+          child: BlocListener<CommonCubit, CommonState>(
+            listener: (context, state) {
+              if (state is CommonOnBottomNavigationPressed) {
+                if (state.index == 0) {
+                  scrollController.animateTo(0,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.linear);
+                }
+              }
+            },
+            child: const SizedBox(),
+          ),
+        ),
         BlocProvider.value(
           value: userCubit..getUser(),
           child: Padding(
@@ -130,7 +153,8 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
             value: _eventCubit..getAllEvent(),
             child: BlocBuilder<EventCubit, EventState>(
               buildWhen: (previous, current) =>
-                  current is EventGetAllEventSuccessState,
+                  current is EventGetAllEventSuccessState ||
+                  current is EventInitial,
               builder: (context, state) {
                 if (state is EventGetAllEventSuccessState) {
                   final events = state.events;
@@ -149,6 +173,10 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                     });
                     return AnimationStaggeredListView(
                       items: items,
+                      scrollController: scrollController,
+                      onRefresh: () async {
+                        cubit.getAllEvent();
+                      },
                     );
                   } else {
                     return const NoData();

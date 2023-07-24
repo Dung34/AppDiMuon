@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../config/config.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/view_utils.dart';
@@ -111,7 +112,7 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
             style: AppTextTheme.robotoLight18,
           ),
           const SizedBox(height: 20),
-          PrimaryQrView(data: 'user:${user?.id}'),
+          PrimaryQrView(data: '${Environment.domain}/profile/${user?.id}'),
           const SizedBox(height: 20),
         ],
       ),

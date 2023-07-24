@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/model/api/base_response.dart';
@@ -27,7 +25,6 @@ class UserCubit extends Cubit<UserState> {
     emit(UserInitial());
 
     final response = await _userRepository.getUser(userId: userId);
-    log('cubit: $hashCode');
     if (response.status == ResponseStatus.success) {
       if (userId == null) {
         currentUser = response.data!;

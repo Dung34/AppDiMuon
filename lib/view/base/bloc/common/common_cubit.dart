@@ -21,4 +21,8 @@ class CommonCubit extends Cubit<CommonState> {
   hideToast() {
     emit(CommonToastMessage(isShow: false));
   }
+
+  onBottomNavigationPressed(int index) {
+    emit(CommonOnBottomNavigationPressed(index: index));
+  }
 }
