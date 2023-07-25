@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/widgets/shimmer/event_member_item_shimmer.dart';
+import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import 'components/event_member_item.dart';
@@ -37,21 +38,27 @@ class _EventHistoryPageState
       buildWhen: (previous, current) =>
           current is EventGetAllHistorySuccessState,
       builder: (context, state) {
-        return state is EventGetAllHistorySuccessState
-            ? ListView.builder(
-                itemCount: state.eventMembers.length,
-                itemBuilder: (context, index) {
-                  return EventMemberItem(
-                    eventMember: state.eventMembers[index],
-                    showTitle: true,
-                    showAvatar: false,
-                    canPressed: false,
-                  );
-                },
-              )
-            : const EventMemberItemShimmer(
-                showAvatar: false,
-              );
+        if (state is EventGetAllHistorySuccessState) {
+          if (state.eventMembers.isNotEmpty) {
+            return ListView.builder(
+              itemCount: state.eventMembers.length,
+              itemBuilder: (context, index) {
+                return EventMemberItem(
+                  eventMember: state.eventMembers[index],
+                  showTitle: true,
+                  showAvatar: false,
+                  canPressed: false,
+                );
+              },
+            );
+          } else {
+            return const NoData();
+          }
+        } else {
+          return const EventMemberItemShimmer(
+            showAvatar: false,
+          );
+        }
       },
     );
   }

@@ -70,6 +70,14 @@ class EventAddEventSuccessState extends EventState {
 
 class EventAddEventFailedState extends EventState {}
 
+class EventGetEventByIdSuccessState extends EventState {
+  final Event event;
+
+  const EventGetEventByIdSuccessState(this.event);
+}
+
+class EventGetEventByIdFailedState extends EventState {}
+
 class EventJoinEventSuccessState extends EventState {
   final UserEventJoined userEventJoined;
   final bool isUserScan;

@@ -26,7 +26,7 @@ class EventItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           AppRoute.eventDetail,
-          arguments: EventDetailPageArgs(event: event),
+          arguments: EventDetailPageArgs(eventId: event.id!),
         );
       },
       child: Padding(

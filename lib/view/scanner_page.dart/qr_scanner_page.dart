@@ -127,9 +127,11 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
                   context,
                   AppRoute.eventDetail,
                   arguments: EventDetailPageArgs(
-                    event: getIt
-                        .get<EventDataMapper>()
-                        .mapToEntity(state.userEventJoined.events),
+                    eventId: getIt
+                            .get<EventDataMapper>()
+                            .mapToEntity(state.userEventJoined.events)
+                            .id ??
+                        '',
                   ),
                 );
               } else {

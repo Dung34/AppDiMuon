@@ -17,7 +17,7 @@ class CalendarEventItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.pushNamed(context, AppRoute.eventDetail,
-          arguments: EventDetailPageArgs(event: event)),
+          arguments: EventDetailPageArgs(eventId: event.id!)),
       child: Row(
         children: [
           Expanded(

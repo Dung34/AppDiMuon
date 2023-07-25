@@ -62,9 +62,9 @@ class AppRoute {
 }
 
 class EventDetailPageArgs {
-  final Event event;
+  final String eventId;
 
-  EventDetailPageArgs({required this.event});
+  EventDetailPageArgs({required this.eventId});
 }
 
 class EventMemberPageArgs {

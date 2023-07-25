@@ -6,6 +6,7 @@ import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/widgets/shimmer/event_member_item_shimmer.dart';
+import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import 'components/event_member_item.dart';
@@ -38,15 +39,19 @@ class _EventMemberPageState extends BasePageState<EventMemberPage, EventCubit> {
       builder: (context, state) {
         if (state is EventGetAllMemberSuccessState) {
           final eventMembers = state.eventMembers;
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              final eventMember = eventMembers[index];
-              return EventMemberItem(eventMember: eventMember);
-            },
-            separatorBuilder: (context, index) => const Divider(),
-            shrinkWrap: true,
-            itemCount: eventMembers.length,
-          );
+          if (eventMembers.isNotEmpty) {
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                final eventMember = eventMembers[index];
+                return EventMemberItem(eventMember: eventMember);
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              shrinkWrap: true,
+              itemCount: eventMembers.length,
+            );
+          } else {
+            return const NoData();
+          }
         } else {
           return const EventMemberItemShimmer(
             showAvatar: false,

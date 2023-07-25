@@ -19,6 +19,7 @@ class EventQrPage extends StatelessWidget {
       backgroundColor: AppColor.primaryBackgroundColor,
       appBar: PrimaryAppBar(
         canPop: true,
+        title: 'Mã lớp học',
       ),
       body: SingleChildScrollView(
         child: Padding(

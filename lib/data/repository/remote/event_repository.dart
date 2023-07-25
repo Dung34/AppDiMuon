@@ -12,6 +12,8 @@ abstract class EventRepository {
       String? endDate,
       bool? isOpening});
 
+  Future<ResponseWrapper<Event>> getEventById(String eventId);
+
   Future<ResponseWrapper<Event>> createEvent(Event event);
 
   Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
