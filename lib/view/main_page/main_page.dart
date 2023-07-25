@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -137,7 +135,6 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
             () => _bottomNavIndex = index,
           );
           if (index == 0) cubit.onBottomNavigationPressed(index);
-          log('main: ${cubit.hashCode}');
         },
       ),
       body: tabs[_bottomNavIndex],

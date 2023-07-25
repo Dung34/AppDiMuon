@@ -1,11 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../../shared/utils/date_time_utils.dart';
-import '../../../shared/widgets/button/primary_icon_button.dart';
 import '../../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../../shared/widgets/something/no_data.dart';
@@ -74,12 +76,11 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
                     ),
                     actions: [
                       if (userCubit.currentUser?.role == UserRole.admin)
-                        PrimaryIconButton(
-                          context: context,
+                        TextButton(
                           onPressed: () {
                             _onAddEventPressed(context);
                           },
-                          icon: Assets.icAdd,
+                          child: SvgPicture.asset(Assets.icAdd),
                         ),
                     ],
                   )
@@ -171,6 +172,7 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
   }
 
   void _onAddEventPressed(BuildContext context) {
+    log('message');
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => CalendarAddPage(
         eventCubit: cubit,

@@ -2,10 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../data/resources/resources.dart';
 import '../customization/header_style.dart';
 import '../shared/utils.dart' show CalendarFormat, DayBuilder;
 import 'custom_icon_button.dart';
@@ -96,9 +94,8 @@ class CalendarHeader extends StatelessWidget {
               padding: headerStyle.rightChevronPadding,
             ),
           if ((actions ?? []).isNotEmpty)
-            TextButton(
-              onPressed: () {},
-              child: SvgPicture.asset(Assets.icAdd),
+            Row(
+              children: actions!,
             )
         ],
       ),

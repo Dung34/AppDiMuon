@@ -104,6 +104,7 @@ class _ProfileUpdatePageState
                   hintText: 'Nhập họ và tên',
                   isRequired: true,
                   formKey: nameFormKey,
+                  maxLength: 50,
                   validator: ValidationUtils.textEmptyValidator,
                   textCapitalization: TextCapitalization.words,
                 ),
@@ -122,6 +123,7 @@ class _ProfileUpdatePageState
                 PrimaryTextField(
                   controller: companyController,
                   label: 'Công ty',
+                  maxLength: 100,
                   hintText: 'Nhập công ty',
                 ),
                 const SizedBox(height: 20),

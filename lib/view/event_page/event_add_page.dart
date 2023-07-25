@@ -82,6 +82,7 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
             hintText: 'Thêm tiêu đề',
             inputTextStyle: AppTextTheme.robotoMedium24,
             textInputAction: TextInputAction.newline,
+            maxLength: 100,
             hintTextStyle:
                 AppTextTheme.robotoLight24.copyWith(color: AppColor.fourth700),
             isRequired: true,
@@ -336,6 +337,7 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
                   hintText: 'Thêm địa điểm',
                   inputTextStyle: AppTextTheme.robotoRegular14,
                   textInputAction: TextInputAction.newline,
+                  maxLength: 100,
                   // hintT
                   //h(color: AppColor.fourth700),
                 ),

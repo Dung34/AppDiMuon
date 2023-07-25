@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
@@ -11,6 +14,7 @@ import '../../shared/widgets/something/no_data.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
+import 'components/event_filter_dialog.dart';
 import 'components/event_item.dart';
 import '../../shared/widgets/shimmer/event_list_shimmer.dart';
 import 'cubit/event_cubit.dart';
@@ -162,7 +166,27 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                     final items = List.generate(events.length, (index) {
                       final event = events[index];
                       return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          if (index == 0)
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: TextButton(
+                                  onPressed: () =>
+                                      _onFilterPressed.call(context),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SvgPicture.asset(Assets.icFilter),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        'Bộ lọc',
+                                        style: AppTextTheme.lexendRegular14
+                                            .copyWith(color: AppColor.black),
+                                      )
+                                    ],
+                                  )),
+                            ),
                           EventItem(event: event),
                           const Divider(
                               thickness: 5, color: AppColor.fourth300),
@@ -195,5 +219,26 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
         ),
       ],
     );
+  }
+
+  final statusFilterData = <bool>[false, false, false];
+  final timeFilterData = <bool>[false, false, false];
+  String startTime = DateTime.now().toString();
+  String endTime = DateTime.now().toString();
+  void _onFilterPressed(BuildContext context) async {
+    // context.showAppBottomSheet();
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EventFilterDialog(
+          statusFilterData: statusFilterData,
+          timeFilterData: timeFilterData,
+          startTime: startTime,
+          endTime: endTime,
+          eventCubit: cubit,
+        ),
+      ),
+    );
+    log(statusFilterData.toString());
   }
 }

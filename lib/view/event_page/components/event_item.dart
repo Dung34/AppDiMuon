@@ -79,11 +79,12 @@ class EventItem extends StatelessWidget {
                   PrimaryButton(
                     context: context,
                     onPressed: () {},
+                    isClickable: false,
                     icon: event.checked ? Assets.icStar : null,
                     iconColor: AppColor.white,
                     backgroundColor: event.checked
                         ? AppColor.third400
-                        : event.status == EventStatus.finished && !event.checked
+                        : event.status != EventStatus.finished && !event.checked
                             ? AppColor.error400
                             : AppColor.fourth600,
                     label: event.checked
