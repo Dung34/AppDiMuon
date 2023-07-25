@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../config/routes.dart';
+import '../../shared/widgets/list_view/primary_list_view.dart';
 import '../../shared/widgets/shimmer/event_member_item_shimmer.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
@@ -40,16 +42,23 @@ class _EventHistoryPageState
       builder: (context, state) {
         if (state is EventGetAllHistorySuccessState) {
           if (state.eventMembers.isNotEmpty) {
-            return ListView.builder(
-              itemCount: state.eventMembers.length,
-              itemBuilder: (context, index) {
-                return EventMemberItem(
-                  eventMember: state.eventMembers[index],
-                  showTitle: true,
-                  showAvatar: false,
-                  canPressed: false,
-                );
-              },
+            return PrimaryListView(
+              items: List.from(
+                state.eventMembers
+                    .map(
+                      (e) => EventMemberItem(
+                        eventMember: e,
+                        showTitle: true,
+                        showAvatar: false,
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoute.eventDetail,
+                              arguments: EventDetailPageArgs(
+                                  eventId: e.eventId ?? ''));
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
             );
           } else {
             return const NoData();

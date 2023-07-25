@@ -36,7 +36,8 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
   @override
   void initState() {
     super.initState();
-    _eventCubit = cubit;
+    _eventCubit = cubit..getAllEvent();
+    userCubit.getUser();
   }
 
   @override
@@ -65,156 +66,146 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
             child: const SizedBox(),
           ),
         ),
-        BlocProvider.value(
-          value: userCubit..getUser(),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: BlocBuilder<UserCubit, UserState>(
-                    buildWhen: (previous, current) =>
-                        current is UserGetUserSuccessState,
-                    builder: (context, state) {
-                      return state is UserGetUserSuccessState
-                          ? Row(
-                              children: [
-                                PrimaryCircleImage(
-                                  imageUrl: state.userEntity.avatar,
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Expanded(
+                child: BlocBuilder<UserCubit, UserState>(
+                  buildWhen: (previous, current) =>
+                      current is UserGetUserSuccessState,
+                  builder: (context, state) {
+                    return state is UserGetUserSuccessState
+                        ? Row(
+                            children: [
+                              PrimaryCircleImage(
+                                imageUrl: state.userEntity.avatar,
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Xin chào,',
+                                      style: AppTextTheme.robotoMedium14
+                                          .copyWith(
+                                              overflow: TextOverflow.ellipsis,
+                                              color: AppColor.primary900),
+                                    ),
+                                    Text(
+                                      '${state.userEntity.fullname ?? 'undefined'}!',
+                                      style: AppTextTheme.robotoBold16.copyWith(
+                                          overflow: TextOverflow.ellipsis,
+                                          color: AppColor.primary500),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 16),
+                              ),
+                            ],
+                          )
+                        : const PrimaryShimmer(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 20,
+                                ),
+                                SizedBox(width: 16),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Xin chào,',
-                                        style: AppTextTheme.robotoMedium14
-                                            .copyWith(
-                                                overflow: TextOverflow.ellipsis,
-                                                color: AppColor.primary900),
+                                      ContainerShimmer(
+                                        height: 16,
                                       ),
-                                      Text(
-                                        '${state.userEntity.fullname ?? 'undefined'}!',
-                                        style: AppTextTheme.robotoBold16
-                                            .copyWith(
-                                                overflow: TextOverflow.ellipsis,
-                                                color: AppColor.primary500),
+                                      SizedBox(
+                                        height: 4,
                                       ),
+                                      ContainerShimmer(width: 200),
                                     ],
                                   ),
                                 ),
                               ],
-                            )
-                          : const PrimaryShimmer(
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 20,
-                                  ),
-                                  SizedBox(width: 16),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ContainerShimmer(
-                                          height: 16,
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        ContainerShimmer(width: 200),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                    },
-                  ),
+                            ),
+                          );
+                  },
                 ),
-                // IconButton(onPressed:() {
+              ),
+              // IconButton(onPressed:() {
 
-                // }, icon: icon)
-                PrimaryIconButton(
-                  context: context,
-                  onPressed: () {},
-                  icon: Assets.icSearch,
-                ),
-                PrimaryIconButton(
-                  context: context,
-                  onPressed: () {},
-                  icon: Assets.icNotification,
-                )
-              ],
-            ),
+              // }, icon: icon)
+              PrimaryIconButton(
+                context: context,
+                onPressed: () {},
+                icon: Assets.icSearch,
+              ),
+              PrimaryIconButton(
+                context: context,
+                onPressed: () {},
+                icon: Assets.icNotification,
+              )
+            ],
           ),
         ),
         Expanded(
-          child: BlocProvider.value(
-            value: _eventCubit..getAllEvent(),
-            child: BlocBuilder<EventCubit, EventState>(
-              buildWhen: (previous, current) =>
-                  current is EventGetAllEventSuccessState ||
-                  current is EventInitial,
-              builder: (context, state) {
-                if (state is EventGetAllEventSuccessState) {
-                  final events = state.events;
-                  if (events.isNotEmpty) {
-                    final items = List.generate(events.length, (index) {
-                      final event = events[index];
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (index == 0)
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: TextButton(
-                                  onPressed: () =>
-                                      _onFilterPressed.call(context),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SvgPicture.asset(Assets.icFilter),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        'Bộ lọc',
-                                        style: AppTextTheme.lexendRegular14
-                                            .copyWith(color: AppColor.black),
-                                      )
-                                    ],
-                                  )),
-                            ),
-                          EventItem(event: event),
-                          const Divider(
-                              thickness: 5, color: AppColor.fourth300),
-                          if (index == events.length - 1)
-                            const SizedBox(height: 100),
-                        ],
-                      );
-                    });
-                    return AnimationStaggeredListView(
-                      items: items,
-                      scrollController: scrollController,
-                      onRefresh: () async {
-                        cubit.getAllEvent();
-                      },
+          child: BlocBuilder<EventCubit, EventState>(
+            buildWhen: (previous, current) =>
+                current is EventGetAllEventSuccessState ||
+                current is EventInitial,
+            builder: (context, state) {
+              if (state is EventGetAllEventSuccessState) {
+                final events = state.events;
+                if (events.isNotEmpty) {
+                  final items = List.generate(events.length, (index) {
+                    final event = events[index];
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (index == 0)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: TextButton(
+                                onPressed: () => _onFilterPressed.call(context),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(Assets.icFilter),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      'Bộ lọc',
+                                      style: AppTextTheme.lexendRegular14
+                                          .copyWith(color: AppColor.black),
+                                    )
+                                  ],
+                                )),
+                          ),
+                        EventItem(event: event),
+                        const Divider(thickness: 5, color: AppColor.fourth300),
+                        if (index == events.length - 1)
+                          const SizedBox(height: 100),
+                      ],
                     );
-                  } else {
-                    return const NoData();
-                  }
-                } else if (state is EventGetAllEventFailedState) {
-                  return const NoData();
-                } else {
-                  return const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: EventListShimmer(),
+                  });
+                  return AnimationStaggeredListView(
+                    items: items,
+                    scrollController: scrollController,
+                    onRefresh: () async {
+                      cubit.getAllEvent();
+                    },
                   );
+                } else {
+                  return const NoData();
                 }
-              },
-            ),
+              } else if (state is EventGetAllEventFailedState) {
+                return const NoData();
+              } else {
+                return const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: EventListShimmer(),
+                );
+              }
+            },
           ),
         ),
       ],
@@ -223,22 +214,28 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
 
   final statusFilterData = <bool>[false, false, false];
   final timeFilterData = <bool>[false, false, false];
-  String startTime = DateTime.now().toString();
-  String endTime = DateTime.now().toString();
+  final timeRange = <String>[
+    DateTime.now().toIso8601String().toString(),
+    DateTime.now().toIso8601String().toString()
+  ];
+
   void _onFilterPressed(BuildContext context) async {
     // context.showAppBottomSheet();
-    await Navigator.push(
+    final result = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => EventFilterDialog(
           statusFilterData: statusFilterData,
           timeFilterData: timeFilterData,
-          startTime: startTime,
-          endTime: endTime,
           eventCubit: cubit,
+          timeRange: timeRange,
         ),
       ),
     );
-    log(statusFilterData.toString());
+
+    if (result != null) {
+      log('ok');
+      cubit.getAllEvent(startDate: timeRange[0], endDate: timeRange[1]);
+    }
   }
 }

@@ -41,12 +41,13 @@ class EventCubit extends Cubit<EventState> {
     ));
   }
 
-  getAllEvent(
-      {int type = 0,
-      String? date,
-      String? startDate,
-      String? endDate,
-      bool? isOpening}) async {
+  getAllEvent({
+    int type = 0,
+    String? date,
+    String? startDate,
+    String? endDate,
+    bool? isOpening,
+  }) async {
     if (startDate == null || endDate == null) emit(EventInitial());
     final response = await _eventRepository.getAllEvent(
       type: type,
@@ -126,8 +127,9 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
-  onCheckRangeDateTime(String startTime, String endTime) {
+  onCheckRangeDateTime(String startTime, String endTime) async {
     final check = startTime.compareTo(endTime);
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(EventCheckedRangeDateTimeState(
       isSastified: check <= 0,
       startTime: startTime,

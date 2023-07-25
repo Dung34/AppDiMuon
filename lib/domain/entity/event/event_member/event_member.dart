@@ -8,6 +8,7 @@ class EventMember with _$EventMember {
   factory EventMember({
     String? id,
     @Default('') String userId,
+    String? eventId,
     String? fullname,
     String? avatar,
     String? eventTitle,

@@ -22,6 +22,7 @@ EventMember _$EventMemberFromJson(Map<String, dynamic> json) {
 mixin _$EventMember {
   String? get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  String? get eventId => throw _privateConstructorUsedError;
   String? get fullname => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
   String? get eventTitle => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $EventMemberCopyWith<$Res> {
   $Res call(
       {String? id,
       String userId,
+      String? eventId,
       String? fullname,
       String? avatar,
       String? eventTitle,
@@ -65,6 +67,7 @@ class _$EventMemberCopyWithImpl<$Res, $Val extends EventMember>
   $Res call({
     Object? id = freezed,
     Object? userId = null,
+    Object? eventId = freezed,
     Object? fullname = freezed,
     Object? avatar = freezed,
     Object? eventTitle = freezed,
@@ -80,6 +83,10 @@ class _$EventMemberCopyWithImpl<$Res, $Val extends EventMember>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      eventId: freezed == eventId
+          ? _value.eventId
+          : eventId // ignore: cast_nullable_to_non_nullable
+              as String?,
       fullname: freezed == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -115,6 +122,7 @@ abstract class _$$_EventMemberCopyWith<$Res>
   $Res call(
       {String? id,
       String userId,
+      String? eventId,
       String? fullname,
       String? avatar,
       String? eventTitle,
@@ -135,6 +143,7 @@ class __$$_EventMemberCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? userId = null,
+    Object? eventId = freezed,
     Object? fullname = freezed,
     Object? avatar = freezed,
     Object? eventTitle = freezed,
@@ -150,6 +159,10 @@ class __$$_EventMemberCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      eventId: freezed == eventId
+          ? _value.eventId
+          : eventId // ignore: cast_nullable_to_non_nullable
+              as String?,
       fullname: freezed == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -180,6 +193,7 @@ class _$_EventMember implements _EventMember {
   _$_EventMember(
       {this.id,
       this.userId = '',
+      this.eventId,
       this.fullname,
       this.avatar,
       this.eventTitle,
@@ -195,6 +209,8 @@ class _$_EventMember implements _EventMember {
   @JsonKey()
   final String userId;
   @override
+  final String? eventId;
+  @override
   final String? fullname;
   @override
   final String? avatar;
@@ -207,7 +223,7 @@ class _$_EventMember implements _EventMember {
 
   @override
   String toString() {
-    return 'EventMember(id: $id, userId: $userId, fullname: $fullname, avatar: $avatar, eventTitle: $eventTitle, checkedInLocation: $checkedInLocation, checkedInDate: $checkedInDate)';
+    return 'EventMember(id: $id, userId: $userId, eventId: $eventId, fullname: $fullname, avatar: $avatar, eventTitle: $eventTitle, checkedInLocation: $checkedInLocation, checkedInDate: $checkedInDate)';
   }
 
   @override
@@ -217,6 +233,7 @@ class _$_EventMember implements _EventMember {
             other is _$_EventMember &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.eventId, eventId) || other.eventId == eventId) &&
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
@@ -230,8 +247,8 @@ class _$_EventMember implements _EventMember {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, fullname, avatar,
-      eventTitle, checkedInLocation, checkedInDate);
+  int get hashCode => Object.hash(runtimeType, id, userId, eventId, fullname,
+      avatar, eventTitle, checkedInLocation, checkedInDate);
 
   @JsonKey(ignore: true)
   @override
@@ -251,6 +268,7 @@ abstract class _EventMember implements EventMember {
   factory _EventMember(
       {final String? id,
       final String userId,
+      final String? eventId,
       final String? fullname,
       final String? avatar,
       final String? eventTitle,
@@ -264,6 +282,8 @@ abstract class _EventMember implements EventMember {
   String? get id;
   @override
   String get userId;
+  @override
+  String? get eventId;
   @override
   String? get fullname;
   @override

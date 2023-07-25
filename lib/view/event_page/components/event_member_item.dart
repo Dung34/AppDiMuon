@@ -11,25 +11,24 @@ class EventMemberItem extends StatelessWidget {
   final EventMember eventMember;
   final bool showAvatar;
   final bool showTitle;
-  final bool canPressed;
+  final Function()? onPressed;
   const EventMemberItem({
     super.key,
     required this.eventMember,
     this.showAvatar = true,
     this.showTitle = false,
-    this.canPressed = true,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: canPressed
-          ? () {
-              Navigator.pushNamed(context, AppRoute.eventMemberHistory,
-                  arguments:
-                      EventMemberHistoryPageArgs(userId: eventMember.userId));
-            }
-          : null,
+      onTap: onPressed ??
+          () {
+            Navigator.pushNamed(context, AppRoute.eventMemberHistory,
+                arguments:
+                    EventMemberHistoryPageArgs(userId: eventMember.userId));
+          },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(

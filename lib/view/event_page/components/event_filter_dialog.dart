@@ -11,26 +11,26 @@ import '../cubit/event_cubit.dart';
 class EventFilterDialog extends StatelessWidget {
   final List<bool> statusFilterData;
   final List<bool> timeFilterData;
+  final List<String> timeRange;
   final EventCubit eventCubit;
-  String startTime;
-  String endTime;
-  EventFilterDialog({
+  const EventFilterDialog({
     super.key,
     required this.statusFilterData,
     required this.timeFilterData,
     required this.eventCubit,
-    this.startTime = '',
-    this.endTime = '',
+    required this.timeRange,
   });
 
   @override
   Widget build(BuildContext context) {
     if (timeFilterData[2]) {
-      eventCubit.showFullDay(true);
+      eventCubit
+        ..showFullDay(true)
+        ..onCheckRangeDateTime(timeRange[0], timeRange[1]);
     }
     return WillPopScope(
       onWillPop: () async {
-        context.pop();
+        context.pop(timeFilterData[2] ? timeRange : null);
         return false;
       },
       child: BlocProvider.value(
@@ -84,14 +84,14 @@ class EventFilterDialog extends StatelessWidget {
                                 const Spacer(),
                                 SelectDateTimeItem(
                                   key: UniqueKey(),
-                                  intialDateTime: startTime,
+                                  intialDateTime: timeRange[0],
                                   onTimeChanged: (dateTime) {
                                     eventCubit.onCheckRangeDateTime(
-                                        dateTime, endTime);
+                                        dateTime, timeRange[1]);
                                   },
                                   onDateChange: (dateTime) {
                                     eventCubit.onCheckRangeDateTime(
-                                        dateTime, endTime);
+                                        dateTime, timeRange[1]);
                                   },
                                 )
                               ],
@@ -102,14 +102,14 @@ class EventFilterDialog extends StatelessWidget {
                                 const Spacer(),
                                 SelectDateTimeItem(
                                   key: UniqueKey(),
-                                  intialDateTime: endTime,
+                                  intialDateTime: timeRange[1],
                                   onTimeChanged: (dateTime) {
                                     eventCubit.onCheckRangeDateTime(
-                                        startTime, dateTime);
+                                        timeRange[0], dateTime);
                                   },
                                   onDateChange: (dateTime) {
                                     eventCubit.onCheckRangeDateTime(
-                                        startTime, dateTime);
+                                        timeRange[0], dateTime);
                                   },
                                 )
                               ],
@@ -125,12 +125,13 @@ class EventFilterDialog extends StatelessWidget {
                     },
                   ),
                   BlocConsumer<EventCubit, EventState>(
-                    listenWhen: (previous, current) =>
-                        current is EventCheckedRangeDateTimeState,
+                    listenWhen: (previous, current) {
+                      return current is EventCheckedRangeDateTimeState;
+                    },
                     listener: (context, state) {
                       if (state is EventCheckedRangeDateTimeState) {
-                        startTime = state.startTime;
-                        endTime = state.endTime;
+                        timeRange[0] = state.startTime;
+                        timeRange[1] = state.endTime;
                       }
                     },
                     buildWhen: (previous, current) =>

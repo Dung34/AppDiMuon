@@ -62,6 +62,7 @@ class EventMemberDataMapper
     return EventMember(
       id: data?.id,
       userId: data?.userId ?? '',
+      eventId: data?.eventId ?? '',
       eventTitle: data?.eventTitle,
       fullname: data?.fullname,
       checkedInDate: data?.createdDate,
