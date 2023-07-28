@@ -207,8 +207,8 @@ Dialog getAlertDialog({
   required String message,
   String positiveText = 'Đồng ý',
   String negativeText = 'Huỷ',
-  Function? onPositivePressed,
-  Function? onNegativePressed,
+  Function()? onPositivePressed,
+  Function()? onNegativePressed,
 }) {
   return Dialog(
     elevation: 0.0,

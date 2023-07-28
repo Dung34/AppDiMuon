@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/routes.dart';
 import '../../../../data/constant/constants.dart';
@@ -6,6 +7,7 @@ import '../../../../data/resources/resources.dart';
 import '../../../../domain/entity/event/event_wrapper/event.dart';
 import '../../../../shared/utils/date_time_utils.dart';
 import '../../../../shared/widgets/button/primary_icon_button.dart';
+import '../../cubit/event_cubit.dart';
 
 class CalendarEventItem extends StatelessWidget {
   final Event event;
@@ -16,8 +18,14 @@ class CalendarEventItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, AppRoute.eventDetail,
-          arguments: EventDetailPageArgs(eventId: event.id!)),
+      onTap: () => Navigator.pushNamed(
+        context,
+        AppRoute.eventDetail,
+        arguments: EventDetailPageArgs(
+          eventId: event.id!,
+          eventCubit: context.read<EventCubit>(),
+        ),
+      ),
       child: Row(
         children: [
           Expanded(

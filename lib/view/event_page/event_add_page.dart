@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/event/event_wrapper/event.dart';
 import '../../shared/etx/view_ext.dart';
@@ -18,10 +19,8 @@ import 'calendar/select_date_time_item.dart';
 
 class CalendarAddPage extends StatefulWidget {
   /// if current selected date == event.startDate -> when add a new event successfully, fetch event of this date again
-  final DateTime currentSelectedDate;
-  final EventCubit eventCubit;
-  const CalendarAddPage(
-      {super.key, required this.eventCubit, required this.currentSelectedDate});
+
+  const CalendarAddPage({super.key});
 
   @override
   State<CalendarAddPage> createState() => _CalendarAddPageState();
@@ -35,39 +34,52 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
   @override
   bool get isUseLoading => true;
 
-  @override
-  EventCubit get cubit => widget.eventCubit;
-
   final Event event = Event(
     startTime: DateTime.now().toIso8601String(),
     endTime: DateTime.now().toIso8601String(),
   );
-
-  @override
-  PreferredSizeWidget? get appBar => PrimaryAppBar(
-        centerTitle: true,
-        title: 'Tạo sự kiện',
-        actions: [
-          TextButton(
-              onPressed: _onSave,
-              child: const Text(
-                'Thêm',
-                style: AppTextTheme.robotoBold16,
-              ))
-        ],
-      );
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final titleFormKey = GlobalKey<FormState>();
   final GetImageBloc getImageBloc = GetImageBloc();
+  late final CalendarAddPageArgs args;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    args = context.arguments as CalendarAddPageArgs;
+    currentSelectedDate = args.currentSelectedDate;
+    eventCubit = args.eventCubit;
+    setCubit = eventCubit;
+    // initialize the eventUpdate object with the current selected event in the previous page;
+    if (!args.isAddNew) {
+      eventUpdate = eventCubit.currentSelectedEvent.copyWith();
+      titleController.text = eventUpdate.title ?? '';
+      locationController.text = eventUpdate.location ?? '';
+      descriptionController.text = eventUpdate.description ?? '';
+    }
+
+    setAppBar = PrimaryAppBar(
+      // centerTitle: true,
+      title: args.isAddNew ? 'Tạo lớp học' : 'Chỉnh sửa lớp học',
+      actions: [
+        TextButton(
+            onPressed: _onSave,
+            child: Text(
+              args.isAddNew ? 'Thêm' : 'Lưu',
+              style: AppTextTheme.robotoBold16
+                  .copyWith(color: AppColor.primaryColor),
+            ))
+      ],
+    );
     cubit.showFullDay(false);
   }
+
+  late final DateTime currentSelectedDate;
+  late final EventCubit eventCubit;
+  late final Event eventUpdate;
 
   @override
   Widget buildPage(BuildContext context) {
@@ -109,10 +121,12 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
                 }
               },
               child: PrimaryReorderGridImage(
-                initialData: const [],
+                initialData:
+                    args.isAddNew ? const [] : [eventUpdate.background ?? ''],
                 getImageBloc: getImageBloc,
                 maxQuantity: 1,
                 childAspectRatio: 16 / 9,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -172,14 +186,14 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
                 final eventStartDateTime =
                     DateTimeUtils.toDateTime(state.event.startTime ?? '');
                 if (DateUtils.isSameDay(
-                    eventStartDateTime, widget.currentSelectedDate)) {
-                  widget.eventCubit
-                      .getAllEvent(date: eventStartDateTime.toIso8601String());
+                    eventStartDateTime, currentSelectedDate)) {
+                  eventCubit.getAllEvent(
+                      date: eventStartDateTime.toIso8601String());
                 }
 
                 // get all event in month to show marker in calendar
                 final today = DateTime.now();
-                widget.eventCubit.getAllEvent(
+                eventCubit.getAllEvent(
                     startDate:
                         DateTime(today.year, today.month, -7).toIso8601String(),
                     endDate: DateTime(today.year, today.month, 37)

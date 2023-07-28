@@ -28,25 +28,23 @@ class PrimaryIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Bouncing(
-        child: GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(2),
-        ),
-        child: icon == null
-            ? Container()
-            : icon is String
-                ? SvgPicture.asset(
-                    icon,
-                    color: iconColor,
-                    width: 20,
-                    height: 20,
-                  )
-                : Icon(icon, size: 20, color: iconColor),
+        child: TextButton(
+      onPressed: onPressed,
+      style: const ButtonStyle(
+        padding: MaterialStatePropertyAll(EdgeInsets.zero),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        minimumSize: MaterialStatePropertyAll(Size(48, 36)),
       ),
+      child: icon == null
+          ? Container()
+          : icon is String
+              ? SvgPicture.asset(
+                  icon,
+                  color: iconColor,
+                  width: 20,
+                  height: 20,
+                )
+              : Icon(icon, size: 20, color: iconColor),
     ));
   }
 }

@@ -53,7 +53,9 @@ class _EventHistoryPageState
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoute.eventDetail,
                               arguments: EventDetailPageArgs(
-                                  eventId: e.eventId ?? ''));
+                                eventId: e.eventId ?? '',
+                                eventCubit: cubit,
+                              ));
                         },
                       ),
                     )

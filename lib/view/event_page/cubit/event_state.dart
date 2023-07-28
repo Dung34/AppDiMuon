@@ -8,6 +8,8 @@ abstract class EventState extends Equatable {
 
 class EventInitial extends EventState {}
 
+class EventResetState extends EventState {}
+
 class EventCurrentLocationDeniedForeverState extends EventState {}
 
 class EventHasPermissionState extends EventState {
@@ -52,6 +54,13 @@ class EventGetAllEventTypeSuccessState extends EventState {
 }
 
 class EventGetAllEventTypeFailedState extends EventState {}
+
+class EventDeleteEventSuccessState extends EventState {}
+
+class EventDeleteEventFailedState extends EventState {
+  @override
+  List<Object?> get props => [DateTime.now()];
+}
 
 class EventGetAllMemberSuccessState extends EventState {
   final List<EventMember> eventMembers;

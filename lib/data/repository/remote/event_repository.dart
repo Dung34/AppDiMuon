@@ -23,13 +23,15 @@ abstract class EventRepository {
 
   Future<ResponseWrapper<Event>> createEvent(Event event);
 
+  Future<ResponseWrapper<void>> deleteEvent(String eventId);
+
   Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
       {required String eventId});
 
   Future<ResponseWrapper<List<EventMember>>> getAllHistory({String? userId});
 
   Future<ResponseWrapper<UserEventJoined>> joinEvent({
-    String? userId,
+    String? username,
     String? eventId,
     String? location,
   });

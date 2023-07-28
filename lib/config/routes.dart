@@ -3,6 +3,8 @@ import '../view/auth/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../view/auth/login/login_page.dart';
+import '../view/event_page/cubit/event_cubit.dart';
+import '../view/event_page/event_add_page.dart';
 import '../view/event_page/event_detail_page.dart';
 import '../view/event_page/event_history_page.dart';
 import '../view/event_page/event_member_history.dart';
@@ -28,6 +30,7 @@ class AppRoute {
   static const String eventHistory = "/eventHistory";
   static const String eventQr = "/eventQr";
   static const String eventOpening = "/eventOpening";
+  static const String eventCreate = "/eventCreate";
   static const String qrScanner = "/qrScanner";
   static const String eventMemberHistory = "/eventMemberHistory";
   static const String profileUpdate = "/profileUpdate";
@@ -44,6 +47,7 @@ class AppRoute {
         AppRoute.eventHistory: (context) => const EventHistoryPage(),
         AppRoute.eventQr: (context) => const EventQrPage(),
         AppRoute.eventOpening: (context) => const EventOpeningPage(),
+        AppRoute.eventCreate: (context) => const CalendarAddPage(),
         AppRoute.qrScanner: (context) => const QrScannerPage(),
         AppRoute.eventMemberHistory: (context) =>
             const EventMemberHistoryPage(),
@@ -63,8 +67,23 @@ class AppRoute {
 
 class EventDetailPageArgs {
   final String eventId;
+  final EventCubit eventCubit;
 
-  EventDetailPageArgs({required this.eventId});
+  EventDetailPageArgs({
+    required this.eventId,
+    required this.eventCubit,
+  });
+}
+
+class CalendarAddPageArgs {
+  final DateTime currentSelectedDate;
+  final EventCubit eventCubit;
+  final bool isAddNew;
+
+  CalendarAddPageArgs(
+      {required this.currentSelectedDate,
+      required this.eventCubit,
+      this.isAddNew = true});
 }
 
 class EventMemberPageArgs {

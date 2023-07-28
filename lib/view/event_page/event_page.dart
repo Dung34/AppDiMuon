@@ -164,7 +164,7 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
             if (searchState is EventShowSearchBarState) {
               return AnimatedContainer(
                 height: searchState.isShow ? 50 : 0,
-                duration: const Duration(milliseconds: 100),
+                duration: const Duration(milliseconds: 200),
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 16.0, right: 16, bottom: 8),
@@ -283,7 +283,7 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
   }
 
   void _onFilterPressed(BuildContext context) async {
-    final result = await context.showAppBottomSheet(EventFilterDialog(
+    await context.showAppBottomSheet(EventFilterDialog(
       eventCubit: cubit,
     ));
     cubit.onFilterChange();

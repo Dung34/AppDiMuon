@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/routes.dart';
@@ -9,6 +10,7 @@ import '../../../shared/etx/view_ext.dart';
 import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/button/primary_button.dart';
 import '../../../shared/widgets/image/primary_image.dart';
+import '../cubit/event_cubit.dart';
 
 class EventItem extends StatelessWidget {
   final Event event;
@@ -26,7 +28,8 @@ class EventItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           AppRoute.eventDetail,
-          arguments: EventDetailPageArgs(eventId: event.id!),
+          arguments: EventDetailPageArgs(
+              eventId: event.id!, eventCubit: context.read<EventCubit>()),
         );
       },
       child: Padding(

@@ -62,7 +62,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
   QRViewController? controller;
   late final args = context.arguments as QrScannerPageArgs;
   late String currentLocationStr = '';
-  String lastestUserId = '';
+  String lastestUsername = '';
   String lastestEventId = '';
 
   @override
@@ -118,7 +118,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
               }
             }
             if (state is EventJoinEventSuccessState) {
-              lastestUserId = state.userEventJoined.userId ?? '';
+              lastestUsername = state.userEventJoined.username ?? '';
               lastestEventId = state.userEventJoined.eventId ?? '';
               controller?.resumeCamera();
               if (state.isUserScan) {
@@ -132,6 +132,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
                             .mapToEntity(state.userEventJoined.events)
                             .id ??
                         '',
+                    eventCubit: cubit,
                   ),
                 );
               } else {
@@ -288,12 +289,12 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
     }
     if (data.startsWith('${Environment.domain}/profile/')) {
       final params = data.split('profile/');
-      final userId = params.length > 1 ? params[1] : '';
-      if (lastestEventId == args.eventId && lastestUserId == userId) {
+      final username = params.length > 1 ? params[1] : '';
+      if (lastestEventId == args.eventId && lastestUsername == username) {
         return false;
       }
       if (args.eventId != null) {
-        cubit.joinEvent(args.eventId!, userId, currentLocationStr);
+        cubit.joinEvent(args.eventId!, username, currentLocationStr);
       } else {}
       return true;
     }

@@ -53,7 +53,7 @@ class _PrimaryAppBarState extends State<PrimaryAppBar> {
     return AppBar(
       backgroundColor:
           widget.backgroundColor ?? AppColor.primaryBackgroundColor,
-      title: Text(title ?? '', style: AppTextTheme.robotoMedium16),
+      title: Text(title ?? '', style: AppTextTheme.lexendBold16),
       elevation: widget.elevation ?? 0,
       leading: widget.leading ??
           (widget.canPop

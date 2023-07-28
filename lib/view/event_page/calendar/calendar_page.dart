@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../config/routes.dart';
 import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
@@ -14,7 +13,6 @@ import '../../../shared/widgets/something/no_data.dart';
 import '../../../shared/widgets/something/primary_calendar.dart';
 import '../../base/base_page_sate.dart';
 import '../cubit/event_cubit.dart';
-import '../event_add_page.dart';
 import 'components/calendar_event_item.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -172,12 +170,13 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
   }
 
   void _onAddEventPressed(BuildContext context) {
-    log('message');
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => CalendarAddPage(
+    Navigator.pushNamed(
+      context,
+      AppRoute.eventCreate,
+      arguments: CalendarAddPageArgs(
+        currentSelectedDate: DateTime.now(),
         eventCubit: cubit,
-        currentSelectedDate: currentSelectedDate,
       ),
-    ));
+    );
   }
 }

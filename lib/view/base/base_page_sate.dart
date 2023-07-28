@@ -17,6 +17,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
   final UserCubit userCubit = getIt.get<UserCubit>();
   final CommonCubit _commonCubit = CommonCubit();
   late C cubit;
+  PreferredSizeWidget? _appBar;
 
   set setCubit(C c) => cubit = c;
 
@@ -31,7 +32,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
 
   EdgeInsets get padding => const EdgeInsets.symmetric(horizontal: 16);
 
-  PreferredSizeWidget? get appBar => null;
+  PreferredSizeWidget? get appBar => _appBar;
+  set setAppBar(PreferredSizeWidget ab) => _appBar = ab;
 
   void showLoading({bool dismissible = false}) {
     _commonCubit.showLoading(dismissible: dismissible);
@@ -133,7 +135,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
         backgroundColor: AppColor.primaryBackgroundColor,
         extendBodyBehindAppBar: true,
         extendBody: true,
-        appBar: appBar,
+        appBar: _appBar,
         body: SafeArea(
           top: useSafeArea,
           bottom: useSafeArea,

@@ -13,6 +13,7 @@ class Assets {
   static const String icClock = '$iconPrefix/ic_clock.svg';
   static const String icClose = '$iconPrefix/ic_close.svg';
   static const String icEdit = '$iconPrefix/ic_edit.svg';
+  static const String icDelete = '$iconPrefix/ic_delete.svg';
   static const String icEyeOff = '$iconPrefix/ic_eye_off.svg';
   static const String icEyeOn = '$iconPrefix/ic_eye_on.svg';
   static const String icExternalLink = '$iconPrefix/ic_external_link.svg';

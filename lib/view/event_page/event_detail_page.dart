@@ -7,6 +7,7 @@ import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
+import '../../shared/utils/dialog_helper.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_image.dart';
@@ -28,19 +29,38 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
   EdgeInsets get padding => EdgeInsets.zero;
 
   @override
+  bool get isUseLoading => true;
+
+  @override
+  bool get useBlocProviderValue => true;
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final args = context.arguments as EventDetailPageArgs;
+    args = context.arguments as EventDetailPageArgs;
+    setCubit = args.eventCubit;
 
     cubit.getEventById(args.eventId);
   }
 
+  late final EventDetailPageArgs args;
+
   @override
   Widget buildPage(BuildContext context) {
-    return BlocBuilder<EventCubit, EventState>(
+    return BlocConsumer<EventCubit, EventState>(
+      listener: (context, state) {
+        if (state is EventDeleteEventSuccessState) {
+          hideLoading();
+          context.pop();
+        }
+        if (state is EventDeleteEventFailedState) {
+          hideLoading();
+        }
+      },
       buildWhen: (previous, current) =>
           current is EventGetEventByIdSuccessState ||
-          current is EventGetEventByIdFailedState,
+          current is EventGetEventByIdFailedState ||
+          current is EventResetState,
       builder: (context, state) {
         if (state is EventGetEventByIdSuccessState) {
           final event = state.event;
@@ -53,12 +73,25 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                 if (userCubit.currentUser?.role == UserRole.admin)
                   PrimaryIconButton(
                     context: context,
+                    onPressed: () => _onEventDeletePressed(context),
+                    icon: Assets.icDelete,
+                    iconColor: AppColor.error400,
+                  ),
+                if (userCubit.currentUser?.role == UserRole.admin)
+                  PrimaryIconButton(
+                    context: context,
+                    onPressed: () => _onEventUpdatePressed(context),
+                    icon: Assets.icEdit,
+                  ),
+                if (userCubit.currentUser?.role == UserRole.admin)
+                  PrimaryIconButton(
+                    context: context,
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoute.eventQr,
                           arguments: EventQrPageArgs(event: event));
                     },
                     icon: Assets.icQrCode,
-                  )
+                  ),
               ],
             ),
             body: SafeArea(
@@ -208,5 +241,28 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
         }
       },
     );
+  }
+
+  _onEventDeletePressed(BuildContext context) async {
+    await context.showAppDialog(
+      getAlertDialog(
+        context: context,
+        title: 'Xác nhận',
+        message: 'Bạn có chắc chắn muốn xoá buổi học này?',
+        onPositivePressed: () {
+          showLoading();
+          cubit.deleteEvent(args.eventId);
+        },
+      ),
+    );
+  }
+
+  _onEventUpdatePressed(BuildContext context) async {
+    Navigator.pushNamed(context, AppRoute.eventCreate,
+        arguments: CalendarAddPageArgs(
+          currentSelectedDate: DateTime.now(),
+          eventCubit: cubit,
+          isAddNew: false,
+        ));
   }
 }

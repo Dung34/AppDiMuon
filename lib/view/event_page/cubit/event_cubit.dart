@@ -19,6 +19,9 @@ class EventCubit extends Cubit<EventState> {
   EventCubit() : super(EventInitial());
 
   late final EventFilterData eventFilterData = EventFilterData();
+  late Event currentSelectedEvent;
+
+  final List<Event> events = [];
 
   getCurrentLocation() async {
     final geocodingHelper = getIt<GeocodingHelper>();
@@ -83,13 +86,9 @@ class EventCubit extends Cubit<EventState> {
           : null,
     );
     if (response.status == ResponseStatus.success) {
-      if (startDate != null && endDate != null) {
-        emit(EventGetAllEventRangeSuccessState(response.data ?? []));
-      } else {
-        emit(EventGetAllEventSuccessState(
-          response.data ?? [],
-        ));
-      }
+      events.clear();
+      events.addAll(response.data ?? []);
+      emit(EventGetAllEventSuccessState(events));
     } else {
       emit(EventGetAllEventFailedState());
     }
@@ -138,9 +137,11 @@ class EventCubit extends Cubit<EventState> {
   }
 
   getEventById(String eventId) async {
+    emit(EventResetState());
     final response = await _eventRepository.getEventById(eventId);
 
     if (response.status == ResponseStatus.success) {
+      currentSelectedEvent = response.data!;
       emit(EventGetEventByIdSuccessState(response.data!));
     } else {
       emit(EventGetEventByIdFailedState());
@@ -157,14 +158,28 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
+  deleteEvent(String eventId) async {
+    final response = await _eventRepository.deleteEvent(eventId);
+
+    if (response.status == ResponseStatus.success) {
+      events.removeWhere(
+        (element) => element.id == eventId,
+      );
+      emit(EventDeleteEventSuccessState());
+      emit(EventGetAllEventSuccessState(events));
+    } else {
+      emit(EventDeleteEventFailedState());
+    }
+  }
+
   showFullDay(bool isShow) {
     emit(EventShowFullDayState(isShow));
   }
 
-  joinEvent(String eventId, String? userId, String? location,
+  joinEvent(String eventId, String? username, String? location,
       {bool isUserScan = false}) async {
     final response = await _eventRepository.joinEvent(
-        eventId: eventId, userId: userId, location: location);
+        eventId: eventId, username: username, location: location);
 
     if (response.status == ResponseStatus.success) {
       emit(EventJoinEventSuccessState(response.data ?? UserEventJoined(),
