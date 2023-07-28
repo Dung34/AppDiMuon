@@ -95,6 +95,27 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
+  getAllCalendarEvent({
+    String? startDate,
+    String? endDate,
+  }) async {
+    final response = await _eventRepository.getAllCalendarEvent(
+      startDate: startDate,
+      endDate: endDate,
+    );
+    if (response.status == ResponseStatus.success) {
+      if (startDate != null && endDate != null) {
+        emit(EventGetAllEventRangeSuccessState(response.data ?? []));
+      } else {
+        emit(EventGetAllEventSuccessState(
+          response.data ?? [],
+        ));
+      }
+    } else {
+      emit(EventGetAllEventFailedState());
+    }
+  }
+
   getAllCheckedInMember(String eventId) async {
     final response =
         await _eventRepository.getAllCheckedInMember(eventId: eventId);

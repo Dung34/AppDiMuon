@@ -82,6 +82,39 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
+  Future<ResponseWrapper<List<Event>>> getAllCalendarEvent(
+      {String? startDate, String? endDate}) async {
+    accessToken = await localDataAccess.getAccessToken();
+    final response = await dio.post(
+      EndPoints.getAllCalendarEvent,
+      data: {
+        "startDate": startDate,
+        "endDate": endDate,
+      },
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
+      ),
+    );
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data as List).map(
+              (e) => _eventDataMapper.mapToEntity(
+                EventResponse.fromJson(e),
+              ),
+            ),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
   Future<ResponseWrapper<Event>> getEventById(String eventId) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.get(

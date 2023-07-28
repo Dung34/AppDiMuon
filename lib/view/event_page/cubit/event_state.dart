@@ -25,6 +25,8 @@ class EventGetAllEventSuccessState extends EventState {
   final bool isGetRange;
 
   const EventGetAllEventSuccessState(this.events, {this.isGetRange = false});
+  @override
+  List<Object?> get props => [events];
 }
 
 class EventGetAllEventFailedState extends EventState {}
@@ -37,6 +39,8 @@ class EventGetAllEventRangeSuccessState extends EventState {
 
   const EventGetAllEventRangeSuccessState(this.events,
       {this.isGetRange = false});
+  @override
+  List<Object?> get props => [events];
 }
 
 class EventGetAllEventRangeFailedState extends EventState {}
@@ -53,6 +57,8 @@ class EventGetAllMemberSuccessState extends EventState {
   final List<EventMember> eventMembers;
 
   const EventGetAllMemberSuccessState(this.eventMembers);
+  @override
+  List<Object?> get props => [eventMembers];
 }
 
 class EventGetAllMemberFailedState extends EventState {}
@@ -61,6 +67,8 @@ class EventGetAllHistorySuccessState extends EventState {
   final List<EventMember> eventMembers;
 
   const EventGetAllHistorySuccessState(this.eventMembers);
+  @override
+  List<Object?> get props => [eventMembers];
 }
 
 class EventGetAllHistoryFailedState extends EventState {}
@@ -69,6 +77,8 @@ class EventAddEventSuccessState extends EventState {
   final Event event;
 
   const EventAddEventSuccessState(this.event);
+  @override
+  List<Object?> get props => [event];
 }
 
 class EventAddEventFailedState extends EventState {}
@@ -77,6 +87,8 @@ class EventGetEventByIdSuccessState extends EventState {
   final Event event;
 
   const EventGetEventByIdSuccessState(this.event);
+  @override
+  List<Object?> get props => [event];
 }
 
 class EventGetEventByIdFailedState extends EventState {}

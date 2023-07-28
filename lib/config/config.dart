@@ -34,6 +34,7 @@ class EndPoints {
   static const String createEvent = '/gateway/event/create';
   static const String getEventById = '/gateway/event';
   static const String getAllEvent = '/gateway/events';
+  static const String getAllCalendarEvent = '/gateway/Calendar/events';
   static const String getAllFrames = '/gateway/activity/frames';
   static const String joinShow = '/gateway/event-join/create';
   static const String getMemberJoined = '/gateway/event-join/';

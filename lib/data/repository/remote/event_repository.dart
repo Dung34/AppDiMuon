@@ -14,6 +14,11 @@ abstract class EventRepository {
     bool? isDescending,
   });
 
+  Future<ResponseWrapper<List<Event>>> getAllCalendarEvent({
+    String? startDate,
+    String? endDate,
+  });
+
   Future<ResponseWrapper<Event>> getEventById(String eventId);
 
   Future<ResponseWrapper<Event>> createEvent(Event event);

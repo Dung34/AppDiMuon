@@ -30,7 +30,7 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
     super.initState();
     final today = DateTime.now();
     cubit
-      ..getAllEvent(
+      ..getAllCalendarEvent(
           startDate: DateTime(today.year, today.month, -7).toIso8601String(),
           endDate: DateTime(today.year, today.month, 37).toIso8601String())
       ..getAllEvent(date: DateTime.now().toString());
@@ -57,7 +57,7 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
                     focusedDay: focusDate,
                     onPageChanged: (date) {
                       focusDate = date;
-                      cubit.getAllEvent(
+                      cubit.getAllCalendarEvent(
                           startDate: DateTime(date.year, date.month, -7)
                               .toIso8601String(),
                           endDate: DateTime(date.year, date.month, 37)
