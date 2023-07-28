@@ -29,7 +29,7 @@ class _EventHistoryPageState
   @override
   PreferredSizeWidget? get appBar => widget.useAppBar
       ? PrimaryAppBar(
-          title: 'Lịch sử sự kiện',
+          title: 'Lịch sử tham dự',
           canPop: true,
         )
       : null;

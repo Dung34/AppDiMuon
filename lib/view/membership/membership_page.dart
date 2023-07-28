@@ -112,7 +112,8 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
             style: AppTextTheme.robotoLight18,
           ),
           const SizedBox(height: 16),
-          PrimaryQrView(data: '${Environment.domain}/profile/${user?.id}'),
+          PrimaryQrView(
+              data: '${Environment.domain}/profile/${user?.username}'),
           const SizedBox(height: 80),
         ],
       ),

@@ -24,7 +24,7 @@ extension BuildContextExt on BuildContext {
           ),
         ),
         clipBehavior: Clip.hardEdge,
-        builder: (context) => Wrap(children: [dialog]),
+        builder: (context) => dialog,
         // barrierDismissible: barrierDismissible,
       );
 

@@ -32,6 +32,9 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
   EdgeInsets get padding => EdgeInsets.zero;
 
   @override
+  bool get useSafeArea => false;
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     setCubit = context.read<CommonCubit>();

@@ -44,26 +44,34 @@ class _SelectDateTimeItemState extends State<SelectDateTimeItem> {
           TextButton(
             onPressed: () {
               context
-                  .showAppBottomSheet(Container(
-                color: AppColor.primaryBackgroundColor,
-                padding: const EdgeInsets.symmetric(vertical: 40),
-                child: CupertinoTimerPicker(
-                  mode: CupertinoTimerPickerMode.hm,
-                  initialTimerDuration: initialTime ??
-                      Duration(
-                        hours: DateTime.now().hour,
-                        minutes: DateTime.now().minute,
-                      ),
-                  onTimerDurationChanged: (value) {
-                    initialTime = Duration(
-                      minutes: value.inMinutes,
-                    );
-                    final d = DateTimeUtils.toDateTime(selectedDateTime);
-                    selectedDateTime = DateTime(d.year, d.month, d.day,
-                            value.inHours, value.inMinutes - value.inHours * 60)
-                        .toIso8601String();
-                  },
-                ),
+                  .showAppBottomSheet(Wrap(
+                children: [
+                  Container(
+                    color: AppColor.primaryBackgroundColor,
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    child: CupertinoTimerPicker(
+                      mode: CupertinoTimerPickerMode.hm,
+                      initialTimerDuration: initialTime ??
+                          Duration(
+                            hours: DateTime.now().hour,
+                            minutes: DateTime.now().minute,
+                          ),
+                      onTimerDurationChanged: (value) {
+                        initialTime = Duration(
+                          minutes: value.inMinutes,
+                        );
+                        final d = DateTimeUtils.toDateTime(selectedDateTime);
+                        selectedDateTime = DateTime(
+                                d.year,
+                                d.month,
+                                d.day,
+                                value.inHours,
+                                value.inMinutes - value.inHours * 60)
+                            .toIso8601String();
+                      },
+                    ),
+                  ),
+                ],
               ))
                   .then((value) {
                 widget.onTimeChanged.call(selectedDateTime);

@@ -4,13 +4,15 @@ import '../../../domain/entity/event/user_event_joined.dart/user_event_joined.da
 import '../../model/api/base_response.dart';
 
 abstract class EventRepository {
-  Future<ResponseWrapper<List<Event>>> getAllEvent(
-      {String? keyword,
-      int type = 0,
-      String? date,
-      String? startDate,
-      String? endDate,
-      bool? isOpening});
+  Future<ResponseWrapper<List<Event>>> getAllEvent({
+    String? keyword,
+    int? status,
+    String? date,
+    String? startDate,
+    String? endDate,
+    bool? isOpening,
+    bool? isDescending,
+  });
 
   Future<ResponseWrapper<Event>> getEventById(String eventId);
 

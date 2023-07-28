@@ -11,10 +11,12 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       id: data?.id,
       fullname: data?.fullname,
       avatar: data?.avatar,
+      username: data?.username,
       // position: data?,
       role: data?.role,
       dob: data?.dob,
-      roleStr: UserRoleStr.user,
+      roleStr:
+          data?.role == UserRole.user ? UserRoleStr.user : UserRoleStr.admin,
       company: data?.company,
     );
   }

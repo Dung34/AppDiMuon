@@ -83,7 +83,7 @@ class EventItem extends StatelessWidget {
                     icon: event.checked ? Assets.icStar : null,
                     iconColor: AppColor.white,
                     backgroundColor: event.checked
-                        ? AppColor.third400
+                        ? AppColor.green
                         : event.status != EventStatus.finished && !event.checked
                             ? AppColor.error400
                             : AppColor.fourth600,

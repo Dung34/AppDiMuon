@@ -24,6 +24,8 @@ mixin _$UserEntity {
   set id(String? value) => throw _privateConstructorUsedError;
   String? get fullname => throw _privateConstructorUsedError;
   set fullname(String? value) => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  set username(String? value) => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
   set avatar(String? value) => throw _privateConstructorUsedError;
   String? get coverImage => throw _privateConstructorUsedError;
@@ -56,6 +58,7 @@ abstract class $UserEntityCopyWith<$Res> {
   $Res call(
       {String? id,
       String? fullname,
+      String? username,
       String? avatar,
       String? coverImage,
       String? position,
@@ -81,6 +84,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = freezed,
     Object? fullname = freezed,
+    Object? username = freezed,
     Object? avatar = freezed,
     Object? coverImage = freezed,
     Object? position = freezed,
@@ -98,6 +102,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       fullname: freezed == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -146,6 +154,7 @@ abstract class _$$_UserEntityCopyWith<$Res>
   $Res call(
       {String? id,
       String? fullname,
+      String? username,
       String? avatar,
       String? coverImage,
       String? position,
@@ -169,6 +178,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? fullname = freezed,
+    Object? username = freezed,
     Object? avatar = freezed,
     Object? coverImage = freezed,
     Object? position = freezed,
@@ -186,6 +196,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
       fullname: freezed == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -229,6 +243,7 @@ class _$_UserEntity implements _UserEntity {
   _$_UserEntity(
       {this.id,
       this.fullname,
+      this.username,
       this.avatar,
       this.coverImage,
       this.position,
@@ -245,6 +260,8 @@ class _$_UserEntity implements _UserEntity {
   String? id;
   @override
   String? fullname;
+  @override
+  String? username;
   @override
   String? avatar;
   @override
@@ -264,7 +281,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, fullname: $fullname, avatar: $avatar, coverImage: $coverImage, position: $position, company: $company, dob: $dob, roleStr: $roleStr, bio: $bio, role: $role)';
+    return 'UserEntity(id: $id, fullname: $fullname, username: $username, avatar: $avatar, coverImage: $coverImage, position: $position, company: $company, dob: $dob, roleStr: $roleStr, bio: $bio, role: $role)';
   }
 
   @JsonKey(ignore: true)
@@ -285,6 +302,7 @@ abstract class _UserEntity implements UserEntity {
   factory _UserEntity(
       {String? id,
       String? fullname,
+      String? username,
       String? avatar,
       String? coverImage,
       String? position,
@@ -303,6 +321,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   String? get fullname;
   set fullname(String? value);
+  @override
+  String? get username;
+  set username(String? value);
   @override
   String? get avatar;
   set avatar(String? value);

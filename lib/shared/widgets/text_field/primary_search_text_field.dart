@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../config/config.dart';
+import '../../../data/resources/resources.dart';
+
 class PrimarySearchTextField extends StatefulWidget {
   const PrimarySearchTextField({
     Key? key,
@@ -11,7 +14,7 @@ class PrimarySearchTextField extends StatefulWidget {
     this.debounce = 1000,
     required this.controller,
     required this.onChanged,
-    this.hintText,
+    this.hintText = 'Tìm kiếm',
   }) : super(key: key);
 
   final String label;
@@ -39,12 +42,33 @@ class _PrimarySearchTextFieldState extends State<PrimarySearchTextField> {
   Widget build(BuildContext context) {
     return TextField(
       onChanged: _onSearchChanged,
+      controller: widget.controller,
       decoration: InputDecoration(
-          hintText: widget.hintText,
-          prefixIcon: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-          )),
+        hintText: widget.hintText,
+        hintStyle:
+            AppTextTheme.robotoRegular14.copyWith(color: AppColor.gray04),
+        filled: true,
+        isDense: true,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        fillColor: AppColor.fourth200,
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent, width: 0),
+            borderRadius:
+                BorderRadius.all(Radius.circular(AppConfig.defaultRadius))),
+        border: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent, width: 1),
+            borderRadius:
+                BorderRadius.all(Radius.circular(AppConfig.defaultRadius))),
+        suffixIcon: widget.suffixIcon != null
+            ? IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                  color: AppColor.gray04,
+                ),
+              )
+            : null,
+      ),
     );
   }
 

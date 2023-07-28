@@ -1,5 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/constant/constants.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/repository.dart';
 import '../../../di/di.dart';
@@ -15,6 +17,8 @@ class EventCubit extends Cubit<EventState> {
   final EventRepository _eventRepository = getIt.get<EventRepository>();
 
   EventCubit() : super(EventInitial());
+
+  late final EventFilterData eventFilterData = EventFilterData();
 
   getCurrentLocation() async {
     final geocodingHelper = getIt<GeocodingHelper>();
@@ -42,19 +46,41 @@ class EventCubit extends Cubit<EventState> {
   }
 
   getAllEvent({
-    int type = 0,
+    String? keyword,
     String? date,
     String? startDate,
     String? endDate,
     bool? isOpening,
   }) async {
-    if (startDate == null || endDate == null) emit(EventInitial());
+    emit(EventInitial());
+    eventFilterData.status = null;
+    eventFilterData.statusFilterData.asMap().entries.map((e) {
+      if (e.value) {
+        eventFilterData.status = e.key == 0
+            ? EventStatus.begining
+            : e.key == 1
+                ? EventStatus.finished
+                : e.key == 2
+                    ? EventStatus.notStarted
+                    : null;
+      }
+    }).toList();
     final response = await _eventRepository.getAllEvent(
-      type: type,
+      keyword: eventFilterData.keyword,
+      status: eventFilterData.status,
       date: date,
       isOpening: isOpening,
-      startDate: startDate,
-      endDate: endDate,
+      isDescending: eventFilterData.timeFilterData[0]
+          ? false
+          : eventFilterData.timeFilterData[1]
+              ? true
+              : null,
+      startDate: eventFilterData.timeFilterData[2]
+          ? eventFilterData.timeRange[0]
+          : null,
+      endDate: eventFilterData.timeFilterData[2]
+          ? eventFilterData.timeRange[1]
+          : null,
     );
     if (response.status == ResponseStatus.success) {
       if (startDate != null && endDate != null) {
@@ -136,4 +162,37 @@ class EventCubit extends Cubit<EventState> {
       endTime: endTime,
     ));
   }
+
+  onFilterChange() {
+    int filterCount = 0;
+    for (var element in eventFilterData.statusFilterData) {
+      if (element) filterCount++;
+    }
+    for (var element in eventFilterData.timeFilterData) {
+      if (element) filterCount++;
+    }
+    emit(EventFilterChangeState(filterCount));
+  }
+
+  showSearchBar(double offset) {
+    bool isShow = true;
+    if (offset <= 0) {
+      isShow = true;
+    } else {
+      isShow = false;
+    }
+    emit(EventShowSearchBarState(isShow));
+  }
+}
+
+class EventFilterData {
+  String? keyword;
+  bool? isDescending;
+  int? status;
+  final List<bool> statusFilterData = <bool>[false, false, false];
+  final List<bool> timeFilterData = <bool>[false, false, false];
+  final List<String> timeRange = <String>[
+    DateTime.now().toIso8601String().toString(),
+    DateTime.now().toIso8601String().toString()
+  ];
 }

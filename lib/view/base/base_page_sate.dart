@@ -136,6 +136,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
         appBar: appBar,
         body: SafeArea(
           top: useSafeArea,
+          bottom: useSafeArea,
           child: Padding(
             padding: padding,
             child: useBlocProviderValue

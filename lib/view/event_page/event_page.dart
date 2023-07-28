@@ -1,16 +1,16 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/resources/resources.dart';
+import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/no_data.dart';
+import '../../shared/widgets/text_field/primary_search_text_field.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
@@ -28,16 +28,20 @@ class EventPage<EventCubit> extends StatefulWidget {
 
 // ignore: prefer_void_to_null
 class _EventPageState extends BasePageState<EventPage, EventCubit> {
-  late final EventCubit _eventCubit;
-
   @override
   EdgeInsets get padding => EdgeInsets.zero;
 
   @override
   void initState() {
     super.initState();
-    _eventCubit = cubit..getAllEvent();
+    cubit.getAllEvent();
     userCubit.getUser();
+    cubit.showSearchBar(0);
+    scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    cubit.showSearchBar(scrollController.offset);
   }
 
   @override
@@ -45,7 +49,15 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
     super.didChangeDependencies();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.removeListener(_onScroll);
+    scrollController.dispose();
+  }
+
   final ScrollController scrollController = ScrollController();
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget buildPage(BuildContext context) {
@@ -132,14 +144,12 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                   },
                 ),
               ),
-              // IconButton(onPressed:() {
 
-              // }, icon: icon)
-              PrimaryIconButton(
-                context: context,
-                onPressed: () {},
-                icon: Assets.icSearch,
-              ),
+              // PrimaryIconButton(
+              //   context: context,
+              //   onPressed: () {},
+              //   icon: Assets.icSearch,
+              // ),
               PrimaryIconButton(
                 context: context,
                 onPressed: () {},
@@ -147,6 +157,84 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
               )
             ],
           ),
+        ),
+        BlocBuilder<EventCubit, EventState>(
+          buildWhen: (previous, current) => current is EventShowSearchBarState,
+          builder: (context, searchState) {
+            if (searchState is EventShowSearchBarState) {
+              return AnimatedContainer(
+                height: searchState.isShow ? 50 : 0,
+                duration: const Duration(milliseconds: 100),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 16.0, right: 16, bottom: 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: AnimatedSize(
+                          duration: const Duration(milliseconds: 0),
+                          child: searchState.isShow
+                              ? PrimarySearchTextField(
+                                  label: '',
+                                  suffixIcon: searchState.isShow ? '' : null,
+                                  controller: searchController,
+                                  onChanged: (value) {
+                                    cubit.eventFilterData.keyword = value;
+                                    cubit.getAllEvent();
+                                  },
+                                )
+                              : const SizedBox(),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: TextButton(
+                            onPressed: () => _onFilterPressed.call(context),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                BlocBuilder<EventCubit, EventState>(
+                                  buildWhen: (previous, current) =>
+                                      current is EventFilterChangeState,
+                                  builder: (context, state) {
+                                    if (state is EventFilterChangeState &&
+                                        state.count > 0 &&
+                                        searchState.isShow) {
+                                      return Badge(
+                                        label: Text(
+                                          state.count.toString(),
+                                          style: AppTextTheme.robotoMedium10
+                                              .copyWith(
+                                            color: AppColor.white,
+                                          ),
+                                        ),
+                                        textStyle: AppTextTheme.robotoMedium10,
+                                        offset: const Offset(6, -4),
+                                        child:
+                                            SvgPicture.asset(Assets.icFilter),
+                                      );
+                                    } else {
+                                      return SvgPicture.asset(Assets.icFilter);
+                                    }
+                                  },
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'Bộ lọc',
+                                  style: AppTextTheme.lexendRegular14
+                                      .copyWith(color: AppColor.black),
+                                ),
+                              ],
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return const SizedBox();
+            }
+          },
         ),
         Expanded(
           child: BlocBuilder<EventCubit, EventState>(
@@ -162,24 +250,6 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (index == 0)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: TextButton(
-                                onPressed: () => _onFilterPressed.call(context),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SvgPicture.asset(Assets.icFilter),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      'Bộ lọc',
-                                      style: AppTextTheme.lexendRegular14
-                                          .copyWith(color: AppColor.black),
-                                    )
-                                  ],
-                                )),
-                          ),
                         EventItem(event: event),
                         const Divider(thickness: 5, color: AppColor.fourth300),
                         if (index == events.length - 1)
@@ -212,30 +282,11 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
     );
   }
 
-  final statusFilterData = <bool>[false, false, false];
-  final timeFilterData = <bool>[false, false, false];
-  final timeRange = <String>[
-    DateTime.now().toIso8601String().toString(),
-    DateTime.now().toIso8601String().toString()
-  ];
-
   void _onFilterPressed(BuildContext context) async {
-    // context.showAppBottomSheet();
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EventFilterDialog(
-          statusFilterData: statusFilterData,
-          timeFilterData: timeFilterData,
-          eventCubit: cubit,
-          timeRange: timeRange,
-        ),
-      ),
-    );
-
-    if (result != null) {
-      log('ok');
-      cubit.getAllEvent(startDate: timeRange[0], endDate: timeRange[1]);
-    }
+    final result = await context.showAppBottomSheet(EventFilterDialog(
+      eventCubit: cubit,
+    ));
+    cubit.onFilterChange();
+    cubit.getAllEvent();
   }
 }

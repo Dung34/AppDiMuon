@@ -36,23 +36,28 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Event>>> getAllEvent(
-      {String? keyword,
-      int type = 0,
-      String? startDate,
-      String? endDate,
-      String? date,
-      bool? isOpening}) async {
+  Future<ResponseWrapper<List<Event>>> getAllEvent({
+    String? keyword,
+    int? status,
+    String? startDate,
+    String? endDate,
+    String? date,
+    bool? isOpening,
+    bool? isDescending,
+  }) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.post(
       EndPoints.getAllEvent,
       data: {
         "title": keyword,
         "searchDate": date,
+        'status': status,
         "isComing": isOpening,
         "startDate": startDate,
-        "endDate": endDate
-      }..removeWhere((key, value) => value == null),
+        "endDate": endDate,
+        'isDescending': isDescending,
+      }..removeWhere(
+          (key, value) => value == null || value is String && value.isEmpty),
       options: Options(
         headers: {'Authorization': 'Bearer $accessToken'},
       ),

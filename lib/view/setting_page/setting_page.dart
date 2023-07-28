@@ -172,13 +172,13 @@ class SettingItem extends StatelessWidget {
     return InkWell(
       onTap: () => onTap.call(),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         child: Row(
           children: [
             Expanded(
               child: Text(
                 title,
-                style: AppTextTheme.robotoRegular16,
+                style: AppTextTheme.lexendRegular16,
               ),
             ),
             SvgPicture.asset(Assets.icArrowRight)

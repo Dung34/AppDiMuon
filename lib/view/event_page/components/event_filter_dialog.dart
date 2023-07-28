@@ -9,20 +9,18 @@ import '../cubit/event_cubit.dart';
 
 // ignore: must_be_immutable
 class EventFilterDialog extends StatelessWidget {
-  final List<bool> statusFilterData;
-  final List<bool> timeFilterData;
-  final List<String> timeRange;
   final EventCubit eventCubit;
   const EventFilterDialog({
     super.key,
-    required this.statusFilterData,
-    required this.timeFilterData,
     required this.eventCubit,
-    required this.timeRange,
   });
 
   @override
   Widget build(BuildContext context) {
+    final timeFilterData = eventCubit.eventFilterData.timeFilterData;
+    final timeRange = eventCubit.eventFilterData.timeRange;
+    final statusFilterData = eventCubit.eventFilterData.statusFilterData;
+
     if (timeFilterData[2]) {
       eventCubit
         ..showFullDay(true)
@@ -40,124 +38,131 @@ class EventFilterDialog extends StatelessWidget {
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Lọc sự kiện',
-                    style: AppTextTheme.robotoBold24,
-                  ),
-                  const SizedBox(height: 20),
-                  const Text('Trạng thái', style: AppTextTheme.robotoBold14),
-                  const SizedBox(height: 10),
-                  GroupFilter(
-                    items: const ['Đang diễn ra', 'Đã diễn ra', 'Sắp diễn ra'],
-                    onChanged: (result) {},
-                    initialValue: statusFilterData,
-                  ),
-                  const SizedBox(height: 20),
-                  const Text('Trạng thái', style: AppTextTheme.robotoBold14),
-                  const SizedBox(height: 10),
-                  GroupFilter(
-                    items: const ['Gần nhất', 'Xa nhất', 'Khoảng thời gian'],
-                    checkOnlyOne: true,
-                    onChanged: (result) {
-                      if (result[2]) {
-                        eventCubit.showFullDay(true);
-                      } else {
-                        eventCubit.showFullDay(false);
-                      }
-                    },
-                    initialValue: timeFilterData,
-                  ),
-                  BlocConsumer<EventCubit, EventState>(
-                    listener: (context, state) {},
-                    buildWhen: (previous, current) =>
-                        current is EventShowFullDayState,
-                    builder: (context, state) {
-                      if (state is EventShowFullDayState && state.isShow) {
-                        return Column(
-                          children: [
-                            Row(
-                              children: [
-                                const Text('Bắt đầu'),
-                                const Spacer(),
-                                SelectDateTimeItem(
-                                  key: UniqueKey(),
-                                  intialDateTime: timeRange[0],
-                                  onTimeChanged: (dateTime) {
-                                    eventCubit.onCheckRangeDateTime(
-                                        dateTime, timeRange[1]);
-                                  },
-                                  onDateChange: (dateTime) {
-                                    eventCubit.onCheckRangeDateTime(
-                                        dateTime, timeRange[1]);
-                                  },
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const Text('Kết thúc'),
-                                const Spacer(),
-                                SelectDateTimeItem(
-                                  key: UniqueKey(),
-                                  intialDateTime: timeRange[1],
-                                  onTimeChanged: (dateTime) {
-                                    eventCubit.onCheckRangeDateTime(
-                                        timeRange[0], dateTime);
-                                  },
-                                  onDateChange: (dateTime) {
-                                    eventCubit.onCheckRangeDateTime(
-                                        timeRange[0], dateTime);
-                                  },
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    },
-                  ),
-                  BlocConsumer<EventCubit, EventState>(
-                    listenWhen: (previous, current) {
-                      return current is EventCheckedRangeDateTimeState;
-                    },
-                    listener: (context, state) {
-                      if (state is EventCheckedRangeDateTimeState) {
-                        timeRange[0] = state.startTime;
-                        timeRange[1] = state.endTime;
-                      }
-                    },
-                    buildWhen: (previous, current) =>
-                        current is EventCheckedRangeDateTimeState,
-                    builder: (context, state) {
-                      if (state is EventCheckedRangeDateTimeState &&
-                          !state.isSastified) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Ngày kết thúc phải lớn hơn ngày bắt đầu',
-                              style: AppTextTheme.robotoRegular14
-                                  .copyWith(color: AppColor.error400),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    },
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Lọc sự kiện',
+                      style: AppTextTheme.robotoBold24,
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Trạng thái', style: AppTextTheme.robotoBold14),
+                    const SizedBox(height: 10),
+                    GroupFilter(
+                      items: const [
+                        'Đang diễn ra',
+                        'Đã diễn ra',
+                        'Sắp diễn ra'
+                      ],
+                      onChanged: (result) {},
+                      initialValue: statusFilterData,
+                      checkOnlyOne: true,
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Trạng thái', style: AppTextTheme.robotoBold14),
+                    const SizedBox(height: 10),
+                    GroupFilter(
+                      items: const ['Gần nhất', 'Xa nhất', 'Khoảng thời gian'],
+                      checkOnlyOne: true,
+                      onChanged: (result) {
+                        if (result[2]) {
+                          eventCubit.showFullDay(true);
+                        } else {
+                          eventCubit.showFullDay(false);
+                        }
+                      },
+                      initialValue: timeFilterData,
+                    ),
+                    BlocConsumer<EventCubit, EventState>(
+                      listener: (context, state) {},
+                      buildWhen: (previous, current) =>
+                          current is EventShowFullDayState,
+                      builder: (context, state) {
+                        if (state is EventShowFullDayState && state.isShow) {
+                          return Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const Text('Bắt đầu'),
+                                  const Spacer(),
+                                  SelectDateTimeItem(
+                                    key: UniqueKey(),
+                                    intialDateTime: timeRange[0],
+                                    onTimeChanged: (dateTime) {
+                                      eventCubit.onCheckRangeDateTime(
+                                          dateTime, timeRange[1]);
+                                    },
+                                    onDateChange: (dateTime) {
+                                      eventCubit.onCheckRangeDateTime(
+                                          dateTime, timeRange[1]);
+                                    },
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Text('Kết thúc'),
+                                  const Spacer(),
+                                  SelectDateTimeItem(
+                                    key: UniqueKey(),
+                                    intialDateTime: timeRange[1],
+                                    onTimeChanged: (dateTime) {
+                                      eventCubit.onCheckRangeDateTime(
+                                          timeRange[0], dateTime);
+                                    },
+                                    onDateChange: (dateTime) {
+                                      eventCubit.onCheckRangeDateTime(
+                                          timeRange[0], dateTime);
+                                    },
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                    BlocConsumer<EventCubit, EventState>(
+                      listenWhen: (previous, current) {
+                        return current is EventCheckedRangeDateTimeState;
+                      },
+                      listener: (context, state) {
+                        if (state is EventCheckedRangeDateTimeState) {
+                          timeRange[0] = state.startTime;
+                          timeRange[1] = state.endTime;
+                        }
+                      },
+                      buildWhen: (previous, current) =>
+                          current is EventCheckedRangeDateTimeState,
+                      builder: (context, state) {
+                        if (state is EventCheckedRangeDateTimeState &&
+                            !state.isSastified) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Ngày kết thúc phải lớn hơn ngày bắt đầu',
+                                style: AppTextTheme.robotoRegular14
+                                    .copyWith(color: AppColor.error400),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

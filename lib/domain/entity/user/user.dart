@@ -8,6 +8,7 @@ class UserEntity with _$UserEntity {
   factory UserEntity({
     String? id,
     String? fullname,
+    String? username,
     String? avatar,
     String? coverImage,
     String? position,

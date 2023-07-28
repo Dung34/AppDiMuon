@@ -1,7 +1,9 @@
 part of 'event_cubit.dart';
 
-abstract class EventState {
+abstract class EventState extends Equatable {
   const EventState();
+  @override
+  List<Object?> get props => [];
 }
 
 class EventInitial extends EventState {}
@@ -12,7 +14,8 @@ class EventHasPermissionState extends EventState {
   final bool hasPermission;
   final CurrentLocation? currentLocation;
 
-  EventHasPermissionState({required this.hasPermission, this.currentLocation});
+  const EventHasPermissionState(
+      {required this.hasPermission, this.currentLocation});
 }
 
 class EventGetAllEventSuccessState extends EventState {
@@ -84,6 +87,8 @@ class EventJoinEventSuccessState extends EventState {
 
   const EventJoinEventSuccessState(this.userEventJoined,
       {this.isUserScan = false});
+  @override
+  List<Object?> get props => [userEventJoined, isUserScan];
 }
 
 class EventJoinEventFailedState extends EventState {}
@@ -91,7 +96,26 @@ class EventJoinEventFailedState extends EventState {}
 class EventShowFullDayState extends EventState {
   final bool isShow;
 
-  EventShowFullDayState(this.isShow);
+  const EventShowFullDayState(this.isShow);
+  @override
+  List<Object?> get props => [isShow];
+}
+
+class EventFilterChangeState extends EventState {
+  final int count;
+
+  const EventFilterChangeState(this.count);
+  @override
+  List<Object?> get props => [count];
+}
+
+class EventShowSearchBarState extends EventState {
+  final bool isShow;
+
+  const EventShowSearchBarState(this.isShow);
+
+  @override
+  List<Object?> get props => [isShow];
 }
 
 class EventCheckedRangeDateTimeState extends EventState {
@@ -99,9 +123,12 @@ class EventCheckedRangeDateTimeState extends EventState {
   final String startTime;
   final String endTime;
 
-  EventCheckedRangeDateTimeState({
+  const EventCheckedRangeDateTimeState({
     required this.isSastified,
     required this.startTime,
     required this.endTime,
   });
+
+  @override
+  List<Object?> get props => [isSastified, startTime, endTime];
 }
