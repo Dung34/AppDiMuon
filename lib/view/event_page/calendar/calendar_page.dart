@@ -51,6 +51,7 @@ class _CalendarPageState extends BasePageState<CalendarPage, EventCubit> {
                     onSelectedDate: (date) {
                       currentSelectedDate = date;
                       cubit.getAllEvent(date: currentSelectedDate.toString());
+                      focusDate = focusDate;
                     },
                     focusedDay: focusDate,
                     onPageChanged: (date) {

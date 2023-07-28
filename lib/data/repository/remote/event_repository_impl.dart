@@ -168,6 +168,32 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
+  Future<ResponseWrapper<Event>> updateEvent(Event event) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.patch(
+        EndPoints.updateEvent,
+        data: _eventDataMapper.mapToData(event).toJson(),
+        options: Options(
+          headers: {'Authorization': 'Bearer $accessToken'},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: _eventDataMapper.mapToEntity(
+            EventResponse.fromJson(response.data),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
   Future<ResponseWrapper<void>> deleteEvent(String eventId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {

@@ -92,6 +92,16 @@ class EventAddEventSuccessState extends EventState {
 
 class EventAddEventFailedState extends EventState {}
 
+class EventUpdateEventSuccessState extends EventState {
+  final Event event;
+
+  const EventUpdateEventSuccessState(this.event);
+  @override
+  List<Object?> get props => [event];
+}
+
+class EventUpdateEventFailedState extends EventState {}
+
 class EventGetEventByIdSuccessState extends EventState {
   final Event event;
 

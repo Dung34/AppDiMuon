@@ -29,7 +29,10 @@ class EventItem extends StatelessWidget {
           context,
           AppRoute.eventDetail,
           arguments: EventDetailPageArgs(
-              eventId: event.id!, eventCubit: context.read<EventCubit>()),
+            eventId: event.id!,
+            eventCubit: context.read<EventCubit>(),
+            isFromCalendar: false,
+          ),
         );
       },
       child: Padding(

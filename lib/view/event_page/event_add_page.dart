@@ -8,6 +8,7 @@ import '../../domain/entity/event/event_wrapper/event.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/validation_utils.dart';
+import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/image/primary_reorder_grid_image.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/switch/primary_switch.dart';
@@ -34,11 +35,6 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
   @override
   bool get isUseLoading => true;
 
-  final Event event = Event(
-    startTime: DateTime.now().toIso8601String(),
-    endTime: DateTime.now().toIso8601String(),
-  );
-
   final TextEditingController titleController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -55,10 +51,15 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
     setCubit = eventCubit;
     // initialize the eventUpdate object with the current selected event in the previous page;
     if (!args.isAddNew) {
-      eventUpdate = eventCubit.currentSelectedEvent.copyWith();
-      titleController.text = eventUpdate.title ?? '';
-      locationController.text = eventUpdate.location ?? '';
-      descriptionController.text = eventUpdate.description ?? '';
+      event = eventCubit.currentSelectedEvent.copyWith();
+      titleController.text = event.title ?? '';
+      locationController.text = event.location ?? '';
+      descriptionController.text = event.description ?? '';
+    } else {
+      event = Event(
+        startTime: DateTime.now().toIso8601String(),
+        endTime: DateTime.now().toIso8601String(),
+      );
     }
 
     setAppBar = PrimaryAppBar(
@@ -79,7 +80,7 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
 
   late final DateTime currentSelectedDate;
   late final EventCubit eventCubit;
-  late final Event eventUpdate;
+  late final Event event;
 
   @override
   Widget buildPage(BuildContext context) {
@@ -117,16 +118,28 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
               listener: (context, state) {
                 if (state is GetImageGetMultiImageUrlSuccessState) {
                   event.background = state.imageData[0].data.toString();
-                  cubit.addEvent(event);
+                  if (args.isAddNew) {
+                    cubit.addEvent(event);
+                  } else {
+                    cubit.updateEvent(event);
+                  }
                 }
               },
               child: PrimaryReorderGridImage(
-                initialData:
-                    args.isAddNew ? const [] : [eventUpdate.background ?? ''],
+                initialData: args.isAddNew
+                    ? const []
+                    : event.background == null
+                        ? const []
+                        : [event.background!],
                 getImageBloc: getImageBloc,
                 maxQuantity: 1,
                 childAspectRatio: 16 / 9,
                 fit: BoxFit.cover,
+                onDataChanged: (imageData) {
+                  if (imageData[0].type == ImageDataType.addNew) {
+                    event.background = null;
+                  }
+                },
               ),
             ),
           ),
@@ -183,6 +196,7 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
               if (state is EventAddEventSuccessState) {
                 hideLoading();
                 context.pop();
+                ViewUtils.toastSuccess('Thêm sự kiện thành công!');
                 final eventStartDateTime =
                     DateTimeUtils.toDateTime(state.event.startTime ?? '');
                 if (DateUtils.isSameDay(
@@ -193,13 +207,41 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
 
                 // get all event in month to show marker in calendar
                 final today = DateTime.now();
-                eventCubit.getAllEvent(
+                eventCubit.getAllCalendarEvent(
                     startDate:
                         DateTime(today.year, today.month, -7).toIso8601String(),
                     endDate: DateTime(today.year, today.month, 37)
                         .toIso8601String());
               }
               if (state is EventAddEventFailedState) {
+                ViewUtils.toastSuccess('Thêm sự kiện thất bại!');
+                hideLoading();
+              }
+              if (state is EventUpdateEventSuccessState) {
+                hideLoading();
+                context.pop();
+                cubit.rebuildEventDetail(state.event);
+                ViewUtils.toastSuccess('Cập nhật sự kiện thành công!');
+                final eventStartDateTime =
+                    DateTimeUtils.toDateTime(state.event.startTime ?? '');
+                if (DateUtils.isSameDay(
+                    eventStartDateTime, currentSelectedDate)) {
+                  eventCubit.getAllEvent(
+                      date: eventStartDateTime.toIso8601String());
+                }
+
+                if (args.isFromCalendar) {
+                  // get all event in month to show marker in calendar
+                  final today = DateTime.now();
+                  eventCubit.getAllCalendarEvent(
+                      startDate: DateTime(today.year, today.month, -7)
+                          .toIso8601String(),
+                      endDate: DateTime(today.year, today.month, 37)
+                          .toIso8601String());
+                }
+              }
+              if (state is EventUpdateEventFailedState) {
+                ViewUtils.toastSuccess('Cập nhật sự kiện thất bại!');
                 hideLoading();
               }
             },
@@ -404,10 +446,15 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
     event.title = titleController.text.trim();
     event.location = locationController.text.trim();
     event.description = descriptionController.text.trim();
-    if (getImageBloc.imageData.isNotEmpty) {
+    if (getImageBloc.imageData.isNotEmpty &&
+        getImageBloc.imageData.first.type != ImageDataType.addNew) {
       getImageBloc.add(GetImageGetMultiImageUrlEvent());
     } else {
-      cubit.addEvent(event);
+      if (args.isAddNew) {
+        cubit.addEvent(event);
+      } else {
+        cubit.updateEvent(event);
+      }
     }
   }
 }

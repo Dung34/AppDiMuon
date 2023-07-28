@@ -148,6 +148,13 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
+  rebuildEventDetail(Event event) {
+    emit(EventGetEventByIdSuccessState(event));
+    events[events.indexOf(
+        events.where((element) => element.id == event.id).first)] = event;
+    emit(EventGetAllEventSuccessState(events));
+  }
+
   addEvent(Event event) async {
     final response = await _eventRepository.createEvent(event);
 
@@ -155,6 +162,15 @@ class EventCubit extends Cubit<EventState> {
       emit(EventAddEventSuccessState(event));
     } else {
       emit(EventAddEventFailedState());
+    }
+  }
+
+  updateEvent(Event event) async {
+    final response = await _eventRepository.updateEvent(event);
+    if (response.status == ResponseStatus.success) {
+      emit(EventUpdateEventSuccessState(event));
+    } else {
+      emit(EventUpdateEventFailedState());
     }
   }
 

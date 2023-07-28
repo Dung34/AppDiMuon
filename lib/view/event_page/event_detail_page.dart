@@ -263,6 +263,7 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
           currentSelectedDate: DateTime.now(),
           eventCubit: cubit,
           isAddNew: false,
+          isFromCalendar: args.isFromCalendar,
         ));
   }
 }

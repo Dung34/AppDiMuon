@@ -20,6 +20,7 @@ class PrimaryReorderGridImage extends StatelessWidget {
   final GetImageBloc getImageBloc;
   final bool isAdd;
   final BoxFit? fit;
+  final Function(List<ImageDataWrapper> imageData)? onDataChanged;
 
   const PrimaryReorderGridImage({
     Key? key,
@@ -30,6 +31,7 @@ class PrimaryReorderGridImage extends StatelessWidget {
     required this.getImageBloc,
     this.crossAxisCount = 3,
     this.fit = BoxFit.contain,
+    this.onDataChanged,
   }) : super(key: key);
 
   Map<String, dynamic> updateBusinessDetail() {
@@ -52,6 +54,7 @@ class PrimaryReorderGridImage extends StatelessWidget {
         buildWhen: (pre, current) => current is GetImageSuccessState,
         builder: (context, state) {
           if (state is GetImageSuccessState) {
+            onDataChanged?.call(state.imageData);
             return ReorderableGridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

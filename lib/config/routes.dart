@@ -68,10 +68,12 @@ class AppRoute {
 class EventDetailPageArgs {
   final String eventId;
   final EventCubit eventCubit;
+  final bool isFromCalendar;
 
   EventDetailPageArgs({
     required this.eventId,
     required this.eventCubit,
+    this.isFromCalendar = true,
   });
 }
 
@@ -79,11 +81,14 @@ class CalendarAddPageArgs {
   final DateTime currentSelectedDate;
   final EventCubit eventCubit;
   final bool isAddNew;
+  final bool isFromCalendar;
 
-  CalendarAddPageArgs(
-      {required this.currentSelectedDate,
-      required this.eventCubit,
-      this.isAddNew = true});
+  CalendarAddPageArgs({
+    required this.currentSelectedDate,
+    required this.eventCubit,
+    this.isAddNew = true,
+    this.isFromCalendar = true,
+  });
 }
 
 class EventMemberPageArgs {

@@ -23,6 +23,8 @@ abstract class EventRepository {
 
   Future<ResponseWrapper<Event>> createEvent(Event event);
 
+  Future<ResponseWrapper<Event>> updateEvent(Event event);
+
   Future<ResponseWrapper<void>> deleteEvent(String eventId);
 
   Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
