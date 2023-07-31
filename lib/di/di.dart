@@ -1,3 +1,4 @@
+import '../data/repository/interceptor/interceptor.dart';
 import '../data/repository/local/local_data_access.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -21,8 +22,7 @@ configureInjection() async {
   getIt.registerLazySingleton<StorageRepository>(() => StorageRepositoryImpl(
       dio: getIt<Dio>(), localDataAccess: getIt.get<LocalDataAccess>()));
 
-  getIt.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
-      dio: getIt<Dio>(), localDataAccess: getIt.get<LocalDataAccess>()));
+  getIt.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
 
   getIt.registerLazySingleton<AppRepository>(
     () => AppRepositoryImpl(
@@ -48,6 +48,9 @@ configureInjection() async {
       () => SharePrefHelper(sharedPref: sharedPref));
 
   getIt.registerFactory<GeocodingHelper>(() => GeocodingHelper());
+
+// interceptor
+  getIt.registerLazySingleton<AppInterceptor>(() => AppInterceptor());
 
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());

@@ -126,8 +126,8 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
-  getAllHistory({String? userId}) async {
-    final response = await _eventRepository.getAllHistory(userId: userId);
+  getAllHistory({String? username}) async {
+    final response = await _eventRepository.getAllHistory(username: username);
 
     if (response.status == ResponseStatus.success) {
       emit(EventGetAllHistorySuccessState(response.data ?? []));
@@ -168,7 +168,8 @@ class EventCubit extends Cubit<EventState> {
   updateEvent(Event event) async {
     final response = await _eventRepository.updateEvent(event);
     if (response.status == ResponseStatus.success) {
-      emit(EventUpdateEventSuccessState(event));
+      currentSelectedEvent = response.data!;
+      emit(EventUpdateEventSuccessState(currentSelectedEvent));
     } else {
       emit(EventUpdateEventFailedState());
     }

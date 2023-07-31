@@ -26,7 +26,7 @@ class EventStatus {
 
 class EventStatusStr {
   static const String notStarted = 'Sắp diễn ra';
-  static const String begining = 'Đã bắt đầu';
+  static const String begining = 'Đang diễn ra';
   static const String finished = 'Đã kết thúc';
   static const String canceled = 'Bị huỷ';
 }

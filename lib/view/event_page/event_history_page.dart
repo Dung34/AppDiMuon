@@ -24,15 +24,13 @@ class _EventHistoryPageState
   void initState() {
     super.initState();
     cubit.getAllHistory();
+    if (widget.useAppBar) {
+      setAppBar = PrimaryAppBar(
+        title: 'Lịch sử tham dự',
+        canPop: true,
+      );
+    }
   }
-
-  @override
-  PreferredSizeWidget? get appBar => widget.useAppBar
-      ? PrimaryAppBar(
-          title: 'Lịch sử tham dự',
-          canPop: true,
-        )
-      : null;
 
   @override
   Widget buildPage(BuildContext context) {

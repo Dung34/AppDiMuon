@@ -13,23 +13,23 @@ import '../../model/api/base_response.dart';
 import '../../model/login/login_response.dart';
 import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
+import '../interceptor/interceptor.dart';
 import '../local/local_data_access.dart';
 import 'repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final Dio dio;
-  final LocalDataAccess localDataAccess;
+  final Dio dio = getIt.get<Dio>();
+  final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
+  final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
   final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
 
-  UserRepositoryImpl({
-    required this.dio,
-    required this.localDataAccess,
-  }) {
+  UserRepositoryImpl() {
     dio.interceptors.add(PrettyDioLogger(
       responseBody: true,
       requestBody: true,
       requestHeader: true,
     ));
+    dio.interceptors.add(appInterceptor.queueInterceptor(dio: dio));
     dio.options =
         DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
   }
@@ -196,11 +196,6 @@ class UserRepositoryImpl implements UserRepository {
       userId != null
           ? '${EndPoints.getUser}/$userId'
           : EndPoints.getCurrentUser,
-      queryParameters: userId == null
-          ? ({
-              'user-id': userId,
-            }..removeWhere((key, value) => value == null))
-          : null,
       options: Options(
         headers: {'Authorization': 'Bearer $accessToken'},
       ),

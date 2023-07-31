@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -88,7 +86,6 @@ class _ProfileViewHeaderState
             buildWhen: (previous, current) =>
                 current is UserGetUserSuccessState,
             builder: (context, state) {
-              log('state: $state');
               if (state is UserGetUserSuccessState) {
                 user = state.userEntity;
                 return SliverAppBar(

@@ -12,6 +12,7 @@ import '../../model/api/base_response.dart';
 import '../../model/event_response/event_member_response.dart';
 import '../../model/event_response/event_response.dart';
 import '../interceptor/dio_base_options.dart';
+import '../interceptor/interceptor.dart';
 import '../local/local_data_access.dart';
 import 'event_repository.dart';
 
@@ -20,6 +21,7 @@ class EventpRepositoryImpl implements EventRepository {
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
   final EventDataMapper _eventDataMapper = getIt.get<EventDataMapper>();
+  final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
   final EventMemberDataMapper _eventMemberDataMapper =
       getIt.get<EventMemberDataMapper>();
   // final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
@@ -30,9 +32,9 @@ class EventpRepositoryImpl implements EventRepository {
       requestBody: true,
       requestHeader: true,
     ));
+    dio.interceptors.add(appInterceptor.queueInterceptor(dio: dio));
     dio.options =
         DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
-    // DioBaseOptions(baseUrl: 'https://api-ceo.hn7.eztek.net').baseOption;
   }
 
   @override
@@ -250,12 +252,12 @@ class EventpRepositoryImpl implements EventRepository {
 
   @override
   Future<ResponseWrapper<List<EventMember>>> getAllHistory(
-      {String? userId}) async {
+      {String? username}) async {
     accessToken = await localDataAccess.getAccessToken();
-    final String currentUserId = localDataAccess.getUserId();
+    final String currentUsername = localDataAccess.getUserName();
     try {
       final response = await dio.get(
-        '${EndPoints.getShowHistory}${userId ?? currentUserId}',
+        '${EndPoints.getShowHistory}${username ?? currentUsername}',
         options: Options(
           headers: {'Authorization': 'Bearer $accessToken'},
         ),

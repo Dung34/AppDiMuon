@@ -19,16 +19,14 @@ class _EventOpeningPageState
   @override
   void initState() {
     super.initState();
-    cubit.getAllEvent(isOpening: false);
+    setAppBar = PrimaryAppBar(
+      title: 'Sự kiện đang diễn ra',
+    );
+    cubit.getAllEvent(isOpening: true);
   }
 
   @override
   EdgeInsets get padding => EdgeInsets.zero;
-
-  @override
-  PreferredSizeWidget? get appBar => PrimaryAppBar(
-        title: 'Sự kiện đang diễn ra',
-      );
 
   @override
   Widget buildPage(BuildContext context) {
@@ -36,6 +34,8 @@ class _EventOpeningPageState
       children: [
         Expanded(
           child: BlocBuilder<EventCubit, EventState>(
+            buildWhen: (previous, current) =>
+                current is EventGetAllEventSuccessState,
             builder: (context, state) {
               if (state is EventGetAllEventSuccessState) {
                 final events = state.events;

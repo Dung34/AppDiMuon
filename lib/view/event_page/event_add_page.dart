@@ -3,12 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../config/routes.dart';
+import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/event/event_wrapper/event.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/validation_utils.dart';
 import '../../shared/utils/view_utils.dart';
+import '../../shared/widgets/dropdown/base_dropdown_value.dart';
+import '../../shared/widgets/dropdown/primary_drop_down_form_field.dart';
 import '../../shared/widgets/image/primary_reorder_grid_image.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/switch/primary_switch.dart';
@@ -39,8 +42,33 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
   final TextEditingController locationController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final titleFormKey = GlobalKey<FormState>();
+  final statusDropdownValue = [
+    const BaseDropdownValue(
+      id: '0',
+      valueStr: EventStatusStr.notStarted,
+    ),
+    const BaseDropdownValue(
+      id: '1',
+      valueStr: EventStatusStr.begining,
+    ),
+    const BaseDropdownValue(
+      id: '2',
+      valueStr: EventStatusStr.finished,
+    ),
+    const BaseDropdownValue(
+      id: '3',
+      valueStr: EventStatusStr.canceled,
+    ),
+  ];
+  late BaseDropdownValue statusInitialData;
   final GetImageBloc getImageBloc = GetImageBloc();
   late final CalendarAddPageArgs args;
+
+  @override
+  void initState() {
+    statusInitialData = statusDropdownValue.first;
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
@@ -55,10 +83,14 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
       titleController.text = event.title ?? '';
       locationController.text = event.location ?? '';
       descriptionController.text = event.description ?? '';
+      statusInitialData = statusDropdownValue
+          .where((element) => int.parse(element.id!) == event.status)
+          .first;
     } else {
       event = Event(
         startTime: DateTime.now().toIso8601String(),
         endTime: DateTime.now().toIso8601String(),
+        status: int.parse(statusInitialData.id!),
       );
     }
 
@@ -146,6 +178,27 @@ class _CalendarAddPageState extends BasePageState<CalendarAddPage, EventCubit>
           const SizedBox(
             height: 10,
           ),
+          const Divider(),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            'Trạng thái',
+            style: AppTextTheme.robotoBold16,
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: context.screenWidth / 2,
+            child: PrimaryDropDownFormField(
+              controller: TextEditingController(),
+              items: statusDropdownValue,
+              initialValue: statusInitialData,
+              onChanged: (value) {
+                event.status = int.parse(value.id!);
+              },
+            ),
+          ),
+          const SizedBox(height: 10),
           const Divider(),
           const SizedBox(
             height: 20,

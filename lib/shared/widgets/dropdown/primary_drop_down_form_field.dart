@@ -8,7 +8,7 @@ import 'base_dropdown_value.dart';
 // ignore: must_be_immutable
 class PrimaryDropDownFormField extends StatefulWidget {
   List<BaseDropdownValue>? items;
-  final Function(BaseDropdownValue)? onChanged;
+  final Function(BaseDropdownValue value)? onChanged;
 
   /// set the initial value when the first build invoked
   final BaseDropdownValue? initialValue;
@@ -65,8 +65,10 @@ class _PrimaryDropDownFormFieldState extends State<PrimaryDropDownFormField> {
                     if (value.prefixImageUrl != null) const SizedBox(width: 8),
                     if (value.prefixWidget != null) value.prefixWidget!,
                     if (value.prefixWidget != null) const SizedBox(width: 8),
-                    Text(value.valueStr ?? 'not_defined',
-                        style: AppTextTheme.textPrimaryBold),
+                    Text(
+                      value.valueStr ?? 'not_defined',
+                      style: AppTextTheme.robotoMedium14,
+                    ),
                   ],
                 )
               : widget.child!.call(value),
@@ -85,26 +87,27 @@ class _PrimaryDropDownFormFieldState extends State<PrimaryDropDownFormField> {
           color: AppColor.primaryBackgroundColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-              color: widget.borderColor ?? AppColor.primaryColor, width: 2),
+              color: widget.borderColor ?? AppColor.primaryColor, width: 1),
         ),
         offset: const Offset(-12, -12),
       ),
       decoration: InputDecoration(
+        isDense: true,
         contentPadding:
-            const EdgeInsets.only(top: 8, bottom: 12, right: 12, left: 12),
+            const EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 12),
         hintText: widget.hintText,
         hintStyle: AppTextTheme.textLowPriority,
-        labelStyle: AppTextTheme.textPrimaryBold,
+        labelStyle: AppTextTheme.robotoBold14,
         errorMaxLines: 2,
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColor.gray04),
           borderRadius: BorderRadius.circular(8),
         ),
         enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.primaryColor, width: 1),
+            borderSide: BorderSide(color: AppColor.transparent, width: 1),
             borderRadius: BorderRadius.all(Radius.circular(8))),
         filled: true,
-        fillColor: widget.fillColor ?? AppColor.secondaryColor,
+        fillColor: widget.fillColor ?? AppColor.fourth200,
       ),
     );
   }

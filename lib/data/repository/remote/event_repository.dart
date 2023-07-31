@@ -30,7 +30,7 @@ abstract class EventRepository {
   Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
       {required String eventId});
 
-  Future<ResponseWrapper<List<EventMember>>> getAllHistory({String? userId});
+  Future<ResponseWrapper<List<EventMember>>> getAllHistory({String? username});
 
   Future<ResponseWrapper<UserEventJoined>> joinEvent({
     String? username,

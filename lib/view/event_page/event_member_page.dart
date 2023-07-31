@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/resources.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/widgets/shimmer/event_member_item_shimmer.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -21,12 +19,15 @@ class EventMemberPage extends StatefulWidget {
 
 class _EventMemberPageState extends BasePageState<EventMemberPage, EventCubit> {
   @override
-  PreferredSizeWidget? get appBar => PrimaryAppBar(
-        title: 'Thành viên tham gia',
-        actions: [
-          IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icSearch)),
-        ],
-      );
+  void initState() {
+    super.initState();
+    setAppBar = PrimaryAppBar(
+      title: 'Thành viên tham gia',
+      actions: const [
+        // IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icSearch)),
+      ],
+    );
+  }
 
   @override
   Widget buildPage(BuildContext context) {

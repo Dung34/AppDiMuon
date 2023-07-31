@@ -37,7 +37,7 @@ class EventDataMapper extends BaseDataMapper<EventResponse, Event>
       case EventStatus.canceled:
         return EventStatusStr.canceled;
       default:
-        return EventStatusStr.canceled;
+        return 'ERROR';
     }
   }
 
@@ -47,6 +47,7 @@ class EventDataMapper extends BaseDataMapper<EventResponse, Event>
       id: entity.id,
       background: entity.background,
       description: entity.description,
+      status: entity.status,
       endDate: entity.endTime,
       startDate: entity.startTime,
       location: entity.location,

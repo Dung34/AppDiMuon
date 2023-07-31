@@ -11,6 +11,7 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       id: data?.id,
       fullname: data?.fullname,
       avatar: data?.avatar,
+      coverImage: data?.coverImage,
       username: data?.username,
       // position: data?,
       role: data?.role,

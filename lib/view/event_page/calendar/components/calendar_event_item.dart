@@ -29,7 +29,7 @@ class CalendarEventItem extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 1,
+            flex: 3,
             child: Text(
               DateTimeUtils.formatDate(event.startTime ?? '',
                   showOnlyTime: true),
@@ -41,7 +41,7 @@ class CalendarEventItem extends StatelessWidget {
             width: 16,
           ),
           Expanded(
-            flex: 5,
+            flex: 10,
             child: Container(
               decoration: const BoxDecoration(
                   color: AppColor.primary50,
