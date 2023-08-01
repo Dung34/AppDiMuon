@@ -78,6 +78,7 @@ class SSOConfig {
 
 class AppConfig {
   static const String appName = "CEO.HN7";
+  static const String appVersionName = "1.0.0";
   static const String fontFamily = "Roboto";
   static const Color primaryColor = AppColor.primaryColor;
   static const MaterialColor primarySwatch = AppColor.primarySwatch;

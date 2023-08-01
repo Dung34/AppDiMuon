@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../config/config.dart';
 import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../di/di.dart';
@@ -151,6 +152,19 @@ class SettingPage extends StatelessWidget {
                       );
                     },
                     label: 'Đăng xuất',
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Version: ${AppConfig.appVersionName}',
+                    textAlign: TextAlign.end,
                   ),
                 ),
               )
