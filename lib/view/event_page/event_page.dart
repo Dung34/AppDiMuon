@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
-import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/shimmer/container_shimmer.dart';
@@ -150,11 +149,11 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
               //   onPressed: () {},
               //   icon: Assets.icSearch,
               // ),
-              PrimaryIconButton(
-                context: context,
-                onPressed: () {},
-                icon: Assets.icNotification,
-              )
+              // PrimaryIconButton(
+              //   context: context,
+              //   onPressed: () {},
+              //   icon: Assets.icNotification,
+              // )
             ],
           ),
         ),

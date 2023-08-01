@@ -6,7 +6,6 @@ import '../../../di/di.dart';
 import '../../../shared/etx/app_ext.dart';
 import '../../../shared/utils/dialog_helper.dart';
 import '../../../shared/utils/validation_utils.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -273,27 +272,27 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Center(
-                    child: RichText(
-                        text: TextSpan(children: [
-                      const TextSpan(
-                        text: 'Chưa có tài khoản? ',
-                        style: AppTextTheme.textPrimaryBold,
-                      ),
-                      TextSpan(
-                          text: 'Đăng ký ngay',
-                          style: AppTextTheme.textPrimaryBold
-                              .copyWith(color: AppColor.primaryColor),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.of(context)
-                                  .pushNamed(AppRoute.register);
-                            }),
-                    ])),
-                  ),
-                  const SizedBox(
-                    height: 45,
-                  ),
+                  // Center(
+                  //   child: RichText(
+                  //       text: TextSpan(children: [
+                  //     const TextSpan(
+                  //       text: 'Chưa có tài khoản? ',
+                  //       style: AppTextTheme.textPrimaryBold,
+                  //     ),
+                  //     TextSpan(
+                  //         text: 'Đăng ký ngay',
+                  //         style: AppTextTheme.textPrimaryBold
+                  //             .copyWith(color: AppColor.primaryColor),
+                  //         recognizer: TapGestureRecognizer()
+                  //           ..onTap = () {
+                  //             Navigator.of(context)
+                  //                 .pushNamed(AppRoute.register);
+                  //           }),
+                  //   ])),
+                  // ),
+                  // const SizedBox(
+                  //   height: 45,
+                  // ),
                 ],
               ),
             ),

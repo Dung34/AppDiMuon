@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -36,6 +37,8 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
+      log('pauseCamera1');
+
       controller!.pauseCamera();
     } else if (Platform.isIOS) {
       controller!.resumeCamera();
@@ -99,6 +102,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
                 //     title: 'title',
                 //     message: 'address: ${state.currentLocation?.address}'));
               } else {
+                log('pauseCamera2');
                 controller!.pauseCamera();
                 context.showAppDialog(
                   getAlertDialog(
@@ -136,6 +140,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
                   ),
                 );
               } else {
+                controller?.resumeCamera();
                 showToast('',
                     child: SizedBox(
                       height: context.screenHeight * 0.15,
@@ -270,9 +275,11 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
       controller.resumeCamera();
       controller.scannedDataStream.listen((scanData) async {
         barcode = scanData;
-        if (handleScannerCode(barcode?.code)) {
-          controller.pauseCamera();
-        }
+        handleScannerCode(barcode?.code);
+        // if () {
+        //   log('pauseCamera0');
+        //   // controller.pauseCamera();
+        // }
       });
     });
   }
@@ -285,6 +292,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
         return false;
       }
       cubit.joinEvent(eventId, null, currentLocationStr, isUserScan: true);
+      controller?.pauseCamera();
       return true;
     }
     if (data.startsWith('${Environment.domain}/profile/')) {

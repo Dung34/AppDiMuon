@@ -12,6 +12,7 @@ class AppTextTheme {
   );
 
   static const TextStyle textGreeting = TextStyle(
+    fontFamily: 'Lexend',
     color: AppColor.black,
     fontWeight: FontWeight.w700,
     fontSize: 36,

@@ -8,6 +8,7 @@ import '../../data/resources/resources.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/dialog_helper.dart';
+import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_image.dart';
@@ -51,9 +52,11 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
       listener: (context, state) {
         if (state is EventDeleteEventSuccessState) {
           hideLoading();
+          ViewUtils.toastSuccess(AlertText.deleteSuccess);
           context.pop();
         }
         if (state is EventDeleteEventFailedState) {
+          ViewUtils.toastSuccess(AlertText.deleteFailed);
           hideLoading();
         }
       },
