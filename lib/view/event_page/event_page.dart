@@ -79,82 +79,97 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
         ),
         Padding(
           padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Expanded(
-                child: BlocBuilder<UserCubit, UserState>(
-                  buildWhen: (previous, current) =>
-                      current is UserGetUserSuccessState,
-                  builder: (context, state) {
-                    return state is UserGetUserSuccessState
-                        ? Row(
-                            children: [
-                              PrimaryCircleImage(
-                                imageUrl: state.userEntity.avatar,
-                              ),
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Xin chào,',
-                                      style: AppTextTheme.robotoMedium14
-                                          .copyWith(
-                                              overflow: TextOverflow.ellipsis,
-                                              color: AppColor.primary900),
-                                    ),
-                                    Text(
-                                      '${state.userEntity.fullname ?? 'undefined'}!',
-                                      style: AppTextTheme.robotoBold16.copyWith(
-                                          overflow: TextOverflow.ellipsis,
-                                          color: AppColor.primary500),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                        : const PrimaryShimmer(
-                            child: Row(
+          child: Container(
+            color: Colors.grey.shade300,
+            child: Row(
+              children: [
+                Expanded(
+                  child: BlocBuilder<UserCubit, UserState>(
+                    buildWhen: (previous, current) =>
+                        current is UserGetUserSuccessState,
+                    builder: (context, state) {
+                      return state is UserGetUserSuccessState
+                          ? Row(
                               children: [
-                                CircleAvatar(
-                                  radius: 20,
+                                const SizedBox(width: 20),
+                                Text(
+                                  'Eztek',
+                                  style: AppTextTheme.textPrimaryBold
+                                      .copyWith(fontSize: 20),
                                 ),
-                                SizedBox(width: 16),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ContainerShimmer(
-                                        height: 16,
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      ContainerShimmer(width: 200),
-                                    ],
-                                  ),
+                                const Spacer(),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.notifications)),
+                                PrimaryCircleImage(
+                                  imageUrl: state.userEntity.avatar,
                                 ),
+                                const SizedBox(width: 16),
+                                // Expanded(
+                                //   child: Column(
+                                //     crossAxisAlignment:
+                                //         CrossAxisAlignment.start,
+                                //     children: [
+                                //       Text(
+                                //         'Xin chào,',
+                                //         style: AppTextTheme.robotoMedium14
+                                //             .copyWith(
+                                //                 overflow: TextOverflow.ellipsis,
+                                //                 color: AppColor.primary900),
+                                //       ),
+                                //       Text(
+                                //         '${state.userEntity.fullname ?? 'undefined'}!',
+                                //         style: AppTextTheme.robotoBold16
+                                //             .copyWith(
+                                //                 overflow: TextOverflow.ellipsis,
+                                //                 color: AppColor.primary500),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
-                            ),
-                          );
-                  },
+                            )
+                          : const PrimaryShimmer(
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 20,
+                                  ),
+                                  SizedBox(width: 16),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ContainerShimmer(
+                                          height: 16,
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        ContainerShimmer(width: 200),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                    },
+                  ),
                 ),
-              ),
 
-              // PrimaryIconButton(
-              //   context: context,
-              //   onPressed: () {},
-              //   icon: Assets.icSearch,
-              // ),
-              // PrimaryIconButton(
-              //   context: context,
-              //   onPressed: () {},
-              //   icon: Assets.icNotification,
-              // )
-            ],
+                // PrimaryIconButton(
+                //   context: context,
+                //   onPressed: () {},
+                //   icon: Assets.icSearch,
+                // ),
+                // PrimaryIconButton(
+                //   context: context,
+                //   onPressed: () {},
+                //   icon: Assets.icNotification,
+                // )
+              ],
+            ),
           ),
         ),
         BlocBuilder<EventCubit, EventState>(
@@ -165,8 +180,8 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                 height: searchState.isShow ? 50 : 0,
                 duration: const Duration(milliseconds: 200),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, right: 16, bottom: 8),
+                  padding: const EdgeInsets.only(
+                      left: 16.0, right: 16, bottom: 8, top: 8),
                   child: Row(
                     children: [
                       Expanded(

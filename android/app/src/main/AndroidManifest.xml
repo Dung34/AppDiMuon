@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="active_plus">
+    package="vn.eztek.active_plus">
     <application
         android:label="Active+"
         android:name="${applicationName}"
