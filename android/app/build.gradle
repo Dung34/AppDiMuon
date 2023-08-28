@@ -26,13 +26,13 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('app/key.properties')
+def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -48,15 +48,15 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-//    defaultConfig {
-//        applicationId "active_plus"
-//        // You can update the following values to match your application needs.
-//        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-//        minSdkVersion flutter.minSdkVersion
-//        targetSdkVersion flutter.targetSdkVersion
-//        versionCode flutterVersionCode.toInteger()
-//        versionName flutterVersionName
-//    }
+   defaultConfig {
+       applicationId "active_plus"
+       // You can update the following values to match your application needs.
+       // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
+       minSdkVersion flutter.minSdkVersion
+       targetSdkVersion flutter.targetSdkVersion
+       versionCode flutterVersionCode.toInteger()
+       versionName flutterVersionName
+   }
 
     defaultConfig {
         applicationId "vn.eztek.ceohn7"
@@ -70,7 +70,7 @@ android {
         ]
     }
 
-     signingConfigs {
+    signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -94,4 +94,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.google.android.material:material:1.11.0-alpha02'
 }

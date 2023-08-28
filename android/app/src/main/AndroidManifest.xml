@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="active_plus">
     <application
-        android:label="CEO HN7"
+        android:label="Active+"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
