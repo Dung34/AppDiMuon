@@ -15,42 +15,62 @@ class Environment {
 
 class EndPoints {
   // sso related
-  static const String getUserInfoSSO = '/user/updateinfo';
-  static const String deactiveUser = '/user/de-active';
 
   static const String publicAddressBaseUrl =
       "https://provinces.open-api.vn/api/p";
-
-  // user related
-  static const String getCurrentUser = '/gateway/user/current';
-  static const String getUser = '/gateway/user';
-  static const String updateUser = '/gateway/user/update';
-  static const String login = '/connect/login';
-  static const String getAccountInfo = '/api/account';
-  static const String changePassword = '/api/account/change-password';
-
-  // event
-  static const String getMeetingByUserId = '/gateway/meeting/current';
-  static const String createEvent = '/gateway/event/create';
-  static const String updateEvent = '/gateway/event/update';
-  static const String deleteEvent = '/gateway/event/delete';
-  static const String getEventById = '/gateway/event';
-  static const String getAllEvent = '/gateway/events';
-  static const String getAllCalendarEvent = '/gateway/Calendar/events';
-  static const String getAllFrames = '/gateway/activity/frames';
-  static const String joinShow = '/gateway/event-join/create';
-  static const String getMemberJoined = '/gateway/event-join/';
-  static const String getShowHistory = '/gateway/event-joined/';
-
-  // employee related
-  static const String getEmployeeByIdForUser =
-      '/gw/Employee/GetEmployeeByIdForUser';
-  static const String getMemberDetailInfo =
-      '/gateway/Member/memberViewMemberInformation';
-  static const String getMemberBasicInfo = '/api/getInformation';
-
-  // storage repository
-  static const String uploadImage = "/gateway/Media/Upload";
+  //user
+  static const String userRegister = "/api/register";
+  static const String activeUser = "/api/activate";
+  static const String deactiveUser = "/api/deactivate";
+  static const String checkAuth = "/api/authenticate";
+  static const String getRole = "/api/authorities";
+  static const String validateUser = "/api/validateUser";
+  static const String getUser = "/api/account";
+  static const String postUser = "/api/account";
+  static const String getInfoUser = "/api/getInformation";
+  // change password
+  static const String changePassword = "/api/account/change-password";
+  static const String initReset = "/api/account/reset-password/init";
+  //forgot password OTP
+  static const String finishReset = "/api/account/reset-password/finish";
+  static const String getOTP = "/api/account/forgot-password-method";
+  static const String postrequestOTP = "/api/account/forgot-password-Getotp";
+  static const String postCheckOTP = "/api/account/forgot-password-CheckOtp";
+  static const String postCompleteOTP = "/api/account/forgot-password-complete";
+  // forgot password email
+  static const String postRequestOTPMail = "/api/account/verified-email-otp";
+  static const String completeOTPMail = "/api/account/verified-email-complete";
+  //login
+  static const String login = "/api/authenticate";
+  static const String getManagerInfo = "/management/info";
+  // Swagger Resources ???
+  static const String swaggerResources = "/swagger-resources";
+  //task project
+  static const String postProject = "/project";
+  static const String addProjectMember = "/project/add-member";
+  static const String deleteProject = "/project/detele";
+  static const String deleteProjectMember = "/project/delete-member";
+  static const String viewAllProject = "/project/view-all-project";
+  static const String viewDetailProject = "/project/view-detail-project";
+  static const String postTask = "/task";
+  static const String postTaskMember = "/task/add-member";
+  static const String deleteTask = "/task/delete";
+  static const String getIdTask = "/task/Id";
+  static const String viewAllMember = "/TaskProject/project/view-all-member'";
+  static const String deleteMemberTask =
+      "/TaskProject/delete-member-task-project";
+  static const String getByEmployyId = "/TaskProject/Get-by-employyId";
+  static const String getTaskMemberId = "/task/taskMember/Id";
+  //admin
+  static const String createAdmin = "/api/admin/Users";
+  static const String putAdmin = "/api/admin/Users";
+  static const String putAdminId = "/api/admin/Users/{id}";
+  static const String getAllUser = "/api/admin/Users/GetAllUser";
+  static const String getRoleAdmin = "/api/admin/Users/authorities";
+  static const String searchUser = "/api/admin/Users/searchUser'";
+  static const String getUserByName = "/api/admin/Users/{login}";
+  static const String deleteUserByName = "/api/admin/Users/{login}";
+  static const String resetPasswordbyAdmin = "/api/admin/Users/reset-password";
 }
 
 class SSOConfig {
