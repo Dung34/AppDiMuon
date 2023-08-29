@@ -193,9 +193,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<ResponseWrapper<UserEntity>> getUser({String? userId}) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.get(
-      userId != null
-          ? '${EndPoints.getUser}/$userId'
-          : EndPoints.getCurrentUser,
+      EndPoints.getUser,
       options: Options(
         headers: {'Authorization': 'Bearer $accessToken'},
       ),
@@ -218,7 +216,7 @@ class UserRepositoryImpl implements UserRepository {
       {required UserEntity user}) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.patch(
-      EndPoints.updateUser,
+      EndPoints.getCurrentUser,
       data: _userDataMapper.mapToData(user).toJson()
         ..removeWhere(
           (key, value) => value == null,
