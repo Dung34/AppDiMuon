@@ -41,3 +41,13 @@ class SharedPreferenceKey {
   static const String rememberMe = "rememberMe";
   static const String userId = "userId";
 }
+
+class ProjectStatus {
+  static const int uncompleted = 0;
+  static const int completed = 1;
+}
+
+class ProjectStatusStr {
+  static const String uncompleted = "Chưa hoàn thành";
+  static const String completed = "Đã hoàn thành";
+}

@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/constant/constants.dart';
 import '../../../data/model/api/base_response.dart';
+import '../../../data/repository/remote/project_list_repository.dart';
 import '../../../data/repository/remote/repository.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_type/event_type.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../../domain/entity/event/user_event_joined.dart/user_event_joined.dart';
+import '../../../domain/entity/project/project.dart';
 import '../../../shared/utils/geocoding_helper.dart';
 
 part 'event_state.dart';

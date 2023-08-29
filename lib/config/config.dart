@@ -51,6 +51,9 @@ class EndPoints {
 
   // storage repository
   static const String uploadImage = "/gateway/Media/Upload";
+
+  //project
+  static const String getAllProject = '/project/view-all-project';
 }
 
 class SSOConfig {

@@ -5,14 +5,18 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repository/local/shared_pref_helper.dart';
+import '../data/repository/remote/project_list_repository.dart';
+import '../data/repository/remote/project_list_repository_imp.dart';
 import '../data/repository/remote/repository.dart';
 import '../domain/mapper/event_data_mapper.dart';
+import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
+import '../view/project_page/cubit/project_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -32,6 +36,9 @@ configureInjection() async {
   );
 
   getIt.registerLazySingleton<EventRepository>(() => EventpRepositoryImpl());
+
+  getIt.registerLazySingleton<ProjectListRepository>(
+      () => ProjectListRepositoryImpl());
 
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
 
@@ -57,10 +64,13 @@ configureInjection() async {
   getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
   getIt.registerLazySingleton<EventMemberDataMapper>(
       () => EventMemberDataMapper());
+  getIt.registerLazySingleton<ProjectListDataMapper>(
+      () => ProjectListDataMapper());
 
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());
   getIt.registerSingleton<CommonCubit>(CommonCubit());
   getIt.registerSingleton<UserCubit>(UserCubit());
   getIt.registerFactory<EventCubit>(() => EventCubit());
+  getIt.registerFactory<ProjectCubit>(() => ProjectCubit());
 }
