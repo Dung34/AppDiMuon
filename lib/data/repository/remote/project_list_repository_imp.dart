@@ -39,15 +39,18 @@ class ProjectListRepositoryImpl extends ProjectListRepository {
       final response = await dio.post(
         EndPoints.getAllProject,
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+        data: {"page": 1, "pageSize": 5},
       );
       if (response.statusCode == 200) {
+        print('Response: ${response.data}');
         return ResponseWrapper.success(
           data: List.from(
-            (response.data as List).map(
-              (e) => _projectListDataMapper.mapToEntity(
+            (response as List).map((e) {
+              print(e);
+              return _projectListDataMapper.mapToEntity(
                 ProjectListResponse.fromJson(e),
-              ),
-            ),
+              );
+            }),
           ),
         );
       }

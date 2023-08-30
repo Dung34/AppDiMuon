@@ -28,6 +28,7 @@ class _ProjectPageState extends BasePageState<ProjectPage, ProjectCubit> {
               top: 20, left: 8.0, right: 8.0, bottom: 8.0),
           child: Text(
             'List project',
+            textAlign: TextAlign.start,
             style: AppTextTheme.textAppBarPrimary
                 .copyWith(color: AppColor.black, fontSize: 24),
           ),

@@ -4,7 +4,6 @@ import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/project_list_repository.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/project/project.dart';
-import '../../../domain/entity/project/project_list.dart';
 
 part 'project_state.dart';
 
@@ -22,6 +21,7 @@ class ProjectCubit extends Cubit<ProjectState> {
   }) async {
     emit(EventInitial());
     final response = await _projectRepository.getAllProject();
+    print(response.data);
     if (response.status == ResponseStatus.success) {
       projects.clear();
       projects.addAll(response.data ?? []);
