@@ -9,7 +9,6 @@ import '../../shared/widgets/animated_bottom_navigation/animated_bottom_navigati
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
-import '../event_page/calendar/calendar_page.dart';
 import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
 import '../project_page/project_page.dart';
