@@ -14,7 +14,6 @@ class Environment {
 }
 
 class EndPoints {
-  // sso related
   static const String getUserInfoSSO = '/user/updateinfo';
   static const String deactiveUser = '/user/de-active';
 
@@ -51,9 +50,74 @@ class EndPoints {
 
   // storage repository
   static const String uploadImage = "/gateway/Media/Upload";
+<<<<<<< HEAD
 
   //project
   static const String getAllProject = '/project/view-all-project';
+=======
+  // sso related
+
+  //user
+  static const String userRegisterActive = "/api/register";
+  static const String activeUserActive = "/api/activate";
+  static const String deactiveUserActive = "/api/deactivate";
+  static const String checkAuthActive = "/api/authenticate";
+  static const String getRoleActive = "/api/authorities";
+  static const String validateUserActive = "/api/validateUser";
+  static const String getUserActive = "/api/account";
+  static const String postUserActive = "/api/account";
+  static const String getInfoUserActive = "/api/getInformation";
+  // change password
+  static const String changePasswordActive = "/api/account/change-password";
+  static const String initResetActive = "/api/account/reset-password/init";
+  //forgot password OTP
+  static const String finishResetActive = "/api/account/reset-password/finish";
+  static const String getOTPActive = "/api/account/forgot-password-method";
+  static const String postrequestOTPActive =
+      "/api/account/forgot-password-Getotp";
+  static const String postCheckOTPActive =
+      "/api/account/forgot-password-CheckOtp";
+  static const String postCompleteOTPActive =
+      "/api/account/forgot-password-complete";
+  // forgot password email
+  static const String postRequestOTPMailActive =
+      "/api/account/verified-email-otp";
+  static const String completeOTPMailActive =
+      "/api/account/verified-email-complete";
+  //login
+  static const String loginActive = "/api/authenticate";
+  static const String getManagerInfoActive = "/management/info";
+  // Swagger Resources ???
+  static const String swaggerResourcesActive = "/swagger-resources";
+  //task project
+  static const String postProjectActive = "/project";
+  static const String addProjectMemberActive = "/project/add-member";
+  static const String deleteProjectActive = "/project/detele";
+  static const String deleteProjectMemberActive = "/project/delete-member";
+  static const String viewAllProjectActive = "/project/view-all-project";
+  static const String viewDetailProjectActive = "/project/view-detail-project";
+  static const String postTaskActive = "/task";
+  static const String postTaskMemberActive = "/task/add-member";
+  static const String deleteTaskActive = "/task/delete";
+  static const String getIdTaskActive = "/task/Id";
+  static const String viewAllMemberActive =
+      "/TaskProject/project/view-all-member'";
+  static const String deleteMemberTaskActive =
+      "/TaskProject/delete-member-task-project";
+  static const String getByEmployyIdActive = "/TaskProject/Get-by-employyId";
+  static const String getTaskMemberIdActive = "/task/taskMember/Id";
+  //admin
+  static const String createAdminActive = "/api/admin/Users";
+  static const String putAdminActive = "/api/admin/Users";
+  static const String putAdminIdActive = "/api/admin/Users/{id}";
+  static const String getAllUserActive = "/api/admin/Users/GetAllUser";
+  static const String getRoleAdminActive = "/api/admin/Users/authorities";
+  static const String searchUserActive = "/api/admin/Users/searchUser'";
+  static const String getUserByNameActive = "/api/admin/Users/{login}";
+  static const String deleteUserByNameActive = "/api/admin/Users/{login}";
+  static const String resetPasswordbyAdminActive =
+      "/api/admin/Users/reset-password";
+>>>>>>> 6642d4e1f8bfa9be2a9b8f123d5a714094c66e74
 }
 
 class SSOConfig {
