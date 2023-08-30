@@ -21,7 +21,6 @@ class ProjectCubit extends Cubit<ProjectState> {
   }) async {
     emit(EventInitial());
     final response = await _projectRepository.getAllProject();
-    print(response.data);
     if (response.status == ResponseStatus.success) {
       projects.clear();
       projects.addAll(response.data ?? []);

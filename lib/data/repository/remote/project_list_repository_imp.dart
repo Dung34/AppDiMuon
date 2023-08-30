@@ -44,14 +44,12 @@ class ProjectListRepositoryImpl extends ProjectListRepository {
       if (response.statusCode == 200) {
         print('Response: ${response.data}');
         return ResponseWrapper.success(
-          data: List.from(
-            (response as List).map((e) {
-              print(e);
-              return _projectListDataMapper.mapToEntity(
-                ProjectListResponse.fromJson(e),
-              );
-            }),
-          ),
+          data: _projectListDataMapper
+                  .mapToEntity(
+                    ProjectListResponse.fromJson(response.data),
+                  )
+                  .data ??
+              [],
         );
       }
       return ResponseWrapper.error(message: "");

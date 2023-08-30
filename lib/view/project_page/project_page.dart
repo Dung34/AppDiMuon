@@ -22,37 +22,44 @@ class _ProjectPageState extends BasePageState<ProjectPage, ProjectCubit> {
   @override
   Widget buildPage(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           padding: const EdgeInsets.only(
               top: 20, left: 8.0, right: 8.0, bottom: 8.0),
           child: Text(
             'List project',
-            textAlign: TextAlign.start,
             style: AppTextTheme.textAppBarPrimary
                 .copyWith(color: AppColor.black, fontSize: 24),
           ),
         ),
-        BlocBuilder<ProjectCubit, ProjectState>(builder: (context, state) {
-          if (state is EventGetAllProjectSuccessState) {
-            final projects = state.projects;
-            return ListView.builder(
-              itemCount: projects.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  tileColor: AppColor.fourth700,
-                  title: Text(projects[index].name ?? ""),
-                );
-              },
+        Expanded(
+          child: BlocBuilder<ProjectCubit, ProjectState>(
+              builder: (context, state) {
+            if (state is EventGetAllProjectSuccessState) {
+              final projects = state.projects;
+              return ListView.builder(
+                itemCount: projects.length,
+                itemBuilder: (context, index) {
+                  print(projects[index].name);
+                  return Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    child: ListTile(
+                      tileColor: AppColor.fourth200,
+                      title: Text(projects[index].name ?? ""),
+                    ),
+                  );
+                },
+              );
+            }
+            return const Center(
+              child: Text(
+                "Không có dữ liệu hiển thị",
+                style: AppTextTheme.textPrimaryMedium,
+              ),
             );
-          }
-          return const Center(
-            child: Text(
-              "Không có dữ liệu hiển thị",
-              style: AppTextTheme.textPrimaryMedium,
-            ),
-          );
-        })
+          }),
+        )
       ],
     );
   }
