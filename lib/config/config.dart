@@ -85,5 +85,5 @@ class AppConfig {
   static const double primaryFontSize = 14;
   static const FontWeight defaultFontWeight = FontWeight.w400;
   static const double defaultPadding = 16;
-  static const double defaultRadius = 8;
+  static const double defaultRadius = 36;
 }

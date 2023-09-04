@@ -239,7 +239,7 @@ class LoginScreen extends StatelessWidget {
                   PrimaryButton(
                     context: context,
                     onPressed: onLoginPressed,
-                    label: "Đăng Nhập",
+                    label: 'Đăng nhập',
                   ),
                   // const SizedBox(
                   //   height: 10,

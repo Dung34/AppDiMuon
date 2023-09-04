@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
+import '../../shared/widgets/button/primary_button.dart';
+import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/shimmer/container_shimmer.dart';
@@ -13,6 +15,7 @@ import '../../shared/widgets/text_field/primary_search_text_field.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
+import 'components/event_dropdown_button.dart';
 import 'components/event_filter_dialog.dart';
 import 'components/event_item.dart';
 import '../../shared/widgets/shimmer/event_list_shimmer.dart';
@@ -27,6 +30,12 @@ class EventPage<EventCubit> extends StatefulWidget {
 
 // ignore: prefer_void_to_null
 class _EventPageState extends BasePageState<EventPage, EventCubit> {
+  final List<String> tabs = ['Sự kiện', 'Check-in'];
+  final List<String> timeEvent = ['Sắp diễn ra', 'Đang diễn ra', 'Đã diễn ra'];
+  final List<String> joinEvent = ['Tham gia ngay', 'Đã tham gia'];
+
+  String? selectedTab;
+
   @override
   EdgeInsets get padding => EdgeInsets.zero;
 
@@ -37,6 +46,7 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
     userCubit.getUser();
     cubit.showSearchBar(0);
     scrollController.addListener(_onScroll);
+    selectedTab = tabs[0];
   }
 
   void _onScroll() {
@@ -78,6 +88,7 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
           ),
         ),
         Padding(
+<<<<<<< HEAD
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
@@ -234,6 +245,61 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
               return const SizedBox();
             }
           },
+=======
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: const BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(width: 1, color: AppColor.fourth300)),
+              color: Colors.white,
+            ),
+            child: Row(
+              children: [
+                EventDropdownButton(
+                  tabs: tabs,
+                  buttonStyle: AppTextTheme.lexendBold24,
+                  dropdownColor: AppColor.white,
+                  itemStyle: AppTextTheme.robotoBold16
+                      .copyWith(color: AppColor.primary500),
+                ),
+                const Spacer(),
+                PrimaryIconButton(
+                  context: context,
+                  onPressed: () {},
+                  icon: Assets.icSearch,
+                ),
+                const SizedBox(width: 5.0),
+                PrimaryIconButton(
+                  context: context,
+                  onPressed: () {},
+                  icon: Assets.icNotification,
+                )
+              ],
+            ),
+          ),
+        ),
+        Row(
+          children: [
+            EventDropdownButton(
+              tabs: timeEvent,
+              buttonStyle: AppTextTheme.robotoMedium12
+                  .copyWith(color: AppColor.primary500),
+              dropdownColor: AppColor.white,
+              itemStyle: AppTextTheme.robotoLight12
+                  .copyWith(color: AppColor.primary500),
+              padding: const EdgeInsets.only(left: 15.0),
+            ),
+            EventDropdownButton(
+              tabs: joinEvent,
+              buttonStyle: AppTextTheme.robotoMedium12
+                  .copyWith(color: AppColor.primary500),
+              dropdownColor: AppColor.white,
+              itemStyle: AppTextTheme.robotoLight12
+                  .copyWith(color: AppColor.primary500),
+              padding: const EdgeInsets.only(left: 15.0),
+            ),
+          ],
+>>>>>>> ff2a60f (Sửa màn hình sự kiện.)
         ),
         Expanded(
           child: BlocBuilder<EventCubit, EventState>(
@@ -250,7 +316,7 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         EventItem(event: event),
-                        const Divider(thickness: 5, color: AppColor.fourth300),
+                        // const Divider(thickness: 5, color: AppColor.fourth300),
                         if (index == events.length - 1)
                           const SizedBox(height: 100),
                       ],

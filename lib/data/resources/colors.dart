@@ -10,11 +10,13 @@ class AppColor {
   static const Color primary900 = Color(0xff07152D);
   static const MaterialColor primarySwatch = Colors.teal;
   static const Color secondaryColor = Color.fromARGB(255, 250, 160, 24);
+  static const Color secondary50 = Color(0xFFE7ECF5);
   static const Color secondary100 = Color(0xffB3C4E0);
   static const Color secondary400 = Color(0xff3C66B0);
   static const Color secondary500 = Color(0xff0B409C);
   static const Color secondary600 = Color(0xff0F2D61);
   static const Color third400 = Color(0xffFDCB5D);
+  static const Color third600 = Color(0xFFE6AD2F);
   static const Color fourth200 = Color(0xffEBEBEB);
   static const Color fourth300 = Color(0xffE2E2E2);
   static const Color fourth600 = Color(0xffC1C1C1);
