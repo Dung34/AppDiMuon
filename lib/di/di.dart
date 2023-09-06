@@ -31,7 +31,7 @@ configureInjection() async {
         openIdRepository: getIt.get<OpenIDRepository>()),
   );
 
-  getIt.registerLazySingleton<EventRepository>(() => EventpRepositoryImpl());
+  getIt.registerLazySingleton<EventRepository>(() => EventRepositoryImpl());
 
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
 

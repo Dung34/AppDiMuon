@@ -31,7 +31,7 @@ class CalendarEventItem extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Text(
-              DateTimeUtils.formatDate(event.startTime ?? '',
+              DateTimeUtils.formatDate(event.startDate ?? '',
                   showOnlyTime: true),
               style: AppTextTheme.robotoBold18
                   .copyWith(color: AppColor.secondary400),

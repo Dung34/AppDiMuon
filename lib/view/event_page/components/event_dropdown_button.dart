@@ -5,7 +5,9 @@ class EventDropdownButton extends StatefulWidget {
   final Color? dropdownColor;
   final Icon? icon;
   final TextStyle? itemStyle;
+  final Function(String?) onChanged;
   final EdgeInsetsGeometry? padding;
+  final String? value;
   final List<String> tabs;
 
   const EventDropdownButton(
@@ -14,7 +16,9 @@ class EventDropdownButton extends StatefulWidget {
       this.dropdownColor,
       this.icon,
       this.itemStyle,
+      required this.onChanged,
       this.padding,
+      this.value,
       required this.tabs});
 
   @override
@@ -22,9 +26,12 @@ class EventDropdownButton extends StatefulWidget {
 }
 
 class _EventDropdownButtonState extends State<EventDropdownButton> {
+  String? selectedTab;
+
   @override
   void initState() {
     super.initState();
+    selectedTab = widget.value;
   }
 
   @override
@@ -55,8 +62,8 @@ class _EventDropdownButtonState extends State<EventDropdownButton> {
               ))
           .toList(),
       style: widget.itemStyle,
-      value: widget.tabs[0],
-      onChanged: (value) {},
+      value: widget.value,
+      onChanged: widget.onChanged,
     );
   }
 }

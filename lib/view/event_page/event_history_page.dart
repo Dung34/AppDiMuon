@@ -23,7 +23,7 @@ class _EventHistoryPageState
   @override
   void initState() {
     super.initState();
-    cubit.getAllHistory();
+    // cubit.getAllHistory();
     if (widget.useAppBar) {
       setAppBar = PrimaryAppBar(
         title: 'Lịch sử tham dự',

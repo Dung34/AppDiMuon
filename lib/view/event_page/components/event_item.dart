@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../config/routes.dart';
-import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../../shared/etx/view_ext.dart';
@@ -26,10 +25,10 @@ class EventItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     hasOccurred = DateTime.now().isBefore(
-            DateTime.tryParse(event.startTime ?? '') ?? DateTime.now())
+            DateTime.tryParse(event.startDate ?? '') ?? DateTime.now())
         ? -1
         : (DateTime.now().isBefore(
-                DateTime.tryParse(event.endTime ?? '') ?? DateTime.now())
+                DateTime.tryParse(event.endDate ?? '') ?? DateTime.now())
             ? 0
             : 1);
 
@@ -54,7 +53,7 @@ class EventItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${DateTimeUtils.formatDate(event.startTime ?? '')} - ${DateTimeUtils.formatDate(event.endTime ?? '')}',
+              '${DateTimeUtils.formatDate(event.startDate ?? '')} - ${DateTimeUtils.formatDate(event.endDate ?? '')}',
               style: AppTextTheme.robotoRegular12.copyWith(fontSize: 10),
             ),
             const SizedBox(
@@ -93,8 +92,10 @@ class EventItem extends StatelessWidget {
                   height: 18.0,
                   onPressed: () {},
                   padding: EdgeInsets.zero,
-                  child:
-                      Text(hasOccurred == 1 ? 'Đã tham gia' : 'Tham gia ngay'),
+                  child: Text(
+                      hasOccurred == 1 ? 'Đã tham gia' : 'Tham gia ngay',
+                      style: AppTextTheme.robotoMedium12
+                          .copyWith(color: AppColor.primary500)),
                 ),
               ],
             ),

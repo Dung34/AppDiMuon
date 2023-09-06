@@ -47,7 +47,7 @@ class AppRoute {
         AppRoute.eventHistory: (context) => const EventHistoryPage(),
         AppRoute.eventQr: (context) => const EventQrPage(),
         AppRoute.eventOpening: (context) => const EventOpeningPage(),
-        AppRoute.eventCreate: (context) => const CalendarAddPage(),
+        // AppRoute.eventCreate: (context) => const CalendarAddPage(),
         AppRoute.qrScanner: (context) => const QrScannerPage(),
         AppRoute.eventMemberHistory: (context) =>
             const EventMemberHistoryPage(),

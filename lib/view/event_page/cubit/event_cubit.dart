@@ -69,15 +69,7 @@ class EventCubit extends Cubit<EventState> {
       }
     }).toList();
     final response = await _eventRepository.getAllEvent(
-      keyword: eventFilterData.keyword,
       status: eventFilterData.status,
-      date: date,
-      isOpening: isOpening,
-      isDescending: eventFilterData.timeFilterData[0]
-          ? false
-          : eventFilterData.timeFilterData[1]
-              ? true
-              : null,
       startDate: eventFilterData.timeFilterData[2]
           ? eventFilterData.timeRange[0]
           : null,
@@ -94,47 +86,47 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
-  getAllCalendarEvent({
-    String? startDate,
-    String? endDate,
-  }) async {
-    final response = await _eventRepository.getAllCalendarEvent(
-      startDate: startDate,
-      endDate: endDate,
-    );
-    if (response.status == ResponseStatus.success) {
-      if (startDate != null && endDate != null) {
-        emit(EventGetAllEventRangeSuccessState(response.data ?? []));
-      } else {
-        emit(EventGetAllEventSuccessState(
-          response.data ?? [],
-        ));
-      }
-    } else {
-      emit(EventGetAllEventFailedState());
-    }
-  }
+  // getAllCalendarEvent({
+  //   String? startDate,
+  //   String? endDate,
+  // }) async {
+  //   final response = await _eventRepository.getAllCalendarEvent(
+  //     startDate: startDate,
+  //     endDate: endDate,
+  //   );
+  //   if (response.status == ResponseStatus.success) {
+  //     if (startDate != null && endDate != null) {
+  //       emit(EventGetAllEventRangeSuccessState(response.data ?? []));
+  //     } else {
+  //       emit(EventGetAllEventSuccessState(
+  //         response.data ?? [],
+  //       ));
+  //     }
+  //   } else {
+  //     emit(EventGetAllEventFailedState());
+  //   }
+  // }
 
-  getAllCheckedInMember(String eventId) async {
-    final response =
-        await _eventRepository.getAllCheckedInMember(eventId: eventId);
-    if (response.status == ResponseStatus.success) {
-      await Future.delayed(const Duration(milliseconds: 200));
-      emit(EventGetAllMemberSuccessState(response.data ?? []));
-    } else {
-      emit(EventGetAllMemberFailedState());
-    }
-  }
+  // getAllCheckedInMember(String eventId) async {
+  //   final response =
+  //       await _eventRepository.getAllCheckedInMember(eventId: eventId);
+  //   if (response.status == ResponseStatus.success) {
+  //     await Future.delayed(const Duration(milliseconds: 200));
+  //     emit(EventGetAllMemberSuccessState(response.data ?? []));
+  //   } else {
+  //     emit(EventGetAllMemberFailedState());
+  //   }
+  // }
 
-  getAllHistory({String? username}) async {
-    final response = await _eventRepository.getAllHistory(username: username);
+  // getAllHistory({String? username}) async {
+  //   final response = await _eventRepository.getAllHistory(username: username);
 
-    if (response.status == ResponseStatus.success) {
-      emit(EventGetAllHistorySuccessState(response.data ?? []));
-    } else {
-      emit(EventGetAllMemberFailedState());
-    }
-  }
+  //   if (response.status == ResponseStatus.success) {
+  //     emit(EventGetAllHistorySuccessState(response.data ?? []));
+  //   } else {
+  //     emit(EventGetAllMemberFailedState());
+  //   }
+  // }
 
   getEventById(String eventId) async {
     emit(EventResetState());
@@ -155,56 +147,56 @@ class EventCubit extends Cubit<EventState> {
     emit(EventGetAllEventSuccessState(events));
   }
 
-  addEvent(Event event) async {
-    final response = await _eventRepository.createEvent(event);
+  // addEvent(Event event) async {
+  //   final response = await _eventRepository.createEvent(event);
 
-    if (response.status == ResponseStatus.success) {
-      emit(EventAddEventSuccessState(event));
-    } else {
-      emit(EventAddEventFailedState());
-    }
-  }
+  //   if (response.status == ResponseStatus.success) {
+  //     emit(EventAddEventSuccessState(event));
+  //   } else {
+  //     emit(EventAddEventFailedState());
+  //   }
+  // }
 
-  updateEvent(Event event) async {
-    final response = await _eventRepository.updateEvent(event);
-    if (response.status == ResponseStatus.success) {
-      currentSelectedEvent = response.data!;
-      emit(EventUpdateEventSuccessState(currentSelectedEvent));
-    } else {
-      emit(EventUpdateEventFailedState());
-    }
-  }
+  // updateEvent(Event event) async {
+  //   final response = await _eventRepository.updateEvent(event);
+  //   if (response.status == ResponseStatus.success) {
+  //     currentSelectedEvent = response.data!;
+  //     emit(EventUpdateEventSuccessState(currentSelectedEvent));
+  //   } else {
+  //     emit(EventUpdateEventFailedState());
+  //   }
+  // }
 
-  deleteEvent(String eventId) async {
-    final response = await _eventRepository.deleteEvent(eventId);
+  // deleteEvent(String eventId) async {
+  //   final response = await _eventRepository.deleteEvent(eventId);
 
-    if (response.status == ResponseStatus.success) {
-      events.removeWhere(
-        (element) => element.id == eventId,
-      );
-      emit(EventDeleteEventSuccessState());
-      emit(EventGetAllEventSuccessState(events));
-    } else {
-      emit(EventDeleteEventFailedState());
-    }
-  }
+  //   if (response.status == ResponseStatus.success) {
+  //     events.removeWhere(
+  //       (element) => element.id == eventId,
+  //     );
+  //     emit(EventDeleteEventSuccessState());
+  //     emit(EventGetAllEventSuccessState(events));
+  //   } else {
+  //     emit(EventDeleteEventFailedState());
+  //   }
+  // }
 
   showFullDay(bool isShow) {
     emit(EventShowFullDayState(isShow));
   }
 
-  joinEvent(String eventId, String? username, String? location,
-      {bool isUserScan = false}) async {
-    final response = await _eventRepository.joinEvent(
-        eventId: eventId, username: username, location: location);
+  // joinEvent(String eventId, String? username, String? location,
+  //     {bool isUserScan = false}) async {
+  //   final response = await _eventRepository.joinEvent(
+  //       eventId: eventId, username: username, location: location);
 
-    if (response.status == ResponseStatus.success) {
-      emit(EventJoinEventSuccessState(response.data ?? UserEventJoined(),
-          isUserScan: isUserScan));
-    } else {
-      emit(EventJoinEventFailedState());
-    }
-  }
+  //   if (response.status == ResponseStatus.success) {
+  //     emit(EventJoinEventSuccessState(response.data ?? UserEventJoined(),
+  //         isUserScan: isUserScan));
+  //   } else {
+  //     emit(EventJoinEventFailedState());
+  //   }
+  // }
 
   onCheckRangeDateTime(String startTime, String endTime) async {
     final check = startTime.compareTo(endTime);

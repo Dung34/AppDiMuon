@@ -72,7 +72,7 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
         markerBuilder: (context, day, events) {
           final dayMapper = widget.initialEvent.firstWhere(
             (element) => DateTimeUtils.isSameDay(
-                element.startTime ?? '', day.toIso8601String()),
+                element.startDate ?? '', day.toIso8601String()),
             orElse: () => Event(),
           );
           return dayMapper.id != null

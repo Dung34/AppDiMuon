@@ -291,7 +291,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
       if (lastestEventId == eventId) {
         return false;
       }
-      cubit.joinEvent(eventId, null, currentLocationStr, isUserScan: true);
+      // cubit.joinEvent(eventId, null, currentLocationStr, isUserScan: true);
       controller?.pauseCamera();
       return true;
     }
@@ -302,7 +302,7 @@ class _QrScannerPageState extends BasePageState<QrScannerPage, EventCubit> {
         return false;
       }
       if (args.eventId != null) {
-        cubit.joinEvent(args.eventId!, username, currentLocationStr);
+        // cubit.joinEvent(args.eventId!, username, currentLocationStr);
       } else {}
       return true;
     }

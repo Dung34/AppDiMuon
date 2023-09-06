@@ -47,7 +47,7 @@ class EventQrPage extends StatelessWidget {
                 const SizedBox(width: 10),
                 Text(
                   DateTimeUtils.formatDate(
-                    args.event.startTime ?? '',
+                    args.event.startDate ?? '',
                     showTime: true,
                   ),
                   textAlign: TextAlign.center,

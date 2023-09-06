@@ -78,7 +78,8 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                 if (userCubit.currentUser?.role == UserRole.admin)
                   PrimaryIconButton(
                     context: context,
-                    onPressed: () => _onEventDeletePressed(context),
+                    // onPressed: () => _onEventDeletePressed(context),
+                    onPressed: () {},
                     icon: Assets.icDelete,
                     iconColor: AppColor.error400,
                   ),
@@ -111,6 +112,7 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                 const SizedBox(width: 5.0),
               ],
               leading: IconButton(
+                color: AppColor.black,
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.pop(context);
@@ -197,7 +199,11 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                         onPressed: () {},
                         padding: EdgeInsets.zero,
                         child: Text(
-                          event.statusStr,
+                          event.status == 1
+                              ? 'Đang diễn ra'
+                              : event.status == 2
+                                  ? 'Sắp diễn ra'
+                                  : 'Đã diễn ra',
                           style: AppTextTheme.robotoMedium12
                               .copyWith(color: AppColor.white),
                         ),
@@ -217,7 +223,7 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                                 .copyWith(color: AppColor.secondary500)),
                         TextSpan(
                             text:
-                                '${DateTimeUtils.formatDate(event.startTime ?? '')} - ${DateTimeUtils.formatDate(event.endTime ?? '?')}',
+                                '${DateTimeUtils.formatDate(event.startDate ?? '')} - ${DateTimeUtils.formatDate(event.endDate ?? '?')}',
                             style: AppTextTheme.robotoRegular14
                                 .copyWith(color: AppColor.primary500))
                       ])),
@@ -243,7 +249,7 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                             style: AppTextTheme.robotoRegular14
                                 .copyWith(color: AppColor.secondary500)),
                         TextSpan(
-                            text: '${event.totalUserCount} người',
+                            text: '${event.quantity} người',
                             style: AppTextTheme.robotoRegular14
                                 .copyWith(color: AppColor.primary500))
                       ])),
@@ -316,19 +322,19 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
     );
   }
 
-  _onEventDeletePressed(BuildContext context) async {
-    await context.showAppDialog(
-      getAlertDialog(
-        context: context,
-        title: 'Xác nhận',
-        message: 'Bạn có chắc chắn muốn xoá buổi học này?',
-        onPositivePressed: () {
-          showLoading();
-          cubit.deleteEvent(args.eventId);
-        },
-      ),
-    );
-  }
+  // _onEventDeletePressed(BuildContext context) async {
+  //   await context.showAppDialog(
+  //     getAlertDialog(
+  //       context: context,
+  //       title: 'Xác nhận',
+  //       message: 'Bạn có chắc chắn muốn xoá buổi học này?',
+  //       onPositivePressed: () {
+  //         showLoading();
+  //         cubit.deleteEvent(args.eventId);
+  //       },
+  //     ),
+  //   );
+  // }
 
   _onEventUpdatePressed(BuildContext context) async {
     Navigator.pushNamed(context, AppRoute.eventCreate,

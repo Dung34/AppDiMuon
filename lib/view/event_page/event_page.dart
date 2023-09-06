@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
-import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
@@ -20,6 +18,7 @@ import 'components/event_filter_dialog.dart';
 import 'components/event_item.dart';
 import '../../shared/widgets/shimmer/event_list_shimmer.dart';
 import 'cubit/event_cubit.dart';
+import 'event_page_event.dart';
 
 class EventPage<EventCubit> extends StatefulWidget {
   const EventPage({super.key});
@@ -35,6 +34,9 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
   final List<String> joinEvent = ['Tham gia ngay', 'Đã tham gia'];
 
   String? selectedTab;
+  String? timeEventTab;
+  String? joinEventTab;
+  // Widget _body = EventPageEvent();
 
   @override
   EdgeInsets get padding => EdgeInsets.zero;
@@ -44,9 +46,12 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
     super.initState();
     cubit.getAllEvent();
     userCubit.getUser();
-    cubit.showSearchBar(0);
+    // cubit.showSearchBar(0);
     scrollController.addListener(_onScroll);
+
     selectedTab = tabs[0];
+    timeEventTab = timeEvent[0];
+    joinEventTab = joinEvent[0];
   }
 
   void _onScroll() {
@@ -261,6 +266,8 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                   dropdownColor: AppColor.white,
                   itemStyle: AppTextTheme.robotoBold16
                       .copyWith(color: AppColor.primary500),
+                  onChanged: (value) {},
+                  value: selectedTab,
                 ),
                 const Spacer(),
                 PrimaryIconButton(
@@ -287,7 +294,9 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
               dropdownColor: AppColor.white,
               itemStyle: AppTextTheme.robotoLight12
                   .copyWith(color: AppColor.primary500),
+              onChanged: (value) {},
               padding: const EdgeInsets.only(left: 15.0),
+              value: timeEventTab,
             ),
             EventDropdownButton(
               tabs: joinEvent,
@@ -296,7 +305,9 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
               dropdownColor: AppColor.white,
               itemStyle: AppTextTheme.robotoLight12
                   .copyWith(color: AppColor.primary500),
+              onChanged: (value) {},
               padding: const EdgeInsets.only(left: 15.0),
+              value: joinEventTab,
             ),
           ],
 >>>>>>> ff2a60f (Sửa màn hình sự kiện.)
@@ -307,7 +318,9 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                 current is EventGetAllEventSuccessState ||
                 current is EventInitial,
             builder: (context, state) {
+              print(state.toString());
               if (state is EventGetAllEventSuccessState) {
+                print("success");
                 final events = state.events;
                 if (events.isNotEmpty) {
                   final items = List.generate(events.length, (index) {
@@ -333,8 +346,10 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                   return const NoData();
                 }
               } else if (state is EventGetAllEventFailedState) {
+                print("failed");
                 return const NoData();
               } else {
+                print("idk");
                 return const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: EventListShimmer(),
