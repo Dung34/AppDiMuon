@@ -75,13 +75,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthFieldRequiredState());
     } else {
       emit(AuthLoadingState());
-      final response = await openIDRepository.loginRequest(
+      final response = await userRepository.loginRequest(
           username: event.username.toString(),
           password: event.password.toString(),
           rememberMe: event.rememberMe);
 
       if (response.status == ResponseStatus.success && response.data != null) {
-        localDataAccess.setAccessToken(response.data!.data?.accessToken ?? '');
+        localDataAccess.setAccessToken(response.data!.data?.accessToken ?? "");
         localDataAccess
             .setRefreshToken(response.data!.data?.refreshToken ?? '');
         localDataAccess.setUsername(event.username.toString());
