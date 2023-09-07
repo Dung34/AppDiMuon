@@ -40,7 +40,10 @@ class ReportRepositoryImplement implements ReportRepository {
     try {
       final response = await dio.get('/reportDaily/view-all-by-UserId',
           queryParameters: {"Id": userId, "Page": 1, "PageSize": 5},
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+          options: Options(headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZHVuZzEyMyIsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiI1ZmNjNDhjOC0wYTYzLTQwMmEtYjU5Zi1jYTkxYzgxMjBlNWEiLCJuYmYiOjE2OTQwNjk3MTgsImV4cCI6MTY5NjY2MTcxOCwiaWF0IjoxNjk0MDY5NzE4fQ.RwsOfnemxwvwtBiiiUFVFfe0npyALni3aNADy8Q0Rso'
+          }));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
             data: _listReportDataMapper

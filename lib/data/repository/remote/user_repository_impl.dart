@@ -44,7 +44,7 @@ class UserRepositoryImpl implements UserRepository {
   }) async {
     try {
       final loginResponse = await dio.post(
-        EndPoints.login,
+        '/api/authenticate',
         data: {
           'username': username,
           'password': password,

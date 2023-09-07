@@ -7,13 +7,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/repository/local/shared_pref_helper.dart';
 import '../data/repository/remote/project_list_repository.dart';
 import '../data/repository/remote/project_list_repository_imp.dart';
+import '../data/repository/remote/report_repository.dart';
+import '../data/repository/remote/report_repository_impl.dart';
 import '../data/repository/remote/repository.dart';
 import '../domain/mapper/event_data_mapper.dart';
+import '../domain/mapper/list_report_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
+import '../domain/mapper/report_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';
+import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
@@ -36,7 +41,8 @@ configureInjection() async {
   );
 
   getIt.registerLazySingleton<EventRepository>(() => EventpRepositoryImpl());
-
+  getIt.registerLazySingleton<ReportRepository>(
+      () => ReportRepositoryImplement());
   getIt.registerLazySingleton<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
 
@@ -66,6 +72,9 @@ configureInjection() async {
       () => EventMemberDataMapper());
   getIt.registerLazySingleton<ProjectListDataMapper>(
       () => ProjectListDataMapper());
+  getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
+  getIt.registerLazySingleton<ListReportDataMapper>(
+      () => ListReportDataMapper());
 
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());
@@ -73,4 +82,5 @@ configureInjection() async {
   getIt.registerSingleton<UserCubit>(UserCubit());
   getIt.registerFactory<EventCubit>(() => EventCubit());
   getIt.registerFactory<ProjectCubit>(() => ProjectCubit());
+  getIt.registerFactory<ReportCubit>(() => ReportCubit());
 }
