@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -6,6 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../config/routes.dart';
 import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
+import '../../domain/entity/event/event_wrapper/event.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/dialog_helper.dart';
@@ -277,7 +280,9 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                       // ),
                       SecondaryButton(
                         context: context,
-                        onPressed: () {},
+                        onPressed: () async {
+                          _onGetQRCode(context, event);
+                        },
                         padding: EdgeInsets.zero,
                         child: const Row(children: [
                           Icon(
@@ -290,6 +295,9 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                       PrimaryGroupRadioButton(
                         activeColor: AppColor.third600,
                         flex: const <int>[3, 5],
+                        initialValue: event.scanner == 1
+                            ? 'Người dùng quét'
+                            : 'Admin quét',
                         items: const ['Admin quét', 'Người dùng quét'],
                         onChanged: (value) {},
                         style: AppTextTheme.robotoRegular14,
@@ -344,5 +352,37 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
           isAddNew: false,
           isFromCalendar: args.isFromCalendar,
         ));
+  }
+
+  _onGetQRCode(BuildContext context, Event event) async {
+    String? imageLink = await cubit.getQRCode(args.eventId, "normal");
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Center(
+                child: imageLink != null
+                    ? Image.memory(base64Decode(imageLink.substring(22)))
+                    : Image.asset('assets/image/placeholder.png')),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(event.title ?? 'Chưa có tiêu đề',
+                    style: AppTextTheme.textPrimaryBold.copyWith(fontSize: 20)),
+                Row(
+                  children: [
+                    const Icon(Icons.access_time),
+                    Text(event.startDate ?? 'Chưa có thời gian')
+                  ],
+                ),
+                Row(children: [
+                  const Icon(Icons.location_on),
+                  Text(event.location ?? 'Chưa có vị trí')
+                ]),
+              ],
+            ),
+          );
+        });
   }
 }

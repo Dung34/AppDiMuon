@@ -37,8 +37,11 @@ class AuthLoginRequestEvent extends AuthEvent {
 
   final bool rememberMe;
 
-  const AuthLoginRequestEvent(
-      {this.username = '', this.password = '', this.rememberMe = false});
+  const AuthLoginRequestEvent({
+    this.username = '',
+    this.password = '',
+    this.rememberMe = false,
+  });
 }
 
 class AuthLoginBySSORequestEvent extends AuthEvent {}

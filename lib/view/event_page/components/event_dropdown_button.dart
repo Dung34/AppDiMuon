@@ -3,41 +3,44 @@ import 'package:flutter/material.dart';
 class EventDropdownButton extends StatefulWidget {
   final TextStyle? buttonStyle;
   final Color? dropdownColor;
+  final Widget? hint;
   final Icon? icon;
   final TextStyle? itemStyle;
   final Function(String?) onChanged;
   final EdgeInsetsGeometry? padding;
-  final String? value;
   final List<String> tabs;
+  final Widget? underline;
+  final String? value;
 
-  const EventDropdownButton(
-      {super.key,
-      this.buttonStyle,
-      this.dropdownColor,
-      this.icon,
-      this.itemStyle,
-      required this.onChanged,
-      this.padding,
-      this.value,
-      required this.tabs});
+  const EventDropdownButton({
+    super.key,
+    this.buttonStyle,
+    this.dropdownColor,
+    this.hint,
+    this.icon,
+    this.itemStyle,
+    required this.onChanged,
+    this.padding,
+    required this.tabs,
+    this.underline,
+    this.value,
+  });
 
   @override
   State<EventDropdownButton> createState() => _EventDropdownButtonState();
 }
 
 class _EventDropdownButtonState extends State<EventDropdownButton> {
-  String? selectedTab;
-
   @override
   void initState() {
     super.initState();
-    selectedTab = widget.value;
   }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       dropdownColor: widget.dropdownColor,
+      hint: widget.hint,
       items: widget.tabs
           .map((e) => DropdownMenuItem(
                 value: e,
@@ -52,6 +55,7 @@ class _EventDropdownButtonState extends State<EventDropdownButton> {
             Icons.keyboard_arrow_down_rounded,
             color: Color(0xFF10316B),
           ),
+      onChanged: widget.onChanged,
       padding: widget.padding,
       selectedItemBuilder: (BuildContext context) => widget.tabs
           .map((e) => Center(
@@ -62,8 +66,8 @@ class _EventDropdownButtonState extends State<EventDropdownButton> {
               ))
           .toList(),
       style: widget.itemStyle,
+      underline: widget.underline,
       value: widget.value,
-      onChanged: widget.onChanged,
     );
   }
 }

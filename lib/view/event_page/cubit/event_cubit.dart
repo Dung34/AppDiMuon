@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -137,6 +139,28 @@ class EventCubit extends Cubit<EventState> {
       emit(EventGetEventByIdSuccessState(response.data!));
     } else {
       emit(EventGetEventByIdFailedState());
+    }
+  }
+
+  getEventByFilter(int status, int isJoin) async {
+    final response = await _eventRepository.getEventByFilter(status, isJoin);
+
+    if (response.status == ResponseStatus.success) {
+      events.clear();
+      events.addAll(response.data ?? []);
+      emit(EventGetEventByFilterSuccessState(events));
+    } else {
+      emit(EventGetEventByFliterFailedState());
+    }
+  }
+
+  FutureOr<String?> getQRCode(String eventId, String type) async {
+    final response = await _eventRepository.getQRCode(eventId, type);
+
+    if (response.status == ResponseStatus.success) {
+      return response.data!;
+    } else {
+      return null;
     }
   }
 

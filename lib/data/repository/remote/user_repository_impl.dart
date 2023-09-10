@@ -10,7 +10,7 @@ import '../../../domain/entity/user/user.dart';
 import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
-import '../../model/login/login_response.dart';
+import '../../model/old_login/login_response.dart';
 import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';

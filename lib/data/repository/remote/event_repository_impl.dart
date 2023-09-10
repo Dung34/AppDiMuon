@@ -86,4 +86,47 @@ class EventRepositoryImpl extends EventRepository {
       return ResponseWrapper.error(message: "");
     }
   }
+
+  @override
+  Future<ResponseWrapper<List<Event>>> getEventByFilter(
+      int status, int isJoin) async {
+    accessToken = await localDataAccess.getAccessToken();
+
+    try {
+      final Response response = await dio.get(
+          '${EndPoints.getEventByFilter}?Status=$status&IsJoin=$isJoin',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data as List).map(
+                (e) => _eventDataMapper.mapToEntity(EventResponse.fromJson(e))),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<String>> getQRCode(String eventId, String type) async {
+    accessToken = await localDataAccess.getAccessToken();
+
+    try {
+      final Response response = await dio.post(EndPoints.getQRCode,
+          options: Options(headers: {'Authourization': 'Bearer $accessToken'}),
+          data: {'data': eventId, 'type': type});
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: response.data);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
 }

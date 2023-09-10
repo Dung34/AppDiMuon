@@ -52,3 +52,15 @@ class DefaultResponse<T> {
           T Function(Object? json) fromJsonCallBack) =>
       _$DefaultResponseFromJson(json, fromJsonCallBack);
 }
+
+@JsonSerializable(genericArgumentFactories: true)
+class NewDefaultResponse<T> {
+  @JsonKey(name: 'id_token')
+  final String idToken;
+
+  NewDefaultResponse(this.idToken);
+
+  factory NewDefaultResponse.fromJson(Map<String, dynamic> json,
+          T Function(Object? json) fromJsonCallBack) =>
+      _$NewDefaultResponseFromJson(json, fromJsonCallBack);
+}

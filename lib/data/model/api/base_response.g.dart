@@ -39,3 +39,19 @@ Object? _$nullableGenericToJson<T>(
   Object? Function(T value) toJson,
 ) =>
     input == null ? null : toJson(input);
+
+NewDefaultResponse<T> _$NewDefaultResponseFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    NewDefaultResponse<T>(
+      json['id_token'] as String,
+    );
+
+Map<String, dynamic> _$NewDefaultResponseToJson<T>(
+  NewDefaultResponse<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'id_token': instance.idToken,
+    };

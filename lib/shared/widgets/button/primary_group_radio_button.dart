@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/resources/resources.dart';
-
 class PrimaryGroupRadioButton extends StatefulWidget {
   final Color? activeColor;
   final List<int>? flex;
@@ -58,10 +56,10 @@ class _PrimaryGroupRadioButtonState extends State<PrimaryGroupRadioButton> {
                 ),
                 activeColor: widget.activeColor,
                 onChanged: (value) {
-                  setState(() {
-                    groupValue = value;
-                    widget.onChanged.call(value!);
-                  });
+                  // setState(() {
+                  //   groupValue = value;
+                  //   widget.onChanged.call(value!);
+                  // });
                 },
               ),
             ),

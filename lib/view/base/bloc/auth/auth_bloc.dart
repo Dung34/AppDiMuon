@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/model/api/base_response.dart';
 import '../../../../data/repository/local/local_data_access.dart';
+import '../../../../data/repository/remote/login_repository.dart';
 import '../../../../data/repository/remote/repository.dart';
 import '../../../../di/di.dart';
 import '../../../../shared/utils/view_utils.dart';
@@ -16,6 +17,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository = getIt.get<UserRepository>();
   final OpenIDRepository openIDRepository = getIt.get<OpenIDRepository>();
+  final LoginRepository loginRepository = getIt.get<LoginRepository>();
   LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   bool _rememberMe = false;
 
@@ -69,16 +71,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthCheckPolicyState(false));
   }
 
-  FutureOr<void> _onLoginRequest(
+  FutureOr<void> _oldOnLoginRequest(
       AuthLoginRequestEvent event, Emitter<AuthState> emit) async {
     if (event.username == "" || event.password == "") {
       emit(AuthFieldRequiredState());
     } else {
       emit(AuthLoadingState());
       final response = await openIDRepository.loginRequest(
-          username: event.username.toString(),
-          password: event.password.toString(),
-          rememberMe: event.rememberMe);
+        username: event.username.toString(),
+        password: event.password.toString(),
+        rememberMe: event.rememberMe,
+      );
 
       if (response.status == ResponseStatus.success && response.data != null) {
         localDataAccess.setAccessToken(response.data!.data?.accessToken ?? '');
@@ -90,6 +93,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         // await NotificationHelper.instance
         //     .initSignalrConnection(response.data!.idToken);
+      } else if (response.status == ResponseStatus.error) {
+        emit(AuthLoginFailedState(message: response.message));
+        ViewUtils.toastWarning(response.message ?? '');
+      }
+    }
+  }
+
+  FutureOr<void> _onLoginRequest(
+      AuthLoginRequestEvent event, Emitter<AuthState> emit) async {
+    if (event.username == "" || event.password == "") {
+      emit(AuthFieldRequiredState());
+    } else {
+      emit(AuthLoadingState());
+      final response = await loginRepository.loginRequest(
+        username: event.username.toString(),
+        password: event.password.toString(),
+        rememberMe: event.rememberMe,
+      );
+
+      if (response.status == ResponseStatus.success && response.data != null) {
+        localDataAccess.setAccessToken(response.data?.idToken ?? '');
+        localDataAccess.setUsername(event.username.toString());
+        localDataAccess.setAccountRemember(_rememberMe);
+        emit(AuthLoginSuccessState());
       } else if (response.status == ResponseStatus.error) {
         emit(AuthLoginFailedState(message: response.message));
         ViewUtils.toastWarning(response.message ?? '');

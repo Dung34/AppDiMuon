@@ -4,20 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
-import '../../shared/widgets/image/primary_circle_image.dart';
-import '../../shared/widgets/list_view/animation_listview.dart';
-import '../../shared/widgets/shimmer/container_shimmer.dart';
-import '../../shared/widgets/shimmer/primary_shimmer.dart';
-import '../../shared/widgets/something/no_data.dart';
-import '../../shared/widgets/text_field/primary_search_text_field.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
-import '../base/bloc/user/user_cubit.dart';
 import 'components/event_dropdown_button.dart';
 import 'components/event_filter_dialog.dart';
-import 'components/event_item.dart';
-import '../../shared/widgets/shimmer/event_list_shimmer.dart';
 import 'cubit/event_cubit.dart';
+import 'event_page_checkin.dart';
 import 'event_page_event.dart';
 
 class EventPage<EventCubit> extends StatefulWidget {
@@ -36,7 +28,12 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
   String? selectedTab;
   String? timeEventTab;
   String? joinEventTab;
-  // Widget _body = EventPageEvent();
+
+  final Widget eventPageEvent = const EventPageEvent(),
+      eventPageCheckin = const EventPageCheckin();
+  late Widget _body;
+
+  late Widget eventFunction, checkinFunction, function;
 
   @override
   EdgeInsets get padding => EdgeInsets.zero;
@@ -52,6 +49,30 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
     selectedTab = tabs[0];
     timeEventTab = timeEvent[0];
     joinEventTab = joinEvent[0];
+
+    eventFunction = Row(
+      children: [
+        PrimaryIconButton(
+          context: context,
+          onPressed: () {},
+          icon: Assets.icSearch,
+        ),
+        const SizedBox(width: 5.0),
+        PrimaryIconButton(
+          context: context,
+          onPressed: () {},
+          icon: Assets.icNotification,
+        )
+      ],
+    );
+    checkinFunction = PrimaryIconButton(
+      context: context,
+      onPressed: () {},
+      icon: Assets.icSetting,
+    );
+    function = eventFunction;
+
+    _body = eventPageEvent;
   }
 
   void _onScroll() {
@@ -266,25 +287,27 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                   dropdownColor: AppColor.white,
                   itemStyle: AppTextTheme.robotoBold16
                       .copyWith(color: AppColor.primary500),
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTab = value;
+                      function = selectedTab == tabs[0]
+                          ? eventFunction
+                          : checkinFunction;
+                      _body = selectedTab == tabs[0]
+                          ? eventPageEvent
+                          : eventPageCheckin;
+                    });
+                  },
+                  underline: Container(),
                   value: selectedTab,
                 ),
                 const Spacer(),
-                PrimaryIconButton(
-                  context: context,
-                  onPressed: () {},
-                  icon: Assets.icSearch,
-                ),
-                const SizedBox(width: 5.0),
-                PrimaryIconButton(
-                  context: context,
-                  onPressed: () {},
-                  icon: Assets.icNotification,
-                )
+                function,
               ],
             ),
           ),
         ),
+<<<<<<< HEAD
         Row(
           children: [
             EventDropdownButton(
@@ -358,6 +381,9 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
             },
           ),
         ),
+=======
+        Expanded(child: _body),
+>>>>>>> f62e6c2 (1. Thêm chức năng QR Code cho các Event.)
       ],
     );
   }

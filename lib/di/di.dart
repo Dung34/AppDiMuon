@@ -5,6 +5,13 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repository/local/shared_pref_helper.dart';
+<<<<<<< HEAD
+=======
+import '../data/repository/remote/login_repository.dart';
+import '../data/repository/remote/login_repository_impl.dart';
+import '../data/repository/remote/project_list_repository.dart';
+import '../data/repository/remote/project_list_repository_imp.dart';
+>>>>>>> f62e6c2 (1. Thêm chức năng QR Code cho các Event.)
 import '../data/repository/remote/repository.dart';
 import '../domain/mapper/event_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
@@ -37,6 +44,9 @@ configureInjection() async {
 
   getIt.registerLazySingleton<OpenIDRepository>(
       () => OpenIDRepositoryImpl(dio: getIt<Dio>()));
+
+  getIt.registerLazySingleton<LoginRepository>(
+      () => LoginRepositoryImpl(dio: getIt<Dio>()));
 
   getIt.registerLazySingleton<UtilityRepository>(
       <UtilityRepository>() => UtilitiesRepositoryImpl(dio: getIt<Dio>()));

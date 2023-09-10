@@ -12,6 +12,7 @@ class AppColor {
   static const Color secondaryColor = Color.fromARGB(255, 250, 160, 24);
   static const Color secondary50 = Color(0xFFE7ECF5);
   static const Color secondary100 = Color(0xffB3C4E0);
+  static const Color secondary200 = Color(0xFF8FA7D1);
   static const Color secondary400 = Color(0xff3C66B0);
   static const Color secondary500 = Color(0xff0B409C);
   static const Color secondary600 = Color(0xff0F2D61);

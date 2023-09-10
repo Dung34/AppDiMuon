@@ -35,12 +35,16 @@ class EndPoints {
   static const String updateEvent = '/gateway/event/update';
   static const String deleteEvent = '/gateway/event/delete';
   static const String getEventById = '/event/detail';
+  static const String getEventByFilter = '/event/filter';
   static const String getAllEvent = '/event/view_list';
   static const String getAllCalendarEvent = '/gateway/Calendar/events';
   static const String getAllFrames = '/gateway/activity/frames';
   static const String joinShow = '/gateway/event-join/create';
   static const String getMemberJoined = '/gateway/event-join/';
   static const String getShowHistory = '/gateway/event-joined/';
+
+  //QR
+  static const String getQRCode = '/QR';
 
   // employee related
   static const String getEmployeeByIdForUser =

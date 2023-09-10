@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import '../../../domain/entity/user/user.dart';
 import '../../model/api/base_response.dart';
-import '../../model/login/login_response.dart';
+import '../../model/old_login/login_response.dart';
 
 abstract class UserRepository {
   UserRepository();

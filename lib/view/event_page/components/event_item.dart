@@ -36,7 +36,7 @@ class EventItem extends StatelessWidget {
       decoration: const BoxDecoration(
           border: Border(
               bottom: BorderSide(width: 1.0, color: AppColor.primary50))),
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(bottom: 16.0, top: 16.0),
       child: Row(children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -71,14 +71,21 @@ class EventItem extends StatelessWidget {
             Row(
               children: [
                 SecondaryButton(
-                  backgroundColor:
-                      hasOccurred == 1 ? AppColor.red : AppColor.secondary500,
+                  backgroundColor: hasOccurred == 1
+                      ? AppColor.red
+                      : hasOccurred == 0
+                          ? AppColor.green
+                          : AppColor.secondary500,
                   context: context,
                   height: 18,
                   onPressed: () {},
                   padding: EdgeInsets.zero,
                   child: Text(
-                    hasOccurred == -1 ? 'Sắp diễn ra' : 'Đã kết thúc',
+                    hasOccurred == 0
+                        ? 'Đang diễn ra'
+                        : hasOccurred == -1
+                            ? 'Sắp diễn ra'
+                            : 'Đã kết thúc',
                     style: AppTextTheme.robotoBold14
                         .copyWith(fontSize: 12, color: AppColor.white),
                   ),
@@ -93,7 +100,7 @@ class EventItem extends StatelessWidget {
                   onPressed: () {},
                   padding: EdgeInsets.zero,
                   child: Text(
-                      hasOccurred == 1 ? 'Đã tham gia' : 'Tham gia ngay',
+                      event.isJoin == 1 ? 'Đã tham gia' : 'Tham gia ngay',
                       style: AppTextTheme.robotoMedium12
                           .copyWith(color: AppColor.primary500)),
                 ),
