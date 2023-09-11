@@ -94,7 +94,7 @@ class EventRepositoryImpl extends EventRepository {
 
     try {
       final Response response = await dio.get(
-          '${EndPoints.getEventByFilter}?Status=$status&IsJoin=$isJoin',
+          '${EndPoints.getEventByFilter}?Status=$status${(isJoin >= 0 ? '&IsJoin=$isJoin' : '')}',
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(

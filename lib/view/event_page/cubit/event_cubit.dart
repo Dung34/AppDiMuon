@@ -143,6 +143,7 @@ class EventCubit extends Cubit<EventState> {
   }
 
   getEventByFilter(int status, int isJoin) async {
+    emit(EventResetState());
     final response = await _eventRepository.getEventByFilter(status, isJoin);
 
     if (response.status == ResponseStatus.success) {

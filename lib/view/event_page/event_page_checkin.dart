@@ -4,6 +4,7 @@ import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/something/center_outlined_text_filed.dart';
+import '../../shared/widgets/something/primary_calendar.dart';
 import '../base/base_page_sate.dart';
 import 'cubit/event_cubit.dart';
 
@@ -124,7 +125,8 @@ class _EventPageCheckin extends BasePageState<EventPageCheckin, EventCubit> {
               ),
             ),
           ],
-        )
+        ),
+        PrimaryCalendar(onSelectedDate: (value) {}, onPageChanged: (value) {}),
       ],
     );
   }

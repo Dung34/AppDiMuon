@@ -20,7 +20,7 @@ dependencies:
   # add Locale
   flutter_localizations:
     sdk: flutter
-
+  
   #environment
   flutter_dotenv: ^5.0.2
 
