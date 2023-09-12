@@ -30,6 +30,9 @@ class DeleteReportFailed extends ReportState {}
 class GetReportDetailSuccess extends ReportState {
   final ReportDaily reportDaily;
   const GetReportDetailSuccess({required this.reportDaily});
+  @override
+  // TODO: implement props
+  List<Object> get props => [reportDaily];
 }
 
 class GetReportDetailFailed extends ReportState {}
@@ -37,6 +40,7 @@ class GetReportDetailFailed extends ReportState {}
 class UpdateReportSuccess extends ReportState {
   final ReportDaily reportDaily;
   const UpdateReportSuccess({required this.reportDaily});
+  List<Object> get props => [reportDaily];
 }
 
 class UpdateReportFailed extends ReportState {}

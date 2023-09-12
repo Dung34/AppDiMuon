@@ -39,7 +39,7 @@ class ReportRepositoryImplement implements ReportRepository {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get('/reportDaily/view-all-by-UserId',
-          queryParameters: {"Id": userId, "Page": 1, "PageSize": 5},
+          queryParameters: {"Id": userId, "Page": 1, "PageSize": 10},
           options: Options(headers: {
             'Authorization':
                 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZHVuZzEyMyIsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiI1ZmNjNDhjOC0wYTYzLTQwMmEtYjU5Zi1jYTkxYzgxMjBlNWEiLCJuYmYiOjE2OTQwNjk3MTgsImV4cCI6MTY5NjY2MTcxOCwiaWF0IjoxNjk0MDY5NzE4fQ.RwsOfnemxwvwtBiiiUFVFfe0npyALni3aNADy8Q0Rso'
@@ -85,7 +85,7 @@ class ReportRepositoryImplement implements ReportRepository {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get('/reportDaily/detail',
-          queryParameters: {"EeportId": reportId},
+          queryParameters: {"ReportId": reportId},
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(

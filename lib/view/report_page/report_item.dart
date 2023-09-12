@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/colors.dart';
 import '../../data/resources/themes.dart';
 import '../../domain/entity/report/report_daily.dart';
 import '../../shared/utils/date_time_utils.dart';
-import 'report_detail.dart';
+import '../../shared/widgets/something/loading.dart';
+import '../base/bloc/report/report_cubit.dart';
 
 class ReportItems extends StatelessWidget {
   final ReportDaily reportDaily;
@@ -14,27 +15,42 @@ class ReportItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed ??
-          () {
-            Navigator.pushNamed(context, AppRoute.reportDetail,
-                arguments: ReportDetailPageArgs());
-          },
-      child: Padding(
-        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocProvider(
+      create: (context) => ReportCubit(),
+      child: InkWell(
+        onTap: onPressed ??
+            () {
+              Navigator.pushNamed(context, AppRoute.reportDetail,
+                  arguments: ReportDailyPageArgs(
+                      reportId: reportDaily.id ?? "",
+                      reportCubit: context.read<ReportCubit>()));
+            },
+        child: Row(
           children: [
-            Text(
-              DateTimeUtils.formatDate(reportDaily.date ?? ""),
-              style: AppTextTheme.robotoLight14
-                  .copyWith(color: AppColor.black, fontSize: 12),
+            SizedBox(
+              width: 320,
+              child: Padding(
+                padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      DateTimeUtils.formatDate(reportDaily.date ?? ""),
+                      style: AppTextTheme.robotoLight14,
+                    ),
+                    Text(
+                      reportDaily.title ?? " ",
+                      style: AppTextTheme.robotoBold18,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Text(
-              reportDaily.title ?? " ",
-              style: AppTextTheme.textAppBarPrimary
-                  .copyWith(color: AppColor.black, fontSize: 16),
-            ),
+            IconButton(
+                onPressed: () {
+                  ReportCubit().deleteReport(reportDaily.id ?? "");
+                },
+                icon: Icon(Icons.delete))
           ],
         ),
       ),

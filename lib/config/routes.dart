@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import '../domain/entity/event/event_wrapper/event.dart';
 import '../view/auth/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +13,7 @@ import '../view/event_page/event_member_page.dart';
 import '../view/event_page/event_qr_page.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
+import '../view/report_page/report_add.dart';
 import '../view/report_page/report_detail_view.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
@@ -39,6 +38,7 @@ class AppRoute {
   static const String eventMemberHistory = "/eventMemberHistory";
   static const String profileUpdate = "/profileUpdate";
   static const String reportDetail = "/reportDetail";
+  static const String addReport = "/addReport";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -58,6 +58,7 @@ class AppRoute {
             const EventMemberHistoryPage(),
         AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
         AppRoute.reportDetail: (context) => ReportDetailView(),
+        AppRoute.addReport: (context) => ReportAddPage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -118,7 +119,7 @@ class EventMemberHistoryPageArgs {
 class ReportDailyPageArgs {
   final String reportId;
   final ReportCubit reportCubit;
-  ReportDailyPageArgs(this.reportId, this.reportCubit);
+  ReportDailyPageArgs({required this.reportId, required this.reportCubit});
 }
 
 class QrScannerPageArgs {

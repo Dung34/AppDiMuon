@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../config/routes.dart';
 import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/colors.dart';
 import '../../data/resources/themes.dart';
@@ -8,6 +9,7 @@ import '../../di/di.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
+
 import '../base/base_page_sate.dart';
 import '../base/bloc/report/report_cubit.dart';
 import 'report_item.dart';
@@ -35,12 +37,27 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: EdgeInsets.only(top: 20, left: 8.0, right: 8, bottom: 8.0),
-          child: Text(
-            'Báo cáo hằng ngày',
-            style: AppTextTheme.textAppBarPrimary
-                .copyWith(color: AppColor.black, fontSize: 24),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: 20, bottom: 8.0, left: 8.0, right: 8.0),
+          child: Row(
+            children: [
+              Text(
+                "Báo cáo hằng ngày",
+                style: AppTextTheme.robotoMedium18,
+              ),
+              SizedBox(
+                width: 130,
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoute.addReport);
+                  },
+                  icon: Icon(
+                    Icons.add,
+                    color: AppColor.fourth700,
+                  ))
+            ],
           ),
         ),
         Expanded(
