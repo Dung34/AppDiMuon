@@ -11,10 +11,11 @@ class EventMemberHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args = context.arguments as EventMemberHistoryPageArgs;
-    return ProfileViewHeader(
-        userId: args.userId,
-        child: const EventHistoryPage(
-          useAppBar: false,
-        ));
+    return Container();
+    // ProfileViewHeader(
+    //     userId: args.userId,
+    //     child: const EventHistoryPage(
+    //       useAppBar: false,
+    //     ));
   }
 }

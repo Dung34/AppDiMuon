@@ -1,13 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../config/routes.dart';
+import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
-import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import 'components/event_dropdown_button.dart';
-import 'components/event_filter_dialog.dart';
 import 'cubit/event_cubit.dart';
 import 'event_page_checkin.dart';
 import 'event_page_event.dart';
@@ -54,21 +56,26 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
       children: [
         PrimaryIconButton(
           context: context,
-          onPressed: () {},
           icon: Assets.icSearch,
+          iconColor: AppColor.primary500,
+          onPressed: () {},
         ),
         const SizedBox(width: 5.0),
         PrimaryIconButton(
           context: context,
-          onPressed: () {},
           icon: Assets.icNotification,
+          iconColor: AppColor.primary500,
+          onPressed: () {},
         )
       ],
     );
     checkinFunction = PrimaryIconButton(
       context: context,
-      onPressed: () {},
       icon: Assets.icSetting,
+      iconColor: AppColor.primary500,
+      onPressed: () {
+        Navigator.pushNamed(context, AppRoute.eventSetting);
+      },
     );
     function = eventFunction;
 
@@ -292,7 +299,9 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
                       selectedTab = value;
                       function = selectedTab == tabs[0]
                           ? eventFunction
-                          : checkinFunction;
+                          : userCubit.currentUser?.role == UserRole.user
+                              ? checkinFunction
+                              : Container();
                       _body = selectedTab == tabs[0]
                           ? eventPageEvent
                           : eventPageCheckin;
@@ -386,13 +395,5 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
 >>>>>>> f62e6c2 (1. Thêm chức năng QR Code cho các Event.)
       ],
     );
-  }
-
-  void _onFilterPressed(BuildContext context) async {
-    await context.showAppBottomSheet(EventFilterDialog(
-      eventCubit: cubit,
-    ));
-    cubit.onFilterChange();
-    cubit.getAllEvent();
   }
 }

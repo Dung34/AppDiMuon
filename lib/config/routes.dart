@@ -10,6 +10,7 @@ import '../view/event_page/event_history_page.dart';
 import '../view/event_page/event_member_history.dart';
 import '../view/event_page/event_member_page.dart';
 import '../view/event_page/event_qr_page.dart';
+import '../view/event_page/event_setting_page.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
@@ -31,6 +32,7 @@ class AppRoute {
   static const String eventQr = "/eventQr";
   static const String eventOpening = "/eventOpening";
   static const String eventCreate = "/eventCreate";
+  static const String eventSetting = "/eventSetting";
   static const String qrScanner = "/qrScanner";
   static const String eventMemberHistory = "/eventMemberHistory";
   static const String profileUpdate = "/profileUpdate";
@@ -47,6 +49,7 @@ class AppRoute {
         AppRoute.eventHistory: (context) => const EventHistoryPage(),
         AppRoute.eventQr: (context) => const EventQrPage(),
         AppRoute.eventOpening: (context) => const EventOpeningPage(),
+        AppRoute.eventSetting: (context) => const EventSettingPage(),
         // AppRoute.eventCreate: (context) => const CalendarAddPage(),
         AppRoute.qrScanner: (context) => const QrScannerPage(),
         AppRoute.eventMemberHistory: (context) =>

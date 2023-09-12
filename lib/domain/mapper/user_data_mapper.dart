@@ -9,16 +9,17 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
   UserEntity mapToEntity(UserResponse? data) {
     return UserEntity(
       id: data?.id,
-      fullname: data?.fullname,
-      avatar: data?.avatar,
-      coverImage: data?.coverImage,
-      username: data?.username,
-      // position: data?,
-      role: data?.role,
-      dob: data?.dob,
-      roleStr:
-          data?.role == UserRole.user ? UserRoleStr.user : UserRoleStr.admin,
-      company: data?.company,
+      login: data?.login,
+      firstName: data?.firstName,
+      email: data?.email,
+      phoneNumber: data?.phoneNumber,
+      activated: data?.activated,
+      langKey: data?.langKey,
+      createdBy: data?.createdBy,
+      createdDate: data?.createdDate,
+      lastModifiedBy: data?.lastModifiedBy,
+      lastModifiedDate: data?.lastModifiedDate,
+      role: data?.authorities![0] == "ROLE_ADMIN" ? 1 : 0,
     );
   }
 
@@ -26,13 +27,17 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
   UserResponse mapToData(UserEntity entity) {
     return UserResponse(
       id: entity.id,
-      fullname: entity.fullname,
-      avatar: entity.avatar,
-      coverImage: entity.coverImage,
-      dob: entity.dob,
-      company: entity.company,
-      position: entity.position,
-      role: entity.role,
+      login: entity.login,
+      firstName: entity.firstName,
+      email: entity.email,
+      phoneNumber: entity.phoneNumber,
+      activated: entity.activated,
+      langKey: entity.langKey,
+      createdBy: entity.createdBy,
+      createdDate: entity.createdDate,
+      lastModifiedBy: entity.lastModifiedBy,
+      lastModifiedDate: entity.lastModifiedDate,
+      authorities: [entity.role == 1 ? "ROLE_ADMIN" : "ROLE_USER"],
     );
   }
 }

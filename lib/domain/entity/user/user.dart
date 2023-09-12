@@ -7,15 +7,16 @@ part 'user.g.dart';
 class UserEntity with _$UserEntity {
   factory UserEntity({
     String? id,
-    String? fullname,
-    String? username,
-    String? avatar,
-    String? coverImage,
-    String? position,
-    String? company,
-    String? dob,
-    String? roleStr,
-    String? bio,
+    String? login,
+    String? firstName,
+    String? email,
+    String? phoneNumber,
+    bool? activated,
+    String? langKey,
+    String? createdBy,
+    String? createdDate,
+    String? lastModifiedBy,
+    String? lastModifiedDate,
     int? role,
   }) = _UserEntity;
 

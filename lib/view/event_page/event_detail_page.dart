@@ -11,7 +11,6 @@ import '../../data/resources/resources.dart';
 import '../../domain/entity/event/event_wrapper/event.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
-import '../../shared/utils/dialog_helper.dart';
 import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/button/primary_group_radio_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';

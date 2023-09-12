@@ -193,12 +193,17 @@ class UserRepositoryImpl implements UserRepository {
   Future<ResponseWrapper<UserEntity>> getUser({String? userId}) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.get(
+<<<<<<< HEAD
       userId != null
           ? '${EndPoints.getUser}/$userId'
           : EndPoints.getCurrentUser,
       options: Options(
         headers: {'Authorization': 'Bearer $accessToken'},
       ),
+=======
+      EndPoints.getUser,
+      options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+>>>>>>> d08ebb3 (Thêm giao diện Setting)
     );
     try {
       if (response.statusCode == 200) {

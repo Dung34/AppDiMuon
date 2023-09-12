@@ -21,18 +21,17 @@ UserResponse _$UserResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserResponse {
   String? get id => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
-  String? get fullname => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
-  String? get coverImage => throw _privateConstructorUsedError;
-  String? get dob => throw _privateConstructorUsedError;
-  int? get role => throw _privateConstructorUsedError;
-  String? get createdDate => throw _privateConstructorUsedError;
-  String? get position => throw _privateConstructorUsedError;
-  String? get company => throw _privateConstructorUsedError;
+  String? get login => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
-  DateTime? get lastModifiedDate => throw _privateConstructorUsedError;
+  bool? get activated => throw _privateConstructorUsedError;
+  String? get langKey => throw _privateConstructorUsedError;
+  String? get createdBy => throw _privateConstructorUsedError;
+  String? get createdDate => throw _privateConstructorUsedError;
+  String? get lastModifiedBy => throw _privateConstructorUsedError;
+  String? get lastModifiedDate => throw _privateConstructorUsedError;
+  List<String>? get authorities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,18 +47,17 @@ abstract class $UserResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String? username,
-      String? fullname,
-      String? avatar,
-      String? coverImage,
-      String? dob,
-      int? role,
-      String? createdDate,
-      String? position,
-      String? company,
+      String? login,
+      String? firstName,
       String? email,
       String? phoneNumber,
-      DateTime? lastModifiedDate});
+      bool? activated,
+      String? langKey,
+      String? createdBy,
+      String? createdDate,
+      String? lastModifiedBy,
+      String? lastModifiedDate,
+      List<String>? authorities});
 }
 
 /// @nodoc
@@ -76,59 +74,30 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
-    Object? fullname = freezed,
-    Object? avatar = freezed,
-    Object? coverImage = freezed,
-    Object? dob = freezed,
-    Object? role = freezed,
-    Object? createdDate = freezed,
-    Object? position = freezed,
-    Object? company = freezed,
+    Object? login = freezed,
+    Object? firstName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? activated = freezed,
+    Object? langKey = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
+    Object? authorities = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      login: freezed == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
               as String?,
-      fullname: freezed == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
-      coverImage: freezed == coverImage
-          ? _value.coverImage
-          : coverImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dob: freezed == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      position: freezed == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as String?,
-      company: freezed == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -138,10 +107,34 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      activated: freezed == activated
+          ? _value.activated
+          : activated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      langKey: freezed == langKey
+          ? _value.langKey
+          : langKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedBy: freezed == lastModifiedBy
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastModifiedDate: freezed == lastModifiedDate
           ? _value.lastModifiedDate
           : lastModifiedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
+      authorities: freezed == authorities
+          ? _value.authorities
+          : authorities // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -156,18 +149,17 @@ abstract class _$$_UserResponseCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      String? username,
-      String? fullname,
-      String? avatar,
-      String? coverImage,
-      String? dob,
-      int? role,
-      String? createdDate,
-      String? position,
-      String? company,
+      String? login,
+      String? firstName,
       String? email,
       String? phoneNumber,
-      DateTime? lastModifiedDate});
+      bool? activated,
+      String? langKey,
+      String? createdBy,
+      String? createdDate,
+      String? lastModifiedBy,
+      String? lastModifiedDate,
+      List<String>? authorities});
 }
 
 /// @nodoc
@@ -182,59 +174,30 @@ class __$$_UserResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
-    Object? fullname = freezed,
-    Object? avatar = freezed,
-    Object? coverImage = freezed,
-    Object? dob = freezed,
-    Object? role = freezed,
-    Object? createdDate = freezed,
-    Object? position = freezed,
-    Object? company = freezed,
+    Object? login = freezed,
+    Object? firstName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? activated = freezed,
+    Object? langKey = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
+    Object? authorities = freezed,
   }) {
     return _then(_$_UserResponse(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      login: freezed == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
               as String?,
-      fullname: freezed == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
-      coverImage: freezed == coverImage
-          ? _value.coverImage
-          : coverImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dob: freezed == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      position: freezed == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as String?,
-      company: freezed == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -244,10 +207,34 @@ class __$$_UserResponseCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      activated: freezed == activated
+          ? _value.activated
+          : activated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      langKey: freezed == langKey
+          ? _value.langKey
+          : langKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedBy: freezed == lastModifiedBy
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastModifiedDate: freezed == lastModifiedDate
           ? _value.lastModifiedDate
           : lastModifiedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
+      authorities: freezed == authorities
+          ? _value._authorities
+          : authorities // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -257,18 +244,18 @@ class __$$_UserResponseCopyWithImpl<$Res>
 class _$_UserResponse implements _UserResponse {
   _$_UserResponse(
       {this.id,
-      this.username,
-      this.fullname,
-      this.avatar,
-      this.coverImage,
-      this.dob,
-      this.role,
-      this.createdDate,
-      this.position,
-      this.company,
+      this.login,
+      this.firstName,
       this.email,
       this.phoneNumber,
-      this.lastModifiedDate});
+      this.activated,
+      this.langKey,
+      this.createdBy,
+      this.createdDate,
+      this.lastModifiedBy,
+      this.lastModifiedDate,
+      final List<String>? authorities})
+      : _authorities = authorities;
 
   factory _$_UserResponse.fromJson(Map<String, dynamic> json) =>
       _$$_UserResponseFromJson(json);
@@ -276,33 +263,38 @@ class _$_UserResponse implements _UserResponse {
   @override
   final String? id;
   @override
-  final String? username;
+  final String? login;
   @override
-  final String? fullname;
-  @override
-  final String? avatar;
-  @override
-  final String? coverImage;
-  @override
-  final String? dob;
-  @override
-  final int? role;
-  @override
-  final String? createdDate;
-  @override
-  final String? position;
-  @override
-  final String? company;
+  final String? firstName;
   @override
   final String? email;
   @override
   final String? phoneNumber;
   @override
-  final DateTime? lastModifiedDate;
+  final bool? activated;
+  @override
+  final String? langKey;
+  @override
+  final String? createdBy;
+  @override
+  final String? createdDate;
+  @override
+  final String? lastModifiedBy;
+  @override
+  final String? lastModifiedDate;
+  final List<String>? _authorities;
+  @override
+  List<String>? get authorities {
+    final value = _authorities;
+    if (value == null) return null;
+    if (_authorities is EqualUnmodifiableListView) return _authorities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'UserResponse(id: $id, username: $username, fullname: $fullname, avatar: $avatar, coverImage: $coverImage, dob: $dob, role: $role, createdDate: $createdDate, position: $position, company: $company, email: $email, phoneNumber: $phoneNumber, lastModifiedDate: $lastModifiedDate)';
+    return 'UserResponse(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities)';
   }
 
   @override
@@ -311,25 +303,25 @@ class _$_UserResponse implements _UserResponse {
         (other.runtimeType == runtimeType &&
             other is _$_UserResponse &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.fullname, fullname) ||
-                other.fullname == fullname) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
-            (identical(other.coverImage, coverImage) ||
-                other.coverImage == coverImage) &&
-            (identical(other.dob, dob) || other.dob == dob) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.position, position) ||
-                other.position == position) &&
-            (identical(other.company, company) || other.company == company) &&
+            (identical(other.login, login) || other.login == login) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.activated, activated) ||
+                other.activated == activated) &&
+            (identical(other.langKey, langKey) || other.langKey == langKey) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastModifiedBy, lastModifiedBy) ||
+                other.lastModifiedBy == lastModifiedBy) &&
             (identical(other.lastModifiedDate, lastModifiedDate) ||
-                other.lastModifiedDate == lastModifiedDate));
+                other.lastModifiedDate == lastModifiedDate) &&
+            const DeepCollectionEquality()
+                .equals(other._authorities, _authorities));
   }
 
   @JsonKey(ignore: true)
@@ -337,18 +329,17 @@ class _$_UserResponse implements _UserResponse {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      username,
-      fullname,
-      avatar,
-      coverImage,
-      dob,
-      role,
-      createdDate,
-      position,
-      company,
+      login,
+      firstName,
       email,
       phoneNumber,
-      lastModifiedDate);
+      activated,
+      langKey,
+      createdBy,
+      createdDate,
+      lastModifiedBy,
+      lastModifiedDate,
+      const DeepCollectionEquality().hash(_authorities));
 
   @JsonKey(ignore: true)
   @override
@@ -367,18 +358,17 @@ class _$_UserResponse implements _UserResponse {
 abstract class _UserResponse implements UserResponse {
   factory _UserResponse(
       {final String? id,
-      final String? username,
-      final String? fullname,
-      final String? avatar,
-      final String? coverImage,
-      final String? dob,
-      final int? role,
-      final String? createdDate,
-      final String? position,
-      final String? company,
+      final String? login,
+      final String? firstName,
       final String? email,
       final String? phoneNumber,
-      final DateTime? lastModifiedDate}) = _$_UserResponse;
+      final bool? activated,
+      final String? langKey,
+      final String? createdBy,
+      final String? createdDate,
+      final String? lastModifiedBy,
+      final String? lastModifiedDate,
+      final List<String>? authorities}) = _$_UserResponse;
 
   factory _UserResponse.fromJson(Map<String, dynamic> json) =
       _$_UserResponse.fromJson;
@@ -386,29 +376,27 @@ abstract class _UserResponse implements UserResponse {
   @override
   String? get id;
   @override
-  String? get username;
+  String? get login;
   @override
-  String? get fullname;
-  @override
-  String? get avatar;
-  @override
-  String? get coverImage;
-  @override
-  String? get dob;
-  @override
-  int? get role;
-  @override
-  String? get createdDate;
-  @override
-  String? get position;
-  @override
-  String? get company;
+  String? get firstName;
   @override
   String? get email;
   @override
   String? get phoneNumber;
   @override
-  DateTime? get lastModifiedDate;
+  bool? get activated;
+  @override
+  String? get langKey;
+  @override
+  String? get createdBy;
+  @override
+  String? get createdDate;
+  @override
+  String? get lastModifiedBy;
+  @override
+  String? get lastModifiedDate;
+  @override
+  List<String>? get authorities;
   @override
   @JsonKey(ignore: true)
   _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
