@@ -47,10 +47,7 @@ class ReportRepositoryImplement implements ReportRepository {
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
             data: _listReportDataMapper
-                    .mapToEntity(
-                      ReportResponse.fromJson(response.data)
-                          as ListReportResponse?,
-                    )
+                    .mapToEntity(ListReportResponse.fromJson(response.data))
                     .data ??
                 []);
       } else {

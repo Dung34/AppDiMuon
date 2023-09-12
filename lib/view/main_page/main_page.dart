@@ -11,7 +11,6 @@ import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
 import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
-import '../project_page/project_page.dart';
 import '../report_page/report_page.dart';
 import '../setting_page/setting_page.dart';
 
