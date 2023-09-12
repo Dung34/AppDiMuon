@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../view/auth/login/login_page.dart';
 import '../view/event_page/cubit/event_cubit.dart';
-import '../view/event_page/event_add_page.dart';
 import '../view/event_page/event_detail_page.dart';
 import '../view/event_page/event_history_page.dart';
 import '../view/event_page/event_member_history.dart';

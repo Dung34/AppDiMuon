@@ -39,9 +39,9 @@ class EndPoints {
   static const String getAllEvent = '/event/view_list';
   static const String getAllCalendarEvent = '/gateway/Calendar/events';
   static const String getAllFrames = '/gateway/activity/frames';
-  static const String joinShow = '/gateway/event-join/create';
   static const String getMemberJoined = '/gateway/event-join/';
   static const String getShowHistory = '/gateway/event-joined/';
+  static const String joinInEvent = '/event_member/add';
 
   //QR
   static const String getQRCode = '/QR';

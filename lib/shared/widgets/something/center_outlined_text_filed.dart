@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/resources/resources.dart';
 
+// ignore: must_be_immutable
 class CenterOutlinedTextField extends StatelessWidget {
   final InputBorder? enabledTextFieldBorder;
   final InputBorder? focusedTextFieldBorder;

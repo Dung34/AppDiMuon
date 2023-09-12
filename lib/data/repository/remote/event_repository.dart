@@ -20,4 +20,6 @@ abstract class EventRepository {
   Future<ResponseWrapper<List<Event>>> getEventByFilter(int status, int isJoin);
 
   Future<ResponseWrapper<String>> getQRCode(String eventId, String type);
+
+  Future<ResponseWrapper<int>> joinInEvent(String id);
 }

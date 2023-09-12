@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
-import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/line/line_painter.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 
@@ -90,15 +89,17 @@ class EventSettingPage extends StatelessWidget {
             SizedBox(
               height: 46.0,
               width: (context.screenWidth - 32),
-              child: const TextField(
+              child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                    border: const OutlineInputBorder(),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 15.0),
                     hintStyle: AppTextTheme.robotoRegular16,
                     hintText: '20/10/1987',
-                    prefixIcon: Icon(
-                      Icons.access_time,
-                      size: 17.0,
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.calendar_month_outlined,
+                          color: AppColor.third600, size: 21.0),
+                      onPressed: () {},
                     ),
                     prefixIconColor: AppColor.primary300),
               ),
@@ -109,15 +110,17 @@ class EventSettingPage extends StatelessWidget {
             SizedBox(
               height: 46.0,
               width: (context.screenWidth - 32),
-              child: const TextField(
+              child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                    border: const OutlineInputBorder(),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 15.0),
                     hintStyle: AppTextTheme.robotoRegular16,
                     hintText: '20/10/1987',
-                    prefixIcon: Icon(
-                      Icons.access_time,
-                      size: 17.0,
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.calendar_month_outlined,
+                          color: AppColor.third600, size: 21.0),
+                      onPressed: () {},
                     ),
                     prefixIconColor: AppColor.primary300),
               ),
