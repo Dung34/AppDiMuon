@@ -47,7 +47,7 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
         formatButtonShowsNext: false,
         formatButtonVisible: false,
         titleTextFormatter: (date, locale) =>
-            DateFormat.yMMMM(locale).format(date),
+            capitalize(DateFormat.yMMMM(locale).format(date)),
         titleTextStyle: AppTextTheme.lexendBold24,
         leftChevronVisible: false,
         rightChevronVisible: false,
@@ -72,7 +72,7 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
         markerBuilder: (context, day, events) {
           final dayMapper = widget.initialEvent.firstWhere(
             (element) => DateTimeUtils.isSameDay(
-                element.startTime ?? '', day.toIso8601String()),
+                element.startDate ?? '', day.toIso8601String()),
             orElse: () => Event(),
           );
           return dayMapper.id != null
@@ -118,4 +118,6 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
       ),
     );
   }
+
+  String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 }

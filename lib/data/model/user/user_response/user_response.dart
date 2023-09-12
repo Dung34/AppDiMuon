@@ -7,18 +7,17 @@ part 'user_response.g.dart';
 class UserResponse with _$UserResponse {
   factory UserResponse({
     String? id,
-    String? username,
-    String? fullname,
-    String? avatar,
-    String? coverImage,
-    String? dob,
-    int? role,
-    String? createdDate,
-    String? position,
-    String? company,
+    String? login,
+    String? firstName,
     String? email,
     String? phoneNumber,
-    DateTime? lastModifiedDate,
+    bool? activated,
+    String? langKey,
+    String? createdBy,
+    String? createdDate,
+    String? lastModifiedBy,
+    String? lastModifiedDate,
+    List<String>? authorities,
   }) = _UserResponse;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>

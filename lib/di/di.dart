@@ -5,6 +5,10 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repository/local/shared_pref_helper.dart';
+import '../data/repository/remote/login_repository.dart';
+import '../data/repository/remote/login_repository_impl.dart';
+import '../data/repository/remote/project_list_repository.dart';
+import '../data/repository/remote/project_list_repository_impl.dart';
 import '../data/repository/remote/repository.dart';
 import '../domain/mapper/event_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
@@ -31,12 +35,18 @@ configureInjection() async {
         openIdRepository: getIt.get<OpenIDRepository>()),
   );
 
-  getIt.registerLazySingleton<EventRepository>(() => EventpRepositoryImpl());
+  getIt.registerLazySingleton<EventRepository>(() => EventRepositoryImpl());
+
+  getIt.registerLazySingleton<ProjectListRepository>(
+      () => ProjectListRepositoryImpl());
 
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
 
   getIt.registerLazySingleton<OpenIDRepository>(
       () => OpenIDRepositoryImpl(dio: getIt<Dio>()));
+
+  getIt.registerLazySingleton<LoginRepository>(
+      () => LoginRepositoryImpl(dio: getIt<Dio>()));
 
   getIt.registerLazySingleton<UtilityRepository>(
       <UtilityRepository>() => UtilitiesRepositoryImpl(dio: getIt<Dio>()));

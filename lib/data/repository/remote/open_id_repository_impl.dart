@@ -8,7 +8,7 @@ import '../../../config/config.dart';
 import '../../../di/di.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
-import '../../model/login/login_response.dart';
+import '../../model/old_login/login_response.dart';
 import '../../model/sso/user_sso.dart';
 import '../interceptor/dio_base_options.dart';
 import '../local/local_data_access.dart';
@@ -31,7 +31,7 @@ class OpenIDRepositoryImpl implements OpenIDRepository {
     ));
 
     // dio.interceptors.add(AppInterceptor().queueInterceptor(dio: dio));
-    dio.options = DioBaseOptions(baseUrl: SSOConfig.issuer).baseOption;
+    dio.options = DioBaseOptions(baseUrl: SSOConfig.redirectUrl).baseOption;
   }
 
   @override

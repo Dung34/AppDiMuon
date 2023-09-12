@@ -55,9 +55,9 @@ class _ProfileUpdatePageState
     cubit.getUser();
     user = cubit.currentUser!;
     userUpdate = user.copyWith();
-    nameController.text = user.fullname ?? ' ';
-    companyController.text = user.company ?? ' ';
-    dobController.text = DateTimeUtils.formatDate(user.dob ?? '');
+    nameController.text = user.firstName ?? ' ';
+    // companyController.text = user.company ?? ' ';
+    // dobController.text = DateTimeUtils.formatDate(user.dob ?? '');
     // bioController.text = user.bio ?? ' ';
   }
 
@@ -79,19 +79,19 @@ class _ProfileUpdatePageState
                 }
                 if (state is GetImageGetSingleImageUrlSuccessState &&
                     state.type == ImageType.avatar) {
-                  userUpdate.avatar = state.imageUrl;
+                  // userUpdate.avatar = state.imageUrl;
                   hideLoading();
                 }
                 if (state is GetImageGetSingleImageUrlSuccessState &&
                     state.type == ImageType.cover) {
-                  userUpdate.coverImage = state.imageUrl;
+                  // userUpdate.coverImage = state.imageUrl;
                   hideLoading();
                 }
                 if (state is GetImageGetSingleImageUrlErrorState) {
                   hideLoading();
                 }
               },
-              child: ProfileUpdateImage(user: user),
+              // child: ProfileUpdateImage(user: user),
             ),
           ),
           Padding(
@@ -115,7 +115,7 @@ class _ProfileUpdatePageState
                   label: 'Ngày sinh',
                   hintText: 'Nhập ngày sinh',
                   onDateSelected: (value) {
-                    userUpdate.dob = value.toIso8601String();
+                    // userUpdate.dob = value.toIso8601String();
                   },
                   context: context,
                 ),
@@ -144,8 +144,8 @@ class _ProfileUpdatePageState
                         return;
                       }
                       showLoading(dismissible: false);
-                      userUpdate.fullname = nameController.text.trim();
-                      userUpdate.company = companyController.text.trim();
+                      // userUpdate.fullname = nameController.text.trim();
+                      // userUpdate.company = companyController.text.trim();
                       // userUpdate.dob = dobController.text.trim();
                       cubit.updateUser(userUpdate);
                     },

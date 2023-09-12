@@ -56,65 +56,65 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
                     height: 56,
                   ),
                 ),
-                Positioned(
-                  left: context.screenWidth / 2 - 86,
-                  top: 300 * 3 / 4 - 86,
-                  child: SizedBox(
-                    height: 192,
-                    child: Stack(
-                      children: [
-                        Material(
-                          elevation: 8,
-                          shape: const OvalBorder(),
-                          color: AppColor.transparent,
-                          child: CircleAvatar(
-                            radius: 86,
-                            backgroundColor: AppColor.white,
-                            child: PrimaryCircleImage(
-                              radius: 80,
-                              imageUrl: userCubit.currentUser?.avatar ?? '',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
+                // Positioned(
+                //   left: context.screenWidth / 2 - 86,
+                //   top: 300 * 3 / 4 - 86,
+                //   child: SizedBox(
+                //     height: 192,
+                //     child: Stack(
+                //       children: [
+                //         Material(
+                //           elevation: 8,
+                //           shape: const OvalBorder(),
+                //           color: AppColor.transparent,
+                //           child: CircleAvatar(
+                //             radius: 86,
+                //             backgroundColor: AppColor.white,
+                //             child: PrimaryCircleImage(
+                //               radius: 80,
+                //               imageUrl: userCubit.currentUser?.avatar ?? '',
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),
           // const SizedBox(height: 20),
-          Text(
-            user?.roleStr ?? '',
-            style: AppTextTheme.robotoMedium18.copyWith(
-              color: AppColor.primary500,
-            ),
-          ),
+          // Text(
+          //   user?.roleStr ?? '',
+          //   style: AppTextTheme.robotoMedium18.copyWith(
+          //     color: AppColor.primary500,
+          //   ),
+          // ),
           const SizedBox(height: 10),
-          Column(
-            children: [
-              Text(
-                user?.fullname ?? '',
-                style: AppTextTheme.lexendBold30,
-              ),
-              SizedBox(
-                width: w / 2.5,
-                child: const Divider(
-                  thickness: 2,
-                  color: AppColor.secondary400,
-                ),
-              )
-            ],
-          ),
+          // Column(
+          //   children: [
+          //     Text(
+          //       user?.fullname ?? '',
+          //       style: AppTextTheme.lexendBold30,
+          //     ),
+          //     SizedBox(
+          //       width: w / 2.5,
+          //       child: const Divider(
+          //         thickness: 2,
+          //         color: AppColor.secondary400,
+          //       ),
+          //     )
+          //   ],
+          // ),
           const SizedBox(height: 10),
-          Text(
-            user?.company ?? '',
-            style: AppTextTheme.robotoLight18,
-          ),
-          const SizedBox(height: 16),
-          PrimaryQrView(
-              data: '${Environment.domain}/profile/${user?.username}'),
-          const SizedBox(height: 80),
+          // Text(
+          //   user?.company ?? '',
+          //   style: AppTextTheme.robotoLight18,
+          // ),
+          // const SizedBox(height: 16),
+          // PrimaryQrView(
+          //     data: '${Environment.domain}/profile/${user?.username}'),
+          // const SizedBox(height: 80),
         ],
       ),
     );

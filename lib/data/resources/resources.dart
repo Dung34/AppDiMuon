@@ -34,6 +34,7 @@ class Assets {
   static const String icPersonOutline = '$iconPrefix/ic_person_outline.svg';
   static const String icPhone = '$iconPrefix/ic_phone.svg';
   static const String icPeople = '$iconPrefix/ic_people.svg';
+  static const String icPeople2 = '$iconPrefix/ic_people2.svg';
   static const String icQrCode = '$iconPrefix/ic_qr_code.svg';
   static const String icScanner = '$iconPrefix/ic_scanner.svg';
   static const String icSearch = '$iconPrefix/ic_search.svg';

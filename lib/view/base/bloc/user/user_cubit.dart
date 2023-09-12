@@ -27,7 +27,9 @@ class UserCubit extends Cubit<UserState> {
     final response = await _userRepository.getUser(userId: userId);
     if (response.status == ResponseStatus.success) {
       if (userId == null) {
+        print('Response: ${response.data}');
         currentUser = response.data!;
+        print('Current user: $currentUser');
         _localDataAccess.setUserId(response.data?.id ?? '');
       }
       emit(UserGetUserSuccessState(userEntity: response.data!));

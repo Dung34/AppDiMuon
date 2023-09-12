@@ -9,31 +9,42 @@ part of 'event_response.dart';
 _$_EventResponse _$$_EventResponseFromJson(Map<String, dynamic> json) =>
     _$_EventResponse(
       title: json['title'] as String?,
+      image:
+          (json['image'] as List<dynamic>?)?.map((e) => e as String).toList(),
       background: json['background'] as String?,
-      location: json['location'] as String?,
       description: json['description'] as String?,
       startDate: json['startDate'] as String?,
-      endDate: json['endDate'] as String?,
       status: json['status'] as int?,
+      isJoin: json['isJoin'] as int?,
+      endDate: json['endDate'] as String?,
       quantity: json['quantity'] as int?,
-      checked: json['checked'] as bool?,
+      type: json['type'] as int?,
+      location: json['location'] as String?,
+      scanner: json['scanner'] as int?,
       id: json['id'] as String?,
+      createdBy: json['createdBy'] as String?,
       createdDate: json['createdDate'] as String?,
+      lastModifiedBy: json['lastModifiedBy'] as String?,
       lastModifiedDate: json['lastModifiedDate'] as String?,
     );
 
 Map<String, dynamic> _$$_EventResponseToJson(_$_EventResponse instance) =>
     <String, dynamic>{
       'title': instance.title,
+      'image': instance.image,
       'background': instance.background,
-      'location': instance.location,
       'description': instance.description,
       'startDate': instance.startDate,
-      'endDate': instance.endDate,
       'status': instance.status,
+      'isJoin': instance.isJoin,
+      'endDate': instance.endDate,
       'quantity': instance.quantity,
-      'checked': instance.checked,
+      'type': instance.type,
+      'location': instance.location,
+      'scanner': instance.scanner,
       'id': instance.id,
+      'createdBy': instance.createdBy,
       'createdDate': instance.createdDate,
+      'lastModifiedBy': instance.lastModifiedBy,
       'lastModifiedDate': instance.lastModifiedDate,
     };

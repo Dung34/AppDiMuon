@@ -112,6 +112,22 @@ class EventGetEventByIdSuccessState extends EventState {
 
 class EventGetEventByIdFailedState extends EventState {}
 
+class EventGetEventByFilterSuccessState extends EventState {
+  final List<Event> events;
+
+  const EventGetEventByFilterSuccessState(this.events);
+  @override
+  List<Object?> get props => [events];
+}
+
+class EventGetEventByFliterFailedState extends EventState {}
+
+class EventGetQRCodeSuccessState extends EventState {
+  final String imageLink;
+
+  const EventGetQRCodeSuccessState(this.imageLink);
+}
+
 class EventJoinEventSuccessState extends EventState {
   final UserEventJoined userEventJoined;
   final bool isUserScan;

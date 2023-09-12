@@ -10,7 +10,7 @@ import '../../../domain/entity/user/user.dart';
 import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
-import '../../model/login/login_response.dart';
+import '../../model/old_login/login_response.dart';
 import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
@@ -193,12 +193,8 @@ class UserRepositoryImpl implements UserRepository {
   Future<ResponseWrapper<UserEntity>> getUser({String? userId}) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.get(
-      userId != null
-          ? '${EndPoints.getUser}/$userId'
-          : EndPoints.getCurrentUser,
-      options: Options(
-        headers: {'Authorization': 'Bearer $accessToken'},
-      ),
+      EndPoints.getUser,
+      options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
     );
     try {
       if (response.statusCode == 200) {

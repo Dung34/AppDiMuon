@@ -1,4 +1,3 @@
-import '../../data/constant/constants.dart';
 import '../../data/mapper/base/base_data_mapper.dart';
 import '../../data/model/event_response/event_member_response.dart';
 import '../../data/model/event_response/event_response.dart';
@@ -10,48 +9,46 @@ class EventDataMapper extends BaseDataMapper<EventResponse, Event>
   @override
   Event mapToEntity(EventResponse? data) {
     return Event(
-      id: data?.id ?? '',
       title: data?.title,
-      description: data?.description,
-      location: data?.location == null || (data?.location! ?? '').isEmpty
-          ? 'Chưa cập nhật'
-          : data?.location!,
-      status: data?.status ?? 1,
-      statusStr: statusToString(data?.status ?? 1),
+      image: data?.image,
       background: data?.background,
-      checked: data?.checked ?? false,
-      startTime: data?.startDate.toString(),
-      endTime: data?.endDate.toString(),
-      totalUserCount: data?.quantity ?? 0,
+      description: data?.description,
+      startDate: data?.startDate,
+      status: data?.status,
+      isJoin: data?.isJoin,
+      endDate: data?.endDate,
+      quantity: data?.quantity,
+      type: data?.type,
+      location: data?.location,
+      scanner: data?.scanner,
+      id: data?.id,
+      createdBy: data?.createdBy,
+      createdDate: data?.createdDate,
+      lastModifiedBy: data?.lastModifiedBy,
+      lastModifiedDate: data?.lastModifiedDate,
     );
-  }
-
-  String statusToString(int status) {
-    switch (status) {
-      case EventStatus.notStarted:
-        return EventStatusStr.notStarted;
-      case EventStatus.begining:
-        return EventStatusStr.begining;
-      case EventStatus.finished:
-        return EventStatusStr.finished;
-      case EventStatus.canceled:
-        return EventStatusStr.canceled;
-      default:
-        return 'ERROR';
-    }
   }
 
   @override
   EventResponse mapToData(Event entity) {
     return EventResponse(
-      id: entity.id,
+      title: entity.title,
+      image: entity.image,
       background: entity.background,
       description: entity.description,
+      startDate: entity.startDate,
       status: entity.status,
-      endDate: entity.endTime,
-      startDate: entity.startTime,
+      isJoin: entity.isJoin,
+      endDate: entity.endDate,
+      quantity: entity.quantity,
+      type: entity.type,
       location: entity.location,
-      title: entity.title,
+      scanner: entity.scanner,
+      id: entity.id,
+      createdBy: entity.createdBy,
+      createdDate: entity.createdDate,
+      lastModifiedBy: entity.lastModifiedBy,
+      lastModifiedDate: entity.lastModifiedDate,
     );
   }
 }
@@ -66,11 +63,11 @@ class EventMemberDataMapper
       eventId: data?.eventId ?? '',
       eventTitle: data?.eventTitle,
       fullname: data?.fullname,
-      checkedInDate: data?.createdDate,
+      checkedInDate: data?.checkedInDate,
       checkedInLocation: data?.checkedInLocation == null ||
-              (data?.checkedInLocation! ?? '').isEmpty
+              (data?.checkedInLocation ?? '').isEmpty
           ? 'Chưa cập nhật'
-          : data?.checkedInLocation!,
+          : data?.checkedInLocation,
       avatar: data?.avatar,
     );
   }

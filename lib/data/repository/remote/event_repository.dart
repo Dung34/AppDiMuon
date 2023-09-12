@@ -1,40 +1,23 @@
-import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
-import '../../../domain/entity/event/user_event_joined.dart/user_event_joined.dart';
 import '../../model/api/base_response.dart';
 
 abstract class EventRepository {
   Future<ResponseWrapper<List<Event>>> getAllEvent({
-    String? keyword,
+    String? description,
+    String? endDate,
+    List<String>? image,
+    int? isJoin,
+    String? location,
+    int? quantity,
+    int? scanner,
+    String? startDate,
     int? status,
-    String? date,
-    String? startDate,
-    String? endDate,
-    bool? isOpening,
-    bool? isDescending,
-  });
-
-  Future<ResponseWrapper<List<Event>>> getAllCalendarEvent({
-    String? startDate,
-    String? endDate,
+    String? title,
   });
 
   Future<ResponseWrapper<Event>> getEventById(String eventId);
 
-  Future<ResponseWrapper<Event>> createEvent(Event event);
+  Future<ResponseWrapper<List<Event>>> getEventByFilter(int status, int isJoin);
 
-  Future<ResponseWrapper<Event>> updateEvent(Event event);
-
-  Future<ResponseWrapper<void>> deleteEvent(String eventId);
-
-  Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
-      {required String eventId});
-
-  Future<ResponseWrapper<List<EventMember>>> getAllHistory({String? username});
-
-  Future<ResponseWrapper<UserEventJoined>> joinEvent({
-    String? username,
-    String? eventId,
-    String? location,
-  });
+  Future<ResponseWrapper<String>> getQRCode(String eventId, String type);
 }

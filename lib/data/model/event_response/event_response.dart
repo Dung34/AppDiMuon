@@ -7,16 +7,21 @@ part 'event_response.g.dart';
 class EventResponse with _$EventResponse {
   factory EventResponse({
     String? title,
+    List<String>? image,
     String? background,
-    String? location,
     String? description,
     String? startDate,
-    String? endDate,
     int? status,
+    int? isJoin,
+    String? endDate,
     int? quantity,
-    bool? checked,
+    int? type,
+    String? location,
+    int? scanner,
     String? id,
+    String? createdBy,
     String? createdDate,
+    String? lastModifiedBy,
     String? lastModifiedDate,
   }) = _EventResponse;
 

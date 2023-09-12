@@ -191,8 +191,8 @@ Dialog getErrorDialog({
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  label: 'Đóng',
                   backgroundColor: AppColor.errorColor,
+                  label: 'Đóng',
                 ),
               ],
             ),
@@ -246,19 +246,20 @@ Dialog getAlertDialog({
                   Navigator.pop(context);
                   onNegativePressed?.call();
                 },
-                label: negativeText,
                 backgroundColor: AppColor.secondaryColor,
+                label: negativeText,
               ),
               const SizedBox(
                 width: 10,
               ),
               PrimaryButton(
-                  context: context,
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                    onPositivePressed?.call();
-                  },
-                  label: positiveText)
+                context: context,
+                onPressed: () {
+                  Navigator.pop(context, true);
+                  onPositivePressed?.call();
+                },
+                label: positiveText,
+              )
             ],
           )
         ],
