@@ -55,6 +55,9 @@ class EndPoints {
 
   // storage repository
   static const String uploadImage = "/gateway/Media/Upload";
+
+  //project
+  static const String getAllProject = "/project/view-all-project";
 }
 
 class SSOConfig {
@@ -81,7 +84,7 @@ class SSOConfig {
 }
 
 class AppConfig {
-  static const String appName = "CEO.HN7";
+  static const String appName = "Active+";
   static const String appVersionName = "1.0.0";
   static const String fontFamily = "Roboto";
   static const Color primaryColor = AppColor.primaryColor;
