@@ -166,6 +166,8 @@ class EventCubit extends Cubit<EventState> {
   }
 
   joinInEvent(String id) async {
+    // emit(EventResetState());
+
     final response = await _eventRepository.joinInEvent(id);
 
     if (response.status == ResponseStatus.success) {

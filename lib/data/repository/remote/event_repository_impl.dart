@@ -137,7 +137,7 @@ class EventRepositoryImpl extends EventRepository {
     try {
       final Response response = await dio.post(EndPoints.joinInEvent,
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
-          data: id);
+          data: {"eventId": id});
 
       if (response.statusCode == 200) {
         return ResponseWrapper.success(data: response.data);

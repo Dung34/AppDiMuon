@@ -109,8 +109,8 @@ class _EventItemState extends BasePageState<EventItem, EventCubit> {
                     buildWhen: (previous, current) =>
                         current is EventGetAllEventSuccessState ||
                         current is EventGetEventByFilterSuccessState ||
-                        current is EventJoinEventSuccessState,
-                    builder: (context, state) {
+                        current is EventJoinInEventSucessState,
+                    builder: (event, state) {
                       return SecondaryButton(
                         backgroundColor: AppColor.secondary50,
                         context: context,
@@ -130,9 +130,10 @@ class _EventItemState extends BasePageState<EventItem, EventCubit> {
                                     : 'Tham gia ngay',
                                 style: AppTextTheme.robotoMedium12
                                     .copyWith(color: AppColor.primary500))
-                            : const Text(
+                            : Text(
                                 'Đã tham gia',
-                                style: AppTextTheme.robotoMedium12,
+                                style: AppTextTheme.robotoMedium12
+                                    .copyWith(color: AppColor.primary500),
                               ),
                       );
                     }),

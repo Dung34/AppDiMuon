@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/line/line_painter.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 
-class EventSettingPage extends StatelessWidget {
+class EventSettingPage extends StatefulWidget {
   const EventSettingPage({super.key});
 
   @override
+  State<EventSettingPage> createState() => _EventSettingPageState();
+}
+
+class _EventSettingPageState extends State<EventSettingPage>
+    with AutomaticKeepAliveClientMixin {
+  String fromDate = '';
+  String toDate = '';
+  final TextEditingController _controllerFromDate = TextEditingController();
+  final TextEditingController _controllerToDate = TextEditingController();
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    _controllerFromDate.dispose();
+    _controllerToDate.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: PrimaryAppBar(
         title: 'Cài đặt',
@@ -31,7 +54,7 @@ class EventSettingPage extends StatelessWidget {
                   style: AppTextTheme.robotoMedium16,
                 ),
                 const Icon(Icons.edit_outlined,
-                    color: AppColor.third600, size: 14.0)
+                    color: AppColor.third600, size: 14.0),
               ]),
             ),
             const SizedBox(height: 16.0),
@@ -43,13 +66,15 @@ class EventSettingPage extends StatelessWidget {
                 SizedBox(
                   height: 46.0,
                   width: (context.screenWidth - 56) / 2,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0),
-                        hintStyle: AppTextTheme.robotoRegular16,
+                        border: const OutlineInputBorder(),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 15.0),
+                        hintStyle: AppTextTheme.robotoRegular16
+                            .copyWith(color: AppColor.primary300),
                         hintText: '8:30',
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.access_time,
                           size: 17.0,
                         ),
@@ -68,13 +93,15 @@ class EventSettingPage extends StatelessWidget {
                 SizedBox(
                   height: 46.0,
                   width: (context.screenWidth - 56) / 2,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0),
-                        hintStyle: AppTextTheme.robotoRegular16,
+                        border: const OutlineInputBorder(),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 15.0),
+                        hintStyle: AppTextTheme.robotoRegular16
+                            .copyWith(color: AppColor.primary300),
                         hintText: '16:30',
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.access_time,
                           size: 17.0,
                         ),
@@ -90,16 +117,30 @@ class EventSettingPage extends StatelessWidget {
               height: 46.0,
               width: (context.screenWidth - 32),
               child: TextField(
+                controller: _controllerFromDate,
                 decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     contentPadding: const EdgeInsets.symmetric(
                         horizontal: 5.0, vertical: 15.0),
-                    hintStyle: AppTextTheme.robotoRegular16,
+                    hintStyle: AppTextTheme.robotoRegular16
+                        .copyWith(color: AppColor.primary300),
                     hintText: '20/10/1987',
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.calendar_month_outlined,
                           color: AppColor.third600, size: 21.0),
-                      onPressed: () {},
+                      onPressed: () async {
+                        final DateTime? picked = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime(3000));
+
+                        if (picked != null) {
+                          fromDate = DateFormat('dd/MM/yyyy').format(picked);
+                          _controllerFromDate.text =
+                              _controllerToDate.text = fromDate;
+                        }
+                      },
                     ),
                     prefixIconColor: AppColor.primary300),
               ),
@@ -111,16 +152,29 @@ class EventSettingPage extends StatelessWidget {
               height: 46.0,
               width: (context.screenWidth - 32),
               child: TextField(
+                controller: _controllerToDate,
                 decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     contentPadding: const EdgeInsets.symmetric(
                         horizontal: 5.0, vertical: 15.0),
-                    hintStyle: AppTextTheme.robotoRegular16,
+                    hintStyle: AppTextTheme.robotoRegular16
+                        .copyWith(color: AppColor.primary300),
                     hintText: '20/10/1987',
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.calendar_month_outlined,
                           color: AppColor.third600, size: 21.0),
-                      onPressed: () {},
+                      onPressed: () async {
+                        final DateTime? picked = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime(3000));
+
+                        if (picked != null) {
+                          toDate = DateFormat('dd/MM/yyyy').format(picked);
+                          _controllerToDate.text = toDate;
+                        }
+                      },
                     ),
                     prefixIconColor: AppColor.primary300),
               ),
