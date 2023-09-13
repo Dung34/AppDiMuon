@@ -59,7 +59,7 @@ android {
    }
 
     defaultConfig {
-        applicationId "vn.eztek.ceohn7"
+        applicationId "vn.eztek.active_plus"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 1

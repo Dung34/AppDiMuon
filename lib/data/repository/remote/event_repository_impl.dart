@@ -3,30 +3,24 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/config.dart';
 import '../../../di/di.dart';
-import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
-import '../../../domain/entity/event/user_event_joined.dart/user_event_joined.dart';
 import '../../../domain/mapper/event_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
-import '../../model/event_response/event_member_response.dart';
 import '../../model/event_response/event_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
 import '../local/local_data_access.dart';
 import 'event_repository.dart';
 
-class EventpRepositoryImpl implements EventRepository {
+class EventRepositoryImpl extends EventRepository {
   final Dio dio = getIt.get<Dio>();
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
   final EventDataMapper _eventDataMapper = getIt.get<EventDataMapper>();
   final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
-  final EventMemberDataMapper _eventMemberDataMapper =
-      getIt.get<EventMemberDataMapper>();
-  // final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
 
-  EventpRepositoryImpl() {
+  EventRepositoryImpl() {
     dio.interceptors.add(PrettyDioLogger(
       responseBody: true,
       requestBody: true,
@@ -39,77 +33,34 @@ class EventpRepositoryImpl implements EventRepository {
 
   @override
   Future<ResponseWrapper<List<Event>>> getAllEvent({
-    String? keyword,
-    int? status,
-    String? startDate,
+    String? description,
     String? endDate,
-    String? date,
-    bool? isOpening,
-    bool? isDescending,
+    List<String>? image,
+    int? isJoin,
+    String? location,
+    int? quantity,
+    int? scanner,
+    String? startDate,
+    int? status,
+    String? title,
   }) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
-      final response = await dio.post(
+      final response = await dio.get(
         EndPoints.getAllEvent,
-        data: {
-          "title": keyword,
-          "searchDate": date,
-          'status': status,
-          "isComing": isOpening,
-          "startDate": startDate,
-          "endDate": endDate,
-          'isDescending': isDescending,
-        }..removeWhere(
-            (key, value) => value == null || value is String && value.isEmpty),
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
           data: List.from(
             (response.data as List).map(
-              (e) => _eventDataMapper.mapToEntity(
-                EventResponse.fromJson(e),
-              ),
+              (e) => _eventDataMapper.mapToEntity(EventResponse.fromJson(e)),
             ),
           ),
         );
+      } else {
+        return ResponseWrapper.error(message: "");
       }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
-  }
-
-  @override
-  Future<ResponseWrapper<List<Event>>> getAllCalendarEvent(
-      {String? startDate, String? endDate}) async {
-    accessToken = await localDataAccess.getAccessToken();
-    try {
-      final response = await dio.post(
-        EndPoints.getAllCalendarEvent,
-        data: {
-          "startDate": startDate,
-          "endDate": endDate,
-        },
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: List.from(
-            (response.data as List).map(
-              (e) => _eventDataMapper.mapToEntity(
-                EventResponse.fromJson(e),
-              ),
-            ),
-          ),
-        );
-      }
-      return ResponseWrapper.error(message: "");
     } catch (e) {
       handleException(e);
       return ResponseWrapper.error(message: "");
@@ -120,17 +71,13 @@ class EventpRepositoryImpl implements EventRepository {
   Future<ResponseWrapper<Event>> getEventById(String eventId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
-      final response = await dio.get(
-        '${EndPoints.getEventById}/$eventId',
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
+      final Response response = await dio.get(
+          '${EndPoints.getEventById}?Id=$eventId',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
-          data: _eventDataMapper.mapToEntity(
-            EventResponse.fromJson(response.data),
-          ),
+          data: _eventDataMapper
+              .mapToEntity(EventResponse.fromJson(response.data)),
         );
       }
       return ResponseWrapper.error(message: "");
@@ -141,105 +88,19 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
-  Future<ResponseWrapper<Event>> createEvent(Event event) async {
+  Future<ResponseWrapper<List<Event>>> getEventByFilter(
+      int status, int isJoin) async {
     accessToken = await localDataAccess.getAccessToken();
+
     try {
-      final response = await dio.post(
-        EndPoints.createEvent,
-        data: _eventDataMapper.mapToData(event).toJson()
-          ..removeWhere(
-            (key, value) => value == null,
-          ),
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: _eventDataMapper.mapToEntity(
-            EventResponse.fromJson(response.data),
-          ),
-        );
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
-  }
-
-  @override
-  Future<ResponseWrapper<Event>> updateEvent(Event event) async {
-    accessToken = await localDataAccess.getAccessToken();
-    try {
-      final response = await dio.patch(
-        EndPoints.updateEvent,
-        data: _eventDataMapper.mapToData(event).toJson(),
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: _eventDataMapper.mapToEntity(
-            EventResponse.fromJson(response.data),
-          ),
-        );
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
-  }
-
-  @override
-  Future<ResponseWrapper<void>> deleteEvent(String eventId) async {
-    accessToken = await localDataAccess.getAccessToken();
-    try {
-      final response = await dio.delete(
-        EndPoints.deleteEvent,
-        queryParameters: {
-          'Id': eventId,
-        },
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: null,
-        );
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
-  }
-
-  @override
-  Future<ResponseWrapper<List<EventMember>>> getAllCheckedInMember(
-      {required String eventId}) async {
-    accessToken = await localDataAccess.getAccessToken();
-    try {
-      final response = await dio.get(
-        '${EndPoints.getMemberJoined}$eventId',
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
+      final Response response = await dio.get(
+          '${EndPoints.getEventByFilter}?Status=$status${(isJoin >= 0 ? '&IsJoin=$isJoin' : '')}',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
           data: List.from(
             (response.data as List).map(
-              (e) => _eventMemberDataMapper.mapToEntity(
-                EventMemberResponse.fromJson(e),
-              ),
-            ),
+                (e) => _eventDataMapper.mapToEntity(EventResponse.fromJson(e))),
           ),
         );
       }
@@ -251,27 +112,16 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<EventMember>>> getAllHistory(
-      {String? username}) async {
+  Future<ResponseWrapper<String>> getQRCode(String eventId, String type) async {
     accessToken = await localDataAccess.getAccessToken();
-    final String currentUsername = localDataAccess.getUserName();
+
     try {
-      final response = await dio.get(
-        '${EndPoints.getShowHistory}${username ?? currentUsername}',
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
+      final Response response = await dio.post(EndPoints.getQRCode,
+          options: Options(headers: {'Authourization': 'Bearer $accessToken'}),
+          data: {'data': eventId, 'type': type});
+
       if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: List.from(
-            (response.data as List).map(
-              (e) => _eventMemberDataMapper.mapToEntity(
-                EventMemberResponse.fromJson(e),
-              ),
-            ),
-          ),
-        );
+        return ResponseWrapper.success(data: response.data);
       }
       return ResponseWrapper.error(message: "");
     } catch (e) {
@@ -281,27 +131,16 @@ class EventpRepositoryImpl implements EventRepository {
   }
 
   @override
-  Future<ResponseWrapper<UserEventJoined>> joinEvent(
-      {String? username, String? eventId, String? location}) async {
-    final String currentUserName = localDataAccess.getUserName();
-
+  Future<ResponseWrapper<int>> joinInEvent(String id) async {
     accessToken = await localDataAccess.getAccessToken();
+
     try {
-      final response = await dio.post(
-        EndPoints.joinShow,
-        data: {
-          "username": username ?? currentUserName,
-          "eventId": eventId,
-          "location": location,
-        }..removeWhere((key, value) => value == null),
-        options: Options(
-          headers: {'Authorization': 'Bearer $accessToken'},
-        ),
-      );
+      final Response response = await dio.post(EndPoints.joinInEvent,
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+          data: {"eventId": id});
+
       if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: UserEventJoined.fromJson(response.data),
-        );
+        return ResponseWrapper.success(data: response.data);
       }
       return ResponseWrapper.error(message: "");
     } catch (e) {

@@ -1,7 +1,7 @@
 import 'package:flutter_appauth/flutter_appauth.dart';
 
 import '../../model/api/base_response.dart';
-import '../../model/login/login_response.dart';
+import '../../model/old_login/login_response.dart';
 import '../../model/sso/user_sso.dart';
 
 abstract class OpenIDRepository {

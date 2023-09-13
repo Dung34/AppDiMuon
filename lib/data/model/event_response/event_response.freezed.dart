@@ -21,16 +21,21 @@ EventResponse _$EventResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EventResponse {
   String? get title => throw _privateConstructorUsedError;
+  List<String>? get image => throw _privateConstructorUsedError;
   String? get background => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get startDate => throw _privateConstructorUsedError;
-  String? get endDate => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
+  int? get isJoin => throw _privateConstructorUsedError;
+  String? get endDate => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
-  bool? get checked => throw _privateConstructorUsedError;
+  int? get type => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
+  int? get scanner => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
+  String? get createdBy => throw _privateConstructorUsedError;
   String? get createdDate => throw _privateConstructorUsedError;
+  String? get lastModifiedBy => throw _privateConstructorUsedError;
   String? get lastModifiedDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,16 +52,21 @@ abstract class $EventResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {String? title,
+      List<String>? image,
       String? background,
-      String? location,
       String? description,
       String? startDate,
-      String? endDate,
       int? status,
+      int? isJoin,
+      String? endDate,
       int? quantity,
-      bool? checked,
+      int? type,
+      String? location,
+      int? scanner,
       String? id,
+      String? createdBy,
       String? createdDate,
+      String? lastModifiedBy,
       String? lastModifiedDate});
 }
 
@@ -74,16 +84,21 @@ class _$EventResponseCopyWithImpl<$Res, $Val extends EventResponse>
   @override
   $Res call({
     Object? title = freezed,
+    Object? image = freezed,
     Object? background = freezed,
-    Object? location = freezed,
     Object? description = freezed,
     Object? startDate = freezed,
-    Object? endDate = freezed,
     Object? status = freezed,
+    Object? isJoin = freezed,
+    Object? endDate = freezed,
     Object? quantity = freezed,
-    Object? checked = freezed,
+    Object? type = freezed,
+    Object? location = freezed,
+    Object? scanner = freezed,
     Object? id = freezed,
+    Object? createdBy = freezed,
     Object? createdDate = freezed,
+    Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
   }) {
     return _then(_value.copyWith(
@@ -91,13 +106,13 @@ class _$EventResponseCopyWithImpl<$Res, $Val extends EventResponse>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       background: freezed == background
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
-              as String?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
@@ -107,29 +122,49 @@ class _$EventResponseCopyWithImpl<$Res, $Val extends EventResponse>
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int?,
+      isJoin: freezed == isJoin
+          ? _value.isJoin
+          : isJoin // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int?,
-      checked: freezed == checked
-          ? _value.checked
-          : checked // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scanner: freezed == scanner
+          ? _value.scanner
+          : scanner // ignore: cast_nullable_to_non_nullable
+              as int?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdDate: freezed == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedBy: freezed == lastModifiedBy
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
               as String?,
       lastModifiedDate: freezed == lastModifiedDate
           ? _value.lastModifiedDate
@@ -149,16 +184,21 @@ abstract class _$$_EventResponseCopyWith<$Res>
   @useResult
   $Res call(
       {String? title,
+      List<String>? image,
       String? background,
-      String? location,
       String? description,
       String? startDate,
-      String? endDate,
       int? status,
+      int? isJoin,
+      String? endDate,
       int? quantity,
-      bool? checked,
+      int? type,
+      String? location,
+      int? scanner,
       String? id,
+      String? createdBy,
       String? createdDate,
+      String? lastModifiedBy,
       String? lastModifiedDate});
 }
 
@@ -174,16 +214,21 @@ class __$$_EventResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
+    Object? image = freezed,
     Object? background = freezed,
-    Object? location = freezed,
     Object? description = freezed,
     Object? startDate = freezed,
-    Object? endDate = freezed,
     Object? status = freezed,
+    Object? isJoin = freezed,
+    Object? endDate = freezed,
     Object? quantity = freezed,
-    Object? checked = freezed,
+    Object? type = freezed,
+    Object? location = freezed,
+    Object? scanner = freezed,
     Object? id = freezed,
+    Object? createdBy = freezed,
     Object? createdDate = freezed,
+    Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
   }) {
     return _then(_$_EventResponse(
@@ -191,13 +236,13 @@ class __$$_EventResponseCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value._image
+          : image // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       background: freezed == background
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
-              as String?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
@@ -207,29 +252,49 @@ class __$$_EventResponseCopyWithImpl<$Res>
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int?,
+      isJoin: freezed == isJoin
+          ? _value.isJoin
+          : isJoin // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int?,
-      checked: freezed == checked
-          ? _value.checked
-          : checked // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scanner: freezed == scanner
+          ? _value.scanner
+          : scanner // ignore: cast_nullable_to_non_nullable
+              as int?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdDate: freezed == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedBy: freezed == lastModifiedBy
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
               as String?,
       lastModifiedDate: freezed == lastModifiedDate
           ? _value.lastModifiedDate
@@ -244,49 +309,73 @@ class __$$_EventResponseCopyWithImpl<$Res>
 class _$_EventResponse implements _EventResponse {
   _$_EventResponse(
       {this.title,
+      final List<String>? image,
       this.background,
-      this.location,
       this.description,
       this.startDate,
-      this.endDate,
       this.status,
+      this.isJoin,
+      this.endDate,
       this.quantity,
-      this.checked,
+      this.type,
+      this.location,
+      this.scanner,
       this.id,
+      this.createdBy,
       this.createdDate,
-      this.lastModifiedDate});
+      this.lastModifiedBy,
+      this.lastModifiedDate})
+      : _image = image;
 
   factory _$_EventResponse.fromJson(Map<String, dynamic> json) =>
       _$$_EventResponseFromJson(json);
 
   @override
   final String? title;
+  final List<String>? _image;
+  @override
+  List<String>? get image {
+    final value = _image;
+    if (value == null) return null;
+    if (_image is EqualUnmodifiableListView) return _image;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? background;
-  @override
-  final String? location;
   @override
   final String? description;
   @override
   final String? startDate;
   @override
-  final String? endDate;
-  @override
   final int? status;
+  @override
+  final int? isJoin;
+  @override
+  final String? endDate;
   @override
   final int? quantity;
   @override
-  final bool? checked;
+  final int? type;
+  @override
+  final String? location;
+  @override
+  final int? scanner;
   @override
   final String? id;
   @override
+  final String? createdBy;
+  @override
   final String? createdDate;
+  @override
+  final String? lastModifiedBy;
   @override
   final String? lastModifiedDate;
 
   @override
   String toString() {
-    return 'EventResponse(title: $title, background: $background, location: $location, description: $description, startDate: $startDate, endDate: $endDate, status: $status, quantity: $quantity, checked: $checked, id: $id, createdDate: $createdDate, lastModifiedDate: $lastModifiedDate)';
+    return 'EventResponse(title: $title, image: $image, background: $background, description: $description, startDate: $startDate, status: $status, isJoin: $isJoin, endDate: $endDate, quantity: $quantity, type: $type, location: $location, scanner: $scanner, id: $id, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate)';
   }
 
   @override
@@ -295,22 +384,29 @@ class _$_EventResponse implements _EventResponse {
         (other.runtimeType == runtimeType &&
             other is _$_EventResponse &&
             (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._image, _image) &&
             (identical(other.background, background) ||
                 other.background == background) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.isJoin, isJoin) || other.isJoin == isJoin) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            (identical(other.checked, checked) || other.checked == checked) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.scanner, scanner) || other.scanner == scanner) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
+            (identical(other.lastModifiedBy, lastModifiedBy) ||
+                other.lastModifiedBy == lastModifiedBy) &&
             (identical(other.lastModifiedDate, lastModifiedDate) ||
                 other.lastModifiedDate == lastModifiedDate));
   }
@@ -320,16 +416,21 @@ class _$_EventResponse implements _EventResponse {
   int get hashCode => Object.hash(
       runtimeType,
       title,
+      const DeepCollectionEquality().hash(_image),
       background,
-      location,
       description,
       startDate,
-      endDate,
       status,
+      isJoin,
+      endDate,
       quantity,
-      checked,
+      type,
+      location,
+      scanner,
       id,
+      createdBy,
       createdDate,
+      lastModifiedBy,
       lastModifiedDate);
 
   @JsonKey(ignore: true)
@@ -349,16 +450,21 @@ class _$_EventResponse implements _EventResponse {
 abstract class _EventResponse implements EventResponse {
   factory _EventResponse(
       {final String? title,
+      final List<String>? image,
       final String? background,
-      final String? location,
       final String? description,
       final String? startDate,
-      final String? endDate,
       final int? status,
+      final int? isJoin,
+      final String? endDate,
       final int? quantity,
-      final bool? checked,
+      final int? type,
+      final String? location,
+      final int? scanner,
       final String? id,
+      final String? createdBy,
       final String? createdDate,
+      final String? lastModifiedBy,
       final String? lastModifiedDate}) = _$_EventResponse;
 
   factory _EventResponse.fromJson(Map<String, dynamic> json) =
@@ -367,25 +473,35 @@ abstract class _EventResponse implements EventResponse {
   @override
   String? get title;
   @override
-  String? get background;
+  List<String>? get image;
   @override
-  String? get location;
+  String? get background;
   @override
   String? get description;
   @override
   String? get startDate;
   @override
-  String? get endDate;
-  @override
   int? get status;
+  @override
+  int? get isJoin;
+  @override
+  String? get endDate;
   @override
   int? get quantity;
   @override
-  bool? get checked;
+  int? get type;
+  @override
+  String? get location;
+  @override
+  int? get scanner;
   @override
   String? get id;
   @override
+  String? get createdBy;
+  @override
   String? get createdDate;
+  @override
+  String? get lastModifiedBy;
   @override
   String? get lastModifiedDate;
   @override

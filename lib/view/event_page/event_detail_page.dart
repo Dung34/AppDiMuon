@@ -1,16 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../config/routes.dart';
 import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
+import '../../domain/entity/event/event_wrapper/event.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
-import '../../shared/utils/dialog_helper.dart';
 import '../../shared/utils/view_utils.dart';
-import '../../shared/widgets/button/primary_button.dart';
+import '../../shared/widgets/button/primary_group_radio_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
+import '../../shared/widgets/button/secondary_button.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -76,7 +80,8 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                 if (userCubit.currentUser?.role == UserRole.admin)
                   PrimaryIconButton(
                     context: context,
-                    onPressed: () => _onEventDeletePressed(context),
+                    // onPressed: () => _onEventDeletePressed(context),
+                    onPressed: () {},
                     icon: Assets.icDelete,
                     iconColor: AppColor.error400,
                   ),
@@ -95,8 +100,53 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                     },
                     icon: Assets.icQrCode,
                   ),
+                PrimaryIconButton(
+                  context: context,
+                  onPressed: () {},
+                  icon: Assets.icSearch,
+                ),
+                const SizedBox(width: 5.0),
+                PrimaryIconButton(
+                  context: context,
+                  onPressed: () {},
+                  icon: Assets.icNotification,
+                ),
+                const SizedBox(width: 5.0),
               ],
+              leading: IconButton(
+                color: AppColor.black,
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
             ),
+            // appBar: AppBar(
+            //   actions: [
+            //     PrimaryIconButton(
+            //       context: context,
+            //       onPressed: () {},
+            //       icon: Assets.icSearch,
+            //     ),
+            //     const SizedBox(width: 5.0),
+            //     PrimaryIconButton(
+            //       context: context,
+            //       onPressed: () {},
+            //       icon: Assets.icNotification,
+            //     )
+            //   ],
+            //   backgroundColor: AppColor.primaryBackgroundColor,
+            //   leading: IconButton(
+            //     icon: const Icon(Icons.arrow_back),
+            //     onPressed: () {
+            //       Navigator.pop(context);
+            //     },
+            //   ),
+            //   title: const Text(
+            //     'Thông tin chi tiết',
+            //     style: AppTextTheme.lexendBold24,
+            //   ),
+            // ),
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -104,131 +154,143 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: PrimaryNetworkImage(
-                          imageUrl: event.background,
-                          height: (context.screenWidth - 32) * 9 / 16,
-                          width: double.infinity,
+                      CarouselSlider.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, index, realIndex) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: PrimaryNetworkImage(
+                              imageUrl: event.background,
+                              height: (context.screenWidth - 32) * 9 / 16,
+                              width: double.infinity,
+                            ),
+                          );
+                        },
+                        options: CarouselOptions(
+                          height: 150,
+                          onPageChanged: (index, reason) {
+                            setState(() {});
+                          },
+                          viewportFraction: 1,
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 18),
+                      const Center(
+                        child: AnimatedSmoothIndicator(
+                          activeIndex: 1,
+                          count: 1,
+                          effect: SlideEffect(
+                            activeDotColor: AppColor.primary500,
+                            dotColor: AppColor.primary100,
+                            dotHeight: 5,
+                            dotWidth: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      SecondaryButton(
+                        backgroundColor: event.status == EventStatus.notStarted
+                            ? AppColor.secondary500
+                            : event.status == EventStatus.begining
+                                ? AppColor.secondary500
+                                : event.status == EventStatus.finished
+                                    ? AppColor.fourth600
+                                    : AppColor.error400,
+                        context: context,
+                        height: 18,
+                        onPressed: () {},
+                        padding: EdgeInsets.zero,
+                        child: Text(
+                          event.status == 1
+                              ? 'Đang diễn ra'
+                              : event.status == 2
+                                  ? 'Sắp diễn ra'
+                                  : 'Đã diễn ra',
+                          style: AppTextTheme.robotoMedium12
+                              .copyWith(color: AppColor.white),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
                       Text(
                         '${event.title}',
                         style: AppTextTheme.lexendBold18
-                            .copyWith(color: AppColor.primary900),
+                            .copyWith(color: AppColor.secondary500),
+                      ),
+                      const SizedBox(height: 16),
+                      RichText(
+                          text: TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: 'Thời gian: ',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.secondary500)),
+                        TextSpan(
+                            text:
+                                '${DateTimeUtils.formatDate(event.startDate ?? '')} - ${DateTimeUtils.formatDate(event.endDate ?? '?')}',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.primary500))
+                      ])),
+                      const SizedBox(height: 6.0),
+                      RichText(
+                          text: TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: 'Địa điểm: ',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.secondary500)),
+                        TextSpan(
+                            text: event.location ?? 'Chưa cập nhật',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.primary500))
+                      ])),
+                      const SizedBox(
+                        height: 6.0,
+                      ),
+                      RichText(
+                          text: TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: 'Số lượng: ',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.secondary500)),
+                        TextSpan(
+                            text: '${event.quantity} người',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.primary500))
+                      ])),
+                      const SizedBox(height: 10),
+                      SecondaryButton(
+                        context: context,
+                        onPressed: () async {
+                          _onGetQRCode(context, event);
+                        },
+                        padding: EdgeInsets.zero,
+                        child: const Row(children: [
+                          Icon(
+                            Icons.qr_code_rounded,
+                            color: AppColor.third600,
+                          ),
+                          Text(' Quét mã QR'),
+                        ]),
+                      ),
+                      PrimaryGroupRadioButton(
+                        activeColor: AppColor.third600,
+                        flex: const <int>[3, 5],
+                        initialValue: event.scanner == 1
+                            ? 'Người dùng quét'
+                            : 'Admin quét',
+                        items: const ['Admin quét', 'Người dùng quét'],
+                        onChanged: (value) {},
+                        style: AppTextTheme.robotoRegular14,
                       ),
                       const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          PrimaryButton(
-                            context: context,
-                            onPressed: () {},
-                            label: event.statusStr,
-                            backgroundColor:
-                                event.status == EventStatus.notStarted
-                                    ? AppColor.third400
-                                    : event.status == EventStatus.begining
-                                        ? AppColor.secondary400
-                                        : event.status == EventStatus.finished
-                                            ? AppColor.fourth600
-                                            : AppColor.error400,
-                            contentPadding: 8,
+                      Container(
+                        decoration: const BoxDecoration(
+                            border: Border(
+                                top: BorderSide(color: AppColor.fourth300))),
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Text(
+                          '${event.description}',
+                          style: AppTextTheme.robotoRegular14.copyWith(
+                            color: AppColor.primary500,
                           ),
-                          const SizedBox(width: 10),
-                          PrimaryButton(
-                            context: context,
-                            onPressed: () {},
-                            icon: event.checked ? Assets.icStar : null,
-                            iconColor: AppColor.white,
-                            backgroundColor: event.checked
-                                ? AppColor.third400
-                                : event.status == EventStatus.finished &&
-                                        !event.checked
-                                    ? AppColor.error400
-                                    : AppColor.fourth600,
-                            label: event.checked
-                                ? 'Đã tham dự'
-                                : event.status == EventStatus.finished &&
-                                        !event.checked
-                                    ? 'Không tham dự'
-                                    : 'Chưa tham dự',
-                            contentPadding: 8,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SvgPicture.asset(Assets.icClock),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      'Bắt đầu: ${DateTimeUtils.formatDate(
-                                        event.startTime ?? '',
-                                        showOnlyTime: true,
-                                      )} ${DateTimeUtils.formatDate(event.startTime ?? '')}',
-                                      textAlign: TextAlign.start,
-                                      style:
-                                          AppTextTheme.robotoMedium12.copyWith(
-                                        color: AppColor.secondary500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.icLocation),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      event.location ?? 'Chưa cập nhật',
-                                      textAlign: TextAlign.start,
-                                      style:
-                                          AppTextTheme.robotoMedium12.copyWith(
-                                        color: AppColor.secondary500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                AppRoute.eventMember,
-                                arguments: EventMemberPageArgs(
-                                    eventId: event.id ?? ''),
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(Assets.icPeople),
-                                const SizedBox(width: 4),
-                                Text(
-                                  event.totalUserCount.toString(),
-                                  style: AppTextTheme.robotoMedium12
-                                      .copyWith(color: AppColor.secondary500),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        '${event.description}',
-                        style: AppTextTheme.robotoRegular12.copyWith(
-                          color: AppColor.secondary500,
                         ),
                       ),
                     ],
@@ -246,19 +308,19 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
     );
   }
 
-  _onEventDeletePressed(BuildContext context) async {
-    await context.showAppDialog(
-      getAlertDialog(
-        context: context,
-        title: 'Xác nhận',
-        message: 'Bạn có chắc chắn muốn xoá buổi học này?',
-        onPositivePressed: () {
-          showLoading();
-          cubit.deleteEvent(args.eventId);
-        },
-      ),
-    );
-  }
+  // _onEventDeletePressed(BuildContext context) async {
+  //   await context.showAppDialog(
+  //     getAlertDialog(
+  //       context: context,
+  //       title: 'Xác nhận',
+  //       message: 'Bạn có chắc chắn muốn xoá buổi học này?',
+  //       onPositivePressed: () {
+  //         showLoading();
+  //         cubit.deleteEvent(args.eventId);
+  //       },
+  //     ),
+  //   );
+  // }
 
   _onEventUpdatePressed(BuildContext context) async {
     Navigator.pushNamed(context, AppRoute.eventCreate,
@@ -268,5 +330,37 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
           isAddNew: false,
           isFromCalendar: args.isFromCalendar,
         ));
+  }
+
+  _onGetQRCode(BuildContext context, Event event) async {
+    String? imageLink = await cubit.getQRCode(args.eventId, "normal");
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Center(
+                child: imageLink != null
+                    ? Image.memory(base64Decode(imageLink.substring(22)))
+                    : Image.asset('assets/image/placeholder.png')),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(event.title ?? 'Chưa có tiêu đề',
+                    style: AppTextTheme.textPrimaryBold.copyWith(fontSize: 20)),
+                Row(
+                  children: [
+                    const Icon(Icons.access_time),
+                    Text(event.startDate ?? 'Chưa có thời gian')
+                  ],
+                ),
+                Row(children: [
+                  const Icon(Icons.location_on),
+                  Text(event.location ?? 'Chưa có vị trí')
+                ]),
+              ],
+            ),
+          );
+        });
   }
 }

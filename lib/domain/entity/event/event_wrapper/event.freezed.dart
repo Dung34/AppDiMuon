@@ -20,32 +20,23 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Event {
-  String? get id => throw _privateConstructorUsedError;
-  set id(String? value) => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
-  set type(String? value) => throw _privateConstructorUsedError;
-  String? get background => throw _privateConstructorUsedError;
-  set background(String? value) => throw _privateConstructorUsedError;
-  bool get checked => throw _privateConstructorUsedError;
-  set checked(bool value) => throw _privateConstructorUsedError;
-  int get status => throw _privateConstructorUsedError;
-  set status(int value) => throw _privateConstructorUsedError;
-  String get statusStr => throw _privateConstructorUsedError;
-  set statusStr(String value) => throw _privateConstructorUsedError;
-  int get totalUserCount => throw _privateConstructorUsedError;
-  set totalUserCount(int value) => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
-  set userId(String? value) => throw _privateConstructorUsedError;
-  String? get startTime => throw _privateConstructorUsedError;
-  set startTime(String? value) => throw _privateConstructorUsedError;
-  String? get endTime => throw _privateConstructorUsedError;
-  set endTime(String? value) => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
-  set title(String? value) => throw _privateConstructorUsedError;
+  List<String>? get image => throw _privateConstructorUsedError;
+  String? get background => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  set description(String? value) => throw _privateConstructorUsedError;
+  String? get startDate => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
+  int? get isJoin => throw _privateConstructorUsedError;
+  String? get endDate => throw _privateConstructorUsedError;
+  int? get quantity => throw _privateConstructorUsedError;
+  int? get type => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  set location(String? value) => throw _privateConstructorUsedError;
+  int? get scanner => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get createdBy => throw _privateConstructorUsedError;
+  String? get createdDate => throw _privateConstructorUsedError;
+  String? get lastModifiedBy => throw _privateConstructorUsedError;
+  String? get lastModifiedDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,19 +49,23 @@ abstract class $EventCopyWith<$Res> {
       _$EventCopyWithImpl<$Res, Event>;
   @useResult
   $Res call(
-      {String? id,
-      String? type,
+      {String? title,
+      List<String>? image,
       String? background,
-      bool checked,
-      int status,
-      String statusStr,
-      int totalUserCount,
-      String? userId,
-      String? startTime,
-      String? endTime,
-      String? title,
       String? description,
-      String? location});
+      String? startDate,
+      int? status,
+      int? isJoin,
+      String? endDate,
+      int? quantity,
+      int? type,
+      String? location,
+      int? scanner,
+      String? id,
+      String? createdBy,
+      String? createdDate,
+      String? lastModifiedBy,
+      String? lastModifiedDate});
 }
 
 /// @nodoc
@@ -86,72 +81,92 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? background = freezed,
-    Object? checked = null,
-    Object? status = null,
-    Object? statusStr = null,
-    Object? totalUserCount = null,
-    Object? userId = freezed,
-    Object? startTime = freezed,
-    Object? endTime = freezed,
     Object? title = freezed,
+    Object? image = freezed,
+    Object? background = freezed,
     Object? description = freezed,
+    Object? startDate = freezed,
+    Object? status = freezed,
+    Object? isJoin = freezed,
+    Object? endDate = freezed,
+    Object? quantity = freezed,
+    Object? type = freezed,
     Object? location = freezed,
+    Object? scanner = freezed,
+    Object? id = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? lastModifiedBy = freezed,
+    Object? lastModifiedDate = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      background: freezed == background
-          ? _value.background
-          : background // ignore: cast_nullable_to_non_nullable
-              as String?,
-      checked: null == checked
-          ? _value.checked
-          : checked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int,
-      statusStr: null == statusStr
-          ? _value.statusStr
-          : statusStr // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalUserCount: null == totalUserCount
-          ? _value.totalUserCount
-          : totalUserCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      background: freezed == background
+          ? _value.background
+          : background // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isJoin: freezed == isJoin
+          ? _value.isJoin
+          : isJoin // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scanner: freezed == scanner
+          ? _value.scanner
+          : scanner // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedBy: freezed == lastModifiedBy
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedDate: freezed == lastModifiedDate
+          ? _value.lastModifiedDate
+          : lastModifiedDate // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -164,19 +179,23 @@ abstract class _$$_EventCopyWith<$Res> implements $EventCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
-      String? type,
+      {String? title,
+      List<String>? image,
       String? background,
-      bool checked,
-      int status,
-      String statusStr,
-      int totalUserCount,
-      String? userId,
-      String? startTime,
-      String? endTime,
-      String? title,
       String? description,
-      String? location});
+      String? startDate,
+      int? status,
+      int? isJoin,
+      String? endDate,
+      int? quantity,
+      int? type,
+      String? location,
+      int? scanner,
+      String? id,
+      String? createdBy,
+      String? createdDate,
+      String? lastModifiedBy,
+      String? lastModifiedDate});
 }
 
 /// @nodoc
@@ -188,72 +207,92 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? background = freezed,
-    Object? checked = null,
-    Object? status = null,
-    Object? statusStr = null,
-    Object? totalUserCount = null,
-    Object? userId = freezed,
-    Object? startTime = freezed,
-    Object? endTime = freezed,
     Object? title = freezed,
+    Object? image = freezed,
+    Object? background = freezed,
     Object? description = freezed,
+    Object? startDate = freezed,
+    Object? status = freezed,
+    Object? isJoin = freezed,
+    Object? endDate = freezed,
+    Object? quantity = freezed,
+    Object? type = freezed,
     Object? location = freezed,
+    Object? scanner = freezed,
+    Object? id = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? lastModifiedBy = freezed,
+    Object? lastModifiedDate = freezed,
   }) {
     return _then(_$_Event(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      background: freezed == background
-          ? _value.background
-          : background // ignore: cast_nullable_to_non_nullable
-              as String?,
-      checked: null == checked
-          ? _value.checked
-          : checked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int,
-      statusStr: null == statusStr
-          ? _value.statusStr
-          : statusStr // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalUserCount: null == totalUserCount
-          ? _value.totalUserCount
-          : totalUserCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value._image
+          : image // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      background: freezed == background
+          ? _value.background
+          : background // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isJoin: freezed == isJoin
+          ? _value.isJoin
+          : isJoin // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scanner: freezed == scanner
+          ? _value.scanner
+          : scanner // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedBy: freezed == lastModifiedBy
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastModifiedDate: freezed == lastModifiedDate
+          ? _value.lastModifiedDate
+          : lastModifiedDate // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -263,58 +302,130 @@ class __$$_EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res, _$_Event>
 @JsonSerializable()
 class _$_Event implements _Event {
   _$_Event(
-      {this.id,
-      this.type,
+      {this.title,
+      final List<String>? image,
       this.background,
-      this.checked = false,
-      this.status = 0,
-      this.statusStr = '',
-      this.totalUserCount = 0,
-      this.userId,
-      this.startTime,
-      this.endTime,
-      this.title,
       this.description,
-      this.location});
+      this.startDate,
+      this.status,
+      this.isJoin,
+      this.endDate,
+      this.quantity,
+      this.type,
+      this.location,
+      this.scanner,
+      this.id,
+      this.createdBy,
+      this.createdDate,
+      this.lastModifiedBy,
+      this.lastModifiedDate})
+      : _image = image;
 
   factory _$_Event.fromJson(Map<String, dynamic> json) =>
       _$$_EventFromJson(json);
 
   @override
-  String? id;
+  final String? title;
+  final List<String>? _image;
   @override
-  String? type;
+  List<String>? get image {
+    final value = _image;
+    if (value == null) return null;
+    if (_image is EqualUnmodifiableListView) return _image;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
-  String? background;
+  final String? background;
   @override
-  @JsonKey()
-  bool checked;
+  final String? description;
   @override
-  @JsonKey()
-  int status;
+  final String? startDate;
   @override
-  @JsonKey()
-  String statusStr;
+  final int? status;
   @override
-  @JsonKey()
-  int totalUserCount;
+  final int? isJoin;
   @override
-  String? userId;
+  final String? endDate;
   @override
-  String? startTime;
+  final int? quantity;
   @override
-  String? endTime;
+  final int? type;
   @override
-  String? title;
+  final String? location;
   @override
-  String? description;
+  final int? scanner;
   @override
-  String? location;
+  final String? id;
+  @override
+  final String? createdBy;
+  @override
+  final String? createdDate;
+  @override
+  final String? lastModifiedBy;
+  @override
+  final String? lastModifiedDate;
 
   @override
   String toString() {
-    return 'Event(id: $id, type: $type, background: $background, checked: $checked, status: $status, statusStr: $statusStr, totalUserCount: $totalUserCount, userId: $userId, startTime: $startTime, endTime: $endTime, title: $title, description: $description, location: $location)';
+    return 'Event(title: $title, image: $image, background: $background, description: $description, startDate: $startDate, status: $status, isJoin: $isJoin, endDate: $endDate, quantity: $quantity, type: $type, location: $location, scanner: $scanner, id: $id, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate)';
   }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Event &&
+            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._image, _image) &&
+            (identical(other.background, background) ||
+                other.background == background) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isJoin, isJoin) || other.isJoin == isJoin) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.scanner, scanner) || other.scanner == scanner) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastModifiedBy, lastModifiedBy) ||
+                other.lastModifiedBy == lastModifiedBy) &&
+            (identical(other.lastModifiedDate, lastModifiedDate) ||
+                other.lastModifiedDate == lastModifiedDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      const DeepCollectionEquality().hash(_image),
+      background,
+      description,
+      startDate,
+      status,
+      isJoin,
+      endDate,
+      quantity,
+      type,
+      location,
+      scanner,
+      id,
+      createdBy,
+      createdDate,
+      lastModifiedBy,
+      lastModifiedDate);
 
   @JsonKey(ignore: true)
   @override
@@ -332,61 +443,60 @@ class _$_Event implements _Event {
 
 abstract class _Event implements Event {
   factory _Event(
-      {String? id,
-      String? type,
-      String? background,
-      bool checked,
-      int status,
-      String statusStr,
-      int totalUserCount,
-      String? userId,
-      String? startTime,
-      String? endTime,
-      String? title,
-      String? description,
-      String? location}) = _$_Event;
+      {final String? title,
+      final List<String>? image,
+      final String? background,
+      final String? description,
+      final String? startDate,
+      final int? status,
+      final int? isJoin,
+      final String? endDate,
+      final int? quantity,
+      final int? type,
+      final String? location,
+      final int? scanner,
+      final String? id,
+      final String? createdBy,
+      final String? createdDate,
+      final String? lastModifiedBy,
+      final String? lastModifiedDate}) = _$_Event;
 
   factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
 
   @override
-  String? get id;
-  set id(String? value);
+  String? get title;
   @override
-  String? get type;
-  set type(String? value);
+  List<String>? get image;
   @override
   String? get background;
-  set background(String? value);
-  @override
-  bool get checked;
-  set checked(bool value);
-  @override
-  int get status;
-  set status(int value);
-  @override
-  String get statusStr;
-  set statusStr(String value);
-  @override
-  int get totalUserCount;
-  set totalUserCount(int value);
-  @override
-  String? get userId;
-  set userId(String? value);
-  @override
-  String? get startTime;
-  set startTime(String? value);
-  @override
-  String? get endTime;
-  set endTime(String? value);
-  @override
-  String? get title;
-  set title(String? value);
   @override
   String? get description;
-  set description(String? value);
+  @override
+  String? get startDate;
+  @override
+  int? get status;
+  @override
+  int? get isJoin;
+  @override
+  String? get endDate;
+  @override
+  int? get quantity;
+  @override
+  int? get type;
   @override
   String? get location;
-  set location(String? value);
+  @override
+  int? get scanner;
+  @override
+  String? get id;
+  @override
+  String? get createdBy;
+  @override
+  String? get createdDate;
+  @override
+  String? get lastModifiedBy;
+  @override
+  String? get lastModifiedDate;
   @override
   @JsonKey(ignore: true)
   _$$_EventCopyWith<_$_Event> get copyWith =>

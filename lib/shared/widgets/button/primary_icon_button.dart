@@ -33,7 +33,7 @@ class PrimaryIconButton extends StatelessWidget {
       style: const ButtonStyle(
         padding: MaterialStatePropertyAll(EdgeInsets.zero),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: MaterialStatePropertyAll(Size(48, 36)),
+        minimumSize: MaterialStatePropertyAll(Size(21.5, 21.5)),
       ),
       child: icon == null
           ? Container()

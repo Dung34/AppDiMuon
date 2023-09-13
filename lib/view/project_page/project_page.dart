@@ -52,12 +52,7 @@ class _ProjectPageState extends BasePageState<ProjectPage, ProjectCubit> {
                 },
               );
             }
-            return const Center(
-              child: Text(
-                "Không có dữ liệu hiển thị",
-                style: AppTextTheme.textPrimaryMedium,
-              ),
-            );
+            return const Center(child: CircularProgressIndicator());
           }),
         )
       ],

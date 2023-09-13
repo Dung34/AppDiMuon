@@ -32,7 +32,7 @@ class _EventMemberPageState extends BasePageState<EventMemberPage, EventCubit> {
   @override
   Widget buildPage(BuildContext context) {
     final args = context.arguments as EventMemberPageArgs;
-    cubit.getAllCheckedInMember(args.eventId);
+    // cubit.getAllCheckedInMember(args.eventId);
     return BlocBuilder<EventCubit, EventState>(
       buildWhen: (previous, current) {
         return current is EventGetAllMemberSuccessState;

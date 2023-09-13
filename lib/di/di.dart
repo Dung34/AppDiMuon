@@ -11,6 +11,10 @@ import '../data/repository/remote/project_list_repository.dart';
 import '../data/repository/remote/project_list_repository_imp.dart';
 import '../data/repository/remote/report_repository.dart';
 import '../data/repository/remote/report_repository_impl.dart';
+import '../data/repository/remote/login_repository.dart';
+import '../data/repository/remote/login_repository_impl.dart';
+import '../data/repository/remote/project_list_repository.dart';
+import '../data/repository/remote/project_list_repository_impl.dart';
 import '../data/repository/remote/repository.dart';
 import '../domain/mapper/event_data_mapper.dart';
 import '../domain/mapper/general_report_mapper.dart';
@@ -45,18 +49,21 @@ configureInjection() async {
         openIdRepository: getIt.get<OpenIDRepository>()),
   );
 
-  getIt.registerLazySingleton<EventRepository>(() => EventpRepositoryImpl());
+  getIt.registerLazySingleton<EventRepository>(() => EventRepositoryImpl());
   getIt.registerLazySingleton<ReportRepository>(
       () => ReportRepositoryImplement());
   getIt.registerLazySingleton<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
-  getIt.registerLazySingleton<ProjectListRepository>(
-      () => ProjectListRepositoryImpl());
+
+  //getIt.registerLazySingleton<ProjectListRepository>(() => ProjectListRepositoryImpl());
 
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
 
   getIt.registerLazySingleton<OpenIDRepository>(
       () => OpenIDRepositoryImpl(dio: getIt<Dio>()));
+
+  getIt.registerLazySingleton<LoginRepository>(
+      () => LoginRepositoryImpl(dio: getIt<Dio>()));
 
   getIt.registerLazySingleton<UtilityRepository>(
       <UtilityRepository>() => UtilitiesRepositoryImpl(dio: getIt<Dio>()));
