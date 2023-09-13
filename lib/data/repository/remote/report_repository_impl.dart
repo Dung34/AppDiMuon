@@ -120,7 +120,8 @@ class ReportRepositoryImplement implements ReportRepository {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.put('/reportDaily/update',
-          data: _reportDataMapper.mapToData(reportDaily).toJson(),
+          data: _reportDataMapper.mapToData(reportDaily).toJson()
+            ..removeWhere((key, value) => value == null),
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(

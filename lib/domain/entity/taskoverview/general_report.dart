@@ -1,5 +1,10 @@
-@fre
-class GeneralReport extends _$GeneralReport {
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'general_report.g.dart';
+part 'general_report.freezed.dart';
+
+@freezed
+class GeneralReport with _$GeneralReport {
   factory GeneralReport({
     String? id,
     String? title,

@@ -10,6 +10,7 @@ import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
 import '../event_page/event_page.dart';
+import '../general_page/general_page.dart';
 import '../membership/membership_page.dart';
 import '../report_page/report_add.dart';
 import '../report_page/report_page.dart';
@@ -57,8 +58,8 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const EventPage(),
     const MembershipPage(),
     //const ProjectPage(),
-    const ReportPage(),
-
+    // const ReportPage(),
+    const GeneralPage(),
     //const ReportAddPage(),
     SettingPage(),
   ];

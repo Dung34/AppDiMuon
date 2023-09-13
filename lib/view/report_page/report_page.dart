@@ -6,7 +6,6 @@ import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/colors.dart';
 import '../../data/resources/themes.dart';
 import '../../di/di.dart';
-import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
 
@@ -74,7 +73,7 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ReportItems(reportDaily: reportDaily),
-                    Divider(thickness: 5.0, color: AppColor.fourth300),
+                    Divider(thickness: 2.0, color: AppColor.fourth300),
                     if (index == listReport.length - 1)
                       const SizedBox(height: 100),
                   ],
