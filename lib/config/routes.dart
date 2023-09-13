@@ -15,6 +15,7 @@ import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/report_page/report_add.dart';
 import '../view/report_page/report_detail_view.dart';
+import '../view/report_page/report_page.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
@@ -28,6 +29,7 @@ class AppRoute {
   static const String login = "/login";
   static const String register = "/register";
   static const String changePassword = "/changePassword";
+  static const String dailyReport = "/dailyReport";
   static const String eventDetail = "/eventDetail";
   static const String eventMember = "/eventMember";
   static const String eventHistory = "/eventHistory";
@@ -48,6 +50,7 @@ class AppRoute {
         AppRoute.splash: (context) => const SplashScreen(),
         AppRoute.register: (context) => RegisterPage(),
         AppRoute.changePassword: (context) => const ProfileChangePasswordPage(),
+        AppRoute.dailyReport: (context) => const ReportPage(),
         AppRoute.eventDetail: (context) => const EventDetailPage(),
         AppRoute.eventMember: (context) => const EventMemberPage(),
         AppRoute.eventHistory: (context) => const EventHistoryPage(),

@@ -7,8 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/repository/local/shared_pref_helper.dart';
 import '../data/repository/remote/gen_report_repo_impl.dart';
 import '../data/repository/remote/gen_report_repository.dart';
-import '../data/repository/remote/project_list_repository.dart';
-import '../data/repository/remote/project_list_repository_imp.dart';
 import '../data/repository/remote/report_repository.dart';
 import '../data/repository/remote/report_repository_impl.dart';
 import '../data/repository/remote/login_repository.dart';
@@ -55,7 +53,8 @@ configureInjection() async {
   getIt.registerLazySingleton<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
 
-  //getIt.registerLazySingleton<ProjectListRepository>(() => ProjectListRepositoryImpl());
+  getIt.registerLazySingleton<ProjectListRepository>(
+      () => ProjectListRepositoryImpl());
 
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
 

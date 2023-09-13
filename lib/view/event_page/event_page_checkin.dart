@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_button.dart';
@@ -115,7 +116,9 @@ class _EventPageCheckin extends BasePageState<EventPageCheckin, EventCubit> {
                 child: PrimaryButton(
                   backgroundColor: AppColor.secondary500,
                   context: context,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoute.dailyReport);
+                  },
                   label: 'Báo cáo hàng ngày',
                   textStyle:
                       AppTextTheme.textButtonPrimary.copyWith(fontSize: 12),
