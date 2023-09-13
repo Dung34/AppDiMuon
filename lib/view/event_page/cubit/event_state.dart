@@ -140,6 +140,10 @@ class EventJoinEventSuccessState extends EventState {
 
 class EventJoinEventFailedState extends EventState {}
 
+class EventJoinInEventSucessState extends EventState {}
+
+class EventJoinInEventFailedState extends EventState {}
+
 class EventShowFullDayState extends EventState {
   final bool isShow;
 

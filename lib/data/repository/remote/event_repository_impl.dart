@@ -129,4 +129,23 @@ class EventRepositoryImpl extends EventRepository {
       return ResponseWrapper.error(message: "");
     }
   }
+
+  @override
+  Future<ResponseWrapper<int>> joinInEvent(String id) async {
+    accessToken = await localDataAccess.getAccessToken();
+
+    try {
+      final Response response = await dio.post(EndPoints.joinInEvent,
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+          data: {"eventId": id});
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: response.data);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
 }

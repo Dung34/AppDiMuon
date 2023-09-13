@@ -1,4 +1,3 @@
-import '../../data/constant/constants.dart';
 import '../../data/mapper/base/base_data_mapper.dart';
 import '../../data/model/user/user_response/user_response.dart';
 import '../entity/user/user.dart';

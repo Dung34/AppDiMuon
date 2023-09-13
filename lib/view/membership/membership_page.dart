@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../config/config.dart';
 import '../../data/resources/resources.dart';
-import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/view_utils.dart';
-import '../../shared/widgets/image/primary_circle_image.dart';
-import '../../shared/widgets/something/primary_qr_view.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/user/user_cubit.dart';
 
@@ -25,8 +21,8 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
 
   @override
   Widget buildPage(BuildContext context) {
-    final user = userCubit.currentUser;
-    final w = context.screenWidth;
+    // final user = userCubit.currentUser;
+    // final w = context.screenWidth;
     return SingleChildScrollView(
       child: Column(
         children: [

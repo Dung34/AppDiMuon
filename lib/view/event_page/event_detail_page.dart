@@ -256,27 +256,6 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                                 .copyWith(color: AppColor.primary500))
                       ])),
                       const SizedBox(height: 10),
-                      // TextButton(
-                      //   onPressed: () {
-                      //     Navigator.pushNamed(
-                      //       context,
-                      //       AppRoute.eventMember,
-                      //       arguments: EventMemberPageArgs(
-                      //           eventId: event.id ?? ''),
-                      //     );
-                      //   },
-                      //   child: Row(
-                      //     children: [
-                      //       SvgPicture.asset(Assets.icPeople),
-                      //       const SizedBox(width: 4),
-                      //       Text(
-                      //         event.totalUserCount.toString(),
-                      //         style: AppTextTheme.robotoMedium12
-                      //             .copyWith(color: AppColor.secondary500),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
                       SecondaryButton(
                         context: context,
                         onPressed: () async {

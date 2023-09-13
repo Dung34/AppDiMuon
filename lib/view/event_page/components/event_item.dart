@@ -9,26 +9,38 @@ import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/button/primary_icon_button.dart';
 import '../../../shared/widgets/button/secondary_button.dart';
 import '../../../shared/widgets/image/primary_image.dart';
+import '../../base/base_page_sate.dart';
 import '../cubit/event_cubit.dart';
 
-class EventItem extends StatelessWidget {
+// ignore: must_be_immutable
+class EventItem extends StatefulWidget {
   final Event event;
-  late int hasOccurred;
   final bool inCheckInPage;
 
-  EventItem({
+  const EventItem({
     super.key,
     required this.event,
     this.inCheckInPage = false,
   });
 
   @override
+  State<EventItem> createState() => _EventItemState();
+}
+
+class _EventItemState extends BasePageState<EventItem, EventCubit> {
+  late int hasOccurred;
+
+  void _onJoinInPressed() async {
+    await cubit.joinInEvent(widget.event.id ?? '');
+  }
+
+  @override
   Widget build(BuildContext context) {
     hasOccurred = DateTime.now().isBefore(
-            DateTime.tryParse(event.startDate ?? '') ?? DateTime.now())
+            DateTime.tryParse(widget.event.startDate ?? '') ?? DateTime.now())
         ? -1
         : (DateTime.now().isBefore(
-                DateTime.tryParse(event.endDate ?? '') ?? DateTime.now())
+                DateTime.tryParse(widget.event.endDate ?? '') ?? DateTime.now())
             ? 0
             : 1);
 
@@ -41,7 +53,7 @@ class EventItem extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: PrimaryNetworkImage(
-            imageUrl: event.background,
+            imageUrl: widget.event.background,
             height: context.screenWidth * 0.156,
             width: context.screenWidth * 0.156,
           ),
@@ -53,7 +65,7 @@ class EventItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${DateTimeUtils.formatDate(event.startDate ?? '')} - ${DateTimeUtils.formatDate(event.endDate ?? '')}',
+              '${DateTimeUtils.formatDate(widget.event.startDate ?? '')} - ${DateTimeUtils.formatDate(widget.event.endDate ?? '')}',
               style: AppTextTheme.robotoRegular12.copyWith(fontSize: 10),
             ),
             const SizedBox(
@@ -62,7 +74,7 @@ class EventItem extends StatelessWidget {
             SizedBox(
                 width: context.screenWidth * 0.68,
                 child: Text(
-                  event.title ?? '',
+                  widget.event.title ?? '',
                   style: AppTextTheme.robotoMedium16,
                 )),
             const SizedBox(
@@ -93,17 +105,38 @@ class EventItem extends StatelessWidget {
                 const SizedBox(
                   width: 8.0,
                 ),
-                SecondaryButton(
-                  backgroundColor: AppColor.secondary50,
-                  context: context,
-                  height: 18.0,
-                  onPressed: () {},
-                  padding: EdgeInsets.zero,
-                  child: Text(
-                      event.isJoin == 1 ? 'Đã tham gia' : 'Tham gia ngay',
-                      style: AppTextTheme.robotoMedium12
-                          .copyWith(color: AppColor.primary500)),
-                ),
+                BlocBuilder<EventCubit, EventState>(
+                    buildWhen: (previous, current) =>
+                        current is EventGetAllEventSuccessState ||
+                        current is EventGetEventByFilterSuccessState ||
+                        current is EventJoinInEventSucessState,
+                    builder: (event, state) {
+                      return SecondaryButton(
+                        backgroundColor: AppColor.secondary50,
+                        context: context,
+                        height: 18.0,
+                        onPressed:
+                            (widget.event.isJoin == 0 && hasOccurred != 1)
+                                ? () async {
+                                    _onJoinInPressed();
+                                  }
+                                : () {},
+                        padding: EdgeInsets.zero,
+                        child: (state is EventGetAllEventSuccessState ||
+                                state is EventGetEventByFilterSuccessState)
+                            ? Text(
+                                widget.event.isJoin == 1
+                                    ? 'Đã tham gia'
+                                    : 'Tham gia ngay',
+                                style: AppTextTheme.robotoMedium12
+                                    .copyWith(color: AppColor.primary500))
+                            : Text(
+                                'Đã tham gia',
+                                style: AppTextTheme.robotoMedium12
+                                    .copyWith(color: AppColor.primary500),
+                              ),
+                      );
+                    }),
               ],
             ),
           ],
@@ -116,7 +149,7 @@ class EventItem extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, AppRoute.eventDetail,
                   arguments: EventDetailPageArgs(
-                    eventId: event.id!,
+                    eventId: widget.event.id!,
                     eventCubit: context.read<EventCubit>(),
                     isFromCalendar: false,
                   ));
