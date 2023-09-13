@@ -10,7 +10,8 @@ import '../../../domain/entity/user/user.dart';
 import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
-import '../../model/old_login/login_response.dart';
+
+import '../../model/login/login_response.dart';
 import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
@@ -44,7 +45,7 @@ class UserRepositoryImpl implements UserRepository {
   }) async {
     try {
       final loginResponse = await dio.post(
-        EndPoints.login,
+        '/api/authenticate',
         data: {
           'username': username,
           'password': password,
@@ -194,7 +195,9 @@ class UserRepositoryImpl implements UserRepository {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.get(
       EndPoints.getUser,
-      options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
+      ),
     );
     try {
       if (response.statusCode == 200) {
@@ -214,7 +217,7 @@ class UserRepositoryImpl implements UserRepository {
       {required UserEntity user}) async {
     accessToken = await localDataAccess.getAccessToken();
     final response = await dio.patch(
-      EndPoints.updateUser,
+      EndPoints.getCurrentUser,
       data: _userDataMapper.mapToData(user).toJson()
         ..removeWhere(
           (key, value) => value == null,
