@@ -10,7 +10,10 @@ import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../base/bloc/user/user_cubit.dart';
 import '../event_page/event_page.dart';
+import '../general_page/general_page.dart';
 import '../membership/membership_page.dart';
+import '../report_page/report_add.dart';
+import '../report_page/report_page.dart';
 import '../project_page/project_page.dart';
 import '../setting_page/setting_page.dart';
 
@@ -49,13 +52,15 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
   final titles = [
     'Trang chủ',
     'Danh thiếp',
-    'Sự kiện',
+    'Dự án',
     'Hồ sơ',
   ];
   final tabs = [
     const EventPage(),
     const MembershipPage(),
-    const ProjectPage(),
+    //const ProjectPage(),
+
+    const ReportPage(),
     SettingPage(),
   ];
 

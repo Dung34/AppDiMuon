@@ -14,7 +14,6 @@ class Environment {
 }
 
 class EndPoints {
-  // sso related
   static const String getUserInfoSSO = '/user/updateinfo';
   static const String deactiveUser = '/user/de-active';
 

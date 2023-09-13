@@ -17,7 +17,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository = getIt.get<UserRepository>();
   final OpenIDRepository openIDRepository = getIt.get<OpenIDRepository>();
-  final LoginRepository loginRepository = getIt.get<LoginRepository>();
+  //final LoginRepository loginRepository = getIt.get<LoginRepository>();
   LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   bool _rememberMe = false;
 
@@ -71,34 +71,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthCheckPolicyState(false));
   }
 
-  FutureOr<void> _oldOnLoginRequest(
-      AuthLoginRequestEvent event, Emitter<AuthState> emit) async {
-    if (event.username == "" || event.password == "") {
-      emit(AuthFieldRequiredState());
-    } else {
-      emit(AuthLoadingState());
-      final response = await openIDRepository.loginRequest(
-        username: event.username.toString(),
-        password: event.password.toString(),
-        rememberMe: event.rememberMe,
-      );
+  // FutureOr<void> _oldOnLoginRequest(
+  //     AuthLoginRequestEvent event, Emitter<AuthState> emit) async {
+  //   if (event.username == "" || event.password == "") {
+  //     emit(AuthFieldRequiredState());
+  //   } else {
+  //     emit(AuthLoadingState());
+  //     final response = await userRepository.loginRequest(
+  //         username: event.username.toString(),
+  //         password: event.password.toString(),
+  //         rememberMe: event.rememberMe);
 
-      if (response.status == ResponseStatus.success && response.data != null) {
-        localDataAccess.setAccessToken(response.data!.data?.accessToken ?? '');
-        localDataAccess
-            .setRefreshToken(response.data!.data?.refreshToken ?? '');
-        localDataAccess.setUsername(event.username.toString());
-        localDataAccess.setAccountRemember(_rememberMe);
-        emit(AuthLoginSuccessState());
+  //     if (response.status == ResponseStatus.success && response.data != null) {
+  //       localDataAccess.setAccessToken(response.data?.idToken ?? "");
+  //       localDataAccess.setRefreshToken(response.data?.idToken ?? '');
+  //       localDataAccess.setUsername(event.username.toString());
+  //       localDataAccess.setAccountRemember(_rememberMe);
+  //       emit(AuthLoginSuccessState());
 
-        // await NotificationHelper.instance
-        //     .initSignalrConnection(response.data!.idToken);
-      } else if (response.status == ResponseStatus.error) {
-        emit(AuthLoginFailedState(message: response.message));
-        ViewUtils.toastWarning(response.message ?? '');
-      }
-    }
-  }
+  //       // await NotificationHelper.instance
+  //       //     .initSignalrConnection(response.data!.idToken);
+  //     } else if (response.status == ResponseStatus.error) {
+  //       emit(AuthLoginFailedState(message: response.message));
+  //       ViewUtils.toastWarning(response.message ?? '');
+  //     }
+  //   }
+  // }
 
   FutureOr<void> _onLoginRequest(
       AuthLoginRequestEvent event, Emitter<AuthState> emit) async {
@@ -106,7 +104,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthFieldRequiredState());
     } else {
       emit(AuthLoadingState());
-      final response = await loginRepository.loginRequest(
+      final response = await userRepository.loginRequest(
         username: event.username.toString(),
         password: event.password.toString(),
         rememberMe: event.rememberMe,

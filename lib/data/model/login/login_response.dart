@@ -8,8 +8,8 @@ class LoginResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id_token'] = idToken;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id_token'] = this.idToken;
     return data;
   }
 }
