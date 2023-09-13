@@ -25,6 +25,8 @@ class EventCubit extends Cubit<EventState> {
 
   final List<Event> events = [];
 
+  getCheckinStatistic() async {}
+
   getCurrentLocation() async {
     final geocodingHelper = getIt<GeocodingHelper>();
     final CurrentLocation currentLocation =

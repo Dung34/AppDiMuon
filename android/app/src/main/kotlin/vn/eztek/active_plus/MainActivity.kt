@@ -1,4 +1,4 @@
-package Active_plus
+package vn.eztek.active_plus
 
 import io.flutter.embedding.android.FlutterActivity
 

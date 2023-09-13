@@ -123,7 +123,8 @@ class _EventItemState extends BasePageState<EventItem, EventCubit> {
                                 : () {},
                         padding: EdgeInsets.zero,
                         child: (state is EventGetAllEventSuccessState ||
-                                state is EventGetEventByFilterSuccessState)
+                                state is EventGetEventByFilterSuccessState ||
+                                state is EventJoinInEventSucessState)
                             ? Text(
                                 widget.event.isJoin == 1
                                     ? 'Đã tham gia'
