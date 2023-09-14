@@ -4,7 +4,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../../config/config.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/taskoverview/general_report.dart';
-import '../../../domain/entity/taskoverview/list_general_report.dart';
+
 import '../../../domain/mapper/general_report_mapper.dart';
 import '../../../domain/mapper/list_gen_report_mapper.dart';
 import '../../model/api/base_response.dart';
@@ -60,7 +60,7 @@ class GeneralReportRepositoryImpl implements GeneralReportRepository {
   Future<ResponseWrapper<void>> deleteGenReport(String reportId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
-      final response = await dio.delete('reportOverview/delete',
+      final response = await dio.delete('/reportOverview/delete',
           data: {"reportOverviewId": reportId},
           options: Options(headers: {"Authorization": "Bearer $accessToken"}));
       if (response.statusCode == 200) {

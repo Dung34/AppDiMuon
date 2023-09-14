@@ -130,7 +130,9 @@ class _EventPageCheckin extends BasePageState<EventPageCheckin, EventCubit> {
                 child: PrimaryButton(
                   backgroundColor: AppColor.primary50,
                   context: context,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoute.generalReport);
+                  },
                   label: 'Báo cáo tổng quan',
                   textStyle: AppTextTheme.textButtonPrimary
                       .copyWith(color: AppColor.primary500, fontSize: 12),

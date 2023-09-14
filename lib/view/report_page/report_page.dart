@@ -6,6 +6,8 @@ import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/colors.dart';
 import '../../data/resources/themes.dart';
 import '../../di/di.dart';
+import '../../shared/etx/app_ext.dart';
+import '../../shared/widgets/button/back_button.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
 
@@ -33,6 +35,7 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
   final ScrollController scrollController = ScrollController();
   @override
   Widget buildPage(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,13 +44,12 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
               top: 20, bottom: 8.0, left: 8.0, right: 8.0),
           child: Row(
             children: [
+              BackButtonCustom(),
               Text(
                 "Báo cáo hằng ngày",
                 style: AppTextTheme.robotoMedium18,
               ),
-              SizedBox(
-                width: 130,
-              ),
+              SizedBox(width: screenWidth * 3 / 16),
               IconButton(
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoute.addReport);

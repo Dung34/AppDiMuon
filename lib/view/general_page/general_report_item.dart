@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/taskoverview/general_report.dart';
 import '../../shared/utils/date_time_utils.dart';
@@ -11,14 +13,20 @@ class GeneralReportItem extends StatelessWidget {
   const GeneralReportItem({super.key, required this.generalReport});
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => GeneralReportCubit(),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, AppRoute.geneReportDetail,
+              arguments: GeneralReportArgs(
+                  reportId: generalReport.id ?? "",
+                  generalReportCubit: context.read<GeneralReportCubit>()));
+        },
         child: Row(
           children: [
             SizedBox(
-              width: 270,
+              width: screenWidth * 10 / 16,
               child: Padding(
                 padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
                 child: Column(
@@ -36,8 +44,12 @@ class GeneralReportItem extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+            IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icEdit)),
+            IconButton(
+                onPressed: () {
+                  GeneralReportCubit().deleteGeneralReport(generalReport.id!);
+                },
+                icon: SvgPicture.asset(Assets.icDelete))
           ],
         ),
       ),

@@ -15,6 +15,7 @@ class ReportItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => ReportCubit(),
       child: InkWell(
@@ -28,7 +29,7 @@ class ReportItems extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: 320,
+              width: screenWidth * 10 / 16,
               child: Padding(
                 padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
                 child: Column(
@@ -46,6 +47,7 @@ class ReportItems extends StatelessWidget {
                 ),
               ),
             ),
+            IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
             IconButton(
                 onPressed: () {
                   ReportCubit().deleteReport(reportDaily.id ?? "");

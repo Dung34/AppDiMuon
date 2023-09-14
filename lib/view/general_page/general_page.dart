@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../config/routes.dart';
 import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/resources.dart';
 import '../../di/di.dart';
+import '../../shared/widgets/button/back_button.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../base/base_page_sate.dart';
@@ -30,6 +33,7 @@ class _GeneralPageState extends BasePageState<GeneralPage, GeneralReportCubit> {
   final ScrollController scrollController = ScrollController();
   @override
   Widget buildPage(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,18 +41,27 @@ class _GeneralPageState extends BasePageState<GeneralPage, GeneralReportCubit> {
           padding: EdgeInsets.only(top: 20, bottom: 8.0, left: 8.0, right: 8.0),
           child: Row(
             children: [
+              const BackButtonCustom(),
               SizedBox(
-                width: 300,
-                child: Text(
-                  "Báo cáo tổng quan",
+                width: screenWidth * 10 / 16,
+                child: const Text(
+                  "  Báo cáo tổng quan",
                   style: AppTextTheme.lexendBold16,
                 ),
               ),
-              IconButton(onPressed: () {}, icon: Icon(Icons.add))
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoute.geneReportAdd);
+                  },
+                  icon: SvgPicture.asset(Assets.icAdd))
             ],
           ),
         ),
-        Expanded(child: BlocBuilder<GeneralReportCubit, GeneralReportState>(
+        Expanded(
+            child: BlocBuilder<GeneralReportCubit, GeneralReportState>(
+          buildWhen: (previous, current) =>
+              current is GetAllGeneralReportSuccess ||
+              current is GeneralReportInitial,
           builder: (context, state) {
             if (state is GetAllGeneralReportSuccess) {
               final reports = state.reports;
@@ -77,7 +90,7 @@ class _GeneralPageState extends BasePageState<GeneralPage, GeneralReportCubit> {
                 },
               );
             } else {
-              return NoData();
+              return const NoData();
             }
           },
         ))
