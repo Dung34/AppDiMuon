@@ -3,10 +3,12 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/config.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/event/checkin_statistic/checkin_statistic.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../../domain/mapper/event_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
+import '../../model/event_response/checkin_response.dart';
 import '../../model/event_response/event_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
@@ -17,6 +19,7 @@ class EventRepositoryImpl extends EventRepository {
   final Dio dio = getIt.get<Dio>();
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
+  final CheckinDataMapper _checkinDataMapper = getIt.get<CheckinDataMapper>();
   final EventDataMapper _eventDataMapper = getIt.get<EventDataMapper>();
   final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
 
@@ -68,6 +71,28 @@ class EventRepositoryImpl extends EventRepository {
   }
 
   @override
+  Future<ResponseWrapper<CheckinStatistic>> getCheckinStatistic(
+      String? userId) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final Response response = await dio.get(
+          '${EndPoints.getCheckinStatistic}?UserId=$userId',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: _checkinDataMapper
+              .mapToEntity(CheckinResponse.fromJson(response.data)),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
   Future<ResponseWrapper<Event>> getEventById(String eventId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
@@ -94,7 +119,7 @@ class EventRepositoryImpl extends EventRepository {
 
     try {
       final Response response = await dio.get(
-          '${EndPoints.getEventByFilter}?Status=$status${(isJoin >= 0 ? '&IsJoin=$isJoin' : '')}',
+          '${EndPoints.getEventByFilter}${status >= 1 || isJoin >= 0 ? '?' : ''}${status >= 1 ? 'Status=$status' : ''}${(isJoin >= 0 ? '&IsJoin=$isJoin' : '')}',
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(

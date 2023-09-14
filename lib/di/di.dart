@@ -64,6 +64,7 @@ configureInjection() async {
 
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
+  getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
   getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
   getIt.registerLazySingleton<EventMemberDataMapper>(
       () => EventMemberDataMapper());

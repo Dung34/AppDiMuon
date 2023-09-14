@@ -7,6 +7,7 @@ import '../../../data/constant/constants.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/event/checkin_statistic/checkin_statistic.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_type/event_type.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
@@ -25,7 +26,16 @@ class EventCubit extends Cubit<EventState> {
 
   final List<Event> events = [];
 
-  getCheckinStatistic() async {}
+  getCheckinStatistic(String? userId) async {
+    final response = await _eventRepository.getCheckinStatistic(userId);
+
+    if (response.status == ResponseStatus.success) {
+      print('Checkin success');
+      emit(EventGetCheckinStatisticSuccessState(response.data!));
+    } else {
+      emit(EventGetCheckinStatisticFailedState());
+    }
+  }
 
   getCurrentLocation() async {
     final geocodingHelper = getIt<GeocodingHelper>();

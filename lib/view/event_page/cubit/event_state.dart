@@ -82,6 +82,17 @@ class EventGetAllHistorySuccessState extends EventState {
 
 class EventGetAllHistoryFailedState extends EventState {}
 
+class EventGetCheckinStatisticSuccessState extends EventState {
+  final CheckinStatistic _checkinStatistic;
+
+  const EventGetCheckinStatisticSuccessState(this._checkinStatistic);
+
+  @override
+  List<Object?> get props => [_checkinStatistic];
+}
+
+class EventGetCheckinStatisticFailedState extends EventState {}
+
 class EventAddEventSuccessState extends EventState {
   final Event event;
 

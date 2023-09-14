@@ -1,3 +1,4 @@
+import '../../../domain/entity/event/checkin_statistic/checkin_statistic.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
 import '../../model/api/base_response.dart';
 
@@ -14,6 +15,8 @@ abstract class EventRepository {
     int? status,
     String? title,
   });
+
+  Future<ResponseWrapper<CheckinStatistic>> getCheckinStatistic(String? userId);
 
   Future<ResponseWrapper<Event>> getEventById(String eventId);
 

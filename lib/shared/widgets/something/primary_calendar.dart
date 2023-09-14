@@ -12,13 +12,16 @@ class PrimaryCalendar extends StatefulWidget {
   final List<Widget>? actions;
   final List<Event> initialEvent;
   final DateTime? focusedDay;
+  final List<Object?> Function(DateTime)? eventLoader;
+
   const PrimaryCalendar(
       {super.key,
       required this.onSelectedDate,
       this.actions,
       required this.onPageChanged,
       this.initialEvent = const [],
-      this.focusedDay});
+      this.focusedDay,
+      this.eventLoader});
 
   @override
   State<PrimaryCalendar> createState() => _PrimaryCalendarState();
@@ -116,6 +119,7 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
           shape: BoxShape.circle,
         ),
       ),
+      eventLoader: widget.eventLoader,
     );
   }
 
