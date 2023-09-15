@@ -29,6 +29,9 @@ class _EventPageCheckin extends BasePageState<EventPageCheckin, EventCubit> {
 
   @override
   Widget buildPage(BuildContext context) {
+    List<Event> events = [];
+    List<String> ids = ["3ae8e628-e082-47f6-b31b-456ab0223312"];
+    int i;
     CheckinStatistic? checkinStatistic;
     int daysOfMonth =
         DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
@@ -163,32 +166,37 @@ class _EventPageCheckin extends BasePageState<EventPageCheckin, EventCubit> {
               ),
             ],
           ),
-          BlocBuilder<EventCubit, EventState>(
-              buildWhen: (previous, current) =>
-                  current is EventGetCheckinStatisticSuccessState ||
-                  current is EventGetCheckinStatisticFailedState,
-              builder: (context, state) {
-                List<Event> events = [];
-
-                if (state is EventGetCheckinStatisticSuccessState) {
-                  List<String>? ids =
-                      (state.props[0] as CheckinStatistic).listEventCheckin;
-                  for (int i = 0; i < ids!.length; i++) {}
+          BlocConsumer<EventCubit, EventState>(
+            listener: (context, state) {
+              if (state is EventGetCheckinStatisticSuccessState) {
+                for (int i = 0; i < ids!.length; i++) {
+                  cubit.getEventById(ids[i]);
+                  events.add(cubit.currentSelectedEvent);
                 }
-                return PrimaryCalendar(
-                  actions: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.add_circle_outline,
-                        color: AppColor.third600,
-                      ),
-                      onPressed: () {},
+                print(cubit.currentSelectedEvent);
+              }
+            },
+            builder: (context, state) {
+              //     (state.props[0] as CheckinStatistic).listEventCheckin;
+              if (state is EventGetEventByIdSuccessState) {
+                print(events);
+              }
+              return PrimaryCalendar(
+                actions: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.add_circle_outline,
+                      color: AppColor.third600,
                     ),
-                  ],
-                  onPageChanged: (value) {},
-                  onSelectedDate: (value) {},
-                );
-              }),
+                    onPressed: () {},
+                  ),
+                ],
+                initialEvent: events,
+                onPageChanged: (value) {},
+                onSelectedDate: (value) {},
+              );
+            },
+          ),
         ],
       ),
     );

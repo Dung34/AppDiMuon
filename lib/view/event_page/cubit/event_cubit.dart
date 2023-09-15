@@ -30,7 +30,6 @@ class EventCubit extends Cubit<EventState> {
     final response = await _eventRepository.getCheckinStatistic(userId);
 
     if (response.status == ResponseStatus.success) {
-      print('Checkin success');
       emit(EventGetCheckinStatisticSuccessState(response.data!));
     } else {
       emit(EventGetCheckinStatisticFailedState());
@@ -143,7 +142,7 @@ class EventCubit extends Cubit<EventState> {
   // }
 
   getEventById(String eventId) async {
-    emit(EventResetState());
+    // emit(EventResetState());
     final response = await _eventRepository.getEventById(eventId);
 
     if (response.status == ResponseStatus.success) {
@@ -153,6 +152,8 @@ class EventCubit extends Cubit<EventState> {
       emit(EventGetEventByIdFailedState());
     }
   }
+
+  getEventByIdNoEmit(String eventId) async {}
 
   getEventByFilter(int status, int isJoin) async {
     emit(EventResetState());
