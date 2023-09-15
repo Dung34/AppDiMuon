@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
+import '../../etx/app_ext.dart';
 import '../../utils/date_time_utils.dart';
 import '../table_calendar/table_calendar.dart';
 
@@ -79,14 +80,29 @@ class _PrimaryCalendarState extends State<PrimaryCalendar> {
             orElse: () => Event(),
           );
           return dayMapper.id != null
-              ? Container(
-                  width: 8,
-                  height: 8,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColor.primary400), //Change color
-                )
+              ? day != DateTime.now()
+                  ? Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Container(),
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColor.secondary400),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 2.0, horizontal: 2.0),
+                          height: context.screenWidth / 12,
+                          width: context.screenWidth / 12,
+                          child: Text(
+                            '${day.day}',
+                            style: AppTextTheme.robotoRegular14
+                                .copyWith(color: AppColor.white),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox()
               : const SizedBox();
         },
       ),

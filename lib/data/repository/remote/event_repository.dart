@@ -16,6 +16,11 @@ abstract class EventRepository {
     String? title,
   });
 
+  Future<ResponseWrapper<List<Event>>> getAllCalendarEvent({
+    String? startDate,
+    String? endDate,
+  });
+
   Future<ResponseWrapper<CheckinStatistic>> getCheckinStatistic(String? userId);
 
   Future<ResponseWrapper<Event>> getEventById(String eventId);
