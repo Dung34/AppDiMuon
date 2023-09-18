@@ -60,7 +60,10 @@ class _EventSettingPageState extends BasePageState<EventSettingPage, EventCubit>
               message: "Cài đặt thành công",
               icon: Assets.icSuccess));
     } else {
-      getErrorDialog(context: context, message: "Cài đặt không thành công");
+      showDialog(
+          context: context,
+          builder: (context) => getErrorDialog(
+              context: context, message: "Cài đặt không thành công"));
     }
   }
 
