@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../data/resources/resources.dart';
+import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/view_utils.dart';
+import '../../shared/widgets/image/primary_circle_image.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/user/user_cubit.dart';
 
@@ -21,8 +23,8 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
 
   @override
   Widget buildPage(BuildContext context) {
-    // final user = userCubit.currentUser;
-    // final w = context.screenWidth;
+    final user = userCubit.currentUser;
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -52,56 +54,56 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
                     height: 56,
                   ),
                 ),
-                // Positioned(
-                //   left: context.screenWidth / 2 - 86,
-                //   top: 300 * 3 / 4 - 86,
-                //   child: SizedBox(
-                //     height: 192,
-                //     child: Stack(
-                //       children: [
-                //         Material(
-                //           elevation: 8,
-                //           shape: const OvalBorder(),
-                //           color: AppColor.transparent,
-                //           child: CircleAvatar(
-                //             radius: 86,
-                //             backgroundColor: AppColor.white,
-                //             child: PrimaryCircleImage(
-                //               radius: 80,
-                //               imageUrl: userCubit.currentUser?.avatar ?? '',
-                //             ),
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // )
+                Positioned(
+                  left: context.screenWidth / 2 - 86,
+                  top: 300 * 3 / 4 - 86,
+                  child: SizedBox(
+                    height: 192,
+                    child: Stack(
+                      children: [
+                        Material(
+                          elevation: 8,
+                          shape: const OvalBorder(),
+                          color: AppColor.transparent,
+                          child: CircleAvatar(
+                            radius: 86,
+                            backgroundColor: AppColor.white,
+                            child: PrimaryCircleImage(
+                              radius: 80,
+                              imageUrl: userCubit.currentUser?.imageUrl ?? '',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
           ),
-          // const SizedBox(height: 20),
-          // Text(
-          //   user?.roleStr ?? '',
-          //   style: AppTextTheme.robotoMedium18.copyWith(
-          //     color: AppColor.primary500,
-          //   ),
-          // ),
+          const SizedBox(height: 20),
+          Text(
+            user?.role == 1 ? 'ADMIN' : 'Người dùng',
+            style: AppTextTheme.robotoMedium18.copyWith(
+              color: AppColor.primary500,
+            ),
+          ),
           const SizedBox(height: 10),
-          // Column(
-          //   children: [
-          //     Text(
-          //       user?.fullname ?? '',
-          //       style: AppTextTheme.lexendBold30,
-          //     ),
-          //     SizedBox(
-          //       width: w / 2.5,
-          //       child: const Divider(
-          //         thickness: 2,
-          //         color: AppColor.secondary400,
-          //       ),
-          //     )
-          //   ],
-          // ),
+          Column(
+            children: [
+              Text(
+                user?.firstName ?? '',
+                style: AppTextTheme.lexendBold30,
+              ),
+              SizedBox(
+                width: context.screenWidth / 2.5,
+                child: const Divider(
+                  thickness: 2,
+                  color: AppColor.secondary400,
+                ),
+              )
+            ],
+          ),
           const SizedBox(height: 10),
           // Text(
           //   user?.company ?? '',

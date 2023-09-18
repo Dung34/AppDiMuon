@@ -15,16 +15,18 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserResponse _$UserResponseFromJson(Map<String, dynamic> json) {
-  return _UserResponse.fromJson(json);
+  return _UserReponse.fromJson(json);
 }
 
 /// @nodoc
 mixin _$UserResponse {
   String? get id => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
+  String? get referralCode => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   bool? get activated => throw _privateConstructorUsedError;
   String? get langKey => throw _privateConstructorUsedError;
   String? get createdBy => throw _privateConstructorUsedError;
@@ -48,9 +50,11 @@ abstract class $UserResponseCopyWith<$Res> {
   $Res call(
       {String? id,
       String? login,
+      String? referralCode,
       String? firstName,
       String? email,
       String? phoneNumber,
+      String? imageUrl,
       bool? activated,
       String? langKey,
       String? createdBy,
@@ -75,9 +79,11 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
+    Object? referralCode = freezed,
     Object? firstName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
     Object? createdBy = freezed,
@@ -95,6 +101,10 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as String?,
+      referralCode: freezed == referralCode
+          ? _value.referralCode
+          : referralCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -106,6 +116,10 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
@@ -140,19 +154,21 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
 }
 
 /// @nodoc
-abstract class _$$_UserResponseCopyWith<$Res>
+abstract class _$$_UserReponseCopyWith<$Res>
     implements $UserResponseCopyWith<$Res> {
-  factory _$$_UserResponseCopyWith(
-          _$_UserResponse value, $Res Function(_$_UserResponse) then) =
-      __$$_UserResponseCopyWithImpl<$Res>;
+  factory _$$_UserReponseCopyWith(
+          _$_UserReponse value, $Res Function(_$_UserReponse) then) =
+      __$$_UserReponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
       String? login,
+      String? referralCode,
       String? firstName,
       String? email,
       String? phoneNumber,
+      String? imageUrl,
       bool? activated,
       String? langKey,
       String? createdBy,
@@ -163,11 +179,11 @@ abstract class _$$_UserResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserResponseCopyWithImpl<$Res>
-    extends _$UserResponseCopyWithImpl<$Res, _$_UserResponse>
-    implements _$$_UserResponseCopyWith<$Res> {
-  __$$_UserResponseCopyWithImpl(
-      _$_UserResponse _value, $Res Function(_$_UserResponse) _then)
+class __$$_UserReponseCopyWithImpl<$Res>
+    extends _$UserResponseCopyWithImpl<$Res, _$_UserReponse>
+    implements _$$_UserReponseCopyWith<$Res> {
+  __$$_UserReponseCopyWithImpl(
+      _$_UserReponse _value, $Res Function(_$_UserReponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -175,9 +191,11 @@ class __$$_UserResponseCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
+    Object? referralCode = freezed,
     Object? firstName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
     Object? createdBy = freezed,
@@ -186,7 +204,7 @@ class __$$_UserResponseCopyWithImpl<$Res>
     Object? lastModifiedDate = freezed,
     Object? authorities = freezed,
   }) {
-    return _then(_$_UserResponse(
+    return _then(_$_UserReponse(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -194,6 +212,10 @@ class __$$_UserResponseCopyWithImpl<$Res>
       login: freezed == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
+              as String?,
+      referralCode: freezed == referralCode
+          ? _value.referralCode
+          : referralCode // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
@@ -206,6 +228,10 @@ class __$$_UserResponseCopyWithImpl<$Res>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
@@ -241,13 +267,15 @@ class __$$_UserResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserResponse implements _UserResponse {
-  _$_UserResponse(
+class _$_UserReponse implements _UserReponse {
+  _$_UserReponse(
       {this.id,
       this.login,
+      this.referralCode,
       this.firstName,
       this.email,
       this.phoneNumber,
+      this.imageUrl,
       this.activated,
       this.langKey,
       this.createdBy,
@@ -257,19 +285,23 @@ class _$_UserResponse implements _UserResponse {
       final List<String>? authorities})
       : _authorities = authorities;
 
-  factory _$_UserResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_UserResponseFromJson(json);
+  factory _$_UserReponse.fromJson(Map<String, dynamic> json) =>
+      _$$_UserReponseFromJson(json);
 
   @override
   final String? id;
   @override
   final String? login;
   @override
+  final String? referralCode;
+  @override
   final String? firstName;
   @override
   final String? email;
   @override
   final String? phoneNumber;
+  @override
+  final String? imageUrl;
   @override
   final bool? activated;
   @override
@@ -294,21 +326,25 @@ class _$_UserResponse implements _UserResponse {
 
   @override
   String toString() {
-    return 'UserResponse(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities)';
+    return 'UserResponse(id: $id, login: $login, referralCode: $referralCode, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserResponse &&
+            other is _$_UserReponse &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.login, login) || other.login == login) &&
+            (identical(other.referralCode, referralCode) ||
+                other.referralCode == referralCode) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             (identical(other.activated, activated) ||
                 other.activated == activated) &&
             (identical(other.langKey, langKey) || other.langKey == langKey) &&
@@ -330,9 +366,11 @@ class _$_UserResponse implements _UserResponse {
       runtimeType,
       id,
       login,
+      referralCode,
       firstName,
       email,
       phoneNumber,
+      imageUrl,
       activated,
       langKey,
       createdBy,
@@ -344,45 +382,51 @@ class _$_UserResponse implements _UserResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
-      __$$_UserResponseCopyWithImpl<_$_UserResponse>(this, _$identity);
+  _$$_UserReponseCopyWith<_$_UserReponse> get copyWith =>
+      __$$_UserReponseCopyWithImpl<_$_UserReponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserResponseToJson(
+    return _$$_UserReponseToJson(
       this,
     );
   }
 }
 
-abstract class _UserResponse implements UserResponse {
-  factory _UserResponse(
+abstract class _UserReponse implements UserResponse {
+  factory _UserReponse(
       {final String? id,
       final String? login,
+      final String? referralCode,
       final String? firstName,
       final String? email,
       final String? phoneNumber,
+      final String? imageUrl,
       final bool? activated,
       final String? langKey,
       final String? createdBy,
       final String? createdDate,
       final String? lastModifiedBy,
       final String? lastModifiedDate,
-      final List<String>? authorities}) = _$_UserResponse;
+      final List<String>? authorities}) = _$_UserReponse;
 
-  factory _UserResponse.fromJson(Map<String, dynamic> json) =
-      _$_UserResponse.fromJson;
+  factory _UserReponse.fromJson(Map<String, dynamic> json) =
+      _$_UserReponse.fromJson;
 
   @override
   String? get id;
   @override
   String? get login;
   @override
+  String? get referralCode;
+  @override
   String? get firstName;
   @override
   String? get email;
   @override
   String? get phoneNumber;
+  @override
+  String? get imageUrl;
   @override
   bool? get activated;
   @override
@@ -399,6 +443,6 @@ abstract class _UserResponse implements UserResponse {
   List<String>? get authorities;
   @override
   @JsonKey(ignore: true)
-  _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
+  _$$_UserReponseCopyWith<_$_UserReponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
