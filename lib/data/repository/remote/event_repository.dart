@@ -21,6 +21,9 @@ abstract class EventRepository {
     String? endDate,
   });
 
+  Future<ResponseWrapper<int>> onCheckinSetting(String timeWorkFrom,
+      String timeWorkTo, String dateApplyFrom, String dateApplyTo);
+
   Future<ResponseWrapper<CheckinStatistic>> getCheckinStatistic(String? userId);
 
   Future<ResponseWrapper<Event>> getEventById(String eventId);

@@ -22,7 +22,6 @@ class Assets {
   static const String icIdCard = '$iconPrefix/ic_id_card.svg';
   static const String icInfo = '$iconPrefix/ic_info.svg';
   static const String icInterest = '$iconPrefix/ic_interest.svg';
-
   static const String icLogo = '$iconPrefix/ic_logo.svg';
   static const String icLocation = '$iconPrefix/ic_location.svg';
   static const String icLock = '$iconPrefix/ic_lock.svg';
@@ -41,6 +40,7 @@ class Assets {
   static const String icSetting = '$iconPrefix/ic_setting.svg';
   static const String icShare = '$iconPrefix/ic_share.svg';
   static const String icStar = '$iconPrefix/ic_star.svg';
+  static const String icSuccess = '$iconPrefix/ic_success.svg';
   static const String icTask = '$iconPrefix/ic_task.svg';
   // image
   static const String imagePrefix = 'assets/images';

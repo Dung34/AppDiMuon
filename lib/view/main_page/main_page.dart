@@ -55,8 +55,8 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
   ];
   final tabs = [
     const EventPage(),
-    // const MembershipPage(),
-    const CalendarPage(),
+    const MembershipPage(),
+    // const CalendarPage(),
     const ProjectPage(),
     SettingPage(),
   ];

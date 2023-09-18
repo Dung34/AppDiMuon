@@ -198,4 +198,31 @@ class EventRepositoryImpl extends EventRepository {
       return ResponseWrapper.error(message: "");
     }
   }
+
+  @override
+  Future<ResponseWrapper<int>> onCheckinSetting(String timeWorkFrom,
+      String timeWorkTo, String dateApplyFrom, String dateApplyTo) async {
+    accessToken = await localDataAccess.getAccessToken();
+
+    try {
+      final Response response = await dio.post(
+        EndPoints.checkinSetting,
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+        data: {
+          "timeWorkFrom": timeWorkFrom,
+          "timeWorkTo": timeWorkTo,
+          "dateApplyFrom": dateApplyFrom,
+          "dateApplyTo": dateApplyTo
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: response.data);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
 }

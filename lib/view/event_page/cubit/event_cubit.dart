@@ -188,6 +188,17 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
+  Future<bool> onCheckinSetting(String timeWorkFrom, String timeWorkTo,
+      String dateApplyFrom, String dateApplyTo) async {
+    final response = await _eventRepository.onCheckinSetting(
+        timeWorkFrom, timeWorkTo, dateApplyFrom, dateApplyTo);
+
+    if (response.status == ResponseStatus.success) {
+      return true;
+    }
+    return false;
+  }
+
   rebuildEventDetail(Event event) {
     emit(EventGetEventByIdSuccessState(event));
     events[events.indexOf(

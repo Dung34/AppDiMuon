@@ -156,6 +156,7 @@ Dialog getLoadingDialog() {
 Dialog getErrorDialog({
   required BuildContext context,
   required String message,
+  String icon = Assets.iconAppError,
 }) {
   return Dialog(
       elevation: 0.0,
@@ -172,7 +173,7 @@ Dialog getErrorDialog({
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  Assets.iconAppError,
+                  icon,
                   height: 100,
                 ),
                 const SizedBox(
