@@ -1,5 +1,3 @@
-import 'package:ceo_hn7/view/general_page/general_report_detail.dart';
-
 import '../domain/entity/event/event_wrapper/event.dart';
 import '../view/auth/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +14,7 @@ import '../view/event_page/event_qr_page.dart';
 import '../view/event_page/event_setting_page.dart';
 import '../view/general_page/general_page.dart';
 import '../view/general_page/general_report_add.dart';
+import '../view/general_page/general_report_detail.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/report_page/report_add.dart';
