@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/colors.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/report/report_daily.dart';
 import '../../shared/etx/app_ext.dart';

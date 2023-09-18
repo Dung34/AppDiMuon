@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../data/model/api/base_response.dart';
-import '../../../../data/repository/local/local_data_access.dart';
+//import '../../../../data/repository/local/local_data_access.dart';
 import '../../../../data/repository/remote/report_repository.dart';
 import '../../../../di/di.dart';
 import '../../../../domain/entity/report/report_daily.dart';
@@ -11,7 +11,7 @@ part 'report_state.dart';
 
 class ReportCubit extends Cubit<ReportState> {
   final ReportRepository _reportRepository = getIt.get<ReportRepository>();
-  final LocalDataAccess _localDataAccess = getIt.get<LocalDataAccess>();
+  //final LocalDataAccess _localDataAccess = getIt.get<LocalDataAccess>();
 
   ReportCubit() : super(ReportInitial());
 
