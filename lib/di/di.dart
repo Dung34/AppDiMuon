@@ -15,11 +15,13 @@ import '../data/repository/remote/project_list_repository.dart';
 import '../data/repository/remote/project_list_repository_impl.dart';
 import '../data/repository/remote/repository.dart';
 import '../domain/mapper/event_data_mapper.dart';
+
 import '../domain/mapper/general_report_mapper.dart';
 import '../domain/mapper/list_gen_report_mapper.dart';
 import '../domain/mapper/list_report_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
+
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
@@ -80,11 +82,13 @@ configureInjection() async {
 
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
+  getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
   getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
   getIt.registerLazySingleton<EventMemberDataMapper>(
       () => EventMemberDataMapper());
   getIt.registerLazySingleton<ProjectListDataMapper>(
       () => ProjectListDataMapper());
+
   getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
   getIt.registerLazySingleton<ListReportDataMapper>(
       () => ListReportDataMapper());

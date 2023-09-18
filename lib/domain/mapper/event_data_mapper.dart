@@ -1,6 +1,8 @@
 import '../../data/mapper/base/base_data_mapper.dart';
+import '../../data/model/event_response/checkin_response.dart';
 import '../../data/model/event_response/event_member_response.dart';
 import '../../data/model/event_response/event_response.dart';
+import '../entity/event/checkin_statistic/checkin_statistic.dart';
 import '../entity/event/event_member/event_member.dart';
 import '../entity/event/event_wrapper/event.dart';
 
@@ -69,6 +71,20 @@ class EventMemberDataMapper
           ? 'Chưa cập nhật'
           : data?.checkedInLocation,
       avatar: data?.avatar,
+    );
+  }
+}
+
+class CheckinDataMapper
+    extends BaseDataMapper<CheckinResponse, CheckinStatistic> {
+  @override
+  CheckinStatistic mapToEntity(CheckinResponse? data) {
+    return CheckinStatistic(
+      data?.dateNow,
+      data?.workDay,
+      data?.lateDay,
+      data?.leaveDay,
+      data?.listEventCheckin,
     );
   }
 }

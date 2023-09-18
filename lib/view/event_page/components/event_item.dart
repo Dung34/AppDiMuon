@@ -30,7 +30,7 @@ class EventItem extends StatefulWidget {
 class _EventItemState extends BasePageState<EventItem, EventCubit> {
   late int hasOccurred;
 
-  void _onJoinInPressed() async {
+  _onJoinInPressed() async {
     await cubit.joinInEvent(widget.event.id ?? '');
   }
 
@@ -118,23 +118,16 @@ class _EventItemState extends BasePageState<EventItem, EventCubit> {
                         onPressed:
                             (widget.event.isJoin == 0 && hasOccurred != 1)
                                 ? () async {
-                                    _onJoinInPressed();
+                                    await _onJoinInPressed();
                                   }
                                 : () {},
                         padding: EdgeInsets.zero,
-                        child: (state is EventGetAllEventSuccessState ||
-                                state is EventGetEventByFilterSuccessState)
-                            ? Text(
-                                widget.event.isJoin == 1
-                                    ? 'Đã tham gia'
-                                    : 'Tham gia ngay',
-                                style: AppTextTheme.robotoMedium12
-                                    .copyWith(color: AppColor.primary500))
-                            : Text(
-                                'Đã tham gia',
-                                style: AppTextTheme.robotoMedium12
-                                    .copyWith(color: AppColor.primary500),
-                              ),
+                        child: Text(
+                            widget.event.isJoin == 1
+                                ? 'Đã tham gia'
+                                : 'Tham gia ngay',
+                            style: AppTextTheme.robotoMedium12
+                                .copyWith(color: AppColor.primary500)),
                       );
                     }),
               ],
