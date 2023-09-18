@@ -1,5 +1,5 @@
 // ignore: prefer_relative_imports
-import 'package:ceo_hn7/view/base/base_page_sate.dart';
+// import 'package:ceo_hn7/view/base/base_page_sate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,6 +11,7 @@ import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
+import '../base/base_page_sate.dart';
 import '../base/bloc/report/report_cubit.dart';
 
 class ReportDetailView extends StatefulWidget {
