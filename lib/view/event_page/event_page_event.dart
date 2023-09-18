@@ -20,12 +20,12 @@ class EventPageEvent<EventCubit> extends StatefulWidget {
 
 class _EventPageEventState extends BasePageState<EventPageEvent, EventCubit> {
   final List<String> timeEvent = [
-    '<trống>',
+    'Tất cả',
     'Đang diễn ra',
     'Sắp diễn ra',
     'Đã diễn ra'
   ];
-  final List<String> joinEvent = ['<trống>', 'Chưa tham gia', 'Đã tham gia'];
+  final List<String> joinEvent = ['Tất cả', 'Chưa tham gia', 'Đã tham gia'];
 
   String? timeEventTab;
   String? joinEventTab;

@@ -7,6 +7,7 @@ import '../../../data/constant/constants.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/event/checkin_statistic/checkin_statistic.dart';
 import '../../../domain/entity/event/event_member/event_member.dart';
 import '../../../domain/entity/event/event_type/event_type.dart';
 import '../../../domain/entity/event/event_wrapper/event.dart';
@@ -24,6 +25,16 @@ class EventCubit extends Cubit<EventState> {
   late Event currentSelectedEvent;
 
   final List<Event> events = [];
+
+  getCheckinStatistic(String? userId) async {
+    final response = await _eventRepository.getCheckinStatistic(userId);
+
+    if (response.status == ResponseStatus.success) {
+      emit(EventGetCheckinStatisticSuccessState(response.data!));
+    } else {
+      emit(EventGetCheckinStatisticFailedState());
+    }
+  }
 
   getCurrentLocation() async {
     final geocodingHelper = getIt<GeocodingHelper>();
@@ -88,26 +99,26 @@ class EventCubit extends Cubit<EventState> {
     }
   }
 
-  // getAllCalendarEvent({
-  //   String? startDate,
-  //   String? endDate,
-  // }) async {
-  //   final response = await _eventRepository.getAllCalendarEvent(
-  //     startDate: startDate,
-  //     endDate: endDate,
-  //   );
-  //   if (response.status == ResponseStatus.success) {
-  //     if (startDate != null && endDate != null) {
-  //       emit(EventGetAllEventRangeSuccessState(response.data ?? []));
-  //     } else {
-  //       emit(EventGetAllEventSuccessState(
-  //         response.data ?? [],
-  //       ));
-  //     }
-  //   } else {
-  //     emit(EventGetAllEventFailedState());
-  //   }
-  // }
+  getAllCalendarEvent({
+    String? startDate,
+    String? endDate,
+  }) async {
+    final response = await _eventRepository.getAllCalendarEvent(
+      startDate: startDate,
+      endDate: endDate,
+    );
+    if (response.status == ResponseStatus.success) {
+      if (startDate != null && endDate != null) {
+        emit(EventGetAllEventRangeSuccessState(response.data ?? []));
+      } else {
+        emit(EventGetAllEventSuccessState(
+          response.data ?? [],
+        ));
+      }
+    } else {
+      emit(EventGetAllEventFailedState());
+    }
+  }
 
   // getAllCheckedInMember(String eventId) async {
   //   final response =
@@ -131,7 +142,7 @@ class EventCubit extends Cubit<EventState> {
   // }
 
   getEventById(String eventId) async {
-    emit(EventResetState());
+    // emit(EventResetState());
     final response = await _eventRepository.getEventById(eventId);
 
     if (response.status == ResponseStatus.success) {
@@ -175,6 +186,17 @@ class EventCubit extends Cubit<EventState> {
     } else {
       emit(EventJoinInEventFailedState());
     }
+  }
+
+  Future<bool> onCheckinSetting(String timeWorkFrom, String timeWorkTo,
+      String dateApplyFrom, String dateApplyTo) async {
+    final response = await _eventRepository.onCheckinSetting(
+        timeWorkFrom, timeWorkTo, dateApplyFrom, dateApplyTo);
+
+    if (response.status == ResponseStatus.success) {
+      return true;
+    }
+    return false;
   }
 
   rebuildEventDetail(Event event) {

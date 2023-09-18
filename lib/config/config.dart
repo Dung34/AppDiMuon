@@ -29,15 +29,17 @@ class EndPoints {
   static const String changePassword = '/api/account/change-password';
 
   // event
-  static const String getMeetingByUserId = '/gateway/meeting/current';
+  static const String checkinSetting = '/Checkin/checkin/setting-by-admin';
   static const String createEvent = '/gateway/event/create';
   static const String updateEvent = '/gateway/event/update';
   static const String deleteEvent = '/gateway/event/delete';
+  static const String getAllEvent = '/event/view_list';
+  static const String getAllCalendarEvent = '/event/calendar';
+  static const String getAllFrames = '/gateway/activity/frames';
+  static const String getCheckinStatistic = '/Checkin/checkin/thong-ke';
   static const String getEventById = '/event/detail';
   static const String getEventByFilter = '/event/filter';
-  static const String getAllEvent = '/event/view_list';
-  static const String getAllCalendarEvent = '/gateway/Calendar/events';
-  static const String getAllFrames = '/gateway/activity/frames';
+  static const String getMeetingByUserId = '/gateway/meeting/current';
   static const String getMemberJoined = '/gateway/event-join/';
   static const String getShowHistory = '/gateway/event-joined/';
   static const String joinInEvent = '/event_member/add';
