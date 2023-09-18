@@ -26,8 +26,8 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   @override
   void initState() {
-    //final userId = localDataAccess.getUserId();
-    final userId = '5fcc48c8-0a63-402a-b59f-ca91c8120e5a';
+    final userId = localDataAccess.getUserId();
+    //final userId = '5fcc48c8-0a63-402a-b59f-ca91c8120e5a';
     super.initState();
     cubit.getAllReport(userId);
   }
@@ -49,7 +49,7 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
                 "Báo cáo hằng ngày",
                 style: AppTextTheme.robotoMedium18,
               ),
-              SizedBox(width: screenWidth * 3 / 16),
+              SizedBox(width: screenWidth * 4 / 17),
               IconButton(
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoute.addReport);

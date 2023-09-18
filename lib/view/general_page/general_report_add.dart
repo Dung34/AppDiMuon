@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../data/constant/enum.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/taskoverview/general_report.dart';
 import '../../shared/utils/validation_utils.dart';
@@ -24,14 +25,10 @@ class _GeneReportAddState
   final TextEditingController workDoneController = TextEditingController();
   final TextEditingController issueController = TextEditingController();
   final TextEditingController addController = TextEditingController();
-  onpost() {
-    cubit.addGeneralReport(GeneralReport(
-        title: titleController.text.trim(),
-        description: descriptionController.text.trim(),
-        issue: issueController.text.trim(),
-        workDone: workDoneController.text.trim(),
-        add: addController.text.trim()));
-  }
+  TextEditingController dateFromController = TextEditingController();
+  TextEditingController dateToController = TextEditingController();
+
+  late final GeneralReport reportUpdate;
 
   @override
   Widget buildPage(BuildContext context) {
@@ -45,12 +42,17 @@ class _GeneReportAddState
           actions: [
             IconButton(
                 onPressed: () {
-                  cubit.addGeneralReport(GeneralReport(
+                  cubit.addGeneralReport(
+                    GeneralReport(
+                      dateFrom: DateTime.now().toIso8601String(),
+                      dateTo: DateTime.now().toIso8601String(),
                       title: titleController.text.trim(),
                       description: descriptionController.text.trim(),
-                      issue: issueController.text.trim(),
+                      add: addController.text.trim(),
                       workDone: workDoneController.text.trim(),
-                      add: addController.text.trim()));
+                      issue: issueController.text.trim(),
+                    ),
+                  );
                 },
                 icon: SvgPicture.asset(Assets.icEdit))
           ],
@@ -79,17 +81,11 @@ class _GeneReportAddState
             ),
             SizedBox(child: Text('Từ ngày', style: AppTextTheme.robotoLight14)),
             PrimaryTextField(
-              borderColor: Colors.black,
-              maxLines: 20,
-              controller: titleController,
-              border: InputBorder.none,
-              hintText: "Chưa chức năng",
-              inputTextStyle: AppTextTheme.robotoMedium18,
-              maxLength: 100,
-              hintTextStyle: AppTextTheme.robotoLight18
-                  .copyWith(color: AppColor.fourth700),
-              isRequired: true,
-              validator: ValidationUtils.textEmptyValidator,
+              controller: dateFromController,
+              label: "Từ ngày",
+              inputType: AppInputType.datePicker,
+              context: context,
+              onDateSelected: (value) {},
             ),
             SizedBox(
               child: Text(
@@ -98,17 +94,15 @@ class _GeneReportAddState
               ),
             ),
             PrimaryTextField(
-              borderColor: Colors.black,
-              maxLines: 20,
-              controller: titleController,
+              controller: dateToController,
               border: InputBorder.none,
               hintText: "Chưa chức năng",
               inputTextStyle: AppTextTheme.robotoMedium18,
-              maxLength: 100,
               hintTextStyle: AppTextTheme.robotoLight18
                   .copyWith(color: AppColor.fourth700),
-              isRequired: true,
-              validator: ValidationUtils.textEmptyValidator,
+              onDateSelected: (value) {},
+              inputType: AppInputType.datePicker,
+              context: context,
             ),
             SizedBox(
               child: Text(

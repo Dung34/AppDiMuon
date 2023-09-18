@@ -40,7 +40,7 @@ class GeneralReportRepositoryImpl implements GeneralReportRepository {
       GeneralReport generalReport) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
-      final response = await dio.post('reportOverview/create',
+      final response = await dio.post('/reportOverview/create',
           data: _generalReportMapper.mapToData(generalReport).toJson()
             ..removeWhere((key, value) => value == null),
           options: Options(headers: {"Authorization": "Bearer $accessToken"}));

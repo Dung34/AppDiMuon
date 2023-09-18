@@ -24,8 +24,8 @@ class _GeneralPageState extends BasePageState<GeneralPage, GeneralReportCubit> {
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   @override
   void initState() {
-    // final userId = localDataAccess.getUserId();
-    final String userId = "5fcc48c8-0a63-402a-b59f-ca91c8120e5a";
+    final userId = localDataAccess.getUserId();
+    //final String userId = "5fcc48c8-0a63-402a-b59f-ca91c8120e5a";
     super.initState();
     cubit.getAllGeneralReport(userId);
   }

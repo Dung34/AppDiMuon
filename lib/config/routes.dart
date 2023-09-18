@@ -21,6 +21,7 @@ import '../view/main_page/main_page.dart';
 import '../view/report_page/report_add.dart';
 import '../view/report_page/report_detail_view.dart';
 import '../view/report_page/report_page.dart';
+import '../view/report_page/report_update.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
@@ -47,6 +48,7 @@ class AppRoute {
   static const String profileUpdate = "/profileUpdate";
   static const String reportDetail = "/reportDetail";
   static const String addReport = "/addReport";
+  static const String updateReport = "/updateReport";
   static const String generalReport = "/generalReport";
   static const String geneReportDetail = "/geneReportDetail";
   static const String geneReportAdd = "/geneReportAdd";
@@ -72,6 +74,7 @@ class AppRoute {
         AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
         AppRoute.reportDetail: (context) => ReportDetailView(),
         AppRoute.addReport: (context) => ReportAddPage(),
+        AppRoute.updateReport: (context) => ReportUpdatePage(),
         AppRoute.generalReport: (context) => const GeneralPage(),
         AppRoute.geneReportDetail: (context) => GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),

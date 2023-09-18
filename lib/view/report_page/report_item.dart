@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/themes.dart';
+import '../../data/resources/resources.dart';
 import '../../domain/entity/report/report_daily.dart';
 import '../../shared/utils/date_time_utils.dart';
-import '../../shared/widgets/something/loading.dart';
 import '../base/bloc/report/report_cubit.dart';
 
 class ReportItems extends StatelessWidget {
@@ -47,12 +47,19 @@ class ReportItems extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoute.updateReport,
+                      arguments: ReportDailyPageArgs(
+                          reportId: reportDaily.id ?? " ",
+                          reportCubit: context.read<ReportCubit>()));
+                },
+                icon: SvgPicture.asset(Assets.icEdit)),
             IconButton(
                 onPressed: () {
                   ReportCubit().deleteReport(reportDaily.id ?? "");
                 },
-                icon: Icon(Icons.delete))
+                icon: SvgPicture.asset(Assets.icDelete))
           ],
         ),
       ),
