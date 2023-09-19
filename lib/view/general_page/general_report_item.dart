@@ -44,7 +44,15 @@ class GeneralReportItem extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icEdit)),
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoute.geneReportUpdate,
+                      arguments: GeneralReportArgs(
+                          reportId: generalReport.id ?? " ",
+                          generalReportCubit:
+                              context.read<GeneralReportCubit>()));
+                },
+                icon: SvgPicture.asset(Assets.icEdit)),
             IconButton(
                 onPressed: () {
                   GeneralReportCubit().deleteGeneralReport(generalReport.id!);

@@ -15,6 +15,7 @@ import '../view/event_page/event_setting_page.dart';
 import '../view/general_page/general_page.dart';
 import '../view/general_page/general_report_add.dart';
 import '../view/general_page/general_report_detail.dart';
+import '../view/general_page/general_report_update.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/report_page/report_add.dart';
@@ -51,6 +52,7 @@ class AppRoute {
   static const String generalReport = "/generalReport";
   static const String geneReportDetail = "/geneReportDetail";
   static const String geneReportAdd = "/geneReportAdd";
+  static const String geneReportUpdate = "/geneReportUpdate";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -77,6 +79,7 @@ class AppRoute {
         AppRoute.generalReport: (context) => const GeneralPage(),
         AppRoute.geneReportDetail: (context) => GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
+        AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
