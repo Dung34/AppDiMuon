@@ -108,7 +108,7 @@ class _ProfileViewHeaderState
                                 if (widget.canPop) const BackButtonCustom(),
                                 // PrimaryCircleImage(
                                 //   radius: 20,
-                                //   imageUrl: user.avatar ?? '',
+                                //   // imageUrl: user. ?? '',
                                 // ),
                                 const SizedBox(width: 12),
                                 Expanded(

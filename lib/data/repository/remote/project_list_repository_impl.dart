@@ -39,7 +39,7 @@ class ProjectListRepositoryImpl extends ProjectListRepository {
       final response = await dio.post(
         EndPoints.getAllProject,
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
-        data: {"page": 1, "pageSize": 5},
+        data: {"page": 1, "pageSize": 10},
       );
       if (response.statusCode == 200) {
         return ResponseWrapper.success(

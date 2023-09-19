@@ -27,7 +27,7 @@ class _ProjectItemState extends BasePageState<ProjectItem, ProjectCubit> {
       child: Row(children: [
         Text(
           widget.project.name ?? '',
-          style: AppTextTheme.lexendBold18,
+          style: AppTextTheme.robotoMedium16,
         ),
         const Spacer(),
         PrimaryIconButton(

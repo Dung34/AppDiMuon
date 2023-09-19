@@ -12,7 +12,6 @@ import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/center_outlined_text_filed.dart';
 import '../../shared/widgets/something/primary_calendar.dart';
 import '../base/base_page_sate.dart';
-import 'calendar/calendar_page.dart';
 import 'cubit/event_cubit.dart';
 
 class EventPageCheckin<EventCubit> extends StatefulWidget {
