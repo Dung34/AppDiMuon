@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../config/routes.dart';
+import '../../data/constant/enum.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/taskoverview/general_report.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/validation_utils.dart';
-import '../../shared/widgets/button/back_button.dart';
 
+import '../../shared/widgets/something/no_data.dart';
+import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/general_report/general_report_cubit.dart';
@@ -25,109 +29,121 @@ class _GenReportUpdateState
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController workdoneController = TextEditingController();
   final TextEditingController issueController = TextEditingController();
-  final TextEditingController addControoler = TextEditingController();
+  final TextEditingController addControler = TextEditingController();
+  final TextEditingController dateFromController = TextEditingController();
+  final TextEditingController dateToController = TextEditingController();
   late final GeneralReportArgs args;
-  late final GeneralReport updateReport;
-  late GeneralReport currentReport;
+
   @override
   // TODO: implement useBlocProviderValue
   bool get useBlocProviderValue => true;
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     args = context.arguments as GeneralReportArgs;
     setCubit = args.generalReportCubit;
     cubit.getGeneralReportDetail(args.reportId);
-    currentReport = cubit.currentGeneralReport!;
-    updateReport = currentReport.copyWith();
   }
 
   @override
   Widget buildPage(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                BackButtonCustom(),
-                SizedBox(
-                  width: screenWidth * 9 / 16,
-                  child: Text(
-                    'Báo cáo tổng quát',
-                    style: AppTextTheme.robotoLight18,
-                  ),
-                ),
+    //final screenWidth = MediaQuery.of(context).size.width;
+    return BlocConsumer<GeneralReportCubit, GeneralReportState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is GetGeneralReportSuccess) {
+          GeneralReport report = state.generalReport;
+          return Scaffold(
+            backgroundColor: AppColor.primaryBackgroundColor,
+            appBar: PrimaryAppBar(
+              canPop: true,
+              title: "Chỉnh sửa báo cáo",
+              actions: [
                 IconButton(
-                    onPressed: () {}, icon: SvgPicture.asset(Assets.icAdd))
+                    onPressed: () {
+                      String dateFromString = dateFromController.text;
+                      String dateToString = dateToController.text;
+                      DateFormat dateFormat = DateFormat("dd/MM/yyyy");
+                      DateTime dateFromTime = dateFormat.parse(dateFromString);
+                      DateTime datetoTime = dateFormat.parse(dateToString);
+                      cubit.updateGeneralReport(GeneralReport(
+                        dateFrom: dateFromTime.toIso8601String(),
+                        dateTo: datetoTime.toIso8601String(),
+                        id: args.reportId,
+                        title: titleController.text.trim(),
+                        add: addControler.text.trim(),
+                        issue: issueController.text.trim(),
+                        workDone: workdoneController.text.trim(),
+                        description: descriptionController.text.trim(),
+                      ));
+                    },
+                    icon: SvgPicture.asset(Assets.icAdd))
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: PrimaryTextField(
-                controller: titleController,
-                label: "Tiêu đề",
-                hintText: "Nhập tiêu đề",
-                isRequired: true,
-                maxLength: 200,
-                validator: ValidationUtils.textEmptyValidator,
-                inputTextStyle: AppTextTheme.robotoLight18,
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PrimaryTextField(
+                    controller: titleController,
+                    label: "Tiêu đề",
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                  PrimaryTextField(
+                    controller: dateFromController,
+                    label: "Từ ngày",
+                    inputType: AppInputType.datePicker,
+                    context: context,
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                  PrimaryTextField(
+                    controller: dateToController,
+                    label: "Đến ngày",
+                    inputType: AppInputType.datePicker,
+                    context: context,
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                  PrimaryTextField(
+                    controller: workdoneController,
+                    label: "Đã làm",
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                  PrimaryTextField(
+                    controller: issueController,
+                    label: "Vấn đề",
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                  PrimaryTextField(
+                    controller: addControler,
+                    label: "Thêm",
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                  PrimaryTextField(
+                    controller: descriptionController,
+                    label: "Mô tả",
+                    inputTextStyle: AppTextTheme.robotoLight14,
+                    isRequired: true,
+                    validator: ValidationUtils.textEmptyValidator,
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: PrimaryTextField(
-                controller: workdoneController,
-                label: "Đã làm",
-                hintText: "Nhập đã làm",
-                isRequired: true,
-                maxLength: 200,
-                validator: ValidationUtils.textEmptyValidator,
-                inputTextStyle: AppTextTheme.robotoLight18,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: PrimaryTextField(
-                controller: issueController,
-                label: "Vấn đề",
-                hintText: "Nhập vấn đề",
-                isRequired: true,
-                maxLength: 200,
-                validator: ValidationUtils.textEmptyValidator,
-                inputTextStyle: AppTextTheme.robotoLight18,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: PrimaryTextField(
-                controller: titleController,
-                label: "Thêm",
-                // hintText: "Nhập tiêu đề",
-                isRequired: true,
-                maxLength: 200,
-                validator: ValidationUtils.textEmptyValidator,
-                inputTextStyle: AppTextTheme.robotoLight18,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: PrimaryTextField(
-                controller: descriptionController,
-                label: "Mô tả",
-                hintText: "Nhập mô tả",
-                isRequired: true,
-                maxLength: 200,
-                validator: ValidationUtils.textEmptyValidator,
-                inputTextStyle: AppTextTheme.robotoLight18,
-              ),
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+        return NoData();
+      },
     );
   }
 }
