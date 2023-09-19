@@ -8,9 +8,11 @@ class UserResponse with _$UserResponse {
   factory UserResponse({
     String? id,
     String? login,
+    String? referralCode,
     String? firstName,
     String? email,
     String? phoneNumber,
+    String? imageUrl,
     bool? activated,
     String? langKey,
     String? createdBy,
@@ -18,7 +20,7 @@ class UserResponse with _$UserResponse {
     String? lastModifiedBy,
     String? lastModifiedDate,
     List<String>? authorities,
-  }) = _UserResponse;
+  }) = _UserReponse;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>
       _$UserResponseFromJson(json);

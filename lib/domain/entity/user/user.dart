@@ -11,6 +11,7 @@ class UserEntity with _$UserEntity {
     String? firstName,
     String? email,
     String? phoneNumber,
+    String? imageUrl,
     bool? activated,
     String? langKey,
     String? createdBy,

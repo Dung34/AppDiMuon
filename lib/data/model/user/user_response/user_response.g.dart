@@ -6,13 +6,15 @@ part of 'user_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
-    _$_UserResponse(
+_$_UserReponse _$$_UserReponseFromJson(Map<String, dynamic> json) =>
+    _$_UserReponse(
       id: json['id'] as String?,
       login: json['login'] as String?,
+      referralCode: json['referralCode'] as String?,
       firstName: json['firstName'] as String?,
       email: json['email'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       activated: json['activated'] as bool?,
       langKey: json['langKey'] as String?,
       createdBy: json['createdBy'] as String?,
@@ -24,13 +26,15 @@ _$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
+Map<String, dynamic> _$$_UserReponseToJson(_$_UserReponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'login': instance.login,
+      'referralCode': instance.referralCode,
       'firstName': instance.firstName,
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,
+      'imageUrl': instance.imageUrl,
       'activated': instance.activated,
       'langKey': instance.langKey,
       'createdBy': instance.createdBy,

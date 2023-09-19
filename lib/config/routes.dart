@@ -3,6 +3,7 @@ import '../view/auth/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../view/auth/login/login_page.dart';
+import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/event_page/event_detail_page.dart';
@@ -11,11 +12,15 @@ import '../view/event_page/event_member_history.dart';
 import '../view/event_page/event_member_page.dart';
 import '../view/event_page/event_qr_page.dart';
 import '../view/event_page/event_setting_page.dart';
+import '../view/general_page/general_page.dart';
+import '../view/general_page/general_report_add.dart';
+import '../view/general_page/general_report_detail.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/report_page/report_add.dart';
 import '../view/report_page/report_detail_view.dart';
 import '../view/report_page/report_page.dart';
+import '../view/report_page/report_update.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
@@ -42,6 +47,10 @@ class AppRoute {
   static const String profileUpdate = "/profileUpdate";
   static const String reportDetail = "/reportDetail";
   static const String addReport = "/addReport";
+  static const String updateReport = "/updateReport";
+  static const String generalReport = "/generalReport";
+  static const String geneReportDetail = "/geneReportDetail";
+  static const String geneReportAdd = "/geneReportAdd";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -64,6 +73,10 @@ class AppRoute {
         AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
         AppRoute.reportDetail: (context) => ReportDetailView(),
         AppRoute.addReport: (context) => ReportAddPage(),
+        AppRoute.updateReport: (context) => ReportUpdatePage(),
+        AppRoute.generalReport: (context) => const GeneralPage(),
+        AppRoute.geneReportDetail: (context) => GeneReportDetail(),
+        AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -135,4 +148,10 @@ class QrScannerPageArgs {
     required this.userRole,
     this.eventId,
   });
+}
+
+class GeneralReportArgs {
+  final String reportId;
+  final GeneralReportCubit generalReportCubit;
+  GeneralReportArgs({required this.reportId, required this.generalReportCubit});
 }
