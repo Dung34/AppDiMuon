@@ -94,7 +94,6 @@ class _ProfileViewHeaderState
                       : AppColor.transparent,
                   elevation: 0,
                   expandedHeight: expandedHeight,
-
                   shadowColor: Colors.black.withOpacity(0.25),
                   forceElevated: true,
                   flexibleSpace: FlexibleSpaceBar(
@@ -106,10 +105,10 @@ class _ProfileViewHeaderState
                             child: Row(
                               children: [
                                 if (widget.canPop) const BackButtonCustom(),
-                                // PrimaryCircleImage(
-                                //   radius: 20,
-                                //   // imageUrl: user. ?? '',
-                                // ),
+                                PrimaryCircleImage(
+                                  radius: 20,
+                                  imageUrl: user.imageUrl ?? '',
+                                ),
                                 const SizedBox(width: 12),
                                 Expanded(
                                     child: Text(
@@ -125,15 +124,15 @@ class _ProfileViewHeaderState
                             height: expandedHeight,
                             child: Stack(
                               children: [
-                                // Container(
-                                //   alignment: Alignment.bottomCenter,
-                                //   height: expandedHeight,
-                                //   child: PrimaryNetworkImage(
-                                //     imageUrl: user.coverImage,
-                                //     width: context.screenWidth,
-                                //     height: expandedHeight,
-                                //   ),
-                                // ),
+                                Container(
+                                  alignment: Alignment.bottomCenter,
+                                  height: expandedHeight,
+                                  child: PrimaryNetworkImage(
+                                    imageUrl: user.imageUrl,
+                                    width: context.screenWidth,
+                                    height: expandedHeight,
+                                  ),
+                                ),
                                 Container(
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
@@ -153,14 +152,14 @@ class _ProfileViewHeaderState
                                     alignment: Alignment.bottomCenter,
                                     child: Row(
                                       children: [
-                                        // CircleAvatar(
-                                        //   radius: 56,
-                                        //   backgroundColor: AppColor.white,
-                                        //   child: PrimaryCircleImage(
-                                        //     radius: 50,
-                                        //     imageUrl: user.avatar ?? '',
-                                        //   ),
-                                        // ),
+                                        CircleAvatar(
+                                          radius: 56,
+                                          backgroundColor: AppColor.white,
+                                          child: PrimaryCircleImage(
+                                            radius: 50,
+                                            imageUrl: user.imageUrl ?? '',
+                                          ),
+                                        ),
                                         const SizedBox(width: 10),
                                         Expanded(
                                           child: Column(
@@ -194,8 +193,8 @@ class _ProfileViewHeaderState
                           ),
                   ),
                   pinned: true,
-                  // floating: true,
-                  // snap: true,
+                  floating: true,
+                  snap: true,
                   automaticallyImplyLeading: widget.canPop,
                   centerTitle: false,
                 );

@@ -39,19 +39,7 @@ class _ProjectPageState extends BasePageState<ProjectPage, ProjectCubit> {
               builder: (context, state) {
             if (state is EventGetAllProjectSuccessState) {
               final projects = state.projects;
-              // return ListView.builder(
-              //   itemCount: projects.length,
-              //   itemBuilder: (context, index) {
-              //     return Padding(
-              //       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              //       child: ListTile(
-              //         tileColor: AppColor.fourth200,
-              //         title: Text(projects[index].name ?? ""),
-              //       ),
-              //     );
-              //   },
-              //   shrinkWrap: true,
-              // );
+
               if (projects.isNotEmpty) {
                 final items = List.generate(projects.length, (index) {
                   final project = projects[index];

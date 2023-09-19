@@ -17,6 +17,8 @@ import '../view/general_page/general_report_add.dart';
 import '../view/general_page/general_report_detail.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
+import '../view/project_page/cubit/project_cubit.dart';
+import '../view/project_page/project_detail_page.dart';
 import '../view/report_page/report_add.dart';
 import '../view/report_page/report_detail_view.dart';
 import '../view/report_page/report_page.dart';
@@ -45,6 +47,7 @@ class AppRoute {
   static const String qrScanner = "/qrScanner";
   static const String eventMemberHistory = "/eventMemberHistory";
   static const String profileUpdate = "/profileUpdate";
+  static const String projectDetail = "/projectDetail";
   static const String reportDetail = "/reportDetail";
   static const String addReport = "/addReport";
   static const String updateReport = "/updateReport";
@@ -71,6 +74,7 @@ class AppRoute {
         AppRoute.eventMemberHistory: (context) =>
             const EventMemberHistoryPage(),
         AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
+        AppRoute.projectDetail: (context) => const ProjectDetailPage(),
         AppRoute.reportDetail: (context) => ReportDetailView(),
         AppRoute.addReport: (context) => ReportAddPage(),
         AppRoute.updateReport: (context) => ReportUpdatePage(),
@@ -132,6 +136,13 @@ class EventMemberHistoryPageArgs {
   final String userId;
 
   EventMemberHistoryPageArgs({required this.userId});
+}
+
+class ProjectDetailPageArgs {
+  final String projectId;
+  final ProjectCubit projectCubit;
+
+  ProjectDetailPageArgs({required this.projectId, required this.projectCubit});
 }
 
 class ReportDailyPageArgs {
