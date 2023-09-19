@@ -12,6 +12,7 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       firstName: data?.firstName,
       email: data?.email,
       phoneNumber: data?.phoneNumber,
+      imageUrl: data?.imageUrl,
       activated: data?.activated,
       langKey: data?.langKey,
       createdBy: data?.createdBy,

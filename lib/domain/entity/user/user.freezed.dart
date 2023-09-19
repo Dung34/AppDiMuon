@@ -30,6 +30,8 @@ mixin _$UserEntity {
   set email(String? value) => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   set phoneNumber(String? value) => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
+  set imageUrl(String? value) => throw _privateConstructorUsedError;
   bool? get activated => throw _privateConstructorUsedError;
   set activated(bool? value) => throw _privateConstructorUsedError;
   String? get langKey => throw _privateConstructorUsedError;
@@ -63,6 +65,7 @@ abstract class $UserEntityCopyWith<$Res> {
       String? firstName,
       String? email,
       String? phoneNumber,
+      String? imageUrl,
       bool? activated,
       String? langKey,
       String? createdBy,
@@ -90,6 +93,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? firstName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
     Object? createdBy = freezed,
@@ -118,6 +122,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
@@ -165,6 +173,7 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String? firstName,
       String? email,
       String? phoneNumber,
+      String? imageUrl,
       bool? activated,
       String? langKey,
       String? createdBy,
@@ -190,6 +199,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? firstName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
     Object? createdBy = freezed,
@@ -218,6 +228,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
@@ -260,6 +274,7 @@ class _$_UserEntity implements _UserEntity {
       this.firstName,
       this.email,
       this.phoneNumber,
+      this.imageUrl,
       this.activated,
       this.langKey,
       this.createdBy,
@@ -282,6 +297,8 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? phoneNumber;
   @override
+  String? imageUrl;
+  @override
   bool? activated;
   @override
   String? langKey;
@@ -298,7 +315,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role)';
   }
 
   @JsonKey(ignore: true)
@@ -322,6 +339,7 @@ abstract class _UserEntity implements UserEntity {
       String? firstName,
       String? email,
       String? phoneNumber,
+      String? imageUrl,
       bool? activated,
       String? langKey,
       String? createdBy,
@@ -348,6 +366,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   String? get phoneNumber;
   set phoneNumber(String? value);
+  @override
+  String? get imageUrl;
+  set imageUrl(String? value);
   @override
   bool? get activated;
   set activated(bool? value);
