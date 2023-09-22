@@ -118,6 +118,30 @@ class EventRepositoryImpl extends EventRepository {
   }
 
   @override
+  Future<ResponseWrapper<List<Event>>> getEventByDate(String date) async {
+    accessToken = await localDataAccess.getAccessToken();
+
+    return ResponseWrapper.success(data: [
+      Event(
+          title: "Event1",
+          startDate: "2023-09-20T08:00:00",
+          endDate: "2023-09-21T16:00:00"),
+      Event(
+          title: "Event2",
+          startDate: "2023-09-20T08:00:00",
+          endDate: "2023-09-21T16:00:00"),
+      Event(
+          title: "Event3",
+          startDate: "2023-09-20T08:00:00",
+          endDate: "2023-09-21T16:00:00"),
+      Event(
+          title: "Event4",
+          startDate: "2023-09-20T08:00:00",
+          endDate: "2023-09-21T16:00:00")
+    ]);
+  }
+
+  @override
   Future<ResponseWrapper<Event>> getEventById(String eventId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {

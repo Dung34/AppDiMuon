@@ -141,6 +141,16 @@ class EventCubit extends Cubit<EventState> {
   //   }
   // }
 
+  getEventByDate(String date) async {
+    final response = await _eventRepository.getEventByDate(date);
+
+    if (response.status == ResponseStatus.success) {
+      emit(EventGetEventByDateSuccessState(response.data!));
+    } else {
+      emit(EventGetEventByDateFailedState());
+    }
+  }
+
   getEventById(String eventId) async {
     // emit(EventResetState());
     final response = await _eventRepository.getEventById(eventId);

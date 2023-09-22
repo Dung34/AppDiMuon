@@ -179,6 +179,13 @@ class AppTextTheme {
     fontSize: 24,
   );
 
+  static const TextStyle robotoItalic12 = TextStyle(
+    color: AppColor.gray,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    fontStyle: FontStyle.italic,
+  );
+
   static const TextStyle lexendRegular14 = TextStyle(
     fontFamily: 'Lexend',
     color: AppColor.primary500,

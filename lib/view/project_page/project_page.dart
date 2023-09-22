@@ -36,36 +36,39 @@ class _ProjectPageState extends BasePageState<ProjectPage, ProjectCubit> {
         ),
         Expanded(
           child: BlocBuilder<ProjectCubit, ProjectState>(
+              buildWhen: (previous, current) =>
+                  current is EventGetAllProjectSuccessState ||
+                  current is EventGetAllProjectFailedState,
               builder: (context, state) {
-            if (state is EventGetAllProjectSuccessState) {
-              final projects = state.projects;
+                if (state is EventGetAllProjectSuccessState) {
+                  final projects = state.projects;
 
-              if (projects.isNotEmpty) {
-                final items = List.generate(projects.length, (index) {
-                  final project = projects[index];
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ProjectItem(project: project),
-                      if (index == projects.length - 1)
-                        const SizedBox(
-                          height: 100,
-                        ),
-                    ],
-                  );
-                });
-                return AnimationStaggeredListView(
-                  items: items,
-                  onRefresh: () async {
-                    cubit.getAllProject();
-                  },
-                );
-              } else {
-                return const NoData();
-              }
-            }
-            return const Center(child: CircularProgressIndicator());
-          }),
+                  if (projects.isNotEmpty) {
+                    final items = List.generate(projects.length, (index) {
+                      final project = projects[index];
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProjectItem(project: project),
+                          if (index == projects.length - 1)
+                            const SizedBox(
+                              height: 100,
+                            ),
+                        ],
+                      );
+                    });
+                    return AnimationStaggeredListView(
+                      items: items,
+                      onRefresh: () async {
+                        cubit.getAllProject();
+                      },
+                    );
+                  } else {
+                    return const NoData();
+                  }
+                }
+                return const Center(child: CircularProgressIndicator());
+              }),
         )
       ],
     );

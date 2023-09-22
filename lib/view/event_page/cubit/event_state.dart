@@ -113,6 +113,16 @@ class EventUpdateEventSuccessState extends EventState {
 
 class EventUpdateEventFailedState extends EventState {}
 
+class EventGetEventByDateSuccessState extends EventState {
+  final List<Event> events;
+
+  const EventGetEventByDateSuccessState(this.events);
+  @override
+  List<Object?> get props => [events];
+}
+
+class EventGetEventByDateFailedState extends EventState {}
+
 class EventGetEventByIdSuccessState extends EventState {
   final Event event;
 

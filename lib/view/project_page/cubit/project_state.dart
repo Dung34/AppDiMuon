@@ -17,3 +17,14 @@ class EventGetAllProjectSuccessState extends ProjectState {
 }
 
 class EventGetAllProjectFailedState extends ProjectState {}
+
+class EventGetProjectByIdSuccessState extends ProjectState {
+  final Project project;
+
+  const EventGetProjectByIdSuccessState(this.project);
+
+  @override
+  List<Object?> get props => [project];
+}
+
+class EventGetProjectByIdFailedState extends ProjectState {}
