@@ -75,9 +75,7 @@ class _EventItemState extends State<EventItem> {
               width: context.screenWidth * 0.156,
             ),
           ),
-          const SizedBox(
-            width: 8.0,
-          ),
+          const SizedBox(width: 8.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -85,18 +83,14 @@ class _EventItemState extends State<EventItem> {
                 '${DateTimeUtils.formatDate(widget.event.startDate ?? '')} - ${DateTimeUtils.formatDate(widget.event.endDate ?? '')}',
                 style: AppTextTheme.robotoRegular12.copyWith(fontSize: 10),
               ),
-              const SizedBox(
-                height: 5.0,
-              ),
+              const SizedBox(height: 5.0),
               SizedBox(
                   width: context.screenWidth * 0.68,
                   child: Text(
                     widget.event.title ?? '',
                     style: AppTextTheme.robotoMedium16,
                   )),
-              const SizedBox(
-                height: 5.0,
-              ),
+              const SizedBox(height: 5.0),
               Row(
                 children: [
                   SecondaryButton(
