@@ -1,4 +1,5 @@
 import '../domain/entity/event/event_wrapper/event.dart';
+import '../domain/entity/project/project.dart';
 import '../view/auth/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -18,6 +19,9 @@ import '../view/general_page/general_report_detail.dart';
 import '../view/general_page/general_report_update.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
+import '../view/project_page/cubit/project_cubit.dart';
+import '../view/project_page/project_detail_page.dart';
+import '../view/project_page/project_member_page.dart';
 import '../view/report_page/report_add.dart';
 import '../view/report_page/report_detail_view.dart';
 import '../view/report_page/report_page.dart';
@@ -46,6 +50,8 @@ class AppRoute {
   static const String qrScanner = "/qrScanner";
   static const String eventMemberHistory = "/eventMemberHistory";
   static const String profileUpdate = "/profileUpdate";
+  static const String projectDetail = "/projectDetail";
+  static const String projectMembers = "/projectMembers";
   static const String reportDetail = "/reportDetail";
   static const String addReport = "/addReport";
   static const String updateReport = "/updateReport";
@@ -73,11 +79,13 @@ class AppRoute {
         AppRoute.eventMemberHistory: (context) =>
             const EventMemberHistoryPage(),
         AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
-        AppRoute.reportDetail: (context) => ReportDetailView(),
-        AppRoute.addReport: (context) => ReportAddPage(),
-        AppRoute.updateReport: (context) => ReportUpdatePage(),
+        AppRoute.projectDetail: (context) => const ProjectDetailPage(),
+        AppRoute.projectMembers: (context) => const ProjectMemberPage(),
+        AppRoute.reportDetail: (context) => const ReportDetailView(),
+        AppRoute.addReport: (context) => const ReportAddPage(),
+        AppRoute.updateReport: (context) => const ReportUpdatePage(),
         AppRoute.generalReport: (context) => const GeneralPage(),
-        AppRoute.geneReportDetail: (context) => GeneReportDetail(),
+        AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
         AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
       };
@@ -135,6 +143,24 @@ class EventMemberHistoryPageArgs {
   final String userId;
 
   EventMemberHistoryPageArgs({required this.userId});
+}
+
+class ProjectDetailPageArgs {
+  final String projectId;
+  final ProjectCubit projectCubit;
+
+  ProjectDetailPageArgs({required this.projectId, required this.projectCubit});
+}
+
+class ProjectMemberPageArgs {
+  final String projectId;
+  final ProjectCubit projectCubit;
+  final List<ProjectMembers>? projectMembers;
+
+  ProjectMemberPageArgs(
+      {required this.projectId,
+      required this.projectCubit,
+      this.projectMembers});
 }
 
 class ReportDailyPageArgs {

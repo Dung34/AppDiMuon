@@ -78,14 +78,14 @@ class _EventPageEventState extends BasePageState<EventPageEvent, EventCubit> {
                     timeEventTab = value;
 
                     int indexTime, indexJoin;
-                    for (indexTime = 0;
-                        indexTime < timeEvent.length;
-                        indexTime++) {
+                    for (indexTime = timeEvent.length - 1;
+                        indexTime > 0;
+                        indexTime--) {
                       if (timeEvent[indexTime] == timeEventTab) break;
                     }
-                    for (indexJoin = 0;
-                        indexJoin < joinEvent.length;
-                        indexJoin++) {
+                    for (indexJoin = joinEvent.length - 1;
+                        indexJoin > 0;
+                        indexJoin--) {
                       if (joinEvent[indexJoin] == joinEventTab) break;
                     }
 
@@ -121,14 +121,14 @@ class _EventPageEventState extends BasePageState<EventPageEvent, EventCubit> {
                     joinEventTab = value;
 
                     int indexTime, indexJoin;
-                    for (indexTime = 0;
-                        indexTime < timeEvent.length;
-                        indexTime++) {
+                    for (indexTime = timeEvent.length - 1;
+                        indexTime > 0;
+                        indexTime--) {
                       if (timeEvent[indexTime] == timeEventTab) break;
                     }
-                    for (indexJoin = 0;
-                        indexJoin < joinEvent.length;
-                        indexJoin++) {
+                    for (indexJoin = joinEvent.length - 1;
+                        indexJoin > 0;
+                        indexJoin--) {
                       if (joinEvent[indexJoin] == joinEventTab) break;
                     }
 

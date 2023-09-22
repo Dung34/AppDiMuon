@@ -29,4 +29,14 @@ class ProjectCubit extends Cubit<ProjectState> {
       emit(EventGetAllProjectFailedState());
     }
   }
+
+  getProjectById(String id) async {
+    final response = await _projectRepository.getProjectById(id);
+
+    if (response.status == ResponseStatus.success) {
+      emit(EventGetProjectByIdSuccessState(response.data!));
+    } else {
+      emit(EventGetProjectByIdFailedState());
+    }
+  }
 }

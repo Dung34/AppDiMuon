@@ -101,7 +101,7 @@ class SettingPage extends StatelessWidget {
                             context: context,
                             title: 'Xác nhận Xoá tài khoản',
                             message:
-                                'Bạn có chắc chắ muốn xóa tài khoản này?\nHành động có thể được hoàn tác nếu bạn liên hệ với đội ngũ CSKH trong vòng 30 ngày. Sau 30 ngày, tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn và không thể phục hồi.',
+                                'Bạn có chắc chắn muốn xóa tài khoản này?\nHành động có thể được hoàn tác nếu bạn liên hệ với đội ngũ CSKH trong vòng 30 ngày. Sau 30 ngày, tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn và không thể phục hồi.',
                             onPositivePressed: () {
                               authBloc.add(AuthRequestAccoutDeletionEvent());
 

@@ -88,6 +88,7 @@ configureInjection() async {
       () => EventMemberDataMapper());
   getIt.registerLazySingleton<ProjectListDataMapper>(
       () => ProjectListDataMapper());
+  getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
 
   getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
   getIt.registerLazySingleton<ListReportDataMapper>(

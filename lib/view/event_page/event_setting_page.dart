@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
-import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/dialog_helper.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/line/line_painter.dart';
@@ -50,9 +49,8 @@ class _EventSettingPageState extends BasePageState<EventSettingPage, EventCubit>
         '${fromDate[2]}-${fromDate[1]}-${fromDate[0]}T00:00:00',
         '${toDate[2]}-${toDate[1]}-${toDate[0]}T00:00:00');
 
-    print(status);
-
     if (status) {
+      // ignore: use_build_context_synchronously
       showDialog(
           context: context,
           builder: (context) => getErrorDialog(
@@ -60,6 +58,7 @@ class _EventSettingPageState extends BasePageState<EventSettingPage, EventCubit>
               message: "Cài đặt thành công",
               icon: Assets.icSuccess));
     } else {
+      // ignore: use_build_context_synchronously
       showDialog(
           context: context,
           builder: (context) => getErrorDialog(

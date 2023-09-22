@@ -26,6 +26,8 @@ abstract class EventRepository {
 
   Future<ResponseWrapper<CheckinStatistic>> getCheckinStatistic(String? userId);
 
+  Future<ResponseWrapper<List<Event>>> getEventByDate(String date);
+
   Future<ResponseWrapper<Event>> getEventById(String eventId);
 
   Future<ResponseWrapper<List<Event>>> getEventByFilter(int status, int isJoin);

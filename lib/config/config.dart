@@ -59,6 +59,7 @@ class EndPoints {
 
   //project
   static const String getAllProject = "/project/view-all-project";
+  static const String getProjectDetail = "/project/view-detail-project";
 }
 
 class SSOConfig {

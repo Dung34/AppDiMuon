@@ -121,32 +121,6 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
                 },
               ),
             ),
-            // appBar: AppBar(
-            //   actions: [
-            //     PrimaryIconButton(
-            //       context: context,
-            //       onPressed: () {},
-            //       icon: Assets.icSearch,
-            //     ),
-            //     const SizedBox(width: 5.0),
-            //     PrimaryIconButton(
-            //       context: context,
-            //       onPressed: () {},
-            //       icon: Assets.icNotification,
-            //     )
-            //   ],
-            //   backgroundColor: AppColor.primaryBackgroundColor,
-            //   leading: IconButton(
-            //     icon: const Icon(Icons.arrow_back),
-            //     onPressed: () {
-            //       Navigator.pop(context);
-            //     },
-            //   ),
-            //   title: const Text(
-            //     'Thông tin chi tiết',
-            //     style: AppTextTheme.lexendBold24,
-            //   ),
-            // ),
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -335,6 +309,7 @@ class _EventDetailPageState extends BasePageState<EventDetailPage, EventCubit> {
   _onGetQRCode(BuildContext context, Event event) async {
     String? imageLink = await cubit.getQRCode(args.eventId, "normal");
 
+    // ignore: use_build_context_synchronously
     showDialog(
         context: context,
         builder: (BuildContext context) {
