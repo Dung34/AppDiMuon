@@ -56,9 +56,7 @@ class _ProjectDetailPageState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 16.0,
-                  ),
+                  const SizedBox(height: 16.0),
                   Text("Thành viên",
                       style: AppTextTheme.robotoBold18
                           .copyWith(color: AppColor.primary500)),
