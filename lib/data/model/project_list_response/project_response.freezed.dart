@@ -22,12 +22,11 @@ ProjectResponse _$ProjectResponseFromJson(Map<String, dynamic> json) {
 mixin _$ProjectResponse {
   String? get name => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
-  List<ProjectMembers>? get projectMembers =>
-      throw _privateConstructorUsedError;
+  List<ProjectMember>? get projectMembers => throw _privateConstructorUsedError;
   List<Task>? get tasks => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
-  String? get createdBy => throw _privateConstructorUsedError;
-  String? get createdDate => throw _privateConstructorUsedError;
+  String? get createDate => throw _privateConstructorUsedError;
+  String? get createBy => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,11 +43,11 @@ abstract class $ProjectResponseCopyWith<$Res> {
   $Res call(
       {String? name,
       int? status,
-      List<ProjectMembers>? projectMembers,
+      List<ProjectMember>? projectMembers,
       List<Task>? tasks,
       String? id,
-      String? createdBy,
-      String? createdDate});
+      String? createDate,
+      String? createBy});
 }
 
 /// @nodoc
@@ -69,8 +68,8 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
     Object? projectMembers = freezed,
     Object? tasks = freezed,
     Object? id = freezed,
-    Object? createdBy = freezed,
-    Object? createdDate = freezed,
+    Object? createDate = freezed,
+    Object? createBy = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -84,7 +83,7 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
       projectMembers: freezed == projectMembers
           ? _value.projectMembers
           : projectMembers // ignore: cast_nullable_to_non_nullable
-              as List<ProjectMembers>?,
+              as List<ProjectMember>?,
       tasks: freezed == tasks
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
@@ -93,13 +92,13 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
+      createDate: freezed == createDate
+          ? _value.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
+      createBy: freezed == createBy
+          ? _value.createBy
+          : createBy // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -116,11 +115,11 @@ abstract class _$$_ProjectResponseCopyWith<$Res>
   $Res call(
       {String? name,
       int? status,
-      List<ProjectMembers>? projectMembers,
+      List<ProjectMember>? projectMembers,
       List<Task>? tasks,
       String? id,
-      String? createdBy,
-      String? createdDate});
+      String? createDate,
+      String? createBy});
 }
 
 /// @nodoc
@@ -139,8 +138,8 @@ class __$$_ProjectResponseCopyWithImpl<$Res>
     Object? projectMembers = freezed,
     Object? tasks = freezed,
     Object? id = freezed,
-    Object? createdBy = freezed,
-    Object? createdDate = freezed,
+    Object? createDate = freezed,
+    Object? createBy = freezed,
   }) {
     return _then(_$_ProjectResponse(
       name: freezed == name
@@ -154,7 +153,7 @@ class __$$_ProjectResponseCopyWithImpl<$Res>
       projectMembers: freezed == projectMembers
           ? _value._projectMembers
           : projectMembers // ignore: cast_nullable_to_non_nullable
-              as List<ProjectMembers>?,
+              as List<ProjectMember>?,
       tasks: freezed == tasks
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
@@ -163,13 +162,13 @@ class __$$_ProjectResponseCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
+      createDate: freezed == createDate
+          ? _value.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
+      createBy: freezed == createBy
+          ? _value.createBy
+          : createBy // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -181,11 +180,11 @@ class _$_ProjectResponse implements _ProjectResponse {
   _$_ProjectResponse(
       {this.name,
       this.status,
-      final List<ProjectMembers>? projectMembers,
+      final List<ProjectMember>? projectMembers,
       final List<Task>? tasks,
       this.id,
-      this.createdBy,
-      this.createdDate})
+      this.createDate,
+      this.createBy})
       : _projectMembers = projectMembers,
         _tasks = tasks;
 
@@ -196,9 +195,9 @@ class _$_ProjectResponse implements _ProjectResponse {
   final String? name;
   @override
   final int? status;
-  final List<ProjectMembers>? _projectMembers;
+  final List<ProjectMember>? _projectMembers;
   @override
-  List<ProjectMembers>? get projectMembers {
+  List<ProjectMember>? get projectMembers {
     final value = _projectMembers;
     if (value == null) return null;
     if (_projectMembers is EqualUnmodifiableListView) return _projectMembers;
@@ -219,13 +218,13 @@ class _$_ProjectResponse implements _ProjectResponse {
   @override
   final String? id;
   @override
-  final String? createdBy;
+  final String? createDate;
   @override
-  final String? createdDate;
+  final String? createBy;
 
   @override
   String toString() {
-    return 'ProjectResponse(name: $name, status: $status, projectMembers: $projectMembers, tasks: $tasks, id: $id, createdBy: $createdBy, createdDate: $createdDate)';
+    return 'ProjectResponse(name: $name, status: $status, projectMembers: $projectMembers, tasks: $tasks, id: $id, createDate: $createDate, createBy: $createBy)';
   }
 
   @override
@@ -239,10 +238,10 @@ class _$_ProjectResponse implements _ProjectResponse {
                 .equals(other._projectMembers, _projectMembers) &&
             const DeepCollectionEquality().equals(other._tasks, _tasks) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdBy, createdBy) ||
-                other.createdBy == createdBy) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
+            (identical(other.createDate, createDate) ||
+                other.createDate == createDate) &&
+            (identical(other.createBy, createBy) ||
+                other.createBy == createBy));
   }
 
   @JsonKey(ignore: true)
@@ -254,8 +253,8 @@ class _$_ProjectResponse implements _ProjectResponse {
       const DeepCollectionEquality().hash(_projectMembers),
       const DeepCollectionEquality().hash(_tasks),
       id,
-      createdBy,
-      createdDate);
+      createDate,
+      createBy);
 
   @JsonKey(ignore: true)
   @override
@@ -275,11 +274,11 @@ abstract class _ProjectResponse implements ProjectResponse {
   factory _ProjectResponse(
       {final String? name,
       final int? status,
-      final List<ProjectMembers>? projectMembers,
+      final List<ProjectMember>? projectMembers,
       final List<Task>? tasks,
       final String? id,
-      final String? createdBy,
-      final String? createdDate}) = _$_ProjectResponse;
+      final String? createDate,
+      final String? createBy}) = _$_ProjectResponse;
 
   factory _ProjectResponse.fromJson(Map<String, dynamic> json) =
       _$_ProjectResponse.fromJson;
@@ -289,15 +288,15 @@ abstract class _ProjectResponse implements ProjectResponse {
   @override
   int? get status;
   @override
-  List<ProjectMembers>? get projectMembers;
+  List<ProjectMember>? get projectMembers;
   @override
   List<Task>? get tasks;
   @override
   String? get id;
   @override
-  String? get createdBy;
+  String? get createDate;
   @override
-  String? get createdDate;
+  String? get createBy;
   @override
   @JsonKey(ignore: true)
   _$$_ProjectResponseCopyWith<_$_ProjectResponse> get copyWith =>

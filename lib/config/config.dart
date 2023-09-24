@@ -23,6 +23,7 @@ class EndPoints {
   // user related
   static const String getCurrentUser = '/gateway/user/current';
   static const String getUser = '/api/account';
+  static const String getUserById = '/api/accountByUserId';
   static const String updateUser = '/gateway/user/update';
   static const String login = '/api/authenticate';
   static const String getAccountInfo = '/api/account';

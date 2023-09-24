@@ -28,3 +28,5 @@ class EventGetProjectByIdSuccessState extends ProjectState {
 }
 
 class EventGetProjectByIdFailedState extends ProjectState {}
+
+class EventResetState extends ProjectState {}

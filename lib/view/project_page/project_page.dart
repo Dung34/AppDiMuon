@@ -51,9 +51,7 @@ class _ProjectPageState extends BasePageState<ProjectPage, ProjectCubit> {
                         children: [
                           ProjectItem(project: project),
                           if (index == projects.length - 1)
-                            const SizedBox(
-                              height: 100,
-                            ),
+                            const SizedBox(height: 100),
                         ],
                       );
                     });

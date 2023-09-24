@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/model/api/base_response.dart';
+import '../../../../data/model/old_login/login_response.dart';
 import '../../../../data/repository/local/local_data_access.dart';
 import '../../../../data/repository/remote/repository.dart';
 import '../../../../data/resources/strings.dart';
@@ -33,6 +36,19 @@ class UserCubit extends Cubit<UserState> {
       emit(UserGetUserSuccessState(userEntity: response.data!));
     } else {
       emit(UserGetUserFailedState());
+    }
+  }
+
+  Future<UserEntity> getUserById({String? userId}) async {
+    final response = await _userRepository.getUserById(userId: userId);
+    if (response.status == ResponseStatus.success) {
+      emit(UserGetUserSuccessState(userEntity: response.data!));
+
+      return response.data ?? UserEntity();
+    } else {
+      emit(UserGetUserFailedState());
+
+      return UserEntity();
     }
   }
 

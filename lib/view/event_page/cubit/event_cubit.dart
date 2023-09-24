@@ -152,7 +152,7 @@ class EventCubit extends Cubit<EventState> {
   }
 
   getEventById(String eventId) async {
-    // emit(EventResetState());
+    emit(EventResetState());
     final response = await _eventRepository.getEventById(eventId);
 
     if (response.status == ResponseStatus.success) {

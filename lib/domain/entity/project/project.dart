@@ -10,7 +10,7 @@ class Project with _$Project {
   factory Project({
     String? name,
     int? status,
-    List<ProjectMembers>? projectMembers,
+    List<ProjectMember>? projectMembers,
     List<Task>? tasks,
     String? id,
   }) = _Project;
@@ -20,14 +20,12 @@ class Project with _$Project {
 }
 
 @freezed
-class ProjectMembers with _$ProjectMembers {
-  factory ProjectMembers({
-    String? projectId,
+class ProjectMember with _$ProjectMember {
+  factory ProjectMember({
     String? userId,
     int? role,
-    String? id,
-  }) = _ProjectMembers;
+  }) = _ProjectMember;
 
-  factory ProjectMembers.fromJson(Map<String, dynamic> json) =>
-      _$ProjectMembersFromJson(json);
+  factory ProjectMember.fromJson(Map<String, dynamic> json) =>
+      _$ProjectMemberFromJson(json);
 }

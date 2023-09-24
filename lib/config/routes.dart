@@ -155,7 +155,7 @@ class ProjectDetailPageArgs {
 class ProjectMemberPageArgs {
   final String projectId;
   final ProjectCubit projectCubit;
-  final List<ProjectMembers>? projectMembers;
+  final List<ProjectMember>? projectMembers;
 
   ProjectMemberPageArgs(
       {required this.projectId,

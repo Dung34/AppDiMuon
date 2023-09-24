@@ -22,6 +22,12 @@ class _ProjectDetailPageState
   late final ProjectDetailPageArgs args;
 
   @override
+  bool get isUseLoading => true;
+
+  @override
+  bool get useBlocProviderValue => true;
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     args = context.arguments as ProjectDetailPageArgs;
@@ -34,7 +40,8 @@ class _ProjectDetailPageState
   Widget buildPage(BuildContext context) {
     return BlocBuilder<ProjectCubit, ProjectState>(
       buildWhen: (previous, current) =>
-          current is EventGetProjectByIdSuccessState,
+          current is EventGetProjectByIdSuccessState ||
+          current is EventResetState,
       builder: (context, state) {
         if (state is EventGetProjectByIdSuccessState) {
           final project = state.project;
@@ -95,22 +102,6 @@ class _ProjectDetailPageState
                     ]),
                   ),
                   const SizedBox(height: 16.0),
-                  // Text('Mô tả',
-                  //     style: AppTextTheme.robotoBold18
-                  //         .copyWith(color: AppColor.primary500)),
-                  // const SizedBox(height: 8.0),
-                  // Container(
-                  //   constraints: BoxConstraints(
-                  //       minWidth: context.screenWidth - 32.0,
-                  //       minHeight: context.screenWidth / 16 * 9),
-                  //   decoration: BoxDecoration(
-                  //       border: Border.all(color: AppColor.fourth300),
-                  //       borderRadius: BorderRadius.circular(8.0)),
-                  //   padding: const EdgeInsets.only(top: 12.0),
-                  //   child: Text("Mô tả",
-                  //       style: AppTextTheme.robotoRegular14
-                  //           .copyWith(color: AppColor.primary500)),
-                  // )
                 ],
               ),
             )),

@@ -163,7 +163,6 @@ class _EventPageEventState extends BasePageState<EventPageEvent, EventCubit> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         EventItem(event: event),
-                        // const Divider(thickness: 5, color: AppColor.fourth300),
                         if (index == events.length - 1)
                           const SizedBox(height: 100),
                       ],
