@@ -22,8 +22,7 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
 mixin _$Project {
   String? get name => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
-  List<ProjectMembers>? get projectMembers =>
-      throw _privateConstructorUsedError;
+  List<ProjectMember>? get projectMembers => throw _privateConstructorUsedError;
   List<Task>? get tasks => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
 
@@ -40,7 +39,7 @@ abstract class $ProjectCopyWith<$Res> {
   $Res call(
       {String? name,
       int? status,
-      List<ProjectMembers>? projectMembers,
+      List<ProjectMember>? projectMembers,
       List<Task>? tasks,
       String? id});
 }
@@ -76,7 +75,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
       projectMembers: freezed == projectMembers
           ? _value.projectMembers
           : projectMembers // ignore: cast_nullable_to_non_nullable
-              as List<ProjectMembers>?,
+              as List<ProjectMember>?,
       tasks: freezed == tasks
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
@@ -99,7 +98,7 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   $Res call(
       {String? name,
       int? status,
-      List<ProjectMembers>? projectMembers,
+      List<ProjectMember>? projectMembers,
       List<Task>? tasks,
       String? id});
 }
@@ -132,7 +131,7 @@ class __$$_ProjectCopyWithImpl<$Res>
       projectMembers: freezed == projectMembers
           ? _value._projectMembers
           : projectMembers // ignore: cast_nullable_to_non_nullable
-              as List<ProjectMembers>?,
+              as List<ProjectMember>?,
       tasks: freezed == tasks
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
@@ -151,7 +150,7 @@ class _$_Project implements _Project {
   _$_Project(
       {this.name,
       this.status,
-      final List<ProjectMembers>? projectMembers,
+      final List<ProjectMember>? projectMembers,
       final List<Task>? tasks,
       this.id})
       : _projectMembers = projectMembers,
@@ -164,9 +163,9 @@ class _$_Project implements _Project {
   final String? name;
   @override
   final int? status;
-  final List<ProjectMembers>? _projectMembers;
+  final List<ProjectMember>? _projectMembers;
   @override
-  List<ProjectMembers>? get projectMembers {
+  List<ProjectMember>? get projectMembers {
     final value = _projectMembers;
     if (value == null) return null;
     if (_projectMembers is EqualUnmodifiableListView) return _projectMembers;
@@ -233,7 +232,7 @@ abstract class _Project implements Project {
   factory _Project(
       {final String? name,
       final int? status,
-      final List<ProjectMembers>? projectMembers,
+      final List<ProjectMember>? projectMembers,
       final List<Task>? tasks,
       final String? id}) = _$_Project;
 
@@ -244,7 +243,7 @@ abstract class _Project implements Project {
   @override
   int? get status;
   @override
-  List<ProjectMembers>? get projectMembers;
+  List<ProjectMember>? get projectMembers;
   @override
   List<Task>? get tasks;
   @override
@@ -255,36 +254,34 @@ abstract class _Project implements Project {
       throw _privateConstructorUsedError;
 }
 
-ProjectMembers _$ProjectMembersFromJson(Map<String, dynamic> json) {
-  return _ProjectMembers.fromJson(json);
+ProjectMember _$ProjectMemberFromJson(Map<String, dynamic> json) {
+  return _ProjectMember.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProjectMembers {
-  String? get projectId => throw _privateConstructorUsedError;
+mixin _$ProjectMember {
   String? get userId => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProjectMembersCopyWith<ProjectMembers> get copyWith =>
+  $ProjectMemberCopyWith<ProjectMember> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectMembersCopyWith<$Res> {
-  factory $ProjectMembersCopyWith(
-          ProjectMembers value, $Res Function(ProjectMembers) then) =
-      _$ProjectMembersCopyWithImpl<$Res, ProjectMembers>;
+abstract class $ProjectMemberCopyWith<$Res> {
+  factory $ProjectMemberCopyWith(
+          ProjectMember value, $Res Function(ProjectMember) then) =
+      _$ProjectMemberCopyWithImpl<$Res, ProjectMember>;
   @useResult
-  $Res call({String? projectId, String? userId, int? role, String? id});
+  $Res call({String? userId, int? role});
 }
 
 /// @nodoc
-class _$ProjectMembersCopyWithImpl<$Res, $Val extends ProjectMembers>
-    implements $ProjectMembersCopyWith<$Res> {
-  _$ProjectMembersCopyWithImpl(this._value, this._then);
+class _$ProjectMemberCopyWithImpl<$Res, $Val extends ProjectMember>
+    implements $ProjectMemberCopyWith<$Res> {
+  _$ProjectMemberCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -294,16 +291,10 @@ class _$ProjectMembersCopyWithImpl<$Res, $Val extends ProjectMembers>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectId = freezed,
     Object? userId = freezed,
     Object? role = freezed,
-    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
-              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -312,46 +303,36 @@ class _$ProjectMembersCopyWithImpl<$Res, $Val extends ProjectMembers>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ProjectMembersCopyWith<$Res>
-    implements $ProjectMembersCopyWith<$Res> {
-  factory _$$_ProjectMembersCopyWith(
-          _$_ProjectMembers value, $Res Function(_$_ProjectMembers) then) =
-      __$$_ProjectMembersCopyWithImpl<$Res>;
+abstract class _$$_ProjectMemberCopyWith<$Res>
+    implements $ProjectMemberCopyWith<$Res> {
+  factory _$$_ProjectMemberCopyWith(
+          _$_ProjectMember value, $Res Function(_$_ProjectMember) then) =
+      __$$_ProjectMemberCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? projectId, String? userId, int? role, String? id});
+  $Res call({String? userId, int? role});
 }
 
 /// @nodoc
-class __$$_ProjectMembersCopyWithImpl<$Res>
-    extends _$ProjectMembersCopyWithImpl<$Res, _$_ProjectMembers>
-    implements _$$_ProjectMembersCopyWith<$Res> {
-  __$$_ProjectMembersCopyWithImpl(
-      _$_ProjectMembers _value, $Res Function(_$_ProjectMembers) _then)
+class __$$_ProjectMemberCopyWithImpl<$Res>
+    extends _$ProjectMemberCopyWithImpl<$Res, _$_ProjectMember>
+    implements _$$_ProjectMemberCopyWith<$Res> {
+  __$$_ProjectMemberCopyWithImpl(
+      _$_ProjectMember _value, $Res Function(_$_ProjectMember) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectId = freezed,
     Object? userId = freezed,
     Object? role = freezed,
-    Object? id = freezed,
   }) {
-    return _then(_$_ProjectMembers(
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_$_ProjectMember(
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -360,86 +341,68 @@ class __$$_ProjectMembersCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProjectMembers implements _ProjectMembers {
-  _$_ProjectMembers({this.projectId, this.userId, this.role, this.id});
+class _$_ProjectMember implements _ProjectMember {
+  _$_ProjectMember({this.userId, this.role});
 
-  factory _$_ProjectMembers.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectMembersFromJson(json);
+  factory _$_ProjectMember.fromJson(Map<String, dynamic> json) =>
+      _$$_ProjectMemberFromJson(json);
 
-  @override
-  final String? projectId;
   @override
   final String? userId;
   @override
   final int? role;
-  @override
-  final String? id;
 
   @override
   String toString() {
-    return 'ProjectMembers(projectId: $projectId, userId: $userId, role: $role, id: $id)';
+    return 'ProjectMember(userId: $userId, role: $role)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProjectMembers &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
+            other is _$_ProjectMember &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, projectId, userId, role, id);
+  int get hashCode => Object.hash(runtimeType, userId, role);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectMembersCopyWith<_$_ProjectMembers> get copyWith =>
-      __$$_ProjectMembersCopyWithImpl<_$_ProjectMembers>(this, _$identity);
+  _$$_ProjectMemberCopyWith<_$_ProjectMember> get copyWith =>
+      __$$_ProjectMemberCopyWithImpl<_$_ProjectMember>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectMembersToJson(
+    return _$$_ProjectMemberToJson(
       this,
     );
   }
 }
 
-abstract class _ProjectMembers implements ProjectMembers {
-  factory _ProjectMembers(
-      {final String? projectId,
-      final String? userId,
-      final int? role,
-      final String? id}) = _$_ProjectMembers;
+abstract class _ProjectMember implements ProjectMember {
+  factory _ProjectMember({final String? userId, final int? role}) =
+      _$_ProjectMember;
 
-  factory _ProjectMembers.fromJson(Map<String, dynamic> json) =
-      _$_ProjectMembers.fromJson;
+  factory _ProjectMember.fromJson(Map<String, dynamic> json) =
+      _$_ProjectMember.fromJson;
 
-  @override
-  String? get projectId;
   @override
   String? get userId;
   @override
   int? get role;
   @override
-  String? get id;
-  @override
   @JsonKey(ignore: true)
-  _$$_ProjectMembersCopyWith<_$_ProjectMembers> get copyWith =>
+  _$$_ProjectMemberCopyWith<_$_ProjectMember> get copyWith =>
       throw _privateConstructorUsedError;
 }

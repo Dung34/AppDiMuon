@@ -13,6 +13,8 @@ class ProjectCubit extends Cubit<ProjectState> {
 
   ProjectCubit() : super(EventInitial());
 
+  late Project currentSelectedProject;
+
   final List<Project> projects = [];
 
   getAllProject({
@@ -31,9 +33,11 @@ class ProjectCubit extends Cubit<ProjectState> {
   }
 
   getProjectById(String id) async {
+    emit(EventResetState());
     final response = await _projectRepository.getProjectById(id);
 
     if (response.status == ResponseStatus.success) {
+      currentSelectedProject = response.data!;
       emit(EventGetProjectByIdSuccessState(response.data!));
     } else {
       emit(EventGetProjectByIdFailedState());

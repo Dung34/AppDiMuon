@@ -42,5 +42,7 @@ abstract class UserRepository {
 
   Future<ResponseWrapper<UserEntity>> getUser({String? userId});
 
+  Future<ResponseWrapper<UserEntity>> getUserById({String? userId});
+
   Future<ResponseWrapper<UserEntity>> updateUser({required UserEntity user});
 }

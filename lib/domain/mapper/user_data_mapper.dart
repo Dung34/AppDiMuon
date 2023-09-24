@@ -19,7 +19,12 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       createdDate: data?.createdDate,
       lastModifiedBy: data?.lastModifiedBy,
       lastModifiedDate: data?.lastModifiedDate,
-      role: data?.authorities![0] == "ROLE_ADMIN" ? 1 : 0,
+      // ignore: prefer_is_empty
+      role: data?.authorities!.length == 0
+          ? 0
+          : data?.authorities![0] == 'ROLE_USER'
+              ? 0
+              : 1,
     );
   }
 

@@ -11,11 +11,11 @@ class ProjectResponse with _$ProjectResponse {
   factory ProjectResponse({
     String? name,
     int? status,
-    List<ProjectMembers>? projectMembers,
+    List<ProjectMember>? projectMembers,
     List<Task>? tasks,
     String? id,
-    String? createdBy,
-    String? createdDate,
+    String? createDate,
+    String? createBy,
   }) = _ProjectResponse;
 
   factory ProjectResponse.fromJson(Map<String, dynamic> json) =>

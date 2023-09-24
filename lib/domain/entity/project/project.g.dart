@@ -10,7 +10,7 @@ _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
       name: json['name'] as String?,
       status: json['status'] as int?,
       projectMembers: (json['projectMembers'] as List<dynamic>?)
-          ?.map((e) => ProjectMembers.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProjectMember.fromJson(e as Map<String, dynamic>))
           .toList(),
       tasks: (json['tasks'] as List<dynamic>?)
           ?.map((e) => Task.fromJson(e as Map<String, dynamic>))
@@ -27,18 +27,14 @@ Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
       'id': instance.id,
     };
 
-_$_ProjectMembers _$$_ProjectMembersFromJson(Map<String, dynamic> json) =>
-    _$_ProjectMembers(
-      projectId: json['projectId'] as String?,
+_$_ProjectMember _$$_ProjectMemberFromJson(Map<String, dynamic> json) =>
+    _$_ProjectMember(
       userId: json['userId'] as String?,
       role: json['role'] as int?,
-      id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$_ProjectMembersToJson(_$_ProjectMembers instance) =>
+Map<String, dynamic> _$$_ProjectMemberToJson(_$_ProjectMember instance) =>
     <String, dynamic>{
-      'projectId': instance.projectId,
       'userId': instance.userId,
       'role': instance.role,
-      'id': instance.id,
     };

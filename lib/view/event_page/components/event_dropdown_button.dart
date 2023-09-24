@@ -5,6 +5,7 @@ class EventDropdownButton extends StatefulWidget {
   final Color? dropdownColor;
   final Widget? hint;
   final Icon? icon;
+  final bool? isExpanded;
   final TextStyle? itemStyle;
   final Function(String?) onChanged;
   final EdgeInsetsGeometry? padding;
@@ -18,6 +19,7 @@ class EventDropdownButton extends StatefulWidget {
     this.dropdownColor,
     this.hint,
     this.icon,
+    this.isExpanded,
     this.itemStyle,
     required this.onChanged,
     this.padding,
@@ -55,6 +57,7 @@ class _EventDropdownButtonState extends State<EventDropdownButton> {
             Icons.keyboard_arrow_down_rounded,
             color: Color(0xFF10316B),
           ),
+      isExpanded: widget.isExpanded ?? false,
       onChanged: widget.onChanged,
       padding: widget.padding,
       selectedItemBuilder: (BuildContext context) => widget.tabs

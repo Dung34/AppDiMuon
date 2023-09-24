@@ -213,6 +213,26 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<ResponseWrapper<UserEntity>> getUserById({String? userId}) async {
+    accessToken = await localDataAccess.getAccessToken();
+
+    final response = await dio.get('${EndPoints.getUserById}?Id=$userId',
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+    try {
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _userDataMapper
+                .mapToEntity(UserResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
   Future<ResponseWrapper<UserEntity>> updateUser(
       {required UserEntity user}) async {
     accessToken = await localDataAccess.getAccessToken();
