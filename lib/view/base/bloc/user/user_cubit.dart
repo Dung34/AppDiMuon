@@ -67,17 +67,17 @@ class UserCubit extends Cubit<UserState> {
   }
 
   changePassword(
-      {required String newPassword, required String rePassword}) async {
+      {required String currentPassword, required String rePassword}) async {
     final response = await _userRepository.changePassword(
-        newPassword: newPassword, rePassword: rePassword);
+        currentPassword: currentPassword, rePassword: rePassword);
 
     if (response.status == ResponseStatus.success) {
       emit(UserChangePasswordSuccessState());
       ViewUtils.toastSuccess('Đổi mật khẩu thành công');
     } else {
-      ViewUtils.toastWarning(AlertText.updateFailed);
+      if (response.statusCode == 400) ViewUtils.toastWarning("Sai mật khẩu");
       emit(UserChangePasswordFailedState());
-      ViewUtils.toastSuccess('Đổi mật khẩu thất bại');
+      ViewUtils.toastWarning(AlertText.updateFailed);
     }
   }
 }
