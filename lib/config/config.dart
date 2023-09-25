@@ -15,7 +15,7 @@ class Environment {
 
 class EndPoints {
   static const String getUserInfoSSO = '/user/updateinfo';
-  static const String deactiveUser = '/user/de-active';
+  static const String deactiveUser = '/api/Deactivate';
 
   static const String publicAddressBaseUrl =
       "https://provinces.open-api.vn/api/p";

@@ -23,12 +23,12 @@ class ProfileChangePasswordPage extends StatefulWidget {
 
 class _ProfileChangePasswordPageState
     extends BasePageState<ProfileChangePasswordPage, UserCubit> {
+  final oldPasswordController = TextEditingController();
   final repasswordController = TextEditingController();
-
   final passwordController = TextEditingController();
 
+  final oldPasswordFormKey = GlobalKey<FormState>();
   final repasswordFormKey = GlobalKey<FormState>();
-
   final passwordFormKey = GlobalKey<FormState>();
 
   final AuthBloc authBloc = AuthBloc();
@@ -47,7 +47,6 @@ class _ProfileChangePasswordPageState
           backgroundColor: AppColor.primaryBackgroundColor,
           elevation: 0,
           canPop: true,
-          // title: 'Đổi mật khẩu',
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -83,6 +82,41 @@ class _ProfileChangePasswordPageState
                   builder: (context, state) {
                     if (state is AuthShowPasswordState) {
                       return PrimaryTextField(
+                        hintText: 'Mật khẩu cũ',
+                        label: 'Mật khẩu cũ',
+                        labelStyle: AppTextTheme.textPrimaryBoldMedium,
+                        controller: oldPasswordController,
+                        textInputAction: TextInputAction.next,
+                        maxLength: 100,
+                        maxLines: 1,
+                        prefixIcon: Assets.icLock,
+                        obscureText: !state.showPassword,
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            authBloc.add(AuthShowPasswordEvent(
+                                showPassword: !state.showPassword));
+                          },
+                          icon: SvgPicture.asset(
+                            state.showPassword
+                                ? Assets.icEyeOff
+                                : Assets.icEyeOn,
+                            color: AppColor.black,
+                          ),
+                        ),
+                        formKey: oldPasswordFormKey,
+                        validator: ValidationUtils.textEmptyValidator,
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
+                const SizedBox(height: 20),
+                BlocBuilder<AuthBloc, AuthState>(
+                  buildWhen: (pre, current) => current is AuthShowPasswordState,
+                  builder: (context, state) {
+                    if (state is AuthShowPasswordState) {
+                      return PrimaryTextField(
                         hintText: 'Mật khẩu mới',
                         label: 'Mật khẩu mới',
                         labelStyle: AppTextTheme.textPrimaryBoldMedium,
@@ -94,10 +128,8 @@ class _ProfileChangePasswordPageState
                         obscureText: !state.showPassword,
                         suffixIcon: IconButton(
                           onPressed: () {
-                            authBloc.add(
-                              AuthShowPasswordEvent(
-                                  showPassword: !state.showPassword),
-                            );
+                            authBloc.add(AuthShowPasswordEvent(
+                                showPassword: !state.showPassword));
                           },
                           icon: SvgPicture.asset(
                             state.showPassword
@@ -175,7 +207,7 @@ class _ProfileChangePasswordPageState
     }
     showLoading();
     userCubit.changePassword(
-      newPassword: passwordController.text,
+      currentPassword: oldPasswordController.text,
       rePassword: repasswordController.text,
     );
   }

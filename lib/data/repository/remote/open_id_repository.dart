@@ -11,13 +11,15 @@ abstract class OpenIDRepository {
     required bool rememberMe,
   });
 
+  Future<ResponseWrapper<UserSSO>> getUserInfo();
+
+  Future<ResponseWrapper<bool>> endSession();
+
   Future<ResponseWrapper<AuthorizationTokenResponse>> loginBySSORequest();
 
   Future<ResponseWrapper<bool>> refreshToken();
 
-  Future<ResponseWrapper<UserSSO>> getUserInfo();
-
   Future<ResponseWrapper<bool>> requestDeactive({
-    required bool isDeactive,
+    required String id,
   });
 }

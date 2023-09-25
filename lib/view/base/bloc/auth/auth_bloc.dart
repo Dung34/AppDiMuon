@@ -135,7 +135,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> _onRequestAccountDeletion(
       AuthRequestAccoutDeletionEvent event, Emitter<AuthState> emit) async {
-    final response = await openIDRepository.requestDeactive(isDeactive: true);
+    final response = await openIDRepository.requestDeactive(id: event.id);
     if (response.status == ResponseStatus.success) {
       // final response2 = await openIDRepository.endSession();
       // if (response2.status == ResponseStatus.success) {

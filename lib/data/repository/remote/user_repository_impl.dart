@@ -149,15 +149,10 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<ResponseWrapper<bool>> changePassword(
-      {required String newPassword, required String rePassword}) async {
+      {required String currentPassword, required String rePassword}) async {
     final String accessToken = await localDataAccess.getAccessToken();
-    final response = await dio.post(
-        'https://id-api-test.trueconnect.vn/users/reset-password',
-        data: {
-          "login": localDataAccess.getUserName(),
-          "newPassword": newPassword,
-          "rePassword": rePassword
-        },
+    final response = await dio.post(EndPoints.changePassword,
+        data: {"currentPassword": currentPassword, "newPassword": rePassword},
         options: Options(
           headers: {'Authorization': 'Bearer $accessToken'},
         ));
