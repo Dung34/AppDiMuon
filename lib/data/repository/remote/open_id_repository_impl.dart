@@ -201,12 +201,9 @@ class OpenIDRepositoryImpl implements OpenIDRepository {
   }
 
   @override
-  Future<ResponseWrapper<bool>> requestDeactive(
-      {required bool isDeactive}) async {
+  Future<ResponseWrapper<bool>> requestDeactive({required String id}) async {
     try {
-      final response = await dio.get(EndPoints.deactiveUser, queryParameters: {
-        'username': localDataAccess.getUserName(),
-      });
+      final response = await dio.get('${EndPoints.deactiveUser}?id=$id');
       if (response.statusCode == 200) {
         return ResponseWrapper.success(data: true);
       }
