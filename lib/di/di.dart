@@ -37,36 +37,35 @@ final getIt = GetIt.instance;
 configureInjection() async {
   getIt.registerFactory<Dio>(() => Dio());
 
-  getIt.registerLazySingleton<StorageRepository>(() => StorageRepositoryImpl(
+  getIt.registerFactory<StorageRepository>(() => StorageRepositoryImpl(
       dio: getIt<Dio>(), localDataAccess: getIt.get<LocalDataAccess>()));
 
-  getIt.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
+  getIt.registerFactory<UserRepository>(() => UserRepositoryImpl());
 
-  getIt.registerLazySingleton<AppRepository>(
+  getIt.registerFactory<AppRepository>(
     () => AppRepositoryImpl(
         dio: getIt<Dio>(),
         localDataAccess: getIt.get<LocalDataAccess>(),
         openIdRepository: getIt.get<OpenIDRepository>()),
   );
 
-  getIt.registerLazySingleton<EventRepository>(() => EventRepositoryImpl());
-  getIt.registerLazySingleton<ReportRepository>(
-      () => ReportRepositoryImplement());
-  getIt.registerLazySingleton<GeneralReportRepository>(
+  getIt.registerFactory<EventRepository>(() => EventRepositoryImpl());
+  getIt.registerFactory<ReportRepository>(() => ReportRepositoryImplement());
+  getIt.registerFactory<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
 
-  getIt.registerLazySingleton<ProjectListRepository>(
+  getIt.registerFactory<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
 
-  getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
+  getIt.registerFactory<ProfileRepository>(() => ProfileRepositoryImpl());
 
-  getIt.registerLazySingleton<OpenIDRepository>(
+  getIt.registerFactory<OpenIDRepository>(
       () => OpenIDRepositoryImpl(dio: getIt<Dio>()));
 
-  getIt.registerLazySingleton<LoginRepository>(
+  getIt.registerFactory<LoginRepository>(
       () => LoginRepositoryImpl(dio: getIt<Dio>()));
 
-  getIt.registerLazySingleton<UtilityRepository>(
+  getIt.registerFactory<UtilityRepository>(
       <UtilityRepository>() => UtilitiesRepositoryImpl(dio: getIt<Dio>()));
 
   final sharedPref = await SharedPreferences.getInstance();
@@ -81,20 +80,17 @@ configureInjection() async {
   getIt.registerLazySingleton<AppInterceptor>(() => AppInterceptor());
 
   // mapper
-  getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
-  getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
-  getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
-  getIt.registerLazySingleton<EventMemberDataMapper>(
-      () => EventMemberDataMapper());
-  getIt.registerLazySingleton<ProjectListDataMapper>(
-      () => ProjectListDataMapper());
-  getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
+  getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
+  getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
+  getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
+  getIt.registerFactory<EventMemberDataMapper>(() => EventMemberDataMapper());
+  getIt.registerFactory<ProjectListDataMapper>(() => ProjectListDataMapper());
+  getIt.registerFactory<ProjectDataMapper>(() => ProjectDataMapper());
 
-  getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
-  getIt.registerLazySingleton<ListReportDataMapper>(
-      () => ListReportDataMapper());
-  getIt.registerLazySingleton<GeneralReportMapper>(() => GeneralReportMapper());
-  getIt.registerLazySingleton<ListGeneralReportMapper>(
+  getIt.registerFactory<ReportDataMapper>(() => ReportDataMapper());
+  getIt.registerFactory<ListReportDataMapper>(() => ListReportDataMapper());
+  getIt.registerFactory<GeneralReportMapper>(() => GeneralReportMapper());
+  getIt.registerFactory<ListGeneralReportMapper>(
       () => ListGeneralReportMapper());
 
   // bloc
