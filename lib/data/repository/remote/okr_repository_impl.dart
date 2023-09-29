@@ -108,19 +108,19 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<int>> updateKeyResult() {
+  Future<ResponseWrapper<KeyResult>> updateKeyResult() {
     // TODO: implement updateKeyResult
     throw UnimplementedError();
   }
 
   @override
-  Future<ResponseWrapper<int>> updateObjective() {
+  Future<ResponseWrapper<Objective>> updateObjective() {
     // TODO: implement updateObjective
     throw UnimplementedError();
   }
 
   @override
-  Future<ResponseWrapper<int>> updateTask() {
+  Future<ResponseWrapper<Task>> updateTask() {
     // TODO: implement updateTask
     throw UnimplementedError();
   }
