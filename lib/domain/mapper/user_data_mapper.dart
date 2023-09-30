@@ -25,6 +25,7 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
           : data?.authorities![0] == 'ROLE_USER'
               ? 0
               : 1,
+      membershipTyper: data?.membershipType,
     );
   }
 
