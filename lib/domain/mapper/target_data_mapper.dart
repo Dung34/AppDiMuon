@@ -1,5 +1,7 @@
 import '../../data/mapper/base/base_data_mapper.dart';
+import '../../data/model/target/list_target_response.dart';
 import '../../data/model/target/target_response.dart';
+import '../entity/target/list_target.dart';
 import '../entity/target/target.dart';
 
 class TargetDataMapper extends BaseDataMapper<TargetResponse, Target>
@@ -33,5 +35,18 @@ class TargetDataMapper extends BaseDataMapper<TargetResponse, Target>
         title: data?.title,
         type: data?.type,
         userId: data?.userId);
+  }
+}
+
+class ListTargetMapper extends BaseDataMapper<ListTargetResponse, ListTarget>
+    with DataMapperMixin {
+  @override
+  ListTargetResponse mapToData(ListTarget entity) {
+    return ListTargetResponse(data: entity.data, totalCount: entity.totalCount);
+  }
+
+  @override
+  ListTarget mapToEntity(ListTargetResponse? data) {
+    return ListTarget(data: data?.data, totalCount: data?.totalCount);
   }
 }

@@ -68,6 +68,12 @@ class EndPoints {
   static const String updateSkill = "/account/update-skill";
   static const String createSkill = "/account/create-skill";
   static const String deleteSkill = "/account/delete-skill";
+  //target
+  static const String getAllTarget = "/account/get-all-targets";
+  static const String getDetailTarget = "/account/get-detail-target";
+  static const String createTarget = "/account/create-target";
+  static const String updateTarget = "/account/update-target";
+  static const String deleteTarget = "/account/delete-target";
 }
 
 class SSOConfig {
