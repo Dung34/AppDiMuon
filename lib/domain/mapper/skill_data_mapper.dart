@@ -1,5 +1,7 @@
 import '../../data/mapper/base/base_data_mapper.dart';
+import '../../data/model/skill/list_skill_response.dart';
 import '../../data/model/skill/skill_response.dart';
+import '../entity/skill/list_skill.dart';
 import '../entity/skill/skill.dart';
 
 class SkillDataMapper extends BaseDataMapper<SkillResponse, Skill>
@@ -24,5 +26,18 @@ class SkillDataMapper extends BaseDataMapper<SkillResponse, Skill>
         description: data?.description,
         userId: data?.userId,
         icon: data?.icon);
+  }
+}
+
+class ListSkillMapper extends BaseDataMapper<ListSkillResponse, ListSkill>
+    with DataMapperMixin {
+  @override
+  ListSkillResponse mapToData(ListSkill entity) {
+    return ListSkillResponse(data: entity.data, totalCount: entity.totalCount);
+  }
+
+  @override
+  ListSkill mapToEntity(ListSkillResponse? data) {
+    return ListSkill(data: data?.data, totalCount: data?.totalCount);
   }
 }
