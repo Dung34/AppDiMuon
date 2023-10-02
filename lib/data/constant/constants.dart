@@ -17,6 +17,11 @@ class UserRoleStr {
   static const String admin = "Quản trị viên";
 }
 
+class DurationStatus {
+  static const int open = 0;
+  static const int closed = 1;
+}
+
 class EventStatus {
   static const int notStarted = 0;
   static const int begining = 1;
@@ -50,4 +55,18 @@ class ProjectStatus {
 class ProjectStatusStr {
   static const String uncompleted = "Chưa hoàn thành";
   static const String completed = "Đã hoàn thành";
+}
+
+class TaskStatus {
+  static const int notStarted = 0;
+  static const int beginning = 1;
+  static const int ended = 2;
+  static const int late = 3;
+}
+
+class TaskPriority {
+  static const int low = 0;
+  static const int medium = 1;
+  static const int high = 2;
+  static const int immediate = 3;
 }
