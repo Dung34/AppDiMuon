@@ -17,6 +17,7 @@ import '../report_page/report_add.dart';
 import '../report_page/report_page.dart';
 import '../project_page/project_page.dart';
 import '../setting_page/setting_page.dart';
+import '../unit_page/unit_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -60,7 +61,8 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const EventPage(),
     const MembershipPage(),
     // const CalendarPage(),
-    const ProjectPage(),
+    // const ProjectPage(),
+    UnitPage(),
     SettingPage(),
   ];
 

@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/repository/local/shared_pref_helper.dart';
 import '../data/repository/remote/gen_report_repo_impl.dart';
 import '../data/repository/remote/gen_report_repository.dart';
+import '../data/repository/remote/okr_repository.dart';
+import '../data/repository/remote/okr_repository_impl.dart';
 import '../data/repository/remote/report_repository.dart';
 import '../data/repository/remote/report_repository_impl.dart';
 import '../data/repository/remote/login_repository.dart';
@@ -22,6 +24,7 @@ import '../domain/mapper/list_report_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
+import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
@@ -31,6 +34,7 @@ import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
+import '../view/unit_page/unit_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -54,6 +58,8 @@ configureInjection() async {
       () => ReportRepositoryImplement());
   getIt.registerLazySingleton<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
+
+  getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
 
   getIt.registerLazySingleton<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
@@ -89,7 +95,7 @@ configureInjection() async {
   getIt.registerLazySingleton<ProjectListDataMapper>(
       () => ProjectListDataMapper());
   getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
-
+  getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
   getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
   getIt.registerLazySingleton<ListReportDataMapper>(
       () => ListReportDataMapper());
@@ -104,5 +110,6 @@ configureInjection() async {
   getIt.registerFactory<EventCubit>(() => EventCubit());
   getIt.registerFactory<ProjectCubit>(() => ProjectCubit());
   getIt.registerFactory<ReportCubit>(() => ReportCubit());
+  getIt.registerFactory<UnitCubit>(() => UnitCubit());
   getIt.registerFactory<GeneralReportCubit>(() => GeneralReportCubit());
 }

@@ -36,6 +36,8 @@ mixin _$UserEntity {
   set activated(bool? value) => throw _privateConstructorUsedError;
   String? get langKey => throw _privateConstructorUsedError;
   set langKey(String? value) => throw _privateConstructorUsedError;
+  int? get rank => throw _privateConstructorUsedError;
+  set rank(int? value) => throw _privateConstructorUsedError;
   String? get createdBy => throw _privateConstructorUsedError;
   set createdBy(String? value) => throw _privateConstructorUsedError;
   String? get createdDate => throw _privateConstructorUsedError;
@@ -68,6 +70,7 @@ abstract class $UserEntityCopyWith<$Res> {
       String? imageUrl,
       bool? activated,
       String? langKey,
+      int? rank,
       String? createdBy,
       String? createdDate,
       String? lastModifiedBy,
@@ -96,6 +99,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
+    Object? rank = freezed,
     Object? createdBy = freezed,
     Object? createdDate = freezed,
     Object? lastModifiedBy = freezed,
@@ -135,6 +139,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.langKey
           : langKey // ignore: cast_nullable_to_non_nullable
               as String?,
+      rank: freezed == rank
+          ? _value.rank
+          : rank // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -176,6 +184,7 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String? imageUrl,
       bool? activated,
       String? langKey,
+      int? rank,
       String? createdBy,
       String? createdDate,
       String? lastModifiedBy,
@@ -202,6 +211,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
+    Object? rank = freezed,
     Object? createdBy = freezed,
     Object? createdDate = freezed,
     Object? lastModifiedBy = freezed,
@@ -241,6 +251,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.langKey
           : langKey // ignore: cast_nullable_to_non_nullable
               as String?,
+      rank: freezed == rank
+          ? _value.rank
+          : rank // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -277,6 +291,7 @@ class _$_UserEntity implements _UserEntity {
       this.imageUrl,
       this.activated,
       this.langKey,
+      this.rank,
       this.createdBy,
       this.createdDate,
       this.lastModifiedBy,
@@ -303,6 +318,8 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? langKey;
   @override
+  int? rank;
+  @override
   String? createdBy;
   @override
   String? createdDate;
@@ -315,7 +332,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, rank: $rank, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role)';
   }
 
   @JsonKey(ignore: true)
@@ -342,6 +359,7 @@ abstract class _UserEntity implements UserEntity {
       String? imageUrl,
       bool? activated,
       String? langKey,
+      int? rank,
       String? createdBy,
       String? createdDate,
       String? lastModifiedBy,
@@ -375,6 +393,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   String? get langKey;
   set langKey(String? value);
+  @override
+  int? get rank;
+  set rank(int? value);
   @override
   String? get createdBy;
   set createdBy(String? value);

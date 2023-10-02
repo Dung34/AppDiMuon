@@ -61,6 +61,12 @@ class EndPoints {
   //project
   static const String getAllProject = "/project/view-all-project";
   static const String getProjectDetail = "/project/view-detail-project";
+
+  //unit
+  static const String createUnit = "/unit/create-unit";
+  static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
+  static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
+  static const String viewUnit = '/unit/get-detail-unit';
 }
 
 class SSOConfig {
