@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'okr.dart';
+part of 'okr_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-OKR _$OKRFromJson(Map<String, dynamic> json) {
-  return _OKR.fromJson(json);
+OKRResponse _$OKRResponseFromJson(Map<String, dynamic> json) {
+  return _OKRResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OKR {
+mixin _$OKRResponse {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
@@ -31,13 +31,15 @@ mixin _$OKR {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OKRCopyWith<OKR> get copyWith => throw _privateConstructorUsedError;
+  $OKRResponseCopyWith<OKRResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OKRCopyWith<$Res> {
-  factory $OKRCopyWith(OKR value, $Res Function(OKR) then) =
-      _$OKRCopyWithImpl<$Res, OKR>;
+abstract class $OKRResponseCopyWith<$Res> {
+  factory $OKRResponseCopyWith(
+          OKRResponse value, $Res Function(OKRResponse) then) =
+      _$OKRResponseCopyWithImpl<$Res, OKRResponse>;
   @useResult
   $Res call(
       {String? name,
@@ -51,8 +53,9 @@ abstract class $OKRCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
-  _$OKRCopyWithImpl(this._value, this._then);
+class _$OKRResponseCopyWithImpl<$Res, $Val extends OKRResponse>
+    implements $OKRResponseCopyWith<$Res> {
+  _$OKRResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -109,9 +112,11 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_OKRCopyWith<$Res> implements $OKRCopyWith<$Res> {
-  factory _$$_OKRCopyWith(_$_OKR value, $Res Function(_$_OKR) then) =
-      __$$_OKRCopyWithImpl<$Res>;
+abstract class _$$_OKRResponseCopyWith<$Res>
+    implements $OKRResponseCopyWith<$Res> {
+  factory _$$_OKRResponseCopyWith(
+          _$_OKRResponse value, $Res Function(_$_OKRResponse) then) =
+      __$$_OKRResponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -126,9 +131,11 @@ abstract class _$$_OKRCopyWith<$Res> implements $OKRCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
-    implements _$$_OKRCopyWith<$Res> {
-  __$$_OKRCopyWithImpl(_$_OKR _value, $Res Function(_$_OKR) _then)
+class __$$_OKRResponseCopyWithImpl<$Res>
+    extends _$OKRResponseCopyWithImpl<$Res, _$_OKRResponse>
+    implements _$$_OKRResponseCopyWith<$Res> {
+  __$$_OKRResponseCopyWithImpl(
+      _$_OKRResponse _value, $Res Function(_$_OKRResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -143,7 +150,7 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
     Object? totalTask = freezed,
     Object? objectives = freezed,
   }) {
-    return _then(_$_OKR(
+    return _then(_$_OKRResponse(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -182,8 +189,8 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OKR implements _OKR {
-  _$_OKR(
+class _$_OKRResponse implements _OKRResponse {
+  _$_OKRResponse(
       {this.name,
       this.description,
       this.unitId,
@@ -194,7 +201,8 @@ class _$_OKR implements _OKR {
       final List<Objective>? objectives})
       : _objectives = objectives;
 
-  factory _$_OKR.fromJson(Map<String, dynamic> json) => _$$_OKRFromJson(json);
+  factory _$_OKRResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_OKRResponseFromJson(json);
 
   @override
   final String? name;
@@ -222,14 +230,14 @@ class _$_OKR implements _OKR {
 
   @override
   String toString() {
-    return 'OKR(name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
+    return 'OKRResponse(name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OKR &&
+            other is _$_OKRResponse &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -260,19 +268,19 @@ class _$_OKR implements _OKR {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OKRCopyWith<_$_OKR> get copyWith =>
-      __$$_OKRCopyWithImpl<_$_OKR>(this, _$identity);
+  _$$_OKRResponseCopyWith<_$_OKRResponse> get copyWith =>
+      __$$_OKRResponseCopyWithImpl<_$_OKRResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OKRToJson(
+    return _$$_OKRResponseToJson(
       this,
     );
   }
 }
 
-abstract class _OKR implements OKR {
-  factory _OKR(
+abstract class _OKRResponse implements OKRResponse {
+  factory _OKRResponse(
       {final String? name,
       final String? description,
       final String? unitId,
@@ -280,9 +288,10 @@ abstract class _OKR implements OKR {
       final int? totalObjective,
       final int? totalKR,
       final int? totalTask,
-      final List<Objective>? objectives}) = _$_OKR;
+      final List<Objective>? objectives}) = _$_OKRResponse;
 
-  factory _OKR.fromJson(Map<String, dynamic> json) = _$_OKR.fromJson;
+  factory _OKRResponse.fromJson(Map<String, dynamic> json) =
+      _$_OKRResponse.fromJson;
 
   @override
   String? get name;
@@ -302,5 +311,6 @@ abstract class _OKR implements OKR {
   List<Objective>? get objectives;
   @override
   @JsonKey(ignore: true)
-  _$$_OKRCopyWith<_$_OKR> get copyWith => throw _privateConstructorUsedError;
+  _$$_OKRResponseCopyWith<_$_OKRResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -6,11 +6,15 @@ import '../../../config/config.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
+import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/project/task.dart';
+import '../../../domain/mapper/okr_data_mapper.dart';
 import '../../../domain/mapper/unit_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
+import '../../model/okr_response/objective_response.dart';
+import '../../model/okr_response/okr_response.dart';
 import '../../model/old_login/login_response.dart';
 import '../../model/unit_response/unit_response.dart';
 import '../interceptor/dio_base_options.dart';
@@ -22,6 +26,9 @@ class OKRRepositoryImpl extends OKRRepository {
   final Dio dio = getIt.get<Dio>();
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
+  final ObjectiveDataMapper _objectiveDataMapper =
+      getIt.get<ObjectiveDataMapper>();
+  final OKRDataMapper _okrDataMapper = getIt.get<OKRDataMapper>();
   final UnitDataMapper _unitDataMapper = getIt.get<UnitDataMapper>();
   final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
 
@@ -49,8 +56,62 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Objective>> createObjective() {
-    throw UnimplementedError();
+  Future<ResponseWrapper<Objective>> createObjective({
+    String? title,
+    String? description,
+    required String okrsId,
+    required String unitId,
+    double? process,
+    List<String>? relatedObjectiveId,
+  }) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(
+        EndPoints.createObjective,
+        data: {
+          "title": title,
+          "description": description,
+          "okRsId": okrsId,
+          "unitId": unitId,
+          "process": process,
+          "relativeObjectiveId": relatedObjectiveId
+        },
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _objectiveDataMapper
+                .mapToEntity(ObjectiveResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<OKR>> createOKR(
+      {String? name, String? description, String? unitId}) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(
+        EndPoints.createOKR,
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+        data: {"name": name, "description": description, "unitId": unitId},
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _okrDataMapper
+                .mapToEntity(OKRResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -134,9 +195,29 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Objective>>> getAllObjectiveOfOKR() {
-    // TODO: implement getAllObjectiveOfOKR
-    throw UnimplementedError();
+  Future<ResponseWrapper<List<Objective>>> getAllObjective(
+      {String? okrId, String? unitId}) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      String link = okrId == null
+          ? 'UnitId=$unitId'
+          : unitId == null
+              ? 'OKRsId=$okrId'
+              : 'OKRsId=$okrId&UnitId=$unitId';
+      final response = await dio.get('${EndPoints.getAllObjectives}?$link',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _okrDataMapper
+                .mapToEntity(OKRResponse.fromJson(response.data))
+                .objectives!);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -216,9 +297,24 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Objective>> getObjectiveDetails() {
-    // TODO: implement getObjectiveDetails
-    throw UnimplementedError();
+  Future<ResponseWrapper<Objective>> getObjectiveDetails(
+      String objectiveId, String unitId) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(EndPoints.getObjectiveDetails,
+          data: {"objectiveId": objectiveId, "unitId": unitId},
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _objectiveDataMapper
+                .mapToEntity(ObjectiveResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override

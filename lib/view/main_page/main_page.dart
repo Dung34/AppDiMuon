@@ -13,6 +13,7 @@ import '../event_page/calendar/calendar_page.dart';
 import '../event_page/event_page.dart';
 import '../general_page/general_page.dart';
 import '../membership/membership_page.dart';
+import '../okr_page/okr_page.dart';
 import '../report_page/report_add.dart';
 import '../report_page/report_page.dart';
 import '../project_page/project_page.dart';
@@ -62,7 +63,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const MembershipPage(),
     // const CalendarPage(),
     // const ProjectPage(),
-    UnitPage(),
+    OKRPage(),
     SettingPage(),
   ];
 

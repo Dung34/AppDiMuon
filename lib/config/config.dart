@@ -55,6 +55,14 @@ class EndPoints {
       '/gateway/Member/memberViewMemberInformation';
   static const String getMemberBasicInfo = '/api/getInformation';
 
+  //objective
+  static const String createObjective = '/objective/create-Objective';
+  static const String getAllObjectives = '/OKRs/detail-OKRs';
+  static const String getObjectiveDetails = '/objective/detail-Objective';
+
+  //OKR
+  static const String createOKR = '/OKRs/create-OKR';
+
   // storage repository
   static const String uploadImage = "/gateway/Media/Upload";
 

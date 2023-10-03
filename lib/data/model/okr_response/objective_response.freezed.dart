@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'objective.dart';
+part of 'objective_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Objective _$ObjectiveFromJson(Map<String, dynamic> json) {
-  return _Objective.fromJson(json);
+ObjectiveResponse _$ObjectiveResponseFromJson(Map<String, dynamic> json) {
+  return _ObjectiveResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Objective {
+mixin _$ObjectiveResponse {
   String? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -31,14 +31,15 @@ mixin _$Objective {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ObjectiveCopyWith<Objective> get copyWith =>
+  $ObjectiveResponseCopyWith<ObjectiveResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ObjectiveCopyWith<$Res> {
-  factory $ObjectiveCopyWith(Objective value, $Res Function(Objective) then) =
-      _$ObjectiveCopyWithImpl<$Res, Objective>;
+abstract class $ObjectiveResponseCopyWith<$Res> {
+  factory $ObjectiveResponseCopyWith(
+          ObjectiveResponse value, $Res Function(ObjectiveResponse) then) =
+      _$ObjectiveResponseCopyWithImpl<$Res, ObjectiveResponse>;
   @useResult
   $Res call(
       {String? id,
@@ -52,9 +53,9 @@ abstract class $ObjectiveCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ObjectiveCopyWithImpl<$Res, $Val extends Objective>
-    implements $ObjectiveCopyWith<$Res> {
-  _$ObjectiveCopyWithImpl(this._value, this._then);
+class _$ObjectiveResponseCopyWithImpl<$Res, $Val extends ObjectiveResponse>
+    implements $ObjectiveResponseCopyWith<$Res> {
+  _$ObjectiveResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -111,10 +112,11 @@ class _$ObjectiveCopyWithImpl<$Res, $Val extends Objective>
 }
 
 /// @nodoc
-abstract class _$$_ObjectiveCopyWith<$Res> implements $ObjectiveCopyWith<$Res> {
-  factory _$$_ObjectiveCopyWith(
-          _$_Objective value, $Res Function(_$_Objective) then) =
-      __$$_ObjectiveCopyWithImpl<$Res>;
+abstract class _$$_ObjectiveResponseCopyWith<$Res>
+    implements $ObjectiveResponseCopyWith<$Res> {
+  factory _$$_ObjectiveResponseCopyWith(_$_ObjectiveResponse value,
+          $Res Function(_$_ObjectiveResponse) then) =
+      __$$_ObjectiveResponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -129,11 +131,11 @@ abstract class _$$_ObjectiveCopyWith<$Res> implements $ObjectiveCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ObjectiveCopyWithImpl<$Res>
-    extends _$ObjectiveCopyWithImpl<$Res, _$_Objective>
-    implements _$$_ObjectiveCopyWith<$Res> {
-  __$$_ObjectiveCopyWithImpl(
-      _$_Objective _value, $Res Function(_$_Objective) _then)
+class __$$_ObjectiveResponseCopyWithImpl<$Res>
+    extends _$ObjectiveResponseCopyWithImpl<$Res, _$_ObjectiveResponse>
+    implements _$$_ObjectiveResponseCopyWith<$Res> {
+  __$$_ObjectiveResponseCopyWithImpl(
+      _$_ObjectiveResponse _value, $Res Function(_$_ObjectiveResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -148,7 +150,7 @@ class __$$_ObjectiveCopyWithImpl<$Res>
     Object? unitName = freezed,
     Object? process = freezed,
   }) {
-    return _then(_$_Objective(
+    return _then(_$_ObjectiveResponse(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -187,8 +189,8 @@ class __$$_ObjectiveCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Objective implements _Objective {
-  _$_Objective(
+class _$_ObjectiveResponse implements _ObjectiveResponse {
+  _$_ObjectiveResponse(
       {this.id,
       this.title,
       this.description,
@@ -199,8 +201,8 @@ class _$_Objective implements _Objective {
       this.process})
       : _relatedObjective = relatedObjective;
 
-  factory _$_Objective.fromJson(Map<String, dynamic> json) =>
-      _$$_ObjectiveFromJson(json);
+  factory _$_ObjectiveResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ObjectiveResponseFromJson(json);
 
   @override
   final String? id;
@@ -230,14 +232,14 @@ class _$_Objective implements _Objective {
 
   @override
   String toString() {
-    return 'Objective(id: $id, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, process: $process)';
+    return 'ObjectiveResponse(id: $id, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, process: $process)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Objective &&
+            other is _$_ObjectiveResponse &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -267,19 +269,20 @@ class _$_Objective implements _Objective {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ObjectiveCopyWith<_$_Objective> get copyWith =>
-      __$$_ObjectiveCopyWithImpl<_$_Objective>(this, _$identity);
+  _$$_ObjectiveResponseCopyWith<_$_ObjectiveResponse> get copyWith =>
+      __$$_ObjectiveResponseCopyWithImpl<_$_ObjectiveResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ObjectiveToJson(
+    return _$$_ObjectiveResponseToJson(
       this,
     );
   }
 }
 
-abstract class _Objective implements Objective {
-  factory _Objective(
+abstract class _ObjectiveResponse implements ObjectiveResponse {
+  factory _ObjectiveResponse(
       {final String? id,
       final String? title,
       final String? description,
@@ -287,10 +290,10 @@ abstract class _Objective implements Objective {
       final List<Objective>? relatedObjective,
       final String? unitId,
       final String? unitName,
-      final double? process}) = _$_Objective;
+      final double? process}) = _$_ObjectiveResponse;
 
-  factory _Objective.fromJson(Map<String, dynamic> json) =
-      _$_Objective.fromJson;
+  factory _ObjectiveResponse.fromJson(Map<String, dynamic> json) =
+      _$_ObjectiveResponse.fromJson;
 
   @override
   String? get id;
@@ -310,6 +313,6 @@ abstract class _Objective implements Objective {
   double? get process;
   @override
   @JsonKey(ignore: true)
-  _$$_ObjectiveCopyWith<_$_Objective> get copyWith =>
+  _$$_ObjectiveResponseCopyWith<_$_ObjectiveResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

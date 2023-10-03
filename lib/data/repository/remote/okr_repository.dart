@@ -1,5 +1,6 @@
 import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
+import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/project/task.dart';
 import '../../model/api/base_response.dart';
@@ -10,7 +11,16 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
-  Future<ResponseWrapper<Objective>> createObjective();
+  Future<ResponseWrapper<Objective>> createObjective(
+      {String? title,
+      String? description,
+      required String okrsId,
+      required String unitId,
+      double? process,
+      List<String>? relatedObjectiveId});
+
+  Future<ResponseWrapper<OKR>> createOKR(
+      {String? name, String? description, String? unitId});
 
   Future<ResponseWrapper<Task>> createTask();
 
@@ -34,7 +44,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective();
 
-  Future<ResponseWrapper<List<Objective>>> getAllObjectiveOfOKR();
+  Future<ResponseWrapper<List<Objective>>> getAllObjective(
+      {String? unitId, String? okrId});
 
   Future<ResponseWrapper<List<Objective>>> getAllObjectiveOfParentUnit();
 
@@ -52,7 +63,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<KeyResult>> getKeyResultDetails();
 
-  Future<ResponseWrapper<Objective>> getObjectiveDetails();
+  Future<ResponseWrapper<Objective>> getObjectiveDetails(
+      String objectiveId, String unitId);
 
   Future<ResponseWrapper<Task>> getTaskDetails();
 

@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../objective/objective.dart';
+
 part 'okr.freezed.dart';
 part 'okr.g.dart';
 
@@ -9,10 +11,11 @@ class OKR with _$OKR {
     String? name,
     String? description,
     String? unitId,
-    String? progress,
+    String? process,
     int? totalObjective,
     int? totalKR,
     int? totalTask,
+    List<Objective>? objectives,
   }) = _OKR;
 
   factory OKR.fromJson(Map<String, dynamic> json) => _$OKRFromJson(json);

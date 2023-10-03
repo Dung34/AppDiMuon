@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'objective.dart';
+part of 'objective_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Objective _$$_ObjectiveFromJson(Map<String, dynamic> json) => _$_Objective(
+_$_ObjectiveResponse _$$_ObjectiveResponseFromJson(Map<String, dynamic> json) =>
+    _$_ObjectiveResponse(
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -19,7 +20,8 @@ _$_Objective _$$_ObjectiveFromJson(Map<String, dynamic> json) => _$_Objective(
       process: (json['process'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$_ObjectiveToJson(_$_Objective instance) =>
+Map<String, dynamic> _$$_ObjectiveResponseToJson(
+        _$_ObjectiveResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

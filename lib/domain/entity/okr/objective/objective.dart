@@ -13,7 +13,7 @@ class Objective with _$Objective {
     List<Objective>? relatedObjective,
     String? unitId,
     String? unitName,
-    double? progress,
+    double? process,
   }) = _Objective;
 
   factory Objective.fromJson(Map<String, dynamic> json) =>

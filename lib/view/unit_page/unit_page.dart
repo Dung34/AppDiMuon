@@ -1,9 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../shared/widgets/button/primary_button.dart';
 import '../base/base_page_sate.dart';
-import 'unit_cubit.dart';
+import '../../shared/widgets/button/primary_button.dart';
+import '../okr_page/cubit/okr_cubit.dart';
+import 'cubit/unit_cubit.dart';
 
 class UnitPage extends StatefulWidget {
   const UnitPage({super.key});
@@ -30,14 +31,7 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
             return PrimaryButton(
                 context: context,
                 onPressed: () {
-                  c  ubit.createUnit(
-                      name: "metmoi",
-                      parrentId: null,
-                      description: "met vler",
-                      coverImage: "tim anh lam gi");
-                  if (state is UnitCreateUnitSuccessState) {
-                    print(state.unit.toString());
-                  }
+                  if (state is UnitGetAllUnitSuccessState) {}
                 },
                 label: 'Bấm vào đây đi');
           },

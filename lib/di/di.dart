@@ -21,6 +21,7 @@ import '../domain/mapper/event_data_mapper.dart';
 import '../domain/mapper/general_report_mapper.dart';
 import '../domain/mapper/list_gen_report_mapper.dart';
 import '../domain/mapper/list_report_data_mapper.dart';
+import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
@@ -33,8 +34,9 @@ import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
+import '../view/okr_page/cubit/okr_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
-import '../view/unit_page/unit_cubit.dart';
+import '../view/unit_page/cubit/unit_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -92,6 +94,8 @@ configureInjection() async {
   getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
   getIt.registerLazySingleton<EventMemberDataMapper>(
       () => EventMemberDataMapper());
+  getIt.registerLazySingleton<ObjectiveDataMapper>(() => ObjectiveDataMapper());
+  getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
   getIt.registerLazySingleton<ProjectListDataMapper>(
       () => ProjectListDataMapper());
   getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
@@ -108,6 +112,7 @@ configureInjection() async {
   getIt.registerSingleton<CommonCubit>(CommonCubit());
   getIt.registerSingleton<UserCubit>(UserCubit());
   getIt.registerFactory<EventCubit>(() => EventCubit());
+  getIt.registerFactory<OkrCubit>(() => OkrCubit());
   getIt.registerFactory<ProjectCubit>(() => ProjectCubit());
   getIt.registerFactory<ReportCubit>(() => ReportCubit());
   getIt.registerFactory<UnitCubit>(() => UnitCubit());
