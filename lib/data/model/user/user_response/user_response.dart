@@ -5,22 +5,22 @@ part 'user_response.g.dart';
 
 @freezed
 class UserResponse with _$UserResponse {
-  factory UserResponse({
-    String? id,
-    String? login,
-    String? referralCode,
-    String? firstName,
-    String? email,
-    String? phoneNumber,
-    String? imageUrl,
-    bool? activated,
-    String? langKey,
-    String? createdBy,
-    String? createdDate,
-    String? lastModifiedBy,
-    String? lastModifiedDate,
-    List<String>? authorities,
-  }) = _UserReponse;
+  factory UserResponse(
+      {String? id,
+      String? login,
+      String? referralCode,
+      String? firstName,
+      String? email,
+      String? phoneNumber,
+      String? imageUrl,
+      bool? activated,
+      String? langKey,
+      String? createdBy,
+      String? createdDate,
+      String? lastModifiedBy,
+      String? lastModifiedDate,
+      List<String>? authorities,
+      int? membershipType}) = _UserReponse;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>
       _$UserResponseFromJson(json);

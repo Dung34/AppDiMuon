@@ -61,6 +61,19 @@ class EndPoints {
   //project
   static const String getAllProject = "/project/view-all-project";
   static const String getProjectDetail = "/project/view-detail-project";
+
+  //skill
+  static const String getAllSkill = "/account/get-all-skills";
+  static const String getDetailSkill = "/account/get-detail-skill";
+  static const String updateSkill = "/account/update-skill";
+  static const String createSkill = "/account/create-skill";
+  static const String deleteSkill = "/account/delete-skill";
+  //target
+  static const String getAllTarget = "/account/get-all-targets";
+  static const String getDetailTarget = "/account/get-detail-target";
+  static const String createTarget = "/account/create-target";
+  static const String updateTarget = "/account/update-target";
+  static const String deleteTarget = "/account/delete-target";
 }
 
 class SSOConfig {

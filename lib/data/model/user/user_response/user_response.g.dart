@@ -24,6 +24,7 @@ _$_UserReponse _$$_UserReponseFromJson(Map<String, dynamic> json) =>
       authorities: (json['authorities'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      membershipType: json['membershipType'] as int?,
     );
 
 Map<String, dynamic> _$$_UserReponseToJson(_$_UserReponse instance) =>
@@ -42,4 +43,5 @@ Map<String, dynamic> _$$_UserReponseToJson(_$_UserReponse instance) =>
       'lastModifiedBy': instance.lastModifiedBy,
       'lastModifiedDate': instance.lastModifiedDate,
       'authorities': instance.authorities,
+      'membershipType': instance.membershipType,
     };
