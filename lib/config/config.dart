@@ -75,6 +75,19 @@ class EndPoints {
   static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
   static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
   static const String viewUnit = '/unit/get-detail-unit';
+
+  //skill
+  static const String getAllSkill = "/account/get-all-skills";
+  static const String getDetailSkill = "/account/get-detail-skill";
+  static const String updateSkill = "/account/update-skill";
+  static const String createSkill = "/account/create-skill";
+  static const String deleteSkill = "/account/delete-skill";
+  //target
+  static const String getAllTarget = "/account/get-all-targets";
+  static const String getDetailTarget = "/account/get-detail-target";
+  static const String createTarget = "/account/create-target";
+  static const String updateTarget = "/account/update-target";
+  static const String deleteTarget = "/account/delete-target";
 }
 
 class SSOConfig {

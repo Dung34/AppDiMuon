@@ -48,6 +48,8 @@ mixin _$UserEntity {
   set lastModifiedDate(String? value) => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
   set role(int? value) => throw _privateConstructorUsedError;
+  int? get membershipTyper => throw _privateConstructorUsedError;
+  set membershipTyper(int? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +77,8 @@ abstract class $UserEntityCopyWith<$Res> {
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      int? role});
+      int? role,
+      int? membershipTyper});
 }
 
 /// @nodoc
@@ -105,6 +108,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
     Object? role = freezed,
+    Object? membershipTyper = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -163,6 +167,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
+      membershipTyper: freezed == membershipTyper
+          ? _value.membershipTyper
+          : membershipTyper // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -189,7 +197,8 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      int? role});
+      int? role,
+      int? membershipTyper});
 }
 
 /// @nodoc
@@ -217,6 +226,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
     Object? role = freezed,
+    Object? membershipTyper = freezed,
   }) {
     return _then(_$_UserEntity(
       id: freezed == id
@@ -275,6 +285,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
+      membershipTyper: freezed == membershipTyper
+          ? _value.membershipTyper
+          : membershipTyper // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -296,7 +310,8 @@ class _$_UserEntity implements _UserEntity {
       this.createdDate,
       this.lastModifiedBy,
       this.lastModifiedDate,
-      this.role});
+      this.role,
+      this.membershipTyper});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -329,10 +344,12 @@ class _$_UserEntity implements _UserEntity {
   String? lastModifiedDate;
   @override
   int? role;
+  @override
+  int? membershipTyper;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, rank: $rank, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role, membershipTyper: $membershipTyper)';
   }
 
   @JsonKey(ignore: true)
@@ -364,7 +381,8 @@ abstract class _UserEntity implements UserEntity {
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      int? role}) = _$_UserEntity;
+      int? role,
+      int? membershipTyper}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -411,6 +429,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   int? get role;
   set role(int? value);
+  @override
+  int? get membershipTyper;
+  set membershipTyper(int? value);
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
