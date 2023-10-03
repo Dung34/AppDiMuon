@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'okr.dart';
+part of 'okr_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OKR _$$_OKRFromJson(Map<String, dynamic> json) => _$_OKR(
+_$_OKRResponse _$$_OKRResponseFromJson(Map<String, dynamic> json) =>
+    _$_OKRResponse(
       name: json['name'] as String?,
       description: json['description'] as String?,
       unitId: json['unitId'] as String?,
@@ -19,7 +20,8 @@ _$_OKR _$$_OKRFromJson(Map<String, dynamic> json) => _$_OKR(
           .toList(),
     );
 
-Map<String, dynamic> _$$_OKRToJson(_$_OKR instance) => <String, dynamic>{
+Map<String, dynamic> _$$_OKRResponseToJson(_$_OKRResponse instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
       'unitId': instance.unitId,

@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/repository/local/shared_pref_helper.dart';
 import '../data/repository/remote/gen_report_repo_impl.dart';
 import '../data/repository/remote/gen_report_repository.dart';
+import '../data/repository/remote/okr_repository.dart';
+import '../data/repository/remote/okr_repository_impl.dart';
 import '../data/repository/remote/report_repository.dart';
 import '../data/repository/remote/report_repository_impl.dart';
 import '../data/repository/remote/login_repository.dart';
@@ -21,10 +23,14 @@ import '../domain/mapper/event_data_mapper.dart';
 import '../domain/mapper/general_report_mapper.dart';
 import '../domain/mapper/list_gen_report_mapper.dart';
 import '../domain/mapper/list_report_data_mapper.dart';
+import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
+
+import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/skill_data_mapper.dart';
+
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
@@ -34,7 +40,9 @@ import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/skill/skill_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
+import '../view/okr_page/cubit/okr_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
+import '../view/unit_page/cubit/unit_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -57,6 +65,11 @@ configureInjection() async {
   getIt.registerFactory<ReportRepository>(() => ReportRepositoryImplement());
   getIt.registerFactory<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
+
+
+  getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
+
+  getIt.registerLazySingleton<ProjectListRepository>(
 
   getIt.registerFactory<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
@@ -86,6 +99,22 @@ configureInjection() async {
   getIt.registerLazySingleton<AppInterceptor>(() => AppInterceptor());
 
   // mapper
+  getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
+  getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
+  getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
+  getIt.registerLazySingleton<EventMemberDataMapper>(
+      () => EventMemberDataMapper());
+  getIt.registerLazySingleton<ObjectiveDataMapper>(() => ObjectiveDataMapper());
+  getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
+  getIt.registerLazySingleton<ProjectListDataMapper>(
+      () => ProjectListDataMapper());
+  getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
+  getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
+  getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
+  getIt.registerLazySingleton<ListReportDataMapper>(
+      () => ListReportDataMapper());
+  getIt.registerLazySingleton<GeneralReportMapper>(() => GeneralReportMapper());
+  getIt.registerLazySingleton<ListGeneralReportMapper>(
   getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
   getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
@@ -106,8 +135,10 @@ configureInjection() async {
   getIt.registerSingleton<CommonCubit>(CommonCubit());
   getIt.registerSingleton<UserCubit>(UserCubit());
   getIt.registerFactory<EventCubit>(() => EventCubit());
+  getIt.registerFactory<OkrCubit>(() => OkrCubit());
   getIt.registerFactory<ProjectCubit>(() => ProjectCubit());
   getIt.registerFactory<ReportCubit>(() => ReportCubit());
+  getIt.registerFactory<UnitCubit>(() => UnitCubit());
   getIt.registerFactory<GeneralReportCubit>(() => GeneralReportCubit());
   getIt.registerFactory<SkillCubit>(() => SkillCubit());
 }
