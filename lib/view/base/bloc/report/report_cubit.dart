@@ -32,8 +32,10 @@ class ReportCubit extends Cubit<ReportState> {
   }
 
   addReport(ReportDaily reportDaily) async {
+    emit(ReportInitial());
     final response = await _reportRepository.createReport(reportDaily);
     if (response.status == ResponseStatus.success) {
+      reports.add(reportDaily);
       emit(AddReportSuccess(reportDaily: reportDaily));
     } else {
       emit(AddReportFailed());

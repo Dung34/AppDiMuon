@@ -33,8 +33,9 @@ class SkillRepositoryImplement implements SkillRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Skill>>> getAllSkill(String userId) async {
+  Future<ResponseWrapper<List<Skill>>> getAllSkill() async {
     accessToken = await localDataAccess.getAccessToken();
+    final userId = localDataAccess.getUserId();
     try {
       final response = await dio.get(EndPoints.getAllSkill,
           queryParameters: {"UserId": userId, "Page": 1, "PageSize": 10},

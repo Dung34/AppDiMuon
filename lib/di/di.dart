@@ -14,6 +14,8 @@ import '../data/repository/remote/login_repository_impl.dart';
 import '../data/repository/remote/project_list_repository.dart';
 import '../data/repository/remote/project_list_repository_impl.dart';
 import '../data/repository/remote/repository.dart';
+import '../data/repository/remote/skill_repository.dart';
+import '../data/repository/remote/skill_repository_ipml.dart';
 import '../domain/mapper/event_data_mapper.dart';
 
 import '../domain/mapper/general_report_mapper.dart';
@@ -22,12 +24,14 @@ import '../domain/mapper/list_report_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
+import '../domain/mapper/skill_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
+import '../view/base/bloc/skill/skill_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
@@ -71,6 +75,8 @@ configureInjection() async {
   final sharedPref = await SharedPreferences.getInstance();
   // getIt.registerSingleton<SharedPreferences>(sharedPref);
 
+  getIt.registerFactory<SkillRepository>(() => SkillRepositoryImplement());
+
   getIt.registerLazySingleton<LocalDataAccess>(
       () => SharePrefHelper(sharedPref: sharedPref));
 
@@ -92,6 +98,8 @@ configureInjection() async {
   getIt.registerFactory<GeneralReportMapper>(() => GeneralReportMapper());
   getIt.registerFactory<ListGeneralReportMapper>(
       () => ListGeneralReportMapper());
+  getIt.registerFactory<SkillDataMapper>(() => SkillDataMapper());
+  getIt.registerFactory<ListSkillMapper>(() => ListSkillMapper());
 
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());
@@ -101,4 +109,5 @@ configureInjection() async {
   getIt.registerFactory<ProjectCubit>(() => ProjectCubit());
   getIt.registerFactory<ReportCubit>(() => ReportCubit());
   getIt.registerFactory<GeneralReportCubit>(() => GeneralReportCubit());
+  getIt.registerFactory<SkillCubit>(() => SkillCubit());
 }
