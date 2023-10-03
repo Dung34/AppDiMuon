@@ -22,39 +22,39 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
     super.didChangeDependencies();
     cubit.getAllSkill();
     listSkill = cubit.listSkill;
+    setAppBar = PrimaryAppBar(
+      title: "Danh sách kĩ năng",
+      actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoute.skillAddPage);
+            },
+            icon: Icon(
+              Icons.add,
+              color: Colors.black,
+              size: 18,
+            ))
+      ],
+    );
   }
 
   late List<Skill>? listSkill;
   @override
   Widget buildPage(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColor.primaryBackgroundColor,
-        appBar: PrimaryAppBar(
-          title: "Danh sách kĩ năng",
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoute.skillAddPage);
-                },
-                icon: Icon(Icons.abc))
-          ],
-        ),
-        body: SafeArea(
-          child: BlocConsumer<SkillCubit, SkillState>(
-            listener: (context, state) {},
-            buildWhen: (previous, current) =>
-                previous is SkillInitial || current is GetAllSkillSuccess,
-            builder: (context, state) {
-              return SizedBox(
-                child: ListView.builder(
-                  itemBuilder: (context, index) =>
-                      SkillItem(skill: listSkill![index]),
-                  itemCount: listSkill!.length,
-                ),
-              );
-            },
+    return BlocConsumer<SkillCubit, SkillState>(
+      listener: (context, state) {},
+      buildWhen: (previous, current) =>
+          previous is SkillInitial || current is GetAllSkillSuccess,
+      builder: (context, state) {
+        return SizedBox(
+          child: ListView.builder(
+            itemBuilder: (context, index) =>
+                SkillItem(skill: listSkill![index]),
+            itemCount: listSkill!.length,
           ),
-        ));
+        );
+      },
+    );
   }
 }
 
@@ -67,25 +67,33 @@ class SkillItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Container(
-      padding: EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Text(skill.name ?? ""), Text(skill.description ?? " ")],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SingleChildScrollView(
+        child: SizedBox(
+            child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(skill.name ?? ""),
+                  Text(skill.description ?? " ")
+                ],
+              ),
+              SizedBox(
+                width: 50,
+              ),
+              Text(skill.point.toString() ?? ""),
+            ],
           ),
-          SizedBox(
-            width: 50,
-          ),
-          Text(skill.point.toString() ?? ""),
-        ],
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                  color: Colors.purple, style: BorderStyle.solid, width: 1.0)),
+        )),
       ),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-              color: Colors.purple, style: BorderStyle.solid, width: 1.0)),
-    ));
+    );
   }
 }
