@@ -27,11 +27,8 @@ import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
-
 import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/skill_data_mapper.dart';
-
-
 
 import '../domain/mapper/task_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
@@ -70,10 +67,7 @@ configureInjection() async {
   getIt.registerFactory<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
 
-
   getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
-
-  getIt.registerLazySingleton<ProjectListRepository>(
 
   getIt.registerFactory<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
@@ -120,7 +114,6 @@ configureInjection() async {
   getIt.registerLazySingleton<ListReportDataMapper>(
       () => ListReportDataMapper());
   getIt.registerLazySingleton<GeneralReportMapper>(() => GeneralReportMapper());
-  getIt.registerLazySingleton<ListGeneralReportMapper>(
   getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
   getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
