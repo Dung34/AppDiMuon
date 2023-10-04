@@ -22,6 +22,7 @@ _$_UserEntity _$$_UserEntityFromJson(Map<String, dynamic> json) =>
       lastModifiedBy: json['lastModifiedBy'] as String?,
       lastModifiedDate: json['lastModifiedDate'] as String?,
       role: json['role'] as int?,
+      membershipTyper: json['membershipTyper'] as int?,
     );
 
 Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
@@ -40,4 +41,5 @@ Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
       'lastModifiedBy': instance.lastModifiedBy,
       'lastModifiedDate': instance.lastModifiedDate,
       'role': instance.role,
+      'membershipTyper': instance.membershipTyper,
     };

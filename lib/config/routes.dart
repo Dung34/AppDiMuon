@@ -30,6 +30,7 @@ import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
+import '../view/skill_page/skill_add_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 import '../view/unit_page/unit_add.dart';
@@ -62,8 +63,12 @@ class AppRoute {
   static const String geneReportDetail = "/geneReportDetail";
   static const String geneReportAdd = "/geneReportAdd";
   static const String geneReportUpdate = "/geneReportUpdate";
+
   static const String unitAdd = "/unitAdd";
   static const String unitDetail = "/unitDetail";
+
+  //skill
+  static const String skillAddPage = "/skillAddPage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -94,8 +99,12 @@ class AppRoute {
         AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
         AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
+
         AppRoute.unitAdd: (context) => UnitAddPage(),
         AppRoute.unitDetail: (context) => const UnitDetailPage(),
+
+        //skill
+        AppRoute.skillAddPage: (context) => const SkillAddPage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {

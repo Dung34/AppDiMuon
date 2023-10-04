@@ -16,6 +16,8 @@ import '../data/repository/remote/login_repository_impl.dart';
 import '../data/repository/remote/project_list_repository.dart';
 import '../data/repository/remote/project_list_repository_impl.dart';
 import '../data/repository/remote/repository.dart';
+import '../data/repository/remote/skill_repository.dart';
+import '../data/repository/remote/skill_repository_ipml.dart';
 import '../domain/mapper/event_data_mapper.dart';
 
 import '../domain/mapper/general_report_mapper.dart';
@@ -25,13 +27,17 @@ import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
+
 import '../domain/mapper/unit_data_mapper.dart';
+import '../domain/mapper/skill_data_mapper.dart';
+
 import '../domain/mapper/user_data_mapper.dart';
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
+import '../view/base/bloc/skill/skill_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/okr_page/cubit/okr_cubit.dart';
@@ -43,42 +49,46 @@ final getIt = GetIt.instance;
 configureInjection() async {
   getIt.registerFactory<Dio>(() => Dio());
 
-  getIt.registerLazySingleton<StorageRepository>(() => StorageRepositoryImpl(
+  getIt.registerFactory<StorageRepository>(() => StorageRepositoryImpl(
       dio: getIt<Dio>(), localDataAccess: getIt.get<LocalDataAccess>()));
 
-  getIt.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
+  getIt.registerFactory<UserRepository>(() => UserRepositoryImpl());
 
-  getIt.registerLazySingleton<AppRepository>(
+  getIt.registerFactory<AppRepository>(
     () => AppRepositoryImpl(
         dio: getIt<Dio>(),
         localDataAccess: getIt.get<LocalDataAccess>(),
         openIdRepository: getIt.get<OpenIDRepository>()),
   );
 
-  getIt.registerLazySingleton<EventRepository>(() => EventRepositoryImpl());
-  getIt.registerLazySingleton<ReportRepository>(
-      () => ReportRepositoryImplement());
-  getIt.registerLazySingleton<GeneralReportRepository>(
+  getIt.registerFactory<EventRepository>(() => EventRepositoryImpl());
+  getIt.registerFactory<ReportRepository>(() => ReportRepositoryImplement());
+  getIt.registerFactory<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
+
 
   getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
 
   getIt.registerLazySingleton<ProjectListRepository>(
+
+  getIt.registerFactory<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
 
-  getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
+  getIt.registerFactory<ProfileRepository>(() => ProfileRepositoryImpl());
 
-  getIt.registerLazySingleton<OpenIDRepository>(
+  getIt.registerFactory<OpenIDRepository>(
       () => OpenIDRepositoryImpl(dio: getIt<Dio>()));
 
-  getIt.registerLazySingleton<LoginRepository>(
+  getIt.registerFactory<LoginRepository>(
       () => LoginRepositoryImpl(dio: getIt<Dio>()));
 
-  getIt.registerLazySingleton<UtilityRepository>(
+  getIt.registerFactory<UtilityRepository>(
       <UtilityRepository>() => UtilitiesRepositoryImpl(dio: getIt<Dio>()));
 
   final sharedPref = await SharedPreferences.getInstance();
   // getIt.registerSingleton<SharedPreferences>(sharedPref);
+
+  getIt.registerFactory<SkillRepository>(() => SkillRepositoryImplement());
 
   getIt.registerLazySingleton<LocalDataAccess>(
       () => SharePrefHelper(sharedPref: sharedPref));
@@ -105,7 +115,20 @@ configureInjection() async {
       () => ListReportDataMapper());
   getIt.registerLazySingleton<GeneralReportMapper>(() => GeneralReportMapper());
   getIt.registerLazySingleton<ListGeneralReportMapper>(
+  getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
+  getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
+  getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
+  getIt.registerFactory<EventMemberDataMapper>(() => EventMemberDataMapper());
+  getIt.registerFactory<ProjectListDataMapper>(() => ProjectListDataMapper());
+  getIt.registerFactory<ProjectDataMapper>(() => ProjectDataMapper());
+
+  getIt.registerFactory<ReportDataMapper>(() => ReportDataMapper());
+  getIt.registerFactory<ListReportDataMapper>(() => ListReportDataMapper());
+  getIt.registerFactory<GeneralReportMapper>(() => GeneralReportMapper());
+  getIt.registerFactory<ListGeneralReportMapper>(
       () => ListGeneralReportMapper());
+  getIt.registerFactory<SkillDataMapper>(() => SkillDataMapper());
+  getIt.registerFactory<ListSkillMapper>(() => ListSkillMapper());
 
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());
@@ -117,4 +140,5 @@ configureInjection() async {
   getIt.registerFactory<ReportCubit>(() => ReportCubit());
   getIt.registerFactory<UnitCubit>(() => UnitCubit());
   getIt.registerFactory<GeneralReportCubit>(() => GeneralReportCubit());
+  getIt.registerFactory<SkillCubit>(() => SkillCubit());
 }
