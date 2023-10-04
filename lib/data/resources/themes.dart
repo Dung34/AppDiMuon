@@ -174,7 +174,7 @@ class AppTextTheme {
   );
 
   static const TextStyle robotoBold24 = TextStyle(
-    color: AppColor.black,
+    color: AppColor.green200,
     fontWeight: FontWeight.w700,
     fontSize: 24,
   );
@@ -218,7 +218,7 @@ class AppTextTheme {
   );
   static const TextStyle lexendBold24 = TextStyle(
     fontFamily: 'Lexend',
-    color: AppColor.primary500,
+    color: AppColor.green400,
     fontWeight: FontWeight.w700,
     fontSize: 24,
   );

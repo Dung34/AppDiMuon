@@ -14,20 +14,8 @@ class OkrCubit extends Cubit<OkrState> {
 
   OkrCubit() : super(OkrInitial());
 
-  createObjective({
-    String? title,
-    String? description,
-    required String okrsId,
-    required String unitId,
-    double? process,
-  }) async {
-    final response = await _okrRepository.createObjective(
-      title: title,
-      description: description,
-      okrsId: okrsId,
-      unitId: unitId,
-      process: process,
-    );
+  createObjective(Objective objective) async {
+    final response = await _okrRepository.createObjective(objective);
 
     if (response.status == ResponseStatus.success) {
       emit(OkrCreateObjectiveSuccessState(response.data!));
@@ -36,13 +24,8 @@ class OkrCubit extends Cubit<OkrState> {
     }
   }
 
-  createOkr({
-    String? name,
-    String? description,
-    String? unitId,
-  }) async {
-    final response = await _okrRepository.createOKR(
-        name: name, description: description, unitId: unitId);
+  createOkr(OKR okr) async {
+    final response = await _okrRepository.createOKR(okr);
 
     if (response.status == ResponseStatus.success) {
       emit(OkrCreateOkrSuccessState(response.data!));

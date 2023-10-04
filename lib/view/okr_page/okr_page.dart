@@ -26,10 +26,10 @@ class _OKRPageState extends BasePageState<OKRPage, OkrCubit> {
                 return PrimaryButton(
                     context: context,
                     onPressed: () async {
-                      await cubit.createObjective(
-                          title: "nothing",
-                          okrsId: '35b26cc8-43e3-43b8-bc70-e74cbd4570b4',
-                          unitId: 'c48d7f37-8311-4741-911f-5e259ef22603');
+                      // await cubit.createObjective(
+                      //     title: "nothing",
+                      //     okrsId: '35b26cc8-43e3-43b8-bc70-e74cbd4570b4',
+                      //     unitId: 'c48d7f37-8311-4741-911f-5e259ef22603');
                       if (state is OkrCreateObjectiveSuccessState) {
                         print(state.objective.toString());
                       }
