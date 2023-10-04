@@ -61,6 +61,9 @@ class EndPoints {
   //project
   static const String getAllProject = "/project/view-all-project";
   static const String getProjectDetail = "/project/view-detail-project";
+
+  // task
+  static const String getAllTaskOfUser = "/taskOKR/get_all_task_user";
 }
 
 class SSOConfig {

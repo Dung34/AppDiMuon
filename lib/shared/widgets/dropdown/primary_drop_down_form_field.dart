@@ -109,6 +109,7 @@ class _PrimaryDropDownFormFieldState extends State<PrimaryDropDownFormField> {
         filled: true,
         fillColor: widget.fillColor ?? AppColor.fourth200,
       ),
+      dropdownSearchData: const DropdownSearchData(),
     );
   }
 }

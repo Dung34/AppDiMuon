@@ -1,6 +1,6 @@
 import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
-import '../../../domain/entity/project/task.dart';
+import '../../../domain/entity/okr/task/task.dart';
 import '../../model/api/base_response.dart';
 
 abstract class OKRRepository {
@@ -28,7 +28,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfKR();
 
-  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser();
+  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser({String? userId});
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfSubtask();
 

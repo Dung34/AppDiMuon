@@ -16,14 +16,11 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       parrentTask: json['parrentTask'] as String?,
       relatedTask: json['relatedTask'] as String?,
       keyResultId: json['keyResultId'] as String?,
-      startDate: json['startDate'] == null
-          ? null
-          : DateTime.parse(json['startDate'] as String),
-      endDate: json['endDate'] == null
-          ? null
-          : DateTime.parse(json['endDate'] as String),
-      status: json['status'] as String?,
+      startDate: json['startDate'] as String?,
+      endDate: json['endDate'] as String?,
+      status: json['status'] as int?,
       priority: json['priority'] as int?,
+      priorityStr: json['priorityStr'] as String?,
     );
 
 Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
@@ -36,8 +33,9 @@ Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
       'parrentTask': instance.parrentTask,
       'relatedTask': instance.relatedTask,
       'keyResultId': instance.keyResultId,
-      'startDate': instance.startDate?.toIso8601String(),
-      'endDate': instance.endDate?.toIso8601String(),
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
       'status': instance.status,
       'priority': instance.priority,
+      'priorityStr': instance.priorityStr,
     };

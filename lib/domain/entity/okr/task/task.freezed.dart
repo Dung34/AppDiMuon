@@ -29,10 +29,11 @@ mixin _$Task {
   String? get parrentTask => throw _privateConstructorUsedError;
   String? get relatedTask => throw _privateConstructorUsedError;
   String? get keyResultId => throw _privateConstructorUsedError;
-  DateTime? get startDate => throw _privateConstructorUsedError;
-  DateTime? get endDate => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
+  String? get startDate => throw _privateConstructorUsedError;
+  String? get endDate => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   int? get priority => throw _privateConstructorUsedError;
+  String? get priorityStr => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,10 +55,11 @@ abstract class $TaskCopyWith<$Res> {
       String? parrentTask,
       String? relatedTask,
       String? keyResultId,
-      DateTime? startDate,
-      DateTime? endDate,
-      String? status,
-      int? priority});
+      String? startDate,
+      String? endDate,
+      int? status,
+      int? priority,
+      String? priorityStr});
 }
 
 /// @nodoc
@@ -86,6 +88,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? endDate = freezed,
     Object? status = freezed,
     Object? priority = freezed,
+    Object? priorityStr = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -127,19 +130,23 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as int?,
+      priorityStr: freezed == priorityStr
+          ? _value.priorityStr
+          : priorityStr // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -160,10 +167,11 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       String? parrentTask,
       String? relatedTask,
       String? keyResultId,
-      DateTime? startDate,
-      DateTime? endDate,
-      String? status,
-      int? priority});
+      String? startDate,
+      String? endDate,
+      int? status,
+      int? priority,
+      String? priorityStr});
 }
 
 /// @nodoc
@@ -188,6 +196,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
     Object? endDate = freezed,
     Object? status = freezed,
     Object? priority = freezed,
+    Object? priorityStr = freezed,
   }) {
     return _then(_$_Task(
       id: freezed == id
@@ -229,19 +238,23 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as int?,
+      priorityStr: freezed == priorityStr
+          ? _value.priorityStr
+          : priorityStr // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -262,7 +275,8 @@ class _$_Task implements _Task {
       this.startDate,
       this.endDate,
       this.status,
-      this.priority});
+      this.priority,
+      this.priorityStr});
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
@@ -285,17 +299,19 @@ class _$_Task implements _Task {
   @override
   final String? keyResultId;
   @override
-  final DateTime? startDate;
+  final String? startDate;
   @override
-  final DateTime? endDate;
+  final String? endDate;
   @override
-  final String? status;
+  final int? status;
   @override
   final int? priority;
+  @override
+  final String? priorityStr;
 
   @override
   String toString() {
-    return 'Task(id: $id, title: $title, description: $description, assignee: $assignee, assigner: $assigner, point: $point, parrentTask: $parrentTask, relatedTask: $relatedTask, keyResultId: $keyResultId, startDate: $startDate, endDate: $endDate, status: $status, priority: $priority)';
+    return 'Task(id: $id, title: $title, description: $description, assignee: $assignee, assigner: $assigner, point: $point, parrentTask: $parrentTask, relatedTask: $relatedTask, keyResultId: $keyResultId, startDate: $startDate, endDate: $endDate, status: $status, priority: $priority, priorityStr: $priorityStr)';
   }
 
   @override
@@ -323,7 +339,9 @@ class _$_Task implements _Task {
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.priority, priority) ||
-                other.priority == priority));
+                other.priority == priority) &&
+            (identical(other.priorityStr, priorityStr) ||
+                other.priorityStr == priorityStr));
   }
 
   @JsonKey(ignore: true)
@@ -342,7 +360,8 @@ class _$_Task implements _Task {
       startDate,
       endDate,
       status,
-      priority);
+      priority,
+      priorityStr);
 
   @JsonKey(ignore: true)
   @override
@@ -369,10 +388,11 @@ abstract class _Task implements Task {
       final String? parrentTask,
       final String? relatedTask,
       final String? keyResultId,
-      final DateTime? startDate,
-      final DateTime? endDate,
-      final String? status,
-      final int? priority}) = _$_Task;
+      final String? startDate,
+      final String? endDate,
+      final int? status,
+      final int? priority,
+      final String? priorityStr}) = _$_Task;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 
@@ -395,13 +415,15 @@ abstract class _Task implements Task {
   @override
   String? get keyResultId;
   @override
-  DateTime? get startDate;
+  String? get startDate;
   @override
-  DateTime? get endDate;
+  String? get endDate;
   @override
-  String? get status;
+  int? get status;
   @override
   int? get priority;
+  @override
+  String? get priorityStr;
   @override
   @JsonKey(ignore: true)
   _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;

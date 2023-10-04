@@ -31,6 +31,9 @@ import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 import '../view/splash_screen/splash_screen.dart';
+import '../view/task_management/cubit/task_cubit.dart';
+import '../view/task_management/task_create_page.dart';
+import '../view/task_management/task_list_page.dart';
 
 class AppRoute {
   static const String splash = "/";
@@ -60,6 +63,9 @@ class AppRoute {
   static const String geneReportAdd = "/geneReportAdd";
   static const String geneReportUpdate = "/geneReportUpdate";
 
+  static const String taskManager = "/taskManager";
+  static const String taskCreate = "/taskCreate";
+
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
         AppRoute.main: (context) => const MainPage(),
@@ -87,7 +93,10 @@ class AppRoute {
         AppRoute.generalReport: (context) => const GeneralPage(),
         AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
-        AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
+        AppRoute.geneReportUpdate: (context) => const GenReportUpdate(),
+
+        AppRoute.taskManager: (context) => const TaskListPage(),
+        AppRoute.taskCreate: (context) => const TaskCreatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -183,4 +192,10 @@ class GeneralReportArgs {
   final String reportId;
   final GeneralReportCubit generalReportCubit;
   GeneralReportArgs({required this.reportId, required this.generalReportCubit});
+}
+
+class TaskCreatePageArgs {
+  final String? taskId;
+  final TaskCubit taskCubit;
+  TaskCreatePageArgs({this.taskId, required this.taskCubit});
 }

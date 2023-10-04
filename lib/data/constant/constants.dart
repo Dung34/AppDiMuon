@@ -70,3 +70,10 @@ class TaskPriority {
   static const int high = 2;
   static const int immediate = 3;
 }
+
+class TaskPriorityStr {
+  static const String low = 'Low';
+  static const String medium = 'Medium';
+  static const String high = 'High';
+  static const String immediate = 'Immediate';
+}

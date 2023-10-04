@@ -15,10 +15,11 @@ class Task with _$Task {
     String? parrentTask,
     String? relatedTask,
     String? keyResultId,
-    DateTime? startDate,
-    DateTime? endDate,
-    String? status,
+    String? startDate,
+    String? endDate,
+    int? status,
     int? priority,
+    String? priorityStr,
   }) = _Task;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
