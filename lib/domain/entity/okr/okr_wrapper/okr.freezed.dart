@@ -23,10 +23,11 @@ mixin _$OKR {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
-  String? get progress => throw _privateConstructorUsedError;
+  String? get process => throw _privateConstructorUsedError;
   int? get totalObjective => throw _privateConstructorUsedError;
   int? get totalKR => throw _privateConstructorUsedError;
   int? get totalTask => throw _privateConstructorUsedError;
+  List<Objective>? get objectives => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +43,11 @@ abstract class $OKRCopyWith<$Res> {
       {String? name,
       String? description,
       String? unitId,
-      String? progress,
+      String? process,
       int? totalObjective,
       int? totalKR,
-      int? totalTask});
+      int? totalTask,
+      List<Objective>? objectives});
 }
 
 /// @nodoc
@@ -63,10 +65,11 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
-    Object? progress = freezed,
+    Object? process = freezed,
     Object? totalObjective = freezed,
     Object? totalKR = freezed,
     Object? totalTask = freezed,
+    Object? objectives = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -81,9 +84,9 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
           ? _value.unitId
           : unitId // ignore: cast_nullable_to_non_nullable
               as String?,
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
+      process: freezed == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
               as String?,
       totalObjective: freezed == totalObjective
           ? _value.totalObjective
@@ -97,6 +100,10 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
           ? _value.totalTask
           : totalTask // ignore: cast_nullable_to_non_nullable
               as int?,
+      objectives: freezed == objectives
+          ? _value.objectives
+          : objectives // ignore: cast_nullable_to_non_nullable
+              as List<Objective>?,
     ) as $Val);
   }
 }
@@ -111,10 +118,11 @@ abstract class _$$_OKRCopyWith<$Res> implements $OKRCopyWith<$Res> {
       {String? name,
       String? description,
       String? unitId,
-      String? progress,
+      String? process,
       int? totalObjective,
       int? totalKR,
-      int? totalTask});
+      int? totalTask,
+      List<Objective>? objectives});
 }
 
 /// @nodoc
@@ -129,10 +137,11 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
-    Object? progress = freezed,
+    Object? process = freezed,
     Object? totalObjective = freezed,
     Object? totalKR = freezed,
     Object? totalTask = freezed,
+    Object? objectives = freezed,
   }) {
     return _then(_$_OKR(
       name: freezed == name
@@ -147,9 +156,9 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
           ? _value.unitId
           : unitId // ignore: cast_nullable_to_non_nullable
               as String?,
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
+      process: freezed == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
               as String?,
       totalObjective: freezed == totalObjective
           ? _value.totalObjective
@@ -163,6 +172,10 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
           ? _value.totalTask
           : totalTask // ignore: cast_nullable_to_non_nullable
               as int?,
+      objectives: freezed == objectives
+          ? _value._objectives
+          : objectives // ignore: cast_nullable_to_non_nullable
+              as List<Objective>?,
     ));
   }
 }
@@ -174,10 +187,12 @@ class _$_OKR implements _OKR {
       {this.name,
       this.description,
       this.unitId,
-      this.progress,
+      this.process,
       this.totalObjective,
       this.totalKR,
-      this.totalTask});
+      this.totalTask,
+      final List<Objective>? objectives})
+      : _objectives = objectives;
 
   factory _$_OKR.fromJson(Map<String, dynamic> json) => _$$_OKRFromJson(json);
 
@@ -188,17 +203,26 @@ class _$_OKR implements _OKR {
   @override
   final String? unitId;
   @override
-  final String? progress;
+  final String? process;
   @override
   final int? totalObjective;
   @override
   final int? totalKR;
   @override
   final int? totalTask;
+  final List<Objective>? _objectives;
+  @override
+  List<Objective>? get objectives {
+    final value = _objectives;
+    if (value == null) return null;
+    if (_objectives is EqualUnmodifiableListView) return _objectives;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'OKR(name: $name, description: $description, unitId: $unitId, progress: $progress, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask)';
+    return 'OKR(name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
   }
 
   @override
@@ -210,19 +234,28 @@ class _$_OKR implements _OKR {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.unitId, unitId) || other.unitId == unitId) &&
-            (identical(other.progress, progress) ||
-                other.progress == progress) &&
+            (identical(other.process, process) || other.process == process) &&
             (identical(other.totalObjective, totalObjective) ||
                 other.totalObjective == totalObjective) &&
             (identical(other.totalKR, totalKR) || other.totalKR == totalKR) &&
             (identical(other.totalTask, totalTask) ||
-                other.totalTask == totalTask));
+                other.totalTask == totalTask) &&
+            const DeepCollectionEquality()
+                .equals(other._objectives, _objectives));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, unitId,
-      progress, totalObjective, totalKR, totalTask);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      description,
+      unitId,
+      process,
+      totalObjective,
+      totalKR,
+      totalTask,
+      const DeepCollectionEquality().hash(_objectives));
 
   @JsonKey(ignore: true)
   @override
@@ -243,10 +276,11 @@ abstract class _OKR implements OKR {
       {final String? name,
       final String? description,
       final String? unitId,
-      final String? progress,
+      final String? process,
       final int? totalObjective,
       final int? totalKR,
-      final int? totalTask}) = _$_OKR;
+      final int? totalTask,
+      final List<Objective>? objectives}) = _$_OKR;
 
   factory _OKR.fromJson(Map<String, dynamic> json) = _$_OKR.fromJson;
 
@@ -257,13 +291,15 @@ abstract class _OKR implements OKR {
   @override
   String? get unitId;
   @override
-  String? get progress;
+  String? get process;
   @override
   int? get totalObjective;
   @override
   int? get totalKR;
   @override
   int? get totalTask;
+  @override
+  List<Objective>? get objectives;
   @override
   @JsonKey(ignore: true)
   _$$_OKRCopyWith<_$_OKR> get copyWith => throw _privateConstructorUsedError;

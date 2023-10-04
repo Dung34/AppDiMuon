@@ -36,6 +36,8 @@ mixin _$UserEntity {
   set activated(bool? value) => throw _privateConstructorUsedError;
   String? get langKey => throw _privateConstructorUsedError;
   set langKey(String? value) => throw _privateConstructorUsedError;
+  int? get rank => throw _privateConstructorUsedError;
+  set rank(int? value) => throw _privateConstructorUsedError;
   String? get createdBy => throw _privateConstructorUsedError;
   set createdBy(String? value) => throw _privateConstructorUsedError;
   String? get createdDate => throw _privateConstructorUsedError;
@@ -46,6 +48,8 @@ mixin _$UserEntity {
   set lastModifiedDate(String? value) => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
   set role(int? value) => throw _privateConstructorUsedError;
+  int? get membershipTyper => throw _privateConstructorUsedError;
+  set membershipTyper(int? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,11 +72,13 @@ abstract class $UserEntityCopyWith<$Res> {
       String? imageUrl,
       bool? activated,
       String? langKey,
+      int? rank,
       String? createdBy,
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      int? role});
+      int? role,
+      int? membershipTyper});
 }
 
 /// @nodoc
@@ -96,11 +102,13 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
+    Object? rank = freezed,
     Object? createdBy = freezed,
     Object? createdDate = freezed,
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
     Object? role = freezed,
+    Object? membershipTyper = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -135,6 +143,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.langKey
           : langKey // ignore: cast_nullable_to_non_nullable
               as String?,
+      rank: freezed == rank
+          ? _value.rank
+          : rank // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -154,6 +166,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as int?,
+      membershipTyper: freezed == membershipTyper
+          ? _value.membershipTyper
+          : membershipTyper // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -176,11 +192,13 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String? imageUrl,
       bool? activated,
       String? langKey,
+      int? rank,
       String? createdBy,
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      int? role});
+      int? role,
+      int? membershipTyper});
 }
 
 /// @nodoc
@@ -202,11 +220,13 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? activated = freezed,
     Object? langKey = freezed,
+    Object? rank = freezed,
     Object? createdBy = freezed,
     Object? createdDate = freezed,
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
     Object? role = freezed,
+    Object? membershipTyper = freezed,
   }) {
     return _then(_$_UserEntity(
       id: freezed == id
@@ -241,6 +261,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.langKey
           : langKey // ignore: cast_nullable_to_non_nullable
               as String?,
+      rank: freezed == rank
+          ? _value.rank
+          : rank // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -261,6 +285,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
+      membershipTyper: freezed == membershipTyper
+          ? _value.membershipTyper
+          : membershipTyper // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -277,11 +305,13 @@ class _$_UserEntity implements _UserEntity {
       this.imageUrl,
       this.activated,
       this.langKey,
+      this.rank,
       this.createdBy,
       this.createdDate,
       this.lastModifiedBy,
       this.lastModifiedDate,
-      this.role});
+      this.role,
+      this.membershipTyper});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -303,6 +333,8 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? langKey;
   @override
+  int? rank;
+  @override
   String? createdBy;
   @override
   String? createdDate;
@@ -312,10 +344,12 @@ class _$_UserEntity implements _UserEntity {
   String? lastModifiedDate;
   @override
   int? role;
+  @override
+  int? membershipTyper;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role, membershipTyper: $membershipTyper)';
   }
 
   @JsonKey(ignore: true)
@@ -342,11 +376,13 @@ abstract class _UserEntity implements UserEntity {
       String? imageUrl,
       bool? activated,
       String? langKey,
+      int? rank,
       String? createdBy,
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      int? role}) = _$_UserEntity;
+      int? role,
+      int? membershipTyper}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -376,6 +412,9 @@ abstract class _UserEntity implements UserEntity {
   String? get langKey;
   set langKey(String? value);
   @override
+  int? get rank;
+  set rank(int? value);
+  @override
   String? get createdBy;
   set createdBy(String? value);
   @override
@@ -390,6 +429,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   int? get role;
   set role(int? value);
+  @override
+  int? get membershipTyper;
+  set membershipTyper(int? value);
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>

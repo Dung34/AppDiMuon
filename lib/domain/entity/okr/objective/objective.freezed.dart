@@ -27,7 +27,7 @@ mixin _$Objective {
   List<Objective>? get relatedObjective => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
   String? get unitName => throw _privateConstructorUsedError;
-  double? get progress => throw _privateConstructorUsedError;
+  double? get process => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $ObjectiveCopyWith<$Res> {
       List<Objective>? relatedObjective,
       String? unitId,
       String? unitName,
-      double? progress});
+      double? process});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$ObjectiveCopyWithImpl<$Res, $Val extends Objective>
     Object? relatedObjective = freezed,
     Object? unitId = freezed,
     Object? unitName = freezed,
-    Object? progress = freezed,
+    Object? process = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -102,9 +102,9 @@ class _$ObjectiveCopyWithImpl<$Res, $Val extends Objective>
           ? _value.unitName
           : unitName // ignore: cast_nullable_to_non_nullable
               as String?,
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
+      process: freezed == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
   }
@@ -125,7 +125,7 @@ abstract class _$$_ObjectiveCopyWith<$Res> implements $ObjectiveCopyWith<$Res> {
       List<Objective>? relatedObjective,
       String? unitId,
       String? unitName,
-      double? progress});
+      double? process});
 }
 
 /// @nodoc
@@ -146,7 +146,7 @@ class __$$_ObjectiveCopyWithImpl<$Res>
     Object? relatedObjective = freezed,
     Object? unitId = freezed,
     Object? unitName = freezed,
-    Object? progress = freezed,
+    Object? process = freezed,
   }) {
     return _then(_$_Objective(
       id: freezed == id
@@ -177,9 +177,9 @@ class __$$_ObjectiveCopyWithImpl<$Res>
           ? _value.unitName
           : unitName // ignore: cast_nullable_to_non_nullable
               as String?,
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
+      process: freezed == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -196,7 +196,7 @@ class _$_Objective implements _Objective {
       final List<Objective>? relatedObjective,
       this.unitId,
       this.unitName,
-      this.progress})
+      this.process})
       : _relatedObjective = relatedObjective;
 
   factory _$_Objective.fromJson(Map<String, dynamic> json) =>
@@ -226,11 +226,11 @@ class _$_Objective implements _Objective {
   @override
   final String? unitName;
   @override
-  final double? progress;
+  final double? process;
 
   @override
   String toString() {
-    return 'Objective(id: $id, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, progress: $progress)';
+    return 'Objective(id: $id, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, process: $process)';
   }
 
   @override
@@ -248,8 +248,7 @@ class _$_Objective implements _Objective {
             (identical(other.unitId, unitId) || other.unitId == unitId) &&
             (identical(other.unitName, unitName) ||
                 other.unitName == unitName) &&
-            (identical(other.progress, progress) ||
-                other.progress == progress));
+            (identical(other.process, process) || other.process == process));
   }
 
   @JsonKey(ignore: true)
@@ -263,7 +262,7 @@ class _$_Objective implements _Objective {
       const DeepCollectionEquality().hash(_relatedObjective),
       unitId,
       unitName,
-      progress);
+      process);
 
   @JsonKey(ignore: true)
   @override
@@ -288,7 +287,7 @@ abstract class _Objective implements Objective {
       final List<Objective>? relatedObjective,
       final String? unitId,
       final String? unitName,
-      final double? progress}) = _$_Objective;
+      final double? process}) = _$_Objective;
 
   factory _Objective.fromJson(Map<String, dynamic> json) =
       _$_Objective.fromJson;
@@ -308,7 +307,7 @@ abstract class _Objective implements Objective {
   @override
   String? get unitName;
   @override
-  double? get progress;
+  double? get process;
   @override
   @JsonKey(ignore: true)
   _$$_ObjectiveCopyWith<_$_Objective> get copyWith =>

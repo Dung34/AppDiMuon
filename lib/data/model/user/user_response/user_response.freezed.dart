@@ -34,6 +34,7 @@ mixin _$UserResponse {
   String? get lastModifiedBy => throw _privateConstructorUsedError;
   String? get lastModifiedDate => throw _privateConstructorUsedError;
   List<String>? get authorities => throw _privateConstructorUsedError;
+  int? get membershipType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +62,8 @@ abstract class $UserResponseCopyWith<$Res> {
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      List<String>? authorities});
+      List<String>? authorities,
+      int? membershipType});
 }
 
 /// @nodoc
@@ -91,6 +93,7 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
     Object? authorities = freezed,
+    Object? membershipType = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -149,6 +152,10 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
           ? _value.authorities
           : authorities // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      membershipType: freezed == membershipType
+          ? _value.membershipType
+          : membershipType // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -175,7 +182,8 @@ abstract class _$$_UserReponseCopyWith<$Res>
       String? createdDate,
       String? lastModifiedBy,
       String? lastModifiedDate,
-      List<String>? authorities});
+      List<String>? authorities,
+      int? membershipType});
 }
 
 /// @nodoc
@@ -203,6 +211,7 @@ class __$$_UserReponseCopyWithImpl<$Res>
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
     Object? authorities = freezed,
+    Object? membershipType = freezed,
   }) {
     return _then(_$_UserReponse(
       id: freezed == id
@@ -261,6 +270,10 @@ class __$$_UserReponseCopyWithImpl<$Res>
           ? _value._authorities
           : authorities // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      membershipType: freezed == membershipType
+          ? _value.membershipType
+          : membershipType // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -282,7 +295,8 @@ class _$_UserReponse implements _UserReponse {
       this.createdDate,
       this.lastModifiedBy,
       this.lastModifiedDate,
-      final List<String>? authorities})
+      final List<String>? authorities,
+      this.membershipType})
       : _authorities = authorities;
 
   factory _$_UserReponse.fromJson(Map<String, dynamic> json) =>
@@ -325,8 +339,11 @@ class _$_UserReponse implements _UserReponse {
   }
 
   @override
+  final int? membershipType;
+
+  @override
   String toString() {
-    return 'UserResponse(id: $id, login: $login, referralCode: $referralCode, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities)';
+    return 'UserResponse(id: $id, login: $login, referralCode: $referralCode, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities, membershipType: $membershipType)';
   }
 
   @override
@@ -357,7 +374,9 @@ class _$_UserReponse implements _UserReponse {
             (identical(other.lastModifiedDate, lastModifiedDate) ||
                 other.lastModifiedDate == lastModifiedDate) &&
             const DeepCollectionEquality()
-                .equals(other._authorities, _authorities));
+                .equals(other._authorities, _authorities) &&
+            (identical(other.membershipType, membershipType) ||
+                other.membershipType == membershipType));
   }
 
   @JsonKey(ignore: true)
@@ -377,7 +396,8 @@ class _$_UserReponse implements _UserReponse {
       createdDate,
       lastModifiedBy,
       lastModifiedDate,
-      const DeepCollectionEquality().hash(_authorities));
+      const DeepCollectionEquality().hash(_authorities),
+      membershipType);
 
   @JsonKey(ignore: true)
   @override
@@ -408,7 +428,8 @@ abstract class _UserReponse implements UserResponse {
       final String? createdDate,
       final String? lastModifiedBy,
       final String? lastModifiedDate,
-      final List<String>? authorities}) = _$_UserReponse;
+      final List<String>? authorities,
+      final int? membershipType}) = _$_UserReponse;
 
   factory _UserReponse.fromJson(Map<String, dynamic> json) =
       _$_UserReponse.fromJson;
@@ -441,6 +462,8 @@ abstract class _UserReponse implements UserResponse {
   String? get lastModifiedDate;
   @override
   List<String>? get authorities;
+  @override
+  int? get membershipType;
   @override
   @JsonKey(ignore: true)
   _$$_UserReponseCopyWith<_$_UserReponse> get copyWith =>

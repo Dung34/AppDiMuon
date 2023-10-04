@@ -15,16 +15,13 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       imageUrl: data?.imageUrl,
       activated: data?.activated,
       langKey: data?.langKey,
-      createdBy: data?.createdBy,
-      createdDate: data?.createdDate,
-      lastModifiedBy: data?.lastModifiedBy,
-      lastModifiedDate: data?.lastModifiedDate,
       // ignore: prefer_is_empty
       role: data?.authorities!.length == 0
           ? 0
           : data?.authorities![0] == 'ROLE_USER'
               ? 0
               : 1,
+      membershipTyper: data?.membershipType,
     );
   }
 

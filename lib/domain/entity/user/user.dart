@@ -14,11 +14,13 @@ class UserEntity with _$UserEntity {
     String? imageUrl,
     bool? activated,
     String? langKey,
+    int? rank,
     String? createdBy,
     String? createdDate,
     String? lastModifiedBy,
     String? lastModifiedDate,
     int? role,
+    int? membershipTyper,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

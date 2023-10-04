@@ -30,6 +30,7 @@ import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
+import '../view/skill_page/skill_add_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
@@ -65,6 +66,8 @@ class AppRoute {
 
   static const String taskManager = "/taskManager";
   static const String taskCreate = "/taskCreate";
+  //skill
+  static const String skillAddPage = "/skillAddPage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -94,6 +97,8 @@ class AppRoute {
         AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
         AppRoute.geneReportUpdate: (context) => const GenReportUpdate(),
+        //skill
+        AppRoute.skillAddPage: (context) => const SkillAddPage(),
 
         AppRoute.taskManager: (context) => const TaskListPage(),
         AppRoute.taskCreate: (context) => const TaskCreatePage(),
