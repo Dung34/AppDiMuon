@@ -100,7 +100,14 @@ class SkillItem extends StatelessWidget {
                       SkillCubit().deleteSkill(skill.id ?? " ");
                     },
                     icon: Icon(Icons.delete_outline)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.edit))
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoute.skillUpdatePage,
+                          arguments: SkillPageArgs(
+                              id: skill.id ?? " ",
+                              skillCubit: context.read<SkillCubit>()));
+                    },
+                    icon: Icon(Icons.edit))
               ],
             ),
           )),
