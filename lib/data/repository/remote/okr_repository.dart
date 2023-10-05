@@ -22,7 +22,7 @@ abstract class OKRRepository {
   Future<ResponseWrapper<OKR>> createOKR(
       {String? name, String? description, String? unitId});
 
-  Future<ResponseWrapper<Task>> createTask();
+  Future<ResponseWrapper<Task>> createTask(Task task);
 
   Future<ResponseWrapper<Unit>> createUnit(
       {String? name,
@@ -53,7 +53,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfKR();
 
-  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser({String? userId});
+  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser(
+      {required int page, int pageSize = 10, String? userId});
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfSubtask();
 

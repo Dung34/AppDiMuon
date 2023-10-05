@@ -34,8 +34,12 @@ class AppColor {
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color gray = Color.fromARGB(255, 179, 179, 179);
+  static const Color gray200 = Color(0xFFAFAFB0);
   static const Color green = Color.fromARGB(245, 10, 232, 7);
+  static const Color green50 = Color(0xffDEF2EC);
+  static const Color green200 = Color(0xff07AB5C);
   static const Color green300 = Color(0xFF49675D);
+  static const Color green400 = Color(0xFF214120);
   static const Color errorColor = Color(0xFFD82F1A);
 
   static const Color neutral5 = Color(0xFFD9D9D9);

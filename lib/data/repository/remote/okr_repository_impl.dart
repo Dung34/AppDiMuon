@@ -118,9 +118,37 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Task>> createTask() {
-    // TODO: implement createTask
-    throw UnimplementedError();
+  Future<ResponseWrapper<Task>> createTask(Task task) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(
+        EndPoints.createTask,
+        data: {
+          "taskName": task.title,
+          "description": task.description,
+          "dueDate": task.endDate,
+          // "completeDate": task.,
+          "parentId": task.parrentTask,
+          "point": task.point,
+          "assigneeId": task.assignee,
+          "assigneerId": task.assigner,
+          "keyResultId": task.keyResultId,
+          "status": task.status,
+          "priority": task.priority
+        },
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _taskDataMapper
+                .mapToEntity(TaskResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -248,21 +276,30 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser({String? userId}) async {
+  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser(
+      {required int page, int pageSize = 10, String? userId}) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get(
         EndPoints.getAllTaskOfUser,
         queryParameters: {
+          "Page": page,
+          "PageSize": pageSize,
           "UserId": userId ?? localDataAccess.getUserId(),
         },
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
       if (response.statusCode == 200) {
+        final responsePaging =
+            DefaultPagingResponse<List<TaskResponse>>.fromJson(
+          response.data,
+          (json) =>
+              (json as List).map((e) => TaskResponse.fromJson(e)).toList(),
+        );
         return ResponseWrapper.success(
           data: List.from(
-            (response.data as List).map(
-              (e) => _taskDataMapper.mapToEntity(TaskResponse.fromJson(e)),
+            (responsePaging.data as List).map(
+              (e) => _taskDataMapper.mapToEntity(e),
             ),
           ),
         );

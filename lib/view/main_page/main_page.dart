@@ -94,11 +94,8 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
               ),
             ],
           ),
-          child: Center(
-            child: SvgPicture.asset(
-              Assets.icScanner,
-              color: AppColor.white,
-            ),
+          child: const Center(
+            child: Text('Task'),
           ),
         ),
       ),

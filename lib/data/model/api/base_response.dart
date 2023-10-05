@@ -64,3 +64,17 @@ class NewDefaultResponse<T> {
           T Function(Object? json) fromJsonCallBack) =>
       _$NewDefaultResponseFromJson(json, fromJsonCallBack);
 }
+
+@JsonSerializable(genericArgumentFactories: true)
+class DefaultPagingResponse<T> {
+  @JsonKey(name: 'totalCount')
+  final int totalCount;
+  @JsonKey(name: 'data')
+  final T? data;
+
+  DefaultPagingResponse(this.totalCount, this.data);
+
+  factory DefaultPagingResponse.fromJson(Map<String, dynamic> json,
+          T Function(Object? json) fromJsonCallBack) =>
+      _$DefaultPagingResponseFromJson(json, fromJsonCallBack);
+}

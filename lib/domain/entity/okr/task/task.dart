@@ -1,23 +1,26 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../user/user.dart';
+
 part 'task.freezed.dart';
 part 'task.g.dart';
 
-@freezed
+@unfreezed
 class Task with _$Task {
   factory Task({
     String? id,
     String? title,
     String? description,
-    String? assignee,
-    String? assigner,
+    UserEntity? assignee,
+    UserEntity? assigner,
     int? point,
-    String? parrentTask,
-    String? relatedTask,
+    Task? parrentTask,
+    List<Task>? relatedTask,
     String? keyResultId,
     String? startDate,
     String? endDate,
     int? status,
+    String? statusStr,
     int? priority,
     String? priorityStr,
   }) = _Task;

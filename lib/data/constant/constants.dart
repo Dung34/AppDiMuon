@@ -64,6 +64,13 @@ class TaskStatus {
   static const int late = 3;
 }
 
+class TaskStatusStr {
+  static const String notStarted = "Not Started";
+  static const String beginning = "Processing";
+  static const String ended = "Ended";
+  static const String late = "Late";
+}
+
 class TaskPriority {
   static const int low = 0;
   static const int medium = 1;

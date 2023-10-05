@@ -70,18 +70,24 @@ class _TaskListPageState extends BasePageState<TaskListPage, TaskCubit> {
             child: BlocListener<TaskCubit, TaskState>(
               listener: (context, state) {
                 if (state is TaskGetAllTaskSuccessState) {
-                  log('message: ${state.taskList}');
                   if (state.taskList.length < 10) {
                     pagingController.appendLastPage(state.taskList);
                   } else {
-                    pagingController.appendPage(
-                        state.taskList, pagingController.nextPageKey);
+                    // pagingController.appendLastPage(state.taskList);
+                    pagingController.appendPage(state.taskList,
+                        (pagingController.nextPageKey ?? 0) + 1);
                   }
+                }
+                if (state is TaskGetAllTaskFailedState) {
+                  pagingController.appendLastPage([]);
+                }
+                if (state is TaskCreateSuccessState) {
+                  pagingController.itemList?.insert(0, state.task);
+                  pagingController.notifyListeners();
                 }
               },
               child: PrimaryPagedListView<Task>(
                 itemBuilder: (context, item, index) {
-                  log('111');
                   return TaskListItem(
                     task: item,
                   );

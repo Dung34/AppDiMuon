@@ -11,10 +11,11 @@ extension BuildContextExt on BuildContext {
           builder: (context) => dialog,
           barrierDismissible: barrierDismissible);
 
-  Future showAppBottomSheet(Widget dialog, {bool barrierDismissible = true}) =>
+  Future showAppBottomSheet(Widget dialog,
+          {bool barrierDismissible = true, bool isScrollControlled = false}) =>
       showModalBottomSheet(
         context: this,
-        // isScrollControlled: true,
+        isScrollControlled: isScrollControlled,
         isDismissible: barrierDismissible,
         useSafeArea: true,
         shape: const RoundedRectangleBorder(

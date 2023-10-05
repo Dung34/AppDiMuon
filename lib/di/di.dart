@@ -83,8 +83,6 @@ configureInjection() async {
   getIt.registerFactory<UtilityRepository>(
       <UtilityRepository>() => UtilitiesRepositoryImpl(dio: getIt<Dio>()));
 
-  getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
-
   final sharedPref = await SharedPreferences.getInstance();
   // getIt.registerSingleton<SharedPreferences>(sharedPref);
 
@@ -101,21 +99,10 @@ configureInjection() async {
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
   getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
-  getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
-  getIt.registerLazySingleton<EventMemberDataMapper>(
-      () => EventMemberDataMapper());
   getIt.registerLazySingleton<ObjectiveDataMapper>(() => ObjectiveDataMapper());
   getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
-  getIt.registerLazySingleton<ProjectListDataMapper>(
-      () => ProjectListDataMapper());
-  getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
   getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
-  getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
-  getIt.registerLazySingleton<ListReportDataMapper>(
-      () => ListReportDataMapper());
-  getIt.registerLazySingleton<GeneralReportMapper>(() => GeneralReportMapper());
-  getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
-  getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
+
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
   getIt.registerFactory<EventMemberDataMapper>(() => EventMemberDataMapper());
   getIt.registerFactory<ProjectListDataMapper>(() => ProjectListDataMapper());

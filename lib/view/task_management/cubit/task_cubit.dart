@@ -12,10 +12,24 @@ class TaskCubit extends Cubit<TaskState> {
 
   TaskCubit() : super(TaskInitial());
 
-  getAllTask({String? user, int page = 1, int pageSize = 10}) async {
-    final response = await _okrRepository.getAllTaskOfUser();
+  final List<Task> taskList = [];
+
+  createTask(Task task) async {
+    final response = await _okrRepository.createTask(task);
     if (response.status == ResponseStatus.success) {
-      emit(TaskGetAllTaskSuccessState(taskList: response.data ?? []));
+      emit(TaskCreateSuccessState(task: response.data!));
+    } else {
+      emit(TaskCreateFailedState());
+    }
+  }
+
+  getAllTask({String? user, int page = 1, int pageSize = 10}) async {
+    final response =
+        await _okrRepository.getAllTaskOfUser(page: page, pageSize: pageSize);
+    if (response.status == ResponseStatus.success) {
+      taskList.clear();
+      taskList.addAll(response.data ?? []);
+      emit(TaskGetAllTaskSuccessState(taskList: taskList));
     } else {
       emit(TaskGetAllTaskFailedState());
     }

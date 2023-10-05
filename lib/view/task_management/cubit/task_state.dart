@@ -9,6 +9,14 @@ class TaskState {
 
 class TaskInitial extends TaskState {}
 
+class TaskCreateSuccessState extends TaskState {
+  final Task task;
+
+  TaskCreateSuccessState({required this.task});
+}
+
+class TaskCreateFailedState extends TaskState {}
+
 class TaskGetAllTaskSuccessState extends TaskState {
   final List<Task> taskList;
 
