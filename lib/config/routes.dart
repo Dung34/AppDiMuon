@@ -35,6 +35,7 @@ import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 import '../view/skill_page/skill_add_page.dart';
 import '../view/skill_page/skill_update.dart';
+import '../view/skill_page/target_add_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -67,6 +68,8 @@ class AppRoute {
   //skill
   static const String skillAddPage = "/skillAddPage";
   static const String skillUpdatePage = "/skillUpdatePage";
+  //target
+  static const String targetAddPage = "/targetAddPage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -99,6 +102,8 @@ class AppRoute {
         //skill
         AppRoute.skillAddPage: (context) => const SkillAddPage(),
         AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
+        //target
+        AppRoute.targetAddPage: (context) => const AddTargetPage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
