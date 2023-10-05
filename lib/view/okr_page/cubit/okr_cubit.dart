@@ -6,6 +6,7 @@ import '../../../data/repository/remote/okr_repository.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
+import '../../../domain/entity/user/user.dart';
 
 part 'okr_state.dart';
 
@@ -53,6 +54,20 @@ class OkrCubit extends Cubit<OkrState> {
       emit(OkrGetObjectiveDetailsSuccessState(response.data!));
     } else {
       emit(OkrGetObjectiveDetailsFailedState());
+    }
+  }
+
+  getAllUsers({String? unitId, required int page, int pageSize = 10}) async {
+    final response = await _okrRepository.getAllUsersInUnit(
+      unitId: unitId,
+      page: page,
+      pageSize: pageSize,
+    );
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrGetAllUserSuccessState(response.data ?? []));
+    } else {
+      emit(OkrGetAllUserFailedState());
     }
   }
 }

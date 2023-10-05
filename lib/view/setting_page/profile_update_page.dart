@@ -57,7 +57,7 @@ class _ProfileUpdatePageState
     user = cubit.currentUser!;
     userUpdate = user.copyWith();
     emailController.text = user.email ?? '';
-    nameController.text = user.firstName ?? '';
+    nameController.text = user.fullName ?? '';
     phoneController.text = user.phoneNumber ?? '';
   }
 

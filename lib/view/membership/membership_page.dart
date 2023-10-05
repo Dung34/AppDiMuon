@@ -70,7 +70,7 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
                             backgroundColor: AppColor.white,
                             child: PrimaryCircleImage(
                               radius: 80,
-                              imageUrl: userCubit.currentUser?.imageUrl ?? '',
+                              imageUrl: userCubit.currentUser?.avatar ?? '',
                             ),
                           ),
                         ),
@@ -92,7 +92,7 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
           Column(
             children: [
               Text(
-                user?.firstName ?? '',
+                user?.avatar ?? '',
                 style: AppTextTheme.lexendBold30,
               ),
               SizedBox(

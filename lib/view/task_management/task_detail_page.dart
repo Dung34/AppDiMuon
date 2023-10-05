@@ -12,6 +12,7 @@ import '../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../base/base_page_sate.dart';
 import 'cubit/task_cubit.dart';
+import 'user_search_dialog.dart';
 
 class TaskDetailPage extends StatefulWidget {
   final Task task;
@@ -160,7 +161,7 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            (task.assigner?.firstName).toString(),
+                            (task.assigner?.fullName).toString(),
                             style: AppTextTheme.robotoBold16,
                           ),
                           const SizedBox(
@@ -168,7 +169,7 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                           ),
                           PrimaryCircleImage(
                             radius: 18,
-                            imageUrl: task.assigner?.imageUrl,
+                            imageUrl: task.assigner?.avatar,
                           )
                         ],
                       ),
@@ -177,21 +178,26 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                     TaskDetailItem(
                       icon: Assets.icPersonCheck,
                       title: 'Assignee',
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            (task.assignee?.firstName).toString(),
-                            style: AppTextTheme.robotoBold16,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          PrimaryCircleImage(
-                            radius: 18,
-                            imageUrl: task.assignee?.imageUrl,
-                          )
-                        ],
+                      child: TextButton(
+                        onPressed: () {
+                          context.showAppBottomSheet(const UserSearchDialog());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              (task.assignee?.fullName).toString(),
+                              style: AppTextTheme.robotoBold16,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            PrimaryCircleImage(
+                              radius: 18,
+                              imageUrl: task.assignee?.avatar,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -318,6 +324,7 @@ class TaskDetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         SvgPicture.asset(icon),
         const SizedBox(width: 10),

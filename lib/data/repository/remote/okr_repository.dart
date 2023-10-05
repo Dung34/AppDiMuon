@@ -3,6 +3,7 @@ import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/okr/task/task.dart';
+import '../../../domain/entity/user/user.dart';
 import '../../model/api/base_response.dart';
 import '../../model/old_login/login_response.dart';
 
@@ -49,7 +50,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Unit>>> getAllUnits();
 
-  Future<ResponseWrapper<List<User>>> getAllUsersInUnit(String? unitId);
+  Future<ResponseWrapper<List<UserEntity>>> getAllUsersInUnit(
+      {String? unitId, required int page, int pageSize = 10});
 
   Future<ResponseWrapper<KeyResult>> getKeyResultDetails();
 

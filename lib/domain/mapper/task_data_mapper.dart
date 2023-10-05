@@ -15,14 +15,14 @@ class TaskDataMapper extends BaseDataMapper<TaskResponse, Task>
       description: data?.description,
       assignee: UserEntity(
         id: data?.assigneeId,
-        firstName: 'Thanh Pham',
-        imageUrl:
+        fullName: 'Thanh Pham',
+        avatar:
             'https://i.pinimg.com/736x/c0/ca/7c/c0ca7c23d37ece20730b2895d625da31.jpg',
       ),
       assigner: UserEntity(
         id: data?.assigneerId,
-        firstName: 'Lã Thanh Hương',
-        imageUrl:
+        fullName: 'Lã Thanh Hương',
+        avatar:
             'https://ih1.redbubble.net/image.1357487604.8176/st,small,507x507-pad,600x600,f8f8f8.jpg',
       ),
       point: data?.point,

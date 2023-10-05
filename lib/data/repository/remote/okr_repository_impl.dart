@@ -9,8 +9,10 @@ import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/okr/task/task.dart';
+import '../../../domain/entity/user/user.dart';
 import '../../../domain/mapper/okr_data_mapper.dart';
 import '../../../domain/mapper/unit_data_mapper.dart';
+import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../../domain/mapper/task_data_mapper.dart';
 import '../../model/api/base_response.dart';
@@ -18,6 +20,7 @@ import '../../model/okr_response/objective_response.dart';
 import '../../model/okr_response/okr_response.dart';
 import '../../model/old_login/login_response.dart';
 import '../../model/unit_response/unit_response.dart';
+import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
 import '../local/local_data_access.dart';
@@ -33,6 +36,7 @@ class OKRRepositoryImpl extends OKRRepository {
   final OKRDataMapper _okrDataMapper = getIt.get<OKRDataMapper>();
   final UnitDataMapper _unitDataMapper = getIt.get<UnitDataMapper>();
   final TaskDataMapper _taskDataMapper = getIt.get();
+  final UserDataMapper _userDataMapper = getIt.get();
   final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
 
   OKRRepositoryImpl() {
@@ -329,13 +333,34 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<User>>> getAllUsersInUnit(String? unitId) async {
+  Future<ResponseWrapper<List<UserEntity>>> getAllUsersInUnit(
+      {String? unitId, required int page, int pageSize = 10}) async {
+    accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get(
-          '${EndPoints.getAllUserInUnit}?UnitId=$unitId&Page=1&PageSize=100');
+        EndPoints.getAllUserInUnit,
+        queryParameters: {
+          "UnitId": unitId,
+          "Page": page,
+          "PageSize": pageSize,
+        }..removeWhere((key, value) => value == null),
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
 
       if (response.statusCode == 200) {
-        return ResponseWrapper.error(message: "");
+        final responsePaging =
+            DefaultPagingResponse<List<UserResponse>>.fromJson(
+          response.data,
+          (json) =>
+              (json as List).map((e) => UserResponse.fromJson(e)).toList(),
+        );
+        return ResponseWrapper.success(
+          data: List.from(
+            (responsePaging.data as List).map(
+              (e) => _userDataMapper.mapToEntity(e),
+            ),
+          ),
+        );
       }
       return ResponseWrapper.error(message: "");
     } catch (e) {

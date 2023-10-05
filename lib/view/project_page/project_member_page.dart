@@ -148,7 +148,7 @@ class _ProjectMemberPageState
                     return Text('Error: ${snapshot.error}');
                   } else {
                     return MemberItem(
-                        memberName: snapshot.data!.firstName ?? 'Unknown',
+                        memberName: snapshot.data!.fullName ?? 'Unknown',
                         role: projectMembers![index].role ?? 0);
                   }
                 }

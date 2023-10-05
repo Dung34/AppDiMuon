@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/colors.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
@@ -55,7 +53,7 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                   children: [
                     Text(
                       state is UserGetUserSuccessState
-                          ? state.userEntity.firstName ?? ' '
+                          ? state.userEntity.fullName ?? ' '
                           : ' ',
                       style: AppTextTheme.robotoBold16
                           .copyWith(color: AppColor.green400),

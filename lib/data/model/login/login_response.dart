@@ -1,15 +1,17 @@
 class LoginResponse {
-  String? idToken;
+  String? accessToken;
+  String? refreshToken;
 
-  LoginResponse({this.idToken});
+  LoginResponse({this.accessToken, this.refreshToken});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
-    idToken = json['id_token'];
+    accessToken = json['accessToken'];
+    refreshToken = json['refreshToken'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id_token'] = this.idToken;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['accessToken'] = accessToken;
     return data;
   }
 }
