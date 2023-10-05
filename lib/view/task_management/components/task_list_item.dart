@@ -31,13 +31,19 @@ class _TaskListItemState extends State<TaskListItem> {
         );
       },
       child: PrimaryContainer(
-        backgroundColor: AppColor.neutral5,
+        backgroundColor: AppColor.green100,
         margin: const EdgeInsets.only(top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.task.title ?? ''),
-            Text(widget.task.description ?? ''),
+            Text(
+              widget.task.title ?? '',
+              style: AppTextTheme.lexendBold16,
+            ),
+            Text(
+              widget.task.description ?? '',
+              style: AppTextTheme.lexendRegular14,
+            ),
             Text(
                 '${DateTimeUtils.formatDate(widget.task.startDate ?? '')} - ${DateTimeUtils.formatDate(widget.task.endDate ?? '')}'),
             const SizedBox(
