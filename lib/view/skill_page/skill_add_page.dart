@@ -4,6 +4,7 @@ import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/resources.dart';
 import '../../di/di.dart';
 import '../../domain/entity/skill/skill.dart';
+import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
@@ -67,6 +68,7 @@ class _SkillAddPageState extends BasePageState<SkillAddPage, SkillCubit> {
                 icon: iconController.text.trim(),
                 name: nameController.text.trim(),
                 point: 100));
+            context.pop();
           }),
         ));
   }

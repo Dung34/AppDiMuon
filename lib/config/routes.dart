@@ -1,11 +1,14 @@
-import '../domain/entity/event/event_wrapper/event.dart';
-import '../domain/entity/project/project.dart';
-import '../view/auth/register/register_page.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/cupertino.dart';
 
+import '../domain/entity/event/event_wrapper/event.dart';
+import '../domain/entity/project/project.dart';
 import '../view/auth/login/login_page.dart';
+import '../view/auth/register/register_page.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
+import '../view/base/bloc/skill/skill_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/event_page/event_detail_page.dart';
 import '../view/event_page/event_history_page.dart';
@@ -31,6 +34,7 @@ import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 import '../view/skill_page/skill_add_page.dart';
+import '../view/skill_page/skill_update.dart';
 import '../view/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -62,6 +66,7 @@ class AppRoute {
   static const String geneReportUpdate = "/geneReportUpdate";
   //skill
   static const String skillAddPage = "/skillAddPage";
+  static const String skillUpdatePage = "/skillUpdatePage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -93,6 +98,7 @@ class AppRoute {
         AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
         //skill
         AppRoute.skillAddPage: (context) => const SkillAddPage(),
+        AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -172,6 +178,15 @@ class ReportDailyPageArgs {
   final String reportId;
   final ReportCubit reportCubit;
   ReportDailyPageArgs({required this.reportId, required this.reportCubit});
+}
+
+class SkillPageArgs {
+  final String id;
+  final SkillCubit skillCubit;
+  SkillPageArgs({
+    required this.id,
+    required this.skillCubit,
+  });
 }
 
 class QrScannerPageArgs {
