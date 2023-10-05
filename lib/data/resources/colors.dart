@@ -25,8 +25,6 @@ class AppColor {
   static const Color fourth700 = Color(0xff979797);
   static const Color fourth900 = Color.fromARGB(255, 124, 123, 123);
   static const Color green100 = Color(0xff38dcaa);
-  static const Color green200 = Color(0xff07ab5c);
-  static const Color green400 = Color(0xff214120);
   static const Color transparent = Colors.transparent;
 
   static const Color success = Color.fromARGB(217, 23, 131, 1);
