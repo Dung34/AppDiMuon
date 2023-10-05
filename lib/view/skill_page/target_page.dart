@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../config/routes.dart';
 import '../../domain/entity/target/target.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
@@ -70,7 +71,15 @@ class TargetItem extends StatelessWidget {
                     onPressed: () {
                       TargetCubit().deleteTarget(target.id ?? " ");
                     },
-                    icon: Icon(Icons.delete))
+                    icon: Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoute.targetUpdatePage,
+                          arguments: TargetPageArgs(
+                              id: target.id ?? "",
+                              targetCubit: context.read<TargetCubit>()));
+                    },
+                    icon: Icon(Icons.edit))
               ],
             ),
           ),

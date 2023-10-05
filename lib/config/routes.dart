@@ -9,6 +9,7 @@ import '../view/auth/register/register_page.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/skill/skill_cubit.dart';
+import '../view/base/bloc/target/target_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/event_page/event_detail_page.dart';
 import '../view/event_page/event_history_page.dart';
@@ -36,6 +37,7 @@ import '../view/setting_page/profile_update_page.dart';
 import '../view/skill_page/skill_add_page.dart';
 import '../view/skill_page/skill_update.dart';
 import '../view/skill_page/target_add_page.dart';
+import '../view/skill_page/update_target_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -70,6 +72,7 @@ class AppRoute {
   static const String skillUpdatePage = "/skillUpdatePage";
   //target
   static const String targetAddPage = "/targetAddPage";
+  static const String targetUpdatePage = "/targetUpdatePage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -104,6 +107,7 @@ class AppRoute {
         AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
         //target
         AppRoute.targetAddPage: (context) => const AddTargetPage(),
+        AppRoute.targetUpdatePage: (context) => const TargetUpdatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -192,6 +196,12 @@ class SkillPageArgs {
     required this.id,
     required this.skillCubit,
   });
+}
+
+class TargetPageArgs {
+  final String id;
+  final TargetCubit targetCubit;
+  TargetPageArgs({required this.id, required this.targetCubit});
 }
 
 class QrScannerPageArgs {
