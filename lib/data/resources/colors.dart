@@ -40,6 +40,7 @@ class AppColor {
   static const Color green200 = Color(0xff07AB5C);
   static const Color green300 = Color(0xFF49675D);
   static const Color green400 = Color(0xFF214120);
+  static const Color yellow = Color(0xFFFFB81C);
   static const Color errorColor = Color(0xFFD82F1A);
 
   static const Color neutral5 = Color(0xFFD9D9D9);

@@ -56,7 +56,7 @@ abstract class OKRRepository {
   Future<ResponseWrapper<Objective>> getObjectiveDetails(
       String objectiveId, String unitId);
 
-  Future<ResponseWrapper<Task>> getTaskDetails();
+  Future<ResponseWrapper<Task>> getTaskDetails(String taskId);
 
   Future<ResponseWrapper<KeyResult>> updateKeyResult();
 

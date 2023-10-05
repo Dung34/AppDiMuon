@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../shared/etx/view_ext.dart';
 import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/container/primary_container.dart';
+import '../cubit/task_cubit.dart';
 import '../task_detail_page.dart';
 
 class TaskListItem extends StatefulWidget {
@@ -23,6 +25,7 @@ class _TaskListItemState extends State<TaskListItem> {
         context.showAppBottomSheet(
           TaskDetailPage(
             task: widget.task,
+            taskCubit: context.read<TaskCubit>(),
           ),
           isScrollControlled: true,
         );

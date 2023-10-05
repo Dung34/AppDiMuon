@@ -372,9 +372,25 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Task>> getTaskDetails() {
-    // TODO: implement getTaskDetails
-    throw UnimplementedError();
+  Future<ResponseWrapper<Task>> getTaskDetails(String taskId) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.get(EndPoints.getTaskDetail,
+          queryParameters: {
+            "TaskId": taskId,
+          },
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _taskDataMapper
+                .mapToEntity(TaskResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override

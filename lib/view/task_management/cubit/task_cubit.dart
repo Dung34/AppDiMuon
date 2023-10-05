@@ -14,12 +14,25 @@ class TaskCubit extends Cubit<TaskState> {
 
   final List<Task> taskList = [];
 
+  resetState() {
+    emit(TaskInitial());
+  }
+
   createTask(Task task) async {
     final response = await _okrRepository.createTask(task);
     if (response.status == ResponseStatus.success) {
       emit(TaskCreateSuccessState(task: response.data!));
     } else {
       emit(TaskCreateFailedState());
+    }
+  }
+
+  getTaskDetail(String taskId) async {
+    final response = await _okrRepository.getTaskDetails(taskId);
+    if (response.status == ResponseStatus.success) {
+      emit(TaskGetDetailSuccessState(task: response.data!));
+    } else {
+      emit(TaskGetDetailFailedState());
     }
   }
 
