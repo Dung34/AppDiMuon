@@ -1,16 +1,18 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
+import '../../data/resources/themes.dart';
 import '../../domain/entity/okr/task/task.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
+import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
 import 'cubit/task_cubit.dart';
+import 'user_search_dialog.dart';
 
 class TaskCreatePage extends StatefulWidget {
   const TaskCreatePage({super.key});
@@ -69,6 +71,7 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
       },
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PrimaryTextField(
               controller: titleController,
@@ -85,37 +88,30 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
             const SizedBox(
               height: 20,
             ),
+            const Text(
+              'Assignee',
+              style: AppTextTheme.robotoMedium16,
+            ),
+            const SizedBox(height: 10),
             Row(
               children: [
-                // PrimaryDropDownFormField(
-                //   controller: TextEditingController(),
-                //   items: const [],
-                //   initialValue: null,
-                // ),
-                // const SizedBox(
-                //   width: 10,
-                // ),
                 Expanded(
-                  child: DropdownSearch<String>(
-                    popupProps: PopupProps.menu(
-                      showSelectedItems: true,
-                      showSearchBox: true,
-                      disabledItemFn: (String s) => s.startsWith('I'),
-                    ),
-                    items: const [
-                      "Brazil",
-                      "Italia (Disabled)",
-                      "Tunisia",
-                      'Canada'
-                    ],
-                    dropdownDecoratorProps: const DropDownDecoratorProps(
-                      dropdownSearchDecoration: InputDecoration(
-                        labelText: "Assign to",
-                        hintText: "country in menu mode",
+                  child: InkWell(
+                    onTap: () {
+                      context.showAppBottomSheet(const UserSearchDialog());
+                    },
+                    child: const PrimaryContainer(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Select member',
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_drop_down_rounded)
+                        ],
                       ),
                     ),
-                    onChanged: print,
-                    selectedItem: "Brazil",
                   ),
                 ),
                 TextButton(
@@ -123,7 +119,42 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
                   child: const Text('Assign to me'),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Assigner',
+              style: AppTextTheme.robotoMedium16,
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      context.showAppBottomSheet(const UserSearchDialog());
+                    },
+                    child: const PrimaryContainer(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Select member',
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_drop_down_rounded)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Assign to me'),
+                ),
+              ],
+            ),
           ],
         ),
       ),
