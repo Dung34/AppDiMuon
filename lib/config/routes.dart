@@ -32,6 +32,9 @@ import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 import '../view/skill_page/skill_add_page.dart';
 import '../view/splash_screen/splash_screen.dart';
+import '../view/unit_page/cubit/unit_cubit.dart';
+import '../view/unit_page/unit_add.dart';
+import '../view/unit_page/unit_detail_page.dart';
 import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
@@ -64,6 +67,9 @@ class AppRoute {
   static const String geneReportAdd = "/geneReportAdd";
   static const String geneReportUpdate = "/geneReportUpdate";
 
+  static const String unitAdd = "/unitAdd";
+  static const String unitDetail = "/unitDetail";
+
   static const String taskManager = "/taskManager";
   static const String taskCreate = "/taskCreate";
   //skill
@@ -93,10 +99,15 @@ class AppRoute {
         AppRoute.reportDetail: (context) => const ReportDetailView(),
         AppRoute.addReport: (context) => const ReportAddPage(),
         AppRoute.updateReport: (context) => const ReportUpdatePage(),
+
         AppRoute.generalReport: (context) => const GeneralPage(),
         AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
         AppRoute.geneReportUpdate: (context) => const GenReportUpdate(),
+
+        AppRoute.unitAdd: (context) => UnitAddPage(),
+        AppRoute.unitDetail: (context) => const UnitDetailPage(),
+
         //skill
         AppRoute.skillAddPage: (context) => const SkillAddPage(),
 
@@ -175,6 +186,13 @@ class ProjectMemberPageArgs {
       {required this.projectId,
       required this.projectCubit,
       this.projectMembers});
+}
+
+class UnitDetailPageArgs {
+  final String id;
+  final UnitCubit unitCubit;
+
+  UnitDetailPageArgs({required this.id, required this.unitCubit});
 }
 
 class ReportDailyPageArgs {

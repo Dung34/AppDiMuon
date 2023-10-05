@@ -9,7 +9,6 @@ import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
-import '../okr_page/okr_page.dart';
 import '../setting_page/setting_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -55,8 +54,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const MembershipPage(),
     // const CalendarPage(),
     // const ProjectPage(),
-    const OKRPage(),
-    //const SkillPage(),
+    UnitPage(),
     SettingPage(),
   ];
 

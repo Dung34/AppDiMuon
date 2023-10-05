@@ -59,25 +59,19 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Objective>> createObjective({
-    String? title,
-    String? description,
-    required String okrsId,
-    required String unitId,
-    double? process,
-    List<String>? relatedObjectiveId,
-  }) async {
+  Future<ResponseWrapper<Objective>> createObjective(
+      Objective objective) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.post(
         EndPoints.createObjective,
         data: {
-          "title": title,
-          "description": description,
-          "okRsId": okrsId,
-          "unitId": unitId,
-          "process": process,
-          "relativeObjectiveId": relatedObjectiveId
+          "title": objective.title,
+          "description": objective.description,
+          "okRsId": objective.okrId,
+          "unitId": objective.unitId,
+          "process": objective.process,
+          "relativeObjectiveId": objective.relatedObjective
         },
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
@@ -95,14 +89,17 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<OKR>> createOKR(
-      {String? name, String? description, String? unitId}) async {
+  Future<ResponseWrapper<OKR>> createOKR(OKR okr) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.post(
         EndPoints.createOKR,
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
-        data: {"name": name, "description": description, "unitId": unitId},
+        data: {
+          "name": okr.name,
+          "description": okr.description,
+          "unitId": okr.unitId
+        },
       );
 
       if (response.statusCode == 200) {
@@ -152,21 +149,16 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Unit>> createUnit({
-    String? name,
-    String? parrentId,
-    String? description,
-    String? coverImage,
-  }) async {
+  Future<ResponseWrapper<Unit>> createUnit(Unit unit) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.post(
         EndPoints.createUnit,
         data: {
-          "name": name,
-          "parrentId": parrentId,
-          "description": description,
-          "coverImage": coverImage,
+          "name": unit.name,
+          "parentId": unit.parrentId,
+          "description": unit.description,
+          "coverImage": unit.coverImage
         },
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );

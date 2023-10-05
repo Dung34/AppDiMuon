@@ -24,13 +24,15 @@ class AppColor {
   static const Color fourth600 = Color(0xffC1C1C1);
   static const Color fourth700 = Color(0xff979797);
   static const Color fourth900 = Color.fromARGB(255, 124, 123, 123);
+  static const Color green100 = Color(0xff38dcaa);
+  static const Color green200 = Color(0xff07ab5c);
+  static const Color green400 = Color(0xff214120);
   static const Color transparent = Colors.transparent;
 
   static const Color success = Color.fromARGB(217, 23, 131, 1);
   static const Color error400 = Color(0xffDD3333);
 
-  static const Color primaryBackgroundColor =
-      Color.fromARGB(255, 255, 255, 255);
+  static const Color primaryBackgroundColor = Color(0xfff6f7f8);
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color gray = Color.fromARGB(255, 179, 179, 179);
@@ -48,6 +50,7 @@ class AppColor {
   static const Color gray04 = Color(0xFF727276);
   static const Color gray05 = Color(0xFF8E8E93);
   static const Color gray09 = Color(0xFFDDDDDF);
+  static const Color gray50 = Color(0xfff6f7f8);
 
   static const List<Color> primaryGradient = [
     Color(0xFF1850AE),

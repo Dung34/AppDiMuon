@@ -37,3 +37,5 @@ class UnitGetUnitDetailSuccessState extends UnitState {
 }
 
 class UnitGetUnitDetailFailedState extends UnitState {}
+
+class UnitResetState extends UnitState {}

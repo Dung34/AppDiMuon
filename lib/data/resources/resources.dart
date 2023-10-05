@@ -43,6 +43,8 @@ class Assets {
   static const String icSearch = '$iconPrefix/ic_search.svg';
   static const String icSetting = '$iconPrefix/ic_setting.svg';
   static const String icShare = '$iconPrefix/ic_share.svg';
+  static const String icSquareAltArrowRight =
+      '$iconPrefix/ic_square_alt_arrow_right.svg';
   static const String icStar = '$iconPrefix/ic_star.svg';
   static const String icSuccess = '$iconPrefix/ic_success.svg';
   static const String icTask = '$iconPrefix/ic_task.svg';

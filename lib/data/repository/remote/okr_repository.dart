@@ -11,24 +11,13 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
-  Future<ResponseWrapper<Objective>> createObjective(
-      {String? title,
-      String? description,
-      required String okrsId,
-      required String unitId,
-      double? process,
-      List<String>? relatedObjectiveId});
+  Future<ResponseWrapper<Objective>> createObjective(Objective objective);
 
-  Future<ResponseWrapper<OKR>> createOKR(
-      {String? name, String? description, String? unitId});
+  Future<ResponseWrapper<OKR>> createOKR(OKR okr);
 
   Future<ResponseWrapper<Task>> createTask(Task task);
 
-  Future<ResponseWrapper<Unit>> createUnit(
-      {String? name,
-      String? parrentId,
-      String? description,
-      String? coverImage});
+  Future<ResponseWrapper<Unit>> createUnit(Unit unit);
 
   Future<ResponseWrapper<int>> deleteKeyResult();
 
