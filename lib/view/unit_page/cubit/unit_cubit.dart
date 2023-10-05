@@ -15,16 +15,8 @@ class UnitCubit extends Cubit<UnitState> {
 
   UnitCubit() : super(UnitInitialState());
 
-  createUnit(
-      {String? name,
-      String? parrentId,
-      String? description,
-      String? coverImage}) async {
-    final response = await _okrRepository.createUnit(
-        name: name,
-        parrentId: parrentId,
-        description: description,
-        coverImage: coverImage);
+  createUnit(Unit unit) async {
+    final response = await _okrRepository.createUnit(unit);
 
     if (response.status == ResponseStatus.success) {
       emit(UnitCreateUnitSuccessState(response.data!));
@@ -47,6 +39,8 @@ class UnitCubit extends Cubit<UnitState> {
   }
 
   viewUnit(String unitId) async {
+    emit(UnitResetState());
+
     final response = await _okrRepository.viewUnit(unitId);
 
     if (response.status == ResponseStatus.success) {

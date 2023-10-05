@@ -21,13 +21,21 @@ Unit _$UnitFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Unit {
   String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  set name(String? value) => throw _privateConstructorUsedError;
   String? get parrentId => throw _privateConstructorUsedError;
+  set parrentId(String? value) => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  set description(String? value) => throw _privateConstructorUsedError;
   String? get coverImage => throw _privateConstructorUsedError;
+  set coverImage(String? value) => throw _privateConstructorUsedError;
   int? get totalMemberCount => throw _privateConstructorUsedError;
+  set totalMemberCount(int? value) => throw _privateConstructorUsedError;
   List<Unit>? get subUnit => throw _privateConstructorUsedError;
+  set subUnit(List<Unit>? value) => throw _privateConstructorUsedError;
   String? get okRsId => throw _privateConstructorUsedError;
+  set okRsId(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -170,7 +178,7 @@ class __$$_UnitCopyWithImpl<$Res> extends _$UnitCopyWithImpl<$Res, _$_Unit>
           : totalMemberCount // ignore: cast_nullable_to_non_nullable
               as int?,
       subUnit: freezed == subUnit
-          ? _value._subUnit
+          ? _value.subUnit
           : subUnit // ignore: cast_nullable_to_non_nullable
               as List<Unit>?,
       okRsId: freezed == okRsId
@@ -191,73 +199,32 @@ class _$_Unit implements _Unit {
       this.description,
       this.coverImage,
       this.totalMemberCount,
-      final List<Unit>? subUnit,
-      this.okRsId})
-      : _subUnit = subUnit;
+      this.subUnit,
+      this.okRsId});
 
   factory _$_Unit.fromJson(Map<String, dynamic> json) => _$$_UnitFromJson(json);
 
   @override
-  final String? id;
+  String? id;
   @override
-  final String? name;
+  String? name;
   @override
-  final String? parrentId;
+  String? parrentId;
   @override
-  final String? description;
+  String? description;
   @override
-  final String? coverImage;
+  String? coverImage;
   @override
-  final int? totalMemberCount;
-  final List<Unit>? _subUnit;
+  int? totalMemberCount;
   @override
-  List<Unit>? get subUnit {
-    final value = _subUnit;
-    if (value == null) return null;
-    if (_subUnit is EqualUnmodifiableListView) return _subUnit;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  List<Unit>? subUnit;
   @override
-  final String? okRsId;
+  String? okRsId;
 
   @override
   String toString() {
     return 'Unit(id: $id, name: $name, parrentId: $parrentId, description: $description, coverImage: $coverImage, totalMemberCount: $totalMemberCount, subUnit: $subUnit, okRsId: $okRsId)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Unit &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.parrentId, parrentId) ||
-                other.parrentId == parrentId) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.coverImage, coverImage) ||
-                other.coverImage == coverImage) &&
-            (identical(other.totalMemberCount, totalMemberCount) ||
-                other.totalMemberCount == totalMemberCount) &&
-            const DeepCollectionEquality().equals(other._subUnit, _subUnit) &&
-            (identical(other.okRsId, okRsId) || other.okRsId == okRsId));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      parrentId,
-      description,
-      coverImage,
-      totalMemberCount,
-      const DeepCollectionEquality().hash(_subUnit),
-      okRsId);
 
   @JsonKey(ignore: true)
   @override
@@ -275,33 +242,41 @@ class _$_Unit implements _Unit {
 
 abstract class _Unit implements Unit {
   factory _Unit(
-      {final String? id,
-      final String? name,
-      final String? parrentId,
-      final String? description,
-      final String? coverImage,
-      final int? totalMemberCount,
-      final List<Unit>? subUnit,
-      final String? okRsId}) = _$_Unit;
+      {String? id,
+      String? name,
+      String? parrentId,
+      String? description,
+      String? coverImage,
+      int? totalMemberCount,
+      List<Unit>? subUnit,
+      String? okRsId}) = _$_Unit;
 
   factory _Unit.fromJson(Map<String, dynamic> json) = _$_Unit.fromJson;
 
   @override
   String? get id;
+  set id(String? value);
   @override
   String? get name;
+  set name(String? value);
   @override
   String? get parrentId;
+  set parrentId(String? value);
   @override
   String? get description;
+  set description(String? value);
   @override
   String? get coverImage;
+  set coverImage(String? value);
   @override
   int? get totalMemberCount;
+  set totalMemberCount(int? value);
   @override
   List<Unit>? get subUnit;
+  set subUnit(List<Unit>? value);
   @override
   String? get okRsId;
+  set okRsId(String? value);
   @override
   @JsonKey(ignore: true)
   _$$_UnitCopyWith<_$_Unit> get copyWith => throw _privateConstructorUsedError;

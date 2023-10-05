@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'unit.freezed.dart';
 part 'unit.g.dart';
 
-@freezed
+@unfreezed
 class Unit with _$Unit {
   factory Unit({
     String? id,
