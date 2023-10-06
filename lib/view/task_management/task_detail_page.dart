@@ -12,6 +12,7 @@ import '../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
+import 'components/task_priority_select_dialog.dart';
 import 'cubit/task_cubit.dart';
 import 'user_search_dialog.dart';
 
@@ -123,26 +124,55 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                     style: AppTextTheme.robotoBold16,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 TaskDetailItem(
                   icon: Assets.icHistory2,
-                  title: 'Level',
-                  child: Text(
-                    task.priorityStr ?? '',
-                    textAlign: TextAlign.end,
-                    style: AppTextTheme.robotoBold16
-                        .copyWith(color: AppColor.red200),
+                  title: 'Prioriry',
+                  child: InkWell(
+                    onTap: () {
+                      context
+                          .showAppBottomSheet(const TaskPrioritySelectDialog());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            task.priorityStr ?? '',
+                            textAlign: TextAlign.end,
+                            style: AppTextTheme.robotoBold16
+                                .copyWith(color: AppColor.red200),
+                          ),
+                          const SizedBox(width: 10),
+                          SvgPicture.asset(Assets.icDropdown),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 TaskDetailItem(
                   icon: Assets.icHistory2,
                   title: 'Status',
-                  child: Text(
-                    task.statusStr ?? 'Not be Set',
-                    textAlign: TextAlign.end,
-                    style: AppTextTheme.robotoBold16
-                        .copyWith(color: AppColor.green200),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            task.statusStr ?? 'Not be Set',
+                            textAlign: TextAlign.end,
+                            style: AppTextTheme.robotoBold16
+                                .copyWith(color: AppColor.green200),
+                          ),
+                          const SizedBox(width: 10),
+                          SvgPicture.asset(Assets.icDropdown),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -234,6 +264,46 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
   }
 }
 
+class TaskDetailItem extends StatelessWidget {
+  final String icon;
+  final String title;
+  final Widget child;
+  const TaskDetailItem(
+      {super.key,
+      required this.icon,
+      required this.title,
+      required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(icon),
+            const SizedBox(width: 10),
+            Text(
+              title,
+              style:
+                  AppTextTheme.robotoMedium16.copyWith(color: AppColor.gray200),
+            ),
+            const SizedBox(width: 10),
+            const Spacer(),
+            child
+          ],
+        ),
+        const SizedBox(height: 10),
+        const Divider(
+          thickness: 0.5,
+          color: AppColor.gray200,
+        )
+      ],
+    );
+  }
+}
+
 class TaskDetailShimmer extends StatelessWidget {
   const TaskDetailShimmer({
     super.key,
@@ -308,46 +378,6 @@ class TaskDetailShimmer extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class TaskDetailItem extends StatelessWidget {
-  final String icon;
-  final String title;
-  final Widget child;
-  const TaskDetailItem(
-      {super.key,
-      required this.icon,
-      required this.title,
-      required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset(icon),
-            const SizedBox(width: 10),
-            Text(
-              title,
-              style:
-                  AppTextTheme.robotoMedium16.copyWith(color: AppColor.gray200),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: child,
-            )
-          ],
-        ),
-        const SizedBox(height: 10),
-        const Divider(
-          thickness: 0.5,
-          color: AppColor.gray200,
-        )
-      ],
     );
   }
 }

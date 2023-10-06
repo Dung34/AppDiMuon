@@ -43,6 +43,7 @@ class AppColor {
   static const Color yellow = Color(0xFFFFB81C);
   static const Color errorColor = Color(0xFFD82F1A);
 
+  static const Color blue200 = Color(0xFF2F98FF);
   static const Color neutral5 = Color(0xFFD9D9D9);
   static const Color neutral10 = Color(0xFFFAFAFA);
   static const Color red = Color(0xFFFF4D4F);

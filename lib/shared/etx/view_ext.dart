@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../data/resources/colors.dart';
+
 extension BuildContextExt on BuildContext {
   double get screenHeight => MediaQuery.of(this).size.height;
   double get screenWidth => MediaQuery.of(this).size.width;
@@ -17,6 +19,7 @@ extension BuildContextExt on BuildContext {
         context: this,
         isScrollControlled: isScrollControlled,
         isDismissible: barrierDismissible,
+        backgroundColor: AppColor.white,
         useSafeArea: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
