@@ -5,6 +5,7 @@ import '../../config/routes.dart';
 import '../../data/resources/themes.dart';
 import '../../domain/entity/okr/task/task.dart';
 import '../../shared/etx/app_ext.dart';
+import '../../shared/utils/validation_utils.dart';
 import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/container/primary_container.dart';
@@ -55,6 +56,8 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController pointController = TextEditingController();
 
+  final titleFormKey = GlobalKey<FormState>();
+
   @override
   @override
   Widget buildPage(BuildContext context) {
@@ -76,6 +79,9 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
             PrimaryTextField(
               controller: titleController,
               label: 'title',
+              isRequired: true,
+              formKey: titleFormKey,
+              validator: ValidationUtils.textEmptyValidator,
             ),
             const SizedBox(
               height: 20,
@@ -162,6 +168,12 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
   }
 
   _onTaskSave() {
+    final c1 = titleFormKey.currentState?.validate();
+    if (!c1!) {
+      Scrollable.ensureVisible(titleFormKey.currentContext!);
+      return;
+    }
+
     showLoading();
     task.title = titleController.text.trim();
     task.description = descriptionController.text.trim();
