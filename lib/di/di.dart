@@ -26,11 +26,10 @@ import '../domain/mapper/list_report_data_mapper.dart';
 import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
-
 import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/skill_data_mapper.dart';
-
 import '../domain/mapper/user_data_mapper.dart';
+
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';

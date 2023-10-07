@@ -7,7 +7,8 @@ import '../../model/api/base_response.dart';
 import '../../model/old_login/login_response.dart';
 
 abstract class OKRRepository {
-  Future<ResponseWrapper<User>> addUserInUnit();
+  Future<ResponseWrapper<List<User>>> addUserInUnit(
+      String unitId, List<String>? memberIds);
 
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
@@ -27,7 +28,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<int>> deleteUnit(String id);
 
-  Future<ResponseWrapper<int>> deleteUserInUnit();
+  Future<ResponseWrapper<int>> deleteUserInUnit(
+      String unitId, List<String>? memberIds);
 
   Future<ResponseWrapper<List<Objective>>> getAllChildObjectiveOfAnObjective();
 
@@ -63,7 +65,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<Task>> updateTask();
 
-  Future<ResponseWrapper<Unit>> updateUnit();
+  Future<ResponseWrapper<Unit>> updateUnit(Unit unit);
 
   Future<ResponseWrapper<User>> updateUserInUnit();
 

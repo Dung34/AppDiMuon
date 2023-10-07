@@ -71,10 +71,13 @@ class EndPoints {
   static const String getProjectDetail = "/project/view-detail-project";
 
   //unit
+  static const String addMemberToUnit = "/unit/add-member-to-unit";
   static const String createUnit = "/unit/create-unit";
+  static const String deleteMemberFromUnit = '/unit/delete-member-from-unit';
   static const String deleteUnit = "/unit/delete-unit";
   static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
   static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
+  static const String updateUnit = '/unit/update-unit';
   static const String viewUnit = '/unit/get-detail-unit';
 
   //skill

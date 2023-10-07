@@ -10,12 +10,14 @@ import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/project/task.dart';
 import '../../../domain/mapper/okr_data_mapper.dart';
 import '../../../domain/mapper/unit_data_mapper.dart';
+import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
 import '../../model/okr_response/objective_response.dart';
 import '../../model/okr_response/okr_response.dart';
 import '../../model/old_login/login_response.dart';
 import '../../model/unit_response/unit_response.dart';
+import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
 import '../local/local_data_access.dart';
@@ -29,6 +31,7 @@ class OKRRepositoryImpl extends OKRRepository {
       getIt.get<ObjectiveDataMapper>();
   final OKRDataMapper _okrDataMapper = getIt.get<OKRDataMapper>();
   final UnitDataMapper _unitDataMapper = getIt.get<UnitDataMapper>();
+  final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
   final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
 
   OKRRepositoryImpl() {
@@ -43,9 +46,29 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<User>> addUserInUnit() {
-    // TODO: implement addUserInUnit
-    throw UnimplementedError();
+  Future<ResponseWrapper<List<User>>> addUserInUnit(
+      String unitId, List<String>? memberIds) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(
+        EndPoints.addMemberToUnit,
+        data: {"unitId": unitId, "listId": memberIds, "ranked": 0},
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data as List).map(
+                (e) => _userDataMapper.mapToEntity(UserResponse.fromJson(e))),
+          ),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -183,9 +206,24 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<int>> deleteUserInUnit() {
-    // TODO: implement deleteUserInUnit
-    throw UnimplementedError();
+  Future<ResponseWrapper<int>> deleteUserInUnit(
+      String unitId, List<String>? memberIds) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.delete(
+        EndPoints.deleteMemberFromUnit,
+        data: {"listId": memberIds, "unitId": unitId},
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: response.data);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -287,7 +325,12 @@ class OKRRepositoryImpl extends OKRRepository {
           '${EndPoints.getAllUserInUnit}?UnitId=$unitId&Page=1&PageSize=100');
 
       if (response.statusCode == 200) {
-        return ResponseWrapper.error(message: "");
+        return ResponseWrapper.success(
+          data: List.from(
+            (response.data["data"] as List).map(
+                (e) => _userDataMapper.mapToEntity(UserResponse.fromJson(e))),
+          ),
+        );
       }
       return ResponseWrapper.error(message: "");
     } catch (e) {
@@ -348,9 +391,26 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<Unit>> updateUnit() {
-    // TODO: implement updateUnit
-    throw UnimplementedError();
+  Future<ResponseWrapper<Unit>> updateUnit(Unit unit) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(
+        EndPoints.updateUnit,
+        data: _unitDataMapper.mapToData(unit).toJson(),
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data:
+              _unitDataMapper.mapToEntity(UnitResponse.fromJson(response.data)),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override

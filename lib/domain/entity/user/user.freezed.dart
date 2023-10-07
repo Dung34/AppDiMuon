@@ -26,6 +26,8 @@ mixin _$UserEntity {
   set login(String? value) => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   set firstName(String? value) => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
+  set fullName(String? value) => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   set email(String? value) => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -34,18 +36,8 @@ mixin _$UserEntity {
   set imageUrl(String? value) => throw _privateConstructorUsedError;
   bool? get activated => throw _privateConstructorUsedError;
   set activated(bool? value) => throw _privateConstructorUsedError;
-  String? get langKey => throw _privateConstructorUsedError;
-  set langKey(String? value) => throw _privateConstructorUsedError;
   int? get rank => throw _privateConstructorUsedError;
   set rank(int? value) => throw _privateConstructorUsedError;
-  String? get createdBy => throw _privateConstructorUsedError;
-  set createdBy(String? value) => throw _privateConstructorUsedError;
-  String? get createdDate => throw _privateConstructorUsedError;
-  set createdDate(String? value) => throw _privateConstructorUsedError;
-  String? get lastModifiedBy => throw _privateConstructorUsedError;
-  set lastModifiedBy(String? value) => throw _privateConstructorUsedError;
-  String? get lastModifiedDate => throw _privateConstructorUsedError;
-  set lastModifiedDate(String? value) => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
   set role(int? value) => throw _privateConstructorUsedError;
   int? get membershipTyper => throw _privateConstructorUsedError;
@@ -67,16 +59,12 @@ abstract class $UserEntityCopyWith<$Res> {
       {String? id,
       String? login,
       String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
       String? imageUrl,
       bool? activated,
-      String? langKey,
       int? rank,
-      String? createdBy,
-      String? createdDate,
-      String? lastModifiedBy,
-      String? lastModifiedDate,
       int? role,
       int? membershipTyper});
 }
@@ -97,16 +85,12 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? id = freezed,
     Object? login = freezed,
     Object? firstName = freezed,
+    Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
     Object? activated = freezed,
-    Object? langKey = freezed,
     Object? rank = freezed,
-    Object? createdBy = freezed,
-    Object? createdDate = freezed,
-    Object? lastModifiedBy = freezed,
-    Object? lastModifiedDate = freezed,
     Object? role = freezed,
     Object? membershipTyper = freezed,
   }) {
@@ -122,6 +106,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -139,30 +127,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.activated
           : activated // ignore: cast_nullable_to_non_nullable
               as bool?,
-      langKey: freezed == langKey
-          ? _value.langKey
-          : langKey // ignore: cast_nullable_to_non_nullable
-              as String?,
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedBy: freezed == lastModifiedBy
-          ? _value.lastModifiedBy
-          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedDate: freezed == lastModifiedDate
-          ? _value.lastModifiedDate
-          : lastModifiedDate // ignore: cast_nullable_to_non_nullable
-              as String?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -187,16 +155,12 @@ abstract class _$$_UserEntityCopyWith<$Res>
       {String? id,
       String? login,
       String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
       String? imageUrl,
       bool? activated,
-      String? langKey,
       int? rank,
-      String? createdBy,
-      String? createdDate,
-      String? lastModifiedBy,
-      String? lastModifiedDate,
       int? role,
       int? membershipTyper});
 }
@@ -215,16 +179,12 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? id = freezed,
     Object? login = freezed,
     Object? firstName = freezed,
+    Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
     Object? activated = freezed,
-    Object? langKey = freezed,
     Object? rank = freezed,
-    Object? createdBy = freezed,
-    Object? createdDate = freezed,
-    Object? lastModifiedBy = freezed,
-    Object? lastModifiedDate = freezed,
     Object? role = freezed,
     Object? membershipTyper = freezed,
   }) {
@@ -240,6 +200,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -257,30 +221,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.activated
           : activated // ignore: cast_nullable_to_non_nullable
               as bool?,
-      langKey: freezed == langKey
-          ? _value.langKey
-          : langKey // ignore: cast_nullable_to_non_nullable
-              as String?,
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedBy: freezed == lastModifiedBy
-          ? _value.lastModifiedBy
-          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedDate: freezed == lastModifiedDate
-          ? _value.lastModifiedDate
-          : lastModifiedDate // ignore: cast_nullable_to_non_nullable
-              as String?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -300,16 +244,12 @@ class _$_UserEntity implements _UserEntity {
       {this.id,
       this.login,
       this.firstName,
+      this.fullName,
       this.email,
       this.phoneNumber,
       this.imageUrl,
       this.activated,
-      this.langKey,
       this.rank,
-      this.createdBy,
-      this.createdDate,
-      this.lastModifiedBy,
-      this.lastModifiedDate,
       this.role,
       this.membershipTyper});
 
@@ -323,6 +263,8 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? firstName;
   @override
+  String? fullName;
+  @override
   String? email;
   @override
   String? phoneNumber;
@@ -331,17 +273,7 @@ class _$_UserEntity implements _UserEntity {
   @override
   bool? activated;
   @override
-  String? langKey;
-  @override
   int? rank;
-  @override
-  String? createdBy;
-  @override
-  String? createdDate;
-  @override
-  String? lastModifiedBy;
-  @override
-  String? lastModifiedDate;
   @override
   int? role;
   @override
@@ -349,7 +281,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role, membershipTyper: $membershipTyper)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, rank: $rank, role: $role, membershipTyper: $membershipTyper)';
   }
 
   @JsonKey(ignore: true)
@@ -371,16 +303,12 @@ abstract class _UserEntity implements UserEntity {
       {String? id,
       String? login,
       String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
       String? imageUrl,
       bool? activated,
-      String? langKey,
       int? rank,
-      String? createdBy,
-      String? createdDate,
-      String? lastModifiedBy,
-      String? lastModifiedDate,
       int? role,
       int? membershipTyper}) = _$_UserEntity;
 
@@ -397,6 +325,9 @@ abstract class _UserEntity implements UserEntity {
   String? get firstName;
   set firstName(String? value);
   @override
+  String? get fullName;
+  set fullName(String? value);
+  @override
   String? get email;
   set email(String? value);
   @override
@@ -409,23 +340,8 @@ abstract class _UserEntity implements UserEntity {
   bool? get activated;
   set activated(bool? value);
   @override
-  String? get langKey;
-  set langKey(String? value);
-  @override
   int? get rank;
   set rank(int? value);
-  @override
-  String? get createdBy;
-  set createdBy(String? value);
-  @override
-  String? get createdDate;
-  set createdDate(String? value);
-  @override
-  String? get lastModifiedBy;
-  set lastModifiedBy(String? value);
-  @override
-  String? get lastModifiedDate;
-  set lastModifiedDate(String? value);
   @override
   int? get role;
   set role(int? value);
