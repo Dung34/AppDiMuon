@@ -45,7 +45,8 @@ class LoginRepositoryImpl implements LoginRepository {
         //   final defaultResponse = NewDefaultResponse<LoginResponse>.fromJson(
         //       loginResponse.data,
         //       (json) => LoginResponse.fromJson(json as Map<String, dynamic>));
-
+        localDataAccess.setUsername(username);
+        localDataAccess.setPassword(password);
         return ResponseWrapper.success(
             data: LoginResponse.fromJson(loginResponse.data));
       } else if (loginResponse.statusCode == 400 ||

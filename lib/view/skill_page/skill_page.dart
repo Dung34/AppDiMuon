@@ -1,10 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/resources.dart';
+
 import '../../domain/entity/skill/skill.dart';
+import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/skill/skill_cubit.dart';
@@ -20,6 +24,7 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     cubit.getAllSkill();
     listSkill = cubit.listSkill;
     setAppBar = PrimaryAppBar(
@@ -28,7 +33,8 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
       actions: [
         IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, AppRoute.skillAddPage);
+              Navigator.pushNamed(context, AppRoute.skillUpdatePage,
+                  arguments: SkillPageArgs(skillCubit: cubit, addNew: true));
             },
             icon: Icon(
               Icons.add,
@@ -43,17 +49,27 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
   @override
   Widget buildPage(BuildContext context) {
     return BlocConsumer<SkillCubit, SkillState>(
-      listener: (context, state) {},
-      buildWhen: (previous, current) =>
-          previous is SkillInitial || current is GetAllSkillSuccess,
+      listener: (context, state) {
+        log(state.toString());
+        if (state is AddNewSkillSuccess ||
+            state is UpdateSkillSuccess ||
+            state is DeleteSkillSuccess) {
+          //log(state.toString());
+          cubit.getAllSkill();
+        }
+      },
       builder: (context, state) {
-        return SizedBox(
-          child: ListView.builder(
-            itemBuilder: (context, index) =>
-                SkillItem(skill: listSkill![index]),
-            itemCount: listSkill!.length,
-          ),
-        );
+        if (state is GetAllSkillSuccess) {
+          return SizedBox(
+            child: ListView.builder(
+              itemBuilder: (context, index) =>
+                  SkillItem(skill: listSkill![index]),
+              itemCount: listSkill!.length,
+            ),
+          );
+        } else {
+          return NoData();
+        }
       },
     );
   }
@@ -68,50 +84,47 @@ class SkillItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SkillCubit(),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: SizedBox(
-              child: Container(
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                    color: Colors.purple,
-                    style: BorderStyle.solid,
-                    width: 1.0)),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(skill.name ?? ""),
-                    Text(skill.description ?? " ")
-                  ],
-                ),
-                SizedBox(
-                  width: 50,
-                ),
-                Text(skill.point.toString() ?? ""),
-                IconButton(
-                    onPressed: () {
-                      SkillCubit().deleteSkill(skill.id ?? " ");
-                    },
-                    icon: Icon(Icons.delete_outline)),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, AppRoute.skillUpdatePage,
-                          arguments: SkillPageArgs(
-                              id: skill.id ?? " ",
-                              skillCubit: context.read<SkillCubit>()));
-                    },
-                    icon: Icon(Icons.edit))
-              ],
-            ),
-          )),
-        ),
+    final SkillCubit skillCubit = context.read<SkillCubit>();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SingleChildScrollView(
+        child: SizedBox(
+            child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                  color: Colors.purple, style: BorderStyle.solid, width: 1.0)),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(skill.name ?? ""),
+                  Text(skill.description ?? " ")
+                ],
+              ),
+              SizedBox(
+                width: 50,
+              ),
+              Text(skill.point.toString() ?? ""),
+              IconButton(
+                  onPressed: () {
+                    skillCubit.deleteSkill(skill.id ?? " ");
+                  },
+                  icon: Icon(Icons.delete_outline)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoute.skillUpdatePage,
+                        arguments: SkillPageArgs(
+                            addNew: false,
+                            skill: skill,
+                            skillCubit: skillCubit));
+                  },
+                  icon: Icon(Icons.edit))
+            ],
+          ),
+        )),
       ),
     );
   }

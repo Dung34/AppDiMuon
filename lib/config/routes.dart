@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
 import '../domain/entity/project/project.dart';
+import '../domain/entity/skill/skill.dart';
 import '../view/auth/login/login_page.dart';
 import '../view/auth/register/register_page.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
@@ -68,7 +69,7 @@ class AppRoute {
   static const String geneReportAdd = "/geneReportAdd";
   static const String geneReportUpdate = "/geneReportUpdate";
   //skill
-  static const String skillAddPage = "/skillAddPage";
+
   static const String skillUpdatePage = "/skillUpdatePage";
   //target
   static const String targetAddPage = "/targetAddPage";
@@ -103,7 +104,7 @@ class AppRoute {
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
         AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
         //skill
-        AppRoute.skillAddPage: (context) => const SkillAddPage(),
+
         AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
         //target
         AppRoute.targetAddPage: (context) => const AddTargetPage(),
@@ -190,12 +191,10 @@ class ReportDailyPageArgs {
 }
 
 class SkillPageArgs {
-  final String id;
+  final bool addNew;
+  final Skill? skill;
   final SkillCubit skillCubit;
-  SkillPageArgs({
-    required this.id,
-    required this.skillCubit,
-  });
+  SkillPageArgs({this.skill, required this.skillCubit, required this.addNew});
 }
 
 class TargetPageArgs {

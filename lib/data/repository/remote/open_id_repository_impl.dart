@@ -130,29 +130,32 @@ class OpenIDRepositoryImpl implements OpenIDRepository {
   @override
   Future<ResponseWrapper<bool>> refreshToken() async {
     log(' refresh token response ???');
-    final TokenRequest tokenRequest = TokenRequest(
-      SSOConfig.clientId,
-      SSOConfig.redirectUrl,
-      clientSecret: SSOConfig.clientSecret,
-      issuer: SSOConfig.issuer,
-      scopes: SSOConfig.scope,
-      refreshToken: await localDataAccess.getRefreshToken(),
-      serviceConfiguration: AuthorizationServiceConfiguration(
-        authorizationEndpoint: '${SSOConfig.issuer}/connect/authorize',
-        tokenEndpoint: '${SSOConfig.issuer}/connect/token',
-        endSessionEndpoint: '${SSOConfig.issuer}/connect/endsession',
-      ),
-    );
+    // final TokenRequest tokenRequest = TokenRequest(
+    //   SSOConfig.clientId,
+    //   SSOConfig.redirectUrl,
+    //   clientSecret: SSOConfig.clientSecret,
+    //   issuer: SSOConfig.issuer,
+    //   scopes: SSOConfig.scope,
+    //   refreshToken: await localDataAccess.getRefreshToken(),
+    //   serviceConfiguration: AuthorizationServiceConfiguration(
+    //     authorizationEndpoint: '${SSOConfig.issuer}/connect/authorize',
+    //     tokenEndpoint: '${SSOConfig.issuer}/connect/token',
+    //     endSessionEndpoint: '${SSOConfig.issuer}/connect/endsession',
+    //   ),
+    // );
+
     try {
-      final TokenResponse? tokenResponse = await appAuth.token(tokenRequest);
-      log(' refresh token response: ${tokenResponse?.accessToken}');
-      log(' refresh token response: ${tokenResponse?.refreshToken}');
-      if (tokenResponse?.accessToken == null) {
-        return ResponseWrapper.error(message: '');
-      }
-      await localDataAccess.setIdToken(tokenResponse?.idToken ?? '');
-      await localDataAccess.setAccessToken(tokenResponse?.accessToken ?? '');
-      await localDataAccess.setRefreshToken(tokenResponse?.refreshToken ?? '');
+      final accessToken = await localDataAccess.getAccessToken();
+      final refreshToken = await localDataAccess.getRefreshToken();
+      //final TokenResponse? tokenResponse = await appAuth.token(tokenRequest);
+      log(' refresh token response: $accessToken');
+      log(' refresh token response: $refreshToken');
+      // if (accessToken == null) {
+      //   return ResponseWrapper.error(message: '');
+      // }
+      //await localDataAccess.setIdToken(tokenResponse?.idToken ?? '');
+      await localDataAccess.setAccessToken(accessToken);
+      await localDataAccess.setRefreshToken(refreshToken);
       return ResponseWrapper.success(data: true);
     } catch (e) {
       return ResponseWrapper.error(message: '');

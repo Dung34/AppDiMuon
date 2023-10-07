@@ -42,8 +42,9 @@ class SkillCubit extends Cubit<SkillState> {
     final response = await _skillRepository.createSkill(skill);
     if (response.status == ResponseStatus.success) {
       listSkill.add(skill);
-      emit(SkillInitial());
+
       emit(AddNewSkillSuccess());
+      emit(GetAllSkillSuccess(listSkill: listSkill));
     } else {
       emit(AddNewSkillFailed());
     }
@@ -52,8 +53,10 @@ class SkillCubit extends Cubit<SkillState> {
   updateSkill(Skill skill) async {
     final response = await _skillRepository.updateSkill(skill);
     if (response.status == ResponseStatus.success) {
-      emit(SkillInitial());
+      //emit(SkillInitial());
       emit(UpdateSkillSuccess(skill: skill));
+      // emit(GetAllSkillSuccess(listSkill: listSkill));
+      // emit(ResetState());
     } else {
       emit(UpdateSkillFailed());
     }
@@ -63,8 +66,9 @@ class SkillCubit extends Cubit<SkillState> {
     final response = await _skillRepository.deleteSkill(id);
     if (response.status == ResponseStatus.success) {
       listSkill.removeWhere((element) => element.id == id);
-      emit(DeleteSkillSuccess());
+
       emit(GetAllSkillSuccess(listSkill: listSkill));
+      emit(DeleteSkillSuccess());
     } else {
       emit(DeleteSkillFailed());
     }

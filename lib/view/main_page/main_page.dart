@@ -18,6 +18,7 @@ import '../report_page/report_page.dart';
 import '../project_page/project_page.dart';
 import '../setting_page/setting_page.dart';
 import '../skill_page/skill_page.dart';
+import '../skill_page/target_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -63,6 +64,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     // const CalendarPage(),
     //const ProjectPage(),
     const SkillPage(),
+    //TargetPage(),
     SettingPage(),
   ];
 

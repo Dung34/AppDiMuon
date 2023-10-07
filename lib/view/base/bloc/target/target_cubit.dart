@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -19,7 +21,8 @@ class TargetCubit extends Cubit<TargetState> {
     if (response.status == ResponseStatus.success) {
       listTarget.clear();
       listTarget.addAll(response.data ?? []);
-      emit(TargetInitial());
+      log("oke");
+      //emit(TargetInitial());
       emit(GetAllTargetSuccess(listTarget: listTarget));
     } else {
       emit(GetAllTargetFailed());

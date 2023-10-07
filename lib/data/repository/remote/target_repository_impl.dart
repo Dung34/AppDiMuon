@@ -62,7 +62,12 @@ class TargetRepositoryImplement implements TargetRepository {
     try {
       final response = await dio.get(EndPoints.getDetailTarget,
           queryParameters: {"Id": id, "UserId": userId},
-          options: Options(headers: {"Authorization": "Bearer $accessToken"}));
+          options: Options(headers: {
+            "Authorization":
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWJjeHl6Iiwicm9sZSI6IlJPTEVfVVNFUiIsInN1YiI6IjRlYmZjZjg0LWZiODgtNDcyNi1iMDhjLWNhMDg5MjE4YzE1NyIsIm5iZiI6MTY5NjUxNDkzNywiZXhwIjoxNjk2NjAxMzM3LCJpYXQiOjE2OTY1MTQ5Mzd9.W-nTf_k-CF8Nt7tALJGjyXaeEZrcXlkTCWTHn7Efyus"
+          }
+              //{"Authorization": "Bearer $accessToken"}
+              ));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
             data: _targetDataMapper
@@ -82,7 +87,12 @@ class TargetRepositoryImplement implements TargetRepository {
       final response = await dio.post(EndPoints.updateTarget,
           data: _targetDataMapper.mapToData(target).toJson()
             ..removeWhere((key, value) => value == null),
-          options: Options(headers: {"Authorization": "Bearer $accessToken"}));
+          options: Options(headers: {
+            "Authorization":
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWJjeHl6Iiwicm9sZSI6IlJPTEVfVVNFUiIsInN1YiI6IjRlYmZjZjg0LWZiODgtNDcyNi1iMDhjLWNhMDg5MjE4YzE1NyIsIm5iZiI6MTY5NjUxNDkzNywiZXhwIjoxNjk2NjAxMzM3LCJpYXQiOjE2OTY1MTQ5Mzd9.W-nTf_k-CF8Nt7tALJGjyXaeEZrcXlkTCWTHn7Efyus"
+          }
+              //{"Authorization": "Bearer $accessToken"}
+              ));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
             data: _targetDataMapper
@@ -102,7 +112,12 @@ class TargetRepositoryImplement implements TargetRepository {
       final response = await dio.post(EndPoints.updateTarget,
           data: _targetDataMapper.mapToData(target).toJson()
             ..removeWhere((key, value) => value == null),
-          options: Options(headers: {"Authorization": "Bearer $accessToken"}));
+          options: Options(headers: {
+            "Authorization":
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWJjeHl6Iiwicm9sZSI6IlJPTEVfVVNFUiIsInN1YiI6IjRlYmZjZjg0LWZiODgtNDcyNi1iMDhjLWNhMDg5MjE4YzE1NyIsIm5iZiI6MTY5NjUxNDkzNywiZXhwIjoxNjk2NjAxMzM3LCJpYXQiOjE2OTY1MTQ5Mzd9.W-nTf_k-CF8Nt7tALJGjyXaeEZrcXlkTCWTHn7Efyus"
+          }
+              //{"Authorization": "Bearer $accessToken"}
+              ));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
             data: _targetDataMapper
@@ -121,7 +136,13 @@ class TargetRepositoryImplement implements TargetRepository {
     try {
       final response = await dio.delete(EndPoints.deleteTarget,
           data: id,
-          options: Options(headers: {"Authorization": "Bearer $accessToken"}));
+          options: Options(headers: {
+            "Authorization":
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWJjeHl6Iiwicm9sZSI6IlJPTEVfVVNFUiIsInN1YiI6IjRlYmZjZjg0LWZiODgtNDcyNi1iMDhjLWNhMDg5MjE4YzE1NyIsIm5iZiI6MTY5NjUxNDkzNywiZXhwIjoxNjk2NjAxMzM3LCJpYXQiOjE2OTY1MTQ5Mzd9.W-nTf_k-CF8Nt7tALJGjyXaeEZrcXlkTCWTHn7Efyus"
+          }
+              // {"Authorization": "Bearer $accessToken"}
+
+              ));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(data: null);
       } else {

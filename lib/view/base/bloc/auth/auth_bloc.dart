@@ -111,7 +111,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       if (response.status == ResponseStatus.success && response.data != null) {
-        localDataAccess.setAccessToken(response.data?.idToken ?? '');
+        localDataAccess.setAccessToken(response.data?.accessToken ?? '');
+        localDataAccess.setRefreshToken(response.data?.refreshToken ?? "");
         localDataAccess.setUsername(event.username.toString());
         localDataAccess.setAccountRemember(_rememberMe);
         emit(AuthLoginSuccessState());

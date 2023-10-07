@@ -43,3 +43,5 @@ class UpdateSkillFailed extends SkillState {}
 class DeleteSkillSuccess extends SkillState {}
 
 class DeleteSkillFailed extends SkillState {}
+
+class ResetState extends SkillState {}

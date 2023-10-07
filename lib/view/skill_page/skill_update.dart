@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../config/routes.dart';
+import '../../data/repository/local/local_data_access.dart';
+import '../../di/di.dart';
 import '../../domain/entity/skill/skill.dart';
 import '../../shared/etx/app_ext.dart';
+import '../../shared/utils/validation_utils.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
@@ -17,33 +20,61 @@ class SkillUpdatePage extends StatefulWidget {
 
 class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
   @override
-  // TODO: implement useBlocProviderValue
-  bool get useBlocProviderValue => true;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController iconController = TextEditingController();
+  final TextEditingController pointController = TextEditingController();
   late Skill currentSkill;
   late final Skill updateSkill;
+  LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
+
+  final nameFormKey = GlobalKey<FormState>();
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     args = context.arguments as SkillPageArgs;
     setCubit = args.skillCubit;
-    currentSkill = cubit.getDetailSkill(args.id);
-    updateSkill = currentSkill.copyWith();
-    nameController.text = updateSkill.name ?? "";
-    descriptionController.text = updateSkill.description ?? "";
-    iconController.text = updateSkill.icon ?? "";
+    String userId = localDataAccess.getUserId();
+    if (!args.addNew) {
+      currentSkill = args.skill!;
+      updateSkill = currentSkill.copyWith();
+      nameController.text = updateSkill.name ?? "";
+      descriptionController.text = updateSkill.description ?? "";
+      iconController.text = updateSkill.icon ?? "";
+      pointController.text = updateSkill.point.toString();
+    }
+
     setAppBar = PrimaryAppBar(
       title: "Chỉnh sửa kĩ năng",
       canPop: true,
       actions: [
         IconButton(
             onPressed: () {
-              cubit.updateSkill(updateSkill);
+              String intString = pointController.text;
+              int pointData = int.parse(intString);
+              if (!args.addNew) {
+                cubit.updateSkill(Skill(
+                    name: nameController.text.trim(),
+                    description: descriptionController.text.trim(),
+                    icon: iconController.text.trim(),
+                    point: pointData,
+                    id: updateSkill.id,
+                    userId: updateSkill.userId));
+              } else {
+                cubit.addSkill(Skill(
+                    name: nameController.text.trim(),
+                    description: descriptionController.text.trim(),
+                    icon: iconController.text.trim(),
+                    userId: userId,
+                    point: pointData));
+              }
+
+              context.pop();
             },
-            icon: Icon(Icons.edit))
+            icon: Icon(
+              Icons.edit,
+              color: Colors.black,
+            ))
       ],
     );
   }
@@ -56,6 +87,12 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
         PrimaryTextField(
           controller: nameController,
           label: "Tên kĩ năng",
+          hintText: 'Nhập họ và tên',
+          formKey: nameFormKey,
+          isRequired: true,
+          maxLength: 50,
+          validator: ValidationUtils.textEmptyValidator,
+          textCapitalization: TextCapitalization.words,
         ),
         PrimaryTextField(
           controller: descriptionController,
@@ -64,6 +101,10 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
         PrimaryTextField(
           controller: iconController,
           label: "Icon",
+        ),
+        PrimaryTextField(
+          controller: pointController,
+          keyboardType: TextInputType.number,
         )
       ],
     );
