@@ -13,8 +13,9 @@ import '../cubit/unit_cubit.dart';
 
 class UnitItem extends StatefulWidget {
   final Unit unit;
+  final UnitCubit cubit;
 
-  const UnitItem({super.key, required this.unit});
+  const UnitItem({super.key, required this.unit, required this.cubit});
 
   @override
   State<UnitItem> createState() => _UnitItemState();

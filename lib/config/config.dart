@@ -72,6 +72,7 @@ class EndPoints {
 
   //unit
   static const String createUnit = "/unit/create-unit";
+  static const String deleteUnit = "/unit/delete-unit";
   static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
   static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
   static const String viewUnit = '/unit/get-detail-unit';

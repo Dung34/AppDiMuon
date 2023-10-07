@@ -180,6 +180,13 @@ class ProjectMemberPageArgs {
       this.projectMembers});
 }
 
+class UnitAddPageArgs {
+  final String? id;
+  final UnitCubit cubit;
+
+  const UnitAddPageArgs({this.id, required this.cubit});
+}
+
 class UnitDetailPageArgs {
   final String id;
   final UnitCubit unitCubit;

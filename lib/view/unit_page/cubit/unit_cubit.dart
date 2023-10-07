@@ -16,12 +16,23 @@ class UnitCubit extends Cubit<UnitState> {
   UnitCubit() : super(UnitInitialState());
 
   createUnit(Unit unit) async {
+    emit(UnitResetState());
     final response = await _okrRepository.createUnit(unit);
 
     if (response.status == ResponseStatus.success) {
       emit(UnitCreateUnitSuccessState(response.data!));
     } else {
       emit(UnitCreateUnitFailedState());
+    }
+  }
+
+  deleteUnit(String id) async {
+    final response = await _okrRepository.deleteUnit(id);
+
+    if (response.status == ResponseStatus.success) {
+      emit(UnitDeleteUnitSuccessState());
+    } else {
+      emit(UnitDeleteUnitFailedState());
     }
   }
 

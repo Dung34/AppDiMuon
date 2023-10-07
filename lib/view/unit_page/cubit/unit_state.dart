@@ -18,6 +18,10 @@ class UnitCreateUnitSuccessState extends UnitState {
 
 class UnitCreateUnitFailedState extends UnitState {}
 
+class UnitDeleteUnitSuccessState extends UnitState {}
+
+class UnitDeleteUnitFailedState extends UnitState {}
+
 class UnitGetAllUnitSuccessState extends UnitState {
   final List<Unit> units;
 

@@ -27,7 +27,6 @@ import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
-
 import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/skill_data_mapper.dart';
 
@@ -66,10 +65,7 @@ configureInjection() async {
   getIt.registerFactory<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
 
-
   getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
-
-  getIt.registerLazySingleton<ProjectListRepository>(
 
   getIt.registerFactory<ProjectListRepository>(
       () => ProjectListRepositoryImpl());
@@ -99,22 +95,9 @@ configureInjection() async {
   getIt.registerLazySingleton<AppInterceptor>(() => AppInterceptor());
 
   // mapper
-  getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
-  getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
-  getIt.registerLazySingleton<EventDataMapper>(() => EventDataMapper());
-  getIt.registerLazySingleton<EventMemberDataMapper>(
-      () => EventMemberDataMapper());
   getIt.registerLazySingleton<ObjectiveDataMapper>(() => ObjectiveDataMapper());
   getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
-  getIt.registerLazySingleton<ProjectListDataMapper>(
-      () => ProjectListDataMapper());
-  getIt.registerLazySingleton<ProjectDataMapper>(() => ProjectDataMapper());
   getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
-  getIt.registerLazySingleton<ReportDataMapper>(() => ReportDataMapper());
-  getIt.registerLazySingleton<ListReportDataMapper>(
-      () => ListReportDataMapper());
-  getIt.registerLazySingleton<GeneralReportMapper>(() => GeneralReportMapper());
-  getIt.registerLazySingleton<ListGeneralReportMapper>(
   getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
   getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());

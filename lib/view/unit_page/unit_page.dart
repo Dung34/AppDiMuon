@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../config/routes.dart';
 import '../../data/resources/colors.dart';
 import '../../data/resources/resources.dart';
+import '../../domain/entity/okr/unit/unit.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -12,6 +13,7 @@ import '../base/base_page_sate.dart';
 import '../base/bloc/user/user_cubit.dart';
 import 'component/unit_item.dart';
 import 'cubit/unit_cubit.dart';
+import 'unit_add.dart';
 
 class UnitPage extends StatefulWidget {
   const UnitPage({super.key});
@@ -33,8 +35,13 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
     userCubit.getUser();
   }
 
+  reset() {
+    cubit.getAllUnit();
+  }
+
   @override
   Widget buildPage(BuildContext context) {
+    List<Unit> units = [];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,7 +80,8 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                   icon: Assets.icAdd,
                   iconColor: AppColor.primary500,
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoute.unitAdd);
+                    Navigator.pushNamed(context, AppRoute.unitAdd,
+                        arguments: UnitAddPageArgs(cubit: cubit));
                   },
                 )
               ],
@@ -92,32 +100,39 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
           child: BlocBuilder<UnitCubit, UnitState>(
               buildWhen: (previous, current) =>
                   current is UnitGetAllUnitSuccessState ||
-                  current is UnitInitialState,
+                  current is UnitCreateUnitSuccessState ||
+                  current is UnitInitialState ||
+                  current is UnitDeleteUnitSuccessState,
               builder: (context, state) {
                 if (state is UnitGetAllUnitSuccessState) {
-                  final units = state.units;
-
-                  if (units.isNotEmpty) {
-                    final items = List.generate(units.length, (index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          UnitItem(unit: units[index]),
-                          const SizedBox(height: 24),
-                        ],
-                      );
-                    });
-                    return AnimationStaggeredListView(
-                      items: items,
-                      onRefresh: () async {
-                        cubit.getAllUnit();
-                      },
-                    );
-                  } else {
-                    return const NoData();
-                  }
+                  units = state.units;
+                } else if (state is UnitCreateUnitSuccessState) {
+                  units.add(state.unit);
+                } else if (state is UnitDeleteUnitSuccessState) {
+                  reset();
+                } else {
+                  return const Center(child: CircularProgressIndicator());
                 }
-                return const Center(child: CircularProgressIndicator());
+
+                if (units.isNotEmpty) {
+                  final items = List.generate(units.length, (index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        UnitItem(unit: units[index], cubit: cubit),
+                        const SizedBox(height: 24),
+                      ],
+                    );
+                  });
+                  return AnimationStaggeredListView(
+                    items: items,
+                    onRefresh: () async {
+                      cubit.getAllUnit();
+                    },
+                  );
+                } else {
+                  return const NoData();
+                }
               }),
         )
       ],
