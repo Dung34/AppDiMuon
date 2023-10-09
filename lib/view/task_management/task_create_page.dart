@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
-import '../../data/resources/themes.dart';
+import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/task/task.dart';
 import '../../domain/entity/user/user.dart';
 import '../../shared/etx/app_ext.dart';
@@ -14,6 +14,8 @@ import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
+import 'components/task_priority_item.dart';
+import 'components/task_status_item.dart';
 import 'cubit/task_cubit.dart';
 import 'user_search_dialog.dart';
 
@@ -49,7 +51,12 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
         )
       ],
     );
-    task = Task();
+    task = Task(
+      priority: 0,
+      status: 0,
+      point: 0,
+      // priorityStr:
+    );
   }
 
   late final Task task;
@@ -210,6 +217,44 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
               ],
             ),
             const SizedBox(height: 10),
+            const Text(
+              'Priority',
+              style: AppTextTheme.robotoMedium16,
+            ),
+            TaskPriorityItem(
+              task: task,
+              onTaskPriorityTypeSelected: (type) {
+                task.priority = type;
+              },
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Status',
+              style: AppTextTheme.robotoMedium16,
+            ),
+            TaskStatusItem(
+              task: task,
+              onTaskStatusTypeSelected: (type) {
+                task.status = type;
+              },
+            ),
+            const SizedBox(height: 20),
+            // TaskDetailItem(
+            //   icon: Assets.icPoint,
+            //   title: 'Point',
+            //   child: PrimaryTextField(
+            //     controller: descriptionController,
+            //     label: 'description',
+            //     minLines: 3,
+            //   ),
+            // ),
+
+            PrimaryTextField(
+              controller: pointController,
+              label: 'Point',
+              prefixIcon: Assets.icPoint,
+              keyboardType: TextInputType.number,
+            ),
           ],
         ),
       ),
@@ -227,6 +272,7 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
     task.title = titleController.text.trim();
     task.description = descriptionController.text.trim();
     task.assignee = userCubit.currentUser!;
+    task.point = int.tryParse((pointController.text));
     cubit.createTask(task);
   }
 }
