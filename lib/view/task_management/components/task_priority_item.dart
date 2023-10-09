@@ -46,6 +46,7 @@ class _TaskPriorityItemState extends State<TaskPriorityItem> {
                 getTaskPriorityStringByType(taskPrioritySelected);
             taskPriorityColor = getPriorityColorByType(taskPrioritySelected);
           });
+          widget.onTaskPriorityTypeSelected?.call(taskPrioritySelected);
         }
       },
       child: Padding(
