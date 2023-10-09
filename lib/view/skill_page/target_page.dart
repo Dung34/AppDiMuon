@@ -9,6 +9,7 @@ import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/target/target_cubit.dart';
+import 'component/target_item.dart';
 
 class TargetPage extends StatefulWidget {
   const TargetPage({super.key});
@@ -70,46 +71,6 @@ class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
           return NoData();
         }
       },
-    );
-  }
-}
-
-class TargetItem extends StatelessWidget {
-  final Target target;
-  const TargetItem({super.key, required this.target});
-
-  @override
-  Widget build(BuildContext context) {
-    final TargetCubit targetCubit = context.read<TargetCubit>();
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        child: Container(
-          margin: EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.purple, width: 1.0),
-              borderRadius: BorderRadius.circular(16)),
-          child: Row(
-            children: [
-              Text(target.title ?? ""),
-              IconButton(
-                  onPressed: () {
-                    targetCubit.deleteTarget(target.id ?? "");
-                  },
-                  icon: Icon(Icons.delete)),
-              IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoute.targetUpdatePage,
-                        arguments: TargetPageArgs(
-                            addNew: false,
-                            targetCubit: targetCubit,
-                            target: target));
-                  },
-                  icon: Icon(Icons.edit))
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
