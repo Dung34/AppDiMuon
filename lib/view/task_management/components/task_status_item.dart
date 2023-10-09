@@ -8,28 +8,28 @@ import 'package:flutter/material.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../shared/etx/app_ext.dart';
 
-class TaskPriorityItem extends StatefulWidget {
-  const TaskPriorityItem({
+class TaskStatusItem extends StatefulWidget {
+  const TaskStatusItem({
     super.key,
     required this.task,
-    this.onTaskPriorityTypeSelected,
+    this.onTaskStatusTypeSelected,
   });
 
   final Task task;
-  final Function(int type)? onTaskPriorityTypeSelected;
+  final Function(int type)? onTaskStatusTypeSelected;
 
   @override
-  State<TaskPriorityItem> createState() => _TaskPriorityItemState();
+  State<TaskStatusItem> createState() => _TaskStatusItemState();
 }
 
-class _TaskPriorityItemState extends State<TaskPriorityItem> {
-  late String taskPriorityTitle = '';
-  late Color taskPriorityColor;
+class _TaskStatusItemState extends State<TaskStatusItem> {
+  late String taskStatusTitle = '';
+  late Color taskStatusColor;
 
   @override
   void initState() {
-    taskPriorityTitle = getTaskPriorityStringByType(widget.task.priority ?? 0);
-    taskPriorityColor = getPriorityColorByType(widget.task.priority ?? 0);
+    taskStatusTitle = getTaskStatusStringByType(widget.task.priority ?? 0);
+    taskStatusColor = getStatusColorByType(widget.task.priority ?? 0);
     super.initState();
   }
 
@@ -42,9 +42,8 @@ class _TaskPriorityItemState extends State<TaskPriorityItem> {
 
         if (taskPrioritySelected != null) {
           setState(() {
-            taskPriorityTitle =
-                getTaskPriorityStringByType(taskPrioritySelected);
-            taskPriorityColor = getPriorityColorByType(taskPrioritySelected);
+            taskStatusTitle = getTaskStatusStringByType(taskPrioritySelected);
+            taskStatusColor = getStatusColorByType(taskPrioritySelected);
           });
         }
       },
@@ -55,10 +54,9 @@ class _TaskPriorityItemState extends State<TaskPriorityItem> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              taskPriorityTitle,
+              taskStatusTitle,
               textAlign: TextAlign.end,
-              style:
-                  AppTextTheme.robotoBold16.copyWith(color: taskPriorityColor),
+              style: AppTextTheme.robotoBold16.copyWith(color: taskStatusColor),
             ),
             const SizedBox(width: 10),
             SvgPicture.asset(Assets.icDropdown),
@@ -69,25 +67,25 @@ class _TaskPriorityItemState extends State<TaskPriorityItem> {
   }
 }
 
-Color getPriorityColorByType(int type) {
+Color getStatusColorByType(int type) {
   switch (type) {
-    case TaskPriority.low:
+    case TaskStatus.notStarted:
       return AppColor.blue200;
-    case TaskPriority.medium:
+    case TaskStatus.beginning:
       return AppColor.green200;
-    case TaskPriority.high:
+    case TaskStatus.ended:
       return AppColor.yellow;
     default:
       return AppColor.red200;
   }
 }
 
-String getTaskPriorityStringByType(int type) {
-  return type == TaskPriority.low
-      ? TaskPriorityStr.low
-      : type == TaskPriority.medium
-          ? TaskPriorityStr.medium
-          : type == TaskPriority.high
-              ? TaskPriorityStr.high
-              : TaskPriorityStr.immediate;
+String getTaskStatusStringByType(int type) {
+  return type == TaskStatus.notStarted
+      ? TaskStatusStr.notStarted
+      : type == TaskStatus.beginning
+          ? TaskStatusStr.beginning
+          : type == TaskStatus.ended
+              ? TaskStatusStr.ended
+              : TaskStatusStr.late;
 }
