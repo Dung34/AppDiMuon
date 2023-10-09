@@ -10,6 +10,7 @@ class UserResponse with _$UserResponse {
       String? login,
       String? referralCode,
       String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
       String? imageUrl,

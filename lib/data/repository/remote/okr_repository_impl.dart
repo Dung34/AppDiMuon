@@ -153,6 +153,39 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
+  Future<ResponseWrapper<Task>> updateTask(Task task) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.patch(EndPoints.updateTask,
+          data: {
+            "id": task.id,
+            "taskName": task.title,
+            "description": task.description,
+            "dueDate": task.endDate,
+            // "completeDate": task.,
+            "parentId": task.parrentTask?.id,
+            "point": task.point,
+            "assigneeId": task.assignee?.id,
+            "assigneerId": task.assigner?.id,
+            "keyResultId": task.keyResultId,
+            "status": task.status,
+            "priority": task.priority,
+          }..removeWhere((key, value) => value == null),
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _taskDataMapper
+                .mapToEntity(TaskResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
   Future<ResponseWrapper<Unit>> createUnit(Unit unit) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
@@ -427,12 +460,6 @@ class OKRRepositoryImpl extends OKRRepository {
   @override
   Future<ResponseWrapper<Objective>> updateObjective() {
     // TODO: implement updateObjective
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<ResponseWrapper<Task>> updateTask() {
-    // TODO: implement updateTask
     throw UnimplementedError();
   }
 

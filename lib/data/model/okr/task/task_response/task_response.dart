@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../user/user_response/user_response.dart';
+
 part 'task_response.freezed.dart';
 part 'task_response.g.dart';
 
@@ -11,8 +13,8 @@ class TaskResponse with _$TaskResponse {
     String? dueDate,
     String? completeDate,
     int? point,
-    String? assigneeId,
-    String? assigneerId,
+    UserResponse? assignee,
+    UserResponse? assigner,
     int? type,
     List<TaskResponse>? listRelatedTask,
     String? createByName,

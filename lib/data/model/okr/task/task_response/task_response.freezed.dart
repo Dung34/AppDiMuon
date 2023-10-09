@@ -25,8 +25,8 @@ mixin _$TaskResponse {
   String? get dueDate => throw _privateConstructorUsedError;
   String? get completeDate => throw _privateConstructorUsedError;
   int? get point => throw _privateConstructorUsedError;
-  String? get assigneeId => throw _privateConstructorUsedError;
-  String? get assigneerId => throw _privateConstructorUsedError;
+  UserResponse? get assignee => throw _privateConstructorUsedError;
+  UserResponse? get assigner => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
   List<TaskResponse>? get listRelatedTask => throw _privateConstructorUsedError;
   String? get createByName => throw _privateConstructorUsedError;
@@ -54,8 +54,8 @@ abstract class $TaskResponseCopyWith<$Res> {
       String? dueDate,
       String? completeDate,
       int? point,
-      String? assigneeId,
-      String? assigneerId,
+      UserResponse? assignee,
+      UserResponse? assigner,
       int? type,
       List<TaskResponse>? listRelatedTask,
       String? createByName,
@@ -64,6 +64,9 @@ abstract class $TaskResponseCopyWith<$Res> {
       String? id,
       String? createdBy,
       String? createdDate});
+
+  $UserResponseCopyWith<$Res>? get assignee;
+  $UserResponseCopyWith<$Res>? get assigner;
 }
 
 /// @nodoc
@@ -84,8 +87,8 @@ class _$TaskResponseCopyWithImpl<$Res, $Val extends TaskResponse>
     Object? dueDate = freezed,
     Object? completeDate = freezed,
     Object? point = freezed,
-    Object? assigneeId = freezed,
-    Object? assigneerId = freezed,
+    Object? assignee = freezed,
+    Object? assigner = freezed,
     Object? type = freezed,
     Object? listRelatedTask = freezed,
     Object? createByName = freezed,
@@ -116,14 +119,14 @@ class _$TaskResponseCopyWithImpl<$Res, $Val extends TaskResponse>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as int?,
-      assigneeId: freezed == assigneeId
-          ? _value.assigneeId
-          : assigneeId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assigneerId: freezed == assigneerId
-          ? _value.assigneerId
-          : assigneerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      assignee: freezed == assignee
+          ? _value.assignee
+          : assignee // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
+      assigner: freezed == assigner
+          ? _value.assigner
+          : assigner // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -158,6 +161,30 @@ class _$TaskResponseCopyWithImpl<$Res, $Val extends TaskResponse>
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserResponseCopyWith<$Res>? get assignee {
+    if (_value.assignee == null) {
+      return null;
+    }
+
+    return $UserResponseCopyWith<$Res>(_value.assignee!, (value) {
+      return _then(_value.copyWith(assignee: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserResponseCopyWith<$Res>? get assigner {
+    if (_value.assigner == null) {
+      return null;
+    }
+
+    return $UserResponseCopyWith<$Res>(_value.assigner!, (value) {
+      return _then(_value.copyWith(assigner: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -174,8 +201,8 @@ abstract class _$$_TaskResponseCopyWith<$Res>
       String? dueDate,
       String? completeDate,
       int? point,
-      String? assigneeId,
-      String? assigneerId,
+      UserResponse? assignee,
+      UserResponse? assigner,
       int? type,
       List<TaskResponse>? listRelatedTask,
       String? createByName,
@@ -184,6 +211,11 @@ abstract class _$$_TaskResponseCopyWith<$Res>
       String? id,
       String? createdBy,
       String? createdDate});
+
+  @override
+  $UserResponseCopyWith<$Res>? get assignee;
+  @override
+  $UserResponseCopyWith<$Res>? get assigner;
 }
 
 /// @nodoc
@@ -202,8 +234,8 @@ class __$$_TaskResponseCopyWithImpl<$Res>
     Object? dueDate = freezed,
     Object? completeDate = freezed,
     Object? point = freezed,
-    Object? assigneeId = freezed,
-    Object? assigneerId = freezed,
+    Object? assignee = freezed,
+    Object? assigner = freezed,
     Object? type = freezed,
     Object? listRelatedTask = freezed,
     Object? createByName = freezed,
@@ -234,14 +266,14 @@ class __$$_TaskResponseCopyWithImpl<$Res>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as int?,
-      assigneeId: freezed == assigneeId
-          ? _value.assigneeId
-          : assigneeId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assigneerId: freezed == assigneerId
-          ? _value.assigneerId
-          : assigneerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      assignee: freezed == assignee
+          ? _value.assignee
+          : assignee // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
+      assigner: freezed == assigner
+          ? _value.assigner
+          : assigner // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -287,8 +319,8 @@ class _$_TaskResponse implements _TaskResponse {
       this.dueDate,
       this.completeDate,
       this.point,
-      this.assigneeId,
-      this.assigneerId,
+      this.assignee,
+      this.assigner,
       this.type,
       final List<TaskResponse>? listRelatedTask,
       this.createByName,
@@ -313,9 +345,9 @@ class _$_TaskResponse implements _TaskResponse {
   @override
   final int? point;
   @override
-  final String? assigneeId;
+  final UserResponse? assignee;
   @override
-  final String? assigneerId;
+  final UserResponse? assigner;
   @override
   final int? type;
   final List<TaskResponse>? _listRelatedTask;
@@ -343,7 +375,7 @@ class _$_TaskResponse implements _TaskResponse {
 
   @override
   String toString() {
-    return 'TaskResponse(taskName: $taskName, description: $description, dueDate: $dueDate, completeDate: $completeDate, point: $point, assigneeId: $assigneeId, assigneerId: $assigneerId, type: $type, listRelatedTask: $listRelatedTask, createByName: $createByName, status: $status, priority: $priority, id: $id, createdBy: $createdBy, createdDate: $createdDate)';
+    return 'TaskResponse(taskName: $taskName, description: $description, dueDate: $dueDate, completeDate: $completeDate, point: $point, assignee: $assignee, assigner: $assigner, type: $type, listRelatedTask: $listRelatedTask, createByName: $createByName, status: $status, priority: $priority, id: $id, createdBy: $createdBy, createdDate: $createdDate)';
   }
 
   @override
@@ -359,10 +391,10 @@ class _$_TaskResponse implements _TaskResponse {
             (identical(other.completeDate, completeDate) ||
                 other.completeDate == completeDate) &&
             (identical(other.point, point) || other.point == point) &&
-            (identical(other.assigneeId, assigneeId) ||
-                other.assigneeId == assigneeId) &&
-            (identical(other.assigneerId, assigneerId) ||
-                other.assigneerId == assigneerId) &&
+            (identical(other.assignee, assignee) ||
+                other.assignee == assignee) &&
+            (identical(other.assigner, assigner) ||
+                other.assigner == assigner) &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality()
                 .equals(other._listRelatedTask, _listRelatedTask) &&
@@ -387,8 +419,8 @@ class _$_TaskResponse implements _TaskResponse {
       dueDate,
       completeDate,
       point,
-      assigneeId,
-      assigneerId,
+      assignee,
+      assigner,
       type,
       const DeepCollectionEquality().hash(_listRelatedTask),
       createByName,
@@ -419,8 +451,8 @@ abstract class _TaskResponse implements TaskResponse {
       final String? dueDate,
       final String? completeDate,
       final int? point,
-      final String? assigneeId,
-      final String? assigneerId,
+      final UserResponse? assignee,
+      final UserResponse? assigner,
       final int? type,
       final List<TaskResponse>? listRelatedTask,
       final String? createByName,
@@ -444,9 +476,9 @@ abstract class _TaskResponse implements TaskResponse {
   @override
   int? get point;
   @override
-  String? get assigneeId;
+  UserResponse? get assignee;
   @override
-  String? get assigneerId;
+  UserResponse? get assigner;
   @override
   int? get type;
   @override

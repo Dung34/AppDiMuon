@@ -14,16 +14,14 @@ class TaskDataMapper extends BaseDataMapper<TaskResponse, Task>
       title: data?.taskName,
       description: data?.description,
       assignee: UserEntity(
-        id: data?.assigneeId,
-        fullName: 'Thanh Pham',
-        avatar:
-            'https://i.pinimg.com/736x/c0/ca/7c/c0ca7c23d37ece20730b2895d625da31.jpg',
+        id: data?.assignee?.id,
+        fullName: data?.assignee?.fullName,
+        avatar: data?.assignee?.imageUrl,
       ),
       assigner: UserEntity(
-        id: data?.assigneerId,
-        fullName: 'Lã Thanh Hương',
-        avatar:
-            'https://ih1.redbubble.net/image.1357487604.8176/st,small,507x507-pad,600x600,f8f8f8.jpg',
+        id: data?.assigner?.id,
+        fullName: data?.assigner?.fullName,
+        avatar: data?.assigner?.imageUrl,
       ),
       point: data?.point,
       startDate: data?.createdDate,
@@ -49,6 +47,19 @@ class TaskDataMapper extends BaseDataMapper<TaskResponse, Task>
 
   @override
   TaskResponse mapToData(Task entity) {
-    return TaskResponse();
+    return TaskResponse(
+      id: entity.id,
+      taskName: entity.title,
+      description: entity.description,
+      dueDate: entity.endDate,
+      // completeDate: entity.,
+      // assigneeId: entity.assignee?.id,
+      // assigneerId: entity.assigner?.id,
+      status: entity.status,
+      priority: entity.priority,
+      point: entity.point,
+
+      // type: entity.,
+    );
   }
 }

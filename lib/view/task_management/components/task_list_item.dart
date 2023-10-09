@@ -8,6 +8,8 @@ import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/container/primary_container.dart';
 import '../cubit/task_cubit.dart';
 import '../task_detail_page.dart';
+import 'task_priority_item.dart';
+import 'task_status_item.dart';
 
 class TaskListItem extends StatefulWidget {
   final Task task;
@@ -31,14 +33,29 @@ class _TaskListItemState extends State<TaskListItem> {
         );
       },
       child: PrimaryContainer(
-        backgroundColor: AppColor.green100,
+        backgroundColor: const Color.fromARGB(255, 217, 217, 217),
         margin: const EdgeInsets.only(top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.task.title ?? '',
-              style: AppTextTheme.lexendBold16,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.task.title ?? '',
+                    style: AppTextTheme.lexendBold16,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Row(
+                  children: [
+                    const Text('Priority: '),
+                    TaskPriorityItem(task: widget.task),
+                  ],
+                ),
+              ],
             ),
             Text(
               widget.task.description ?? '',
@@ -49,7 +66,12 @@ class _TaskListItemState extends State<TaskListItem> {
             const SizedBox(
               height: 10,
             ),
-            Text('Priority: ${widget.task.priorityStr}'),
+            Row(
+              children: [
+                const Text('Status: '),
+                TaskStatusItem(task: widget.task),
+              ],
+            ),
           ],
         ),
       ),

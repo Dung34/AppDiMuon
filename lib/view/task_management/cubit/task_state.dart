@@ -25,6 +25,14 @@ class TaskGetDetailSuccessState extends TaskState {
 
 class TaskGetDetailFailedState extends TaskState {}
 
+class TaskUpdateSuccessState extends TaskState {
+  final Task task;
+
+  TaskUpdateSuccessState({required this.task});
+}
+
+class TaskUpdateFailedState extends TaskState {}
+
 class TaskGetAllTaskSuccessState extends TaskState {
   final List<Task> taskList;
 

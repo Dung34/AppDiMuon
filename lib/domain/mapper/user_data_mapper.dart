@@ -9,7 +9,7 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
     return UserEntity(
       id: data?.id,
       login: data?.login,
-      fullName: data?.firstName,
+      fullName: data?.fullName,
       email: data?.email,
       phoneNumber: data?.phoneNumber,
       avatar: data?.imageUrl,

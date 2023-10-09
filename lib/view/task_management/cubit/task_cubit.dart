@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/model/api/base_response.dart';
@@ -46,6 +48,17 @@ class TaskCubit extends Cubit<TaskState> {
       emit(TaskGetAllTaskSuccessState(taskList: taskList));
     } else {
       emit(TaskGetAllTaskFailedState());
+    }
+  }
+
+  updateTask(Task task) async {
+    final response = await _okrRepository.updateTask(task);
+    if (response.status == ResponseStatus.success) {
+      log('1');
+      emit(TaskUpdateSuccessState(task: response.data!));
+    } else {
+      log('2');
+      emit(TaskUpdateFailedState());
     }
   }
 

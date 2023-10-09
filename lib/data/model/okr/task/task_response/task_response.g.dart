@@ -13,8 +13,12 @@ _$_TaskResponse _$$_TaskResponseFromJson(Map<String, dynamic> json) =>
       dueDate: json['dueDate'] as String?,
       completeDate: json['completeDate'] as String?,
       point: json['point'] as int?,
-      assigneeId: json['assigneeId'] as String?,
-      assigneerId: json['assigneerId'] as String?,
+      assignee: json['assignee'] == null
+          ? null
+          : UserResponse.fromJson(json['assignee'] as Map<String, dynamic>),
+      assigner: json['assigner'] == null
+          ? null
+          : UserResponse.fromJson(json['assigner'] as Map<String, dynamic>),
       type: json['type'] as int?,
       listRelatedTask: (json['listRelatedTask'] as List<dynamic>?)
           ?.map((e) => TaskResponse.fromJson(e as Map<String, dynamic>))
@@ -34,8 +38,8 @@ Map<String, dynamic> _$$_TaskResponseToJson(_$_TaskResponse instance) =>
       'dueDate': instance.dueDate,
       'completeDate': instance.completeDate,
       'point': instance.point,
-      'assigneeId': instance.assigneeId,
-      'assigneerId': instance.assigneerId,
+      'assignee': instance.assignee,
+      'assigner': instance.assigner,
       'type': instance.type,
       'listRelatedTask': instance.listRelatedTask,
       'createByName': instance.createByName,

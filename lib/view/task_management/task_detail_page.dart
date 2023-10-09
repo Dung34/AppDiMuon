@@ -6,15 +6,16 @@ import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/task/task.dart';
 import '../../shared/etx/view_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
+import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/container/primary_container.dart';
-import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
+import 'components/assignee_select_item.dart';
 import 'components/task_priority_item.dart';
+import 'components/task_status_item.dart';
 import 'cubit/task_cubit.dart';
-import 'user_search_dialog.dart';
 
 class TaskDetailPage extends StatefulWidget {
   final Task task;
@@ -31,6 +32,11 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
   bool get useBlocProviderValue => true;
 
   @override
+  bool get isUseLoading => true;
+
+  late Task? taskUpdate;
+
+  @override
   void initState() {
     super.initState();
     setCubit = widget.taskCubit;
@@ -45,7 +51,7 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
       title: 'Task Detail',
       actions: [
         TextButton(
-          onPressed: () {},
+          onPressed: _onUpdateTaskPressed,
           child: const Text('Update'),
         ),
       ],
@@ -55,10 +61,26 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
   @override
   Widget buildPage(BuildContext context) {
     return SingleChildScrollView(
-      child: BlocBuilder<TaskCubit, TaskState>(
+      child: BlocConsumer<TaskCubit, TaskState>(
+        listener: (context, state) {
+          if (state is TaskUpdateSuccessState) {
+            hideLoading();
+            ViewUtils.toastSuccess('Update Successfully');
+          } else if (state is TaskUpdateFailedState) {
+            hideLoading();
+            ViewUtils.toastWarning('Update Failed');
+          }
+        },
         builder: (context, state) {
-          if (state is TaskGetDetailSuccessState) {
-            final task = state.task;
+          if (state is TaskGetDetailSuccessState ||
+              state is TaskUpdateSuccessState) {
+            late final Task task;
+            if (state is TaskGetDetailSuccessState) {
+              task = state.task;
+            } else if (state is TaskUpdateSuccessState) {
+              task = state.task;
+            }
+            taskUpdate = task;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -131,7 +153,7 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                   child: TaskPriorityItem(
                     task: task,
                     onTaskPriorityTypeSelected: (type) {
-                      task.priority = type;
+                      taskUpdate!.priority = type;
                     },
                   ),
                 ),
@@ -139,23 +161,11 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                 TaskDetailItem(
                   icon: Assets.icHistory2,
                   title: 'Status',
-                  child: InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            task.statusStr ?? 'Not be Set',
-                            textAlign: TextAlign.end,
-                            style: AppTextTheme.robotoBold16
-                                .copyWith(color: AppColor.green200),
-                          ),
-                          const SizedBox(width: 10),
-                          SvgPicture.asset(Assets.icDropdown),
-                        ],
-                      ),
-                    ),
+                  child: TaskStatusItem(
+                    task: task,
+                    onTaskStatusTypeSelected: (type) {
+                      taskUpdate!.status = type;
+                    },
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -173,48 +183,35 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                 TaskDetailItem(
                   icon: Assets.icPerson,
                   title: 'Assigner',
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        (task.assigner?.fullName).toString(),
-                        style: AppTextTheme.robotoBold16,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      PrimaryCircleImage(
-                        radius: 18,
-                        imageUrl: task.assigner?.avatar,
-                      )
-                    ],
+                  child: AssigneeSelectItem(
+                    assigner: taskUpdate?.assigner,
+                    onUserSelected: (user) {
+                      taskUpdate?.assigner = user;
+                    },
                   ),
                 ),
                 const SizedBox(height: 20),
                 TaskDetailItem(
                   icon: Assets.icPersonCheck,
                   title: 'Assignee',
-                  child: TextButton(
-                    onPressed: () {
-                      context.showAppBottomSheet(const UserSearchDialog());
+                  child: AssigneeSelectItem(
+                    assignee: taskUpdate?.assignee,
+                    onUserSelected: (user) {
+                      taskUpdate?.assignee = user;
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          (task.assignee?.fullName).toString(),
-                          style: AppTextTheme.robotoBold16,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        PrimaryCircleImage(
-                          radius: 18,
-                          imageUrl: task.assignee?.avatar,
-                        )
-                      ],
-                    ),
                   ),
+                  // Row(
+                  //   children: [
+                  // AssigneeSelectItem(task: taskUpdate!),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     cubit.changeAssignee(userCubit.currentUser!);
+                  //     task.assignee = userCubit.currentUser!;
+                  //   },
+                  //   child: const Text('Assign to me'),
+                  // ),
+                  //   ],
+                  // ),
                 ),
                 const SizedBox(height: 20),
                 Row(
@@ -232,10 +229,10 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                 const SizedBox(width: 10),
                 Text(
                   task.description.toString(),
-                  textAlign: TextAlign.end,
                   style: AppTextTheme.robotoLight16
                       .copyWith(color: AppColor.green400),
-                )
+                ),
+                const SizedBox(width: 50),
               ],
             );
           } else {
@@ -244,6 +241,13 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
         },
       ),
     );
+  }
+
+  void _onUpdateTaskPressed() {
+    if (taskUpdate != null) {
+      showLoading();
+      cubit.updateTask(taskUpdate!);
+    }
   }
 }
 
@@ -273,8 +277,8 @@ class TaskDetailItem extends StatelessWidget {
                   AppTextTheme.robotoMedium16.copyWith(color: AppColor.gray200),
             ),
             const SizedBox(width: 10),
-            const Spacer(),
-            child
+            // const Spacer(),
+            Expanded(child: child)
           ],
         ),
         const SizedBox(height: 10),

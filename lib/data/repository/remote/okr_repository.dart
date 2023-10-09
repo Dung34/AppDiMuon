@@ -64,7 +64,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<Objective>> updateObjective();
 
-  Future<ResponseWrapper<Task>> updateTask();
+  Future<ResponseWrapper<Task>> updateTask(Task task);
 
   Future<ResponseWrapper<Unit>> updateUnit();
 
