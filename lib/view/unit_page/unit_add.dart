@@ -58,9 +58,6 @@ class UnitAddPage extends StatelessWidget {
             cubit.createUnit(unit);
             cubit.getAllUnit();
             context.pop();
-          } else {
-            cubit.createUnit(unit);
-            context.pop();
           }
         },
         builder: (context, state) => Scaffold(

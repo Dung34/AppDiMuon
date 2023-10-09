@@ -43,7 +43,7 @@ class UnitCubit extends Cubit<UnitState> {
     final response = await _okrRepository.deleteUnit(id);
 
     if (response.status == ResponseStatus.success) {
-      emit(UnitDeleteUnitSuccessState());
+      emit(UnitDeleteUnitSuccessState(id));
     } else {
       emit(UnitDeleteUnitFailedState());
     }
