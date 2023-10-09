@@ -55,6 +55,9 @@ class EndPoints {
       '/gateway/Member/memberViewMemberInformation';
   static const String getMemberBasicInfo = '/api/getInformation';
 
+  //key result
+  static const String getAllKeyResult = '/keyResult/get-all-keyResult';
+
   //objective
   static const String createObjective = '/objective/create-Objective';
   static const String getAllObjectives = '/OKRs/detail-OKRs';

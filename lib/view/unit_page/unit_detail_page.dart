@@ -13,7 +13,9 @@ import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
+import 'component/user_item.dart';
 import 'cubit/unit_cubit.dart';
+import 'unit_add_member.dart';
 
 class UnitDetailPage extends StatefulWidget {
   const UnitDetailPage({super.key});
@@ -109,13 +111,14 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                 PrimaryButton(
                   context: context,
                   onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoute.unitAdd,
-                      arguments: unit.id,
-                    );
+                    cubit.getAllUser(unitId: unit.id);
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return const UnitAddMember();
+                        });
                   },
-                  label: 'Thêm unit',
+                  label: 'Thêm thành viên',
                 ),
               ],
             ),

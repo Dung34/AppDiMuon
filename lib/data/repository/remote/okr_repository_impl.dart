@@ -8,7 +8,11 @@ import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
+<<<<<<< Updated upstream
 import '../../../domain/entity/okr/task/task.dart';
+=======
+import '../../../domain/entity/project/task.dart';
+>>>>>>> Stashed changes
 import '../../../domain/entity/user/user.dart';
 import '../../../domain/mapper/okr_data_mapper.dart';
 import '../../../domain/mapper/unit_data_mapper.dart';
@@ -19,7 +23,6 @@ import '../../../domain/mapper/task_data_mapper.dart';
 import '../../model/api/base_response.dart';
 import '../../model/okr_response/objective_response.dart';
 import '../../model/okr_response/okr_response.dart';
-import '../../model/old_login/login_response.dart';
 import '../../model/unit_response/unit_response.dart';
 import '../../model/user/user_response/user_response.dart';
 import '../../model/user/user_response/user_response.dart';
@@ -53,7 +56,7 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<User>>> addUserInUnit(
+  Future<ResponseWrapper<List<UserEntity>>> addUserInUnit(
       String unitId, List<String>? memberIds) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
@@ -268,9 +271,25 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective() {
-    // TODO: implement getAllKeyResultOfObjective
-    throw UnimplementedError();
+  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective(
+      String? objectiveId) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.get(
+          '${EndPoints.getAllKeyResult}?ObjectiveId=$objectiveId',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+          data: List.from((response.data as List).map((e) =>
+              _objectiveDataMapper.mapToEntity(ObjectiveResponse.fromJson(e)))),
+        );
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -512,7 +531,7 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<User>> updateUserInUnit() {
+  Future<ResponseWrapper<UserEntity>> updateUserInUnit() {
     // TODO: implement updateUserInUnit
     throw UnimplementedError();
   }

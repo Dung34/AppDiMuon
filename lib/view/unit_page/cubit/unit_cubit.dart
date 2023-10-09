@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -5,6 +6,7 @@ import '../../../data/repository/remote/okr_repository.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/user/user.dart';
 
 part 'unit_state.dart';
 
@@ -12,6 +14,7 @@ class UnitCubit extends Cubit<UnitState> {
   final OKRRepository _okrRepository = getIt.get<OKRRepository>();
 
   final List<Unit> units = [];
+  final List<UserEntity> users = [];
 
   UnitCubit() : super(UnitInitialState());
 
@@ -46,6 +49,18 @@ class UnitCubit extends Cubit<UnitState> {
       emit(UnitGetAllUnitSuccessState(units));
     } else {
       emit(UnitGetAllUnitFailedState());
+    }
+  }
+
+  getAllUser({String? unitId}) async {
+    final response = await _okrRepository.getAllUsersInUnit(unitId: unitId);
+
+    if (response.status == ResponseStatus.success) {
+      users.clear();
+      users.addAll(response.data ?? []);
+      emit(UnitGetAllUserInUnitSuccessState(users));
+    } else {
+      emit(UnitGetAllUserInUnitFailedState());
     }
   }
 

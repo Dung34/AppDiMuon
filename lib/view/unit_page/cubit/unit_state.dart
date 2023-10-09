@@ -42,4 +42,14 @@ class UnitGetUnitDetailSuccessState extends UnitState {
 
 class UnitGetUnitDetailFailedState extends UnitState {}
 
+class UnitGetAllUserInUnitSuccessState extends UnitState {
+  final List<UserEntity> users;
+
+  const UnitGetAllUserInUnitSuccessState(this.users);
+  @override
+  List<Object?> get props => [users];
+}
+
+class UnitGetAllUserInUnitFailedState extends UnitState {}
+
 class UnitResetState extends UnitState {}
