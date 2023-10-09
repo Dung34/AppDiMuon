@@ -52,7 +52,7 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
       ],
     );
     task = Task(
-      priority: 0,
+      priority: 3,
       status: 0,
       point: 0,
       // priorityStr:

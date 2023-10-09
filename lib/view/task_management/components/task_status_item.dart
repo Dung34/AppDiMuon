@@ -2,11 +2,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
-import 'task_priority_select_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../shared/etx/app_ext.dart';
+import 'task_status_select_dialog.dart';
 
 class TaskStatusItem extends StatefulWidget {
   const TaskStatusItem({
@@ -28,8 +28,8 @@ class _TaskStatusItemState extends State<TaskStatusItem> {
 
   @override
   void initState() {
-    taskStatusTitle = getTaskStatusStringByType(widget.task.priority ?? 0);
-    taskStatusColor = getStatusColorByType(widget.task.priority ?? 0);
+    taskStatusTitle = getTaskStatusStringByType(widget.task.status ?? 0);
+    taskStatusColor = getStatusColorByType(widget.task.status ?? 0);
     super.initState();
   }
 
@@ -37,14 +37,15 @@ class _TaskStatusItemState extends State<TaskStatusItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final int? taskPrioritySelected =
-            await context.showAppBottomSheet(const TaskPrioritySelectDialog());
+        final int? taskStatusSelected =
+            await context.showAppBottomSheet(const TaskStatusSelectDialog());
 
-        if (taskPrioritySelected != null) {
+        if (taskStatusSelected != null) {
           setState(() {
-            taskStatusTitle = getTaskStatusStringByType(taskPrioritySelected);
-            taskStatusColor = getStatusColorByType(taskPrioritySelected);
+            taskStatusTitle = getTaskStatusStringByType(taskStatusSelected);
+            taskStatusColor = getStatusColorByType(taskStatusSelected);
           });
+          widget.onTaskStatusTypeSelected?.call(taskStatusSelected);
         }
       },
       child: Padding(
