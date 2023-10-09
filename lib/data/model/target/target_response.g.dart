@@ -10,7 +10,7 @@ _$_TargetResponse _$$_TargetResponseFromJson(Map<String, dynamic> json) =>
     _$_TargetResponse(
       title: json['title'] as String?,
       description: json['description'] as String?,
-      target: (json['target'] as num?)?.toDouble(),
+      targe: (json['targe'] as num?)?.toDouble(),
       actual: (json['actual'] as num?)?.toDouble(),
       type: json['type'] as int?,
       status: json['status'] as int?,
@@ -24,7 +24,7 @@ Map<String, dynamic> _$$_TargetResponseToJson(_$_TargetResponse instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
-      'target': instance.target,
+      'targe': instance.targe,
       'actual': instance.actual,
       'type': instance.type,
       'status': instance.status,

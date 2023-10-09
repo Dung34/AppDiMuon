@@ -8,7 +8,7 @@ class TargetResponse with _$TargetResponse {
   factory TargetResponse({
     String? title,
     String? description,
-    double? target,
+    double? targe,
     double? actual,
     int? type,
     int? status,

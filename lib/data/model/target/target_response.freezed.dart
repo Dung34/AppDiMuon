@@ -22,7 +22,7 @@ TargetResponse _$TargetResponseFromJson(Map<String, dynamic> json) {
 mixin _$TargetResponse {
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  double? get target => throw _privateConstructorUsedError;
+  double? get targe => throw _privateConstructorUsedError;
   double? get actual => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $TargetResponseCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      double? target,
+      double? targe,
       double? actual,
       int? type,
       int? status,
@@ -71,7 +71,7 @@ class _$TargetResponseCopyWithImpl<$Res, $Val extends TargetResponse>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
-    Object? target = freezed,
+    Object? targe = freezed,
     Object? actual = freezed,
     Object? type = freezed,
     Object? status = freezed,
@@ -89,9 +89,9 @@ class _$TargetResponseCopyWithImpl<$Res, $Val extends TargetResponse>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
+      targe: freezed == targe
+          ? _value.targe
+          : targe // ignore: cast_nullable_to_non_nullable
               as double?,
       actual: freezed == actual
           ? _value.actual
@@ -136,7 +136,7 @@ abstract class _$$_TargetResponseCopyWith<$Res>
   $Res call(
       {String? title,
       String? description,
-      double? target,
+      double? targe,
       double? actual,
       int? type,
       int? status,
@@ -159,7 +159,7 @@ class __$$_TargetResponseCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
-    Object? target = freezed,
+    Object? targe = freezed,
     Object? actual = freezed,
     Object? type = freezed,
     Object? status = freezed,
@@ -177,9 +177,9 @@ class __$$_TargetResponseCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
+      targe: freezed == targe
+          ? _value.targe
+          : targe // ignore: cast_nullable_to_non_nullable
               as double?,
       actual: freezed == actual
           ? _value.actual
@@ -219,7 +219,7 @@ class _$_TargetResponse implements _TargetResponse {
   _$_TargetResponse(
       {this.title,
       this.description,
-      this.target,
+      this.targe,
       this.actual,
       this.type,
       this.status,
@@ -236,7 +236,7 @@ class _$_TargetResponse implements _TargetResponse {
   @override
   final String? description;
   @override
-  final double? target;
+  final double? targe;
   @override
   final double? actual;
   @override
@@ -254,7 +254,7 @@ class _$_TargetResponse implements _TargetResponse {
 
   @override
   String toString() {
-    return 'TargetResponse(title: $title, description: $description, target: $target, actual: $actual, type: $type, status: $status, userId: $userId, startDate: $startDate, endDate: $endDate, id: $id)';
+    return 'TargetResponse(title: $title, description: $description, targe: $targe, actual: $actual, type: $type, status: $status, userId: $userId, startDate: $startDate, endDate: $endDate, id: $id)';
   }
 
   @override
@@ -265,7 +265,7 @@ class _$_TargetResponse implements _TargetResponse {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.target, target) || other.target == target) &&
+            (identical(other.targe, targe) || other.targe == targe) &&
             (identical(other.actual, actual) || other.actual == actual) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.status, status) || other.status == status) &&
@@ -278,7 +278,7 @@ class _$_TargetResponse implements _TargetResponse {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, description, target,
+  int get hashCode => Object.hash(runtimeType, title, description, targe,
       actual, type, status, userId, startDate, endDate, id);
 
   @JsonKey(ignore: true)
@@ -299,7 +299,7 @@ abstract class _TargetResponse implements TargetResponse {
   factory _TargetResponse(
       {final String? title,
       final String? description,
-      final double? target,
+      final double? targe,
       final double? actual,
       final int? type,
       final int? status,
@@ -316,7 +316,7 @@ abstract class _TargetResponse implements TargetResponse {
   @override
   String? get description;
   @override
-  double? get target;
+  double? get targe;
   @override
   double? get actual;
   @override

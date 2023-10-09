@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'target.g.dart';
 part 'target.freezed.dart';
 
-@freezed
+@unfreezed
 class Target with _$Target {
   factory Target({
     String? title,

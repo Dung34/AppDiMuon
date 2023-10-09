@@ -65,4 +65,8 @@ class TargetCubit extends Cubit<TargetState> {
       emit(DeleteTargetFailed());
     }
   }
+
+  getReset() {
+    emit(GetAllTargetSuccess(listTarget: listTarget));
+  }
 }
