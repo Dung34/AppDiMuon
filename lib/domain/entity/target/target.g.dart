@@ -9,8 +9,8 @@ part of 'target.dart';
 _$_Target _$$_TargetFromJson(Map<String, dynamic> json) => _$_Target(
       title: json['title'] as String?,
       description: json['description'] as String?,
-      target: json['target'] as int?,
-      actual: json['actual'] as int?,
+      target: (json['target'] as num?)?.toDouble(),
+      actual: (json['actual'] as num?)?.toDouble(),
       type: json['type'] as int?,
       status: json['status'] as int?,
       userId: json['userId'] as String?,

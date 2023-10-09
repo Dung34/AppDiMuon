@@ -21,15 +21,25 @@ Target _$TargetFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Target {
   String? get title => throw _privateConstructorUsedError;
+  set title(String? value) => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  int? get target => throw _privateConstructorUsedError;
-  int? get actual => throw _privateConstructorUsedError;
+  set description(String? value) => throw _privateConstructorUsedError;
+  double? get target => throw _privateConstructorUsedError;
+  set target(double? value) => throw _privateConstructorUsedError;
+  double? get actual => throw _privateConstructorUsedError;
+  set actual(double? value) => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
+  set type(int? value) => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
+  set status(int? value) => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
+  set userId(String? value) => throw _privateConstructorUsedError;
   String? get startDate => throw _privateConstructorUsedError;
+  set startDate(String? value) => throw _privateConstructorUsedError;
   String? get endDate => throw _privateConstructorUsedError;
+  set endDate(String? value) => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,8 +54,8 @@ abstract class $TargetCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      int? target,
-      int? actual,
+      double? target,
+      double? actual,
       int? type,
       int? status,
       String? userId,
@@ -90,11 +100,11 @@ class _$TargetCopyWithImpl<$Res, $Val extends Target>
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       actual: freezed == actual
           ? _value.actual
           : actual // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -132,8 +142,8 @@ abstract class _$$_TargetCopyWith<$Res> implements $TargetCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      int? target,
-      int? actual,
+      double? target,
+      double? actual,
       int? type,
       int? status,
       String? userId,
@@ -175,11 +185,11 @@ class __$$_TargetCopyWithImpl<$Res>
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       actual: freezed == actual
           ? _value.actual
           : actual // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -227,54 +237,30 @@ class _$_Target implements _Target {
       _$$_TargetFromJson(json);
 
   @override
-  final String? title;
+  String? title;
   @override
-  final String? description;
+  String? description;
   @override
-  final int? target;
+  double? target;
   @override
-  final int? actual;
+  double? actual;
   @override
-  final int? type;
+  int? type;
   @override
-  final int? status;
+  int? status;
   @override
-  final String? userId;
+  String? userId;
   @override
-  final String? startDate;
+  String? startDate;
   @override
-  final String? endDate;
+  String? endDate;
   @override
-  final String? id;
+  String? id;
 
   @override
   String toString() {
     return 'Target(title: $title, description: $description, target: $target, actual: $actual, type: $type, status: $status, userId: $userId, startDate: $startDate, endDate: $endDate, id: $id)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Target &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.target, target) || other.target == target) &&
-            (identical(other.actual, actual) || other.actual == actual) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, title, description, target,
-      actual, type, status, userId, startDate, endDate, id);
 
   @JsonKey(ignore: true)
   @override
@@ -292,39 +278,49 @@ class _$_Target implements _Target {
 
 abstract class _Target implements Target {
   factory _Target(
-      {final String? title,
-      final String? description,
-      final int? target,
-      final int? actual,
-      final int? type,
-      final int? status,
-      final String? userId,
-      final String? startDate,
-      final String? endDate,
-      final String? id}) = _$_Target;
+      {String? title,
+      String? description,
+      double? target,
+      double? actual,
+      int? type,
+      int? status,
+      String? userId,
+      String? startDate,
+      String? endDate,
+      String? id}) = _$_Target;
 
   factory _Target.fromJson(Map<String, dynamic> json) = _$_Target.fromJson;
 
   @override
   String? get title;
+  set title(String? value);
   @override
   String? get description;
+  set description(String? value);
   @override
-  int? get target;
+  double? get target;
+  set target(double? value);
   @override
-  int? get actual;
+  double? get actual;
+  set actual(double? value);
   @override
   int? get type;
+  set type(int? value);
   @override
   int? get status;
+  set status(int? value);
   @override
   String? get userId;
+  set userId(String? value);
   @override
   String? get startDate;
+  set startDate(String? value);
   @override
   String? get endDate;
+  set endDate(String? value);
   @override
   String? get id;
+  set id(String? value);
   @override
   @JsonKey(ignore: true)
   _$$_TargetCopyWith<_$_Target> get copyWith =>
