@@ -26,8 +26,11 @@ import '../domain/mapper/list_report_data_mapper.dart';
 import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
+
 import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/skill_data_mapper.dart';
+
+import '../domain/mapper/task_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
 
 import '../shared/utils/geocoding_helper.dart';
@@ -40,6 +43,7 @@ import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/okr_page/cubit/okr_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
+import '../view/task_management/cubit/task_cubit.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -94,11 +98,12 @@ configureInjection() async {
   getIt.registerLazySingleton<AppInterceptor>(() => AppInterceptor());
 
   // mapper
+  getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
+  getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
   getIt.registerLazySingleton<ObjectiveDataMapper>(() => ObjectiveDataMapper());
   getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
   getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
-  getIt.registerFactory<UserDataMapper>(() => UserDataMapper());
-  getIt.registerFactory<CheckinDataMapper>(() => CheckinDataMapper());
+
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
   getIt.registerFactory<EventMemberDataMapper>(() => EventMemberDataMapper());
   getIt.registerFactory<ProjectListDataMapper>(() => ProjectListDataMapper());
@@ -109,6 +114,7 @@ configureInjection() async {
   getIt.registerFactory<GeneralReportMapper>(() => GeneralReportMapper());
   getIt.registerFactory<ListGeneralReportMapper>(
       () => ListGeneralReportMapper());
+  getIt.registerFactory<TaskDataMapper>(() => TaskDataMapper());
   getIt.registerFactory<SkillDataMapper>(() => SkillDataMapper());
   getIt.registerFactory<ListSkillMapper>(() => ListSkillMapper());
 
@@ -122,5 +128,6 @@ configureInjection() async {
   getIt.registerFactory<ReportCubit>(() => ReportCubit());
   getIt.registerFactory<UnitCubit>(() => UnitCubit());
   getIt.registerFactory<GeneralReportCubit>(() => GeneralReportCubit());
+  getIt.registerFactory<TaskCubit>(() => TaskCubit());
   getIt.registerFactory<SkillCubit>(() => SkillCubit());
 }

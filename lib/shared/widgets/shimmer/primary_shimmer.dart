@@ -10,8 +10,8 @@ class PrimaryShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: const Color.fromARGB(255, 240, 240, 240),
-      highlightColor: Colors.white,
+      baseColor: const Color.fromARGB(255, 227, 227, 227),
+      highlightColor: const Color.fromARGB(255, 237, 237, 237),
       period: const Duration(milliseconds: 1500),
       direction: ShimmerDirection.ltr,
       child: child ?? const ContainerShimmer(),

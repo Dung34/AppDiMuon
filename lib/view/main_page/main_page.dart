@@ -3,23 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../config/routes.dart';
-import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/widgets/animated_bottom_navigation/animated_bottom_navigation_bar.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
-import '../base/bloc/user/user_cubit.dart';
-import '../event_page/calendar/calendar_page.dart';
 import '../event_page/event_page.dart';
-import '../general_page/general_page.dart';
 import '../membership/membership_page.dart';
-import '../okr_page/okr_page.dart';
-import '../report_page/report_add.dart';
-import '../report_page/report_page.dart';
-import '../project_page/project_page.dart';
 import '../setting_page/setting_page.dart';
 import '../unit_page/unit_page.dart';
-import '../skill_page/skill_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -64,7 +55,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const MembershipPage(),
     // const CalendarPage(),
     // const ProjectPage(),
-    UnitPage(),
+    const UnitPage(),
     SettingPage(),
   ];
 
@@ -76,14 +67,15 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
         backgroundColor: AppColor.primaryColor,
         elevation: 4,
         onPressed: () {
-          if (context.read<UserCubit>().currentUser?.role == UserRole.admin) {
-            Navigator.of(context).pushNamed(AppRoute.eventOpening);
-          } else {
-            Navigator.of(context).pushNamed(AppRoute.qrScanner,
-                arguments: QrScannerPageArgs(
-                  userRole: UserRole.user,
-                ));
-          }
+          Navigator.of(context).pushNamed(AppRoute.taskManager);
+          // if (context.read<UserCubit>().currentUser?.role == UserRole.admin) {
+          //   Navigator.of(context).pushNamed(AppRoute.eventOpening);
+          // } else {
+          //   Navigator.of(context).pushNamed(AppRoute.qrScanner,
+          //       arguments: QrScannerPageArgs(
+          //         userRole: UserRole.user,
+          //       ));
+          // }
         },
         child: Container(
           height: 100,
@@ -101,11 +93,8 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
               ),
             ],
           ),
-          child: Center(
-            child: SvgPicture.asset(
-              Assets.icScanner,
-              color: AppColor.white,
-            ),
+          child: const Center(
+            child: Text('Task'),
           ),
         ),
       ),

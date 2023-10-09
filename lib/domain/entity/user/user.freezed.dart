@@ -24,24 +24,24 @@ mixin _$UserEntity {
   set id(String? value) => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
   set login(String? value) => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  set firstName(String? value) => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   set fullName(String? value) => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   set email(String? value) => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   set phoneNumber(String? value) => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  set imageUrl(String? value) => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  set avatar(String? value) => throw _privateConstructorUsedError;
+  String? get coverImage => throw _privateConstructorUsedError;
+  set coverImage(String? value) => throw _privateConstructorUsedError;
   bool? get activated => throw _privateConstructorUsedError;
   set activated(bool? value) => throw _privateConstructorUsedError;
   int? get rank => throw _privateConstructorUsedError;
   set rank(int? value) => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
   set role(int? value) => throw _privateConstructorUsedError;
-  int? get membershipTyper => throw _privateConstructorUsedError;
-  set membershipTyper(int? value) => throw _privateConstructorUsedError;
+  int? get membershipType => throw _privateConstructorUsedError;
+  set membershipType(int? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,15 +58,15 @@ abstract class $UserEntityCopyWith<$Res> {
   $Res call(
       {String? id,
       String? login,
-      String? firstName,
       String? fullName,
       String? email,
       String? phoneNumber,
-      String? imageUrl,
+      String? avatar,
+      String? coverImage,
       bool? activated,
       int? rank,
       int? role,
-      int? membershipTyper});
+      int? membershipType});
 }
 
 /// @nodoc
@@ -84,15 +84,15 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
-    Object? firstName = freezed,
     Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
-    Object? imageUrl = freezed,
+    Object? avatar = freezed,
+    Object? coverImage = freezed,
     Object? activated = freezed,
     Object? rank = freezed,
     Object? role = freezed,
-    Object? membershipTyper = freezed,
+    Object? membershipType = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -103,9 +103,9 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       fullName: freezed == fullName
           ? _value.fullName
@@ -119,9 +119,13 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coverImage: freezed == coverImage
+          ? _value.coverImage
+          : coverImage // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
@@ -135,9 +139,9 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
-      membershipTyper: freezed == membershipTyper
-          ? _value.membershipTyper
-          : membershipTyper // ignore: cast_nullable_to_non_nullable
+      membershipType: freezed == membershipType
+          ? _value.membershipType
+          : membershipType // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -154,15 +158,15 @@ abstract class _$$_UserEntityCopyWith<$Res>
   $Res call(
       {String? id,
       String? login,
-      String? firstName,
       String? fullName,
       String? email,
       String? phoneNumber,
-      String? imageUrl,
+      String? avatar,
+      String? coverImage,
       bool? activated,
       int? rank,
       int? role,
-      int? membershipTyper});
+      int? membershipType});
 }
 
 /// @nodoc
@@ -178,15 +182,15 @@ class __$$_UserEntityCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
-    Object? firstName = freezed,
     Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
-    Object? imageUrl = freezed,
+    Object? avatar = freezed,
+    Object? coverImage = freezed,
     Object? activated = freezed,
     Object? rank = freezed,
     Object? role = freezed,
-    Object? membershipTyper = freezed,
+    Object? membershipType = freezed,
   }) {
     return _then(_$_UserEntity(
       id: freezed == id
@@ -197,9 +201,9 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       fullName: freezed == fullName
           ? _value.fullName
@@ -213,9 +217,13 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coverImage: freezed == coverImage
+          ? _value.coverImage
+          : coverImage // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
@@ -229,9 +237,9 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
-      membershipTyper: freezed == membershipTyper
-          ? _value.membershipTyper
-          : membershipTyper // ignore: cast_nullable_to_non_nullable
+      membershipType: freezed == membershipType
+          ? _value.membershipType
+          : membershipType // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -244,14 +252,14 @@ class _$_UserEntity implements _UserEntity {
       {this.id,
       this.login,
       this.firstName,
-      this.fullName,
       this.email,
       this.phoneNumber,
-      this.imageUrl,
+      this.avatar,
+      this.coverImage,
       this.activated,
       this.rank,
       this.role,
-      this.membershipTyper});
+      this.membershipType});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -263,13 +271,13 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? firstName;
   @override
-  String? fullName;
-  @override
   String? email;
   @override
   String? phoneNumber;
   @override
-  String? imageUrl;
+  String? avatar;
+  @override
+  String? coverImage;
   @override
   bool? activated;
   @override
@@ -277,11 +285,11 @@ class _$_UserEntity implements _UserEntity {
   @override
   int? role;
   @override
-  int? membershipTyper;
+  int? membershipType;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, rank: $rank, role: $role, membershipTyper: $membershipTyper)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role, membershipTyper: $membershipTyper)';
   }
 
   @JsonKey(ignore: true)
@@ -303,14 +311,14 @@ abstract class _UserEntity implements UserEntity {
       {String? id,
       String? login,
       String? firstName,
-      String? fullName,
       String? email,
       String? phoneNumber,
-      String? imageUrl,
+      String? avatar,
+      String? coverImage,
       bool? activated,
       int? rank,
       int? role,
-      int? membershipTyper}) = _$_UserEntity;
+      int? membershipType}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -325,17 +333,17 @@ abstract class _UserEntity implements UserEntity {
   String? get firstName;
   set firstName(String? value);
   @override
-  String? get fullName;
-  set fullName(String? value);
-  @override
   String? get email;
   set email(String? value);
   @override
   String? get phoneNumber;
   set phoneNumber(String? value);
   @override
-  String? get imageUrl;
-  set imageUrl(String? value);
+  String? get avatar;
+  set avatar(String? value);
+  @override
+  String? get coverImage;
+  set coverImage(String? value);
   @override
   bool? get activated;
   set activated(bool? value);
@@ -346,8 +354,8 @@ abstract class _UserEntity implements UserEntity {
   int? get role;
   set role(int? value);
   @override
-  int? get membershipTyper;
-  set membershipTyper(int? value);
+  int? get membershipType;
+  set membershipType(int? value);
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>

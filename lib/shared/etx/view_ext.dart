@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../data/resources/colors.dart';
+
 extension BuildContextExt on BuildContext {
   double get screenHeight => MediaQuery.of(this).size.height;
   double get screenWidth => MediaQuery.of(this).size.width;
@@ -11,11 +13,14 @@ extension BuildContextExt on BuildContext {
           builder: (context) => dialog,
           barrierDismissible: barrierDismissible);
 
-  Future showAppBottomSheet(Widget dialog, {bool barrierDismissible = true}) =>
+  Future<dynamic> showAppBottomSheet(Widget dialog,
+          {bool barrierDismissible = true,
+          bool isScrollControlled = false}) async =>
       showModalBottomSheet(
         context: this,
-        // isScrollControlled: true,
+        isScrollControlled: isScrollControlled,
         isDismissible: barrierDismissible,
+        backgroundColor: AppColor.white,
         useSafeArea: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

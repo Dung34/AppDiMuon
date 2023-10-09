@@ -48,3 +48,11 @@ class OkrGetObjectiveDetailsSuccessState extends OkrState {
 }
 
 class OkrGetObjectiveDetailsFailedState extends OkrState {}
+
+class OkrGetAllUserSuccessState extends OkrState {
+  final List<UserEntity> users;
+
+  const OkrGetAllUserSuccessState(this.users);
+}
+
+class OkrGetAllUserFailedState extends OkrState {}
