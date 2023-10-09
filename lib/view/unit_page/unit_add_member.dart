@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/resources/resources.dart';
+import '../../domain/entity/okr/unit/unit.dart';
 import '../../domain/entity/user/user.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
@@ -12,9 +13,9 @@ import 'component/user_item.dart';
 import 'cubit/unit_cubit.dart';
 
 class UnitAddMember extends StatefulWidget {
-  final String? parrentId;
+  final Unit unit;
 
-  const UnitAddMember({super.key, this.parrentId});
+  const UnitAddMember({super.key, required this.unit});
 
   @override
   State<UnitAddMember> createState() => _UnitAddMember();
@@ -27,7 +28,7 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
   @override
   void initState() {
     super.initState();
-    cubit.getAllUser(unitId: widget.parrentId);
+    cubit.getAllUser(unitId: widget.unit.parrentId);
   }
 
   @override
@@ -39,7 +40,9 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
           PrimaryIconButton(
             context: context,
             icon: Assets.icPeople,
-            onPressed: () {},
+            onPressed: () {
+              cubit.addUsersInUnit(widget.unit.id ?? '');
+            },
           )
         ],
       ),
@@ -60,7 +63,10 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
               if (users.isNotEmpty) {
                 return ListView.builder(
                   itemBuilder: (context, index) {
-                    return UserItem(user: users[index]);
+                    return UserItem(
+                      user: users[index],
+                      cubit: cubit,
+                    );
                   },
                   itemCount: users.length,
                 );

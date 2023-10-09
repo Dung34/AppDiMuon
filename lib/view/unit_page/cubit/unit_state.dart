@@ -8,6 +8,10 @@ abstract class UnitState extends Equatable {
 
 class UnitInitialState extends UnitState {}
 
+class UnitAddUsersInUnitSuccessState extends UnitState {}
+
+class UnitAddUsersInUnitFailedState extends UnitState {}
+
 class UnitCreateUnitSuccessState extends UnitState {
   final Unit unit;
 

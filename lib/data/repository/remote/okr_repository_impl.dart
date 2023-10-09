@@ -8,15 +8,10 @@ import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
-<<<<<<< Updated upstream
 import '../../../domain/entity/okr/task/task.dart';
-=======
-import '../../../domain/entity/project/task.dart';
->>>>>>> Stashed changes
 import '../../../domain/entity/user/user.dart';
 import '../../../domain/mapper/okr_data_mapper.dart';
 import '../../../domain/mapper/unit_data_mapper.dart';
-import '../../../domain/mapper/user_data_mapper.dart';
 import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../../domain/mapper/task_data_mapper.dart';
@@ -24,7 +19,6 @@ import '../../model/api/base_response.dart';
 import '../../model/okr_response/objective_response.dart';
 import '../../model/okr_response/okr_response.dart';
 import '../../model/unit_response/unit_response.dart';
-import '../../model/user/user_response/user_response.dart';
 import '../../model/user/user_response/user_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';

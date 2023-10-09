@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,10 +12,21 @@ part 'unit_state.dart';
 class UnitCubit extends Cubit<UnitState> {
   final OKRRepository _okrRepository = getIt.get<OKRRepository>();
 
-  final List<Unit> units = [];
+  List<Unit> units = [];
   final List<UserEntity> users = [];
 
   UnitCubit() : super(UnitInitialState());
+
+  addUsersInUnit(String unitId) async {
+    final response = await _okrRepository.addUserInUnit(
+        unitId, List.from(users.map((e) => e.id)));
+
+    if (response.status == ResponseStatus.success) {
+      emit(UnitAddUsersInUnitSuccessState());
+    } else {
+      emit(UnitAddUsersInUnitFailedState());
+    }
+  }
 
   createUnit(Unit unit) async {
     emit(UnitResetState());
@@ -53,7 +63,8 @@ class UnitCubit extends Cubit<UnitState> {
   }
 
   getAllUser({String? unitId}) async {
-    final response = await _okrRepository.getAllUsersInUnit(unitId: unitId);
+    final response =
+        await _okrRepository.getAllUsersInUnit(unitId: unitId, page: 1);
 
     if (response.status == ResponseStatus.success) {
       users.clear();
