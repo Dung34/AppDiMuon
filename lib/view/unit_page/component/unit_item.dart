@@ -53,26 +53,24 @@ class _UnitItemState extends State<UnitItem> {
             ),
           ),
           const SizedBox(width: 16.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.unit.name ?? '',
-                style: AppTextTheme.robotoBold24,
-              ),
-              Text(
-                '${widget.unit.totalMemberCount} thành viên',
-                style: AppTextTheme.robotoLight12,
-              ),
-            ],
+          Flexible(
+            flex: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.unit.name ?? '',
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextTheme.robotoBold24,
+                ),
+                Text(
+                  '${widget.unit.totalMemberCount} thành viên',
+                  style: AppTextTheme.robotoLight12,
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
-          PrimaryIconButton(
-              context: context,
-              icon: Assets.icSquareAltArrowRight,
-              iconColor: AppColor.green100,
-              onPressed: () {})
         ]),
       ),
     );
