@@ -14,7 +14,6 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       phoneNumber: data?.phoneNumber,
       avatar: data?.imageUrl,
       activated: data?.activated,
-      langKey: data?.langKey,
       // ignore: prefer_is_empty
       role: data?.authorities!.length == 0
           ? 0
@@ -34,11 +33,6 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
       email: entity.email,
       phoneNumber: entity.phoneNumber,
       activated: entity.activated,
-      langKey: entity.langKey,
-      createdBy: entity.createdBy,
-      createdDate: entity.createdDate,
-      lastModifiedBy: entity.lastModifiedBy,
-      lastModifiedDate: entity.lastModifiedDate,
       authorities: [entity.role == 1 ? "ROLE_ADMIN" : "ROLE_USER"],
     );
   }

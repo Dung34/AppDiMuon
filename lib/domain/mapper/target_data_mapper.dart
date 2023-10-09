@@ -15,7 +15,7 @@ class TargetDataMapper extends BaseDataMapper<TargetResponse, Target>
       startDate: entity.startDate,
       id: entity.id,
       status: entity.status,
-      target: entity.target,
+      targe: entity.target,
       title: entity.title,
       type: entity.type,
       userId: entity.userId,
@@ -31,7 +31,7 @@ class TargetDataMapper extends BaseDataMapper<TargetResponse, Target>
         startDate: data?.startDate,
         id: data?.id,
         status: data?.status,
-        target: data?.target,
+        target: data?.targe,
         title: data?.title,
         type: data?.type,
         userId: data?.userId);

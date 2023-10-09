@@ -1,11 +1,18 @@
-import '../domain/entity/event/event_wrapper/event.dart';
-import '../domain/entity/project/project.dart';
-import '../view/auth/register/register_page.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/cupertino.dart';
 
+import '../domain/entity/event/event_wrapper/event.dart';
+import '../domain/entity/project/project.dart';
+import '../domain/entity/skill/skill.dart';
+import '../domain/entity/target/target.dart';
 import '../view/auth/login/login_page.dart';
+import '../view/auth/register/register_page.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
+import '../view/base/bloc/skill/skill_cubit.dart';
+
+import '../view/base/bloc/target/target_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/event_page/event_detail_page.dart';
 import '../view/event_page/event_history_page.dart';
@@ -30,7 +37,12 @@ import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
-import '../view/skill_page/skill_add_page.dart';
+
+import '../view/skill_page/skill_page.dart';
+import '../view/skill_page/skill_update.dart';
+
+import '../view/skill_page/target_page.dart';
+import '../view/skill_page/update_target_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 import '../view/unit_page/unit_add.dart';
@@ -73,7 +85,12 @@ class AppRoute {
   static const String taskManager = "/taskManager";
   static const String taskCreate = "/taskCreate";
   //skill
-  static const String skillAddPage = "/skillAddPage";
+  static const String skillPage = "/skillPage";
+  static const String skillUpdatePage = "/skillUpdatePage";
+  //target
+
+  static const String targetUpdatePage = "/targetUpdatePage";
+  static const String targetPage = "/targetPage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -109,10 +126,14 @@ class AppRoute {
         AppRoute.unitDetail: (context) => const UnitDetailPage(),
 
         //skill
-        AppRoute.skillAddPage: (context) => const SkillAddPage(),
+        AppRoute.skillPage: (context) => const SkillPage(),
+        AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
 
         AppRoute.taskManager: (context) => const TaskListPage(),
         AppRoute.taskCreate: (context) => const TaskCreatePage(),
+        //target
+        AppRoute.targetPage: (context) => const TargetPage(),
+        AppRoute.targetUpdatePage: (context) => const TargetUpdatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -188,6 +209,13 @@ class ProjectMemberPageArgs {
       this.projectMembers});
 }
 
+class UnitAddPageArgs {
+  final String? id;
+  final UnitCubit cubit;
+
+  const UnitAddPageArgs({this.id, required this.cubit});
+}
+
 class UnitDetailPageArgs {
   final String id;
   final UnitCubit unitCubit;
@@ -199,6 +227,21 @@ class ReportDailyPageArgs {
   final String reportId;
   final ReportCubit reportCubit;
   ReportDailyPageArgs({required this.reportId, required this.reportCubit});
+}
+
+class SkillPageArgs {
+  final bool addNew;
+  final Skill? skill;
+  final SkillCubit skillCubit;
+  SkillPageArgs({this.skill, required this.skillCubit, required this.addNew});
+}
+
+class TargetPageArgs {
+  final bool addNew;
+  final Target? target;
+  final TargetCubit targetCubit;
+  TargetPageArgs(
+      {required this.addNew, this.target, required this.targetCubit});
 }
 
 class QrScannerPageArgs {

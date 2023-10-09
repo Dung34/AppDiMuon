@@ -30,3 +30,18 @@ class GetDetailSkillFailed extends SkillState {}
 class AddNewSkillSuccess extends SkillState {}
 
 class AddNewSkillFailed extends SkillState {}
+
+class UpdateSkillSuccess extends SkillState {
+  final Skill skill;
+  const UpdateSkillSuccess({required this.skill});
+  @override
+  List<Object> get props => [];
+}
+
+class UpdateSkillFailed extends SkillState {}
+
+class DeleteSkillSuccess extends SkillState {}
+
+class DeleteSkillFailed extends SkillState {}
+
+class ResetState extends SkillState {}

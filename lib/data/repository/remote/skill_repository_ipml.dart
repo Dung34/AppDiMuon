@@ -57,7 +57,7 @@ class SkillRepositoryImplement implements SkillRepository {
   @override
   Future<ResponseWrapper<Skill>> getDetailSkill(String id) async {
     accessToken = await localDataAccess.getAccessToken();
-    final userId = await localDataAccess.getIdToken();
+    final userId = localDataAccess.getUserId();
     try {
       final response = await dio.get(EndPoints.getDetailSkill,
           queryParameters: {"Id": id, "UserId": userId},
@@ -119,7 +119,7 @@ class SkillRepositoryImplement implements SkillRepository {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.delete(EndPoints.deleteSkill,
-          data: {"$id"},
+          queryParameters: {"Id": id},
           options: Options(headers: {"Authorization": "Bearer $accessToken"}));
       if (response.statusCode == 200) {
         return ResponseWrapper.success(data: null);

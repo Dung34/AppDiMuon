@@ -3,13 +3,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'target.g.dart';
 part 'target.freezed.dart';
 
-@freezed
+@unfreezed
 class Target with _$Target {
   factory Target({
     String? title,
     String? description,
-    int? target,
-    int? actual,
+    double? target,
+    double? actual,
     int? type,
     int? status,
     String? userId,

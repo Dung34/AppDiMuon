@@ -16,11 +16,11 @@ class SkillCubit extends Cubit<SkillState> {
   Skill? currentSkill;
   List<Skill> listSkill = [];
   getAllSkill() async {
-    emit(SkillInitial());
     final response = await _skillRepository.getAllSkill();
     if (response.status == ResponseStatus.success) {
       listSkill.clear();
       listSkill.addAll(response.data ?? []);
+      emit(SkillInitial());
       emit(GetAllSkillSuccess(listSkill: listSkill));
     } else {
       emit(GetAllSkillFailed());
@@ -28,10 +28,10 @@ class SkillCubit extends Cubit<SkillState> {
   }
 
   getDetailSkill(String id) async {
-    emit(SkillInitial());
     final response = await _skillRepository.getDetailSkill(id);
     if (response.status == ResponseStatus.success) {
       currentSkill = response.data!;
+      emit(SkillInitial());
       emit(GetDetailSkill(skill: response.data!));
     } else {
       emit(GetDetailSkillFailed());
@@ -39,23 +39,38 @@ class SkillCubit extends Cubit<SkillState> {
   }
 
   addSkill(Skill skill) async {
-    emit(SkillInitial());
     final response = await _skillRepository.createSkill(skill);
     if (response.status == ResponseStatus.success) {
       listSkill.add(skill);
+
       emit(AddNewSkillSuccess());
+      emit(GetAllSkillSuccess(listSkill: listSkill));
     } else {
       emit(AddNewSkillFailed());
     }
   }
 
   updateSkill(Skill skill) async {
-    emit(SkillInitial());
     final response = await _skillRepository.updateSkill(skill);
     if (response.status == ResponseStatus.success) {
-      emit(state);
+      //emit(SkillInitial());
+      emit(UpdateSkillSuccess(skill: skill));
+      // emit(GetAllSkillSuccess(listSkill: listSkill));
+      // emit(ResetState());
     } else {
-      emit(state);
+      emit(UpdateSkillFailed());
+    }
+  }
+
+  deleteSkill(String id) async {
+    final response = await _skillRepository.deleteSkill(id);
+    if (response.status == ResponseStatus.success) {
+      listSkill.removeWhere((element) => element.id == id);
+
+      emit(GetAllSkillSuccess(listSkill: listSkill));
+      emit(DeleteSkillSuccess());
+    } else {
+      emit(DeleteSkillFailed());
     }
   }
 }

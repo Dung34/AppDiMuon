@@ -8,6 +8,10 @@ abstract class UnitState extends Equatable {
 
 class UnitInitialState extends UnitState {}
 
+class UnitAddUsersInUnitSuccessState extends UnitState {}
+
+class UnitAddUsersInUnitFailedState extends UnitState {}
+
 class UnitCreateUnitSuccessState extends UnitState {
   final Unit unit;
 
@@ -17,6 +21,16 @@ class UnitCreateUnitSuccessState extends UnitState {
 }
 
 class UnitCreateUnitFailedState extends UnitState {}
+
+class UnitDeleteUnitSuccessState extends UnitState {
+  final String unitId;
+
+  const UnitDeleteUnitSuccessState(this.unitId);
+  @override
+  List<Object?> get props => [unitId];
+}
+
+class UnitDeleteUnitFailedState extends UnitState {}
 
 class UnitGetAllUnitSuccessState extends UnitState {
   final List<Unit> units;
@@ -37,5 +51,15 @@ class UnitGetUnitDetailSuccessState extends UnitState {
 }
 
 class UnitGetUnitDetailFailedState extends UnitState {}
+
+class UnitGetAllUserInUnitSuccessState extends UnitState {
+  final List<UserEntity> users;
+
+  const UnitGetAllUserInUnitSuccessState(this.users);
+  @override
+  List<Object?> get props => [users];
+}
+
+class UnitGetAllUserInUnitFailedState extends UnitState {}
 
 class UnitResetState extends UnitState {}

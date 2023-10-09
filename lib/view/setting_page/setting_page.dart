@@ -54,9 +54,16 @@ class SettingPage extends StatelessWidget {
                     ),
                     const Divider(),
                     SettingItem(
-                      title: 'Lịch sử tham dự',
+                      title: 'Danh sách kĩ năng',
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoute.eventHistory);
+                        Navigator.of(context).pushNamed(AppRoute.skillPage);
+                      },
+                    ),
+                    const Divider(),
+                    SettingItem(
+                      title: 'Danh sách mục tiêu',
+                      onTap: () {
+                        Navigator.of(context).pushNamed(AppRoute.targetPage);
                       },
                     ),
                   ],
