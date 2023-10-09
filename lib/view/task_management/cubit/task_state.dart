@@ -35,3 +35,15 @@ class TaskGetAllTaskSuccessState extends TaskState {
 }
 
 class TaskGetAllTaskFailedState extends TaskState {}
+
+class TaskChangeAssignee extends TaskState {
+  final UserEntity user;
+
+  TaskChangeAssignee({required this.user});
+}
+
+class TaskChangeAssigneer extends TaskState {
+  final UserEntity user;
+
+  TaskChangeAssigneer({required this.user});
+}

@@ -90,7 +90,7 @@ class EndPoints {
   static const String deleteTarget = "/account/delete-target";
 
   // task
-  static const String getAllTaskOfUser = "/taskOKR/get-all-task-user";
+  static const String getAllTaskOfUser = "/taskOKR/get-all-task";
   static const String createTask = "/taskOKR/create-taskORK";
   static const String getTaskDetail = "/taskOKR/get-detail-task";
   static const String updateTask = "/taskOKR/update-taskORK";

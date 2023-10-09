@@ -4,6 +4,7 @@ import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/okr_repository.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/okr/task/task.dart';
+import '../../../domain/entity/user/user.dart';
 
 part 'task_state.dart';
 
@@ -46,5 +47,13 @@ class TaskCubit extends Cubit<TaskState> {
     } else {
       emit(TaskGetAllTaskFailedState());
     }
+  }
+
+  changeAssigner(UserEntity user) {
+    emit(TaskChangeAssigneer(user: user));
+  }
+
+  changeAssignee(UserEntity user) {
+    emit(TaskChangeAssignee(user: user));
   }
 }

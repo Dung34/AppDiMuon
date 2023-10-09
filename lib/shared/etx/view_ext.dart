@@ -13,8 +13,9 @@ extension BuildContextExt on BuildContext {
           builder: (context) => dialog,
           barrierDismissible: barrierDismissible);
 
-  Future showAppBottomSheet(Widget dialog,
-          {bool barrierDismissible = true, bool isScrollControlled = false}) =>
+  Future<dynamic> showAppBottomSheet(Widget dialog,
+          {bool barrierDismissible = true,
+          bool isScrollControlled = false}) async =>
       showModalBottomSheet(
         context: this,
         isScrollControlled: isScrollControlled,

@@ -131,12 +131,12 @@ class OKRRepositoryImpl extends OKRRepository {
           // "completeDate": task.,
           "parentId": task.parrentTask,
           "point": task.point,
-          "assigneeId": task.assignee,
-          "assigneerId": task.assigner,
+          "assigneeId": task.assignee?.id,
+          "assigneerId": task.assigner?.id,
           "keyResultId": task.keyResultId,
           "status": task.status,
           "priority": task.priority
-        },
+        }..removeWhere((key, value) => value == null),
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
 

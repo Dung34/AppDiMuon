@@ -12,7 +12,7 @@ import '../../shared/widgets/shimmer/container_shimmer.dart';
 import '../../shared/widgets/shimmer/primary_shimmer.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
-import 'components/task_priority_select_dialog.dart';
+import 'components/task_priority_item.dart';
 import 'cubit/task_cubit.dart';
 import 'user_search_dialog.dart';
 
@@ -128,28 +128,11 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
                 TaskDetailItem(
                   icon: Assets.icHistory2,
                   title: 'Prioriry',
-                  child: InkWell(
-                    onTap: () {
-                      context
-                          .showAppBottomSheet(const TaskPrioritySelectDialog());
+                  child: TaskPriorityItem(
+                    task: task,
+                    onTaskPriorityTypeSelected: (type) {
+                      task.priority = type;
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            task.priorityStr ?? '',
-                            textAlign: TextAlign.end,
-                            style: AppTextTheme.robotoBold16
-                                .copyWith(color: AppColor.red200),
-                          ),
-                          const SizedBox(width: 10),
-                          SvgPicture.asset(Assets.icDropdown),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 10),

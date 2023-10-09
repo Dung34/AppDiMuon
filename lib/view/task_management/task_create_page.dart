@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../config/routes.dart';
 import '../../data/resources/themes.dart';
 import '../../domain/entity/okr/task/task.dart';
+import '../../domain/entity/user/user.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/validation_utils.dart';
 import '../../shared/utils/view_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/container/primary_container.dart';
+import '../../shared/widgets/image/primary_circle_image.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
@@ -103,25 +105,48 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
               children: [
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      context.showAppBottomSheet(const UserSearchDialog());
+                    onTap: () async {
+                      UserEntity? userPop = await context
+                          .showAppBottomSheet(const UserSearchDialog());
+                      if (userPop != null) cubit.changeAssignee(userPop);
                     },
-                    child: const PrimaryContainer(
-                      padding: EdgeInsets.all(10),
+                    child: PrimaryContainer(
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          Text(
-                            'Select member',
+                          BlocBuilder<TaskCubit, TaskState>(
+                            buildWhen: (pre, current) =>
+                                current is TaskChangeAssignee,
+                            builder: (context, state) {
+                              return state is TaskChangeAssignee
+                                  ? Row(
+                                      children: [
+                                        PrimaryCircleImage(
+                                          imageUrl: state.user.avatar ?? '',
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          state.user.fullName ?? '',
+                                        )
+                                      ],
+                                    )
+                                  : const Text(
+                                      'Select member',
+                                    );
+                            },
                           ),
-                          Spacer(),
-                          Icon(Icons.arrow_drop_down_rounded)
+                          const Spacer(),
+                          const Icon(Icons.arrow_drop_down_rounded)
                         ],
                       ),
                     ),
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cubit.changeAssignee(userCubit.currentUser!);
+                    task.assignee = userCubit.currentUser!;
+                  },
                   child: const Text('Assign to me'),
                 ),
               ],
@@ -138,29 +163,53 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
               children: [
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      context.showAppBottomSheet(const UserSearchDialog());
+                    onTap: () async {
+                      UserEntity? userPop = await context
+                          .showAppBottomSheet(const UserSearchDialog());
+                      if (userPop != null) cubit.changeAssigner(userPop);
                     },
-                    child: const PrimaryContainer(
-                      padding: EdgeInsets.all(10),
+                    child: PrimaryContainer(
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          Text(
-                            'Select member',
+                          BlocBuilder<TaskCubit, TaskState>(
+                            buildWhen: (pre, current) =>
+                                current is TaskChangeAssigneer,
+                            builder: (context, state) {
+                              return state is TaskChangeAssigneer
+                                  ? Row(
+                                      children: [
+                                        PrimaryCircleImage(
+                                          imageUrl: state.user.avatar ?? '',
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          state.user.fullName ?? '',
+                                        )
+                                      ],
+                                    )
+                                  : const Text(
+                                      'Select member',
+                                    );
+                            },
                           ),
-                          Spacer(),
-                          Icon(Icons.arrow_drop_down_rounded)
+                          const Spacer(),
+                          const Icon(Icons.arrow_drop_down_rounded)
                         ],
                       ),
                     ),
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cubit.changeAssigner(userCubit.currentUser!);
+                    task.assigner = userCubit.currentUser!;
+                  },
                   child: const Text('Assign to me'),
                 ),
               ],
             ),
+            const SizedBox(height: 10),
           ],
         ),
       ),
