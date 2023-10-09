@@ -55,6 +55,9 @@ class EndPoints {
       '/gateway/Member/memberViewMemberInformation';
   static const String getMemberBasicInfo = '/api/getInformation';
 
+  //key result
+  static const String getAllKeyResult = '/keyResult/get-all-keyResult';
+
   //objective
   static const String createObjective = '/objective/create-Objective';
   static const String getAllObjectives = '/OKRs/detail-OKRs';
@@ -71,9 +74,13 @@ class EndPoints {
   static const String getProjectDetail = "/project/view-detail-project";
 
   //unit
+  static const String addMemberToUnit = "/unit/add-member-to-unit";
   static const String createUnit = "/unit/create-unit";
+  static const String deleteMemberFromUnit = '/unit/delete-member-from-unit';
+  static const String deleteUnit = "/unit/delete-unit";
   static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
   static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
+  static const String updateUnit = '/unit/update-unit';
   static const String viewUnit = '/unit/get-detail-unit';
 
   //skill

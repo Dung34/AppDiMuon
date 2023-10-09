@@ -5,10 +5,10 @@ import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../domain/entity/user/user.dart';
 import '../../model/api/base_response.dart';
-import '../../model/old_login/login_response.dart';
 
 abstract class OKRRepository {
-  Future<ResponseWrapper<User>> addUserInUnit();
+  Future<ResponseWrapper<List<UserEntity>>> addUserInUnit(
+      String unitId, List<String>? memberIds);
 
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
@@ -26,13 +26,15 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<int>> deleteTask();
 
-  Future<ResponseWrapper<int>> deleteUnit();
+  Future<ResponseWrapper<int>> deleteUnit(String id);
 
-  Future<ResponseWrapper<int>> deleteUserInUnit();
+  Future<ResponseWrapper<int>> deleteUserInUnit(
+      String unitId, List<String>? memberIds);
 
   Future<ResponseWrapper<List<Objective>>> getAllChildObjectiveOfAnObjective();
 
-  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective();
+  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective(
+      String? objectiveId);
 
   Future<ResponseWrapper<List<Objective>>> getAllObjective(
       {String? unitId, String? okrId});
@@ -66,9 +68,9 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<Task>> updateTask();
 
-  Future<ResponseWrapper<Unit>> updateUnit();
+  Future<ResponseWrapper<Unit>> updateUnit(Unit unit);
 
-  Future<ResponseWrapper<User>> updateUserInUnit();
+  Future<ResponseWrapper<UserEntity>> updateUserInUnit();
 
   Future<ResponseWrapper<Unit>> viewUnit(String unitId);
 }

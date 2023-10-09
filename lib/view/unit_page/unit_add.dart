@@ -1,8 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../config/routes.dart';
 import '../../data/constant/enum.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/unit/unit.dart';
@@ -11,7 +11,6 @@ import '../../shared/utils/validation_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
-import '../base/base_page_sate.dart';
 import '../base/bloc/get_image/get_image_bloc.dart';
 import 'cubit/unit_cubit.dart';
 
@@ -21,7 +20,7 @@ class UnitAddPage extends StatelessWidget {
   final titleFormKey = GlobalKey<FormState>();
   final descriptionFormKey = GlobalKey<FormState>();
   final Unit unit = Unit();
-  final UnitCubit cubit = UnitCubit();
+  late UnitCubit cubit;
   final GetImageBloc getImageBloc = GetImageBloc();
 
   UnitAddPage({super.key});
@@ -42,23 +41,26 @@ class UnitAddPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = context.arguments as UnitAddPageArgs;
+    cubit = args.cubit;
+
     return BlocProvider.value(
       value: getImageBloc,
       child: BlocConsumer<GetImageBloc, GetImageState>(
         listener: (context, state) {
+          unit.name = titleController.text;
+          unit.description = descriptionController.text;
+          if (context.arguments != null) {
+            unit.parrentId = args.id;
+          }
           if (state is GetImageGetSingleImageUrlSuccessState) {
-            unit.name = titleController.text;
-            unit.description = descriptionController.text;
-            if (context.arguments == null) {
-              unit.parrentId = context.arguments;
-            }
             unit.coverImage = state.imageUrl;
+            cubit.createUnit(unit);
+            cubit.getAllUnit();
+            context.pop();
           } else {
-            unit.name = titleController.text;
-            unit.description = descriptionController.text;
-            if (context.arguments == null) {
-              unit.parrentId = context.arguments;
-            }
+            cubit.createUnit(unit);
+            context.pop();
           }
         },
         builder: (context, state) => Scaffold(
@@ -66,18 +68,6 @@ class UnitAddPage extends StatelessWidget {
           appBar: PrimaryAppBar(
             canPop: true,
             title: " Thêm Unit",
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    cubit.createUnit(Unit(
-                        name: titleController.text.trim(),
-                        description: descriptionController.text.trim()));
-                  },
-                  icon: const Icon(
-                    Icons.edit_note_rounded,
-                    color: Colors.black,
-                  ))
-            ],
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -127,7 +117,6 @@ class UnitAddPage extends StatelessWidget {
                   context: context,
                   onPressed: () {
                     onUpdate();
-                    createUnit();
                   },
                   label: 'Thêm unit',
                 ),

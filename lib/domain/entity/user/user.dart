@@ -14,12 +14,7 @@ class UserEntity with _$UserEntity {
     String? avatar,
     String? coverImage,
     bool? activated,
-    String? langKey,
     int? rank,
-    String? createdBy,
-    String? createdDate,
-    String? lastModifiedBy,
-    String? lastModifiedDate,
     int? role,
     int? membershipType,
   }) = _UserEntity;

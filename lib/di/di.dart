@@ -32,6 +32,7 @@ import '../domain/mapper/skill_data_mapper.dart';
 
 import '../domain/mapper/task_data_mapper.dart';
 import '../domain/mapper/user_data_mapper.dart';
+
 import '../shared/utils/geocoding_helper.dart';
 import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/common/common_cubit.dart';
