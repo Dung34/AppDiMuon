@@ -22,7 +22,13 @@ class UnitCreateUnitSuccessState extends UnitState {
 
 class UnitCreateUnitFailedState extends UnitState {}
 
-class UnitDeleteUnitSuccessState extends UnitState {}
+class UnitDeleteUnitSuccessState extends UnitState {
+  final String unitId;
+
+  const UnitDeleteUnitSuccessState(this.unitId);
+  @override
+  List<Object?> get props => [unitId];
+}
 
 class UnitDeleteUnitFailedState extends UnitState {}
 
