@@ -11,7 +11,6 @@ import '../base/base_page_sate.dart';
 import '../base/bloc/user/user_cubit.dart';
 import 'component/unit_item.dart';
 import 'cubit/unit_cubit.dart';
-import 'unit_add.dart';
 
 class UnitPage extends StatefulWidget {
   const UnitPage({super.key});
@@ -31,10 +30,6 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
     super.initState();
     cubit.getAllUnit();
     userCubit.getUser();
-  }
-
-  reset() {
-    cubit.getAllUnit();
   }
 
   @override
@@ -107,7 +102,7 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                 } else if (state is UnitCreateUnitSuccessState) {
                   units.add(state.unit);
                 } else if (state is UnitDeleteUnitSuccessState) {
-                  reset();
+                  units.removeWhere((element) => element.id == state.unitId);
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }

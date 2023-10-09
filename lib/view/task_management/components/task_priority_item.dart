@@ -28,7 +28,7 @@ class _TaskPriorityItemState extends State<TaskPriorityItem> {
 
   @override
   void initState() {
-    taskPriorityTitle = widget.task.priorityStr ?? '';
+    taskPriorityTitle = getTaskPriorityStringByType(widget.task.priority ?? 0);
     taskPriorityColor = getPriorityColorByType(widget.task.priority ?? 0);
     super.initState();
   }
@@ -46,6 +46,7 @@ class _TaskPriorityItemState extends State<TaskPriorityItem> {
                 getTaskPriorityStringByType(taskPrioritySelected);
             taskPriorityColor = getPriorityColorByType(taskPrioritySelected);
           });
+          widget.onTaskPriorityTypeSelected?.call(taskPrioritySelected);
         }
       },
       child: Padding(
