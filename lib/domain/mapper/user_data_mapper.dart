@@ -9,23 +9,18 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
     return UserEntity(
       id: data?.id,
       login: data?.login,
-      firstName: data?.firstName,
+      fullName: data?.firstName,
       email: data?.email,
       phoneNumber: data?.phoneNumber,
-      imageUrl: data?.imageUrl,
+      avatar: data?.imageUrl,
       activated: data?.activated,
-      langKey: data?.langKey,
-      createdBy: data?.createdBy,
-      createdDate: data?.createdDate,
-      lastModifiedBy: data?.lastModifiedBy,
-      lastModifiedDate: data?.lastModifiedDate,
       // ignore: prefer_is_empty
       role: data?.authorities!.length == 0
           ? 0
           : data?.authorities![0] == 'ROLE_USER'
               ? 0
               : 1,
-      membershipTyper: data?.membershipType,
+      membershipType: data?.membershipType,
     );
   }
 
@@ -34,15 +29,10 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
     return UserResponse(
       id: entity.id,
       login: entity.login,
-      firstName: entity.firstName,
+      firstName: entity.fullName,
       email: entity.email,
       phoneNumber: entity.phoneNumber,
       activated: entity.activated,
-      langKey: entity.langKey,
-      createdBy: entity.createdBy,
-      createdDate: entity.createdDate,
-      lastModifiedBy: entity.lastModifiedBy,
-      lastModifiedDate: entity.lastModifiedDate,
       authorities: [entity.role == 1 ? "ROLE_ADMIN" : "ROLE_USER"],
     );
   }

@@ -12,12 +12,15 @@ class Assets {
   static const String icCamera = '$iconPrefix/ic_camera.svg';
   static const String icClock = '$iconPrefix/ic_clock.svg';
   static const String icClose = '$iconPrefix/ic_close.svg';
-  static const String icEdit = '$iconPrefix/ic_edit.svg';
   static const String icDelete = '$iconPrefix/ic_delete.svg';
+  static const String icDocument = '$iconPrefix/ic_document.svg';
+  static const String icDropdown = '$iconPrefix/ic_dropdown.svg';
+  static const String icEdit = '$iconPrefix/ic_edit.svg';
   static const String icEyeOff = '$iconPrefix/ic_eye_off.svg';
   static const String icEyeOn = '$iconPrefix/ic_eye_on.svg';
   static const String icExternalLink = '$iconPrefix/ic_external_link.svg';
   static const String icFilter = '$iconPrefix/ic_filter.svg';
+  static const String icHistory2 = '$iconPrefix/ic_history_2.svg';
   static const String icHome = '$iconPrefix/ic_home.svg';
   static const String icIdCard = '$iconPrefix/ic_id_card.svg';
   static const String icInfo = '$iconPrefix/ic_info.svg';
@@ -30,15 +33,19 @@ class Assets {
   static const String icNoData = '$iconPrefix/ic_no_data.svg';
   static const String icNotification = '$iconPrefix/ic_notification.svg';
   static const String icPerson = '$iconPrefix/ic_person.svg';
+  static const String icPersonCheck = '$iconPrefix/ic_person_check.svg';
   static const String icPersonOutline = '$iconPrefix/ic_person_outline.svg';
   static const String icPhone = '$iconPrefix/ic_phone.svg';
   static const String icPeople = '$iconPrefix/ic_people.svg';
   static const String icPeople2 = '$iconPrefix/ic_people2.svg';
+  static const String icPoint = '$iconPrefix/ic_point.svg';
   static const String icQrCode = '$iconPrefix/ic_qr_code.svg';
   static const String icScanner = '$iconPrefix/ic_scanner.svg';
   static const String icSearch = '$iconPrefix/ic_search.svg';
   static const String icSetting = '$iconPrefix/ic_setting.svg';
   static const String icShare = '$iconPrefix/ic_share.svg';
+  static const String icSquareAltArrowRight =
+      '$iconPrefix/ic_square_alt_arrow_right.svg';
   static const String icStar = '$iconPrefix/ic_star.svg';
   static const String icSuccess = '$iconPrefix/ic_success.svg';
   static const String icTask = '$iconPrefix/ic_task.svg';

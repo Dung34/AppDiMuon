@@ -124,17 +124,22 @@ class GetImageBloc extends Bloc<GetImageEvent, GetImageState> {
 
   FutureOr<void> _getImageUrl(
       GetImageGetSingleImageUrlEvent event, Emitter<GetImageState> emit) async {
-    if (singleImagePath.isEmpty) return;
+    if (singleImagePath.isEmpty) {
+      emit(GetImageGetSingleImageUrlErrorState());
+      return;
+    }
     // uploadImage to get image url
     final imgResponse =
         await storageRepository.uploadImage(imagePath: singleImagePath);
     if (imgResponse.status == ResponseStatus.success) {
+      print('getImageSingleUrlSucess');
       emit(
         GetImageGetSingleImageUrlSuccessState(
             imageUrl: imgResponse.data ?? '', type: event.imageType),
       );
       ViewUtils.toastSuccess('Tải ảnh lên thành công');
     } else {
+      print('getImageSingleUrlFailed');
       ViewUtils.toastWarning('Tải ảnh lên không thành công');
       emit(GetImageGetSingleImageUrlErrorState());
     }

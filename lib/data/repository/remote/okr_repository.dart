@@ -1,14 +1,24 @@
 import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
-import '../../../domain/entity/project/task.dart';
+import '../../../domain/entity/okr/okr_wrapper/okr.dart';
+import '../../../domain/entity/okr/unit/unit.dart';
+import '../../../domain/entity/okr/task/task.dart';
+import '../../../domain/entity/user/user.dart';
 import '../../model/api/base_response.dart';
 
 abstract class OKRRepository {
+  Future<ResponseWrapper<List<UserEntity>>> addUserInUnit(
+      String unitId, List<String>? memberIds);
+
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
-  Future<ResponseWrapper<Objective>> createObjective();
+  Future<ResponseWrapper<Objective>> createObjective(Objective objective);
 
-  Future<ResponseWrapper<Task>> createTask();
+  Future<ResponseWrapper<OKR>> createOKR(OKR okr);
+
+  Future<ResponseWrapper<Task>> createTask(Task task);
+
+  Future<ResponseWrapper<Unit>> createUnit(Unit unit);
 
   Future<ResponseWrapper<int>> deleteKeyResult();
 
@@ -16,11 +26,18 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<int>> deleteTask();
 
+  Future<ResponseWrapper<int>> deleteUnit(String id);
+
+  Future<ResponseWrapper<int>> deleteUserInUnit(
+      String unitId, List<String>? memberIds);
+
   Future<ResponseWrapper<List<Objective>>> getAllChildObjectiveOfAnObjective();
 
-  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective();
+  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective(
+      String? objectiveId);
 
-  Future<ResponseWrapper<List<Objective>>> getAllObjectiveOfOKR();
+  Future<ResponseWrapper<List<Objective>>> getAllObjective(
+      {String? unitId, String? okrId});
 
   Future<ResponseWrapper<List<Objective>>> getAllObjectiveOfParentUnit();
 
@@ -28,19 +45,32 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfKR();
 
-  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser();
+  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser(
+      {required int page, int pageSize = 10, String? userId});
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfSubtask();
 
+  Future<ResponseWrapper<List<Unit>>> getAllUnits();
+
+  Future<ResponseWrapper<List<UserEntity>>> getAllUsersInUnit(
+      {String? unitId, required int page, int pageSize = 10});
+
   Future<ResponseWrapper<KeyResult>> getKeyResultDetails();
 
-  Future<ResponseWrapper<Objective>> getObjectiveDetails();
+  Future<ResponseWrapper<Objective>> getObjectiveDetails(
+      String objectiveId, String unitId);
 
-  Future<ResponseWrapper<Task>> getTaskDetails();
+  Future<ResponseWrapper<Task>> getTaskDetails(String taskId);
 
   Future<ResponseWrapper<KeyResult>> updateKeyResult();
 
   Future<ResponseWrapper<Objective>> updateObjective();
 
   Future<ResponseWrapper<Task>> updateTask();
+
+  Future<ResponseWrapper<Unit>> updateUnit(Unit unit);
+
+  Future<ResponseWrapper<UserEntity>> updateUserInUnit();
+
+  Future<ResponseWrapper<Unit>> viewUnit(String unitId);
 }

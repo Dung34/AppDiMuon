@@ -11,6 +11,7 @@ class PrimaryContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final EdgeInsets? padding;
+  final EdgeInsets? margin;
   const PrimaryContainer(
       {Key? key,
       this.child,
@@ -19,6 +20,7 @@ class PrimaryContainer extends StatelessWidget {
       this.borderRadius = 8,
       this.borderWidth = 1,
       this.padding,
+      this.margin,
       this.width,
       this.height})
       : super(key: key);
@@ -27,6 +29,7 @@ class PrimaryContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding,
+      margin: margin,
       width: width,
       height: height,
       decoration: BoxDecoration(

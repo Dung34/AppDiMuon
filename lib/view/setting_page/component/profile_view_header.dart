@@ -107,12 +107,12 @@ class _ProfileViewHeaderState
                                 if (widget.canPop) const BackButtonCustom(),
                                 PrimaryCircleImage(
                                   radius: 20,
-                                  imageUrl: user.imageUrl ?? '',
+                                  imageUrl: user.avatar ?? '',
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
                                     child: Text(
-                                  user.firstName ?? '',
+                                  user.fullName ?? '',
                                   style: AppTextTheme.robotoMedium16,
                                 )),
                               ],
@@ -128,7 +128,7 @@ class _ProfileViewHeaderState
                                   alignment: Alignment.bottomCenter,
                                   height: expandedHeight,
                                   child: PrimaryNetworkImage(
-                                    imageUrl: user.imageUrl,
+                                    imageUrl: user.avatar,
                                     width: context.screenWidth,
                                     height: expandedHeight,
                                   ),
@@ -157,7 +157,7 @@ class _ProfileViewHeaderState
                                           backgroundColor: AppColor.white,
                                           child: PrimaryCircleImage(
                                             radius: 50,
-                                            imageUrl: user.imageUrl ?? '',
+                                            imageUrl: user.avatar ?? '',
                                           ),
                                         ),
                                         const SizedBox(width: 10),
@@ -168,7 +168,7 @@ class _ProfileViewHeaderState
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                user.firstName ?? '',
+                                                user.fullName ?? '',
                                                 style: AppTextTheme.robotoBold20
                                                     .copyWith(
                                                         color:

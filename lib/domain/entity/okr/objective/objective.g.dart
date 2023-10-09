@@ -16,7 +16,7 @@ _$_Objective _$$_ObjectiveFromJson(Map<String, dynamic> json) => _$_Objective(
           .toList(),
       unitId: json['unitId'] as String?,
       unitName: json['unitName'] as String?,
-      progress: (json['progress'] as num?)?.toDouble(),
+      process: (json['process'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_ObjectiveToJson(_$_Objective instance) =>
@@ -28,5 +28,5 @@ Map<String, dynamic> _$$_ObjectiveToJson(_$_Objective instance) =>
       'relatedObjective': instance.relatedObjective,
       'unitId': instance.unitId,
       'unitName': instance.unitName,
-      'progress': instance.progress,
+      'process': instance.process,
     };

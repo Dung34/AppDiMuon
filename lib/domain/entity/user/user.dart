@@ -8,18 +8,15 @@ class UserEntity with _$UserEntity {
   factory UserEntity({
     String? id,
     String? login,
-    String? firstName,
+    String? fullName,
     String? email,
     String? phoneNumber,
-    String? imageUrl,
+    String? avatar,
+    String? coverImage,
     bool? activated,
-    String? langKey,
-    String? createdBy,
-    String? createdDate,
-    String? lastModifiedBy,
-    String? lastModifiedDate,
+    int? rank,
     int? role,
-    int? membershipTyper,
+    int? membershipType,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

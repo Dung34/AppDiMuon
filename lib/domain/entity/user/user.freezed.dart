@@ -24,30 +24,24 @@ mixin _$UserEntity {
   set id(String? value) => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
   set login(String? value) => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  set firstName(String? value) => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
+  set fullName(String? value) => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   set email(String? value) => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   set phoneNumber(String? value) => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  set imageUrl(String? value) => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  set avatar(String? value) => throw _privateConstructorUsedError;
+  String? get coverImage => throw _privateConstructorUsedError;
+  set coverImage(String? value) => throw _privateConstructorUsedError;
   bool? get activated => throw _privateConstructorUsedError;
   set activated(bool? value) => throw _privateConstructorUsedError;
-  String? get langKey => throw _privateConstructorUsedError;
-  set langKey(String? value) => throw _privateConstructorUsedError;
-  String? get createdBy => throw _privateConstructorUsedError;
-  set createdBy(String? value) => throw _privateConstructorUsedError;
-  String? get createdDate => throw _privateConstructorUsedError;
-  set createdDate(String? value) => throw _privateConstructorUsedError;
-  String? get lastModifiedBy => throw _privateConstructorUsedError;
-  set lastModifiedBy(String? value) => throw _privateConstructorUsedError;
-  String? get lastModifiedDate => throw _privateConstructorUsedError;
-  set lastModifiedDate(String? value) => throw _privateConstructorUsedError;
+  int? get rank => throw _privateConstructorUsedError;
+  set rank(int? value) => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
   set role(int? value) => throw _privateConstructorUsedError;
-  int? get membershipTyper => throw _privateConstructorUsedError;
-  set membershipTyper(int? value) => throw _privateConstructorUsedError;
+  int? get membershipType => throw _privateConstructorUsedError;
+  set membershipType(int? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,18 +58,15 @@ abstract class $UserEntityCopyWith<$Res> {
   $Res call(
       {String? id,
       String? login,
-      String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
-      String? imageUrl,
+      String? avatar,
+      String? coverImage,
       bool? activated,
-      String? langKey,
-      String? createdBy,
-      String? createdDate,
-      String? lastModifiedBy,
-      String? lastModifiedDate,
+      int? rank,
       int? role,
-      int? membershipTyper});
+      int? membershipType});
 }
 
 /// @nodoc
@@ -93,18 +84,15 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
-    Object? firstName = freezed,
+    Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
-    Object? imageUrl = freezed,
+    Object? avatar = freezed,
+    Object? coverImage = freezed,
     Object? activated = freezed,
-    Object? langKey = freezed,
-    Object? createdBy = freezed,
-    Object? createdDate = freezed,
-    Object? lastModifiedBy = freezed,
-    Object? lastModifiedDate = freezed,
+    Object? rank = freezed,
     Object? role = freezed,
-    Object? membershipTyper = freezed,
+    Object? membershipType = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -115,9 +103,9 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -127,41 +115,29 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coverImage: freezed == coverImage
+          ? _value.coverImage
+          : coverImage // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
           : activated // ignore: cast_nullable_to_non_nullable
               as bool?,
-      langKey: freezed == langKey
-          ? _value.langKey
-          : langKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedBy: freezed == lastModifiedBy
-          ? _value.lastModifiedBy
-          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedDate: freezed == lastModifiedDate
-          ? _value.lastModifiedDate
-          : lastModifiedDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+      rank: freezed == rank
+          ? _value.rank
+          : rank // ignore: cast_nullable_to_non_nullable
+              as int?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
-      membershipTyper: freezed == membershipTyper
-          ? _value.membershipTyper
-          : membershipTyper // ignore: cast_nullable_to_non_nullable
+      membershipType: freezed == membershipType
+          ? _value.membershipType
+          : membershipType // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -178,18 +154,15 @@ abstract class _$$_UserEntityCopyWith<$Res>
   $Res call(
       {String? id,
       String? login,
-      String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
-      String? imageUrl,
+      String? avatar,
+      String? coverImage,
       bool? activated,
-      String? langKey,
-      String? createdBy,
-      String? createdDate,
-      String? lastModifiedBy,
-      String? lastModifiedDate,
+      int? rank,
       int? role,
-      int? membershipTyper});
+      int? membershipType});
 }
 
 /// @nodoc
@@ -205,18 +178,15 @@ class __$$_UserEntityCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
-    Object? firstName = freezed,
+    Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
-    Object? imageUrl = freezed,
+    Object? avatar = freezed,
+    Object? coverImage = freezed,
     Object? activated = freezed,
-    Object? langKey = freezed,
-    Object? createdBy = freezed,
-    Object? createdDate = freezed,
-    Object? lastModifiedBy = freezed,
-    Object? lastModifiedDate = freezed,
+    Object? rank = freezed,
     Object? role = freezed,
-    Object? membershipTyper = freezed,
+    Object? membershipType = freezed,
   }) {
     return _then(_$_UserEntity(
       id: freezed == id
@@ -227,9 +197,9 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -239,41 +209,29 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coverImage: freezed == coverImage
+          ? _value.coverImage
+          : coverImage // ignore: cast_nullable_to_non_nullable
               as String?,
       activated: freezed == activated
           ? _value.activated
           : activated // ignore: cast_nullable_to_non_nullable
               as bool?,
-      langKey: freezed == langKey
-          ? _value.langKey
-          : langKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedBy: freezed == lastModifiedBy
-          ? _value.lastModifiedBy
-          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastModifiedDate: freezed == lastModifiedDate
-          ? _value.lastModifiedDate
-          : lastModifiedDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+      rank: freezed == rank
+          ? _value.rank
+          : rank // ignore: cast_nullable_to_non_nullable
+              as int?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as int?,
-      membershipTyper: freezed == membershipTyper
-          ? _value.membershipTyper
-          : membershipTyper // ignore: cast_nullable_to_non_nullable
+      membershipType: freezed == membershipType
+          ? _value.membershipType
+          : membershipType // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -285,18 +243,15 @@ class _$_UserEntity implements _UserEntity {
   _$_UserEntity(
       {this.id,
       this.login,
-      this.firstName,
+      this.fullName,
       this.email,
       this.phoneNumber,
-      this.imageUrl,
+      this.avatar,
+      this.coverImage,
       this.activated,
-      this.langKey,
-      this.createdBy,
-      this.createdDate,
-      this.lastModifiedBy,
-      this.lastModifiedDate,
+      this.rank,
       this.role,
-      this.membershipTyper});
+      this.membershipType});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -306,33 +261,27 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? login;
   @override
-  String? firstName;
+  String? fullName;
   @override
   String? email;
   @override
   String? phoneNumber;
   @override
-  String? imageUrl;
+  String? avatar;
+  @override
+  String? coverImage;
   @override
   bool? activated;
   @override
-  String? langKey;
-  @override
-  String? createdBy;
-  @override
-  String? createdDate;
-  @override
-  String? lastModifiedBy;
-  @override
-  String? lastModifiedDate;
+  int? rank;
   @override
   int? role;
   @override
-  int? membershipTyper;
+  int? membershipType;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role, membershipTyper: $membershipTyper)';
+    return 'UserEntity(id: $id, login: $login, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, avatar: $avatar, coverImage: $coverImage, activated: $activated, rank: $rank, role: $role, membershipType: $membershipType)';
   }
 
   @JsonKey(ignore: true)
@@ -353,18 +302,15 @@ abstract class _UserEntity implements UserEntity {
   factory _UserEntity(
       {String? id,
       String? login,
-      String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
-      String? imageUrl,
+      String? avatar,
+      String? coverImage,
       bool? activated,
-      String? langKey,
-      String? createdBy,
-      String? createdDate,
-      String? lastModifiedBy,
-      String? lastModifiedDate,
+      int? rank,
       int? role,
-      int? membershipTyper}) = _$_UserEntity;
+      int? membershipType}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -376,8 +322,8 @@ abstract class _UserEntity implements UserEntity {
   String? get login;
   set login(String? value);
   @override
-  String? get firstName;
-  set firstName(String? value);
+  String? get fullName;
+  set fullName(String? value);
   @override
   String? get email;
   set email(String? value);
@@ -385,32 +331,23 @@ abstract class _UserEntity implements UserEntity {
   String? get phoneNumber;
   set phoneNumber(String? value);
   @override
-  String? get imageUrl;
-  set imageUrl(String? value);
+  String? get avatar;
+  set avatar(String? value);
+  @override
+  String? get coverImage;
+  set coverImage(String? value);
   @override
   bool? get activated;
   set activated(bool? value);
   @override
-  String? get langKey;
-  set langKey(String? value);
-  @override
-  String? get createdBy;
-  set createdBy(String? value);
-  @override
-  String? get createdDate;
-  set createdDate(String? value);
-  @override
-  String? get lastModifiedBy;
-  set lastModifiedBy(String? value);
-  @override
-  String? get lastModifiedDate;
-  set lastModifiedDate(String? value);
+  int? get rank;
+  set rank(int? value);
   @override
   int? get role;
   set role(int? value);
   @override
-  int? get membershipTyper;
-  set membershipTyper(int? value);
+  int? get membershipType;
+  set membershipType(int? value);
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>

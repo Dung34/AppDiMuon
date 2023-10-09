@@ -55,3 +55,21 @@ Map<String, dynamic> _$NewDefaultResponseToJson<T>(
     <String, dynamic>{
       'id_token': instance.idToken,
     };
+
+DefaultPagingResponse<T> _$DefaultPagingResponseFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    DefaultPagingResponse<T>(
+      json['totalCount'] as int,
+      _$nullableGenericFromJson(json['data'], fromJsonT),
+    );
+
+Map<String, dynamic> _$DefaultPagingResponseToJson<T>(
+  DefaultPagingResponse<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'data': _$nullableGenericToJson(instance.data, toJsonT),
+    };

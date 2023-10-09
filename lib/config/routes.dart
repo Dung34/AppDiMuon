@@ -40,6 +40,12 @@ import '../view/setting_page/profile_update_page.dart';
 import '../view/skill_page/skill_update.dart';
 
 import '../view/splash_screen/splash_screen.dart';
+import '../view/unit_page/cubit/unit_cubit.dart';
+import '../view/unit_page/unit_add.dart';
+import '../view/unit_page/unit_detail_page.dart';
+import '../view/task_management/cubit/task_cubit.dart';
+import '../view/task_management/task_create_page.dart';
+import '../view/task_management/task_list_page.dart';
 
 class AppRoute {
   static const String splash = "/";
@@ -68,6 +74,12 @@ class AppRoute {
   static const String geneReportDetail = "/geneReportDetail";
   static const String geneReportAdd = "/geneReportAdd";
   static const String geneReportUpdate = "/geneReportUpdate";
+
+  static const String unitAdd = "/unitAdd";
+  static const String unitDetail = "/unitDetail";
+
+  static const String taskManager = "/taskManager";
+  static const String taskCreate = "/taskCreate";
   //skill
 
   static const String skillUpdatePage = "/skillUpdatePage";
@@ -99,14 +111,21 @@ class AppRoute {
         AppRoute.reportDetail: (context) => const ReportDetailView(),
         AppRoute.addReport: (context) => const ReportAddPage(),
         AppRoute.updateReport: (context) => const ReportUpdatePage(),
+
         AppRoute.generalReport: (context) => const GeneralPage(),
         AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
-        AppRoute.geneReportUpdate: (context) => GenReportUpdate(),
+        AppRoute.geneReportUpdate: (context) => const GenReportUpdate(),
+
+        AppRoute.unitAdd: (context) => UnitAddPage(),
+        AppRoute.unitDetail: (context) => const UnitDetailPage(),
+
         //skill
 
         AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
-        //target
+
+        AppRoute.taskManager: (context) => const TaskListPage(),
+        AppRoute.taskCreate: (context) => const TaskCreatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -182,6 +201,20 @@ class ProjectMemberPageArgs {
       this.projectMembers});
 }
 
+class UnitAddPageArgs {
+  final String? id;
+  final UnitCubit cubit;
+
+  const UnitAddPageArgs({this.id, required this.cubit});
+}
+
+class UnitDetailPageArgs {
+  final String id;
+  final UnitCubit unitCubit;
+
+  UnitDetailPageArgs({required this.id, required this.unitCubit});
+}
+
 class ReportDailyPageArgs {
   final String reportId;
   final ReportCubit reportCubit;
@@ -215,4 +248,10 @@ class GeneralReportArgs {
   final String reportId;
   final GeneralReportCubit generalReportCubit;
   GeneralReportArgs({required this.reportId, required this.generalReportCubit});
+}
+
+class TaskCreatePageArgs {
+  final String? taskId;
+  final TaskCubit taskCubit;
+  TaskCreatePageArgs({this.taskId, required this.taskCubit});
 }

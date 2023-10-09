@@ -5,13 +5,15 @@ import 'package:intl/intl.dart';
 
 class DateTimeUtils {
   static String formatDate(String strDate,
-      {bool showTime = false, bool showOnlyTime = false}) {
+      {bool showTime = true, bool showOnlyTime = false}) {
     try {
-      var dateFormat = DateFormat(showOnlyTime
-          ? 'HH:mm'
-          : showTime
-              ? 'HH:mm - dd/MM/yyyy'
-              : 'dd/MM/yyyy');
+      var dateFormat = DateFormat();
+      if (showTime) {
+        dateFormat.add_Hms();
+      }
+      if (!showOnlyTime) {
+        dateFormat.add_yMMMd();
+      }
       return dateFormat.format(DateTime.parse(strDate).toLocal()).toString();
     } catch (e) {
       return strDate;

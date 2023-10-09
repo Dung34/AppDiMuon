@@ -55,12 +55,33 @@ class EndPoints {
       '/gateway/Member/memberViewMemberInformation';
   static const String getMemberBasicInfo = '/api/getInformation';
 
+  //key result
+  static const String getAllKeyResult = '/keyResult/get-all-keyResult';
+
+  //objective
+  static const String createObjective = '/objective/create-Objective';
+  static const String getAllObjectives = '/OKRs/detail-OKRs';
+  static const String getObjectiveDetails = '/objective/detail-Objective';
+
+  //OKR
+  static const String createOKR = '/OKRs/create-OKR';
+
   // storage repository
   static const String uploadImage = "/gateway/Media/Upload";
 
   //project
   static const String getAllProject = "/project/view-all-project";
   static const String getProjectDetail = "/project/view-detail-project";
+
+  //unit
+  static const String addMemberToUnit = "/unit/add-member-to-unit";
+  static const String createUnit = "/unit/create-unit";
+  static const String deleteMemberFromUnit = '/unit/delete-member-from-unit';
+  static const String deleteUnit = "/unit/delete-unit";
+  static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
+  static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
+  static const String updateUnit = '/unit/update-unit';
+  static const String viewUnit = '/unit/get-detail-unit';
 
   //skill
   static const String getAllSkill = "/account/get-all-skills";
@@ -74,6 +95,13 @@ class EndPoints {
   static const String createTarget = "/account/create-target";
   static const String updateTarget = "/account/update-target";
   static const String deleteTarget = "/account/delete-target";
+
+  // task
+  static const String getAllTaskOfUser = "/taskOKR/get-all-task";
+  static const String createTask = "/taskOKR/create-taskORK";
+  static const String getTaskDetail = "/taskOKR/get-detail-task";
+  static const String updateTask = "/taskOKR/update-taskORK";
+  static const String deleteTask = "/taskOKR/delete-taskORK";
 }
 
 class SSOConfig {
