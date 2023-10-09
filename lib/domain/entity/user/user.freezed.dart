@@ -107,10 +107,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -205,10 +201,6 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -251,7 +243,7 @@ class _$_UserEntity implements _UserEntity {
   _$_UserEntity(
       {this.id,
       this.login,
-      this.firstName,
+      this.fullName,
       this.email,
       this.phoneNumber,
       this.avatar,
@@ -269,7 +261,7 @@ class _$_UserEntity implements _UserEntity {
   @override
   String? login;
   @override
-  String? firstName;
+  String? fullName;
   @override
   String? email;
   @override
@@ -289,7 +281,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, firstName: $firstName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, role: $role, membershipTyper: $membershipTyper)';
+    return 'UserEntity(id: $id, login: $login, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, avatar: $avatar, coverImage: $coverImage, activated: $activated, rank: $rank, role: $role, membershipType: $membershipType)';
   }
 
   @JsonKey(ignore: true)
@@ -310,7 +302,7 @@ abstract class _UserEntity implements UserEntity {
   factory _UserEntity(
       {String? id,
       String? login,
-      String? firstName,
+      String? fullName,
       String? email,
       String? phoneNumber,
       String? avatar,
@@ -330,8 +322,8 @@ abstract class _UserEntity implements UserEntity {
   String? get login;
   set login(String? value);
   @override
-  String? get firstName;
-  set firstName(String? value);
+  String? get fullName;
+  set fullName(String? value);
   @override
   String? get email;
   set email(String? value);

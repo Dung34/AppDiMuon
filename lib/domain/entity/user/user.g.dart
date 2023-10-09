@@ -10,10 +10,6 @@ _$_UserEntity _$$_UserEntityFromJson(Map<String, dynamic> json) =>
     _$_UserEntity(
       id: json['id'] as String?,
       login: json['login'] as String?,
-<<<<<<< HEAD
-      firstName: json['firstName'] as String?,
-=======
->>>>>>> 6e0ab48c3a88ce226366cde1ae4867ae9d93f60d
       fullName: json['fullName'] as String?,
       email: json['email'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
@@ -29,10 +25,6 @@ Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'login': instance.login,
-<<<<<<< HEAD
-      'firstName': instance.firstName,
-=======
->>>>>>> 6e0ab48c3a88ce226366cde1ae4867ae9d93f60d
       'fullName': instance.fullName,
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,
