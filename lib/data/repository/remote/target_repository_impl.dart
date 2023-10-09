@@ -10,6 +10,7 @@ import '../../../domain/entity/target/target.dart';
 import '../../../domain/mapper/target_data_mapper.dart';
 import '../../model/api/base_response.dart';
 import '../../model/target/list_target_response.dart';
+import '../../model/target/target_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../interceptor/interceptor.dart';
 import '../local/local_data_access.dart';
@@ -51,6 +52,83 @@ class TargetRepositoryImplement implements TargetRepository {
       }
     } catch (e) {
       log('failed2 ' + e.toString());
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<Target>> createTarget(Target target) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(EndPoints.createTarget,
+          data: _targetDataMapper.mapToData(target).toJson()
+            ..removeWhere((key, value) => value == null),
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _targetDataMapper
+                .mapToEntity(TargetResponse.fromJson(response.data)));
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<void>> deleteTarget(String id) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.delete(EndPoints.deleteTarget,
+          queryParameters: {"Id": id},
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: null);
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<Target>> getDeteilTarget(String id) async {
+    accessToken = await localDataAccess.getAccessToken();
+    final userId = localDataAccess.getUserId();
+    try {
+      final response = await dio.get(EndPoints.getDetailTarget,
+          queryParameters: {"Id": id, "UserId": userId},
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _targetDataMapper
+                .mapToEntity(TargetResponse.fromJson(response.data)));
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<Target>> updateTarget(Target target) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.post(EndPoints.updateTarget,
+          data: _targetDataMapper.mapToData(target).toJson()
+            ..removeWhere((key, value) => value == null),
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _targetDataMapper
+                .mapToEntity(TargetResponse.fromJson(response.data)));
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
       return ResponseWrapper.error(message: "");
     }
   }

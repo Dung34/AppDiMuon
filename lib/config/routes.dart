@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import '../domain/entity/event/event_wrapper/event.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
+import '../domain/entity/target/target.dart';
 import '../view/auth/login/login_page.dart';
 import '../view/auth/register/register_page.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
@@ -37,8 +38,11 @@ import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 
+import '../view/skill_page/skill_page.dart';
 import '../view/skill_page/skill_update.dart';
 
+import '../view/skill_page/target_page.dart';
+import '../view/skill_page/update_target_page.dart';
 import '../view/splash_screen/splash_screen.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 import '../view/unit_page/unit_add.dart';
@@ -81,11 +85,12 @@ class AppRoute {
   static const String taskManager = "/taskManager";
   static const String taskCreate = "/taskCreate";
   //skill
-
+  static const String skillPage = "/skillPage";
   static const String skillUpdatePage = "/skillUpdatePage";
   //target
-  static const String targetAddPage = "/targetAddPage";
+
   static const String targetUpdatePage = "/targetUpdatePage";
+  static const String targetPage = "/targetPage";
 
   static dynamic generateRoute() => {
         AppRoute.login: (context) => LoginScreen(),
@@ -121,11 +126,14 @@ class AppRoute {
         AppRoute.unitDetail: (context) => const UnitDetailPage(),
 
         //skill
-
+        AppRoute.skillPage: (context) => const SkillPage(),
         AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
 
         AppRoute.taskManager: (context) => const TaskListPage(),
         AppRoute.taskCreate: (context) => const TaskCreatePage(),
+        //target
+        AppRoute.targetPage: (context) => const TargetPage(),
+        AppRoute.targetUpdatePage: (context) => const TargetUpdatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -229,9 +237,11 @@ class SkillPageArgs {
 }
 
 class TargetPageArgs {
-  final String id;
+  final bool addNew;
+  final Target? target;
   final TargetCubit targetCubit;
-  TargetPageArgs({required this.id, required this.targetCubit});
+  TargetPageArgs(
+      {required this.addNew, this.target, required this.targetCubit});
 }
 
 class QrScannerPageArgs {

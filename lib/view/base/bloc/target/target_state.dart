@@ -17,3 +17,31 @@ class GetAllTargetSuccess extends TargetState {
 }
 
 class GetAllTargetFailed extends TargetState {}
+
+class GetDetailTargetSuccess extends TargetState {
+  final Target target;
+  const GetDetailTargetSuccess({required this.target});
+
+  @override
+  List<Target> get props => [];
+}
+
+class GetDetailTargetFailed extends TargetState {}
+
+class UpdateTargetSuccess extends TargetState {
+  final Target target;
+  const UpdateTargetSuccess({required this.target});
+
+  @override
+  List<Target> get props => [];
+}
+
+class UpdateTargetFailed extends TargetState {}
+
+class DeleteTargetSuccess extends TargetState {}
+
+class DeleteTargetFailed extends TargetState {}
+
+class AddNewTargetSuccess extends TargetState {}
+
+class AddNewTargetFailed extends TargetState {}

@@ -28,7 +28,7 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
     cubit.getAllSkill();
     listSkill = cubit.listSkill;
     setAppBar = PrimaryAppBar(
-      canPop: false,
+      canPop: true,
       title: "Danh sách kĩ năng",
       actions: [
         IconButton(

@@ -23,4 +23,46 @@ class TargetCubit extends Cubit<TargetState> {
       emit(GetAllTargetFailed());
     }
   }
+
+  getDetailTarget(String id) async {
+    final response = await _targetRepository.getDeteilTarget(id);
+    if (response.status == ResponseStatus.success) {
+      currentTarget = response.data!;
+      emit(GetDetailTargetSuccess(target: response.data!));
+    } else {
+      emit(GetDetailTargetFailed());
+    }
+  }
+
+  updateTarget(Target target) async {
+    final response = await _targetRepository.updateTarget(target);
+    if (response.status == ResponseStatus.success) {
+      currentTarget = response.data!;
+      emit(UpdateTargetSuccess(target: response.data!));
+    } else {
+      emit(UpdateTargetFailed());
+    }
+  }
+
+  addNewTarget(Target target) async {
+    final response = await _targetRepository.createTarget(target);
+    if (response.status == ResponseStatus.success) {
+      listTarget.add(target);
+      emit(GetAllTargetSuccess(listTarget: listTarget));
+      emit(AddNewTargetSuccess());
+    } else {
+      emit(AddNewTargetFailed());
+    }
+  }
+
+  deleteTarget(String id) async {
+    final response = await _targetRepository.deleteTarget(id);
+    if (response.status == ResponseStatus.success) {
+      listTarget.removeWhere((element) => id == id);
+      emit(GetAllTargetSuccess(listTarget: listTarget));
+      emit(DeleteTargetSuccess());
+    } else {
+      emit(DeleteTargetFailed());
+    }
+  }
 }
