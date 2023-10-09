@@ -28,7 +28,6 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
   late final Skill updateSkill;
   LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
 
-  final nameFormKey = GlobalKey<FormState>();
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -45,7 +44,7 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
     }
 
     setAppBar = PrimaryAppBar(
-      title: "Chỉnh sửa kĩ năng",
+      title: args.addNew ? "Thêm kĩ năng" : "Chỉnh sửa kĩ năng",
       canPop: true,
       actions: [
         IconButton(
@@ -87,24 +86,42 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
         PrimaryTextField(
           controller: nameController,
           label: "Tên kĩ năng",
-          hintText: 'Nhập họ và tên',
-          formKey: nameFormKey,
+          hintText: 'Nhập kĩ năng',
           isRequired: true,
           maxLength: 50,
           validator: ValidationUtils.textEmptyValidator,
           textCapitalization: TextCapitalization.words,
         ),
+        SizedBox(
+          height: 10,
+        ),
         PrimaryTextField(
           controller: descriptionController,
           label: "Mô tả",
+          hintText: 'Mô tả kĩ năng',
+          isRequired: true,
+          maxLength: 200,
+          validator: ValidationUtils.textEmptyValidator,
+          textCapitalization: TextCapitalization.words,
+        ),
+        SizedBox(
+          height: 10,
         ),
         PrimaryTextField(
           controller: iconController,
           label: "Icon",
+          isRequired: true,
+          hintText: "Icon",
+        ),
+        SizedBox(
+          height: 10,
         ),
         PrimaryTextField(
           controller: pointController,
+          label: "Điểm số",
           keyboardType: TextInputType.number,
+          hintText: "Điểm số",
+          isRequired: true,
         )
       ],
     );

@@ -22,8 +22,8 @@ Target _$TargetFromJson(Map<String, dynamic> json) {
 mixin _$Target {
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  int? get target => throw _privateConstructorUsedError;
-  int? get actual => throw _privateConstructorUsedError;
+  double? get target => throw _privateConstructorUsedError;
+  double? get actual => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
@@ -44,8 +44,8 @@ abstract class $TargetCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      int? target,
-      int? actual,
+      double? target,
+      double? actual,
       int? type,
       int? status,
       String? userId,
@@ -90,11 +90,11 @@ class _$TargetCopyWithImpl<$Res, $Val extends Target>
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       actual: freezed == actual
           ? _value.actual
           : actual // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -132,8 +132,8 @@ abstract class _$$_TargetCopyWith<$Res> implements $TargetCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      int? target,
-      int? actual,
+      double? target,
+      double? actual,
       int? type,
       int? status,
       String? userId,
@@ -175,11 +175,11 @@ class __$$_TargetCopyWithImpl<$Res>
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       actual: freezed == actual
           ? _value.actual
           : actual // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -231,9 +231,9 @@ class _$_Target implements _Target {
   @override
   final String? description;
   @override
-  final int? target;
+  final double? target;
   @override
-  final int? actual;
+  final double? actual;
   @override
   final int? type;
   @override
@@ -294,8 +294,8 @@ abstract class _Target implements Target {
   factory _Target(
       {final String? title,
       final String? description,
-      final int? target,
-      final int? actual,
+      final double? target,
+      final double? actual,
       final int? type,
       final int? status,
       final String? userId,
@@ -310,9 +310,9 @@ abstract class _Target implements Target {
   @override
   String? get description;
   @override
-  int? get target;
+  double? get target;
   @override
-  int? get actual;
+  double? get actual;
   @override
   int? get type;
   @override

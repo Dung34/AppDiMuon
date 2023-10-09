@@ -35,6 +35,7 @@ import '../view/base/bloc/common/common_cubit.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/skill/skill_cubit.dart';
+
 import '../view/base/bloc/target/target_cubit.dart';
 import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
@@ -81,6 +82,7 @@ configureInjection() async {
   // getIt.registerSingleton<SharedPreferences>(sharedPref);
 
   getIt.registerFactory<SkillRepository>(() => SkillRepositoryImplement());
+  // getIt.registerFactory<TargetRepository>(() => TargetRepositoryImplement());
 
   getIt.registerLazySingleton<LocalDataAccess>(
       () => SharePrefHelper(sharedPref: sharedPref));

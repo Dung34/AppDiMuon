@@ -10,6 +10,7 @@ import '../view/auth/register/register_page.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/skill/skill_cubit.dart';
+
 import '../view/base/bloc/target/target_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/event_page/event_detail_page.dart';
@@ -35,10 +36,9 @@ import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
-import '../view/skill_page/skill_add_page.dart';
+
 import '../view/skill_page/skill_update.dart';
-import '../view/skill_page/target_add_page.dart';
-import '../view/skill_page/update_target_page.dart';
+
 import '../view/splash_screen/splash_screen.dart';
 
 class AppRoute {
@@ -107,8 +107,6 @@ class AppRoute {
 
         AppRoute.skillUpdatePage: (context) => const SkillUpdatePage(),
         //target
-        AppRoute.targetAddPage: (context) => const AddTargetPage(),
-        AppRoute.targetUpdatePage: (context) => const TargetUpdatePage(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {

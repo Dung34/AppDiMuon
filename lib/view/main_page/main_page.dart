@@ -62,9 +62,9 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const EventPage(),
     const MembershipPage(),
     // const CalendarPage(),
-    //const ProjectPage(),
-    const SkillPage(),
-    //TargetPage(),
+    const ProjectPage(),
+    //const SkillPage(),
+    //const TargetPage(),
     SettingPage(),
   ];
 

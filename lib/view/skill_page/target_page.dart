@@ -1,13 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../config/routes.dart';
 import '../../domain/entity/target/target.dart';
 import '../../shared/widgets/something/no_data.dart';
-import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/target/target_cubit.dart';
 
@@ -21,24 +18,22 @@ class TargetPage extends StatefulWidget {
 class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
   @override
   void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     cubit.getAllTarget();
-    listTarget = cubit.listTarget;
-    setAppBar = PrimaryAppBar(
-      title: "Danh sách mục tiêuuu",
-      actions: [],
-    );
   }
 
-  late List<Target>? listTarget;
+  List<Target> listTarget = [];
+
   @override
   Widget buildPage(BuildContext context) {
-    log("message");
-
-    // return Center(
-    //   child: Text("Heloo"),
-    // );
-    return BlocBuilder<TargetCubit, TargetState>(
+    return BlocConsumer<TargetCubit, TargetState>(
+      listener: (context, state) {
+        log(state.toString());
+        // if (state is GetAllTargetFailed) {
+        //   cubit.getAllTarget();
+        // }
+      },
       buildWhen: (previous, current) => current is GetAllTargetSuccess,
       builder: (context, state) {
         if (state is GetAllTargetSuccess) {
@@ -46,11 +41,12 @@ class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
           return SizedBox(
             child: ListView.builder(
                 itemBuilder: (context, index) =>
-                    TargetItem(target: listTarget![index]),
-                itemCount: listTarget!.length),
+                    TargetItem(target: listTarget[index]),
+                itemCount: listTarget.length),
           );
+        } else {
+          return NoData();
         }
-        return NoData();
       },
     );
   }
@@ -58,16 +54,13 @@ class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
 
 class TargetItem extends StatelessWidget {
   final Target target;
-  const TargetItem({
-    Key? key,
-    required this.target,
-  }) : super(key: key);
+  const TargetItem({super.key, required this.target});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Column(
-        children: [Text(target.title ?? ""), Text(target.description ?? " ")],
+      child: Container(
+        child: Text(target.title ?? " "),
       ),
     );
   }
