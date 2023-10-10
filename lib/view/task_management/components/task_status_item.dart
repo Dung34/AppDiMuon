@@ -30,6 +30,7 @@ class _TaskStatusItemState extends State<TaskStatusItem> {
   void initState() {
     taskStatusTitle = getTaskStatusStringByType(widget.task.status ?? 0);
     taskStatusColor = getStatusColorByType(widget.task.status ?? 0);
+
     super.initState();
   }
 

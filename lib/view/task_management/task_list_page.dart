@@ -85,11 +85,23 @@ class _TaskListPageState extends BasePageState<TaskListPage, TaskCubit> {
                   pagingController.itemList?.insert(0, state.task);
                   pagingController.notifyListeners();
                 }
+                if (state is TaskDeleteSuccessState) {
+                  hideLoading();
+                  pagingController.itemList?.remove(state.task);
+                  pagingController.notifyListeners();
+                }
+                if (state is TaskDeleteFailedState) {
+                  hideLoading();
+                }
               },
               child: PrimaryPagedListView<Task>(
                 itemBuilder: (context, item, index) {
                   return TaskListItem(
                     task: item,
+                    onDeletePressed: () {
+                      cubit.deleteTask(item);
+                      showLoading();
+                    },
                   );
                 },
                 pagingController: pagingController,

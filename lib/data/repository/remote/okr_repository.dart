@@ -24,7 +24,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<int>> deleteObjective();
 
-  Future<ResponseWrapper<int>> deleteTask();
+  Future<ResponseWrapper<int>> deleteTask(Task task);
 
   Future<ResponseWrapper<int>> deleteUnit(String id);
 

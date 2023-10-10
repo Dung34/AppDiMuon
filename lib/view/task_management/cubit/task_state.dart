@@ -33,6 +33,14 @@ class TaskUpdateSuccessState extends TaskState {
 
 class TaskUpdateFailedState extends TaskState {}
 
+class TaskDeleteSuccessState extends TaskState {
+  final Task task;
+
+  TaskDeleteSuccessState({required this.task});
+}
+
+class TaskDeleteFailedState extends TaskState {}
+
 class TaskGetAllTaskSuccessState extends TaskState {
   final List<Task> taskList;
 

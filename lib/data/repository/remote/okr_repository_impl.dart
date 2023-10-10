@@ -244,9 +244,24 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<int>> deleteTask() {
-    // TODO: implement deleteTask
-    throw UnimplementedError();
+  Future<ResponseWrapper<int>> deleteTask(Task task) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.delete(
+        EndPoints.deleteTask,
+        data: {"taskId": task.id},
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: 1);
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
