@@ -23,6 +23,7 @@ class TargetItem extends StatelessWidget {
           child: Row(
             children: [
               Text(target.title ?? ""),
+              Text(target.targe.toString()),
               IconButton(
                   onPressed: () {
                     targetCubit.deleteTarget(target.id ?? "");

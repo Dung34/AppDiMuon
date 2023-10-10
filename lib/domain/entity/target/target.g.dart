@@ -9,7 +9,7 @@ part of 'target.dart';
 _$_Target _$$_TargetFromJson(Map<String, dynamic> json) => _$_Target(
       title: json['title'] as String?,
       description: json['description'] as String?,
-      target: (json['target'] as num?)?.toDouble(),
+      targe: (json['targe'] as num?)?.toDouble(),
       actual: (json['actual'] as num?)?.toDouble(),
       type: json['type'] as int?,
       status: json['status'] as int?,
@@ -22,7 +22,7 @@ _$_Target _$$_TargetFromJson(Map<String, dynamic> json) => _$_Target(
 Map<String, dynamic> _$$_TargetToJson(_$_Target instance) => <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
-      'target': instance.target,
+      'targe': instance.targe,
       'actual': instance.actual,
       'type': instance.type,
       'status': instance.status,

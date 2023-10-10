@@ -27,7 +27,12 @@ class GetDetailSkill extends SkillState {
 
 class GetDetailSkillFailed extends SkillState {}
 
-class AddNewSkillSuccess extends SkillState {}
+class AddNewSkillSuccess extends SkillState {
+  final Skill skill;
+  const AddNewSkillSuccess({required this.skill});
+  @override
+  List<Object> get props => [];
+}
 
 class AddNewSkillFailed extends SkillState {}
 
@@ -40,7 +45,12 @@ class UpdateSkillSuccess extends SkillState {
 
 class UpdateSkillFailed extends SkillState {}
 
-class DeleteSkillSuccess extends SkillState {}
+class DeleteSkillSuccess extends SkillState {
+  final String id;
+  const DeleteSkillSuccess({required this.id});
+  @override
+  List<Object> get props => [id];
+}
 
 class DeleteSkillFailed extends SkillState {}
 

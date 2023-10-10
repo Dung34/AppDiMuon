@@ -59,13 +59,16 @@ configureInjection() async {
   getIt.registerFactory<StorageRepository>(() => StorageRepositoryImpl(
       dio: getIt<Dio>(), localDataAccess: getIt.get<LocalDataAccess>()));
 
-  getIt.registerFactory<UserRepository>(() => UserRepositoryImpl());
+  getIt.registerFactory<UserRepository>(
+      () => UserRepositoryImpl(dio: getIt.get<Dio>()));
 
   getIt.registerFactory<AppRepository>(
     () => AppRepositoryImpl(
-        dio: getIt<Dio>(),
-        localDataAccess: getIt.get<LocalDataAccess>(),
-        openIdRepository: getIt.get<OpenIDRepository>()),
+      dio: getIt<Dio>(),
+      localDataAccess: getIt.get<LocalDataAccess>(),
+      openIdRepository: getIt.get<OpenIDRepository>(),
+      //userRepository: getIt.get<UserRepository>()
+    ),
   );
 
   getIt.registerFactory<EventRepository>(() => EventRepositoryImpl());

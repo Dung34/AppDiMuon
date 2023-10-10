@@ -41,13 +41,13 @@ class _TargetUpdatePageState
       updateTarget = currentTarget.copyWith();
       titleController.text = updateTarget.title!;
       descriptionController.text = updateTarget.description!;
-      targetController.text = updateTarget.target.toString();
+      targetController.text = updateTarget.targe.toString();
       actualController.text = updateTarget.actual.toString();
       typeController.text = updateTarget.type.toString();
       statusController.text = updateTarget.status.toString();
       log(targetController.text);
-      log(updateTarget.target.toString());
-      log(currentTarget.target.toString());
+      log(updateTarget.targe.toString());
+      log(currentTarget.targe.toString());
     }
 
     setAppBar = PrimaryAppBar(
@@ -69,7 +69,7 @@ class _TargetUpdatePageState
                 log(targetController.text);
                 updateTarget.title = titleController.text.trim();
                 updateTarget.description = descriptionController.text.trim();
-                updateTarget.target = double.tryParse(targetController.text);
+                updateTarget.targe = double.tryParse(targetController.text);
                 updateTarget.actual = double.tryParse(actualController.text);
                 cubit.updateTarget(updateTarget);
               } else {

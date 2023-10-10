@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -19,18 +20,18 @@ import '../local/local_data_access.dart';
 import 'repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final Dio dio = getIt.get<Dio>();
+  final Dio dio;
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
-  final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
+  //final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
   final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
 
-  UserRepositoryImpl() {
+  UserRepositoryImpl({required this.dio}) {
     dio.interceptors.add(PrettyDioLogger(
       responseBody: true,
       requestBody: true,
       requestHeader: true,
     ));
-    dio.interceptors.add(appInterceptor.queueInterceptor(dio: dio));
+    //dio.interceptors.add(appInterceptor.queueInterceptor(dio: dio));
     dio.options =
         DioBaseOptions(baseUrl: Environment.resourcesBaseUrl).baseOption;
   }
@@ -53,8 +54,11 @@ class UserRepositoryImpl implements UserRepository {
         },
       );
       if (loginResponse.statusCode == 200) {
-        return ResponseWrapper.success(
-            data: LoginResponse.fromJson(loginResponse.data));
+        final LoginResponse response =
+            LoginResponse.fromJson(loginResponse.data);
+        await localDataAccess.setAccessToken(response.accessToken!);
+        await localDataAccess.setRefreshToken(response.refreshToken!);
+        return ResponseWrapper.success(data: response);
       } else if (loginResponse.statusCode == 400 ||
           loginResponse.statusCode == 401) {
         return ResponseWrapper.error(
@@ -250,6 +254,31 @@ class UserRepositoryImpl implements UserRepository {
       return ResponseWrapper.error(message: "");
     } catch (e) {
       handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<bool>> refreshToken() async {
+    accessToken = await localDataAccess.getAccessToken();
+    String refreshToken = await localDataAccess.getRefreshToken();
+    try {
+      final response = await dio.post(EndPoints.refreshToken,
+          data: {"accessToken": accessToken, "refreshToken": refreshToken});
+      if (response.statusCode == 200) {
+        final LoginResponse loginResponse =
+            LoginResponse.fromJson(response.data);
+        await localDataAccess.setAccessToken(loginResponse.accessToken!);
+        await localDataAccess.setRefreshToken(loginResponse.refreshToken!);
+        accessToken = loginResponse.accessToken!;
+        refreshToken = loginResponse.refreshToken!;
+        log(" access token :  $accessToken");
+        log(" refresh token : $refreshToken");
+        return ResponseWrapper.success(data: true);
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
       return ResponseWrapper.error(message: "");
     }
   }

@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
 
+import '../../data/repository/remote/repository.dart';
+import '../../di/di.dart';
 import '../../domain/entity/skill/skill.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
@@ -22,10 +24,11 @@ class SkillPage extends StatefulWidget {
 }
 
 class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
+  final UserRepository userRepository = getIt.get<UserRepository>();
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
+    userRepository.refreshToken();
     cubit.getAllSkill();
     listSkill = cubit.listSkill;
     setAppBar = PrimaryAppBar(
@@ -46,27 +49,35 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
     );
   }
 
-  late List<Skill>? listSkill;
+  late List<Skill> listSkill = [];
   @override
   Widget buildPage(BuildContext context) {
     return BlocConsumer<SkillCubit, SkillState>(
       listener: (context, state) {
         log(state.toString());
-        if (state is AddNewSkillSuccess ||
-            state is UpdateSkillSuccess ||
-            state is DeleteSkillSuccess) {
-          //log(state.toString());
-          cubit.getAllSkill();
-        }
       },
+      buildWhen: (previous, current) =>
+          current is DeleteSkillSuccess ||
+          current is AddNewSkillSuccess ||
+          current is UpdateSkillSuccess ||
+          current is GetAllSkillSuccess,
       builder: (context, state) {
         if (state is GetAllSkillSuccess) {
+          listSkill = state.listSkill;
+        } else if (state is AddNewSkillSuccess) {
+          listSkill.add(state.skill);
+        } else if (state is UpdateSkillSuccess) {
+          listSkill.removeWhere((element) => element.id == state.skill.id);
+          listSkill.add(state.skill);
+        } else if (state is DeleteSkillSuccess) {
+          listSkill.removeWhere((element) => element.id == state.id);
+        }
+        if (listSkill.isNotEmpty) {
           return SizedBox(
             child: ListView.builder(
-              itemBuilder: (context, index) =>
-                  SkillItem(skill: listSkill![index]),
-              itemCount: listSkill!.length,
-            ),
+                itemBuilder: (context, index) =>
+                    SkillItem(skill: listSkill[index]),
+                itemCount: listSkill.length),
           );
         } else {
           return NoData();
