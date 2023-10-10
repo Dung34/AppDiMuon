@@ -70,4 +70,25 @@ class OkrCubit extends Cubit<OkrState> {
       emit(OkrGetAllUserFailedState());
     }
   }
+
+  createOKR(OKR okr) async {
+    final response = await _okrRepository.createOKR(okr);
+
+    if (response.status == ResponseStatus.success) {
+      // emit(UnitCreateUnitSuccessState(response.data!));
+    } else {
+      // emit(UnitCreateUnitFailedState());
+    }
+  }
+
+  getOKRDetail({required String okrId, required String unitId}) async {
+    final response =
+        await _okrRepository.getOKRDetail(okrId: okrId, unitId: unitId);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrGetOkrDetailSuccessState(response.data!));
+    } else {
+      emit(OkrGetOkrDetailFailedState());
+    }
+  }
 }

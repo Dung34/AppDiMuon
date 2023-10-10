@@ -31,6 +31,9 @@ abstract class OKRRepository {
   Future<ResponseWrapper<int>> deleteUserInUnit(
       String unitId, List<String>? memberIds);
 
+  Future<ResponseWrapper<OKR>> getOKRDetail(
+      {required String okrId, required String unitId});
+
   Future<ResponseWrapper<List<Objective>>> getAllChildObjectiveOfAnObjective();
 
   Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective(

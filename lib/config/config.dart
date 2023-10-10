@@ -65,6 +65,7 @@ class EndPoints {
 
   //OKR
   static const String createOKR = '/OKRs/create-OKR';
+  static const String detailOKR = '/OKRs/detail-OKRs';
 
   // storage repository
   static const String uploadImage = "/gateway/Media/Upload";

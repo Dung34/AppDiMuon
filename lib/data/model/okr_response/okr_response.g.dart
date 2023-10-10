@@ -11,7 +11,7 @@ _$_OKRResponse _$$_OKRResponseFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       description: json['description'] as String?,
       unitId: json['unitId'] as String?,
-      process: json['process'] as String?,
+      process: (json['process'] as num?)?.toDouble(),
       totalObjective: json['totalObjective'] as int?,
       totalKR: json['totalKR'] as int?,
       totalTask: json['totalTask'] as int?,

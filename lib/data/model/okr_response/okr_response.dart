@@ -11,7 +11,7 @@ class OKRResponse with _$OKRResponse {
     String? name,
     String? description,
     String? unitId,
-    String? process,
+    double? process,
     int? totalObjective,
     int? totalKR,
     int? totalTask,

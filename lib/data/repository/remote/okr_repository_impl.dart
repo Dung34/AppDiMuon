@@ -590,4 +590,28 @@ class OKRRepositoryImpl extends OKRRepository {
       return ResponseWrapper.error(message: "");
     }
   }
+
+  @override
+  Future<ResponseWrapper<OKR>> getOKRDetail(
+      {required String okrId, required String unitId}) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.get(EndPoints.detailOKR,
+          queryParameters: {
+            "OKRId": okrId,
+            "UnitId": unitId,
+          },
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _okrDataMapper
+                .mapToEntity(OKRResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
 }

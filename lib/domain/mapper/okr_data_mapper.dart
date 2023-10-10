@@ -12,7 +12,7 @@ class OKRDataMapper extends BaseDataMapper<OKRResponse, OKR>
       name: data?.name,
       description: data?.description,
       unitId: data?.unitId,
-      process: data?.process,
+      process: (data?.process ?? 0).toString(),
       totalObjective: data?.totalObjective,
       totalKR: data?.totalKR,
       totalTask: data?.totalTask,
@@ -26,7 +26,7 @@ class OKRDataMapper extends BaseDataMapper<OKRResponse, OKR>
       name: entity.name,
       description: entity.description,
       unitId: entity.unitId,
-      process: entity.process,
+      process: double.tryParse(entity.process ?? '0.0'),
       totalObjective: entity.totalObjective,
       totalKR: entity.totalKR,
       totalTask: entity.totalTask,
@@ -50,6 +50,7 @@ class ObjectiveDataMapper extends BaseDataMapper<ObjectiveResponse, Objective>
         process: data?.process);
   }
 
+  @override
   ObjectiveResponse mapToData(Objective entity) {
     return ObjectiveResponse(
       id: entity.id,

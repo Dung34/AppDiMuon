@@ -23,7 +23,7 @@ mixin _$OKRResponse {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
-  String? get process => throw _privateConstructorUsedError;
+  double? get process => throw _privateConstructorUsedError;
   int? get totalObjective => throw _privateConstructorUsedError;
   int? get totalKR => throw _privateConstructorUsedError;
   int? get totalTask => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $OKRResponseCopyWith<$Res> {
       {String? name,
       String? description,
       String? unitId,
-      String? process,
+      double? process,
       int? totalObjective,
       int? totalKR,
       int? totalTask,
@@ -90,7 +90,7 @@ class _$OKRResponseCopyWithImpl<$Res, $Val extends OKRResponse>
       process: freezed == process
           ? _value.process
           : process // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       totalObjective: freezed == totalObjective
           ? _value.totalObjective
           : totalObjective // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ abstract class _$$_OKRResponseCopyWith<$Res>
       {String? name,
       String? description,
       String? unitId,
-      String? process,
+      double? process,
       int? totalObjective,
       int? totalKR,
       int? totalTask,
@@ -166,7 +166,7 @@ class __$$_OKRResponseCopyWithImpl<$Res>
       process: freezed == process
           ? _value.process
           : process // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       totalObjective: freezed == totalObjective
           ? _value.totalObjective
           : totalObjective // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class _$_OKRResponse implements _OKRResponse {
   @override
   final String? unitId;
   @override
-  final String? process;
+  final double? process;
   @override
   final int? totalObjective;
   @override
@@ -284,7 +284,7 @@ abstract class _OKRResponse implements OKRResponse {
       {final String? name,
       final String? description,
       final String? unitId,
-      final String? process,
+      final double? process,
       final int? totalObjective,
       final int? totalKR,
       final int? totalTask,
@@ -300,7 +300,7 @@ abstract class _OKRResponse implements OKRResponse {
   @override
   String? get unitId;
   @override
-  String? get process;
+  double? get process;
   @override
   int? get totalObjective;
   @override

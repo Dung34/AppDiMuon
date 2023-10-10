@@ -56,3 +56,11 @@ class OkrGetAllUserSuccessState extends OkrState {
 }
 
 class OkrGetAllUserFailedState extends OkrState {}
+
+class OkrGetOkrDetailSuccessState extends OkrState {
+  final OKR okr;
+
+  const OkrGetOkrDetailSuccessState(this.okr);
+}
+
+class OkrGetOkrDetailFailedState extends OkrState {}
