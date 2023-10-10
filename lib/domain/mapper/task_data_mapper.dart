@@ -19,9 +19,9 @@ class TaskDataMapper extends BaseDataMapper<TaskResponse, Task>
         avatar: data?.assignee?.imageUrl,
       ),
       assigner: UserEntity(
-        id: data?.assigner?.id,
-        fullName: data?.assigner?.fullName,
-        avatar: data?.assigner?.imageUrl,
+        id: data?.assigneer?.id,
+        fullName: data?.assigneer?.fullName,
+        avatar: data?.assigneer?.imageUrl,
       ),
       point: data?.point,
       startDate: data?.createdDate,

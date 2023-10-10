@@ -116,7 +116,7 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
                       UserEntity? userPop = await context
                           .showAppBottomSheet(const UserSearchDialog());
                       if (userPop != null) {
-                        task.assigner = userPop;
+                        task.assignee = userPop;
                         cubit.changeAssignee(userPop);
                       }
                     },
@@ -277,7 +277,6 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
     showLoading();
     task.title = titleController.text.trim();
     task.description = descriptionController.text.trim();
-    task.assignee = userCubit.currentUser!;
     task.point = int.tryParse((pointController.text));
     cubit.createTask(task);
   }

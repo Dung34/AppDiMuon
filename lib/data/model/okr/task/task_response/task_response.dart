@@ -14,7 +14,7 @@ class TaskResponse with _$TaskResponse {
     String? completeDate,
     int? point,
     UserResponse? assignee,
-    UserResponse? assigner,
+    UserResponse? assigneer,
     int? type,
     List<TaskResponse>? listRelatedTask,
     String? createByName,
