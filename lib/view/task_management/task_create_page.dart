@@ -115,7 +115,10 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
                     onTap: () async {
                       UserEntity? userPop = await context
                           .showAppBottomSheet(const UserSearchDialog());
-                      if (userPop != null) cubit.changeAssignee(userPop);
+                      if (userPop != null) {
+                        task.assigner = userPop;
+                        cubit.changeAssignee(userPop);
+                      }
                     },
                     child: PrimaryContainer(
                       padding: const EdgeInsets.all(10),
@@ -173,7 +176,10 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
                     onTap: () async {
                       UserEntity? userPop = await context
                           .showAppBottomSheet(const UserSearchDialog());
-                      if (userPop != null) cubit.changeAssigner(userPop);
+                      if (userPop != null) {
+                        cubit.changeAssigner(userPop);
+                        task.assigner = userPop;
+                      }
                     },
                     child: PrimaryContainer(
                       padding: const EdgeInsets.all(10),
