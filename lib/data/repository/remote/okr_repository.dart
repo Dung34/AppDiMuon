@@ -45,8 +45,16 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfKR();
 
-  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser(
-      {required int page, int pageSize = 10, String? userId});
+  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser({
+    required int page,
+    int pageSize = 10,
+    int? status,
+    String? userId,
+    String? keyWord,
+    String? relatedTask,
+    String? subTask,
+    String? keyResultId,
+  });
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfSubtask();
 

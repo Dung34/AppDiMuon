@@ -14,8 +14,10 @@ import 'task_status_item.dart';
 
 class TaskListItem extends StatefulWidget {
   final Task task;
+  final Function()? onPressed;
   final Function()? onDeletePressed;
-  const TaskListItem({super.key, required this.task, this.onDeletePressed});
+  const TaskListItem(
+      {super.key, required this.task, this.onDeletePressed, this.onPressed});
 
   @override
   State<TaskListItem> createState() => _TaskListItemState();
@@ -25,15 +27,16 @@ class _TaskListItemState extends State<TaskListItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.showAppBottomSheet(
-          TaskDetailPage(
-            task: widget.task,
-            taskCubit: context.read<TaskCubit>(),
-          ),
-          isScrollControlled: true,
-        );
-      },
+      onTap: widget.onPressed ??
+          () {
+            context.showAppBottomSheet(
+              TaskDetailPage(
+                task: widget.task,
+                taskCubit: context.read<TaskCubit>(),
+              ),
+              isScrollControlled: true,
+            );
+          },
       child: PrimaryContainer(
         backgroundColor: const Color.fromARGB(255, 217, 217, 217),
         margin: const EdgeInsets.only(top: 10),

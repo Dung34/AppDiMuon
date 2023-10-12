@@ -10,7 +10,6 @@ import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
-import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import 'cubit/unit_cubit.dart';
