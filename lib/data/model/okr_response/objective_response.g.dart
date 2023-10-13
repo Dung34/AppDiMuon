@@ -8,7 +8,7 @@ part of 'objective_response.dart';
 
 _$_ObjectiveResponse _$$_ObjectiveResponseFromJson(Map<String, dynamic> json) =>
     _$_ObjectiveResponse(
-      id: json['id'] as String?,
+      objectiveId: json['objectiveId'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
       okrId: json['okrId'] as String?,
@@ -23,7 +23,7 @@ _$_ObjectiveResponse _$$_ObjectiveResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ObjectiveResponseToJson(
         _$_ObjectiveResponse instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'objectiveId': instance.objectiveId,
       'title': instance.title,
       'description': instance.description,
       'okrId': instance.okrId,

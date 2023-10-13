@@ -83,7 +83,7 @@ class OKRRepositoryImpl extends OKRRepository {
 
   @override
   Future<ResponseWrapper<Objective>> createObjective(
-      Objective objective) async {
+      Objective objective, List<String> related) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.post(
@@ -94,7 +94,7 @@ class OKRRepositoryImpl extends OKRRepository {
           "okRsId": objective.okrId,
           "unitId": objective.unitId,
           "process": objective.process,
-          "relativeObjectiveId": objective.relatedObjective
+          "relatedObjectiveId": related
         },
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
@@ -339,19 +339,21 @@ class OKRRepositoryImpl extends OKRRepository {
       {String? okrId, String? unitId}) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
-      String link = okrId == null
-          ? 'UnitId=$unitId'
-          : unitId == null
-              ? 'OKRsId=$okrId'
-              : 'OKRsId=$okrId&UnitId=$unitId';
-      final response = await dio.get('${EndPoints.getAllObjectives}?$link',
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      final response = await dio.get(EndPoints.getAllObjectives,
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+          queryParameters: {
+            "UnitId": unitId,
+            "Page": 1,
+            "PageSize": 100,
+          });
 
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
-            data: _okrDataMapper
-                .mapToEntity(OKRResponse.fromJson(response.data))
-                .objectives!);
+          data: _objectiveDataMapper.mapToListEntity(List.from(
+            (response.data["objectives"]["data"] as List)
+                .map((e) => ObjectiveResponse.fromJson(e)),
+          )),
+        );
       }
       return ResponseWrapper.error(message: "");
     } catch (e) {

@@ -8,7 +8,7 @@ part 'objective_response.g.dart';
 @freezed
 class ObjectiveResponse with _$ObjectiveResponse {
   factory ObjectiveResponse({
-    String? id,
+    String? objectiveId,
     String? title,
     String? description,
     String? okrId,

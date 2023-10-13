@@ -8,6 +8,7 @@ part 'okr.g.dart';
 @freezed
 class OKR with _$OKR {
   factory OKR({
+    String? id,
     String? name,
     String? description,
     String? unitId,

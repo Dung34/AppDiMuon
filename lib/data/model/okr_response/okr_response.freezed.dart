@@ -20,6 +20,7 @@ OKRResponse _$OKRResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OKRResponse {
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ abstract class $OKRResponseCopyWith<$Res> {
       _$OKRResponseCopyWithImpl<$Res, OKRResponse>;
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? unitId,
       double? process,
@@ -65,6 +67,7 @@ class _$OKRResponseCopyWithImpl<$Res, $Val extends OKRResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
@@ -75,6 +78,10 @@ class _$OKRResponseCopyWithImpl<$Res, $Val extends OKRResponse>
     Object? objectives = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -120,7 +127,8 @@ abstract class _$$_OKRResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? unitId,
       double? process,
@@ -141,6 +149,7 @@ class __$$_OKRResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
@@ -151,6 +160,10 @@ class __$$_OKRResponseCopyWithImpl<$Res>
     Object? objectives = freezed,
   }) {
     return _then(_$_OKRResponse(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -191,7 +204,8 @@ class __$$_OKRResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_OKRResponse implements _OKRResponse {
   _$_OKRResponse(
-      {this.name,
+      {this.id,
+      this.name,
       this.description,
       this.unitId,
       this.process,
@@ -204,6 +218,8 @@ class _$_OKRResponse implements _OKRResponse {
   factory _$_OKRResponse.fromJson(Map<String, dynamic> json) =>
       _$$_OKRResponseFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String? name;
   @override
@@ -230,7 +246,7 @@ class _$_OKRResponse implements _OKRResponse {
 
   @override
   String toString() {
-    return 'OKRResponse(name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
+    return 'OKRResponse(id: $id, name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
   }
 
   @override
@@ -238,6 +254,7 @@ class _$_OKRResponse implements _OKRResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OKRResponse &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -256,6 +273,7 @@ class _$_OKRResponse implements _OKRResponse {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       description,
       unitId,
@@ -281,7 +299,8 @@ class _$_OKRResponse implements _OKRResponse {
 
 abstract class _OKRResponse implements OKRResponse {
   factory _OKRResponse(
-      {final String? name,
+      {final String? id,
+      final String? name,
       final String? description,
       final String? unitId,
       final double? process,
@@ -293,6 +312,8 @@ abstract class _OKRResponse implements OKRResponse {
   factory _OKRResponse.fromJson(Map<String, dynamic> json) =
       _$_OKRResponse.fromJson;
 
+  @override
+  String? get id;
   @override
   String? get name;
   @override

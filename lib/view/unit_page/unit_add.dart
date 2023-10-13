@@ -57,7 +57,12 @@ class UnitAddPage extends StatelessWidget {
             unit.coverImage = state.imageUrl;
             cubit.createUnit(unit);
             cubit.getAllUnit();
-            context.pop();
+            Navigator.pop(context);
+          }
+          if (state is GetImageGetSingleImageUrlErrorState) {
+            cubit.createUnit(unit);
+            cubit.getAllUnit();
+            Navigator.pop(context);
           }
         },
         builder: (context, state) => Scaffold(

@@ -20,6 +20,7 @@ OKR _$OKRFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OKR {
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $OKRCopyWith<$Res> {
       _$OKRCopyWithImpl<$Res, OKR>;
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? unitId,
       String? process,
@@ -62,6 +64,7 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
@@ -72,6 +75,10 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
     Object? objectives = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -115,7 +122,8 @@ abstract class _$$_OKRCopyWith<$Res> implements $OKRCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? unitId,
       String? process,
@@ -134,6 +142,7 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
@@ -144,6 +153,10 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
     Object? objectives = freezed,
   }) {
     return _then(_$_OKR(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -184,7 +197,8 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
 @JsonSerializable()
 class _$_OKR implements _OKR {
   _$_OKR(
-      {this.name,
+      {this.id,
+      this.name,
       this.description,
       this.unitId,
       this.process,
@@ -196,6 +210,8 @@ class _$_OKR implements _OKR {
 
   factory _$_OKR.fromJson(Map<String, dynamic> json) => _$$_OKRFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String? name;
   @override
@@ -222,7 +238,7 @@ class _$_OKR implements _OKR {
 
   @override
   String toString() {
-    return 'OKR(name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
+    return 'OKR(id: $id, name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
   }
 
   @override
@@ -230,6 +246,7 @@ class _$_OKR implements _OKR {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OKR &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -248,6 +265,7 @@ class _$_OKR implements _OKR {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       description,
       unitId,
@@ -273,7 +291,8 @@ class _$_OKR implements _OKR {
 
 abstract class _OKR implements OKR {
   factory _OKR(
-      {final String? name,
+      {final String? id,
+      final String? name,
       final String? description,
       final String? unitId,
       final String? process,
@@ -284,6 +303,8 @@ abstract class _OKR implements OKR {
 
   factory _OKR.fromJson(Map<String, dynamic> json) = _$_OKR.fromJson;
 
+  @override
+  String? get id;
   @override
   String? get name;
   @override

@@ -29,15 +29,15 @@ class OkrCreateOkrSuccessState extends OkrState {
 
 class OkrCreateOkrFailedState extends OkrState {}
 
-class OkrGetAllObjectivesOfOkrSuccessState extends OkrState {
+class OkrGetAllObjectivesSuccessState extends OkrState {
   final List<Objective>? objectives;
 
-  const OkrGetAllObjectivesOfOkrSuccessState(this.objectives);
+  const OkrGetAllObjectivesSuccessState(this.objectives);
   @override
   List<Object?> get props => [objectives];
 }
 
-class OkrGetAllObjectivesOfOkrFailedState extends OkrState {}
+class OkrGetAllObjectivesFailedState extends OkrState {}
 
 class OkrGetObjectiveDetailsSuccessState extends OkrState {
   final Objective objective;
@@ -61,6 +61,8 @@ class OkrGetOkrDetailSuccessState extends OkrState {
   final OKR okr;
 
   const OkrGetOkrDetailSuccessState(this.okr);
+  @override
+  List<Object?> get props => [okr];
 }
 
 class OkrGetOkrDetailFailedState extends OkrState {}

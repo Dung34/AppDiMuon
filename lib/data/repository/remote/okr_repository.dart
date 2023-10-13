@@ -12,7 +12,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
-  Future<ResponseWrapper<Objective>> createObjective(Objective objective);
+  Future<ResponseWrapper<Objective>> createObjective(
+      Objective objective, List<String> related);
 
   Future<ResponseWrapper<OKR>> createOKR(OKR okr);
 

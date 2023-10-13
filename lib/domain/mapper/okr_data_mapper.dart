@@ -40,7 +40,7 @@ class ObjectiveDataMapper extends BaseDataMapper<ObjectiveResponse, Objective>
   @override
   Objective mapToEntity(ObjectiveResponse? data) {
     return Objective(
-        id: data?.id,
+        id: data?.objectiveId,
         title: data?.title,
         description: data?.description,
         okrId: data?.okrId,
@@ -53,7 +53,7 @@ class ObjectiveDataMapper extends BaseDataMapper<ObjectiveResponse, Objective>
   @override
   ObjectiveResponse mapToData(Objective entity) {
     return ObjectiveResponse(
-      id: entity.id,
+      objectiveId: entity.id,
       title: entity.title,
       description: entity.description,
       okrId: entity.okrId,

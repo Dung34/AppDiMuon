@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
+import '../domain/entity/okr/objective/objective.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
 import '../domain/entity/target/target.dart';
@@ -26,6 +27,7 @@ import '../view/general_page/general_report_detail.dart';
 import '../view/general_page/general_report_update.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
+import '../view/okr_page/objective_detail_page.dart';
 import '../view/project_page/cubit/project_cubit.dart';
 import '../view/project_page/project_detail_page.dart';
 import '../view/project_page/project_member_page.dart';
@@ -79,6 +81,8 @@ class AppRoute {
   static const String geneReportAdd = "/geneReportAdd";
   static const String geneReportUpdate = "/geneReportUpdate";
 
+  static const String objectiveDetail = "/objectiveDetail";
+
   static const String unitAdd = "/unitAdd";
   static const String unitDetail = "/unitDetail";
 
@@ -121,6 +125,9 @@ class AppRoute {
         AppRoute.geneReportDetail: (context) => const GeneReportDetail(),
         AppRoute.geneReportAdd: (context) => const GeneReportAdd(),
         AppRoute.geneReportUpdate: (context) => const GenReportUpdate(),
+
+        // OKR
+        AppRoute.objectiveDetail: (context) => const ObjectiveDetailPage(),
 
         AppRoute.unitAdd: (context) => UnitAddPage(),
         AppRoute.unitDetail: (context) => const UnitDetailPage(),
@@ -189,6 +196,15 @@ class EventMemberHistoryPageArgs {
   final String userId;
 
   EventMemberHistoryPageArgs({required this.userId});
+}
+
+class ObjectiveDetailPageArgs {
+  final String? name;
+  final String objectiveId;
+  final String unitId;
+
+  const ObjectiveDetailPageArgs(
+      {this.name, required this.objectiveId, required this.unitId});
 }
 
 class ProjectDetailPageArgs {

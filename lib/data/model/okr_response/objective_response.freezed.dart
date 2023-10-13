@@ -20,7 +20,7 @@ ObjectiveResponse _$ObjectiveResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ObjectiveResponse {
-  String? get id => throw _privateConstructorUsedError;
+  String? get objectiveId => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get okrId => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $ObjectiveResponseCopyWith<$Res> {
       _$ObjectiveResponseCopyWithImpl<$Res, ObjectiveResponse>;
   @useResult
   $Res call(
-      {String? id,
+      {String? objectiveId,
       String? title,
       String? description,
       String? okrId,
@@ -65,7 +65,7 @@ class _$ObjectiveResponseCopyWithImpl<$Res, $Val extends ObjectiveResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? objectiveId = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? okrId = freezed,
@@ -75,9 +75,9 @@ class _$ObjectiveResponseCopyWithImpl<$Res, $Val extends ObjectiveResponse>
     Object? process = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      objectiveId: freezed == objectiveId
+          ? _value.objectiveId
+          : objectiveId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _value.title
@@ -120,7 +120,7 @@ abstract class _$$_ObjectiveResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id,
+      {String? objectiveId,
       String? title,
       String? description,
       String? okrId,
@@ -141,7 +141,7 @@ class __$$_ObjectiveResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? objectiveId = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? okrId = freezed,
@@ -151,9 +151,9 @@ class __$$_ObjectiveResponseCopyWithImpl<$Res>
     Object? process = freezed,
   }) {
     return _then(_$_ObjectiveResponse(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      objectiveId: freezed == objectiveId
+          ? _value.objectiveId
+          : objectiveId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _value.title
@@ -191,7 +191,7 @@ class __$$_ObjectiveResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ObjectiveResponse implements _ObjectiveResponse {
   _$_ObjectiveResponse(
-      {this.id,
+      {this.objectiveId,
       this.title,
       this.description,
       this.okrId,
@@ -205,7 +205,7 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
       _$$_ObjectiveResponseFromJson(json);
 
   @override
-  final String? id;
+  final String? objectiveId;
   @override
   final String? title;
   @override
@@ -232,7 +232,7 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
 
   @override
   String toString() {
-    return 'ObjectiveResponse(id: $id, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, process: $process)';
+    return 'ObjectiveResponse(objectiveId: $objectiveId, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, process: $process)';
   }
 
   @override
@@ -240,7 +240,8 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ObjectiveResponse &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.objectiveId, objectiveId) ||
+                other.objectiveId == objectiveId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -257,7 +258,7 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
+      objectiveId,
       title,
       description,
       okrId,
@@ -283,7 +284,7 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
 
 abstract class _ObjectiveResponse implements ObjectiveResponse {
   factory _ObjectiveResponse(
-      {final String? id,
+      {final String? objectiveId,
       final String? title,
       final String? description,
       final String? okrId,
@@ -296,7 +297,7 @@ abstract class _ObjectiveResponse implements ObjectiveResponse {
       _$_ObjectiveResponse.fromJson;
 
   @override
-  String? get id;
+  String? get objectiveId;
   @override
   String? get title;
   @override
