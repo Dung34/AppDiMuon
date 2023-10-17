@@ -134,9 +134,10 @@ class _$TargetCopyWithImpl<$Res, $Val extends Target>
 }
 
 /// @nodoc
-abstract class _$$_TargetCopyWith<$Res> implements $TargetCopyWith<$Res> {
-  factory _$$_TargetCopyWith(_$_Target value, $Res Function(_$_Target) then) =
-      __$$_TargetCopyWithImpl<$Res>;
+abstract class _$$TargetImplCopyWith<$Res> implements $TargetCopyWith<$Res> {
+  factory _$$TargetImplCopyWith(
+          _$TargetImpl value, $Res Function(_$TargetImpl) then) =
+      __$$TargetImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -153,10 +154,11 @@ abstract class _$$_TargetCopyWith<$Res> implements $TargetCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TargetCopyWithImpl<$Res>
-    extends _$TargetCopyWithImpl<$Res, _$_Target>
-    implements _$$_TargetCopyWith<$Res> {
-  __$$_TargetCopyWithImpl(_$_Target _value, $Res Function(_$_Target) _then)
+class __$$TargetImplCopyWithImpl<$Res>
+    extends _$TargetCopyWithImpl<$Res, _$TargetImpl>
+    implements _$$TargetImplCopyWith<$Res> {
+  __$$TargetImplCopyWithImpl(
+      _$TargetImpl _value, $Res Function(_$TargetImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -173,7 +175,7 @@ class __$$_TargetCopyWithImpl<$Res>
     Object? endDate = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$_Target(
+    return _then(_$TargetImpl(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -220,8 +222,8 @@ class __$$_TargetCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Target implements _Target {
-  _$_Target(
+class _$TargetImpl implements _Target {
+  _$TargetImpl(
       {this.title,
       this.description,
       this.target,
@@ -233,8 +235,8 @@ class _$_Target implements _Target {
       this.endDate,
       this.id});
 
-  factory _$_Target.fromJson(Map<String, dynamic> json) =>
-      _$$_TargetFromJson(json);
+  factory _$TargetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TargetImplFromJson(json);
 
   @override
   String? title;
@@ -265,12 +267,12 @@ class _$_Target implements _Target {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TargetCopyWith<_$_Target> get copyWith =>
-      __$$_TargetCopyWithImpl<_$_Target>(this, _$identity);
+  _$$TargetImplCopyWith<_$TargetImpl> get copyWith =>
+      __$$TargetImplCopyWithImpl<_$TargetImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TargetToJson(
+    return _$$TargetImplToJson(
       this,
     );
   }
@@ -287,9 +289,9 @@ abstract class _Target implements Target {
       String? userId,
       String? startDate,
       String? endDate,
-      String? id}) = _$_Target;
+      String? id}) = _$TargetImpl;
 
-  factory _Target.fromJson(Map<String, dynamic> json) = _$_Target.fromJson;
+  factory _Target.fromJson(Map<String, dynamic> json) = _$TargetImpl.fromJson;
 
   @override
   String? get title;
@@ -323,6 +325,6 @@ abstract class _Target implements Target {
   set id(String? value);
   @override
   @JsonKey(ignore: true)
-  _$$_TargetCopyWith<_$_Target> get copyWith =>
+  _$$TargetImplCopyWith<_$TargetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

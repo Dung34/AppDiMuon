@@ -14,6 +14,7 @@ import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/bloc/get_image/get_image_bloc.dart';
 import 'cubit/unit_cubit.dart';
 
+// ignore: must_be_immutable
 class UnitAddPage extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();

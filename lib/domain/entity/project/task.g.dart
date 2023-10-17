@@ -6,7 +6,7 @@ part of 'task.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
+_$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       taskName: json['taskName'] as String?,
       dueDate: json['dueDate'] as String?,
       completeDate: json['completeDate'] as String?,
@@ -19,7 +19,8 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       createdDate: json['createdDate'] as String?,
     );
 
-Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
+Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
+    <String, dynamic>{
       'taskName': instance.taskName,
       'dueDate': instance.dueDate,
       'completeDate': instance.completeDate,
@@ -30,15 +31,15 @@ Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
       'createdDate': instance.createdDate,
     };
 
-_$_TaskMembers _$$_TaskMembersFromJson(Map<String, dynamic> json) =>
-    _$_TaskMembers(
+_$TaskMembersImpl _$$TaskMembersImplFromJson(Map<String, dynamic> json) =>
+    _$TaskMembersImpl(
       taskId: json['taskId'] as String?,
       userId: json['userId'] as String?,
       role: json['role'] as int?,
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$_TaskMembersToJson(_$_TaskMembers instance) =>
+Map<String, dynamic> _$$TaskMembersImplToJson(_$TaskMembersImpl instance) =>
     <String, dynamic>{
       'taskId': instance.taskId,
       'userId': instance.userId,

@@ -5,6 +5,7 @@ import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/utils/date_time_utils.dart';
+import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -19,21 +20,33 @@ class ObjectiveDetailPage extends StatefulWidget {
 }
 
 class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
-  final OkrCubit cubit = OkrCubit();
+  late OkrCubit cubit;
   late ObjectiveDetailPageArgs args;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     args = context.arguments as ObjectiveDetailPageArgs;
+    cubit = args.cubit;
 
     cubit.getObjectiveDetails(args.objectiveId, args.unitId);
+    cubit.getAllKeyResult(args.objectiveId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PrimaryAppBar(
+        actions: [
+          PrimaryIconButton(
+              context: context,
+              icon: Icons.delete,
+              onPressed: () {
+                cubit.deleteObjective(args.objectiveId);
+                Navigator.pop(context);
+              }),
+          const SizedBox(width: 10.0)
+        ],
         title: args.name,
       ),
       backgroundColor: AppColor.white,
@@ -58,8 +71,9 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
                                 context,
                                 AppRoute.objectiveDetail,
                                 arguments: ObjectiveDetailPageArgs(
-                                    objectiveId: objective.id!,
-                                    unitId: args.unitId),
+                                    objectiveId: objective.objectiveId!,
+                                    unitId: args.unitId,
+                                    cubit: cubit),
                               );
                             },
                             child: PrimaryContainer(

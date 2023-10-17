@@ -14,17 +14,16 @@ class UnitCubit extends Cubit<UnitState> {
 
   List<Unit> units = [];
   final List<UserEntity> users = [];
-  final List<UserEntity> members = [];
 
   UnitCubit() : super(UnitInitialState());
 
-  addUsersInUnit(String unitId) async {
+  addUsersInUnit(String unitId, List<UserEntity> members) async {
     final response = await _okrRepository.addUserInUnit(
         unitId, List.from(members.map((e) => e.id)));
 
     members.clear();
     if (response.status == ResponseStatus.success) {
-      emit(UnitAddUsersInUnitSuccessState());
+      emit(UnitAddUsersInUnitSuccessState(response.data!));
     } else {
       emit(UnitAddUsersInUnitFailedState());
     }
@@ -75,6 +74,14 @@ class UnitCubit extends Cubit<UnitState> {
     } else {
       emit(UnitGetAllUserInUnitFailedState());
     }
+  }
+
+  reset() {
+    emit(UnitResetState());
+  }
+
+  rebuildUnitDetail(Unit unit) {
+    emit(UnitGetUnitDetailSuccessState(unit));
   }
 
   viewUnit(String unitId) async {

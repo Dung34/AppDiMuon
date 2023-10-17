@@ -67,21 +67,22 @@ class _$ListSkillCopyWithImpl<$Res, $Val extends ListSkill>
 }
 
 /// @nodoc
-abstract class _$$_ListSkillCopyWith<$Res> implements $ListSkillCopyWith<$Res> {
-  factory _$$_ListSkillCopyWith(
-          _$_ListSkill value, $Res Function(_$_ListSkill) then) =
-      __$$_ListSkillCopyWithImpl<$Res>;
+abstract class _$$ListSkillImplCopyWith<$Res>
+    implements $ListSkillCopyWith<$Res> {
+  factory _$$ListSkillImplCopyWith(
+          _$ListSkillImpl value, $Res Function(_$ListSkillImpl) then) =
+      __$$ListSkillImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Skill>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ListSkillCopyWithImpl<$Res>
-    extends _$ListSkillCopyWithImpl<$Res, _$_ListSkill>
-    implements _$$_ListSkillCopyWith<$Res> {
-  __$$_ListSkillCopyWithImpl(
-      _$_ListSkill _value, $Res Function(_$_ListSkill) _then)
+class __$$ListSkillImplCopyWithImpl<$Res>
+    extends _$ListSkillCopyWithImpl<$Res, _$ListSkillImpl>
+    implements _$$ListSkillImplCopyWith<$Res> {
+  __$$ListSkillImplCopyWithImpl(
+      _$ListSkillImpl _value, $Res Function(_$ListSkillImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +91,7 @@ class __$$_ListSkillCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ListSkill(
+    return _then(_$ListSkillImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -105,11 +106,11 @@ class __$$_ListSkillCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListSkill implements _ListSkill {
-  _$_ListSkill({final List<Skill>? data, this.totalCount}) : _data = data;
+class _$ListSkillImpl implements _ListSkill {
+  _$ListSkillImpl({final List<Skill>? data, this.totalCount}) : _data = data;
 
-  factory _$_ListSkill.fromJson(Map<String, dynamic> json) =>
-      _$$_ListSkillFromJson(json);
+  factory _$ListSkillImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListSkillImplFromJson(json);
 
   final List<Skill>? _data;
   @override
@@ -133,7 +134,7 @@ class _$_ListSkill implements _ListSkill {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListSkill &&
+            other is _$ListSkillImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -147,12 +148,12 @@ class _$_ListSkill implements _ListSkill {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListSkillCopyWith<_$_ListSkill> get copyWith =>
-      __$$_ListSkillCopyWithImpl<_$_ListSkill>(this, _$identity);
+  _$$ListSkillImplCopyWith<_$ListSkillImpl> get copyWith =>
+      __$$ListSkillImplCopyWithImpl<_$ListSkillImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListSkillToJson(
+    return _$$ListSkillImplToJson(
       this,
     );
   }
@@ -160,10 +161,10 @@ class _$_ListSkill implements _ListSkill {
 
 abstract class _ListSkill implements ListSkill {
   factory _ListSkill({final List<Skill>? data, final int? totalCount}) =
-      _$_ListSkill;
+      _$ListSkillImpl;
 
   factory _ListSkill.fromJson(Map<String, dynamic> json) =
-      _$_ListSkill.fromJson;
+      _$ListSkillImpl.fromJson;
 
   @override
   List<Skill>? get data;
@@ -171,6 +172,6 @@ abstract class _ListSkill implements ListSkill {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListSkillCopyWith<_$_ListSkill> get copyWith =>
+  _$$ListSkillImplCopyWith<_$ListSkillImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

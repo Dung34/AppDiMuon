@@ -119,11 +119,11 @@ class _$UnitResponseCopyWithImpl<$Res, $Val extends UnitResponse>
 }
 
 /// @nodoc
-abstract class _$$_UnitResponseCopyWith<$Res>
+abstract class _$$UnitResponseImplCopyWith<$Res>
     implements $UnitResponseCopyWith<$Res> {
-  factory _$$_UnitResponseCopyWith(
-          _$_UnitResponse value, $Res Function(_$_UnitResponse) then) =
-      __$$_UnitResponseCopyWithImpl<$Res>;
+  factory _$$UnitResponseImplCopyWith(
+          _$UnitResponseImpl value, $Res Function(_$UnitResponseImpl) then) =
+      __$$UnitResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -139,11 +139,11 @@ abstract class _$$_UnitResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UnitResponseCopyWithImpl<$Res>
-    extends _$UnitResponseCopyWithImpl<$Res, _$_UnitResponse>
-    implements _$$_UnitResponseCopyWith<$Res> {
-  __$$_UnitResponseCopyWithImpl(
-      _$_UnitResponse _value, $Res Function(_$_UnitResponse) _then)
+class __$$UnitResponseImplCopyWithImpl<$Res>
+    extends _$UnitResponseCopyWithImpl<$Res, _$UnitResponseImpl>
+    implements _$$UnitResponseImplCopyWith<$Res> {
+  __$$UnitResponseImplCopyWithImpl(
+      _$UnitResponseImpl _value, $Res Function(_$UnitResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -159,7 +159,7 @@ class __$$_UnitResponseCopyWithImpl<$Res>
     Object? subUnit = freezed,
     Object? okRsId = freezed,
   }) {
-    return _then(_$_UnitResponse(
+    return _then(_$UnitResponseImpl(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -202,8 +202,8 @@ class __$$_UnitResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UnitResponse implements _UnitResponse {
-  _$_UnitResponse(
+class _$UnitResponseImpl implements _UnitResponse {
+  _$UnitResponseImpl(
       {this.name,
       this.parentId,
       this.description,
@@ -215,8 +215,8 @@ class _$_UnitResponse implements _UnitResponse {
       this.okRsId})
       : _subUnit = subUnit;
 
-  factory _$_UnitResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_UnitResponseFromJson(json);
+  factory _$UnitResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UnitResponseImplFromJson(json);
 
   @override
   final String? name;
@@ -254,7 +254,7 @@ class _$_UnitResponse implements _UnitResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UnitResponse &&
+            other is _$UnitResponseImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.parentId, parentId) ||
                 other.parentId == parentId) &&
@@ -288,12 +288,12 @@ class _$_UnitResponse implements _UnitResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UnitResponseCopyWith<_$_UnitResponse> get copyWith =>
-      __$$_UnitResponseCopyWithImpl<_$_UnitResponse>(this, _$identity);
+  _$$UnitResponseImplCopyWith<_$UnitResponseImpl> get copyWith =>
+      __$$UnitResponseImplCopyWithImpl<_$UnitResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UnitResponseToJson(
+    return _$$UnitResponseImplToJson(
       this,
     );
   }
@@ -309,10 +309,10 @@ abstract class _UnitResponse implements UnitResponse {
       final String? createdDate,
       final int? totalMemberCount,
       final List<Unit>? subUnit,
-      final String? okRsId}) = _$_UnitResponse;
+      final String? okRsId}) = _$UnitResponseImpl;
 
   factory _UnitResponse.fromJson(Map<String, dynamic> json) =
-      _$_UnitResponse.fromJson;
+      _$UnitResponseImpl.fromJson;
 
   @override
   String? get name;
@@ -334,6 +334,6 @@ abstract class _UnitResponse implements UnitResponse {
   String? get okRsId;
   @override
   @JsonKey(ignore: true)
-  _$$_UnitResponseCopyWith<_$_UnitResponse> get copyWith =>
+  _$$UnitResponseImplCopyWith<_$UnitResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -60,6 +60,7 @@ class EndPoints {
 
   //objective
   static const String createObjective = '/objective/create-Objective';
+  static const String deleteObjective = '/objective/delete-Objective';
   static const String getAllObjectives = '/OKRs/detail-OKRs';
   static const String getObjectiveDetails = '/objective/detail-Objective';
 

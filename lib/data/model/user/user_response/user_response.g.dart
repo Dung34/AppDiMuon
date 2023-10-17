@@ -6,8 +6,8 @@ part of 'user_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserReponse _$$_UserReponseFromJson(Map<String, dynamic> json) =>
-    _$_UserReponse(
+_$UserReponseImpl _$$UserReponseImplFromJson(Map<String, dynamic> json) =>
+    _$UserReponseImpl(
       id: json['id'] as String?,
       login: json['login'] as String?,
       referralCode: json['referralCode'] as String?,
@@ -28,7 +28,7 @@ _$_UserReponse _$$_UserReponseFromJson(Map<String, dynamic> json) =>
       membershipType: json['membershipType'] as int?,
     );
 
-Map<String, dynamic> _$$_UserReponseToJson(_$_UserReponse instance) =>
+Map<String, dynamic> _$$UserReponseImplToJson(_$UserReponseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'login': instance.login,

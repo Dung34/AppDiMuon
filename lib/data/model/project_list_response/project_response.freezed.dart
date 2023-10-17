@@ -105,11 +105,11 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
 }
 
 /// @nodoc
-abstract class _$$_ProjectResponseCopyWith<$Res>
+abstract class _$$ProjectResponseImplCopyWith<$Res>
     implements $ProjectResponseCopyWith<$Res> {
-  factory _$$_ProjectResponseCopyWith(
-          _$_ProjectResponse value, $Res Function(_$_ProjectResponse) then) =
-      __$$_ProjectResponseCopyWithImpl<$Res>;
+  factory _$$ProjectResponseImplCopyWith(_$ProjectResponseImpl value,
+          $Res Function(_$ProjectResponseImpl) then) =
+      __$$ProjectResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,11 +123,11 @@ abstract class _$$_ProjectResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProjectResponseCopyWithImpl<$Res>
-    extends _$ProjectResponseCopyWithImpl<$Res, _$_ProjectResponse>
-    implements _$$_ProjectResponseCopyWith<$Res> {
-  __$$_ProjectResponseCopyWithImpl(
-      _$_ProjectResponse _value, $Res Function(_$_ProjectResponse) _then)
+class __$$ProjectResponseImplCopyWithImpl<$Res>
+    extends _$ProjectResponseCopyWithImpl<$Res, _$ProjectResponseImpl>
+    implements _$$ProjectResponseImplCopyWith<$Res> {
+  __$$ProjectResponseImplCopyWithImpl(
+      _$ProjectResponseImpl _value, $Res Function(_$ProjectResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -141,7 +141,7 @@ class __$$_ProjectResponseCopyWithImpl<$Res>
     Object? createDate = freezed,
     Object? createBy = freezed,
   }) {
-    return _then(_$_ProjectResponse(
+    return _then(_$ProjectResponseImpl(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -176,8 +176,8 @@ class __$$_ProjectResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProjectResponse implements _ProjectResponse {
-  _$_ProjectResponse(
+class _$ProjectResponseImpl implements _ProjectResponse {
+  _$ProjectResponseImpl(
       {this.name,
       this.status,
       final List<ProjectMember>? projectMembers,
@@ -188,8 +188,8 @@ class _$_ProjectResponse implements _ProjectResponse {
       : _projectMembers = projectMembers,
         _tasks = tasks;
 
-  factory _$_ProjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectResponseFromJson(json);
+  factory _$ProjectResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectResponseImplFromJson(json);
 
   @override
   final String? name;
@@ -231,7 +231,7 @@ class _$_ProjectResponse implements _ProjectResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProjectResponse &&
+            other is _$ProjectResponseImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
@@ -259,12 +259,13 @@ class _$_ProjectResponse implements _ProjectResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectResponseCopyWith<_$_ProjectResponse> get copyWith =>
-      __$$_ProjectResponseCopyWithImpl<_$_ProjectResponse>(this, _$identity);
+  _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>
+      __$$ProjectResponseImplCopyWithImpl<_$ProjectResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectResponseToJson(
+    return _$$ProjectResponseImplToJson(
       this,
     );
   }
@@ -278,10 +279,10 @@ abstract class _ProjectResponse implements ProjectResponse {
       final List<Task>? tasks,
       final String? id,
       final String? createDate,
-      final String? createBy}) = _$_ProjectResponse;
+      final String? createBy}) = _$ProjectResponseImpl;
 
   factory _ProjectResponse.fromJson(Map<String, dynamic> json) =
-      _$_ProjectResponse.fromJson;
+      _$ProjectResponseImpl.fromJson;
 
   @override
   String? get name;
@@ -299,6 +300,6 @@ abstract class _ProjectResponse implements ProjectResponse {
   String? get createBy;
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectResponseCopyWith<_$_ProjectResponse> get copyWith =>
+  _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,17 +6,17 @@ part of 'project_list_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProjectListResponse _$$_ProjectListResponseFromJson(
+_$ProjectListResponseImpl _$$ProjectListResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ProjectListResponse(
+    _$ProjectListResponseImpl(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Project.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalCount: json['totalCount'] as int?,
     );
 
-Map<String, dynamic> _$$_ProjectListResponseToJson(
-        _$_ProjectListResponse instance) =>
+Map<String, dynamic> _$$ProjectListResponseImplToJson(
+        _$ProjectListResponseImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'totalCount': instance.totalCount,

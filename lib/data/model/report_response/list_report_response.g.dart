@@ -6,17 +6,17 @@ part of 'list_report_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ListReportResponse _$$_ListReportResponseFromJson(
+_$ListReportResponseImpl _$$ListReportResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ListReportResponse(
+    _$ListReportResponseImpl(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => ReportDaily.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalcount: json['totalcount'] as int?,
     );
 
-Map<String, dynamic> _$$_ListReportResponseToJson(
-        _$_ListReportResponse instance) =>
+Map<String, dynamic> _$$ListReportResponseImplToJson(
+        _$ListReportResponseImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'totalcount': instance.totalcount,

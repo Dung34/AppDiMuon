@@ -112,11 +112,11 @@ class _$ObjectiveResponseCopyWithImpl<$Res, $Val extends ObjectiveResponse>
 }
 
 /// @nodoc
-abstract class _$$_ObjectiveResponseCopyWith<$Res>
+abstract class _$$ObjectiveResponseImplCopyWith<$Res>
     implements $ObjectiveResponseCopyWith<$Res> {
-  factory _$$_ObjectiveResponseCopyWith(_$_ObjectiveResponse value,
-          $Res Function(_$_ObjectiveResponse) then) =
-      __$$_ObjectiveResponseCopyWithImpl<$Res>;
+  factory _$$ObjectiveResponseImplCopyWith(_$ObjectiveResponseImpl value,
+          $Res Function(_$ObjectiveResponseImpl) then) =
+      __$$ObjectiveResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +131,11 @@ abstract class _$$_ObjectiveResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ObjectiveResponseCopyWithImpl<$Res>
-    extends _$ObjectiveResponseCopyWithImpl<$Res, _$_ObjectiveResponse>
-    implements _$$_ObjectiveResponseCopyWith<$Res> {
-  __$$_ObjectiveResponseCopyWithImpl(
-      _$_ObjectiveResponse _value, $Res Function(_$_ObjectiveResponse) _then)
+class __$$ObjectiveResponseImplCopyWithImpl<$Res>
+    extends _$ObjectiveResponseCopyWithImpl<$Res, _$ObjectiveResponseImpl>
+    implements _$$ObjectiveResponseImplCopyWith<$Res> {
+  __$$ObjectiveResponseImplCopyWithImpl(_$ObjectiveResponseImpl _value,
+      $Res Function(_$ObjectiveResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +150,7 @@ class __$$_ObjectiveResponseCopyWithImpl<$Res>
     Object? unitName = freezed,
     Object? process = freezed,
   }) {
-    return _then(_$_ObjectiveResponse(
+    return _then(_$ObjectiveResponseImpl(
       objectiveId: freezed == objectiveId
           ? _value.objectiveId
           : objectiveId // ignore: cast_nullable_to_non_nullable
@@ -189,8 +189,8 @@ class __$$_ObjectiveResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ObjectiveResponse implements _ObjectiveResponse {
-  _$_ObjectiveResponse(
+class _$ObjectiveResponseImpl implements _ObjectiveResponse {
+  _$ObjectiveResponseImpl(
       {this.objectiveId,
       this.title,
       this.description,
@@ -201,8 +201,8 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
       this.process})
       : _relatedObjective = relatedObjective;
 
-  factory _$_ObjectiveResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ObjectiveResponseFromJson(json);
+  factory _$ObjectiveResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ObjectiveResponseImplFromJson(json);
 
   @override
   final String? objectiveId;
@@ -239,7 +239,7 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ObjectiveResponse &&
+            other is _$ObjectiveResponseImpl &&
             (identical(other.objectiveId, objectiveId) ||
                 other.objectiveId == objectiveId) &&
             (identical(other.title, title) || other.title == title) &&
@@ -270,13 +270,13 @@ class _$_ObjectiveResponse implements _ObjectiveResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ObjectiveResponseCopyWith<_$_ObjectiveResponse> get copyWith =>
-      __$$_ObjectiveResponseCopyWithImpl<_$_ObjectiveResponse>(
+  _$$ObjectiveResponseImplCopyWith<_$ObjectiveResponseImpl> get copyWith =>
+      __$$ObjectiveResponseImplCopyWithImpl<_$ObjectiveResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ObjectiveResponseToJson(
+    return _$$ObjectiveResponseImplToJson(
       this,
     );
   }
@@ -291,10 +291,10 @@ abstract class _ObjectiveResponse implements ObjectiveResponse {
       final List<Objective>? relatedObjective,
       final String? unitId,
       final String? unitName,
-      final double? process}) = _$_ObjectiveResponse;
+      final double? process}) = _$ObjectiveResponseImpl;
 
   factory _ObjectiveResponse.fromJson(Map<String, dynamic> json) =
-      _$_ObjectiveResponse.fromJson;
+      _$ObjectiveResponseImpl.fromJson;
 
   @override
   String? get objectiveId;
@@ -314,6 +314,6 @@ abstract class _ObjectiveResponse implements ObjectiveResponse {
   double? get process;
   @override
   @JsonKey(ignore: true)
-  _$$_ObjectiveResponseCopyWith<_$_ObjectiveResponse> get copyWith =>
+  _$$ObjectiveResponseImplCopyWith<_$ObjectiveResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

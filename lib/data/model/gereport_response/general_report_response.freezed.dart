@@ -114,11 +114,12 @@ class _$GeneralReportResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_GeneralReportResponseCopyWith<$Res>
+abstract class _$$GeneralReportResponseImplCopyWith<$Res>
     implements $GeneralReportResponseCopyWith<$Res> {
-  factory _$$_GeneralReportResponseCopyWith(_$_GeneralReportResponse value,
-          $Res Function(_$_GeneralReportResponse) then) =
-      __$$_GeneralReportResponseCopyWithImpl<$Res>;
+  factory _$$GeneralReportResponseImplCopyWith(
+          _$GeneralReportResponseImpl value,
+          $Res Function(_$GeneralReportResponseImpl) then) =
+      __$$GeneralReportResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -133,11 +134,12 @@ abstract class _$$_GeneralReportResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GeneralReportResponseCopyWithImpl<$Res>
-    extends _$GeneralReportResponseCopyWithImpl<$Res, _$_GeneralReportResponse>
-    implements _$$_GeneralReportResponseCopyWith<$Res> {
-  __$$_GeneralReportResponseCopyWithImpl(_$_GeneralReportResponse _value,
-      $Res Function(_$_GeneralReportResponse) _then)
+class __$$GeneralReportResponseImplCopyWithImpl<$Res>
+    extends _$GeneralReportResponseCopyWithImpl<$Res,
+        _$GeneralReportResponseImpl>
+    implements _$$GeneralReportResponseImplCopyWith<$Res> {
+  __$$GeneralReportResponseImplCopyWithImpl(_$GeneralReportResponseImpl _value,
+      $Res Function(_$GeneralReportResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -152,7 +154,7 @@ class __$$_GeneralReportResponseCopyWithImpl<$Res>
     Object? issue = freezed,
     Object? add = freezed,
   }) {
-    return _then(_$_GeneralReportResponse(
+    return _then(_$GeneralReportResponseImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -191,8 +193,8 @@ class __$$_GeneralReportResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GeneralReportResponse implements _GeneralReportResponse {
-  _$_GeneralReportResponse(
+class _$GeneralReportResponseImpl implements _GeneralReportResponse {
+  _$GeneralReportResponseImpl(
       {this.id,
       this.title,
       this.description,
@@ -202,8 +204,8 @@ class _$_GeneralReportResponse implements _GeneralReportResponse {
       this.issue,
       this.add});
 
-  factory _$_GeneralReportResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_GeneralReportResponseFromJson(json);
+  factory _$GeneralReportResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GeneralReportResponseImplFromJson(json);
 
   @override
   final String? id;
@@ -231,7 +233,7 @@ class _$_GeneralReportResponse implements _GeneralReportResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GeneralReportResponse &&
+            other is _$GeneralReportResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -253,13 +255,13 @@ class _$_GeneralReportResponse implements _GeneralReportResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GeneralReportResponseCopyWith<_$_GeneralReportResponse> get copyWith =>
-      __$$_GeneralReportResponseCopyWithImpl<_$_GeneralReportResponse>(
-          this, _$identity);
+  _$$GeneralReportResponseImplCopyWith<_$GeneralReportResponseImpl>
+      get copyWith => __$$GeneralReportResponseImplCopyWithImpl<
+          _$GeneralReportResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GeneralReportResponseToJson(
+    return _$$GeneralReportResponseImplToJson(
       this,
     );
   }
@@ -274,10 +276,10 @@ abstract class _GeneralReportResponse implements GeneralReportResponse {
       final String? dateFrom,
       final String? workDone,
       final String? issue,
-      final String? add}) = _$_GeneralReportResponse;
+      final String? add}) = _$GeneralReportResponseImpl;
 
   factory _GeneralReportResponse.fromJson(Map<String, dynamic> json) =
-      _$_GeneralReportResponse.fromJson;
+      _$GeneralReportResponseImpl.fromJson;
 
   @override
   String? get id;
@@ -297,6 +299,6 @@ abstract class _GeneralReportResponse implements GeneralReportResponse {
   String? get add;
   @override
   @JsonKey(ignore: true)
-  _$$_GeneralReportResponseCopyWith<_$_GeneralReportResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GeneralReportResponseImplCopyWith<_$GeneralReportResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

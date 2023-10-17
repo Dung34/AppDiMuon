@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
-import '../domain/entity/okr/objective/objective.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
 import '../domain/entity/target/target.dart';
@@ -27,6 +26,7 @@ import '../view/general_page/general_report_detail.dart';
 import '../view/general_page/general_report_update.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
+import '../view/okr_page/cubit/okr_cubit.dart';
 import '../view/okr_page/objective_detail_page.dart';
 import '../view/project_page/cubit/project_cubit.dart';
 import '../view/project_page/project_detail_page.dart';
@@ -202,9 +202,13 @@ class ObjectiveDetailPageArgs {
   final String? name;
   final String objectiveId;
   final String unitId;
+  final OkrCubit cubit;
 
   const ObjectiveDetailPageArgs(
-      {this.name, required this.objectiveId, required this.unitId});
+      {this.name,
+      required this.objectiveId,
+      required this.unitId,
+      required this.cubit});
 }
 
 class ProjectDetailPageArgs {

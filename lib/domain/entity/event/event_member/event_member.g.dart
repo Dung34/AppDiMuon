@@ -6,8 +6,8 @@ part of 'event_member.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_EventMember _$$_EventMemberFromJson(Map<String, dynamic> json) =>
-    _$_EventMember(
+_$EventMemberImpl _$$EventMemberImplFromJson(Map<String, dynamic> json) =>
+    _$EventMemberImpl(
       id: json['id'] as String?,
       userId: json['userId'] as String? ?? '',
       eventId: json['eventId'] as String?,
@@ -18,7 +18,7 @@ _$_EventMember _$$_EventMemberFromJson(Map<String, dynamic> json) =>
       checkedInDate: json['checkedInDate'] as String?,
     );
 
-Map<String, dynamic> _$$_EventMemberToJson(_$_EventMember instance) =>
+Map<String, dynamic> _$$EventMemberImplToJson(_$EventMemberImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

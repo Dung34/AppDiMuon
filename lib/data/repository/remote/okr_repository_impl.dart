@@ -93,7 +93,6 @@ class OKRRepositoryImpl extends OKRRepository {
           "description": objective.description,
           "okRsId": objective.okrId,
           "unitId": objective.unitId,
-          "process": objective.process,
           "relatedObjectiveId": related
         },
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
@@ -238,9 +237,21 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<int>> deleteObjective() {
-    // TODO: implement deleteObjective
-    throw UnimplementedError();
+  Future<ResponseWrapper<int>> deleteObjective(String id) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.delete(EndPoints.deleteObjective,
+          data: {"objectiveId": id},
+          options: Options(headers: {"Authorization": "Bearer $accessToken"}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(data: response.data);
+      }
+      return ResponseWrapper.error(message: "");
+    } catch (e) {
+      handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
   }
 
   @override
@@ -313,13 +324,13 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective(
+  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResult(
       String? objectiveId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
-      final response = await dio.get(
-          '${EndPoints.getAllKeyResult}?ObjectiveId=$objectiveId',
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      final response = await dio.get(EndPoints.getAllKeyResult,
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+          queryParameters: {"ObjectiveId": objectiveId});
 
       if (response.statusCode == 200) {
         return ResponseWrapper.success(

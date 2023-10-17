@@ -4,9 +4,11 @@ import 'package:equatable/equatable.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/okr_repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/user/user.dart';
+import '../../unit_page/cubit/unit_cubit.dart';
 
 part 'okr_state.dart';
 
@@ -32,6 +34,16 @@ class OkrCubit extends Cubit<OkrState> {
       emit(OkrCreateOkrSuccessState(response.data!));
     } else {
       emit(OkrCreateOkrFailedState());
+    }
+  }
+
+  deleteObjective(String id) async {
+    final response = await _okrRepository.deleteObjective(id);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrDeleteObjectiveSuccessState());
+    } else {
+      emit(OkrDeleteObjectiveFailedState());
     }
   }
 
@@ -78,6 +90,16 @@ class OkrCubit extends Cubit<OkrState> {
       emit(OkrCreateOkrSuccessState(response.data!));
     } else {
       emit(OkrCreateOkrFailedState());
+    }
+  }
+
+  getAllKeyResult(String objectiveId) async {
+    final response = await _okrRepository.getAllKeyResult(objectiveId);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrGetAllKeyResultSuccessState(response.data));
+    } else {
+      emit(OkrGetAllKeyResultFailedState());
     }
   }
 

@@ -14,7 +14,6 @@ import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
-import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import '../okr_page/cubit/okr_cubit.dart';
@@ -58,6 +57,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
   @override
   Widget buildPage(BuildContext context) {
     List<Objective> objectives = [];
+    int totalMembersCount = 0;
 
     return BlocBuilder<UnitCubit, UnitState>(
         buildWhen: (previous, current) =>
@@ -69,10 +69,15 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
         builder: (context, state) {
           if (state is UnitGetUnitDetailSuccessState) {
             unit = state.unit;
+            totalMembersCount = unit.totalMemberCount ?? 0;
+
             if (unit.okRsId != null) {
               _okrCubit.getOKRDetail(okrId: unit.okRsId!, unitId: unit.id!);
               _okrCubit.getAllObjectives(okrId: unit.okRsId!, unitId: unit.id!);
             }
+          }
+          if (state is UnitAddUsersInUnitSuccessState) {
+            totalMembersCount += state.members.length;
           }
           if (state is UnitCreateUnitSuccessState) {
             unit.subUnit = List.from(unit.subUnit ?? [])..add(state.unit);
@@ -154,7 +159,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                             'Name: ${unit.name}',
                             style: AppTextTheme.lexendBold18,
                           ),
-                          Text('Member quantity: ${unit.totalMemberCount}'),
+                          Text('Member quantity: $totalMembersCount'),
                         ],
                       )),
                     ],
@@ -236,56 +241,83 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  unit.okRsId == null
-                      ? Column(
-                          children: [
-                            const Text('You haven\'t create any OKR yet'),
-                            const SizedBox(height: 10),
-                            PrimaryButton(
-                                context: context,
-                                onPressed: _onCreateOKRPressed,
-                                label: 'Create OKR'),
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            BlocProvider(
-                              create: (context) => _okrCubit,
-                              child: BlocBuilder<OkrCubit, OkrState>(
-                                buildWhen: (previous, current) =>
-                                    current is OkrGetOkrDetailSuccessState ||
-                                    current is OkrCreateOkrSuccessState,
-                                builder: (context, state) {
-                                  if (state is OkrGetOkrDetailSuccessState) {
-                                    return OKRDetail(
-                                        okr: state.okr, unitId: args.id);
-                                  }
-                                  if (state is OkrCreateOkrSuccessState) {
-                                    return OKRDetail(
-                                        okr: state.okr, unitId: args.id);
-                                  }
-                                  return const Loading();
-                                },
-                              ),
-                            ),
-                            BlocProvider(
-                              create: (context) => _okrCubit,
-                              child: BlocBuilder<OkrCubit, OkrState>(
-                                  buildWhen: (previous, current) => current
-                                      is OkrGetAllObjectivesSuccessState,
-                                  builder: (context, state) {
-                                    if (state
-                                        is OkrGetAllObjectivesSuccessState) {
-                                      objectives = state.objectives!;
-                                      return ListObj(
-                                          objs: objectives, unitId: args.id);
-                                    } else {
-                                      return Container();
-                                    }
-                                  }),
-                            )
-                          ],
+                  BlocProvider(
+                    create: (context) => _okrCubit,
+                    child: BlocConsumer<OkrCubit, OkrState>(
+                      listener: (context, state) {
+                        if (state is OkrCreateOkrSuccessState) {
+                          unit.okRsId = state.okr.id;
+                          debugPrint(state.okr.id);
+                        }
+                      },
+                      builder: (context, state) {
+                        return (unit.okRsId == null)
+                            ? Column(
+                                children: [
+                                  const Text('You haven\'t create any OKR yet'),
+                                  const SizedBox(height: 10),
+                                  PrimaryButton(
+                                      context: context,
+                                      onPressed: _onCreateOKRPressed,
+                                      label: 'Create OKR'),
+                                ],
+                              )
+                            : Container();
+                      },
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      BlocProvider(
+                        create: (context) => _okrCubit,
+                        child: BlocBuilder<OkrCubit, OkrState>(
+                          buildWhen: (previous, current) =>
+                              current is OkrGetOkrDetailSuccessState ||
+                              current is OkrCreateOkrSuccessState,
+                          builder: (context, state) {
+                            if (state is OkrGetOkrDetailSuccessState) {
+                              return OKRDetail(okr: state.okr, unitId: args.id);
+                            }
+                            if (state is OkrCreateOkrSuccessState) {
+                              return OKRDetail(okr: state.okr, unitId: args.id);
+                            }
+                            return Container();
+                          },
                         ),
+                      ),
+                      BlocProvider(
+                        create: (context) => _okrCubit,
+                        child: BlocBuilder<OkrCubit, OkrState>(
+                            buildWhen: (previous, current) =>
+                                current is OkrGetAllObjectivesSuccessState ||
+                                current is OkrCreateObjectiveSuccessState ||
+                                current is OkrDeleteObjectiveSuccessState,
+                            builder: (context, state) {
+                              if (state is OkrGetAllObjectivesSuccessState) {
+                                objectives = state.objectives!;
+                                return ListObj(
+                                  objs: objectives,
+                                  unitId: args.id,
+                                  cubit: _okrCubit,
+                                );
+                              }
+                              if (state is OkrCreateObjectiveSuccessState) {
+                                objectives.add(state.objective);
+                                return ListObj(
+                                  objs: objectives,
+                                  unitId: args.id,
+                                  cubit: _okrCubit,
+                                );
+                              }
+                              if (state is OkrDeleteObjectiveSuccessState) {
+                                _okrCubit.getAllObjectives(
+                                    unitId: unit.id, okrId: unit.okRsId);
+                              }
+                              return Container();
+                            }),
+                      )
+                    ],
+                  ),
                   const SizedBox(height: 20),
                 ],
               ),
@@ -295,8 +327,11 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
   }
 
   _onCreateOKRPressed() {
-    context
-        .showAppBottomSheet(OKRCreatePage(unitId: args.id, cubit: _okrCubit));
+    context.showAppBottomSheet(OKRCreatePage(
+      unitId: args.id,
+      cubit: _okrCubit,
+      unitCubit: cubit,
+    ));
   }
 
   _onCreateObjectivePressed(
@@ -308,6 +343,14 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
       objectives: objectives,
     ));
   }
+
+  _onReset(String? id) {
+    setState(() {
+      unit.okRsId = id;
+    });
+  }
+
+  // _onCreateKeyResultPressed() {};
 }
 
 class OKRDetail extends StatelessWidget {
@@ -387,11 +430,13 @@ class OKRDetail extends StatelessWidget {
 class ListObj extends StatelessWidget {
   final List<Objective> objs;
   final String unitId;
+  final OkrCubit cubit;
 
   const ListObj({
     super.key,
     required this.objs,
     required this.unitId,
+    required this.cubit,
   });
 
   @override
@@ -409,8 +454,9 @@ class ListObj extends StatelessWidget {
               AppRoute.objectiveDetail,
               arguments: ObjectiveDetailPageArgs(
                 name: objective.title,
-                objectiveId: objective.id!,
+                objectiveId: objective.objectiveId!,
                 unitId: unitId,
+                cubit: cubit,
               ),
             );
           },

@@ -119,11 +119,11 @@ class _$OKRResponseCopyWithImpl<$Res, $Val extends OKRResponse>
 }
 
 /// @nodoc
-abstract class _$$_OKRResponseCopyWith<$Res>
+abstract class _$$OKRResponseImplCopyWith<$Res>
     implements $OKRResponseCopyWith<$Res> {
-  factory _$$_OKRResponseCopyWith(
-          _$_OKRResponse value, $Res Function(_$_OKRResponse) then) =
-      __$$_OKRResponseCopyWithImpl<$Res>;
+  factory _$$OKRResponseImplCopyWith(
+          _$OKRResponseImpl value, $Res Function(_$OKRResponseImpl) then) =
+      __$$OKRResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -139,11 +139,11 @@ abstract class _$$_OKRResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OKRResponseCopyWithImpl<$Res>
-    extends _$OKRResponseCopyWithImpl<$Res, _$_OKRResponse>
-    implements _$$_OKRResponseCopyWith<$Res> {
-  __$$_OKRResponseCopyWithImpl(
-      _$_OKRResponse _value, $Res Function(_$_OKRResponse) _then)
+class __$$OKRResponseImplCopyWithImpl<$Res>
+    extends _$OKRResponseCopyWithImpl<$Res, _$OKRResponseImpl>
+    implements _$$OKRResponseImplCopyWith<$Res> {
+  __$$OKRResponseImplCopyWithImpl(
+      _$OKRResponseImpl _value, $Res Function(_$OKRResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -159,7 +159,7 @@ class __$$_OKRResponseCopyWithImpl<$Res>
     Object? totalTask = freezed,
     Object? objectives = freezed,
   }) {
-    return _then(_$_OKRResponse(
+    return _then(_$OKRResponseImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -202,8 +202,8 @@ class __$$_OKRResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OKRResponse implements _OKRResponse {
-  _$_OKRResponse(
+class _$OKRResponseImpl implements _OKRResponse {
+  _$OKRResponseImpl(
       {this.id,
       this.name,
       this.description,
@@ -215,8 +215,8 @@ class _$_OKRResponse implements _OKRResponse {
       final List<Objective>? objectives})
       : _objectives = objectives;
 
-  factory _$_OKRResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_OKRResponseFromJson(json);
+  factory _$OKRResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OKRResponseImplFromJson(json);
 
   @override
   final String? id;
@@ -253,7 +253,7 @@ class _$_OKRResponse implements _OKRResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OKRResponse &&
+            other is _$OKRResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -286,12 +286,12 @@ class _$_OKRResponse implements _OKRResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OKRResponseCopyWith<_$_OKRResponse> get copyWith =>
-      __$$_OKRResponseCopyWithImpl<_$_OKRResponse>(this, _$identity);
+  _$$OKRResponseImplCopyWith<_$OKRResponseImpl> get copyWith =>
+      __$$OKRResponseImplCopyWithImpl<_$OKRResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OKRResponseToJson(
+    return _$$OKRResponseImplToJson(
       this,
     );
   }
@@ -307,10 +307,10 @@ abstract class _OKRResponse implements OKRResponse {
       final int? totalObjective,
       final int? totalKR,
       final int? totalTask,
-      final List<Objective>? objectives}) = _$_OKRResponse;
+      final List<Objective>? objectives}) = _$OKRResponseImpl;
 
   factory _OKRResponse.fromJson(Map<String, dynamic> json) =
-      _$_OKRResponse.fromJson;
+      _$OKRResponseImpl.fromJson;
 
   @override
   String? get id;
@@ -332,6 +332,6 @@ abstract class _OKRResponse implements OKRResponse {
   List<Objective>? get objectives;
   @override
   @JsonKey(ignore: true)
-  _$$_OKRResponseCopyWith<_$_OKRResponse> get copyWith =>
+  _$$OKRResponseImplCopyWith<_$OKRResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -112,11 +112,11 @@ class _$GeneralReportCopyWithImpl<$Res, $Val extends GeneralReport>
 }
 
 /// @nodoc
-abstract class _$$_GeneralReportCopyWith<$Res>
+abstract class _$$GeneralReportImplCopyWith<$Res>
     implements $GeneralReportCopyWith<$Res> {
-  factory _$$_GeneralReportCopyWith(
-          _$_GeneralReport value, $Res Function(_$_GeneralReport) then) =
-      __$$_GeneralReportCopyWithImpl<$Res>;
+  factory _$$GeneralReportImplCopyWith(
+          _$GeneralReportImpl value, $Res Function(_$GeneralReportImpl) then) =
+      __$$GeneralReportImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +131,11 @@ abstract class _$$_GeneralReportCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GeneralReportCopyWithImpl<$Res>
-    extends _$GeneralReportCopyWithImpl<$Res, _$_GeneralReport>
-    implements _$$_GeneralReportCopyWith<$Res> {
-  __$$_GeneralReportCopyWithImpl(
-      _$_GeneralReport _value, $Res Function(_$_GeneralReport) _then)
+class __$$GeneralReportImplCopyWithImpl<$Res>
+    extends _$GeneralReportCopyWithImpl<$Res, _$GeneralReportImpl>
+    implements _$$GeneralReportImplCopyWith<$Res> {
+  __$$GeneralReportImplCopyWithImpl(
+      _$GeneralReportImpl _value, $Res Function(_$GeneralReportImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +150,7 @@ class __$$_GeneralReportCopyWithImpl<$Res>
     Object? issue = freezed,
     Object? add = freezed,
   }) {
-    return _then(_$_GeneralReport(
+    return _then(_$GeneralReportImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -189,8 +189,8 @@ class __$$_GeneralReportCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GeneralReport implements _GeneralReport {
-  _$_GeneralReport(
+class _$GeneralReportImpl implements _GeneralReport {
+  _$GeneralReportImpl(
       {this.id,
       this.title,
       this.description,
@@ -200,8 +200,8 @@ class _$_GeneralReport implements _GeneralReport {
       this.issue,
       this.add});
 
-  factory _$_GeneralReport.fromJson(Map<String, dynamic> json) =>
-      _$$_GeneralReportFromJson(json);
+  factory _$GeneralReportImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GeneralReportImplFromJson(json);
 
   @override
   final String? id;
@@ -229,7 +229,7 @@ class _$_GeneralReport implements _GeneralReport {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GeneralReport &&
+            other is _$GeneralReportImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -251,12 +251,12 @@ class _$_GeneralReport implements _GeneralReport {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GeneralReportCopyWith<_$_GeneralReport> get copyWith =>
-      __$$_GeneralReportCopyWithImpl<_$_GeneralReport>(this, _$identity);
+  _$$GeneralReportImplCopyWith<_$GeneralReportImpl> get copyWith =>
+      __$$GeneralReportImplCopyWithImpl<_$GeneralReportImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GeneralReportToJson(
+    return _$$GeneralReportImplToJson(
       this,
     );
   }
@@ -271,10 +271,10 @@ abstract class _GeneralReport implements GeneralReport {
       final String? dateFrom,
       final String? workDone,
       final String? issue,
-      final String? add}) = _$_GeneralReport;
+      final String? add}) = _$GeneralReportImpl;
 
   factory _GeneralReport.fromJson(Map<String, dynamic> json) =
-      _$_GeneralReport.fromJson;
+      _$GeneralReportImpl.fromJson;
 
   @override
   String? get id;
@@ -294,6 +294,6 @@ abstract class _GeneralReport implements GeneralReport {
   String? get add;
   @override
   @JsonKey(ignore: true)
-  _$$_GeneralReportCopyWith<_$_GeneralReport> get copyWith =>
+  _$$GeneralReportImplCopyWith<_$GeneralReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

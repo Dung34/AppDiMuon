@@ -98,11 +98,11 @@ class _$SkillResponseCopyWithImpl<$Res, $Val extends SkillResponse>
 }
 
 /// @nodoc
-abstract class _$$_SkillResponseCopyWith<$Res>
+abstract class _$$SkillResponseImplCopyWith<$Res>
     implements $SkillResponseCopyWith<$Res> {
-  factory _$$_SkillResponseCopyWith(
-          _$_SkillResponse value, $Res Function(_$_SkillResponse) then) =
-      __$$_SkillResponseCopyWithImpl<$Res>;
+  factory _$$SkillResponseImplCopyWith(
+          _$SkillResponseImpl value, $Res Function(_$SkillResponseImpl) then) =
+      __$$SkillResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +115,11 @@ abstract class _$$_SkillResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SkillResponseCopyWithImpl<$Res>
-    extends _$SkillResponseCopyWithImpl<$Res, _$_SkillResponse>
-    implements _$$_SkillResponseCopyWith<$Res> {
-  __$$_SkillResponseCopyWithImpl(
-      _$_SkillResponse _value, $Res Function(_$_SkillResponse) _then)
+class __$$SkillResponseImplCopyWithImpl<$Res>
+    extends _$SkillResponseCopyWithImpl<$Res, _$SkillResponseImpl>
+    implements _$$SkillResponseImplCopyWith<$Res> {
+  __$$SkillResponseImplCopyWithImpl(
+      _$SkillResponseImpl _value, $Res Function(_$SkillResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +132,7 @@ class __$$_SkillResponseCopyWithImpl<$Res>
     Object? icon = freezed,
     Object? userId = freezed,
   }) {
-    return _then(_$_SkillResponse(
+    return _then(_$SkillResponseImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ class __$$_SkillResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SkillResponse implements _SkillResponse {
-  _$_SkillResponse(
+class _$SkillResponseImpl implements _SkillResponse {
+  _$SkillResponseImpl(
       {this.id,
       this.name,
       this.point,
@@ -172,8 +172,8 @@ class _$_SkillResponse implements _SkillResponse {
       this.icon,
       this.userId});
 
-  factory _$_SkillResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_SkillResponseFromJson(json);
+  factory _$SkillResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SkillResponseImplFromJson(json);
 
   @override
   final String? id;
@@ -197,7 +197,7 @@ class _$_SkillResponse implements _SkillResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SkillResponse &&
+            other is _$SkillResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.point, point) || other.point == point) &&
@@ -215,12 +215,12 @@ class _$_SkillResponse implements _SkillResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SkillResponseCopyWith<_$_SkillResponse> get copyWith =>
-      __$$_SkillResponseCopyWithImpl<_$_SkillResponse>(this, _$identity);
+  _$$SkillResponseImplCopyWith<_$SkillResponseImpl> get copyWith =>
+      __$$SkillResponseImplCopyWithImpl<_$SkillResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SkillResponseToJson(
+    return _$$SkillResponseImplToJson(
       this,
     );
   }
@@ -233,10 +233,10 @@ abstract class _SkillResponse implements SkillResponse {
       final int? point,
       final String? description,
       final String? icon,
-      final String? userId}) = _$_SkillResponse;
+      final String? userId}) = _$SkillResponseImpl;
 
   factory _SkillResponse.fromJson(Map<String, dynamic> json) =
-      _$_SkillResponse.fromJson;
+      _$SkillResponseImpl.fromJson;
 
   @override
   String? get id;
@@ -252,6 +252,6 @@ abstract class _SkillResponse implements SkillResponse {
   String? get userId;
   @override
   @JsonKey(ignore: true)
-  _$$_SkillResponseCopyWith<_$_SkillResponse> get copyWith =>
+  _$$SkillResponseImplCopyWith<_$SkillResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

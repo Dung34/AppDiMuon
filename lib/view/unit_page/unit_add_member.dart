@@ -22,6 +22,8 @@ class UnitAddMember extends StatefulWidget {
 }
 
 class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
+  List<UserEntity> members = [];
+
   @override
   EdgeInsets get padding => EdgeInsets.zero;
 
@@ -47,7 +49,7 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
             context: context,
             icon: Assets.icPeople,
             onPressed: () {
-              cubit.addUsersInUnit(widget.unit.id ?? '');
+              cubit.addUsersInUnit(widget.unit.id ?? '', members);
               Navigator.pop(context);
             },
           )
@@ -73,6 +75,7 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
                     return UserItem(
                       user: users[index],
                       cubit: cubit,
+                      members: members,
                     );
                   },
                   itemCount: users.length,

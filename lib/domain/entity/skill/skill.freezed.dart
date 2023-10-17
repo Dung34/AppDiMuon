@@ -96,9 +96,10 @@ class _$SkillCopyWithImpl<$Res, $Val extends Skill>
 }
 
 /// @nodoc
-abstract class _$$_SkillCopyWith<$Res> implements $SkillCopyWith<$Res> {
-  factory _$$_SkillCopyWith(_$_Skill value, $Res Function(_$_Skill) then) =
-      __$$_SkillCopyWithImpl<$Res>;
+abstract class _$$SkillImplCopyWith<$Res> implements $SkillCopyWith<$Res> {
+  factory _$$SkillImplCopyWith(
+          _$SkillImpl value, $Res Function(_$SkillImpl) then) =
+      __$$SkillImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -111,9 +112,11 @@ abstract class _$$_SkillCopyWith<$Res> implements $SkillCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SkillCopyWithImpl<$Res> extends _$SkillCopyWithImpl<$Res, _$_Skill>
-    implements _$$_SkillCopyWith<$Res> {
-  __$$_SkillCopyWithImpl(_$_Skill _value, $Res Function(_$_Skill) _then)
+class __$$SkillImplCopyWithImpl<$Res>
+    extends _$SkillCopyWithImpl<$Res, _$SkillImpl>
+    implements _$$SkillImplCopyWith<$Res> {
+  __$$SkillImplCopyWithImpl(
+      _$SkillImpl _value, $Res Function(_$SkillImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +129,7 @@ class __$$_SkillCopyWithImpl<$Res> extends _$SkillCopyWithImpl<$Res, _$_Skill>
     Object? icon = freezed,
     Object? userId = freezed,
   }) {
-    return _then(_$_Skill(
+    return _then(_$SkillImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -157,8 +160,8 @@ class __$$_SkillCopyWithImpl<$Res> extends _$SkillCopyWithImpl<$Res, _$_Skill>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Skill implements _Skill {
-  _$_Skill(
+class _$SkillImpl implements _Skill {
+  _$SkillImpl(
       {this.id,
       this.name,
       this.point,
@@ -166,8 +169,8 @@ class _$_Skill implements _Skill {
       this.icon,
       this.userId});
 
-  factory _$_Skill.fromJson(Map<String, dynamic> json) =>
-      _$$_SkillFromJson(json);
+  factory _$SkillImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SkillImplFromJson(json);
 
   @override
   final String? id;
@@ -191,7 +194,7 @@ class _$_Skill implements _Skill {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Skill &&
+            other is _$SkillImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.point, point) || other.point == point) &&
@@ -209,12 +212,12 @@ class _$_Skill implements _Skill {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SkillCopyWith<_$_Skill> get copyWith =>
-      __$$_SkillCopyWithImpl<_$_Skill>(this, _$identity);
+  _$$SkillImplCopyWith<_$SkillImpl> get copyWith =>
+      __$$SkillImplCopyWithImpl<_$SkillImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SkillToJson(
+    return _$$SkillImplToJson(
       this,
     );
   }
@@ -227,9 +230,9 @@ abstract class _Skill implements Skill {
       final int? point,
       final String? description,
       final String? icon,
-      final String? userId}) = _$_Skill;
+      final String? userId}) = _$SkillImpl;
 
-  factory _Skill.fromJson(Map<String, dynamic> json) = _$_Skill.fromJson;
+  factory _Skill.fromJson(Map<String, dynamic> json) = _$SkillImpl.fromJson;
 
   @override
   String? get id;
@@ -245,6 +248,6 @@ abstract class _Skill implements Skill {
   String? get userId;
   @override
   @JsonKey(ignore: true)
-  _$$_SkillCopyWith<_$_Skill> get copyWith =>
+  _$$SkillImplCopyWith<_$SkillImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

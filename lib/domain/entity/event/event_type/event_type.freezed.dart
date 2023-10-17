@@ -73,21 +73,22 @@ class _$EventTypeCopyWithImpl<$Res, $Val extends EventType>
 }
 
 /// @nodoc
-abstract class _$$_EventTypeCopyWith<$Res> implements $EventTypeCopyWith<$Res> {
-  factory _$$_EventTypeCopyWith(
-          _$_EventType value, $Res Function(_$_EventType) then) =
-      __$$_EventTypeCopyWithImpl<$Res>;
+abstract class _$$EventTypeImplCopyWith<$Res>
+    implements $EventTypeCopyWith<$Res> {
+  factory _$$EventTypeImplCopyWith(
+          _$EventTypeImpl value, $Res Function(_$EventTypeImpl) then) =
+      __$$EventTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, int? type, String? name});
 }
 
 /// @nodoc
-class __$$_EventTypeCopyWithImpl<$Res>
-    extends _$EventTypeCopyWithImpl<$Res, _$_EventType>
-    implements _$$_EventTypeCopyWith<$Res> {
-  __$$_EventTypeCopyWithImpl(
-      _$_EventType _value, $Res Function(_$_EventType) _then)
+class __$$EventTypeImplCopyWithImpl<$Res>
+    extends _$EventTypeCopyWithImpl<$Res, _$EventTypeImpl>
+    implements _$$EventTypeImplCopyWith<$Res> {
+  __$$EventTypeImplCopyWithImpl(
+      _$EventTypeImpl _value, $Res Function(_$EventTypeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -97,7 +98,7 @@ class __$$_EventTypeCopyWithImpl<$Res>
     Object? type = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_EventType(
+    return _then(_$EventTypeImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -116,11 +117,11 @@ class __$$_EventTypeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_EventType implements _EventType {
-  _$_EventType({this.id, this.type, this.name});
+class _$EventTypeImpl implements _EventType {
+  _$EventTypeImpl({this.id, this.type, this.name});
 
-  factory _$_EventType.fromJson(Map<String, dynamic> json) =>
-      _$$_EventTypeFromJson(json);
+  factory _$EventTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EventTypeImplFromJson(json);
 
   @override
   final String? id;
@@ -138,7 +139,7 @@ class _$_EventType implements _EventType {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EventType &&
+            other is _$EventTypeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name));
@@ -151,12 +152,12 @@ class _$_EventType implements _EventType {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EventTypeCopyWith<_$_EventType> get copyWith =>
-      __$$_EventTypeCopyWithImpl<_$_EventType>(this, _$identity);
+  _$$EventTypeImplCopyWith<_$EventTypeImpl> get copyWith =>
+      __$$EventTypeImplCopyWithImpl<_$EventTypeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EventTypeToJson(
+    return _$$EventTypeImplToJson(
       this,
     );
   }
@@ -164,10 +165,10 @@ class _$_EventType implements _EventType {
 
 abstract class _EventType implements EventType {
   factory _EventType({final String? id, final int? type, final String? name}) =
-      _$_EventType;
+      _$EventTypeImpl;
 
   factory _EventType.fromJson(Map<String, dynamic> json) =
-      _$_EventType.fromJson;
+      _$EventTypeImpl.fromJson;
 
   @override
   String? get id;
@@ -177,6 +178,6 @@ abstract class _EventType implements EventType {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_EventTypeCopyWith<_$_EventType> get copyWith =>
+  _$$EventTypeImplCopyWith<_$EventTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

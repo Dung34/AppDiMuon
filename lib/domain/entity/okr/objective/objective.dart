@@ -6,14 +6,13 @@ part 'objective.g.dart';
 @freezed
 class Objective with _$Objective {
   factory Objective({
-    String? id,
+    String? objectiveId,
     String? title,
     String? description,
     String? okrId,
     List<Objective>? relatedObjective,
     String? unitId,
     String? unitName,
-    double? process,
   }) = _Objective;
 
   factory Objective.fromJson(Map<String, dynamic> json) =>

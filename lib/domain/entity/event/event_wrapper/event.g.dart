@@ -6,7 +6,7 @@ part of 'event.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Event _$$_EventFromJson(Map<String, dynamic> json) => _$_Event(
+_$EventImpl _$$EventImplFromJson(Map<String, dynamic> json) => _$EventImpl(
       title: json['title'] as String?,
       image:
           (json['image'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -27,7 +27,8 @@ _$_Event _$$_EventFromJson(Map<String, dynamic> json) => _$_Event(
       lastModifiedDate: json['lastModifiedDate'] as String?,
     );
 
-Map<String, dynamic> _$$_EventToJson(_$_Event instance) => <String, dynamic>{
+Map<String, dynamic> _$$EventImplToJson(_$EventImpl instance) =>
+    <String, dynamic>{
       'title': instance.title,
       'image': instance.image,
       'background': instance.background,

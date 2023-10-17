@@ -7,13 +7,19 @@ import '../../shared/utils/validation_utils.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
+import '../unit_page/cubit/unit_cubit.dart';
 import 'cubit/okr_cubit.dart';
 
 class OKRCreatePage extends StatefulWidget {
   final String unitId;
   final OkrCubit cubit;
+  final UnitCubit unitCubit;
 
-  const OKRCreatePage({super.key, required this.unitId, required this.cubit});
+  const OKRCreatePage(
+      {super.key,
+      required this.unitId,
+      required this.cubit,
+      required this.unitCubit});
 
   @override
   State<OKRCreatePage> createState() => _OKRCreatePageState();
@@ -28,6 +34,8 @@ class _OKRCreatePageState extends State<OKRCreatePage> {
         name: nameController.text,
         description: nameController.text,
         unitId: widget.unitId));
+
+    Navigator.pop(context);
   }
 
   @override

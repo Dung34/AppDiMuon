@@ -6,17 +6,17 @@ part of 'list_general_report_res.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ListGeneralReportRes _$$_ListGeneralReportResFromJson(
+_$ListGeneralReportResImpl _$$ListGeneralReportResImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ListGeneralReportRes(
+    _$ListGeneralReportResImpl(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => GeneralReport.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalCount: json['totalCount'] as int?,
     );
 
-Map<String, dynamic> _$$_ListGeneralReportResToJson(
-        _$_ListGeneralReportRes instance) =>
+Map<String, dynamic> _$$ListGeneralReportResImplToJson(
+        _$ListGeneralReportResImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'totalCount': instance.totalCount,

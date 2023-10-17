@@ -6,8 +6,9 @@ part of 'objective_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ObjectiveResponse _$$_ObjectiveResponseFromJson(Map<String, dynamic> json) =>
-    _$_ObjectiveResponse(
+_$ObjectiveResponseImpl _$$ObjectiveResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ObjectiveResponseImpl(
       objectiveId: json['objectiveId'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -20,8 +21,8 @@ _$_ObjectiveResponse _$$_ObjectiveResponseFromJson(Map<String, dynamic> json) =>
       process: (json['process'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$_ObjectiveResponseToJson(
-        _$_ObjectiveResponse instance) =>
+Map<String, dynamic> _$$ObjectiveResponseImplToJson(
+        _$ObjectiveResponseImpl instance) =>
     <String, dynamic>{
       'objectiveId': instance.objectiveId,
       'title': instance.title,

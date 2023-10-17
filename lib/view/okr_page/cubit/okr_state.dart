@@ -29,6 +29,20 @@ class OkrCreateOkrSuccessState extends OkrState {
 
 class OkrCreateOkrFailedState extends OkrState {}
 
+class OkrDeleteObjectiveSuccessState extends OkrState {}
+
+class OkrDeleteObjectiveFailedState extends OkrState {}
+
+class OkrGetAllKeyResultSuccessState extends OkrState {
+  final List<KeyResult>? keyResults;
+
+  const OkrGetAllKeyResultSuccessState(this.keyResults);
+  @override
+  List<Object?> get props => [keyResults];
+}
+
+class OkrGetAllKeyResultFailedState extends OkrState {}
+
 class OkrGetAllObjectivesSuccessState extends OkrState {
   final List<Objective>? objectives;
 

@@ -118,9 +118,10 @@ class _$UnitCopyWithImpl<$Res, $Val extends Unit>
 }
 
 /// @nodoc
-abstract class _$$_UnitCopyWith<$Res> implements $UnitCopyWith<$Res> {
-  factory _$$_UnitCopyWith(_$_Unit value, $Res Function(_$_Unit) then) =
-      __$$_UnitCopyWithImpl<$Res>;
+abstract class _$$UnitImplCopyWith<$Res> implements $UnitCopyWith<$Res> {
+  factory _$$UnitImplCopyWith(
+          _$UnitImpl value, $Res Function(_$UnitImpl) then) =
+      __$$UnitImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -135,9 +136,10 @@ abstract class _$$_UnitCopyWith<$Res> implements $UnitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UnitCopyWithImpl<$Res> extends _$UnitCopyWithImpl<$Res, _$_Unit>
-    implements _$$_UnitCopyWith<$Res> {
-  __$$_UnitCopyWithImpl(_$_Unit _value, $Res Function(_$_Unit) _then)
+class __$$UnitImplCopyWithImpl<$Res>
+    extends _$UnitCopyWithImpl<$Res, _$UnitImpl>
+    implements _$$UnitImplCopyWith<$Res> {
+  __$$UnitImplCopyWithImpl(_$UnitImpl _value, $Res Function(_$UnitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -152,7 +154,7 @@ class __$$_UnitCopyWithImpl<$Res> extends _$UnitCopyWithImpl<$Res, _$_Unit>
     Object? subUnit = freezed,
     Object? okRsId = freezed,
   }) {
-    return _then(_$_Unit(
+    return _then(_$UnitImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -191,8 +193,8 @@ class __$$_UnitCopyWithImpl<$Res> extends _$UnitCopyWithImpl<$Res, _$_Unit>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Unit implements _Unit {
-  _$_Unit(
+class _$UnitImpl implements _Unit {
+  _$UnitImpl(
       {this.id,
       this.name,
       this.parrentId,
@@ -202,7 +204,8 @@ class _$_Unit implements _Unit {
       this.subUnit,
       this.okRsId});
 
-  factory _$_Unit.fromJson(Map<String, dynamic> json) => _$$_UnitFromJson(json);
+  factory _$UnitImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UnitImplFromJson(json);
 
   @override
   String? id;
@@ -229,12 +232,12 @@ class _$_Unit implements _Unit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UnitCopyWith<_$_Unit> get copyWith =>
-      __$$_UnitCopyWithImpl<_$_Unit>(this, _$identity);
+  _$$UnitImplCopyWith<_$UnitImpl> get copyWith =>
+      __$$UnitImplCopyWithImpl<_$UnitImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UnitToJson(
+    return _$$UnitImplToJson(
       this,
     );
   }
@@ -249,9 +252,9 @@ abstract class _Unit implements Unit {
       String? coverImage,
       int? totalMemberCount,
       List<Unit>? subUnit,
-      String? okRsId}) = _$_Unit;
+      String? okRsId}) = _$UnitImpl;
 
-  factory _Unit.fromJson(Map<String, dynamic> json) = _$_Unit.fromJson;
+  factory _Unit.fromJson(Map<String, dynamic> json) = _$UnitImpl.fromJson;
 
   @override
   String? get id;
@@ -279,5 +282,6 @@ abstract class _Unit implements Unit {
   set okRsId(String? value);
   @override
   @JsonKey(ignore: true)
-  _$$_UnitCopyWith<_$_Unit> get copyWith => throw _privateConstructorUsedError;
+  _$$UnitImplCopyWith<_$UnitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

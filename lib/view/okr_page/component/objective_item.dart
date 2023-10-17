@@ -38,10 +38,10 @@ class _ObjectiveItemState extends State<ObjectiveItem> {
               setState(() {
                 checked = !checked;
                 if (checked) {
-                  widget.related.add(widget.objective.id!);
+                  widget.related.add(widget.objective.objectiveId!);
                 } else {
                   widget.related.removeWhere(
-                      (element) => element == widget.objective.id!);
+                      (element) => element == widget.objective.objectiveId!);
                 }
               });
             }),

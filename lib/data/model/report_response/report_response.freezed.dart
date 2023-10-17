@@ -80,22 +80,22 @@ class _$ReportResponseCopyWithImpl<$Res, $Val extends ReportResponse>
 }
 
 /// @nodoc
-abstract class _$$_ReportResponseCopyWith<$Res>
+abstract class _$$ReportResponseImplCopyWith<$Res>
     implements $ReportResponseCopyWith<$Res> {
-  factory _$$_ReportResponseCopyWith(
-          _$_ReportResponse value, $Res Function(_$_ReportResponse) then) =
-      __$$_ReportResponseCopyWithImpl<$Res>;
+  factory _$$ReportResponseImplCopyWith(_$ReportResponseImpl value,
+          $Res Function(_$ReportResponseImpl) then) =
+      __$$ReportResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? title, String? description, String? date});
 }
 
 /// @nodoc
-class __$$_ReportResponseCopyWithImpl<$Res>
-    extends _$ReportResponseCopyWithImpl<$Res, _$_ReportResponse>
-    implements _$$_ReportResponseCopyWith<$Res> {
-  __$$_ReportResponseCopyWithImpl(
-      _$_ReportResponse _value, $Res Function(_$_ReportResponse) _then)
+class __$$ReportResponseImplCopyWithImpl<$Res>
+    extends _$ReportResponseCopyWithImpl<$Res, _$ReportResponseImpl>
+    implements _$$ReportResponseImplCopyWith<$Res> {
+  __$$ReportResponseImplCopyWithImpl(
+      _$ReportResponseImpl _value, $Res Function(_$ReportResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_ReportResponseCopyWithImpl<$Res>
     Object? description = freezed,
     Object? date = freezed,
   }) {
-    return _then(_$_ReportResponse(
+    return _then(_$ReportResponseImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -129,11 +129,11 @@ class __$$_ReportResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ReportResponse implements _ReportResponse {
-  _$_ReportResponse({this.id, this.title, this.description, this.date});
+class _$ReportResponseImpl implements _ReportResponse {
+  _$ReportResponseImpl({this.id, this.title, this.description, this.date});
 
-  factory _$_ReportResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ReportResponseFromJson(json);
+  factory _$ReportResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReportResponseImplFromJson(json);
 
   @override
   final String? id;
@@ -153,7 +153,7 @@ class _$_ReportResponse implements _ReportResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ReportResponse &&
+            other is _$ReportResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -168,12 +168,13 @@ class _$_ReportResponse implements _ReportResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ReportResponseCopyWith<_$_ReportResponse> get copyWith =>
-      __$$_ReportResponseCopyWithImpl<_$_ReportResponse>(this, _$identity);
+  _$$ReportResponseImplCopyWith<_$ReportResponseImpl> get copyWith =>
+      __$$ReportResponseImplCopyWithImpl<_$ReportResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ReportResponseToJson(
+    return _$$ReportResponseImplToJson(
       this,
     );
   }
@@ -184,10 +185,10 @@ abstract class _ReportResponse implements ReportResponse {
       {final String? id,
       final String? title,
       final String? description,
-      final String? date}) = _$_ReportResponse;
+      final String? date}) = _$ReportResponseImpl;
 
   factory _ReportResponse.fromJson(Map<String, dynamic> json) =
-      _$_ReportResponse.fromJson;
+      _$ReportResponseImpl.fromJson;
 
   @override
   String? get id;
@@ -199,6 +200,6 @@ abstract class _ReportResponse implements ReportResponse {
   String? get date;
   @override
   @JsonKey(ignore: true)
-  _$$_ReportResponseCopyWith<_$_ReportResponse> get copyWith =>
+  _$$ReportResponseImplCopyWith<_$ReportResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,8 +6,9 @@ part of 'checkin_statistic.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CheckinStatistic _$$_CheckinStatisticFromJson(Map<String, dynamic> json) =>
-    _$_CheckinStatistic(
+_$CheckinStatisticImpl _$$CheckinStatisticImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CheckinStatisticImpl(
       json['dateNow'] as String?,
       json['workDay'] as int?,
       json['lateDay'] as int?,
@@ -17,7 +18,8 @@ _$_CheckinStatistic _$$_CheckinStatisticFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_CheckinStatisticToJson(_$_CheckinStatistic instance) =>
+Map<String, dynamic> _$$CheckinStatisticImplToJson(
+        _$CheckinStatisticImpl instance) =>
     <String, dynamic>{
       'dateNow': instance.dateNow,
       'workDay': instance.workDay,

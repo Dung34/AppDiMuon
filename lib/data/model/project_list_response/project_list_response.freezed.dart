@@ -68,22 +68,22 @@ class _$ProjectListResponseCopyWithImpl<$Res, $Val extends ProjectListResponse>
 }
 
 /// @nodoc
-abstract class _$$_ProjectListResponseCopyWith<$Res>
+abstract class _$$ProjectListResponseImplCopyWith<$Res>
     implements $ProjectListResponseCopyWith<$Res> {
-  factory _$$_ProjectListResponseCopyWith(_$_ProjectListResponse value,
-          $Res Function(_$_ProjectListResponse) then) =
-      __$$_ProjectListResponseCopyWithImpl<$Res>;
+  factory _$$ProjectListResponseImplCopyWith(_$ProjectListResponseImpl value,
+          $Res Function(_$ProjectListResponseImpl) then) =
+      __$$ProjectListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Project>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ProjectListResponseCopyWithImpl<$Res>
-    extends _$ProjectListResponseCopyWithImpl<$Res, _$_ProjectListResponse>
-    implements _$$_ProjectListResponseCopyWith<$Res> {
-  __$$_ProjectListResponseCopyWithImpl(_$_ProjectListResponse _value,
-      $Res Function(_$_ProjectListResponse) _then)
+class __$$ProjectListResponseImplCopyWithImpl<$Res>
+    extends _$ProjectListResponseCopyWithImpl<$Res, _$ProjectListResponseImpl>
+    implements _$$ProjectListResponseImplCopyWith<$Res> {
+  __$$ProjectListResponseImplCopyWithImpl(_$ProjectListResponseImpl _value,
+      $Res Function(_$ProjectListResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ProjectListResponseCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ProjectListResponse(
+    return _then(_$ProjectListResponseImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,12 +107,12 @@ class __$$_ProjectListResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProjectListResponse implements _ProjectListResponse {
-  _$_ProjectListResponse({final List<Project>? data, this.totalCount})
+class _$ProjectListResponseImpl implements _ProjectListResponse {
+  _$ProjectListResponseImpl({final List<Project>? data, this.totalCount})
       : _data = data;
 
-  factory _$_ProjectListResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectListResponseFromJson(json);
+  factory _$ProjectListResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectListResponseImplFromJson(json);
 
   final List<Project>? _data;
   @override
@@ -136,7 +136,7 @@ class _$_ProjectListResponse implements _ProjectListResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProjectListResponse &&
+            other is _$ProjectListResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -150,13 +150,13 @@ class _$_ProjectListResponse implements _ProjectListResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectListResponseCopyWith<_$_ProjectListResponse> get copyWith =>
-      __$$_ProjectListResponseCopyWithImpl<_$_ProjectListResponse>(
+  _$$ProjectListResponseImplCopyWith<_$ProjectListResponseImpl> get copyWith =>
+      __$$ProjectListResponseImplCopyWithImpl<_$ProjectListResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectListResponseToJson(
+    return _$$ProjectListResponseImplToJson(
       this,
     );
   }
@@ -165,10 +165,10 @@ class _$_ProjectListResponse implements _ProjectListResponse {
 abstract class _ProjectListResponse implements ProjectListResponse {
   factory _ProjectListResponse(
       {final List<Project>? data,
-      final int? totalCount}) = _$_ProjectListResponse;
+      final int? totalCount}) = _$ProjectListResponseImpl;
 
   factory _ProjectListResponse.fromJson(Map<String, dynamic> json) =
-      _$_ProjectListResponse.fromJson;
+      _$ProjectListResponseImpl.fromJson;
 
   @override
   List<Project>? get data;
@@ -176,6 +176,6 @@ abstract class _ProjectListResponse implements ProjectListResponse {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectListResponseCopyWith<_$_ProjectListResponse> get copyWith =>
+  _$$ProjectListResponseImplCopyWith<_$ProjectListResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

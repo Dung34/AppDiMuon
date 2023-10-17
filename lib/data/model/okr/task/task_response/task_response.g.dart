@@ -6,8 +6,8 @@ part of 'task_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TaskResponse _$$_TaskResponseFromJson(Map<String, dynamic> json) =>
-    _$_TaskResponse(
+_$TaskResponseImpl _$$TaskResponseImplFromJson(Map<String, dynamic> json) =>
+    _$TaskResponseImpl(
       taskName: json['taskName'] as String?,
       description: json['description'] as String?,
       dueDate: json['dueDate'] as String?,
@@ -31,7 +31,7 @@ _$_TaskResponse _$$_TaskResponseFromJson(Map<String, dynamic> json) =>
       createdDate: json['createdDate'] as String?,
     );
 
-Map<String, dynamic> _$$_TaskResponseToJson(_$_TaskResponse instance) =>
+Map<String, dynamic> _$$TaskResponseImplToJson(_$TaskResponseImpl instance) =>
     <String, dynamic>{
       'taskName': instance.taskName,
       'description': instance.description,

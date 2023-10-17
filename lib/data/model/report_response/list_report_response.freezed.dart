@@ -68,22 +68,22 @@ class _$ListReportResponseCopyWithImpl<$Res, $Val extends ListReportResponse>
 }
 
 /// @nodoc
-abstract class _$$_ListReportResponseCopyWith<$Res>
+abstract class _$$ListReportResponseImplCopyWith<$Res>
     implements $ListReportResponseCopyWith<$Res> {
-  factory _$$_ListReportResponseCopyWith(_$_ListReportResponse value,
-          $Res Function(_$_ListReportResponse) then) =
-      __$$_ListReportResponseCopyWithImpl<$Res>;
+  factory _$$ListReportResponseImplCopyWith(_$ListReportResponseImpl value,
+          $Res Function(_$ListReportResponseImpl) then) =
+      __$$ListReportResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ReportDaily>? data, int? totalcount});
 }
 
 /// @nodoc
-class __$$_ListReportResponseCopyWithImpl<$Res>
-    extends _$ListReportResponseCopyWithImpl<$Res, _$_ListReportResponse>
-    implements _$$_ListReportResponseCopyWith<$Res> {
-  __$$_ListReportResponseCopyWithImpl(
-      _$_ListReportResponse _value, $Res Function(_$_ListReportResponse) _then)
+class __$$ListReportResponseImplCopyWithImpl<$Res>
+    extends _$ListReportResponseCopyWithImpl<$Res, _$ListReportResponseImpl>
+    implements _$$ListReportResponseImplCopyWith<$Res> {
+  __$$ListReportResponseImplCopyWithImpl(_$ListReportResponseImpl _value,
+      $Res Function(_$ListReportResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ListReportResponseCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalcount = freezed,
   }) {
-    return _then(_$_ListReportResponse(
+    return _then(_$ListReportResponseImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,12 +107,12 @@ class __$$_ListReportResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListReportResponse implements _ListReportResponse {
-  _$_ListReportResponse({final List<ReportDaily>? data, this.totalcount})
+class _$ListReportResponseImpl implements _ListReportResponse {
+  _$ListReportResponseImpl({final List<ReportDaily>? data, this.totalcount})
       : _data = data;
 
-  factory _$_ListReportResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ListReportResponseFromJson(json);
+  factory _$ListReportResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListReportResponseImplFromJson(json);
 
   final List<ReportDaily>? _data;
   @override
@@ -136,7 +136,7 @@ class _$_ListReportResponse implements _ListReportResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListReportResponse &&
+            other is _$ListReportResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalcount, totalcount) ||
                 other.totalcount == totalcount));
@@ -150,13 +150,13 @@ class _$_ListReportResponse implements _ListReportResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListReportResponseCopyWith<_$_ListReportResponse> get copyWith =>
-      __$$_ListReportResponseCopyWithImpl<_$_ListReportResponse>(
+  _$$ListReportResponseImplCopyWith<_$ListReportResponseImpl> get copyWith =>
+      __$$ListReportResponseImplCopyWithImpl<_$ListReportResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListReportResponseToJson(
+    return _$$ListReportResponseImplToJson(
       this,
     );
   }
@@ -165,10 +165,10 @@ class _$_ListReportResponse implements _ListReportResponse {
 abstract class _ListReportResponse implements ListReportResponse {
   factory _ListReportResponse(
       {final List<ReportDaily>? data,
-      final int? totalcount}) = _$_ListReportResponse;
+      final int? totalcount}) = _$ListReportResponseImpl;
 
   factory _ListReportResponse.fromJson(Map<String, dynamic> json) =
-      _$_ListReportResponse.fromJson;
+      _$ListReportResponseImpl.fromJson;
 
   @override
   List<ReportDaily>? get data;
@@ -176,6 +176,6 @@ abstract class _ListReportResponse implements ListReportResponse {
   int? get totalcount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListReportResponseCopyWith<_$_ListReportResponse> get copyWith =>
+  _$$ListReportResponseImplCopyWith<_$ListReportResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

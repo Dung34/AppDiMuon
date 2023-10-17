@@ -6,8 +6,8 @@ part of 'skill_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SkillResponse _$$_SkillResponseFromJson(Map<String, dynamic> json) =>
-    _$_SkillResponse(
+_$SkillResponseImpl _$$SkillResponseImplFromJson(Map<String, dynamic> json) =>
+    _$SkillResponseImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       point: json['point'] as int?,
@@ -16,7 +16,7 @@ _$_SkillResponse _$$_SkillResponseFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String?,
     );
 
-Map<String, dynamic> _$$_SkillResponseToJson(_$_SkillResponse instance) =>
+Map<String, dynamic> _$$SkillResponseImplToJson(_$SkillResponseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

@@ -8,8 +8,13 @@ import '../cubit/unit_cubit.dart';
 class UserItem extends StatefulWidget {
   final UnitCubit cubit;
   final UserEntity user;
+  final List<UserEntity> members;
 
-  const UserItem({super.key, required this.user, required this.cubit});
+  const UserItem(
+      {super.key,
+      required this.user,
+      required this.cubit,
+      required this.members});
 
   @override
   State<UserItem> createState() => _UserItemState();
@@ -31,9 +36,9 @@ class _UserItemState extends State<UserItem> {
               setState(() {
                 checked = !checked;
                 if (checked) {
-                  widget.cubit.members.add(widget.user);
+                  widget.members.add(widget.user);
                 } else {
-                  widget.cubit.members
+                  widget.members
                       .removeWhere((element) => element == widget.user);
                 }
               });

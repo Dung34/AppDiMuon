@@ -6,8 +6,8 @@ part of 'target_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TargetResponse _$$_TargetResponseFromJson(Map<String, dynamic> json) =>
-    _$_TargetResponse(
+_$TargetResponseImpl _$$TargetResponseImplFromJson(Map<String, dynamic> json) =>
+    _$TargetResponseImpl(
       title: json['title'] as String?,
       description: json['description'] as String?,
       targe: (json['targe'] as num?)?.toDouble(),
@@ -20,7 +20,8 @@ _$_TargetResponse _$$_TargetResponseFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$_TargetResponseToJson(_$_TargetResponse instance) =>
+Map<String, dynamic> _$$TargetResponseImplToJson(
+        _$TargetResponseImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,

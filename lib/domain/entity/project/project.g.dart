@@ -6,7 +6,8 @@ part of 'project.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
+_$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
+    _$ProjectImpl(
       name: json['name'] as String?,
       status: json['status'] as int?,
       projectMembers: (json['projectMembers'] as List<dynamic>?)
@@ -18,7 +19,7 @@ _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
+Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'status': instance.status,
@@ -27,13 +28,13 @@ Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
       'id': instance.id,
     };
 
-_$_ProjectMember _$$_ProjectMemberFromJson(Map<String, dynamic> json) =>
-    _$_ProjectMember(
+_$ProjectMemberImpl _$$ProjectMemberImplFromJson(Map<String, dynamic> json) =>
+    _$ProjectMemberImpl(
       userId: json['userId'] as String?,
       role: json['role'] as int?,
     );
 
-Map<String, dynamic> _$$_ProjectMemberToJson(_$_ProjectMember instance) =>
+Map<String, dynamic> _$$ProjectMemberImplToJson(_$ProjectMemberImpl instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'role': instance.role,
