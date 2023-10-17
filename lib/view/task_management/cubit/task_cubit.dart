@@ -37,9 +37,23 @@ class TaskCubit extends Cubit<TaskState> {
     }
   }
 
-  getAllTask({String? user, int page = 1, int pageSize = 10}) async {
-    final response =
-        await _okrRepository.getAllTaskOfUser(page: page, pageSize: pageSize);
+  getAllTask({
+    int page = 1,
+    int pageSize = 10,
+    int? status,
+    String? userId,
+    String? keyWord,
+    String? relatedTask,
+    String? subTask, // pass sub task
+    String? keyResultId,
+  }) async {
+    final response = await _okrRepository.getAllTaskOfUser(
+        page: page,
+        pageSize: pageSize,
+        keyWord: keyWord,
+        keyResultId: keyResultId,
+        relatedTask: relatedTask,
+        subTask: subTask);
     if (response.status == ResponseStatus.success) {
       taskList.clear();
       taskList.addAll(response.data ?? []);
