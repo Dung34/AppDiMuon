@@ -23,6 +23,9 @@ mixin _$KeyResult {
   String? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  String? get key => throw _privateConstructorUsedError;
+  String? get result => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   double? get target => throw _privateConstructorUsedError;
   double? get actual => throw _privateConstructorUsedError;
   String? get objectiveId => throw _privateConstructorUsedError;
@@ -42,6 +45,9 @@ abstract class $KeyResultCopyWith<$Res> {
       {String? id,
       String? title,
       String? description,
+      String? key,
+      String? result,
+      int? status,
       double? target,
       double? actual,
       String? objectiveId});
@@ -63,6 +69,9 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
     Object? id = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? key = freezed,
+    Object? result = freezed,
+    Object? status = freezed,
     Object? target = freezed,
     Object? actual = freezed,
     Object? objectiveId = freezed,
@@ -80,6 +89,18 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      key: freezed == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
@@ -97,27 +118,31 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
 }
 
 /// @nodoc
-abstract class _$$_KeyResultCopyWith<$Res> implements $KeyResultCopyWith<$Res> {
-  factory _$$_KeyResultCopyWith(
-          _$_KeyResult value, $Res Function(_$_KeyResult) then) =
-      __$$_KeyResultCopyWithImpl<$Res>;
+abstract class _$$KeyResultImplCopyWith<$Res>
+    implements $KeyResultCopyWith<$Res> {
+  factory _$$KeyResultImplCopyWith(
+          _$KeyResultImpl value, $Res Function(_$KeyResultImpl) then) =
+      __$$KeyResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
       String? title,
       String? description,
+      String? key,
+      String? result,
+      int? status,
       double? target,
       double? actual,
       String? objectiveId});
 }
 
 /// @nodoc
-class __$$_KeyResultCopyWithImpl<$Res>
-    extends _$KeyResultCopyWithImpl<$Res, _$_KeyResult>
-    implements _$$_KeyResultCopyWith<$Res> {
-  __$$_KeyResultCopyWithImpl(
-      _$_KeyResult _value, $Res Function(_$_KeyResult) _then)
+class __$$KeyResultImplCopyWithImpl<$Res>
+    extends _$KeyResultCopyWithImpl<$Res, _$KeyResultImpl>
+    implements _$$KeyResultImplCopyWith<$Res> {
+  __$$KeyResultImplCopyWithImpl(
+      _$KeyResultImpl _value, $Res Function(_$KeyResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,11 +151,14 @@ class __$$_KeyResultCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? key = freezed,
+    Object? result = freezed,
+    Object? status = freezed,
     Object? target = freezed,
     Object? actual = freezed,
     Object? objectiveId = freezed,
   }) {
-    return _then(_$_KeyResult(
+    return _then(_$KeyResultImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -143,6 +171,18 @@ class __$$_KeyResultCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      key: freezed == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
@@ -161,17 +201,20 @@ class __$$_KeyResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_KeyResult implements _KeyResult {
-  _$_KeyResult(
+class _$KeyResultImpl implements _KeyResult {
+  _$KeyResultImpl(
       {this.id,
       this.title,
       this.description,
+      this.key,
+      this.result,
+      this.status,
       this.target,
       this.actual,
       this.objectiveId});
 
-  factory _$_KeyResult.fromJson(Map<String, dynamic> json) =>
-      _$$_KeyResultFromJson(json);
+  factory _$KeyResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KeyResultImplFromJson(json);
 
   @override
   final String? id;
@@ -179,6 +222,12 @@ class _$_KeyResult implements _KeyResult {
   final String? title;
   @override
   final String? description;
+  @override
+  final String? key;
+  @override
+  final String? result;
+  @override
+  final int? status;
   @override
   final double? target;
   @override
@@ -188,18 +237,21 @@ class _$_KeyResult implements _KeyResult {
 
   @override
   String toString() {
-    return 'KeyResult(id: $id, title: $title, description: $description, target: $target, actual: $actual, objectiveId: $objectiveId)';
+    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, status: $status, target: $target, actual: $actual, objectiveId: $objectiveId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_KeyResult &&
+            other is _$KeyResultImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.target, target) || other.target == target) &&
             (identical(other.actual, actual) || other.actual == actual) &&
             (identical(other.objectiveId, objectiveId) ||
@@ -208,18 +260,18 @@ class _$_KeyResult implements _KeyResult {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, description, target, actual, objectiveId);
+  int get hashCode => Object.hash(runtimeType, id, title, description, key,
+      result, status, target, actual, objectiveId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_KeyResultCopyWith<_$_KeyResult> get copyWith =>
-      __$$_KeyResultCopyWithImpl<_$_KeyResult>(this, _$identity);
+  _$$KeyResultImplCopyWith<_$KeyResultImpl> get copyWith =>
+      __$$KeyResultImplCopyWithImpl<_$KeyResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_KeyResultToJson(
+    return _$$KeyResultImplToJson(
       this,
     );
   }
@@ -230,12 +282,15 @@ abstract class _KeyResult implements KeyResult {
       {final String? id,
       final String? title,
       final String? description,
+      final String? key,
+      final String? result,
+      final int? status,
       final double? target,
       final double? actual,
-      final String? objectiveId}) = _$_KeyResult;
+      final String? objectiveId}) = _$KeyResultImpl;
 
   factory _KeyResult.fromJson(Map<String, dynamic> json) =
-      _$_KeyResult.fromJson;
+      _$KeyResultImpl.fromJson;
 
   @override
   String? get id;
@@ -244,6 +299,12 @@ abstract class _KeyResult implements KeyResult {
   @override
   String? get description;
   @override
+  String? get key;
+  @override
+  String? get result;
+  @override
+  int? get status;
+  @override
   double? get target;
   @override
   double? get actual;
@@ -251,6 +312,6 @@ abstract class _KeyResult implements KeyResult {
   String? get objectiveId;
   @override
   @JsonKey(ignore: true)
-  _$$_KeyResultCopyWith<_$_KeyResult> get copyWith =>
+  _$$KeyResultImplCopyWith<_$KeyResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

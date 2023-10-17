@@ -68,22 +68,22 @@ class _$ListGeneralReportCopyWithImpl<$Res, $Val extends ListGeneralReport>
 }
 
 /// @nodoc
-abstract class _$$_ListGeneralReportCopyWith<$Res>
+abstract class _$$ListGeneralReportImplCopyWith<$Res>
     implements $ListGeneralReportCopyWith<$Res> {
-  factory _$$_ListGeneralReportCopyWith(_$_ListGeneralReport value,
-          $Res Function(_$_ListGeneralReport) then) =
-      __$$_ListGeneralReportCopyWithImpl<$Res>;
+  factory _$$ListGeneralReportImplCopyWith(_$ListGeneralReportImpl value,
+          $Res Function(_$ListGeneralReportImpl) then) =
+      __$$ListGeneralReportImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<GeneralReport>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ListGeneralReportCopyWithImpl<$Res>
-    extends _$ListGeneralReportCopyWithImpl<$Res, _$_ListGeneralReport>
-    implements _$$_ListGeneralReportCopyWith<$Res> {
-  __$$_ListGeneralReportCopyWithImpl(
-      _$_ListGeneralReport _value, $Res Function(_$_ListGeneralReport) _then)
+class __$$ListGeneralReportImplCopyWithImpl<$Res>
+    extends _$ListGeneralReportCopyWithImpl<$Res, _$ListGeneralReportImpl>
+    implements _$$ListGeneralReportImplCopyWith<$Res> {
+  __$$ListGeneralReportImplCopyWithImpl(_$ListGeneralReportImpl _value,
+      $Res Function(_$ListGeneralReportImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ListGeneralReportCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ListGeneralReport(
+    return _then(_$ListGeneralReportImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,12 +107,12 @@ class __$$_ListGeneralReportCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListGeneralReport implements _ListGeneralReport {
-  _$_ListGeneralReport({final List<GeneralReport>? data, this.totalCount})
+class _$ListGeneralReportImpl implements _ListGeneralReport {
+  _$ListGeneralReportImpl({final List<GeneralReport>? data, this.totalCount})
       : _data = data;
 
-  factory _$_ListGeneralReport.fromJson(Map<String, dynamic> json) =>
-      _$$_ListGeneralReportFromJson(json);
+  factory _$ListGeneralReportImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListGeneralReportImplFromJson(json);
 
   final List<GeneralReport>? _data;
   @override
@@ -136,7 +136,7 @@ class _$_ListGeneralReport implements _ListGeneralReport {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListGeneralReport &&
+            other is _$ListGeneralReportImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -150,13 +150,13 @@ class _$_ListGeneralReport implements _ListGeneralReport {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListGeneralReportCopyWith<_$_ListGeneralReport> get copyWith =>
-      __$$_ListGeneralReportCopyWithImpl<_$_ListGeneralReport>(
+  _$$ListGeneralReportImplCopyWith<_$ListGeneralReportImpl> get copyWith =>
+      __$$ListGeneralReportImplCopyWithImpl<_$ListGeneralReportImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListGeneralReportToJson(
+    return _$$ListGeneralReportImplToJson(
       this,
     );
   }
@@ -165,10 +165,10 @@ class _$_ListGeneralReport implements _ListGeneralReport {
 abstract class _ListGeneralReport implements ListGeneralReport {
   factory _ListGeneralReport(
       {final List<GeneralReport>? data,
-      final int? totalCount}) = _$_ListGeneralReport;
+      final int? totalCount}) = _$ListGeneralReportImpl;
 
   factory _ListGeneralReport.fromJson(Map<String, dynamic> json) =
-      _$_ListGeneralReport.fromJson;
+      _$ListGeneralReportImpl.fromJson;
 
   @override
   List<GeneralReport>? get data;
@@ -176,6 +176,6 @@ abstract class _ListGeneralReport implements ListGeneralReport {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListGeneralReportCopyWith<_$_ListGeneralReport> get copyWith =>
+  _$$ListGeneralReportImplCopyWith<_$ListGeneralReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,8 +6,8 @@ part of 'unit_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UnitResponse _$$_UnitResponseFromJson(Map<String, dynamic> json) =>
-    _$_UnitResponse(
+_$UnitResponseImpl _$$UnitResponseImplFromJson(Map<String, dynamic> json) =>
+    _$UnitResponseImpl(
       name: json['name'] as String?,
       parentId: json['parentId'] as String?,
       description: json['description'] as String?,
@@ -21,7 +21,7 @@ _$_UnitResponse _$$_UnitResponseFromJson(Map<String, dynamic> json) =>
       okRsId: json['okRsId'] as String?,
     );
 
-Map<String, dynamic> _$$_UnitResponseToJson(_$_UnitResponse instance) =>
+Map<String, dynamic> _$$UnitResponseImplToJson(_$UnitResponseImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'parentId': instance.parentId,

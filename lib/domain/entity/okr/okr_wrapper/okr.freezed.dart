@@ -20,6 +20,7 @@ OKR _$OKRFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OKR {
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $OKRCopyWith<$Res> {
       _$OKRCopyWithImpl<$Res, OKR>;
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? unitId,
       String? process,
@@ -62,6 +64,7 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
@@ -72,6 +75,10 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
     Object? objectives = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -109,13 +116,14 @@ class _$OKRCopyWithImpl<$Res, $Val extends OKR> implements $OKRCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_OKRCopyWith<$Res> implements $OKRCopyWith<$Res> {
-  factory _$$_OKRCopyWith(_$_OKR value, $Res Function(_$_OKR) then) =
-      __$$_OKRCopyWithImpl<$Res>;
+abstract class _$$OKRImplCopyWith<$Res> implements $OKRCopyWith<$Res> {
+  factory _$$OKRImplCopyWith(_$OKRImpl value, $Res Function(_$OKRImpl) then) =
+      __$$OKRImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? unitId,
       String? process,
@@ -126,14 +134,15 @@ abstract class _$$_OKRCopyWith<$Res> implements $OKRCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
-    implements _$$_OKRCopyWith<$Res> {
-  __$$_OKRCopyWithImpl(_$_OKR _value, $Res Function(_$_OKR) _then)
+class __$$OKRImplCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$OKRImpl>
+    implements _$$OKRImplCopyWith<$Res> {
+  __$$OKRImplCopyWithImpl(_$OKRImpl _value, $Res Function(_$OKRImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitId = freezed,
@@ -143,7 +152,11 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
     Object? totalTask = freezed,
     Object? objectives = freezed,
   }) {
-    return _then(_$_OKR(
+    return _then(_$OKRImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -182,9 +195,10 @@ class __$$_OKRCopyWithImpl<$Res> extends _$OKRCopyWithImpl<$Res, _$_OKR>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OKR implements _OKR {
-  _$_OKR(
-      {this.name,
+class _$OKRImpl implements _OKR {
+  _$OKRImpl(
+      {this.id,
+      this.name,
       this.description,
       this.unitId,
       this.process,
@@ -194,8 +208,11 @@ class _$_OKR implements _OKR {
       final List<Objective>? objectives})
       : _objectives = objectives;
 
-  factory _$_OKR.fromJson(Map<String, dynamic> json) => _$$_OKRFromJson(json);
+  factory _$OKRImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OKRImplFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String? name;
   @override
@@ -222,14 +239,15 @@ class _$_OKR implements _OKR {
 
   @override
   String toString() {
-    return 'OKR(name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
+    return 'OKR(id: $id, name: $name, description: $description, unitId: $unitId, process: $process, totalObjective: $totalObjective, totalKR: $totalKR, totalTask: $totalTask, objectives: $objectives)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OKR &&
+            other is _$OKRImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -248,6 +266,7 @@ class _$_OKR implements _OKR {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       description,
       unitId,
@@ -260,12 +279,12 @@ class _$_OKR implements _OKR {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OKRCopyWith<_$_OKR> get copyWith =>
-      __$$_OKRCopyWithImpl<_$_OKR>(this, _$identity);
+  _$$OKRImplCopyWith<_$OKRImpl> get copyWith =>
+      __$$OKRImplCopyWithImpl<_$OKRImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OKRToJson(
+    return _$$OKRImplToJson(
       this,
     );
   }
@@ -273,17 +292,20 @@ class _$_OKR implements _OKR {
 
 abstract class _OKR implements OKR {
   factory _OKR(
-      {final String? name,
+      {final String? id,
+      final String? name,
       final String? description,
       final String? unitId,
       final String? process,
       final int? totalObjective,
       final int? totalKR,
       final int? totalTask,
-      final List<Objective>? objectives}) = _$_OKR;
+      final List<Objective>? objectives}) = _$OKRImpl;
 
-  factory _OKR.fromJson(Map<String, dynamic> json) = _$_OKR.fromJson;
+  factory _OKR.fromJson(Map<String, dynamic> json) = _$OKRImpl.fromJson;
 
+  @override
+  String? get id;
   @override
   String? get name;
   @override
@@ -302,5 +324,6 @@ abstract class _OKR implements OKR {
   List<Objective>? get objectives;
   @override
   @JsonKey(ignore: true)
-  _$$_OKRCopyWith<_$_OKR> get copyWith => throw _privateConstructorUsedError;
+  _$$OKRImplCopyWith<_$OKRImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

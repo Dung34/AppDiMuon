@@ -69,22 +69,22 @@ class _$ListGeneralReportResCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ListGeneralReportResCopyWith<$Res>
+abstract class _$$ListGeneralReportResImplCopyWith<$Res>
     implements $ListGeneralReportResCopyWith<$Res> {
-  factory _$$_ListGeneralReportResCopyWith(_$_ListGeneralReportRes value,
-          $Res Function(_$_ListGeneralReportRes) then) =
-      __$$_ListGeneralReportResCopyWithImpl<$Res>;
+  factory _$$ListGeneralReportResImplCopyWith(_$ListGeneralReportResImpl value,
+          $Res Function(_$ListGeneralReportResImpl) then) =
+      __$$ListGeneralReportResImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<GeneralReport>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ListGeneralReportResCopyWithImpl<$Res>
-    extends _$ListGeneralReportResCopyWithImpl<$Res, _$_ListGeneralReportRes>
-    implements _$$_ListGeneralReportResCopyWith<$Res> {
-  __$$_ListGeneralReportResCopyWithImpl(_$_ListGeneralReportRes _value,
-      $Res Function(_$_ListGeneralReportRes) _then)
+class __$$ListGeneralReportResImplCopyWithImpl<$Res>
+    extends _$ListGeneralReportResCopyWithImpl<$Res, _$ListGeneralReportResImpl>
+    implements _$$ListGeneralReportResImplCopyWith<$Res> {
+  __$$ListGeneralReportResImplCopyWithImpl(_$ListGeneralReportResImpl _value,
+      $Res Function(_$ListGeneralReportResImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +93,7 @@ class __$$_ListGeneralReportResCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ListGeneralReportRes(
+    return _then(_$ListGeneralReportResImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -108,12 +108,12 @@ class __$$_ListGeneralReportResCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListGeneralReportRes implements _ListGeneralReportRes {
-  _$_ListGeneralReportRes({final List<GeneralReport>? data, this.totalCount})
+class _$ListGeneralReportResImpl implements _ListGeneralReportRes {
+  _$ListGeneralReportResImpl({final List<GeneralReport>? data, this.totalCount})
       : _data = data;
 
-  factory _$_ListGeneralReportRes.fromJson(Map<String, dynamic> json) =>
-      _$$_ListGeneralReportResFromJson(json);
+  factory _$ListGeneralReportResImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListGeneralReportResImplFromJson(json);
 
   final List<GeneralReport>? _data;
   @override
@@ -137,7 +137,7 @@ class _$_ListGeneralReportRes implements _ListGeneralReportRes {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListGeneralReportRes &&
+            other is _$ListGeneralReportResImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -151,13 +151,14 @@ class _$_ListGeneralReportRes implements _ListGeneralReportRes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListGeneralReportResCopyWith<_$_ListGeneralReportRes> get copyWith =>
-      __$$_ListGeneralReportResCopyWithImpl<_$_ListGeneralReportRes>(
-          this, _$identity);
+  _$$ListGeneralReportResImplCopyWith<_$ListGeneralReportResImpl>
+      get copyWith =>
+          __$$ListGeneralReportResImplCopyWithImpl<_$ListGeneralReportResImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListGeneralReportResToJson(
+    return _$$ListGeneralReportResImplToJson(
       this,
     );
   }
@@ -166,10 +167,10 @@ class _$_ListGeneralReportRes implements _ListGeneralReportRes {
 abstract class _ListGeneralReportRes implements ListGeneralReportRes {
   factory _ListGeneralReportRes(
       {final List<GeneralReport>? data,
-      final int? totalCount}) = _$_ListGeneralReportRes;
+      final int? totalCount}) = _$ListGeneralReportResImpl;
 
   factory _ListGeneralReportRes.fromJson(Map<String, dynamic> json) =
-      _$_ListGeneralReportRes.fromJson;
+      _$ListGeneralReportResImpl.fromJson;
 
   @override
   List<GeneralReport>? get data;
@@ -177,6 +178,6 @@ abstract class _ListGeneralReportRes implements ListGeneralReportRes {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListGeneralReportResCopyWith<_$_ListGeneralReportRes> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ListGeneralReportResImplCopyWith<_$ListGeneralReportResImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

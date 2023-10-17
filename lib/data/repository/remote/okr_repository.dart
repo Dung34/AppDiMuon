@@ -12,7 +12,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<KeyResult>> createKeyResult();
 
-  Future<ResponseWrapper<Objective>> createObjective(Objective objective);
+  Future<ResponseWrapper<Objective>> createObjective(
+      Objective objective, List<String> related);
 
   Future<ResponseWrapper<OKR>> createOKR(OKR okr);
 
@@ -22,7 +23,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<int>> deleteKeyResult();
 
-  Future<ResponseWrapper<int>> deleteObjective();
+  Future<ResponseWrapper<int>> deleteObjective(String id);
 
   Future<ResponseWrapper<int>> deleteTask(Task task);
 
@@ -36,8 +37,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Objective>>> getAllChildObjectiveOfAnObjective();
 
-  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResultOfObjective(
-      String? objectiveId);
+  Future<ResponseWrapper<List<KeyResult>>> getAllKeyResult(String? objectiveId);
 
   Future<ResponseWrapper<List<Objective>>> getAllObjective(
       {String? unitId, String? okrId});

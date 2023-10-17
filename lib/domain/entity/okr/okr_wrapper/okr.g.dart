@@ -6,7 +6,8 @@ part of 'okr.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OKR _$$_OKRFromJson(Map<String, dynamic> json) => _$_OKR(
+_$OKRImpl _$$OKRImplFromJson(Map<String, dynamic> json) => _$OKRImpl(
+      id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       unitId: json['unitId'] as String?,
@@ -19,7 +20,8 @@ _$_OKR _$$_OKRFromJson(Map<String, dynamic> json) => _$_OKR(
           .toList(),
     );
 
-Map<String, dynamic> _$$_OKRToJson(_$_OKR instance) => <String, dynamic>{
+Map<String, dynamic> _$$OKRImplToJson(_$OKRImpl instance) => <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'unitId': instance.unitId,

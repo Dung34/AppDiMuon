@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../config/routes.dart';
-import '../../../data/resources/colors.dart';
 import '../../../data/resources/resources.dart';
-import '../../../data/resources/themes.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../shared/etx/app_ext.dart';
-import '../../../shared/widgets/button/primary_icon_button.dart';
 import '../../../shared/widgets/image/primary_image.dart';
 import '../cubit/unit_cubit.dart';
 

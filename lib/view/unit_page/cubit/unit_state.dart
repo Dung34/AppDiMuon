@@ -8,7 +8,13 @@ abstract class UnitState extends Equatable {
 
 class UnitInitialState extends UnitState {}
 
-class UnitAddUsersInUnitSuccessState extends UnitState {}
+class UnitAddUsersInUnitSuccessState extends UnitState {
+  final List<UserEntity> members;
+
+  const UnitAddUsersInUnitSuccessState(this.members);
+  @override
+  List<Object?> get props => [members];
+}
 
 class UnitAddUsersInUnitFailedState extends UnitState {}
 

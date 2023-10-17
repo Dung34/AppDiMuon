@@ -168,11 +168,11 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
 }
 
 /// @nodoc
-abstract class _$$_UserReponseCopyWith<$Res>
+abstract class _$$UserReponseImplCopyWith<$Res>
     implements $UserResponseCopyWith<$Res> {
-  factory _$$_UserReponseCopyWith(
-          _$_UserReponse value, $Res Function(_$_UserReponse) then) =
-      __$$_UserReponseCopyWithImpl<$Res>;
+  factory _$$UserReponseImplCopyWith(
+          _$UserReponseImpl value, $Res Function(_$UserReponseImpl) then) =
+      __$$UserReponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -195,11 +195,11 @@ abstract class _$$_UserReponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserReponseCopyWithImpl<$Res>
-    extends _$UserResponseCopyWithImpl<$Res, _$_UserReponse>
-    implements _$$_UserReponseCopyWith<$Res> {
-  __$$_UserReponseCopyWithImpl(
-      _$_UserReponse _value, $Res Function(_$_UserReponse) _then)
+class __$$UserReponseImplCopyWithImpl<$Res>
+    extends _$UserResponseCopyWithImpl<$Res, _$UserReponseImpl>
+    implements _$$UserReponseImplCopyWith<$Res> {
+  __$$UserReponseImplCopyWithImpl(
+      _$UserReponseImpl _value, $Res Function(_$UserReponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -222,7 +222,7 @@ class __$$_UserReponseCopyWithImpl<$Res>
     Object? authorities = freezed,
     Object? membershipType = freezed,
   }) {
-    return _then(_$_UserReponse(
+    return _then(_$UserReponseImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -293,8 +293,8 @@ class __$$_UserReponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserReponse implements _UserReponse {
-  _$_UserReponse(
+class _$UserReponseImpl implements _UserReponse {
+  _$UserReponseImpl(
       {this.id,
       this.login,
       this.referralCode,
@@ -313,8 +313,8 @@ class _$_UserReponse implements _UserReponse {
       this.membershipType})
       : _authorities = authorities;
 
-  factory _$_UserReponse.fromJson(Map<String, dynamic> json) =>
-      _$$_UserReponseFromJson(json);
+  factory _$UserReponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserReponseImplFromJson(json);
 
   @override
   final String? id;
@@ -366,7 +366,7 @@ class _$_UserReponse implements _UserReponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserReponse &&
+            other is _$UserReponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.login, login) || other.login == login) &&
             (identical(other.referralCode, referralCode) ||
@@ -421,12 +421,12 @@ class _$_UserReponse implements _UserReponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserReponseCopyWith<_$_UserReponse> get copyWith =>
-      __$$_UserReponseCopyWithImpl<_$_UserReponse>(this, _$identity);
+  _$$UserReponseImplCopyWith<_$UserReponseImpl> get copyWith =>
+      __$$UserReponseImplCopyWithImpl<_$UserReponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserReponseToJson(
+    return _$$UserReponseImplToJson(
       this,
     );
   }
@@ -449,10 +449,10 @@ abstract class _UserReponse implements UserResponse {
       final String? lastModifiedBy,
       final String? lastModifiedDate,
       final List<String>? authorities,
-      final int? membershipType}) = _$_UserReponse;
+      final int? membershipType}) = _$UserReponseImpl;
 
   factory _UserReponse.fromJson(Map<String, dynamic> json) =
-      _$_UserReponse.fromJson;
+      _$UserReponseImpl.fromJson;
 
   @override
   String? get id;
@@ -488,6 +488,6 @@ abstract class _UserReponse implements UserResponse {
   int? get membershipType;
   @override
   @JsonKey(ignore: true)
-  _$$_UserReponseCopyWith<_$_UserReponse> get copyWith =>
+  _$$UserReponseImplCopyWith<_$UserReponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

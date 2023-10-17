@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/resources/resources.dart';
-import '../../../domain/entity/user/user.dart';
+import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../shared/etx/app_ext.dart';
-import '../cubit/unit_cubit.dart';
+import '../cubit/okr_cubit.dart';
 
-class UserItem extends StatefulWidget {
-  final UnitCubit cubit;
-  final UserEntity user;
-  final List<UserEntity> members;
+// ignore: must_be_immutable
+class ObjectiveItem extends StatefulWidget {
+  final OkrCubit cubit;
+  final Objective objective;
+  List<String> related;
 
-  const UserItem(
+  ObjectiveItem(
       {super.key,
-      required this.user,
+      required this.objective,
       required this.cubit,
-      required this.members});
+      required this.related});
 
   @override
-  State<UserItem> createState() => _UserItemState();
+  State<ObjectiveItem> createState() => _ObjectiveItemState();
 }
 
-class _UserItemState extends State<UserItem> {
+class _ObjectiveItemState extends State<ObjectiveItem> {
   bool checked = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,15 +38,15 @@ class _UserItemState extends State<UserItem> {
               setState(() {
                 checked = !checked;
                 if (checked) {
-                  widget.members.add(widget.user);
+                  widget.related.add(widget.objective.objectiveId!);
                 } else {
-                  widget.members
-                      .removeWhere((element) => element == widget.user);
+                  widget.related.removeWhere(
+                      (element) => element == widget.objective.objectiveId!);
                 }
               });
             }),
         Text(
-          widget.user.fullName ?? 'Unknown',
+          widget.objective.title ?? 'Unknown',
           style: AppTextTheme.robotoRegular14,
         ),
       ]),

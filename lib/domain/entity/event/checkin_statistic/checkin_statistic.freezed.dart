@@ -91,11 +91,11 @@ class _$CheckinStatisticCopyWithImpl<$Res, $Val extends CheckinStatistic>
 }
 
 /// @nodoc
-abstract class _$$_CheckinStatisticCopyWith<$Res>
+abstract class _$$CheckinStatisticImplCopyWith<$Res>
     implements $CheckinStatisticCopyWith<$Res> {
-  factory _$$_CheckinStatisticCopyWith(
-          _$_CheckinStatistic value, $Res Function(_$_CheckinStatistic) then) =
-      __$$_CheckinStatisticCopyWithImpl<$Res>;
+  factory _$$CheckinStatisticImplCopyWith(_$CheckinStatisticImpl value,
+          $Res Function(_$CheckinStatisticImpl) then) =
+      __$$CheckinStatisticImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$_CheckinStatisticCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CheckinStatisticCopyWithImpl<$Res>
-    extends _$CheckinStatisticCopyWithImpl<$Res, _$_CheckinStatistic>
-    implements _$$_CheckinStatisticCopyWith<$Res> {
-  __$$_CheckinStatisticCopyWithImpl(
-      _$_CheckinStatistic _value, $Res Function(_$_CheckinStatistic) _then)
+class __$$CheckinStatisticImplCopyWithImpl<$Res>
+    extends _$CheckinStatisticCopyWithImpl<$Res, _$CheckinStatisticImpl>
+    implements _$$CheckinStatisticImplCopyWith<$Res> {
+  __$$CheckinStatisticImplCopyWithImpl(_$CheckinStatisticImpl _value,
+      $Res Function(_$CheckinStatisticImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_CheckinStatisticCopyWithImpl<$Res>
     Object? leaveDay = freezed,
     Object? listEventCheckin = freezed,
   }) {
-    return _then(_$_CheckinStatistic(
+    return _then(_$CheckinStatisticImpl(
       freezed == dateNow
           ? _value.dateNow
           : dateNow // ignore: cast_nullable_to_non_nullable
@@ -150,13 +150,13 @@ class __$$_CheckinStatisticCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CheckinStatistic implements _CheckinStatistic {
-  _$_CheckinStatistic(this.dateNow, this.workDay, this.lateDay, this.leaveDay,
-      final List<String>? listEventCheckin)
+class _$CheckinStatisticImpl implements _CheckinStatistic {
+  _$CheckinStatisticImpl(this.dateNow, this.workDay, this.lateDay,
+      this.leaveDay, final List<String>? listEventCheckin)
       : _listEventCheckin = listEventCheckin;
 
-  factory _$_CheckinStatistic.fromJson(Map<String, dynamic> json) =>
-      _$$_CheckinStatisticFromJson(json);
+  factory _$CheckinStatisticImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CheckinStatisticImplFromJson(json);
 
   @override
   final String? dateNow;
@@ -186,7 +186,7 @@ class _$_CheckinStatistic implements _CheckinStatistic {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheckinStatistic &&
+            other is _$CheckinStatisticImpl &&
             (identical(other.dateNow, dateNow) || other.dateNow == dateNow) &&
             (identical(other.workDay, workDay) || other.workDay == workDay) &&
             (identical(other.lateDay, lateDay) || other.lateDay == lateDay) &&
@@ -204,12 +204,13 @@ class _$_CheckinStatistic implements _CheckinStatistic {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheckinStatisticCopyWith<_$_CheckinStatistic> get copyWith =>
-      __$$_CheckinStatisticCopyWithImpl<_$_CheckinStatistic>(this, _$identity);
+  _$$CheckinStatisticImplCopyWith<_$CheckinStatisticImpl> get copyWith =>
+      __$$CheckinStatisticImplCopyWithImpl<_$CheckinStatisticImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckinStatisticToJson(
+    return _$$CheckinStatisticImplToJson(
       this,
     );
   }
@@ -221,10 +222,10 @@ abstract class _CheckinStatistic implements CheckinStatistic {
       final int? workDay,
       final int? lateDay,
       final int? leaveDay,
-      final List<String>? listEventCheckin) = _$_CheckinStatistic;
+      final List<String>? listEventCheckin) = _$CheckinStatisticImpl;
 
   factory _CheckinStatistic.fromJson(Map<String, dynamic> json) =
-      _$_CheckinStatistic.fromJson;
+      _$CheckinStatisticImpl.fromJson;
 
   @override
   String? get dateNow;
@@ -238,6 +239,6 @@ abstract class _CheckinStatistic implements CheckinStatistic {
   List<String>? get listEventCheckin;
   @override
   @JsonKey(ignore: true)
-  _$$_CheckinStatisticCopyWith<_$_CheckinStatistic> get copyWith =>
+  _$$CheckinStatisticImplCopyWith<_$CheckinStatisticImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

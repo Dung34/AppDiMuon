@@ -6,8 +6,9 @@ part of 'okr_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OKRResponse _$$_OKRResponseFromJson(Map<String, dynamic> json) =>
-    _$_OKRResponse(
+_$OKRResponseImpl _$$OKRResponseImplFromJson(Map<String, dynamic> json) =>
+    _$OKRResponseImpl(
+      id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       unitId: json['unitId'] as String?,
@@ -20,8 +21,9 @@ _$_OKRResponse _$$_OKRResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_OKRResponseToJson(_$_OKRResponse instance) =>
+Map<String, dynamic> _$$OKRResponseImplToJson(_$OKRResponseImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'unitId': instance.unitId,

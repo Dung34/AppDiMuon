@@ -6,7 +6,7 @@ part of 'unit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Unit _$$_UnitFromJson(Map<String, dynamic> json) => _$_Unit(
+_$UnitImpl _$$UnitImplFromJson(Map<String, dynamic> json) => _$UnitImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       parrentId: json['parrentId'] as String?,
@@ -19,7 +19,8 @@ _$_Unit _$$_UnitFromJson(Map<String, dynamic> json) => _$_Unit(
       okRsId: json['okRsId'] as String?,
     );
 
-Map<String, dynamic> _$$_UnitToJson(_$_Unit instance) => <String, dynamic>{
+Map<String, dynamic> _$$UnitImplToJson(_$UnitImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'parrentId': instance.parrentId,

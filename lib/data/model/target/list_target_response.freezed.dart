@@ -68,22 +68,22 @@ class _$ListTargetResponseCopyWithImpl<$Res, $Val extends ListTargetResponse>
 }
 
 /// @nodoc
-abstract class _$$_ListTargetResponseCopyWith<$Res>
+abstract class _$$ListTargetResponseImplCopyWith<$Res>
     implements $ListTargetResponseCopyWith<$Res> {
-  factory _$$_ListTargetResponseCopyWith(_$_ListTargetResponse value,
-          $Res Function(_$_ListTargetResponse) then) =
-      __$$_ListTargetResponseCopyWithImpl<$Res>;
+  factory _$$ListTargetResponseImplCopyWith(_$ListTargetResponseImpl value,
+          $Res Function(_$ListTargetResponseImpl) then) =
+      __$$ListTargetResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Target>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ListTargetResponseCopyWithImpl<$Res>
-    extends _$ListTargetResponseCopyWithImpl<$Res, _$_ListTargetResponse>
-    implements _$$_ListTargetResponseCopyWith<$Res> {
-  __$$_ListTargetResponseCopyWithImpl(
-      _$_ListTargetResponse _value, $Res Function(_$_ListTargetResponse) _then)
+class __$$ListTargetResponseImplCopyWithImpl<$Res>
+    extends _$ListTargetResponseCopyWithImpl<$Res, _$ListTargetResponseImpl>
+    implements _$$ListTargetResponseImplCopyWith<$Res> {
+  __$$ListTargetResponseImplCopyWithImpl(_$ListTargetResponseImpl _value,
+      $Res Function(_$ListTargetResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ListTargetResponseCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ListTargetResponse(
+    return _then(_$ListTargetResponseImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,12 +107,12 @@ class __$$_ListTargetResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListTargetResponse implements _ListTargetResponse {
-  _$_ListTargetResponse({final List<Target>? data, this.totalCount})
+class _$ListTargetResponseImpl implements _ListTargetResponse {
+  _$ListTargetResponseImpl({final List<Target>? data, this.totalCount})
       : _data = data;
 
-  factory _$_ListTargetResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ListTargetResponseFromJson(json);
+  factory _$ListTargetResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListTargetResponseImplFromJson(json);
 
   final List<Target>? _data;
   @override
@@ -136,7 +136,7 @@ class _$_ListTargetResponse implements _ListTargetResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListTargetResponse &&
+            other is _$ListTargetResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -150,13 +150,13 @@ class _$_ListTargetResponse implements _ListTargetResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListTargetResponseCopyWith<_$_ListTargetResponse> get copyWith =>
-      __$$_ListTargetResponseCopyWithImpl<_$_ListTargetResponse>(
+  _$$ListTargetResponseImplCopyWith<_$ListTargetResponseImpl> get copyWith =>
+      __$$ListTargetResponseImplCopyWithImpl<_$ListTargetResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListTargetResponseToJson(
+    return _$$ListTargetResponseImplToJson(
       this,
     );
   }
@@ -165,10 +165,10 @@ class _$_ListTargetResponse implements _ListTargetResponse {
 abstract class _ListTargetResponse implements ListTargetResponse {
   factory _ListTargetResponse(
       {final List<Target>? data,
-      final int? totalCount}) = _$_ListTargetResponse;
+      final int? totalCount}) = _$ListTargetResponseImpl;
 
   factory _ListTargetResponse.fromJson(Map<String, dynamic> json) =
-      _$_ListTargetResponse.fromJson;
+      _$ListTargetResponseImpl.fromJson;
 
   @override
   List<Target>? get data;
@@ -176,6 +176,6 @@ abstract class _ListTargetResponse implements ListTargetResponse {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListTargetResponseCopyWith<_$_ListTargetResponse> get copyWith =>
+  _$$ListTargetResponseImplCopyWith<_$ListTargetResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

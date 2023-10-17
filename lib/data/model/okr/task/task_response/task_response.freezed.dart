@@ -188,11 +188,11 @@ class _$TaskResponseCopyWithImpl<$Res, $Val extends TaskResponse>
 }
 
 /// @nodoc
-abstract class _$$_TaskResponseCopyWith<$Res>
+abstract class _$$TaskResponseImplCopyWith<$Res>
     implements $TaskResponseCopyWith<$Res> {
-  factory _$$_TaskResponseCopyWith(
-          _$_TaskResponse value, $Res Function(_$_TaskResponse) then) =
-      __$$_TaskResponseCopyWithImpl<$Res>;
+  factory _$$TaskResponseImplCopyWith(
+          _$TaskResponseImpl value, $Res Function(_$TaskResponseImpl) then) =
+      __$$TaskResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -219,11 +219,11 @@ abstract class _$$_TaskResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TaskResponseCopyWithImpl<$Res>
-    extends _$TaskResponseCopyWithImpl<$Res, _$_TaskResponse>
-    implements _$$_TaskResponseCopyWith<$Res> {
-  __$$_TaskResponseCopyWithImpl(
-      _$_TaskResponse _value, $Res Function(_$_TaskResponse) _then)
+class __$$TaskResponseImplCopyWithImpl<$Res>
+    extends _$TaskResponseCopyWithImpl<$Res, _$TaskResponseImpl>
+    implements _$$TaskResponseImplCopyWith<$Res> {
+  __$$TaskResponseImplCopyWithImpl(
+      _$TaskResponseImpl _value, $Res Function(_$TaskResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -245,7 +245,7 @@ class __$$_TaskResponseCopyWithImpl<$Res>
     Object? createdBy = freezed,
     Object? createdDate = freezed,
   }) {
-    return _then(_$_TaskResponse(
+    return _then(_$TaskResponseImpl(
       taskName: freezed == taskName
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
@@ -312,8 +312,8 @@ class __$$_TaskResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TaskResponse implements _TaskResponse {
-  _$_TaskResponse(
+class _$TaskResponseImpl implements _TaskResponse {
+  _$TaskResponseImpl(
       {this.taskName,
       this.description,
       this.dueDate,
@@ -331,8 +331,8 @@ class _$_TaskResponse implements _TaskResponse {
       this.createdDate})
       : _listRelatedTask = listRelatedTask;
 
-  factory _$_TaskResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TaskResponseFromJson(json);
+  factory _$TaskResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaskResponseImplFromJson(json);
 
   @override
   final String? taskName;
@@ -382,7 +382,7 @@ class _$_TaskResponse implements _TaskResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TaskResponse &&
+            other is _$TaskResponseImpl &&
             (identical(other.taskName, taskName) ||
                 other.taskName == taskName) &&
             (identical(other.description, description) ||
@@ -433,12 +433,12 @@ class _$_TaskResponse implements _TaskResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskResponseCopyWith<_$_TaskResponse> get copyWith =>
-      __$$_TaskResponseCopyWithImpl<_$_TaskResponse>(this, _$identity);
+  _$$TaskResponseImplCopyWith<_$TaskResponseImpl> get copyWith =>
+      __$$TaskResponseImplCopyWithImpl<_$TaskResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TaskResponseToJson(
+    return _$$TaskResponseImplToJson(
       this,
     );
   }
@@ -460,10 +460,10 @@ abstract class _TaskResponse implements TaskResponse {
       final int? priority,
       final String? id,
       final String? createdBy,
-      final String? createdDate}) = _$_TaskResponse;
+      final String? createdDate}) = _$TaskResponseImpl;
 
   factory _TaskResponse.fromJson(Map<String, dynamic> json) =
-      _$_TaskResponse.fromJson;
+      _$TaskResponseImpl.fromJson;
 
   @override
   String? get taskName;
@@ -497,6 +497,6 @@ abstract class _TaskResponse implements TaskResponse {
   String? get createdDate;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskResponseCopyWith<_$_TaskResponse> get copyWith =>
+  _$$TaskResponseImplCopyWith<_$TaskResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

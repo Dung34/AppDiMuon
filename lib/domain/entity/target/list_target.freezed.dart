@@ -68,22 +68,22 @@ class _$ListTargetCopyWithImpl<$Res, $Val extends ListTarget>
 }
 
 /// @nodoc
-abstract class _$$_ListTargetCopyWith<$Res>
+abstract class _$$ListTargetImplCopyWith<$Res>
     implements $ListTargetCopyWith<$Res> {
-  factory _$$_ListTargetCopyWith(
-          _$_ListTarget value, $Res Function(_$_ListTarget) then) =
-      __$$_ListTargetCopyWithImpl<$Res>;
+  factory _$$ListTargetImplCopyWith(
+          _$ListTargetImpl value, $Res Function(_$ListTargetImpl) then) =
+      __$$ListTargetImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Target>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ListTargetCopyWithImpl<$Res>
-    extends _$ListTargetCopyWithImpl<$Res, _$_ListTarget>
-    implements _$$_ListTargetCopyWith<$Res> {
-  __$$_ListTargetCopyWithImpl(
-      _$_ListTarget _value, $Res Function(_$_ListTarget) _then)
+class __$$ListTargetImplCopyWithImpl<$Res>
+    extends _$ListTargetCopyWithImpl<$Res, _$ListTargetImpl>
+    implements _$$ListTargetImplCopyWith<$Res> {
+  __$$ListTargetImplCopyWithImpl(
+      _$ListTargetImpl _value, $Res Function(_$ListTargetImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ListTargetCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ListTarget(
+    return _then(_$ListTargetImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_ListTargetCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListTarget implements _ListTarget {
-  _$_ListTarget({final List<Target>? data, this.totalCount}) : _data = data;
+class _$ListTargetImpl implements _ListTarget {
+  _$ListTargetImpl({final List<Target>? data, this.totalCount}) : _data = data;
 
-  factory _$_ListTarget.fromJson(Map<String, dynamic> json) =>
-      _$$_ListTargetFromJson(json);
+  factory _$ListTargetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListTargetImplFromJson(json);
 
   final List<Target>? _data;
   @override
@@ -135,7 +135,7 @@ class _$_ListTarget implements _ListTarget {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListTarget &&
+            other is _$ListTargetImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -149,12 +149,12 @@ class _$_ListTarget implements _ListTarget {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListTargetCopyWith<_$_ListTarget> get copyWith =>
-      __$$_ListTargetCopyWithImpl<_$_ListTarget>(this, _$identity);
+  _$$ListTargetImplCopyWith<_$ListTargetImpl> get copyWith =>
+      __$$ListTargetImplCopyWithImpl<_$ListTargetImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListTargetToJson(
+    return _$$ListTargetImplToJson(
       this,
     );
   }
@@ -162,10 +162,10 @@ class _$_ListTarget implements _ListTarget {
 
 abstract class _ListTarget implements ListTarget {
   factory _ListTarget({final List<Target>? data, final int? totalCount}) =
-      _$_ListTarget;
+      _$ListTargetImpl;
 
   factory _ListTarget.fromJson(Map<String, dynamic> json) =
-      _$_ListTarget.fromJson;
+      _$ListTargetImpl.fromJson;
 
   @override
   List<Target>? get data;
@@ -173,6 +173,6 @@ abstract class _ListTarget implements ListTarget {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListTargetCopyWith<_$_ListTarget> get copyWith =>
+  _$$ListTargetImplCopyWith<_$ListTargetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

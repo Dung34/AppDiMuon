@@ -175,11 +175,11 @@ class _$EventResponseCopyWithImpl<$Res, $Val extends EventResponse>
 }
 
 /// @nodoc
-abstract class _$$_EventResponseCopyWith<$Res>
+abstract class _$$EventResponseImplCopyWith<$Res>
     implements $EventResponseCopyWith<$Res> {
-  factory _$$_EventResponseCopyWith(
-          _$_EventResponse value, $Res Function(_$_EventResponse) then) =
-      __$$_EventResponseCopyWithImpl<$Res>;
+  factory _$$EventResponseImplCopyWith(
+          _$EventResponseImpl value, $Res Function(_$EventResponseImpl) then) =
+      __$$EventResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -203,11 +203,11 @@ abstract class _$$_EventResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_EventResponseCopyWithImpl<$Res>
-    extends _$EventResponseCopyWithImpl<$Res, _$_EventResponse>
-    implements _$$_EventResponseCopyWith<$Res> {
-  __$$_EventResponseCopyWithImpl(
-      _$_EventResponse _value, $Res Function(_$_EventResponse) _then)
+class __$$EventResponseImplCopyWithImpl<$Res>
+    extends _$EventResponseCopyWithImpl<$Res, _$EventResponseImpl>
+    implements _$$EventResponseImplCopyWith<$Res> {
+  __$$EventResponseImplCopyWithImpl(
+      _$EventResponseImpl _value, $Res Function(_$EventResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -231,7 +231,7 @@ class __$$_EventResponseCopyWithImpl<$Res>
     Object? lastModifiedBy = freezed,
     Object? lastModifiedDate = freezed,
   }) {
-    return _then(_$_EventResponse(
+    return _then(_$EventResponseImpl(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -306,8 +306,8 @@ class __$$_EventResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_EventResponse implements _EventResponse {
-  _$_EventResponse(
+class _$EventResponseImpl implements _EventResponse {
+  _$EventResponseImpl(
       {this.title,
       final List<String>? image,
       this.background,
@@ -327,8 +327,8 @@ class _$_EventResponse implements _EventResponse {
       this.lastModifiedDate})
       : _image = image;
 
-  factory _$_EventResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_EventResponseFromJson(json);
+  factory _$EventResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EventResponseImplFromJson(json);
 
   @override
   final String? title;
@@ -382,7 +382,7 @@ class _$_EventResponse implements _EventResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EventResponse &&
+            other is _$EventResponseImpl &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._image, _image) &&
             (identical(other.background, background) ||
@@ -436,12 +436,12 @@ class _$_EventResponse implements _EventResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EventResponseCopyWith<_$_EventResponse> get copyWith =>
-      __$$_EventResponseCopyWithImpl<_$_EventResponse>(this, _$identity);
+  _$$EventResponseImplCopyWith<_$EventResponseImpl> get copyWith =>
+      __$$EventResponseImplCopyWithImpl<_$EventResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EventResponseToJson(
+    return _$$EventResponseImplToJson(
       this,
     );
   }
@@ -465,10 +465,10 @@ abstract class _EventResponse implements EventResponse {
       final String? createdBy,
       final String? createdDate,
       final String? lastModifiedBy,
-      final String? lastModifiedDate}) = _$_EventResponse;
+      final String? lastModifiedDate}) = _$EventResponseImpl;
 
   factory _EventResponse.fromJson(Map<String, dynamic> json) =
-      _$_EventResponse.fromJson;
+      _$EventResponseImpl.fromJson;
 
   @override
   String? get title;
@@ -506,6 +506,6 @@ abstract class _EventResponse implements EventResponse {
   String? get lastModifiedDate;
   @override
   @JsonKey(ignore: true)
-  _$$_EventResponseCopyWith<_$_EventResponse> get copyWith =>
+  _$$EventResponseImplCopyWith<_$EventResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

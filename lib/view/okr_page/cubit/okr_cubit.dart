@@ -4,9 +4,11 @@ import 'package:equatable/equatable.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/okr_repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/user/user.dart';
+import '../../unit_page/cubit/unit_cubit.dart';
 
 part 'okr_state.dart';
 
@@ -15,8 +17,8 @@ class OkrCubit extends Cubit<OkrState> {
 
   OkrCubit() : super(OkrInitial());
 
-  createObjective(Objective objective) async {
-    final response = await _okrRepository.createObjective(objective);
+  createObjective(Objective objective, List<String> related) async {
+    final response = await _okrRepository.createObjective(objective, related);
 
     if (response.status == ResponseStatus.success) {
       emit(OkrCreateObjectiveSuccessState(response.data!));
@@ -35,14 +37,24 @@ class OkrCubit extends Cubit<OkrState> {
     }
   }
 
+  deleteObjective(String id) async {
+    final response = await _okrRepository.deleteObjective(id);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrDeleteObjectiveSuccessState());
+    } else {
+      emit(OkrDeleteObjectiveFailedState());
+    }
+  }
+
   getAllObjectives({String? okrId, String? unitId}) async {
     final response =
         await _okrRepository.getAllObjective(okrId: okrId, unitId: unitId);
 
     if (response.status == ResponseStatus.success) {
-      emit(OkrGetAllObjectivesOfOkrSuccessState(response.data));
+      emit(OkrGetAllObjectivesSuccessState(response.data));
     } else {
-      emit(OkrGetAllObjectivesOfOkrFailedState());
+      emit(OkrGetAllObjectivesFailedState());
     }
   }
 
@@ -75,9 +87,19 @@ class OkrCubit extends Cubit<OkrState> {
     final response = await _okrRepository.createOKR(okr);
 
     if (response.status == ResponseStatus.success) {
-      // emit(UnitCreateUnitSuccessState(response.data!));
+      emit(OkrCreateOkrSuccessState(response.data!));
     } else {
-      // emit(UnitCreateUnitFailedState());
+      emit(OkrCreateOkrFailedState());
+    }
+  }
+
+  getAllKeyResult(String objectiveId) async {
+    final response = await _okrRepository.getAllKeyResult(objectiveId);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrGetAllKeyResultSuccessState(response.data));
+    } else {
+      emit(OkrGetAllKeyResultFailedState());
     }
   }
 

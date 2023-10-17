@@ -126,11 +126,11 @@ class _$TargetResponseCopyWithImpl<$Res, $Val extends TargetResponse>
 }
 
 /// @nodoc
-abstract class _$$_TargetResponseCopyWith<$Res>
+abstract class _$$TargetResponseImplCopyWith<$Res>
     implements $TargetResponseCopyWith<$Res> {
-  factory _$$_TargetResponseCopyWith(
-          _$_TargetResponse value, $Res Function(_$_TargetResponse) then) =
-      __$$_TargetResponseCopyWithImpl<$Res>;
+  factory _$$TargetResponseImplCopyWith(_$TargetResponseImpl value,
+          $Res Function(_$TargetResponseImpl) then) =
+      __$$TargetResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -147,11 +147,11 @@ abstract class _$$_TargetResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TargetResponseCopyWithImpl<$Res>
-    extends _$TargetResponseCopyWithImpl<$Res, _$_TargetResponse>
-    implements _$$_TargetResponseCopyWith<$Res> {
-  __$$_TargetResponseCopyWithImpl(
-      _$_TargetResponse _value, $Res Function(_$_TargetResponse) _then)
+class __$$TargetResponseImplCopyWithImpl<$Res>
+    extends _$TargetResponseCopyWithImpl<$Res, _$TargetResponseImpl>
+    implements _$$TargetResponseImplCopyWith<$Res> {
+  __$$TargetResponseImplCopyWithImpl(
+      _$TargetResponseImpl _value, $Res Function(_$TargetResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -168,7 +168,7 @@ class __$$_TargetResponseCopyWithImpl<$Res>
     Object? endDate = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$_TargetResponse(
+    return _then(_$TargetResponseImpl(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -215,8 +215,8 @@ class __$$_TargetResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TargetResponse implements _TargetResponse {
-  _$_TargetResponse(
+class _$TargetResponseImpl implements _TargetResponse {
+  _$TargetResponseImpl(
       {this.title,
       this.description,
       this.targe,
@@ -228,8 +228,8 @@ class _$_TargetResponse implements _TargetResponse {
       this.endDate,
       this.id});
 
-  factory _$_TargetResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TargetResponseFromJson(json);
+  factory _$TargetResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TargetResponseImplFromJson(json);
 
   @override
   final String? title;
@@ -261,7 +261,7 @@ class _$_TargetResponse implements _TargetResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TargetResponse &&
+            other is _$TargetResponseImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -284,12 +284,13 @@ class _$_TargetResponse implements _TargetResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TargetResponseCopyWith<_$_TargetResponse> get copyWith =>
-      __$$_TargetResponseCopyWithImpl<_$_TargetResponse>(this, _$identity);
+  _$$TargetResponseImplCopyWith<_$TargetResponseImpl> get copyWith =>
+      __$$TargetResponseImplCopyWithImpl<_$TargetResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TargetResponseToJson(
+    return _$$TargetResponseImplToJson(
       this,
     );
   }
@@ -306,10 +307,10 @@ abstract class _TargetResponse implements TargetResponse {
       final String? userId,
       final String? startDate,
       final String? endDate,
-      final String? id}) = _$_TargetResponse;
+      final String? id}) = _$TargetResponseImpl;
 
   factory _TargetResponse.fromJson(Map<String, dynamic> json) =
-      _$_TargetResponse.fromJson;
+      _$TargetResponseImpl.fromJson;
 
   @override
   String? get title;
@@ -333,6 +334,6 @@ abstract class _TargetResponse implements TargetResponse {
   String? get id;
   @override
   @JsonKey(ignore: true)
-  _$$_TargetResponseCopyWith<_$_TargetResponse> get copyWith =>
+  _$$TargetResponseImplCopyWith<_$TargetResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

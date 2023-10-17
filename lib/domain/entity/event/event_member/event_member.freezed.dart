@@ -112,11 +112,11 @@ class _$EventMemberCopyWithImpl<$Res, $Val extends EventMember>
 }
 
 /// @nodoc
-abstract class _$$_EventMemberCopyWith<$Res>
+abstract class _$$EventMemberImplCopyWith<$Res>
     implements $EventMemberCopyWith<$Res> {
-  factory _$$_EventMemberCopyWith(
-          _$_EventMember value, $Res Function(_$_EventMember) then) =
-      __$$_EventMemberCopyWithImpl<$Res>;
+  factory _$$EventMemberImplCopyWith(
+          _$EventMemberImpl value, $Res Function(_$EventMemberImpl) then) =
+      __$$EventMemberImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +131,11 @@ abstract class _$$_EventMemberCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_EventMemberCopyWithImpl<$Res>
-    extends _$EventMemberCopyWithImpl<$Res, _$_EventMember>
-    implements _$$_EventMemberCopyWith<$Res> {
-  __$$_EventMemberCopyWithImpl(
-      _$_EventMember _value, $Res Function(_$_EventMember) _then)
+class __$$EventMemberImplCopyWithImpl<$Res>
+    extends _$EventMemberCopyWithImpl<$Res, _$EventMemberImpl>
+    implements _$$EventMemberImplCopyWith<$Res> {
+  __$$EventMemberImplCopyWithImpl(
+      _$EventMemberImpl _value, $Res Function(_$EventMemberImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +150,7 @@ class __$$_EventMemberCopyWithImpl<$Res>
     Object? checkedInLocation = freezed,
     Object? checkedInDate = freezed,
   }) {
-    return _then(_$_EventMember(
+    return _then(_$EventMemberImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -189,8 +189,8 @@ class __$$_EventMemberCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_EventMember implements _EventMember {
-  _$_EventMember(
+class _$EventMemberImpl implements _EventMember {
+  _$EventMemberImpl(
       {this.id,
       this.userId = '',
       this.eventId,
@@ -200,8 +200,8 @@ class _$_EventMember implements _EventMember {
       this.checkedInLocation,
       this.checkedInDate});
 
-  factory _$_EventMember.fromJson(Map<String, dynamic> json) =>
-      _$$_EventMemberFromJson(json);
+  factory _$EventMemberImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EventMemberImplFromJson(json);
 
   @override
   final String? id;
@@ -230,7 +230,7 @@ class _$_EventMember implements _EventMember {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EventMember &&
+            other is _$EventMemberImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.eventId, eventId) || other.eventId == eventId) &&
@@ -253,12 +253,12 @@ class _$_EventMember implements _EventMember {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EventMemberCopyWith<_$_EventMember> get copyWith =>
-      __$$_EventMemberCopyWithImpl<_$_EventMember>(this, _$identity);
+  _$$EventMemberImplCopyWith<_$EventMemberImpl> get copyWith =>
+      __$$EventMemberImplCopyWithImpl<_$EventMemberImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EventMemberToJson(
+    return _$$EventMemberImplToJson(
       this,
     );
   }
@@ -273,10 +273,10 @@ abstract class _EventMember implements EventMember {
       final String? avatar,
       final String? eventTitle,
       final String? checkedInLocation,
-      final String? checkedInDate}) = _$_EventMember;
+      final String? checkedInDate}) = _$EventMemberImpl;
 
   factory _EventMember.fromJson(Map<String, dynamic> json) =
-      _$_EventMember.fromJson;
+      _$EventMemberImpl.fromJson;
 
   @override
   String? get id;
@@ -296,6 +296,6 @@ abstract class _EventMember implements EventMember {
   String? get checkedInDate;
   @override
   @JsonKey(ignore: true)
-  _$$_EventMemberCopyWith<_$_EventMember> get copyWith =>
+  _$$EventMemberImplCopyWith<_$EventMemberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

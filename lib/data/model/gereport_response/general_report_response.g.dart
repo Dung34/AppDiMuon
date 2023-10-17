@@ -6,9 +6,9 @@ part of 'general_report_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GeneralReportResponse _$$_GeneralReportResponseFromJson(
+_$GeneralReportResponseImpl _$$GeneralReportResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_GeneralReportResponse(
+    _$GeneralReportResponseImpl(
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -19,8 +19,8 @@ _$_GeneralReportResponse _$$_GeneralReportResponseFromJson(
       add: json['add'] as String?,
     );
 
-Map<String, dynamic> _$$_GeneralReportResponseToJson(
-        _$_GeneralReportResponse instance) =>
+Map<String, dynamic> _$$GeneralReportResponseImplToJson(
+        _$GeneralReportResponseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

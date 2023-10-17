@@ -14,6 +14,7 @@ import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/bloc/get_image/get_image_bloc.dart';
 import 'cubit/unit_cubit.dart';
 
+// ignore: must_be_immutable
 class UnitAddPage extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -57,7 +58,12 @@ class UnitAddPage extends StatelessWidget {
             unit.coverImage = state.imageUrl;
             cubit.createUnit(unit);
             cubit.getAllUnit();
-            context.pop();
+            Navigator.pop(context);
+          }
+          if (state is GetImageGetSingleImageUrlErrorState) {
+            cubit.createUnit(unit);
+            cubit.getAllUnit();
+            Navigator.pop(context);
           }
         },
         builder: (context, state) => Scaffold(

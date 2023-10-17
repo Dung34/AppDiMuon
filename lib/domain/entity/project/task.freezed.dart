@@ -110,9 +110,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
 }
 
 /// @nodoc
-abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
-  factory _$$_TaskCopyWith(_$_Task value, $Res Function(_$_Task) then) =
-      __$$_TaskCopyWithImpl<$Res>;
+abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$TaskImplCopyWith(
+          _$TaskImpl value, $Res Function(_$TaskImpl) then) =
+      __$$TaskImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -127,9 +128,10 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
-    implements _$$_TaskCopyWith<$Res> {
-  __$$_TaskCopyWithImpl(_$_Task _value, $Res Function(_$_Task) _then)
+class __$$TaskImplCopyWithImpl<$Res>
+    extends _$TaskCopyWithImpl<$Res, _$TaskImpl>
+    implements _$$TaskImplCopyWith<$Res> {
+  __$$TaskImplCopyWithImpl(_$TaskImpl _value, $Res Function(_$TaskImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -144,7 +146,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
     Object? createdBy = freezed,
     Object? createdDate = freezed,
   }) {
-    return _then(_$_Task(
+    return _then(_$TaskImpl(
       taskName: freezed == taskName
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
@@ -183,8 +185,8 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Task implements _Task {
-  _$_Task(
+class _$TaskImpl implements _Task {
+  _$TaskImpl(
       {this.taskName,
       this.dueDate,
       this.completeDate,
@@ -195,7 +197,8 @@ class _$_Task implements _Task {
       this.createdDate})
       : _taskMembers = taskMembers;
 
-  factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
+  factory _$TaskImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaskImplFromJson(json);
 
   @override
   final String? taskName;
@@ -231,7 +234,7 @@ class _$_Task implements _Task {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Task &&
+            other is _$TaskImpl &&
             (identical(other.taskName, taskName) ||
                 other.taskName == taskName) &&
             (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
@@ -264,12 +267,12 @@ class _$_Task implements _Task {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskCopyWith<_$_Task> get copyWith =>
-      __$$_TaskCopyWithImpl<_$_Task>(this, _$identity);
+  _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>
+      __$$TaskImplCopyWithImpl<_$TaskImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TaskToJson(
+    return _$$TaskImplToJson(
       this,
     );
   }
@@ -284,9 +287,9 @@ abstract class _Task implements Task {
       final List<TaskMembers>? taskMembers,
       final String? id,
       final String? createdBy,
-      final String? createdDate}) = _$_Task;
+      final String? createdDate}) = _$TaskImpl;
 
-  factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
+  factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
   @override
   String? get taskName;
@@ -306,7 +309,8 @@ abstract class _Task implements Task {
   String? get createdDate;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;
+  _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 TaskMembers _$TaskMembersFromJson(Map<String, dynamic> json) {
@@ -375,22 +379,22 @@ class _$TaskMembersCopyWithImpl<$Res, $Val extends TaskMembers>
 }
 
 /// @nodoc
-abstract class _$$_TaskMembersCopyWith<$Res>
+abstract class _$$TaskMembersImplCopyWith<$Res>
     implements $TaskMembersCopyWith<$Res> {
-  factory _$$_TaskMembersCopyWith(
-          _$_TaskMembers value, $Res Function(_$_TaskMembers) then) =
-      __$$_TaskMembersCopyWithImpl<$Res>;
+  factory _$$TaskMembersImplCopyWith(
+          _$TaskMembersImpl value, $Res Function(_$TaskMembersImpl) then) =
+      __$$TaskMembersImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? taskId, String? userId, int? role, String? id});
 }
 
 /// @nodoc
-class __$$_TaskMembersCopyWithImpl<$Res>
-    extends _$TaskMembersCopyWithImpl<$Res, _$_TaskMembers>
-    implements _$$_TaskMembersCopyWith<$Res> {
-  __$$_TaskMembersCopyWithImpl(
-      _$_TaskMembers _value, $Res Function(_$_TaskMembers) _then)
+class __$$TaskMembersImplCopyWithImpl<$Res>
+    extends _$TaskMembersCopyWithImpl<$Res, _$TaskMembersImpl>
+    implements _$$TaskMembersImplCopyWith<$Res> {
+  __$$TaskMembersImplCopyWithImpl(
+      _$TaskMembersImpl _value, $Res Function(_$TaskMembersImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -401,7 +405,7 @@ class __$$_TaskMembersCopyWithImpl<$Res>
     Object? role = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$_TaskMembers(
+    return _then(_$TaskMembersImpl(
       taskId: freezed == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
@@ -424,11 +428,11 @@ class __$$_TaskMembersCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TaskMembers implements _TaskMembers {
-  _$_TaskMembers({this.taskId, this.userId, this.role, this.id});
+class _$TaskMembersImpl implements _TaskMembers {
+  _$TaskMembersImpl({this.taskId, this.userId, this.role, this.id});
 
-  factory _$_TaskMembers.fromJson(Map<String, dynamic> json) =>
-      _$$_TaskMembersFromJson(json);
+  factory _$TaskMembersImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaskMembersImplFromJson(json);
 
   @override
   final String? taskId;
@@ -448,7 +452,7 @@ class _$_TaskMembers implements _TaskMembers {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TaskMembers &&
+            other is _$TaskMembersImpl &&
             (identical(other.taskId, taskId) || other.taskId == taskId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.role, role) || other.role == role) &&
@@ -462,12 +466,12 @@ class _$_TaskMembers implements _TaskMembers {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskMembersCopyWith<_$_TaskMembers> get copyWith =>
-      __$$_TaskMembersCopyWithImpl<_$_TaskMembers>(this, _$identity);
+  _$$TaskMembersImplCopyWith<_$TaskMembersImpl> get copyWith =>
+      __$$TaskMembersImplCopyWithImpl<_$TaskMembersImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TaskMembersToJson(
+    return _$$TaskMembersImplToJson(
       this,
     );
   }
@@ -478,10 +482,10 @@ abstract class _TaskMembers implements TaskMembers {
       {final String? taskId,
       final String? userId,
       final int? role,
-      final String? id}) = _$_TaskMembers;
+      final String? id}) = _$TaskMembersImpl;
 
   factory _TaskMembers.fromJson(Map<String, dynamic> json) =
-      _$_TaskMembers.fromJson;
+      _$TaskMembersImpl.fromJson;
 
   @override
   String? get taskId;
@@ -493,6 +497,6 @@ abstract class _TaskMembers implements TaskMembers {
   String? get id;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskMembersCopyWith<_$_TaskMembers> get copyWith =>
+  _$$TaskMembersImplCopyWith<_$TaskMembersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

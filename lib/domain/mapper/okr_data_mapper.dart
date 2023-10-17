@@ -9,6 +9,7 @@ class OKRDataMapper extends BaseDataMapper<OKRResponse, OKR>
   @override
   OKR mapToEntity(OKRResponse? data) {
     return OKR(
+      id: data?.id,
       name: data?.name,
       description: data?.description,
       unitId: data?.unitId,
@@ -40,27 +41,26 @@ class ObjectiveDataMapper extends BaseDataMapper<ObjectiveResponse, Objective>
   @override
   Objective mapToEntity(ObjectiveResponse? data) {
     return Objective(
-        id: data?.id,
-        title: data?.title,
-        description: data?.description,
-        okrId: data?.okrId,
-        relatedObjective: data?.relatedObjective,
-        unitId: data?.unitId,
-        unitName: data?.unitName,
-        process: data?.process);
+      objectiveId: data?.objectiveId,
+      title: data?.title,
+      description: data?.description,
+      okrId: data?.okrId,
+      relatedObjective: data?.relatedObjective,
+      unitId: data?.unitId,
+      unitName: data?.unitName,
+    );
   }
 
   @override
   ObjectiveResponse mapToData(Objective entity) {
     return ObjectiveResponse(
-      id: entity.id,
+      objectiveId: entity.objectiveId,
       title: entity.title,
       description: entity.description,
       okrId: entity.okrId,
       relatedObjective: entity.relatedObjective,
       unitId: entity.unitId,
       unitName: entity.unitName,
-      process: entity.process,
     );
   }
 }

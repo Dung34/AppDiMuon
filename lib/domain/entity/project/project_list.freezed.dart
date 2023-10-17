@@ -68,22 +68,22 @@ class _$ProjectListCopyWithImpl<$Res, $Val extends ProjectList>
 }
 
 /// @nodoc
-abstract class _$$_ProjectListCopyWith<$Res>
+abstract class _$$ProjectListImplCopyWith<$Res>
     implements $ProjectListCopyWith<$Res> {
-  factory _$$_ProjectListCopyWith(
-          _$_ProjectList value, $Res Function(_$_ProjectList) then) =
-      __$$_ProjectListCopyWithImpl<$Res>;
+  factory _$$ProjectListImplCopyWith(
+          _$ProjectListImpl value, $Res Function(_$ProjectListImpl) then) =
+      __$$ProjectListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Project>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ProjectListCopyWithImpl<$Res>
-    extends _$ProjectListCopyWithImpl<$Res, _$_ProjectList>
-    implements _$$_ProjectListCopyWith<$Res> {
-  __$$_ProjectListCopyWithImpl(
-      _$_ProjectList _value, $Res Function(_$_ProjectList) _then)
+class __$$ProjectListImplCopyWithImpl<$Res>
+    extends _$ProjectListCopyWithImpl<$Res, _$ProjectListImpl>
+    implements _$$ProjectListImplCopyWith<$Res> {
+  __$$ProjectListImplCopyWithImpl(
+      _$ProjectListImpl _value, $Res Function(_$ProjectListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ProjectListCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ProjectList(
+    return _then(_$ProjectListImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,12 @@ class __$$_ProjectListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProjectList implements _ProjectList {
-  _$_ProjectList({final List<Project>? data, this.totalCount}) : _data = data;
+class _$ProjectListImpl implements _ProjectList {
+  _$ProjectListImpl({final List<Project>? data, this.totalCount})
+      : _data = data;
 
-  factory _$_ProjectList.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectListFromJson(json);
+  factory _$ProjectListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectListImplFromJson(json);
 
   final List<Project>? _data;
   @override
@@ -135,7 +136,7 @@ class _$_ProjectList implements _ProjectList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProjectList &&
+            other is _$ProjectListImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -149,12 +150,12 @@ class _$_ProjectList implements _ProjectList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectListCopyWith<_$_ProjectList> get copyWith =>
-      __$$_ProjectListCopyWithImpl<_$_ProjectList>(this, _$identity);
+  _$$ProjectListImplCopyWith<_$ProjectListImpl> get copyWith =>
+      __$$ProjectListImplCopyWithImpl<_$ProjectListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectListToJson(
+    return _$$ProjectListImplToJson(
       this,
     );
   }
@@ -162,10 +163,10 @@ class _$_ProjectList implements _ProjectList {
 
 abstract class _ProjectList implements ProjectList {
   factory _ProjectList({final List<Project>? data, final int? totalCount}) =
-      _$_ProjectList;
+      _$ProjectListImpl;
 
   factory _ProjectList.fromJson(Map<String, dynamic> json) =
-      _$_ProjectList.fromJson;
+      _$ProjectListImpl.fromJson;
 
   @override
   List<Project>? get data;
@@ -173,6 +174,6 @@ abstract class _ProjectList implements ProjectList {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectListCopyWith<_$_ProjectList> get copyWith =>
+  _$$ProjectListImplCopyWith<_$ProjectListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

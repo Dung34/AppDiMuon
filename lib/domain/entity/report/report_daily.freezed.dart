@@ -80,22 +80,22 @@ class _$ReportDailyCopyWithImpl<$Res, $Val extends ReportDaily>
 }
 
 /// @nodoc
-abstract class _$$_ReportDailyCopyWith<$Res>
+abstract class _$$ReportDailyImplCopyWith<$Res>
     implements $ReportDailyCopyWith<$Res> {
-  factory _$$_ReportDailyCopyWith(
-          _$_ReportDaily value, $Res Function(_$_ReportDaily) then) =
-      __$$_ReportDailyCopyWithImpl<$Res>;
+  factory _$$ReportDailyImplCopyWith(
+          _$ReportDailyImpl value, $Res Function(_$ReportDailyImpl) then) =
+      __$$ReportDailyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? title, String? description, String? date});
 }
 
 /// @nodoc
-class __$$_ReportDailyCopyWithImpl<$Res>
-    extends _$ReportDailyCopyWithImpl<$Res, _$_ReportDaily>
-    implements _$$_ReportDailyCopyWith<$Res> {
-  __$$_ReportDailyCopyWithImpl(
-      _$_ReportDaily _value, $Res Function(_$_ReportDaily) _then)
+class __$$ReportDailyImplCopyWithImpl<$Res>
+    extends _$ReportDailyCopyWithImpl<$Res, _$ReportDailyImpl>
+    implements _$$ReportDailyImplCopyWith<$Res> {
+  __$$ReportDailyImplCopyWithImpl(
+      _$ReportDailyImpl _value, $Res Function(_$ReportDailyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_ReportDailyCopyWithImpl<$Res>
     Object? description = freezed,
     Object? date = freezed,
   }) {
-    return _then(_$_ReportDaily(
+    return _then(_$ReportDailyImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -129,11 +129,11 @@ class __$$_ReportDailyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ReportDaily implements _ReportDaily {
-  _$_ReportDaily({this.id, this.title, this.description, this.date});
+class _$ReportDailyImpl implements _ReportDaily {
+  _$ReportDailyImpl({this.id, this.title, this.description, this.date});
 
-  factory _$_ReportDaily.fromJson(Map<String, dynamic> json) =>
-      _$$_ReportDailyFromJson(json);
+  factory _$ReportDailyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReportDailyImplFromJson(json);
 
   @override
   final String? id;
@@ -153,7 +153,7 @@ class _$_ReportDaily implements _ReportDaily {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ReportDaily &&
+            other is _$ReportDailyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -168,12 +168,12 @@ class _$_ReportDaily implements _ReportDaily {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ReportDailyCopyWith<_$_ReportDaily> get copyWith =>
-      __$$_ReportDailyCopyWithImpl<_$_ReportDaily>(this, _$identity);
+  _$$ReportDailyImplCopyWith<_$ReportDailyImpl> get copyWith =>
+      __$$ReportDailyImplCopyWithImpl<_$ReportDailyImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ReportDailyToJson(
+    return _$$ReportDailyImplToJson(
       this,
     );
   }
@@ -184,10 +184,10 @@ abstract class _ReportDaily implements ReportDaily {
       {final String? id,
       final String? title,
       final String? description,
-      final String? date}) = _$_ReportDaily;
+      final String? date}) = _$ReportDailyImpl;
 
   factory _ReportDaily.fromJson(Map<String, dynamic> json) =
-      _$_ReportDaily.fromJson;
+      _$ReportDailyImpl.fromJson;
 
   @override
   String? get id;
@@ -199,6 +199,6 @@ abstract class _ReportDaily implements ReportDaily {
   String? get date;
   @override
   @JsonKey(ignore: true)
-  _$$_ReportDailyCopyWith<_$_ReportDaily> get copyWith =>
+  _$$ReportDailyImplCopyWith<_$ReportDailyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

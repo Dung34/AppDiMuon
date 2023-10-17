@@ -6,8 +6,9 @@ part of 'project_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProjectResponse _$$_ProjectResponseFromJson(Map<String, dynamic> json) =>
-    _$_ProjectResponse(
+_$ProjectResponseImpl _$$ProjectResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectResponseImpl(
       name: json['name'] as String?,
       status: json['status'] as int?,
       projectMembers: (json['projectMembers'] as List<dynamic>?)
@@ -21,7 +22,8 @@ _$_ProjectResponse _$$_ProjectResponseFromJson(Map<String, dynamic> json) =>
       createBy: json['createBy'] as String?,
     );
 
-Map<String, dynamic> _$$_ProjectResponseToJson(_$_ProjectResponse instance) =>
+Map<String, dynamic> _$$ProjectResponseImplToJson(
+        _$ProjectResponseImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'status': instance.status,

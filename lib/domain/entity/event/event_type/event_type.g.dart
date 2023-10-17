@@ -6,13 +6,14 @@ part of 'event_type.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_EventType _$$_EventTypeFromJson(Map<String, dynamic> json) => _$_EventType(
+_$EventTypeImpl _$$EventTypeImplFromJson(Map<String, dynamic> json) =>
+    _$EventTypeImpl(
       id: json['id'] as String?,
       type: json['type'] as int?,
       name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$$_EventTypeToJson(_$_EventType instance) =>
+Map<String, dynamic> _$$EventTypeImplToJson(_$EventTypeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,

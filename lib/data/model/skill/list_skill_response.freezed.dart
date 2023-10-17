@@ -68,22 +68,22 @@ class _$ListSkillResponseCopyWithImpl<$Res, $Val extends ListSkillResponse>
 }
 
 /// @nodoc
-abstract class _$$_ListSkillResponseCopyWith<$Res>
+abstract class _$$ListSkillResponseImplCopyWith<$Res>
     implements $ListSkillResponseCopyWith<$Res> {
-  factory _$$_ListSkillResponseCopyWith(_$_ListSkillResponse value,
-          $Res Function(_$_ListSkillResponse) then) =
-      __$$_ListSkillResponseCopyWithImpl<$Res>;
+  factory _$$ListSkillResponseImplCopyWith(_$ListSkillResponseImpl value,
+          $Res Function(_$ListSkillResponseImpl) then) =
+      __$$ListSkillResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Skill>? data, int? totalCount});
 }
 
 /// @nodoc
-class __$$_ListSkillResponseCopyWithImpl<$Res>
-    extends _$ListSkillResponseCopyWithImpl<$Res, _$_ListSkillResponse>
-    implements _$$_ListSkillResponseCopyWith<$Res> {
-  __$$_ListSkillResponseCopyWithImpl(
-      _$_ListSkillResponse _value, $Res Function(_$_ListSkillResponse) _then)
+class __$$ListSkillResponseImplCopyWithImpl<$Res>
+    extends _$ListSkillResponseCopyWithImpl<$Res, _$ListSkillResponseImpl>
+    implements _$$ListSkillResponseImplCopyWith<$Res> {
+  __$$ListSkillResponseImplCopyWithImpl(_$ListSkillResponseImpl _value,
+      $Res Function(_$ListSkillResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ListSkillResponseCopyWithImpl<$Res>
     Object? data = freezed,
     Object? totalCount = freezed,
   }) {
-    return _then(_$_ListSkillResponse(
+    return _then(_$ListSkillResponseImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,12 +107,12 @@ class __$$_ListSkillResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListSkillResponse implements _ListSkillResponse {
-  _$_ListSkillResponse({final List<Skill>? data, this.totalCount})
+class _$ListSkillResponseImpl implements _ListSkillResponse {
+  _$ListSkillResponseImpl({final List<Skill>? data, this.totalCount})
       : _data = data;
 
-  factory _$_ListSkillResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ListSkillResponseFromJson(json);
+  factory _$ListSkillResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListSkillResponseImplFromJson(json);
 
   final List<Skill>? _data;
   @override
@@ -136,7 +136,7 @@ class _$_ListSkillResponse implements _ListSkillResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListSkillResponse &&
+            other is _$ListSkillResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount));
@@ -150,13 +150,13 @@ class _$_ListSkillResponse implements _ListSkillResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListSkillResponseCopyWith<_$_ListSkillResponse> get copyWith =>
-      __$$_ListSkillResponseCopyWithImpl<_$_ListSkillResponse>(
+  _$$ListSkillResponseImplCopyWith<_$ListSkillResponseImpl> get copyWith =>
+      __$$ListSkillResponseImplCopyWithImpl<_$ListSkillResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListSkillResponseToJson(
+    return _$$ListSkillResponseImplToJson(
       this,
     );
   }
@@ -164,10 +164,10 @@ class _$_ListSkillResponse implements _ListSkillResponse {
 
 abstract class _ListSkillResponse implements ListSkillResponse {
   factory _ListSkillResponse({final List<Skill>? data, final int? totalCount}) =
-      _$_ListSkillResponse;
+      _$ListSkillResponseImpl;
 
   factory _ListSkillResponse.fromJson(Map<String, dynamic> json) =
-      _$_ListSkillResponse.fromJson;
+      _$ListSkillResponseImpl.fromJson;
 
   @override
   List<Skill>? get data;
@@ -175,6 +175,6 @@ abstract class _ListSkillResponse implements ListSkillResponse {
   int? get totalCount;
   @override
   @JsonKey(ignore: true)
-  _$$_ListSkillResponseCopyWith<_$_ListSkillResponse> get copyWith =>
+  _$$ListSkillResponseImplCopyWith<_$ListSkillResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -8,6 +8,7 @@ part 'okr_response.g.dart';
 @freezed
 class OKRResponse with _$OKRResponse {
   factory OKRResponse({
+    String? id,
     String? name,
     String? description,
     String? unitId,
