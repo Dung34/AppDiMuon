@@ -12,6 +12,8 @@ abstract class UserRepository {
     required bool rememberMe,
   });
 
+  Future<ResponseWrapper<bool>> refreshToken();
+
   Future<Response> getForgotPasswordMethod({required String username});
 
   Future<Response> sendOTP(

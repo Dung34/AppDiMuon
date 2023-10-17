@@ -28,6 +28,7 @@ class EndPoints {
   static const String login = '/api/authenticate';
   static const String getAccountInfo = '/api/account';
   static const String changePassword = '/api/account/change-password';
+  static const String refreshToken = "/api/refresh-token";
 
   // event
   static const String checkinSetting = '/Checkin/checkin/setting-by-admin';

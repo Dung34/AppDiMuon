@@ -9,7 +9,7 @@ part of 'target.dart';
 _$TargetImpl _$$TargetImplFromJson(Map<String, dynamic> json) => _$TargetImpl(
       title: json['title'] as String?,
       description: json['description'] as String?,
-      target: (json['target'] as num?)?.toDouble(),
+      targe: (json['targe'] as num?)?.toDouble(),
       actual: (json['actual'] as num?)?.toDouble(),
       type: json['type'] as int?,
       status: json['status'] as int?,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$TargetImplToJson(_$TargetImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
-      'target': instance.target,
+      'targe': instance.targe,
       'actual': instance.actual,
       'type': instance.type,
       'status': instance.status,

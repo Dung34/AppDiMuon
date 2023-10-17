@@ -8,7 +8,7 @@ class Target with _$Target {
   factory Target({
     String? title,
     String? description,
-    double? target,
+    double? targe,
     double? actual,
     int? type,
     int? status,

@@ -14,7 +14,8 @@ import '../remote/repository.dart';
 
 class AppInterceptor {
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
-  final OpenIDRepository openIdRepository = getIt.get<OpenIDRepository>();
+  //final OpenIDRepository openIdRepository = getIt.get<OpenIDRepository>();
+  final UserRepository userRepository = getIt.get<UserRepository>();
 
   AppInterceptor();
 
@@ -32,7 +33,8 @@ class AppInterceptor {
           log('onError: $error \n');
           if (error.response?.statusCode == 401) {
             log('onError: refreshing...');
-            final response = await openIdRepository.refreshToken();
+            final response = await userRepository.refreshToken();
+            //final response = await openIdRepository.refreshToken();
             if (response.status == ResponseStatus.success) {
               log('onError: refreshed...');
               final opts = Options(

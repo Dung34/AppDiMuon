@@ -145,18 +145,32 @@ class OpenIDRepositoryImpl implements OpenIDRepository {
     // );
 
     try {
-      final accessToken = await localDataAccess.getAccessToken();
+      var accessToken = await localDataAccess.getAccessToken();
       final refreshToken = await localDataAccess.getRefreshToken();
+
+      final response = await dio.post(EndPoints.refreshToken,
+          data: {"accessToken": accessToken, "refreshToken": refreshToken});
       //final TokenResponse? tokenResponse = await appAuth.token(tokenRequest);
-      log(' refresh token response: $accessToken');
-      log(' refresh token response: $refreshToken');
-      // if (accessToken == null) {
-      //   return ResponseWrapper.error(message: '');
-      // }
-      //await localDataAccess.setIdToken(tokenResponse?.idToken ?? '');
-      await localDataAccess.setAccessToken(accessToken);
-      await localDataAccess.setRefreshToken(refreshToken);
-      return ResponseWrapper.success(data: true);
+      // log(' refresh token response: $accessToken');
+      // log(' refresh token response: $refreshToken');
+      // // if (accessToken == null) {
+      // //   return ResponseWrapper.error(message: '');
+      // // }
+      // //await localDataAccess.setIdToken(tokenResponse?.idToken ?? '');
+      // await localDataAccess.setAccessToken(accessToken);
+      // await localDataAccess.setRefreshToken(refreshToken);
+      // return ResponseWrapper.success(data: true);
+      if (response.statusCode == 200) {
+        final LoginResponse loginResponse =
+            LoginResponse.fromJson(response.data);
+        await localDataAccess.setAccessToken(loginResponse.data!.accessToken!);
+        await localDataAccess
+            .setRefreshToken(loginResponse.data!.refreshToken!);
+        log(' refresh token response:  ');
+        return ResponseWrapper.success(data: true);
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
     } catch (e) {
       return ResponseWrapper.error(message: '');
     }
