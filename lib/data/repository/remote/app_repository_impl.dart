@@ -13,11 +13,13 @@ class AppRepositoryImpl implements AppRepository {
   final Dio dio;
   final LocalDataAccess localDataAccess;
   final OpenIDRepository openIdRepository;
+  final UserRepository userRepository;
 
   AppRepositoryImpl({
     required this.dio,
     required this.localDataAccess,
     required this.openIdRepository,
+    required this.userRepository,
   }) {
     dio.interceptors.add(PrettyDioLogger(
       responseBody: true,
@@ -37,7 +39,8 @@ class AppRepositoryImpl implements AppRepository {
       },
       onError: (error, handler) async {
         if (error.response?.statusCode == 401) {
-          final response = await openIdRepository.refreshToken();
+          //final response = await openIdRepository.refreshToken();
+          final response = await userRepository.refreshToken();
           if (response.status == ResponseStatus.success) {
             final opts = Options(
                 method: error.requestOptions.method,
