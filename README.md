@@ -67,4 +67,4 @@ Eztek LTD
 ![](image-6.png)
 
 
-#### All of sitemaps [here](https://gitlab.eztek.net/ez-check-in/ez-check-in-mobile/-/blob/features/merberDung/ScreenFlow.drawio)
+#### All of sitemaps [here](https://drive.google.com/file/d/1gqL2F9_526isAj8rKLnXiO91ht7j-xk4/view?usp=sharing)
