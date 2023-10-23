@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'skill.g.dart';
 part 'skill.freezed.dart';
 
-@freezed
+@unfreezed
 class Skill with _$Skill {
   factory Skill({
     String? id,

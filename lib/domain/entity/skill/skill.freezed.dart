@@ -21,11 +21,17 @@ Skill _$SkillFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Skill {
   String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  set name(String? value) => throw _privateConstructorUsedError;
   int? get point => throw _privateConstructorUsedError;
+  set point(int? value) => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  set description(String? value) => throw _privateConstructorUsedError;
   String? get icon => throw _privateConstructorUsedError;
+  set icon(String? value) => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
+  set userId(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -173,41 +179,22 @@ class _$SkillImpl implements _Skill {
       _$$SkillImplFromJson(json);
 
   @override
-  final String? id;
+  String? id;
   @override
-  final String? name;
+  String? name;
   @override
-  final int? point;
+  int? point;
   @override
-  final String? description;
+  String? description;
   @override
-  final String? icon;
+  String? icon;
   @override
-  final String? userId;
+  String? userId;
 
   @override
   String toString() {
     return 'Skill(id: $id, name: $name, point: $point, description: $description, icon: $icon, userId: $userId)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SkillImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.point, point) || other.point == point) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, point, description, icon, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -225,27 +212,33 @@ class _$SkillImpl implements _Skill {
 
 abstract class _Skill implements Skill {
   factory _Skill(
-      {final String? id,
-      final String? name,
-      final int? point,
-      final String? description,
-      final String? icon,
-      final String? userId}) = _$SkillImpl;
+      {String? id,
+      String? name,
+      int? point,
+      String? description,
+      String? icon,
+      String? userId}) = _$SkillImpl;
 
   factory _Skill.fromJson(Map<String, dynamic> json) = _$SkillImpl.fromJson;
 
   @override
   String? get id;
+  set id(String? value);
   @override
   String? get name;
+  set name(String? value);
   @override
   int? get point;
+  set point(int? value);
   @override
   String? get description;
+  set description(String? value);
   @override
   String? get icon;
+  set icon(String? value);
   @override
   String? get userId;
+  set userId(String? value);
   @override
   @JsonKey(ignore: true)
   _$$SkillImplCopyWith<_$SkillImpl> get copyWith =>

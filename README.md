@@ -37,34 +37,34 @@ Eztek LTD
 
 ## Screen flow 
 0. Login
- ![text](image.png)
+ ![text](assets\flow\image.png)
 
 1. Task management
 - View list tasks 
-![Alt text](image-1.png) 
-![Alt text](image-2.png)
+![Alt text](assets\flow\image-1.png) 
+![Alt text](assets\flow\image-2.png)
 
 - Create task quickly 
-![Alt text](image-3.png)
+![Alt text](assets\flow\image-3.png)
 
 ## 2.Unit Member Management
 - Member management
-![Alt text](image-5.png)
+![Alt text](assets\flow\image-5.png)
 
 
 
 ## 3. Objective and Key-Result management
 
 - Objective management
-![Alt text](image-7.png)
+![Alt text](assets\flow\image-7.png)
 
 
 - Key Result management
-![Alt text](image-8.png) 
+![Alt text](assets\flow\image-8.png) 
 
 ## 4.User management
 
-![](image-6.png)
+![](assets\flow\image-6.png)
 
 
 #### All of sitemaps [here](https://drive.google.com/file/d/1gqL2F9_526isAj8rKLnXiO91ht7j-xk4/view?usp=sharing)

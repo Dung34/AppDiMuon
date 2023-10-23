@@ -6,6 +6,7 @@ import '../../../../data/repository/remote/skill_repository.dart';
 import '../../../../data/repository/remote/skill_repository_ipml.dart';
 import '../../../../di/di.dart';
 import '../../../../domain/entity/skill/skill.dart';
+import '../../../../shared/utils/view_utils.dart';
 
 part 'skill_state.dart';
 
@@ -41,12 +42,14 @@ class SkillCubit extends Cubit<SkillState> {
   addSkill(Skill skill) async {
     final response = await _skillRepository.createSkill(skill);
     if (response.status == ResponseStatus.success) {
-      listSkill.add(skill);
+      listSkill.add(response.data!);
 
-      emit(AddNewSkillSuccess(skill: skill));
-      //emit(GetAllSkillSuccess(listSkill: listSkill));
+      emit(AddNewSkillSuccess(skill: response.data!));
+      emit(GetAllSkillSuccess(listSkill: listSkill));
+      ViewUtils.toastSuccess("Thêm kỹ năng thành công");
     } else {
       emit(AddNewSkillFailed());
+      ViewUtils.toastWarning("Xảy ra lỗi !!!!");
     }
   }
 
@@ -54,11 +57,15 @@ class SkillCubit extends Cubit<SkillState> {
     final response = await _skillRepository.updateSkill(skill);
     if (response.status == ResponseStatus.success) {
       //emit(SkillInitial());
-      emit(UpdateSkillSuccess(skill: skill));
-      // emit(GetAllSkillSuccess(listSkill: listSkill));
+      listSkill.removeWhere((element) => element.id == skill.id);
+      listSkill.add(response.data!);
+      emit(UpdateSkillSuccess(skill: response.data!));
+      emit(GetAllSkillSuccess(listSkill: listSkill));
       // emit(ResetState());
+      ViewUtils.toastSuccess("Chỉnh sửa kỹ năng thành công");
     } else {
       emit(UpdateSkillFailed());
+      ViewUtils.toastWarning("Xảy ra lỗi !!!!");
     }
   }
 
@@ -69,8 +76,10 @@ class SkillCubit extends Cubit<SkillState> {
 
       emit(GetAllSkillSuccess(listSkill: listSkill));
       emit(DeleteSkillSuccess(id: id));
+      ViewUtils.toastSuccess("Xóa kĩ năng thành công !!!!");
     } else {
       emit(DeleteSkillFailed());
+      ViewUtils.toastWarning("Xảy ra lỗi !!!!");
     }
   }
 }

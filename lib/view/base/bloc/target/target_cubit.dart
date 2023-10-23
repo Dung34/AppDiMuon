@@ -5,6 +5,7 @@ import '../../../../data/model/api/base_response.dart';
 import '../../../../data/repository/remote/target_repository.dart';
 import '../../../../di/di.dart';
 import '../../../../domain/entity/target/target.dart';
+import '../../../../shared/utils/view_utils.dart';
 
 part 'target_state.dart';
 
@@ -37,21 +38,29 @@ class TargetCubit extends Cubit<TargetState> {
   updateTarget(Target target) async {
     final response = await _targetRepository.updateTarget(target);
     if (response.status == ResponseStatus.success) {
-      currentTarget = response.data!;
+      // currentTarget = response.data!;
+      listTarget.removeWhere((element) => element.id == target.id);
+      listTarget.add(response.data!);
       emit(UpdateTargetSuccess(target: response.data!));
+      emit(GetAllTargetSuccess(listTarget: listTarget));
+      ViewUtils.toastSuccess("Chỉnh sửa mục tiêu thành công");
     } else {
       emit(UpdateTargetFailed());
+      ViewUtils.toastWarning("Xảy ra lỗi !!!!");
     }
   }
 
   addNewTarget(Target target) async {
     final response = await _targetRepository.createTarget(target);
     if (response.status == ResponseStatus.success) {
-      listTarget.add(target);
+      listTarget.add(response.data!);
+
+      emit(AddNewTargetSuccess(target: response.data!));
       emit(GetAllTargetSuccess(listTarget: listTarget));
-      emit(AddNewTargetSuccess());
+      ViewUtils.toastSuccess("Thêm mục tiêu mới thành công");
     } else {
       emit(AddNewTargetFailed());
+      ViewUtils.toastWarning("Xảy ra lỗi !!!!");
     }
   }
 
@@ -60,13 +69,12 @@ class TargetCubit extends Cubit<TargetState> {
     if (response.status == ResponseStatus.success) {
       listTarget.removeWhere((element) => id == id);
       emit(GetAllTargetSuccess(listTarget: listTarget));
-      emit(DeleteTargetSuccess());
+      emit(DeleteTargetSuccess(id: id));
+
+      ViewUtils.toastSuccess("Xóa mục tiê thành công");
     } else {
       emit(DeleteTargetFailed());
+      ViewUtils.toastWarning("Xảy ra lỗi !!!!");
     }
-  }
-
-  getReset() {
-    emit(GetAllTargetSuccess(listTarget: listTarget));
   }
 }
