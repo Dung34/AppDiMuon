@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
                 // if app is not opened by appLinking
                 // if (appLinkUsernameReceived.isEmpty) {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, AppRoute.login, (route) => false);
+                    context, AppRoute.intro, (route) => false);
                 // }
               });
             } else {}
