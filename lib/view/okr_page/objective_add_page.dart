@@ -85,6 +85,7 @@ class ObjectiveAddPage extends StatelessWidget {
                         objective: objectives[index],
                         cubit: cubit,
                         related: related,
+                        isAdmin: true,
                       );
                     },
                     itemCount: objectives.length,

@@ -13,8 +13,13 @@ import '../unit_update_page.dart';
 class UnitItem extends StatefulWidget {
   final Unit unit;
   final UnitCubit cubit;
+  final bool isAdmin;
 
-  const UnitItem({super.key, required this.unit, required this.cubit});
+  const UnitItem(
+      {super.key,
+      required this.unit,
+      required this.cubit,
+      required this.isAdmin});
 
   @override
   State<UnitItem> createState() => _UnitItemState();
@@ -27,41 +32,43 @@ class _UnitItemState extends State<UnitItem> {
       onTap: () {
         Navigator.pushNamed(context, AppRoute.unitDetail,
             arguments: UnitDetailPageArgs(
-              id: widget.unit.id!,
-              unitCubit: context.read<UnitCubit>(),
-            ));
+                id: widget.unit.id!,
+                unitCubit: context.read<UnitCubit>(),
+                isAdmin: widget.isAdmin));
       },
       child: Slidable(
-        endActionPane: ActionPane(
-          motion: const ScrollMotion(),
-          children: [
-            SlidableAction(
-              autoClose: true,
-              backgroundColor: AppColor.blue200,
-              borderRadius: BorderRadius.circular(10.0),
-              flex: 1,
-              foregroundColor: AppColor.white,
-              icon: Icons.edit,
-              label: 'Sửa Unit',
-              onPressed: (context) {
-                _onUpdateUnitPressed();
-              },
-            ),
-            const SizedBox(width: 10.0),
-            SlidableAction(
-              autoClose: true,
-              backgroundColor: AppColor.red200,
-              borderRadius: BorderRadius.circular(10.0),
-              flex: 1,
-              foregroundColor: AppColor.white,
-              icon: Icons.delete,
-              label: 'Xóa Unit',
-              onPressed: (context) {
-                widget.cubit.deleteUnit(widget.unit.id!);
-              },
-            )
-          ],
-        ),
+        endActionPane: widget.isAdmin
+            ? ActionPane(
+                motion: const ScrollMotion(),
+                children: [
+                  SlidableAction(
+                    autoClose: true,
+                    backgroundColor: AppColor.blue200,
+                    borderRadius: BorderRadius.circular(10.0),
+                    flex: 1,
+                    foregroundColor: AppColor.white,
+                    icon: Icons.edit,
+                    label: 'Sửa Unit',
+                    onPressed: (context) {
+                      _onUpdateUnitPressed();
+                    },
+                  ),
+                  const SizedBox(width: 10.0),
+                  SlidableAction(
+                    autoClose: true,
+                    backgroundColor: AppColor.red200,
+                    borderRadius: BorderRadius.circular(10.0),
+                    flex: 1,
+                    foregroundColor: AppColor.white,
+                    icon: Icons.delete,
+                    label: 'Xóa Unit',
+                    onPressed: (context) {
+                      widget.cubit.deleteUnit(widget.unit.id!);
+                    },
+                  )
+                ],
+              )
+            : null,
         child: Center(
           child: Container(
             decoration: BoxDecoration(

@@ -16,6 +16,7 @@ class ObjectiveItem extends StatefulWidget {
   List<String>? related;
   final bool checkable;
   final bool slidable;
+  final bool isAdmin;
 
   ObjectiveItem(
       {super.key,
@@ -23,7 +24,8 @@ class ObjectiveItem extends StatefulWidget {
       required this.cubit,
       this.related,
       this.checkable = false,
-      this.slidable = false});
+      this.slidable = false,
+      required this.isAdmin});
 
   @override
   State<ObjectiveItem> createState() => _ObjectiveItemState();
@@ -35,7 +37,7 @@ class _ObjectiveItemState extends State<ObjectiveItem> {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      endActionPane: widget.slidable
+      endActionPane: widget.slidable && widget.isAdmin
           ? ActionPane(
               motion: const ScrollMotion(),
               children: [

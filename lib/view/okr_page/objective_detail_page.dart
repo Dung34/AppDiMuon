@@ -42,13 +42,15 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
     return Scaffold(
       appBar: PrimaryAppBar(
         actions: [
-          PrimaryIconButton(
-              context: context,
-              icon: Icons.delete,
-              onPressed: () {
-                cubit.deleteObjective(args.objectiveId);
-                Navigator.pop(context);
-              }),
+          args.isAdmin
+              ? PrimaryIconButton(
+                  context: context,
+                  icon: Icons.delete,
+                  onPressed: () {
+                    cubit.deleteObjective(args.objectiveId);
+                    Navigator.pop(context);
+                  })
+              : Container(),
           const SizedBox(width: 10.0)
         ],
         title: args.name,
@@ -82,15 +84,18 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
                                     arguments: ObjectiveDetailPageArgs(
                                         objectiveId: objective.objectiveId!,
                                         okrsId: args.okrsId,
-                                        cubit: cubit),
+                                        cubit: cubit,
+                                        isAdmin: args.isAdmin),
                                   );
                                 },
                                 child: Column(
                                   children: [
                                     ObjectiveItem(
-                                        cubit: cubit,
-                                        objective: objective,
-                                        slidable: true),
+                                      cubit: cubit,
+                                      objective: objective,
+                                      slidable: true,
+                                      isAdmin: args.isAdmin,
+                                    ),
                                     const SizedBox(height: 10.0),
                                   ],
                                 ),
@@ -108,13 +113,16 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
               children: [
                 const Text('Key - Result', style: AppTextTheme.lexendBold24),
                 const Spacer(),
-                PrimaryIconButton(
-                    iconColor: AppColor.yellow,
-                    context: context,
-                    icon: Icons.add,
-                    onPressed: () {
-                      _onCreateKeyResultPressed(args.okrsId, args.objectiveId);
-                    }),
+                args.isAdmin
+                    ? PrimaryIconButton(
+                        iconColor: AppColor.yellow,
+                        context: context,
+                        icon: Icons.add,
+                        onPressed: () {
+                          _onCreateKeyResultPressed(
+                              args.okrsId, args.objectiveId);
+                        })
+                    : Container(),
                 const SizedBox(width: 10.0),
               ],
             ),

@@ -90,43 +90,45 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
           }
           return Scaffold(
             appBar: PrimaryAppBar(
-              actions: [
-                PrimaryIconButton(
-                    context: context,
-                    icon: Icons.delete,
-                    onPressed: () {
-                      delete();
-                      context.pop();
-                    }),
-                const SizedBox(
-                  width: 10,
-                ),
-                PrimaryIconButton(
-                    context: context,
-                    icon: Icons.add,
-                    onPressed: () {
-                      Navigator.pushNamed(context, AppRoute.unitAdd,
-                          arguments:
-                              UnitAddPageArgs(cubit: cubit, id: unit.id));
-                    }),
-                const SizedBox(
-                  width: 10,
-                ),
-                PrimaryIconButton(
-                  context: context,
-                  icon: Icons.person_add_alt_1,
-                  onPressed: () {
-                    showModalBottomSheet(
+              actions: args.isAdmin
+                  ? [
+                      PrimaryIconButton(
+                          context: context,
+                          icon: Icons.delete,
+                          onPressed: () {
+                            delete();
+                            context.pop();
+                          }),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      PrimaryIconButton(
+                          context: context,
+                          icon: Icons.add,
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoute.unitAdd,
+                                arguments:
+                                    UnitAddPageArgs(cubit: cubit, id: unit.id));
+                          }),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      PrimaryIconButton(
                         context: context,
-                        builder: (context) {
-                          return UnitAddMember(
-                            unit: unit,
-                            cubit: cubit,
-                          );
-                        });
-                  },
-                ),
-              ],
+                        icon: Icons.person_add_alt_1,
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return UnitAddMember(
+                                  unit: unit,
+                                  cubit: cubit,
+                                );
+                              });
+                        },
+                      ),
+                    ]
+                  : null,
               leading: PrimaryIconButton(
                 context: context,
                 icon: Icons.arrow_back_ios_rounded,
@@ -189,6 +191,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                         arguments: UnitDetailPageArgs(
                                           id: e.id!,
                                           unitCubit: cubit,
+                                          isAdmin: args.isAdmin,
                                         ),
                                       );
                                     },
@@ -215,30 +218,32 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                           .toList(),
                     ),
                   Row(
-                    children: [
-                      const Text('OKR', style: AppTextTheme.lexendBold24),
-                      const Spacer(),
-                      PrimaryIconButton(
-                          iconColor: AppColor.green200,
-                          context: context,
-                          icon: Icons.add_outlined,
-                          onPressed: () {
-                            _onCreateObjectivePressed(
-                                unit.okRsId!, args.id, objectives);
-                          }),
-                      const SizedBox(width: 10.0),
-                      PrimaryIconButton(
-                          iconColor: AppColor.yellow,
-                          context: context,
-                          icon: Icons.add_outlined,
-                          onPressed: () {}),
-                      const SizedBox(width: 10.0),
-                      PrimaryIconButton(
-                          iconColor: AppColor.red200,
-                          context: context,
-                          icon: Icons.add_outlined,
-                          onPressed: () {}),
-                    ],
+                    children: args.isAdmin
+                        ? [
+                            const Text('OKR', style: AppTextTheme.lexendBold24),
+                            const Spacer(),
+                            PrimaryIconButton(
+                                iconColor: AppColor.green200,
+                                context: context,
+                                icon: Icons.add_outlined,
+                                onPressed: () {
+                                  _onCreateObjectivePressed(
+                                      unit.okRsId!, args.id, objectives);
+                                }),
+                            const SizedBox(width: 10.0),
+                            PrimaryIconButton(
+                                iconColor: AppColor.yellow,
+                                context: context,
+                                icon: Icons.add_outlined,
+                                onPressed: () {}),
+                            const SizedBox(width: 10.0),
+                            PrimaryIconButton(
+                                iconColor: AppColor.red200,
+                                context: context,
+                                icon: Icons.add_outlined,
+                                onPressed: () {}),
+                          ]
+                        : [],
                   ),
                   const SizedBox(height: 20),
                   BlocProvider(
@@ -300,6 +305,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                   objs: objectives,
                                   okrsId: unit.okRsId!,
                                   cubit: _okrCubit,
+                                  isAdmin: args.isAdmin,
                                 );
                               }
                               if (state is OkrCreateObjectiveSuccessState) {
@@ -308,6 +314,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                   objs: objectives,
                                   okrsId: unit.okRsId!,
                                   cubit: _okrCubit,
+                                  isAdmin: args.isAdmin,
                                 );
                               }
                               if (state is OkrDeleteObjectiveSuccessState) {
@@ -320,9 +327,11 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                     state.objective.objectiveId);
                                 objectives.add(state.objective);
                                 return ListObj(
-                                    objs: objectives,
-                                    okrsId: unit.okRsId!,
-                                    cubit: _okrCubit);
+                                  objs: objectives,
+                                  okrsId: unit.okRsId!,
+                                  cubit: _okrCubit,
+                                  isAdmin: args.isAdmin,
+                                );
                               }
                               return const CircularProgressIndicator();
                             }),
@@ -434,12 +443,14 @@ class ListObj extends StatelessWidget {
   final List<Objective> objs;
   final String okrsId;
   final OkrCubit cubit;
+  final bool isAdmin;
 
   const ListObj({
     super.key,
     required this.objs,
     required this.okrsId,
     required this.cubit,
+    required this.isAdmin,
   });
 
   @override
@@ -456,16 +467,21 @@ class ListObj extends StatelessWidget {
               context,
               AppRoute.objectiveDetail,
               arguments: ObjectiveDetailPageArgs(
-                name: objective.title,
-                objectiveId: objective.objectiveId!,
-                okrsId: okrsId,
-                cubit: cubit,
-              ),
+                  name: objective.title,
+                  objectiveId: objective.objectiveId!,
+                  okrsId: okrsId,
+                  cubit: cubit,
+                  isAdmin: isAdmin),
             );
           },
           child: Column(
             children: [
-              ObjectiveItem(cubit: cubit, objective: objective, slidable: true),
+              ObjectiveItem(
+                cubit: cubit,
+                objective: objective,
+                slidable: true,
+                isAdmin: isAdmin,
+              ),
               const SizedBox(height: 10.0),
             ],
           ),

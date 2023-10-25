@@ -203,12 +203,14 @@ class ObjectiveDetailPageArgs {
   final String objectiveId;
   final String okrsId;
   final OkrCubit cubit;
+  final bool isAdmin;
 
   const ObjectiveDetailPageArgs(
       {this.name,
       required this.objectiveId,
       required this.okrsId,
-      required this.cubit});
+      required this.cubit,
+      required this.isAdmin});
 }
 
 class ProjectDetailPageArgs {
@@ -239,8 +241,10 @@ class UnitAddPageArgs {
 class UnitDetailPageArgs {
   final String id;
   final UnitCubit unitCubit;
+  final bool isAdmin;
 
-  UnitDetailPageArgs({required this.id, required this.unitCubit});
+  UnitDetailPageArgs(
+      {required this.id, required this.unitCubit, required this.isAdmin});
 }
 
 class ReportDailyPageArgs {
