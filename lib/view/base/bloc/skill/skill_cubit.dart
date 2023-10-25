@@ -43,8 +43,8 @@ class SkillCubit extends Cubit<SkillState> {
     if (response.status == ResponseStatus.success) {
       listSkill.add(skill);
 
-      emit(AddNewSkillSuccess());
-      emit(GetAllSkillSuccess(listSkill: listSkill));
+      emit(AddNewSkillSuccess(skill: skill));
+      //emit(GetAllSkillSuccess(listSkill: listSkill));
     } else {
       emit(AddNewSkillFailed());
     }
@@ -68,7 +68,7 @@ class SkillCubit extends Cubit<SkillState> {
       listSkill.removeWhere((element) => element.id == id);
 
       emit(GetAllSkillSuccess(listSkill: listSkill));
-      emit(DeleteSkillSuccess());
+      emit(DeleteSkillSuccess(id: id));
     } else {
       emit(DeleteSkillFailed());
     }

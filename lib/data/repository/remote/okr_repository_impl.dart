@@ -167,7 +167,11 @@ class OKRRepositoryImpl extends OKRRepository {
           "description": task.description,
           "dueDate": task.endDate,
           // "completeDate": task.,
-          "parentId": task.parrentTask,
+          "parentId": task.parrentTask?.id,
+          "relatedId":
+              (task.relatedTask != null && task.relatedTask!.isNotEmpty)
+                  ? task.relatedTask?.first.id
+                  : null,
           "point": task.point,
           "assigneeId": task.assignee?.id,
           "assigneerId": task.assigner?.id,
@@ -438,8 +442,16 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser(
-      {required int page, int pageSize = 10, String? userId}) async {
+  Future<ResponseWrapper<List<Task>>> getAllTaskOfUser({
+    required int page,
+    int pageSize = 10,
+    int? status,
+    String? userId,
+    String? keyWord,
+    String? relatedTask,
+    String? subTask,
+    String? keyResultId,
+  }) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get(
@@ -448,7 +460,9 @@ class OKRRepositoryImpl extends OKRRepository {
           "Page": page,
           "PageSize": pageSize,
           "UserId": userId ?? localDataAccess.getUserId(),
-        },
+          "KeyWord": keyWord,
+          "KeyResultId": keyResultId,
+        }..removeWhere((key, value) => value == null),
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
       if (response.statusCode == 200) {

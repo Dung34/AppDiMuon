@@ -1,14 +1,17 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../config/routes.dart';
 import '../../data/constant/enum.dart';
 import '../../data/repository/local/local_data_access.dart';
+import '../../data/resources/colors.dart';
 import '../../data/resources/themes.dart';
 import '../../di/di.dart';
 import '../../domain/entity/target/target.dart';
 import '../../shared/etx/app_ext.dart';
+import '../../shared/utils/date_time_utils.dart';
 import '../../shared/utils/validation_utils.dart';
 import '../../shared/widgets/dropdown/base_dropdown_value.dart';
 import '../../shared/widgets/dropdown/primary_drop_down_form_field.dart';
@@ -41,14 +44,29 @@ class _TargetUpdatePageState
       updateTarget = currentTarget.copyWith();
       titleController.text = updateTarget.title!;
       descriptionController.text = updateTarget.description!;
-      targetController.text = updateTarget.target.toString();
+      targetController.text = updateTarget.targe.toString();
       actualController.text = updateTarget.actual.toString();
       typeController.text = updateTarget.type.toString();
       statusController.text = updateTarget.status.toString();
+      // startDateController.text = updateTarget.startDate.toString();
+
       log(targetController.text);
-      log(updateTarget.target.toString());
-      log(currentTarget.target.toString());
+      log(updateTarget.targe.toString());
+      log(currentTarget.targe.toString());
+    } else {
+      updateTarget = Target(
+          userId: _localDataAccess.getUserId(),
+          startDate: DateTime.now().toIso8601String(),
+          endDate: DateTime.now().toIso8601String(),
+          status: 0,
+          type: 0);
     }
+    currentStatus = statusDropItem[updateTarget.status!];
+    currentType = typeDropItem[updateTarget.type!];
+    DateTime startTime = DateTime.parse(updateTarget.startDate.toString());
+    startDateController.text = DateFormat("dd/MM/yyyy").format(startTime);
+    DateTime endTime = DateTime.parse(updateTarget.endDate.toString());
+    endDateController.text = DateFormat("dd/MM/yyyy").format(endTime);
 
     setAppBar = PrimaryAppBar(
       title: (!args.addNew) ? "Chỉnh sửa mục tiêu" : "Tạo mục tiêu mới",
@@ -69,7 +87,7 @@ class _TargetUpdatePageState
                 log(targetController.text);
                 updateTarget.title = titleController.text.trim();
                 updateTarget.description = descriptionController.text.trim();
-                updateTarget.target = double.tryParse(targetController.text);
+                updateTarget.targe = double.tryParse(targetController.text);
                 updateTarget.actual = double.tryParse(actualController.text);
                 cubit.updateTarget(updateTarget);
               } else {
@@ -82,6 +100,11 @@ class _TargetUpdatePageState
                 //   type: typeData,
                 //   status: int.parse(typeController.text),
                 // ));
+                updateTarget.title = titleController.text.trim();
+                updateTarget.description = descriptionController.text.trim();
+                updateTarget.targe = double.tryParse(targetController.text);
+                updateTarget.actual = double.tryParse(actualController.text);
+                cubit.addNewTarget(updateTarget);
               }
               context.pop();
             },
@@ -109,6 +132,8 @@ class _TargetUpdatePageState
     const BaseDropdownValue(id: "2", valueStr: "Kết thúc"),
     const BaseDropdownValue(id: "3", valueStr: "Quá hạn")
   ];
+  late BaseDropdownValue currentStatus;
+  late BaseDropdownValue currentType;
   @override
   Widget buildPage(BuildContext context) {
     return SingleChildScrollView(
@@ -129,15 +154,22 @@ class _TargetUpdatePageState
             inputTextStyle: AppTextTheme.robotoLight14,
             keyboardType: TextInputType.datetime,
             context: context,
+            initialDate: DateTime.parse(updateTarget.startDate!),
             label: "Ngày bắt đầu",
+            onDateSelected: (value) {
+              updateTarget.startDate = value.toIso8601String();
+            },
           ),
           PrimaryTextField(
             controller: endDateController,
             inputType: AppInputType.datePicker,
             inputTextStyle: AppTextTheme.robotoLight14,
             context: context,
+            initialDate: DateTime.parse(updateTarget.endDate!),
             label: "Ngày kết thúc",
-            onDateSelected: (value) {},
+            onDateSelected: (value) {
+              updateTarget.endDate = value.toIso8601String();
+            },
           ),
           PrimaryTextField(
             controller: targetController,
@@ -145,9 +177,11 @@ class _TargetUpdatePageState
             label: "Mục tiêu",
           ),
           PrimaryTextField(
+            fillColor: AppColor.primaryBackgroundColor,
             controller: typeController,
             inputType: AppInputType.dropDown,
             data: typeDropItem,
+            initialValue: currentType,
             onDropdownValueChanged: (value) {
               updateTarget.type = int.tryParse(value!.id!);
             },
@@ -157,11 +191,15 @@ class _TargetUpdatePageState
             keyboardType: TextInputType.number,
             label: "Điểm hiện tại",
           ),
-          PrimaryDropDownFormField(
+          PrimaryTextField(
+            fillColor: AppColor.primaryBackgroundColor,
+            inputType: AppInputType.dropDown,
             controller: statusController,
-            items: statusDropItem,
-            onChanged: (value) {
-              updateTarget.status = int.tryParse(value.id!);
+            data: statusDropItem,
+            initialValue: currentStatus,
+            label: "Trạng thái",
+            onDropdownValueChanged: (value) {
+              updateTarget.status = int.tryParse(value!.id!);
             },
           )
         ],

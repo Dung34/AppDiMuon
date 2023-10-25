@@ -24,8 +24,8 @@ mixin _$Target {
   set title(String? value) => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   set description(String? value) => throw _privateConstructorUsedError;
-  double? get target => throw _privateConstructorUsedError;
-  set target(double? value) => throw _privateConstructorUsedError;
+  double? get targe => throw _privateConstructorUsedError;
+  set targe(double? value) => throw _privateConstructorUsedError;
   double? get actual => throw _privateConstructorUsedError;
   set actual(double? value) => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $TargetCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      double? target,
+      double? targe,
       double? actual,
       int? type,
       int? status,
@@ -79,7 +79,7 @@ class _$TargetCopyWithImpl<$Res, $Val extends Target>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
-    Object? target = freezed,
+    Object? targe = freezed,
     Object? actual = freezed,
     Object? type = freezed,
     Object? status = freezed,
@@ -97,9 +97,9 @@ class _$TargetCopyWithImpl<$Res, $Val extends Target>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
+      targe: freezed == targe
+          ? _value.targe
+          : targe // ignore: cast_nullable_to_non_nullable
               as double?,
       actual: freezed == actual
           ? _value.actual
@@ -143,7 +143,7 @@ abstract class _$$TargetImplCopyWith<$Res> implements $TargetCopyWith<$Res> {
   $Res call(
       {String? title,
       String? description,
-      double? target,
+      double? targe,
       double? actual,
       int? type,
       int? status,
@@ -166,7 +166,7 @@ class __$$TargetImplCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
-    Object? target = freezed,
+    Object? targe = freezed,
     Object? actual = freezed,
     Object? type = freezed,
     Object? status = freezed,
@@ -184,9 +184,9 @@ class __$$TargetImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
+      targe: freezed == targe
+          ? _value.targe
+          : targe // ignore: cast_nullable_to_non_nullable
               as double?,
       actual: freezed == actual
           ? _value.actual
@@ -226,7 +226,7 @@ class _$TargetImpl implements _Target {
   _$TargetImpl(
       {this.title,
       this.description,
-      this.target,
+      this.targe,
       this.actual,
       this.type,
       this.status,
@@ -243,7 +243,7 @@ class _$TargetImpl implements _Target {
   @override
   String? description;
   @override
-  double? target;
+  double? targe;
   @override
   double? actual;
   @override
@@ -261,7 +261,7 @@ class _$TargetImpl implements _Target {
 
   @override
   String toString() {
-    return 'Target(title: $title, description: $description, target: $target, actual: $actual, type: $type, status: $status, userId: $userId, startDate: $startDate, endDate: $endDate, id: $id)';
+    return 'Target(title: $title, description: $description, targe: $targe, actual: $actual, type: $type, status: $status, userId: $userId, startDate: $startDate, endDate: $endDate, id: $id)';
   }
 
   @JsonKey(ignore: true)
@@ -282,7 +282,7 @@ abstract class _Target implements Target {
   factory _Target(
       {String? title,
       String? description,
-      double? target,
+      double? targe,
       double? actual,
       int? type,
       int? status,
@@ -300,8 +300,8 @@ abstract class _Target implements Target {
   String? get description;
   set description(String? value);
   @override
-  double? get target;
-  set target(double? value);
+  double? get targe;
+  set targe(double? value);
   @override
   double? get actual;
   set actual(double? value);
