@@ -1,8 +1,6 @@
 import '../../data/mapper/base/base_data_mapper.dart';
-import '../../data/model/okr_response/key_result_response.dart';
 import '../../data/model/okr_response/objective_response.dart';
 import '../../data/model/okr_response/okr_response.dart';
-import '../entity/okr/key_result/key_result.dart';
 import '../entity/okr/okr_wrapper/okr.dart';
 import '../entity/okr/objective/objective.dart';
 
@@ -64,35 +62,5 @@ class ObjectiveDataMapper extends BaseDataMapper<ObjectiveResponse, Objective>
       unitId: entity.unitId,
       unitName: entity.unitName,
     );
-  }
-}
-
-class KeyResultDataMapper extends BaseDataMapper<KeyResultResponse, KeyResult>
-    with DataMapperMixin {
-  @override
-  KeyResult mapToEntity(KeyResultResponse? data) {
-    return KeyResult(
-        id: data?.id,
-        title: data?.title,
-        description: data?.description,
-        key: data?.key,
-        result: data?.result,
-        target: data?.target,
-        actual: data?.actual,
-        objectiveId: data?.objectiveId);
-  }
-
-  @override
-  KeyResultResponse mapToData(KeyResult entity) {
-    return KeyResultResponse(
-        id: entity.id,
-        title: entity.title,
-        description: entity.description,
-        objectiveId: entity.objectiveId,
-        key: entity.key,
-        result: entity.result,
-        target: entity.target,
-        actual: entity.actual,
-        okRsId: entity.okRsId);
   }
 }

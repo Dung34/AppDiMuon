@@ -54,7 +54,7 @@ class _TaskListItemState extends State<TaskListItem> {
                 backgroundColor: AppColor.red200,
                 borderRadius: BorderRadius.circular(10),
                 foregroundColor: Colors.white,
-                icon: Icons.delete,
+                icon: Icons.archive,
                 label: 'Delete',
               ),
             ],

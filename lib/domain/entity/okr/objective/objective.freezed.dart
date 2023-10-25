@@ -21,20 +21,12 @@ Objective _$ObjectiveFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Objective {
   String? get objectiveId => throw _privateConstructorUsedError;
-  set objectiveId(String? value) => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
-  set title(String? value) => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  set description(String? value) => throw _privateConstructorUsedError;
   String? get okrId => throw _privateConstructorUsedError;
-  set okrId(String? value) => throw _privateConstructorUsedError;
   List<Objective>? get relatedObjective => throw _privateConstructorUsedError;
-  set relatedObjective(List<Objective>? value) =>
-      throw _privateConstructorUsedError;
   String? get unitId => throw _privateConstructorUsedError;
-  set unitId(String? value) => throw _privateConstructorUsedError;
   String? get unitName => throw _privateConstructorUsedError;
-  set unitName(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -166,7 +158,7 @@ class __$$ObjectiveImplCopyWithImpl<$Res>
           : okrId // ignore: cast_nullable_to_non_nullable
               as String?,
       relatedObjective: freezed == relatedObjective
-          ? _value.relatedObjective
+          ? _value._relatedObjective
           : relatedObjective // ignore: cast_nullable_to_non_nullable
               as List<Objective>?,
       unitId: freezed == unitId
@@ -189,32 +181,72 @@ class _$ObjectiveImpl implements _Objective {
       this.title,
       this.description,
       this.okrId,
-      this.relatedObjective,
+      final List<Objective>? relatedObjective,
       this.unitId,
-      this.unitName});
+      this.unitName})
+      : _relatedObjective = relatedObjective;
 
   factory _$ObjectiveImpl.fromJson(Map<String, dynamic> json) =>
       _$$ObjectiveImplFromJson(json);
 
   @override
-  String? objectiveId;
+  final String? objectiveId;
   @override
-  String? title;
+  final String? title;
   @override
-  String? description;
+  final String? description;
   @override
-  String? okrId;
+  final String? okrId;
+  final List<Objective>? _relatedObjective;
   @override
-  List<Objective>? relatedObjective;
+  List<Objective>? get relatedObjective {
+    final value = _relatedObjective;
+    if (value == null) return null;
+    if (_relatedObjective is EqualUnmodifiableListView)
+      return _relatedObjective;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
-  String? unitId;
+  final String? unitId;
   @override
-  String? unitName;
+  final String? unitName;
 
   @override
   String toString() {
     return 'Objective(objectiveId: $objectiveId, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName)';
   }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ObjectiveImpl &&
+            (identical(other.objectiveId, objectiveId) ||
+                other.objectiveId == objectiveId) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.okrId, okrId) || other.okrId == okrId) &&
+            const DeepCollectionEquality()
+                .equals(other._relatedObjective, _relatedObjective) &&
+            (identical(other.unitId, unitId) || other.unitId == unitId) &&
+            (identical(other.unitName, unitName) ||
+                other.unitName == unitName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      objectiveId,
+      title,
+      description,
+      okrId,
+      const DeepCollectionEquality().hash(_relatedObjective),
+      unitId,
+      unitName);
 
   @JsonKey(ignore: true)
   @override
@@ -232,38 +264,31 @@ class _$ObjectiveImpl implements _Objective {
 
 abstract class _Objective implements Objective {
   factory _Objective(
-      {String? objectiveId,
-      String? title,
-      String? description,
-      String? okrId,
-      List<Objective>? relatedObjective,
-      String? unitId,
-      String? unitName}) = _$ObjectiveImpl;
+      {final String? objectiveId,
+      final String? title,
+      final String? description,
+      final String? okrId,
+      final List<Objective>? relatedObjective,
+      final String? unitId,
+      final String? unitName}) = _$ObjectiveImpl;
 
   factory _Objective.fromJson(Map<String, dynamic> json) =
       _$ObjectiveImpl.fromJson;
 
   @override
   String? get objectiveId;
-  set objectiveId(String? value);
   @override
   String? get title;
-  set title(String? value);
   @override
   String? get description;
-  set description(String? value);
   @override
   String? get okrId;
-  set okrId(String? value);
   @override
   List<Objective>? get relatedObjective;
-  set relatedObjective(List<Objective>? value);
   @override
   String? get unitId;
-  set unitId(String? value);
   @override
   String? get unitName;
-  set unitName(String? value);
   @override
   @JsonKey(ignore: true)
   _$$ObjectiveImplCopyWith<_$ObjectiveImpl> get copyWith =>
