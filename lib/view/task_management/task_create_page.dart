@@ -15,6 +15,7 @@ import '../../shared/widgets/something/primary_app_bar.dart';
 import '../../shared/widgets/text_field/primary_text_field.dart';
 import '../base/base_page_sate.dart';
 import 'components/task_priority_item.dart';
+import 'components/task_select_dialog.dart';
 import 'components/task_status_item.dart';
 import 'cubit/task_cubit.dart';
 import 'user_search_dialog.dart';
@@ -64,6 +65,8 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController pointController = TextEditingController();
+  final TextEditingController parentTaskController = TextEditingController();
+  final TextEditingController relatedTaskController = TextEditingController();
 
   final titleFormKey = GlobalKey<FormState>();
 
@@ -260,6 +263,56 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
               label: 'Point',
               prefixIcon: Assets.icPoint,
               keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 20),
+
+            PrimaryTextField(
+              controller: parentTaskController,
+              label: 'Parent task',
+              prefixIcon: const Icon(Icons.account_tree_outlined),
+              keyboardType: TextInputType.number,
+              readOnly: true,
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.clear),
+                onPressed: () {
+                  parentTaskController.text = '';
+                  task.parrentTask = null;
+                },
+              ),
+              onTap: () async {
+                final taskSelected =
+                    await context.showAppBottomSheet(const TaskSelectDialog());
+                if (taskSelected != null) {
+                  parentTaskController.text =
+                      (taskSelected as Task).title ?? 'no name is set';
+                  task.parrentTask = taskSelected;
+                }
+              },
+            ),
+            const SizedBox(height: 20),
+
+            PrimaryTextField(
+              controller: relatedTaskController,
+              label: 'Related task',
+              prefixIcon: const Icon(Icons.bug_report_outlined),
+              keyboardType: TextInputType.number,
+              readOnly: true,
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.clear),
+                onPressed: () {
+                  relatedTaskController.text = '';
+                  task.relatedTask = null;
+                },
+              ),
+              onTap: () async {
+                final taskSelected =
+                    await context.showAppBottomSheet(const TaskSelectDialog());
+                if (taskSelected != null) {
+                  relatedTaskController.text =
+                      (taskSelected as Task).title ?? 'no name is set';
+                  task.relatedTask = [taskSelected];
+                }
+              },
             ),
           ],
         ),

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/config.dart';
+import '../../../di/di.dart';
 import '../../model/api/base_response.dart';
 import '../interceptor/dio_base_options.dart';
 import '../local/local_data_access.dart';
@@ -13,13 +14,14 @@ class AppRepositoryImpl implements AppRepository {
   final Dio dio;
   final LocalDataAccess localDataAccess;
   final OpenIDRepository openIdRepository;
-  final UserRepository userRepository;
+  //final UserRepository userRepository;
+  final UserRepository userRepository = getIt.get<UserRepository>();
 
   AppRepositoryImpl({
     required this.dio,
     required this.localDataAccess,
     required this.openIdRepository,
-    required this.userRepository,
+    //required this.userRepository
   }) {
     dio.interceptors.add(PrettyDioLogger(
       responseBody: true,
@@ -39,8 +41,8 @@ class AppRepositoryImpl implements AppRepository {
       },
       onError: (error, handler) async {
         if (error.response?.statusCode == 401) {
-          //final response = await openIdRepository.refreshToken();
           final response = await userRepository.refreshToken();
+          //final response = await openIdRepository.refreshToken();
           if (response.status == ResponseStatus.success) {
             final opts = Options(
                 method: error.requestOptions.method,

@@ -20,12 +20,12 @@ import '../local/local_data_access.dart';
 import 'repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final Dio dio = getIt.get<Dio>();
+  final Dio dio;
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   //final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
   final UserDataMapper _userDataMapper = getIt.get<UserDataMapper>();
 
-  UserRepositoryImpl() {
+  UserRepositoryImpl({required this.dio}) {
     dio.interceptors.add(PrettyDioLogger(
       responseBody: true,
       requestBody: true,
@@ -54,11 +54,11 @@ class UserRepositoryImpl implements UserRepository {
         },
       );
       if (loginResponse.statusCode == 200) {
-        final LoginResponse tokenReponse =
+        final LoginResponse response =
             LoginResponse.fromJson(loginResponse.data);
-        await localDataAccess.setAccessToken(tokenReponse.accessToken!);
-        await localDataAccess.setRefreshToken(tokenReponse.refreshToken!);
-        return ResponseWrapper.success(data: tokenReponse);
+        await localDataAccess.setAccessToken(response.accessToken!);
+        await localDataAccess.setRefreshToken(response.refreshToken!);
+        return ResponseWrapper.success(data: response);
       } else if (loginResponse.statusCode == 400 ||
           loginResponse.statusCode == 401) {
         return ResponseWrapper.error(
