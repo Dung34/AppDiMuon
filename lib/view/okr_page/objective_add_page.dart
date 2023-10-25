@@ -28,7 +28,6 @@ class ObjectiveAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> related = [];
-
     return Scaffold(
       appBar: PrimaryAppBar(
         actions: [
@@ -78,10 +77,8 @@ class ObjectiveAddPage extends StatelessWidget {
           objectives.isNotEmpty
               ? Expanded(
                   child: ListView.builder(
-                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return ObjectiveItem(
-                        checkable: true,
                         objective: objectives[index],
                         cubit: cubit,
                         related: related,

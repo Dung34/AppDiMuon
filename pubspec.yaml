@@ -74,9 +74,6 @@ dependencies:
   json_serializable: ^6.6.1
   json_annotation: ^4.8.1
 
-  # something
-  percent_indicator: ^4.0.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

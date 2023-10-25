@@ -110,7 +110,6 @@ configureInjection() async {
   // mapper
   getIt.registerLazySingleton<UserDataMapper>(() => UserDataMapper());
   getIt.registerLazySingleton<CheckinDataMapper>(() => CheckinDataMapper());
-  getIt.registerLazySingleton<KeyResultDataMapper>(() => KeyResultDataMapper());
   getIt.registerLazySingleton<ObjectiveDataMapper>(() => ObjectiveDataMapper());
   getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
   getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());

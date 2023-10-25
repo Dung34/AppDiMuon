@@ -9,16 +9,6 @@ class OkrState extends Equatable {
 
 class OkrInitial extends OkrState {}
 
-class OkrCreateKeyResultSuccessState extends OkrState {
-  final KeyResult keyResult;
-
-  const OkrCreateKeyResultSuccessState(this.keyResult);
-  @override
-  List<Object?> get props => [];
-}
-
-class OkrCreateKeyResultFailedState extends OkrState {}
-
 class OkrCreateObjectiveSuccessState extends OkrState {
   final Objective objective;
 
@@ -38,16 +28,6 @@ class OkrCreateOkrSuccessState extends OkrState {
 }
 
 class OkrCreateOkrFailedState extends OkrState {}
-
-class OkrDeleteKeyResultSuccessState extends OkrState {
-  final String id;
-
-  const OkrDeleteKeyResultSuccessState(this.id);
-  @override
-  List<Object?> get props => [id];
-}
-
-class OkrDeleteKeyResultFailedState extends OkrState {}
 
 class OkrDeleteObjectiveSuccessState extends OkrState {}
 
@@ -100,25 +80,3 @@ class OkrGetOkrDetailSuccessState extends OkrState {
 }
 
 class OkrGetOkrDetailFailedState extends OkrState {}
-
-class OkrResetState extends OkrState {}
-
-class OkrUpdateKeyResultSuccessState extends OkrState {
-  final KeyResult keyResult;
-
-  const OkrUpdateKeyResultSuccessState(this.keyResult);
-  @override
-  List<Object?> get props => [keyResult];
-}
-
-class OkrUpdateKeyResultFailedState extends OkrState {}
-
-class OkrUpdateObjectiveSuccessState extends OkrState {
-  final Objective objective;
-
-  const OkrUpdateObjectiveSuccessState(this.objective);
-  @override
-  List<Object?> get props => [];
-}
-
-class OkrUpdateObjectiveFailedState extends OkrState {}

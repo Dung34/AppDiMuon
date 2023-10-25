@@ -57,17 +57,13 @@ class EndPoints {
   static const String getMemberBasicInfo = '/api/getInformation';
 
   //key result
-  static const String createKeyResult = '/keyResult/create-keyResult';
-  static const String deleteKeyResult = '/keyResult/delete-keyResult';
   static const String getAllKeyResult = '/keyResult/get-all-keyResult';
-  static const String updateKeyResult = '/keyResult/update-keyResult';
 
   //objective
   static const String createObjective = '/objective/create-Objective';
   static const String deleteObjective = '/objective/delete-Objective';
   static const String getAllObjectives = '/OKRs/detail-OKRs';
   static const String getObjectiveDetails = '/objective/detail-Objective';
-  static const String updateObjective = '/objective/update-Objective';
 
   //OKR
   static const String createOKR = '/OKRs/create-OKR';
@@ -96,7 +92,6 @@ class EndPoints {
   static const String updateSkill = "/account/update-skill";
   static const String createSkill = "/account/create-skill";
   static const String deleteSkill = "/account/delete-skill";
-
   //target
   static const String getAllTarget = "/account/get-all-targets";
   static const String getDetailTarget = "/account/get-detail-target";
