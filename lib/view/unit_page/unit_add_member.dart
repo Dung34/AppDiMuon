@@ -52,7 +52,8 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
               cubit.addUsersInUnit(widget.unit.id ?? '', members);
               Navigator.pop(context);
             },
-          )
+          ),
+          const SizedBox(width: 10.0),
         ],
       ),
       backgroundColor: AppColor.gray50,

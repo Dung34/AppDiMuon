@@ -10,7 +10,7 @@ abstract class OKRRepository {
   Future<ResponseWrapper<List<UserEntity>>> addUserInUnit(
       String unitId, List<String>? memberIds);
 
-  Future<ResponseWrapper<KeyResult>> createKeyResult();
+  Future<ResponseWrapper<KeyResult>> createKeyResult(KeyResult keyResult);
 
   Future<ResponseWrapper<Objective>> createObjective(
       Objective objective, List<String> related);
@@ -21,7 +21,7 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<Unit>> createUnit(Unit unit);
 
-  Future<ResponseWrapper<int>> deleteKeyResult();
+  Future<ResponseWrapper<int>> deleteKeyResult(String id);
 
   Future<ResponseWrapper<int>> deleteObjective(String id);
 
@@ -60,14 +60,13 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<KeyResult>> getKeyResultDetails();
 
-  Future<ResponseWrapper<Objective>> getObjectiveDetails(
-      String objectiveId, String unitId);
+  Future<ResponseWrapper<Objective>> getObjectiveDetails(String objectiveId);
 
   Future<ResponseWrapper<Task>> getTaskDetails(String taskId);
 
-  Future<ResponseWrapper<KeyResult>> updateKeyResult();
+  Future<ResponseWrapper<KeyResult>> updateKeyResult(KeyResult keyResult);
 
-  Future<ResponseWrapper<Objective>> updateObjective();
+  Future<ResponseWrapper<Objective>> updateObjective(Objective objective);
 
   Future<ResponseWrapper<Task>> updateTask(Task task);
 

@@ -201,13 +201,13 @@ class EventMemberHistoryPageArgs {
 class ObjectiveDetailPageArgs {
   final String? name;
   final String objectiveId;
-  final String unitId;
+  final String okrsId;
   final OkrCubit cubit;
 
   const ObjectiveDetailPageArgs(
       {this.name,
       required this.objectiveId,
-      required this.unitId,
+      required this.okrsId,
       required this.cubit});
 }
 
