@@ -45,6 +45,7 @@ import '../view/skill_page/skill_update.dart';
 
 import '../view/skill_page/target_page.dart';
 import '../view/skill_page/update_target_page.dart';
+import '../view/splash_screen/intro.dart';
 import '../view/splash_screen/splash_screen.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 import '../view/unit_page/unit_add.dart';
@@ -54,6 +55,7 @@ import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
 
 class AppRoute {
+  static const String intro = "/intro";
   static const String splash = "/";
   static const String main = "/main";
   static const String home = "/home";
@@ -97,6 +99,7 @@ class AppRoute {
   static const String targetPage = "/targetPage";
 
   static dynamic generateRoute() => {
+        AppRoute.intro: (context) => const IntroPage(),
         AppRoute.login: (context) => LoginScreen(),
         AppRoute.main: (context) => const MainPage(),
         AppRoute.home: (context) => const HomeScreen(),

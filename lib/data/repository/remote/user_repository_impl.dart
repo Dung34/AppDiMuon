@@ -58,6 +58,8 @@ class UserRepositoryImpl implements UserRepository {
             LoginResponse.fromJson(loginResponse.data);
         await localDataAccess.setAccessToken(response.accessToken!);
         await localDataAccess.setRefreshToken(response.refreshToken!);
+        log(response.accessToken!);
+        log(response.refreshToken!);
         return ResponseWrapper.success(data: response);
       } else if (loginResponse.statusCode == 400 ||
           loginResponse.statusCode == 401) {

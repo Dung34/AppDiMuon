@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../config/routes.dart';
 import '../../data/repository/local/local_data_access.dart';
+import '../../data/resources/resources.dart';
 import '../../di/di.dart';
 import '../../domain/entity/skill/skill.dart';
 import '../../shared/etx/app_ext.dart';
@@ -33,7 +35,7 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
     super.didChangeDependencies();
     args = context.arguments as SkillPageArgs;
     setCubit = args.skillCubit;
-    String userId = localDataAccess.getUserId();
+
     if (!args.addNew) {
       currentSkill = args.skill!;
       updateSkill = currentSkill.copyWith();
@@ -41,6 +43,8 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
       descriptionController.text = updateSkill.description ?? "";
       iconController.text = updateSkill.icon ?? "";
       pointController.text = updateSkill.point.toString();
+    } else {
+      updateSkill = Skill(userId: localDataAccess.getUserId(), point: 0);
     }
 
     setAppBar = PrimaryAppBar(
@@ -51,29 +55,21 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
             onPressed: () {
               String intString = pointController.text;
               int pointData = int.parse(intString);
+              updateSkill.name = nameController.text.trim();
+              updateSkill.description = descriptionController.text.trim();
+              updateSkill.icon = iconController.text.trim();
+              updateSkill.point = pointData;
               if (!args.addNew) {
-                cubit.updateSkill(Skill(
-                    name: nameController.text.trim(),
-                    description: descriptionController.text.trim(),
-                    icon: iconController.text.trim(),
-                    point: pointData,
-                    id: updateSkill.id,
-                    userId: updateSkill.userId));
+                cubit.updateSkill(updateSkill);
               } else {
-                cubit.addSkill(Skill(
-                    name: nameController.text.trim(),
-                    description: descriptionController.text.trim(),
-                    icon: iconController.text.trim(),
-                    userId: userId,
-                    point: pointData));
+                cubit.addSkill(updateSkill);
               }
 
               context.pop();
             },
-            icon: Icon(
-              Icons.edit,
-              color: Colors.black,
-            ))
+            icon: (args.addNew)
+                ? SvgPicture.asset(Assets.icAdd)
+                : SvgPicture.asset(Assets.icEdit))
       ],
     );
   }

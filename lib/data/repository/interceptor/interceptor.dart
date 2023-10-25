@@ -36,7 +36,7 @@ class AppInterceptor {
             final response = await userRepository.refreshToken();
             //final response = await openIdRepository.refreshToken();
             if (response.status == ResponseStatus.success) {
-              log('onError: refreshed...');
+              log('onError: refreshed.......');
               final opts = Options(
                 method: error.requestOptions.method,
                 headers: {
