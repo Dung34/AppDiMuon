@@ -84,6 +84,16 @@ class UnitCubit extends Cubit<UnitState> {
     emit(UnitGetUnitDetailSuccessState(unit));
   }
 
+  updateUnit(Unit unit) async {
+    final response = await _okrRepository.updateUnit(unit);
+
+    if (response.status == ResponseStatus.success) {
+      emit(UnitUpdateUnitSuccessState(response.data!));
+    } else {
+      emit(UnitUpdateUnitFailedState());
+    }
+  }
+
   viewUnit(String unitId) async {
     emit(UnitResetState());
 

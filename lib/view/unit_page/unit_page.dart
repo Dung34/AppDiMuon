@@ -36,7 +36,7 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
   Widget buildPage(BuildContext context) {
     List<Unit> units = [];
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           decoration: const BoxDecoration(
@@ -95,7 +95,8 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                   current is UnitGetAllUnitSuccessState ||
                   current is UnitCreateUnitSuccessState ||
                   current is UnitInitialState ||
-                  current is UnitDeleteUnitSuccessState,
+                  current is UnitDeleteUnitSuccessState ||
+                  current is UnitUpdateUnitSuccessState,
               builder: (context, state) {
                 if (state is UnitGetAllUnitSuccessState) {
                   units = state.units;
@@ -103,6 +104,9 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                   units.add(state.unit);
                 } else if (state is UnitDeleteUnitSuccessState) {
                   units.removeWhere((element) => element.id == state.unitId);
+                } else if (state is UnitUpdateUnitSuccessState) {
+                  units.removeWhere((element) => element.id == state.unit.id);
+                  units.add(state.unit);
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../config/routes.dart';
-import '../../shared/etx/view_ext.dart';
 import '../../shared/widgets/shimmer/event_member_item_shimmer.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
@@ -31,7 +29,7 @@ class _EventMemberPageState extends BasePageState<EventMemberPage, EventCubit> {
 
   @override
   Widget buildPage(BuildContext context) {
-    final args = context.arguments as EventMemberPageArgs;
+    // final args = context.arguments as EventMemberPageArgs;
     // cubit.getAllCheckedInMember(args.eventId);
     return BlocBuilder<EventCubit, EventState>(
       buildWhen: (previous, current) {
