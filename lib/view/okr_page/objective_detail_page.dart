@@ -3,14 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
+import '../../domain/entity/okr/key_result/key_result.dart';
 import '../../shared/etx/app_ext.dart';
-import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
-import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
+import 'component/key_result_item.dart';
+import 'component/objective_item.dart';
 import 'cubit/okr_cubit.dart';
+import 'key_result_add_page.dart';
 
 class ObjectiveDetailPage extends StatefulWidget {
   const ObjectiveDetailPage({super.key});
@@ -29,12 +31,14 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
     args = context.arguments as ObjectiveDetailPageArgs;
     cubit = args.cubit;
 
-    cubit.getObjectiveDetails(args.objectiveId, args.unitId);
+    cubit.getObjectiveDetails(args.objectiveId);
     cubit.getAllKeyResult(args.objectiveId);
   }
 
   @override
   Widget build(BuildContext context) {
+    List<KeyResult> keyResults = [];
+
     return Scaffold(
       appBar: PrimaryAppBar(
         actions: [
@@ -54,20 +58,24 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
       backgroundColor: AppColor.white,
       body: BlocProvider.value(
         value: cubit,
-        child: BlocBuilder<OkrCubit, OkrState>(
-            buildWhen: (previous, current) =>
-                current is OkrInitial ||
-                current is OkrGetObjectiveDetailsSuccessState,
-            builder: (context, state) {
-              if (state is OkrGetObjectiveDetailsSuccessState) {
-                final objectives = state.objective.relatedObjective;
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Objectives liên quan',
+                style: AppTextTheme.lexendBold24),
+            BlocBuilder<OkrCubit, OkrState>(
+                buildWhen: (previous, current) =>
+                    current is OkrInitial ||
+                    current is OkrGetObjectiveDetailsSuccessState,
+                builder: (context, state) {
+                  if (state is OkrGetObjectiveDetailsSuccessState) {
+                    final objectives = state.objective.relatedObjective;
 
-                return objectives!.isNotEmpty
-                    ? ListView.builder(
-                        itemBuilder: (context, index) {
-                          final objective = objectives[index];
+                    return objectives!.isNotEmpty
+                        ? ListView.builder(
+                            itemBuilder: (context, index) {
+                              final objective = objectives[index];
 
-<<<<<<< HEAD
                               return InkWell(
                                 onTap: () {
                                   Navigator.pushNamed(
@@ -148,45 +156,25 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
                               child: KeyResultItem(
                                 cubit: cubit,
                                 keyResult: keyResult,
-=======
-                          return InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                AppRoute.objectiveDetail,
-                                arguments: ObjectiveDetailPageArgs(
-                                    objectiveId: objective.objectiveId!,
-                                    unitId: args.unitId,
-                                    cubit: cubit),
-                              );
-                            },
-                            child: PrimaryContainer(
-                              padding: const EdgeInsets.all(8),
-                              margin: const EdgeInsets.only(top: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    objective.title.toString(),
-                                    style: AppTextTheme.lexendBold16,
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                      'Due date: ${DateTimeUtils.formatDate(DateTime.now().toString())}')
-                                ],
->>>>>>> 1053d2a33c9b842fe0928cbff8059a80a700b8d2
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: objectives.length,
-                      )
-                    : const NoData();
-              } else {
-                return const Loading();
-              }
-            }),
+                            );
+                          },
+                          itemCount: keyResults.length,
+                          shrinkWrap: true,
+                        )
+                      : const NoData();
+                }),
+          ],
+        ),
       ),
     );
+  }
+
+  _onCreateKeyResultPressed(String okrsId, String objectiveId) {
+    context.showAppBottomSheet(KeyResultAddPage(
+      cubit: cubit,
+      okrsId: okrsId,
+      objectiveId: objectiveId,
+    ));
   }
 }

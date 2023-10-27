@@ -16,6 +16,7 @@ import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
+import '../okr_page/component/objective_item.dart';
 import '../okr_page/cubit/okr_cubit.dart';
 import '../okr_page/objective_add_page.dart';
 import '../okr_page/okr_create_page.dart';
@@ -302,7 +303,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                 objectives = state.objectives!;
                                 return ListObj(
                                   objs: objectives,
-                                  unitId: args.id,
+                                  okrsId: args.id,
                                   cubit: _okrCubit,
                                   isAdmin: args.isAdmin,
                                 );
@@ -311,7 +312,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                 objectives.add(state.objective);
                                 return ListObj(
                                   objs: objectives,
-                                  unitId: args.id,
+                                  okrsId: args.id,
                                   cubit: _okrCubit,
                                   isAdmin: args.isAdmin,
                                 );
@@ -448,14 +449,14 @@ class OKRDetail extends StatelessWidget {
 // ignore: must_be_immutable
 class ListObj extends StatelessWidget {
   final List<Objective> objs;
-  final String unitId;
+  final String okrsId;
   final OkrCubit cubit;
   final bool isAdmin;
 
   const ListObj({
     super.key,
     required this.objs,
-    required this.unitId,
+    required this.okrsId,
     required this.cubit,
     required this.isAdmin,
   });
