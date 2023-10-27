@@ -92,7 +92,7 @@ class _MembershipPageState extends BasePageState<MembershipPage, UserCubit> {
           Column(
             children: [
               Text(
-                user?.avatar ?? '',
+                user!.fullName ?? "",
                 style: AppTextTheme.lexendBold30,
               ),
               SizedBox(

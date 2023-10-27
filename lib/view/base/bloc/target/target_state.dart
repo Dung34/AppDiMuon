@@ -38,10 +38,22 @@ class UpdateTargetSuccess extends TargetState {
 
 class UpdateTargetFailed extends TargetState {}
 
-class DeleteTargetSuccess extends TargetState {}
+class DeleteTargetSuccess extends TargetState {
+  final String id;
+  const DeleteTargetSuccess({required this.id});
+
+  @override
+  List<Object> get props => [];
+}
 
 class DeleteTargetFailed extends TargetState {}
 
-class AddNewTargetSuccess extends TargetState {}
+class AddNewTargetSuccess extends TargetState {
+  final Target target;
+  const AddNewTargetSuccess({required this.target});
+
+  @override
+  List<Target> get props => [];
+}
 
 class AddNewTargetFailed extends TargetState {}

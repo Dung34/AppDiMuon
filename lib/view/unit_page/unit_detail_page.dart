@@ -8,6 +8,7 @@ import '../../domain/entity/okr/objective/objective.dart';
 import '../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../domain/entity/okr/unit/unit.dart';
 import '../../shared/etx/app_ext.dart';
+import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/button/primary_button.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/container/primary_container.dart';
@@ -15,7 +16,6 @@ import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
-import '../okr_page/component/objective_item.dart';
 import '../okr_page/cubit/okr_cubit.dart';
 import '../okr_page/objective_add_page.dart';
 import '../okr_page/okr_create_page.dart';
@@ -296,14 +296,13 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                             buildWhen: (previous, current) =>
                                 current is OkrGetAllObjectivesSuccessState ||
                                 current is OkrCreateObjectiveSuccessState ||
-                                current is OkrDeleteObjectiveSuccessState ||
-                                current is OkrUpdateObjectiveSuccessState,
+                                current is OkrDeleteObjectiveSuccessState,
                             builder: (context, state) {
                               if (state is OkrGetAllObjectivesSuccessState) {
                                 objectives = state.objectives!;
                                 return ListObj(
                                   objs: objectives,
-                                  okrsId: unit.okRsId!,
+                                  unitId: args.id,
                                   cubit: _okrCubit,
                                   isAdmin: args.isAdmin,
                                 );
@@ -312,7 +311,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                 objectives.add(state.objective);
                                 return ListObj(
                                   objs: objectives,
-                                  okrsId: unit.okRsId!,
+                                  unitId: args.id,
                                   cubit: _okrCubit,
                                   isAdmin: args.isAdmin,
                                 );
@@ -363,6 +362,14 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
       objectives: objectives,
     ));
   }
+
+  _onReset(String? id) {
+    setState(() {
+      unit.okRsId = id;
+    });
+  }
+
+  // _onCreateKeyResultPressed() {};
 }
 
 class OKRDetail extends StatelessWidget {
@@ -441,14 +448,14 @@ class OKRDetail extends StatelessWidget {
 // ignore: must_be_immutable
 class ListObj extends StatelessWidget {
   final List<Objective> objs;
-  final String okrsId;
+  final String unitId;
   final OkrCubit cubit;
   final bool isAdmin;
 
   const ListObj({
     super.key,
     required this.objs,
-    required this.okrsId,
+    required this.unitId,
     required this.cubit,
     required this.isAdmin,
   });

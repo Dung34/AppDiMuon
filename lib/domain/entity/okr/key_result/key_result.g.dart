@@ -13,10 +13,10 @@ _$KeyResultImpl _$$KeyResultImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       key: json['key'] as String?,
       result: json['result'] as String?,
+      status: json['status'] as int?,
       target: (json['target'] as num?)?.toDouble(),
       actual: (json['actual'] as num?)?.toDouble(),
       objectiveId: json['objectiveId'] as String?,
-      okRsId: json['okRsId'] as String?,
     );
 
 Map<String, dynamic> _$$KeyResultImplToJson(_$KeyResultImpl instance) =>
@@ -26,8 +26,8 @@ Map<String, dynamic> _$$KeyResultImplToJson(_$KeyResultImpl instance) =>
       'description': instance.description,
       'key': instance.key,
       'result': instance.result,
+      'status': instance.status,
       'target': instance.target,
       'actual': instance.actual,
       'objectiveId': instance.objectiveId,
-      'okRsId': instance.okRsId,
     };

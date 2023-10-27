@@ -69,13 +69,3 @@ class UnitGetAllUserInUnitSuccessState extends UnitState {
 class UnitGetAllUserInUnitFailedState extends UnitState {}
 
 class UnitResetState extends UnitState {}
-
-class UnitUpdateUnitSuccessState extends UnitState {
-  final Unit unit;
-
-  const UnitUpdateUnitSuccessState(this.unit);
-  @override
-  List<Object?> get props => [unit];
-}
-
-class UnitUpdateUnitFailedState extends UnitState {}

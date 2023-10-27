@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../shared/etx/app_ext.dart';
-import '../../../shared/utils/date_time_utils.dart';
-import '../../../shared/widgets/container/primary_container.dart';
 import '../cubit/okr_cubit.dart';
-import '../objective_update_page.dart';
 
 // ignore: must_be_immutable
 class ObjectiveItem extends StatefulWidget {
@@ -110,10 +106,5 @@ class _ObjectiveItemState extends State<ObjectiveItem> {
         ]),
       ),
     );
-  }
-
-  _onUpdateObjectivePressed() {
-    context.showAppBottomSheet(
-        ObjectiveUpdatePage(cubit: widget.cubit, objective: widget.objective));
   }
 }

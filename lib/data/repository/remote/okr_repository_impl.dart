@@ -16,7 +16,6 @@ import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../../domain/mapper/task_data_mapper.dart';
 import '../../model/api/base_response.dart';
-import '../../model/okr_response/key_result_response.dart';
 import '../../model/okr_response/objective_response.dart';
 import '../../model/okr_response/okr_response.dart';
 import '../../model/unit_response/unit_response.dart';
@@ -31,8 +30,6 @@ class OKRRepositoryImpl extends OKRRepository {
   final Dio dio = getIt.get<Dio>();
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String accessToken = '';
-  final KeyResultDataMapper _keyResultDataMapper =
-      getIt.get<KeyResultDataMapper>();
   final ObjectiveDataMapper _objectiveDataMapper =
       getIt.get<ObjectiveDataMapper>();
   final OKRDataMapper _okrDataMapper = getIt.get<OKRDataMapper>();
@@ -79,26 +76,9 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<KeyResult>> createKeyResult(
-      KeyResult keyResult) async {
-    accessToken = await localDataAccess.getAccessToken();
-
-    try {
-      final response = await dio.post(EndPoints.createKeyResult,
-          data: _keyResultDataMapper.mapToData(keyResult).toJson(),
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: _keyResultDataMapper
-              .mapToEntity(KeyResultResponse.fromJson(response.data)),
-        );
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
+  Future<ResponseWrapper<KeyResult>> createKeyResult() {
+    // TODO: implement createKeyResult
+    throw UnimplementedError();
   }
 
   @override
@@ -255,22 +235,9 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<int>> deleteKeyResult(String id) async {
-    accessToken = await localDataAccess.getAccessToken();
-
-    try {
-      final response = await dio.delete(EndPoints.deleteKeyResult,
-          data: {"keyResultId": id},
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(data: response.data);
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
+  Future<ResponseWrapper<int>> deleteKeyResult() {
+    // TODO: implement deleteKeyResult
+    throw UnimplementedError();
   }
 
   @override
@@ -364,13 +331,6 @@ class OKRRepositoryImpl extends OKRRepository {
   Future<ResponseWrapper<List<KeyResult>>> getAllKeyResult(
       String? objectiveId) async {
     accessToken = await localDataAccess.getAccessToken();
-
-    // return ResponseWrapper.success(data: [
-    //   _keyResultDataMapper.mapToEntity(KeyResultResponse()),
-    //   _keyResultDataMapper.mapToEntity(KeyResultResponse()),
-    //   _keyResultDataMapper.mapToEntity(KeyResultResponse()),
-    // ]);
-
     try {
       final response = await dio.get(EndPoints.getAllKeyResult,
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
@@ -379,7 +339,7 @@ class OKRRepositoryImpl extends OKRRepository {
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
           data: List.from((response.data as List).map((e) =>
-              _keyResultDataMapper.mapToEntity(KeyResultResponse.fromJson(e)))),
+              _objectiveDataMapper.mapToEntity(ObjectiveResponse.fromJson(e)))),
         );
       }
       return ResponseWrapper.error(message: "");
@@ -557,11 +517,11 @@ class OKRRepositoryImpl extends OKRRepository {
 
   @override
   Future<ResponseWrapper<Objective>> getObjectiveDetails(
-      String objectiveId) async {
+      String objectiveId, String unitId) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.post(EndPoints.getObjectiveDetails,
-          data: {"objectiveId": objectiveId},
+          data: {"objectiveId": objectiveId, "unitId": unitId},
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
 
       if (response.statusCode == 200) {
@@ -599,54 +559,15 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<KeyResult>> updateKeyResult(
-      KeyResult keyResult) async {
-    accessToken = await localDataAccess.getAccessToken();
-
-    try {
-      final response = await dio.patch(EndPoints.updateKeyResult,
-          data: _keyResultDataMapper.mapToData(keyResult),
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-            data: _keyResultDataMapper
-                .mapToEntity(KeyResultResponse.fromJson(response.data)));
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
+  Future<ResponseWrapper<KeyResult>> updateKeyResult() {
+    // TODO: implement updateKeyResult
+    throw UnimplementedError();
   }
 
   @override
-  Future<ResponseWrapper<Objective>> updateObjective(
-      Objective objective) async {
-    accessToken = await localDataAccess.getAccessToken();
-
-    try {
-      final response = await dio.post(
-        EndPoints.updateObjective,
-        data: {
-          "description": objective.description,
-          "title": objective.title,
-          "objectiveId": objective.objectiveId
-        },
-        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
-      );
-
-      if (response.statusCode == 200) {
-        return ResponseWrapper.success(
-          data: _objectiveDataMapper
-              .mapToEntity(ObjectiveResponse.fromJson(response.data)),
-        );
-      }
-      return ResponseWrapper.error(message: "");
-    } catch (e) {
-      handleException(e);
-      return ResponseWrapper.error(message: "");
-    }
+  Future<ResponseWrapper<Objective>> updateObjective() {
+    // TODO: implement updateObjective
+    throw UnimplementedError();
   }
 
   @override

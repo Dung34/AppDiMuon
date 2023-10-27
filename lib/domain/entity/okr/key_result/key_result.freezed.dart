@@ -25,10 +25,10 @@ mixin _$KeyResult {
   String? get description => throw _privateConstructorUsedError;
   String? get key => throw _privateConstructorUsedError;
   String? get result => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   double? get target => throw _privateConstructorUsedError;
   double? get actual => throw _privateConstructorUsedError;
   String? get objectiveId => throw _privateConstructorUsedError;
-  String? get okRsId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,10 +47,10 @@ abstract class $KeyResultCopyWith<$Res> {
       String? description,
       String? key,
       String? result,
+      int? status,
       double? target,
       double? actual,
-      String? objectiveId,
-      String? okRsId});
+      String? objectiveId});
 }
 
 /// @nodoc
@@ -71,10 +71,10 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
     Object? description = freezed,
     Object? key = freezed,
     Object? result = freezed,
+    Object? status = freezed,
     Object? target = freezed,
     Object? actual = freezed,
     Object? objectiveId = freezed,
-    Object? okRsId = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -97,6 +97,10 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
@@ -108,10 +112,6 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
       objectiveId: freezed == objectiveId
           ? _value.objectiveId
           : objectiveId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      okRsId: freezed == okRsId
-          ? _value.okRsId
-          : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -131,10 +131,10 @@ abstract class _$$KeyResultImplCopyWith<$Res>
       String? description,
       String? key,
       String? result,
+      int? status,
       double? target,
       double? actual,
-      String? objectiveId,
-      String? okRsId});
+      String? objectiveId});
 }
 
 /// @nodoc
@@ -153,10 +153,10 @@ class __$$KeyResultImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? key = freezed,
     Object? result = freezed,
+    Object? status = freezed,
     Object? target = freezed,
     Object? actual = freezed,
     Object? objectiveId = freezed,
-    Object? okRsId = freezed,
   }) {
     return _then(_$KeyResultImpl(
       id: freezed == id
@@ -179,6 +179,10 @@ class __$$KeyResultImplCopyWithImpl<$Res>
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
@@ -190,10 +194,6 @@ class __$$KeyResultImplCopyWithImpl<$Res>
       objectiveId: freezed == objectiveId
           ? _value.objectiveId
           : objectiveId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      okRsId: freezed == okRsId
-          ? _value.okRsId
-          : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -208,10 +208,10 @@ class _$KeyResultImpl implements _KeyResult {
       this.description,
       this.key,
       this.result,
+      this.status,
       this.target,
       this.actual,
-      this.objectiveId,
-      this.okRsId});
+      this.objectiveId});
 
   factory _$KeyResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$KeyResultImplFromJson(json);
@@ -227,17 +227,17 @@ class _$KeyResultImpl implements _KeyResult {
   @override
   final String? result;
   @override
+  final int? status;
+  @override
   final double? target;
   @override
   final double? actual;
   @override
   final String? objectiveId;
-  @override
-  final String? okRsId;
 
   @override
   String toString() {
-    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, target: $target, actual: $actual, objectiveId: $objectiveId, okRsId: $okRsId)';
+    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, status: $status, target: $target, actual: $actual, objectiveId: $objectiveId)';
   }
 
   @override
@@ -251,17 +251,17 @@ class _$KeyResultImpl implements _KeyResult {
                 other.description == description) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.result, result) || other.result == result) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.target, target) || other.target == target) &&
             (identical(other.actual, actual) || other.actual == actual) &&
             (identical(other.objectiveId, objectiveId) ||
-                other.objectiveId == objectiveId) &&
-            (identical(other.okRsId, okRsId) || other.okRsId == okRsId));
+                other.objectiveId == objectiveId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description, key,
-      result, target, actual, objectiveId, okRsId);
+      result, status, target, actual, objectiveId);
 
   @JsonKey(ignore: true)
   @override
@@ -284,10 +284,10 @@ abstract class _KeyResult implements KeyResult {
       final String? description,
       final String? key,
       final String? result,
+      final int? status,
       final double? target,
       final double? actual,
-      final String? objectiveId,
-      final String? okRsId}) = _$KeyResultImpl;
+      final String? objectiveId}) = _$KeyResultImpl;
 
   factory _KeyResult.fromJson(Map<String, dynamic> json) =
       _$KeyResultImpl.fromJson;
@@ -303,13 +303,13 @@ abstract class _KeyResult implements KeyResult {
   @override
   String? get result;
   @override
+  int? get status;
+  @override
   double? get target;
   @override
   double? get actual;
   @override
   String? get objectiveId;
-  @override
-  String? get okRsId;
   @override
   @JsonKey(ignore: true)
   _$$KeyResultImplCopyWith<_$KeyResultImpl> get copyWith =>

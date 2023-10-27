@@ -42,7 +42,7 @@ class _EventPageState extends BasePageState<EventPage, EventCubit> {
   void initState() {
     super.initState();
     cubit.getAllEvent();
-    userCubit.getUser();
+    //userCubit.getUser();
     // cubit.showSearchBar(0);
     scrollController.addListener(_onScroll);
 

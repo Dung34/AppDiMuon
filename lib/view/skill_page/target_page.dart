@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../config/routes.dart';
 import '../../domain/entity/target/target.dart';
+import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
@@ -19,6 +21,8 @@ class TargetPage extends StatefulWidget {
 }
 
 class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -41,35 +45,41 @@ class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
     );
   }
 
-  List<Target> listTarget = [];
+  late List<Target> listTarget = [];
 
   @override
   Widget buildPage(BuildContext context) {
     return BlocConsumer<TargetCubit, TargetState>(
       listener: (context, state) {
         log(state.toString());
-        // if (state is GetAllTargetFailed) {
-        //   cubit.getAllTarget();
-        // }
-        if (state is DeleteTargetSuccess ||
-            state is AddNewTargetSuccess ||
-            state is UpdateTargetSuccess) {
-          cubit.getAllTarget();
-        }
       },
-      buildWhen: (previous, current) => current is GetAllTargetSuccess,
+      buildWhen: (previous, current) =>
+          current is GetAllTargetSuccess ||
+          current is DeleteTargetSuccess ||
+          current is UpdateTargetSuccess ||
+          current is AddNewTargetSuccess,
       builder: (context, state) {
         if (state is GetAllTargetSuccess) {
           listTarget = state.listTarget;
-          return SizedBox(
-            child: ListView.builder(
-                itemBuilder: (context, index) =>
-                    TargetItem(target: listTarget[index]),
-                itemCount: listTarget.length),
-          );
-        } else {
-          return NoData();
+        } else if (state is DeleteTargetSuccess) {
+          listTarget.removeWhere((element) => element.id == state.id);
         }
+
+        return SmartRefresher(
+          controller: _refreshController,
+          header: WaterDropMaterialHeader(),
+          onRefresh: () async {
+            cubit.getAllTarget();
+
+            await Future.delayed(Duration(milliseconds: 1000));
+            _refreshController.refreshCompleted();
+          },
+          child: ListView.builder(
+            itemBuilder: (context, index) =>
+                TargetItem(target: listTarget[index]),
+            itemCount: listTarget.length,
+          ),
+        );
       },
     );
   }

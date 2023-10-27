@@ -4,12 +4,17 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../config/routes.dart';
 
+import '../../data/repository/local/local_data_access.dart';
 import '../../data/repository/remote/repository.dart';
+import '../../data/resources/resources.dart';
 import '../../di/di.dart';
 import '../../domain/entity/skill/skill.dart';
+import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
@@ -25,10 +30,14 @@ class SkillPage extends StatefulWidget {
 
 class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
   final UserRepository userRepository = getIt.get<UserRepository>();
+  final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    userRepository.refreshToken();
+    //userRepository.refreshToken();
+
     cubit.getAllSkill();
     listSkill = cubit.listSkill;
     setAppBar = PrimaryAppBar(
@@ -40,11 +49,7 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
               Navigator.pushNamed(context, AppRoute.skillUpdatePage,
                   arguments: SkillPageArgs(skillCubit: cubit, addNew: true));
             },
-            icon: Icon(
-              Icons.add,
-              color: Colors.black,
-              size: 18,
-            ))
+            icon: SvgPicture.asset(Assets.icAdd))
       ],
     );
   }
@@ -65,23 +70,27 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
         if (state is GetAllSkillSuccess) {
           listSkill = state.listSkill;
         } else if (state is AddNewSkillSuccess) {
-          listSkill.add(state.skill);
         } else if (state is UpdateSkillSuccess) {
-          listSkill.removeWhere((element) => element.id == state.skill.id);
-          listSkill.add(state.skill);
         } else if (state is DeleteSkillSuccess) {
           listSkill.removeWhere((element) => element.id == state.id);
         }
         if (listSkill.isNotEmpty) {
-          return SizedBox(
+          return SmartRefresher(
+            controller: _refreshController,
+            header: WaterDropMaterialHeader(),
+            onRefresh: () async {
+              cubit.getAllSkill();
+              await Future.delayed(Duration(milliseconds: 1000));
+              _refreshController.refreshCompleted();
+            },
             child: ListView.builder(
-                itemBuilder: (context, index) =>
-                    SkillItem(skill: listSkill[index]),
-                itemCount: listSkill.length),
+              itemBuilder: (context, index) =>
+                  SkillItem(skill: listSkill[index]),
+              itemCount: listSkill.length,
+            ),
           );
-        } else {
-          return NoData();
         }
+        return NoData();
       },
     );
   }

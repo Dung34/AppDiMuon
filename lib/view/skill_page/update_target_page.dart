@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 import '../../config/routes.dart';
 import '../../data/constant/enum.dart';
 import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/colors.dart';
+import '../../data/resources/resources.dart';
 import '../../data/resources/themes.dart';
 import '../../di/di.dart';
 import '../../domain/entity/target/target.dart';
@@ -74,41 +76,21 @@ class _TargetUpdatePageState
       actions: [
         IconButton(
             onPressed: () {
-              // String targetStr = targetController.text;
-              // double targetData = double.parse(targetStr);
-              // String actualStr = actualController.text;
-              // double actualData = double.parse(actualStr);
-              // String typeStr = typeController.text;
-              // int typeData = int.parse(typeStr);
-              // String statusStr = statusController.text;
-              // int statusData = int.parse(statusStr);
-
+              log(targetController.text);
+              updateTarget.title = titleController.text.trim();
+              updateTarget.description = descriptionController.text.trim();
+              updateTarget.targe = double.tryParse(targetController.text);
+              updateTarget.actual = double.tryParse(actualController.text);
               if (!args.addNew) {
-                log(targetController.text);
-                updateTarget.title = titleController.text.trim();
-                updateTarget.description = descriptionController.text.trim();
-                updateTarget.targe = double.tryParse(targetController.text);
-                updateTarget.actual = double.tryParse(actualController.text);
                 cubit.updateTarget(updateTarget);
               } else {
-                // cubit.addNewTarget(Target(
-                //   userId: _localDataAccess.getUserId(),
-                //   title: titleController.text.trim(),
-                //   description: descriptionController.text.trim(),
-                //   target: targetData,
-                //   actual: actualData,
-                //   type: typeData,
-                //   status: int.parse(typeController.text),
-                // ));
-                updateTarget.title = titleController.text.trim();
-                updateTarget.description = descriptionController.text.trim();
-                updateTarget.targe = double.tryParse(targetController.text);
-                updateTarget.actual = double.tryParse(actualController.text);
                 cubit.addNewTarget(updateTarget);
               }
               context.pop();
             },
-            icon: const Icon(Icons.edit))
+            icon: (args.addNew)
+                ? SvgPicture.asset(Assets.icAdd)
+                : SvgPicture.asset(Assets.icEdit))
       ],
     );
   }
