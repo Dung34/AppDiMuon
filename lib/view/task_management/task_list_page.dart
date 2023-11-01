@@ -95,6 +95,14 @@ class _TaskListPageState extends BasePageState<TaskListPage, TaskCubit> {
                   pagingController.itemList?.insert(0, state.task);
                   pagingController.notifyListeners();
                 }
+                if (state is TaskUpdateSuccessState) {
+                  final int? updatedIndex = pagingController.itemList
+                      ?.indexWhere((element) => element.id == state.task.id);
+                  if (updatedIndex != -1) {
+                    pagingController.itemList?[updatedIndex!] = state.task;
+                  }
+                  pagingController.notifyListeners();
+                }
                 if (state is TaskDeleteSuccessState) {
                   hideLoading();
                   pagingController.itemList?.remove(state.task);
