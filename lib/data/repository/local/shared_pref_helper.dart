@@ -96,4 +96,13 @@ class SharePrefHelper implements LocalDataAccess {
   @override
   Future setRefreshToken(String refreshToken) async => await secureStorage
       .write(key: SharedPreferenceKey.refreshToken, value: refreshToken);
+
+  @override
+  void setTenantId(String tenantId) {
+    sharedPref.setString(SharedPreferenceKey.tenantId, tenantId);
+  }
+
+  @override
+  String getTenantId() =>
+      sharedPref.getString(SharedPreferenceKey.tenantId) ?? "";
 }

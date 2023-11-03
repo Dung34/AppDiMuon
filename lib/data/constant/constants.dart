@@ -45,6 +45,7 @@ class SharedPreferenceKey {
   static const String password = "password";
   static const String rememberMe = "rememberMe";
   static const String userId = "userId";
+  static const String tenantId = "tenantId";
 }
 
 class ProjectStatus {

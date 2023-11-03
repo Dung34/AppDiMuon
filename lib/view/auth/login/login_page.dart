@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                               context.pop();
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                AppRoute.main,
+                                AppRoute.selectTenant,
                                 (route) => false,
                               );
                             }));
@@ -182,8 +182,21 @@ class LoginScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(
-                    height: 8,
+                    height: 3,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoute.sendOtp,
+                                arguments: LoginArgs(
+                                    authBloc: authBloc, isSignIn: false));
+                          },
+                          child: Text("Quên mật khẩu"))
+                    ],
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -272,6 +285,24 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Chưa có tài khoản ?"),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap: (() {
+                          Navigator.pushNamed(context, AppRoute.register);
+                        }),
+                        child: Text(
+                          "Đăng kí ngay",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      )
+                    ],
+                  )
                   // Center(
                   //   child: RichText(
                   //       text: TextSpan(children: [

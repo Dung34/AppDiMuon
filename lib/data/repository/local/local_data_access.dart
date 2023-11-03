@@ -32,4 +32,8 @@ abstract class LocalDataAccess {
   void setAccountRemember(bool accountRemember);
 
   Future<void> clearData();
+
+  void setTenantId(String tenantId);
+
+  String getTenantId();
 }

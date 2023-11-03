@@ -20,6 +20,8 @@ import '../data/repository/remote/skill_repository.dart';
 import '../data/repository/remote/skill_repository_ipml.dart';
 import '../data/repository/remote/target_repository.dart';
 import '../data/repository/remote/target_repository_impl.dart';
+import '../data/repository/remote/tenant_repository.dart';
+import '../data/repository/remote/tenant_repository_impl.dart';
 import '../domain/mapper/event_data_mapper.dart';
 
 import '../domain/mapper/general_report_mapper.dart';
@@ -29,6 +31,7 @@ import '../domain/mapper/okr_data_mapper.dart';
 import '../domain/mapper/project_data_mapper.dart';
 import '../domain/mapper/report_data_mapper.dart';
 
+import '../domain/mapper/tenant_mapper.dart';
 import '../domain/mapper/unit_data_mapper.dart';
 import '../domain/mapper/skill_data_mapper.dart';
 import '../domain/mapper/target_data_mapper.dart';
@@ -48,6 +51,7 @@ import '../view/base/bloc/user/user_cubit.dart';
 import '../view/event_page/cubit/event_cubit.dart';
 import '../view/okr_page/cubit/okr_cubit.dart';
 import '../view/project_page/cubit/project_cubit.dart';
+import '../view/select_tenant/tenant_cubit/tenant_cubit.dart';
 import '../view/task_management/cubit/task_cubit.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 
@@ -76,6 +80,7 @@ configureInjection() async {
   getIt.registerFactory<GeneralReportRepository>(
       () => GeneralReportRepositoryImpl());
   getIt.registerFactory<TargetRepository>(() => TargetRepositoryImplement());
+  getIt.registerFactory<TenantRepository>(() => TenantRepositoryImplement());
 
   getIt.registerFactory<OKRRepository>(() => OKRRepositoryImpl());
 
@@ -114,6 +119,8 @@ configureInjection() async {
   getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
   getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
 
+  getIt.registerLazySingleton<TenatMapper>(() => TenatMapper());
+
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
   getIt.registerFactory<EventMemberDataMapper>(() => EventMemberDataMapper());
   getIt.registerFactory<ProjectListDataMapper>(() => ProjectListDataMapper());
@@ -143,4 +150,5 @@ configureInjection() async {
   getIt.registerFactory<TaskCubit>(() => TaskCubit());
   getIt.registerFactory<SkillCubit>(() => SkillCubit());
   getIt.registerFactory<TargetCubit>(() => TargetCubit());
+  getIt.registerFactory<TenantCubit>(() => TenantCubit());
 }

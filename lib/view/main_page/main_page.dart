@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,8 +11,9 @@ import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
 import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
+import '../select_tenant/select_tenant_page.dart';
 import '../setting_page/setting_page.dart';
-import '../skill_page/skill_page.dart';
+
 import '../unit_page/unit_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -54,8 +57,10 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
   final tabs = [
     const EventPage(),
     const MembershipPage(),
+    //const SelectTenant(),
     // const CalendarPage(),
     const UnitPage(),
+
     //const SkillPage(),
     SettingPage(),
   ];

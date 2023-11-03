@@ -8,6 +8,9 @@ import '../domain/entity/skill/skill.dart';
 import '../domain/entity/target/target.dart';
 import '../view/auth/login/login_page.dart';
 import '../view/auth/register/register_page.dart';
+import '../view/auth/send_otp/input_otp.dart';
+import '../view/auth/send_otp/send_otp.dart';
+import '../view/base/bloc/auth/auth_bloc.dart';
 import '../view/base/bloc/general_report/general_report_cubit.dart';
 import '../view/base/bloc/report/report_cubit.dart';
 import '../view/base/bloc/skill/skill_cubit.dart';
@@ -37,6 +40,7 @@ import '../view/report_page/report_page.dart';
 import '../view/report_page/report_update.dart';
 import '../view/scanner_page.dart/event_opening_page.dart';
 import '../view/scanner_page.dart/qr_scanner_page.dart';
+import '../view/select_tenant/select_tenant_page.dart';
 import '../view/setting_page/profile_change_password.dart';
 import '../view/setting_page/profile_update_page.dart';
 
@@ -58,8 +62,11 @@ class AppRoute {
   static const String intro = "/intro";
   static const String splash = "/";
   static const String main = "/main";
+  static const String selectTenant = "/selectTenant";
   static const String home = "/home";
   static const String login = "/login";
+  static const String sendOtp = "/sendOtp";
+  static const String inputOtp = "/inputOtp";
   static const String register = "/register";
   static const String changePassword = "/changePassword";
   static const String dailyReport = "/dailyReport";
@@ -104,7 +111,10 @@ class AppRoute {
         AppRoute.main: (context) => const MainPage(),
         AppRoute.home: (context) => const HomeScreen(),
         AppRoute.splash: (context) => const SplashScreen(),
+        AppRoute.selectTenant: (context) => const SelectTenant(),
         AppRoute.register: (context) => RegisterPage(),
+        AppRoute.sendOtp: (context) => const SendOtp(),
+        AppRoute.inputOtp: (context) => const InputOTP(),
         AppRoute.changePassword: (context) => const ProfileChangePasswordPage(),
         AppRoute.dailyReport: (context) => const ReportPage(),
         AppRoute.eventDetail: (context) => const EventDetailPage(),
@@ -287,4 +297,10 @@ class TaskCreatePageArgs {
   final String? taskId;
   final TaskCubit taskCubit;
   TaskCreatePageArgs({this.taskId, required this.taskCubit});
+}
+
+class LoginArgs {
+  final AuthBloc authBloc;
+  final bool isSignIn;
+  LoginArgs({required this.authBloc, required this.isSignIn});
 }
