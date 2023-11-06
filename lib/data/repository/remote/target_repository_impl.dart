@@ -1,11 +1,10 @@
 import 'dart:developer';
 
-import 'package:active_plus/di/di.dart';
+import '../../../di/di.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/config.dart';
-import '../../../domain/entity/target/list_target.dart';
 import '../../../domain/entity/target/target.dart';
 import '../../../domain/mapper/target_data_mapper.dart';
 import '../../model/api/base_response.dart';
@@ -51,7 +50,7 @@ class TargetRepositoryImplement implements TargetRepository {
         return ResponseWrapper.error(message: "");
       }
     } catch (e) {
-      log('failed2 ' + e.toString());
+      log('failed2 $e');
       return ResponseWrapper.error(message: "");
     }
   }

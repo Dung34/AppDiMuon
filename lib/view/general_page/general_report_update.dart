@@ -35,7 +35,6 @@ class _GenReportUpdateState
   late final GeneralReportArgs args;
 
   @override
-  // TODO: implement useBlocProviderValue
   bool get useBlocProviderValue => true;
   @override
   void didChangeDependencies() {
@@ -142,7 +141,7 @@ class _GenReportUpdateState
             ),
           );
         }
-        return NoData();
+        return const NoData();
       },
     );
   }

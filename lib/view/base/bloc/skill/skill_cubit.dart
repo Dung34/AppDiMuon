@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../data/model/api/base_response.dart';
 import '../../../../data/repository/remote/skill_repository.dart';
-import '../../../../data/repository/remote/skill_repository_ipml.dart';
+
 import '../../../../di/di.dart';
 import '../../../../domain/entity/skill/skill.dart';
 import '../../../../shared/utils/view_utils.dart';
