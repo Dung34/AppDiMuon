@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../config/routes.dart';
+import '../../data/constant/constants.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/unit/unit.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
@@ -68,15 +69,17 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                 ),
                 const Spacer(),
                 const SizedBox(width: 5.0),
-                PrimaryIconButton(
-                  context: context,
-                  icon: Assets.icAdd,
-                  iconColor: AppColor.primary500,
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoute.unitAdd,
-                        arguments: UnitAddPageArgs(cubit: cubit));
-                  },
-                )
+                userCubit.currentUser?.role == UserRole.admin
+                    ? PrimaryIconButton(
+                        context: context,
+                        icon: Assets.icAdd,
+                        iconColor: AppColor.primary500,
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoute.unitAdd,
+                              arguments: UnitAddPageArgs(cubit: cubit));
+                        },
+                      )
+                    : Container()
               ],
             ),
           ),
@@ -85,7 +88,7 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
         const Row(
           children: [
             SizedBox(width: 10.0),
-            Text('Your Units', style: AppTextTheme.lexendBold24),
+            Text('True Active+', style: AppTextTheme.lexendBold24),
           ],
         ),
         const SizedBox(height: 12.0),
@@ -108,11 +111,17 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
                 }
 
                 if (units.isNotEmpty) {
+                  final bool isAdmin =
+                      userCubit.currentUser?.role == UserRole.admin;
                   final items = List.generate(units.length, (index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        UnitItem(unit: units[index], cubit: cubit),
+                        UnitItem(
+                          unit: units[index],
+                          cubit: cubit,
+                          isAdmin: isAdmin,
+                        ),
                         const SizedBox(height: 24),
                       ],
                     );

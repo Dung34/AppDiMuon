@@ -54,6 +54,8 @@ import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
 
+import '../shared/widgets/something/primary_app_bar.dart';
+
 class AppRoute {
   static const String intro = "/intro";
   static const String splash = "/";
@@ -157,6 +159,14 @@ class AppRoute {
   }
 }
 
+class AppBarArgs {
+  final String? imageUrl;
+  final String? title;
+  final int totalMembersCount;
+
+  const AppBarArgs({this.imageUrl, this.title, this.totalMembersCount = 0});
+}
+
 class EventDetailPageArgs {
   final String eventId;
   final EventCubit eventCubit;
@@ -204,14 +214,18 @@ class EventMemberHistoryPageArgs {
 class ObjectiveDetailPageArgs {
   final String? name;
   final String objectiveId;
-  final String unitId;
+  final String okrsId;
   final OkrCubit cubit;
+  final bool isAdmin;
+  final AppBarArgs? appBarArgs;
 
   const ObjectiveDetailPageArgs(
       {this.name,
       required this.objectiveId,
-      required this.unitId,
-      required this.cubit});
+      required this.okrsId,
+      required this.cubit,
+      required this.isAdmin,
+      this.appBarArgs});
 }
 
 class ProjectDetailPageArgs {
@@ -242,8 +256,10 @@ class UnitAddPageArgs {
 class UnitDetailPageArgs {
   final String id;
   final UnitCubit unitCubit;
+  final bool isAdmin;
 
-  UnitDetailPageArgs({required this.id, required this.unitCubit});
+  UnitDetailPageArgs(
+      {required this.id, required this.unitCubit, required this.isAdmin});
 }
 
 class ReportDailyPageArgs {
@@ -265,6 +281,12 @@ class TargetPageArgs {
   final TargetCubit targetCubit;
   TargetPageArgs(
       {required this.addNew, this.target, required this.targetCubit});
+}
+
+class TaskListPageArgs {
+  final String? keyResultId;
+
+  TaskListPageArgs({required this.keyResultId});
 }
 
 class QrScannerPageArgs {

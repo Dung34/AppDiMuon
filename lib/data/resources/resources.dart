@@ -25,6 +25,7 @@ class Assets {
   static const String icIdCard = '$iconPrefix/ic_id_card.svg';
   static const String icInfo = '$iconPrefix/ic_info.svg';
   static const String icInterest = '$iconPrefix/ic_interest.svg';
+  static const String icKeyResult = '$iconPrefix/ic_key_result.svg';
   static const String icLogo = '$iconPrefix/ic_logo.svg';
   static const String icLocation = '$iconPrefix/ic_location.svg';
   static const String icLock = '$iconPrefix/ic_lock.svg';
@@ -32,6 +33,7 @@ class Assets {
   static const String icMenuDot = '$iconPrefix/ic_menu_dot.svg';
   static const String icNoData = '$iconPrefix/ic_no_data.svg';
   static const String icNotification = '$iconPrefix/ic_notification.svg';
+  static const String icObjective = '$iconPrefix/ic_objective.svg';
   static const String icPerson = '$iconPrefix/ic_person.svg';
   static const String icPersonCheck = '$iconPrefix/ic_person_check.svg';
   static const String icPersonOutline = '$iconPrefix/ic_person_outline.svg';

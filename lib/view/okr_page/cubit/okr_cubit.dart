@@ -8,7 +8,6 @@ import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
 import '../../../domain/entity/user/user.dart';
-import '../../unit_page/cubit/unit_cubit.dart';
 
 part 'okr_state.dart';
 
@@ -16,6 +15,16 @@ class OkrCubit extends Cubit<OkrState> {
   final OKRRepository _okrRepository = getIt.get<OKRRepository>();
 
   OkrCubit() : super(OkrInitial());
+
+  createKeyResult(KeyResult keyResult) async {
+    final response = await _okrRepository.createKeyResult(keyResult);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrCreateKeyResultSuccessState(response.data!));
+    } else {
+      emit(OkrCreateKeyResultFailedState());
+    }
+  }
 
   createObjective(Objective objective, List<String> related) async {
     final response = await _okrRepository.createObjective(objective, related);
@@ -37,6 +46,18 @@ class OkrCubit extends Cubit<OkrState> {
     }
   }
 
+  deleteKeyResult(String id) async {
+    emit(OkrResetState());
+
+    final response = await _okrRepository.deleteKeyResult(id);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrDeleteKeyResultSuccessState(id));
+    } else {
+      emit(OkrDeleteKeyResultFailedState());
+    }
+  }
+
   deleteObjective(String id) async {
     final response = await _okrRepository.deleteObjective(id);
 
@@ -48,6 +69,8 @@ class OkrCubit extends Cubit<OkrState> {
   }
 
   getAllObjectives({String? okrId, String? unitId}) async {
+    emit(OkrInitial());
+
     final response =
         await _okrRepository.getAllObjective(okrId: okrId, unitId: unitId);
 
@@ -58,9 +81,8 @@ class OkrCubit extends Cubit<OkrState> {
     }
   }
 
-  getObjectiveDetails(String objectiveId, String unitId) async {
-    final response =
-        await _okrRepository.getObjectiveDetails(objectiveId, unitId);
+  getObjectiveDetails(String objectiveId) async {
+    final response = await _okrRepository.getObjectiveDetails(objectiveId);
 
     if (response.status == ResponseStatus.success) {
       emit(OkrGetObjectiveDetailsSuccessState(response.data!));
@@ -104,6 +126,8 @@ class OkrCubit extends Cubit<OkrState> {
   }
 
   getOKRDetail({required String okrId, required String unitId}) async {
+    emit(OkrInitial());
+
     final response =
         await _okrRepository.getOKRDetail(okrId: okrId, unitId: unitId);
 
@@ -111,6 +135,26 @@ class OkrCubit extends Cubit<OkrState> {
       emit(OkrGetOkrDetailSuccessState(response.data!));
     } else {
       emit(OkrGetOkrDetailFailedState());
+    }
+  }
+
+  updateKeyResult(KeyResult keyResult) async {
+    final response = await _okrRepository.updateKeyResult(keyResult);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrUpdateKeyResultSuccessState(keyResult));
+    } else {
+      emit(state);
+    }
+  }
+
+  updateObjective(Objective objective) async {
+    final response = await _okrRepository.updateObjective(objective);
+
+    if (response.status == ResponseStatus.success) {
+      emit(OkrUpdateObjectiveSuccessState(response.data!));
+    } else {
+      emit(OkrUpdateObjectiveFailedState());
     }
   }
 }

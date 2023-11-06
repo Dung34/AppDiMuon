@@ -9,6 +9,7 @@ class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String? title;
   final List<Widget>? actions;
   final Widget? leading;
+  final double? leadingWidth;
   final bool centerTitle;
   final bool canPop;
   final VoidCallback? onBackPressed;
@@ -22,6 +23,7 @@ class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.title,
       this.actions,
       this.leading,
+      this.leadingWidth,
       this.canPop = true,
       this.onBackPressed,
       this.onChangeText,
@@ -61,6 +63,7 @@ class _PrimaryAppBarState extends State<PrimaryAppBar> {
                   onPressed: widget.onBackPressed,
                 )
               : null),
+      leadingWidth: widget.leadingWidth,
       actions: widget.actions,
       centerTitle: widget.centerTitle,
     );
