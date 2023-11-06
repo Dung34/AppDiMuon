@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'objective.freezed.dart';
 part 'objective.g.dart';
 
-@freezed
+@unfreezed
 class Objective with _$Objective {
   factory Objective({
     String? objectiveId,

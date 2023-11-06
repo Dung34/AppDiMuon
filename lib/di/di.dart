@@ -123,6 +123,7 @@ configureInjection() async {
 
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());
   getIt.registerFactory<EventMemberDataMapper>(() => EventMemberDataMapper());
+  getIt.registerFactory<KeyResultDataMapper>(() => KeyResultDataMapper());
   getIt.registerFactory<ProjectListDataMapper>(() => ProjectListDataMapper());
   getIt.registerFactory<ProjectDataMapper>(() => ProjectDataMapper());
 

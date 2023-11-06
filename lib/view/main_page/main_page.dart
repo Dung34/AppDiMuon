@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../shared/widgets/animated_bottom_navigation/animated_bottom_navigation_bar.dart';
 import '../base/base_page_sate.dart';
@@ -13,7 +12,6 @@ import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
 import '../select_tenant/select_tenant_page.dart';
 import '../setting_page/setting_page.dart';
-
 import '../unit_page/unit_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -55,12 +53,11 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     'Hồ sơ',
   ];
   final tabs = [
-    const EventPage(),
+    const UnitPage(),
     const MembershipPage(),
     //const SelectTenant(),
     // const CalendarPage(),
-    const UnitPage(),
-
+    const EventPage(),
     //const SkillPage(),
     SettingPage(),
   ];
@@ -73,7 +70,8 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
         backgroundColor: AppColor.primaryColor,
         elevation: 4,
         onPressed: () {
-          Navigator.of(context).pushNamed(AppRoute.taskManager);
+          // Navigator.of(context).pushNamed(AppRoute.taskManager);
+
           // if (context.read<UserCubit>().currentUser?.role == UserRole.admin) {
           //   Navigator.of(context).pushNamed(AppRoute.eventOpening);
           // } else {
