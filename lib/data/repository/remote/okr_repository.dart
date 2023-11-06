@@ -64,7 +64,7 @@ abstract class OKRRepository {
   Future<ResponseWrapper<List<Unit>>> getAllUnits();
 
   Future<ResponseWrapper<List<UserEntity>>> getAllUsersInUnit(
-      {String? unitId, required int page, int pageSize = 10});
+      {String? unitId, required int page, int pageSize = 100});
 
   Future<ResponseWrapper<KeyResult>> getKeyResultDetails();
 

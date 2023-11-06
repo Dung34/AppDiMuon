@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -5,6 +7,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/task/task.dart';
+import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/list_view/primary_paged_list_view.dart';
 import '../../shared/widgets/text_field/primary_search_text_field.dart';
 import '../base/base_page_sate.dart';
@@ -22,13 +25,22 @@ class _TaskListPageState extends BasePageState<TaskListPage, TaskCubit> {
   final PagingController<int, Task> pagingController =
       PagingController(firstPageKey: 1);
   String? keyword;
+  late TaskListPageArgs args;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // cubit.getAllTask(page: 1);
+  // }
 
   @override
-  void initState() {
-    super.initState();
-    // cubit.getAllTask(page: 1);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    args = context.arguments as TaskListPageArgs;
     pagingController.addPageRequestListener((pageKey) {
-      cubit.getAllTask(page: pageKey, keyWord: keyword);
+      cubit.getAllTask(
+          page: pageKey, keyWord: keyword, keyResultId: args.keyResultId);
     });
   }
 

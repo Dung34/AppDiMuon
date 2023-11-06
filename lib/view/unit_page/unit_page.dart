@@ -88,7 +88,7 @@ class _UnitPageState extends BasePageState<UnitPage, UnitCubit> {
         const Row(
           children: [
             SizedBox(width: 10.0),
-            Text('Your Units', style: AppTextTheme.lexendBold24),
+            Text('True Active+', style: AppTextTheme.lexendBold24),
           ],
         ),
         const SizedBox(height: 12.0),

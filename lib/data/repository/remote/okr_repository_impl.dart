@@ -514,7 +514,7 @@ class OKRRepositoryImpl extends OKRRepository {
 
   @override
   Future<ResponseWrapper<List<UserEntity>>> getAllUsersInUnit(
-      {String? unitId, required int page, int pageSize = 10}) async {
+      {String? unitId, required int page, int pageSize = 100}) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get(

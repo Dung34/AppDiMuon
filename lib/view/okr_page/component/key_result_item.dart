@@ -59,64 +59,49 @@ class _KeyResultItemState extends State<KeyResultItem> {
       ),
       child: Container(
         constraints: BoxConstraints(
-            minHeight: context.screenWidth * 0.1,
-            minWidth: context.screenWidth - 10),
+            minHeight: context.screenWidth * 0.6 / 16 * 9,
+            maxWidth: context.screenWidth * 0.6),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0), color: AppColor.white),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text(widget.keyResult.title!, style: AppTextTheme.lexendBold24),
-              const SizedBox(width: 10.0),
-              CircularPercentIndicator(
-                  center: Center(
-                      child: Text(
-                    '${(widget.keyResult.actual ?? 0 / (widget.keyResult.target ?? 1) * 100).floor()}',
-                    style: AppTextTheme.robotoRegular14,
-                  )),
-                  lineWidth: 2.0,
-                  percent: widget.keyResult.actual ??
-                      0 / (widget.keyResult.target ?? 1),
-                  radius: 25.0),
-            ]),
-            Row(children: [
-              const Icon(Icons.key, color: AppColor.yellow),
-              PrimaryContainer(
-                padding: const EdgeInsets.all(8),
-                margin: const EdgeInsets.only(top: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.keyResult.key.toString(),
-                      style: AppTextTheme.lexendBold16,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                        'Due date: ${DateTimeUtils.formatDate(DateTime.now().toString())}')
-                  ],
+            borderRadius: BorderRadius.circular(10.0), color: AppColor.blue50),
+        padding: const EdgeInsets.all(12.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [
+                PrimaryContainer(
+                  padding: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.only(top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.keyResult.key.toString(),
+                        style: AppTextTheme.lexendBold16,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const Icon(Icons.checklist, color: AppColor.green200),
-              PrimaryContainer(
-                padding: const EdgeInsets.all(8),
-                margin: const EdgeInsets.only(top: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.keyResult.result.toString(),
-                      style: AppTextTheme.lexendBold16,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                        'Due date: ${DateTimeUtils.formatDate(DateTime.now().toString())}')
-                  ],
+                const SizedBox(width: 15),
+                PrimaryContainer(
+                  padding: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.only(top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.keyResult.result.toString(),
+                        style: AppTextTheme.lexendBold16,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ]),
-          ],
+              ]),
+              const SizedBox(height: 10),
+              Text(widget.keyResult.description!,
+                  style: AppTextTheme.robotoLight12),
+            ],
+          ),
         ),
       ),
     );

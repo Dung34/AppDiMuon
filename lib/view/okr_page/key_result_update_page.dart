@@ -34,7 +34,7 @@ class KeyResultUpdatePage extends StatelessWidget {
         actions: [
           PrimaryIconButton(
               context: context,
-              icon: Icons.add,
+              icon: Icons.edit,
               onPressed: () {
                 _onCreateKeyResultPressed(
                   KeyResult(
@@ -51,7 +51,7 @@ class KeyResultUpdatePage extends StatelessWidget {
               }),
           const SizedBox(width: 10.0),
         ],
-        title: "Thêm KeyResult",
+        title: "Sửa KeyResult",
       ),
       backgroundColor: AppColor.white,
       body: SingleChildScrollView(

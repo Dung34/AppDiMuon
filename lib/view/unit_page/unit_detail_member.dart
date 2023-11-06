@@ -10,18 +10,19 @@ import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import 'component/user_item.dart';
 import 'cubit/unit_cubit.dart';
+import 'unit_add_member.dart';
 
-class UnitAddMember extends StatefulWidget {
+class UnitDetailMember extends StatefulWidget {
   final Unit unit;
   final UnitCubit cubit;
 
-  const UnitAddMember({super.key, required this.unit, required this.cubit});
+  const UnitDetailMember({super.key, required this.unit, required this.cubit});
 
   @override
-  State<UnitAddMember> createState() => _UnitAddMember();
+  State<UnitDetailMember> createState() => _UnitDetailMember();
 }
 
-class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
+class _UnitDetailMember extends BasePageState<UnitDetailMember, UnitCubit> {
   List<UserEntity> members = [];
 
   @override
@@ -36,21 +37,27 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
 
     setCubit = widget.cubit;
 
-    cubit.getAllUser();
+    cubit.getAllUser(unitId: widget.unit.parrentId ?? widget.unit.id);
   }
 
   @override
   Widget buildPage(BuildContext context) {
     return Scaffold(
       appBar: PrimaryAppBar(
-        title: 'Thêm thành viên',
+        title: 'Danh sách thành viên',
         actions: [
           PrimaryIconButton(
             context: context,
-            icon: Assets.icAdd,
+            icon: Assets.icPeople,
             onPressed: () {
-              cubit.addUsersInUnit(widget.unit.id ?? '', members);
-              Navigator.pop(context);
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return UnitAddMember(
+                      unit: widget.unit,
+                      cubit: cubit,
+                    );
+                  });
             },
           ),
           const SizedBox(width: 10.0)
@@ -77,8 +84,8 @@ class _UnitAddMember extends BasePageState<UnitAddMember, UnitCubit> {
                       user: users[index],
                       cubit: cubit,
                       members: members,
-                      slidable: false,
-                      checkable: true,
+                      slidable: true,
+                      checkable: false,
                     );
                   },
                   itemCount: users.length,

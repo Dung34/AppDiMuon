@@ -54,6 +54,8 @@ import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
 
+import '../shared/widgets/something/primary_app_bar.dart';
+
 class AppRoute {
   static const String intro = "/intro";
   static const String splash = "/";
@@ -157,6 +159,14 @@ class AppRoute {
   }
 }
 
+class AppBarArgs {
+  final String? imageUrl;
+  final String? title;
+  final int totalMembersCount;
+
+  const AppBarArgs({this.imageUrl, this.title, this.totalMembersCount = 0});
+}
+
 class EventDetailPageArgs {
   final String eventId;
   final EventCubit eventCubit;
@@ -207,13 +217,15 @@ class ObjectiveDetailPageArgs {
   final String okrsId;
   final OkrCubit cubit;
   final bool isAdmin;
+  final AppBarArgs? appBarArgs;
 
   const ObjectiveDetailPageArgs(
       {this.name,
       required this.objectiveId,
       required this.okrsId,
       required this.cubit,
-      required this.isAdmin});
+      required this.isAdmin,
+      this.appBarArgs});
 }
 
 class ProjectDetailPageArgs {
@@ -269,6 +281,12 @@ class TargetPageArgs {
   final TargetCubit targetCubit;
   TargetPageArgs(
       {required this.addNew, this.target, required this.targetCubit});
+}
+
+class TaskListPageArgs {
+  final String? keyResultId;
+
+  TaskListPageArgs({required this.keyResultId});
 }
 
 class QrScannerPageArgs {

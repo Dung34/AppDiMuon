@@ -8,6 +8,7 @@ import '../../../shared/utils/date_time_utils.dart';
 import '../../../shared/widgets/container/primary_container.dart';
 import '../cubit/okr_cubit.dart';
 import '../objective_update_page.dart';
+import 'key_result_item.dart';
 
 // ignore: must_be_immutable
 class ObjectiveItem extends StatefulWidget {
@@ -70,9 +71,6 @@ class _ObjectiveItemState extends State<ObjectiveItem> {
             )
           : null,
       child: Container(
-        constraints: BoxConstraints(
-            minHeight: context.screenWidth * 0.1,
-            minWidth: context.screenWidth - 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0), color: AppColor.white),
         child: Row(children: [
@@ -91,20 +89,72 @@ class _ObjectiveItemState extends State<ObjectiveItem> {
                     });
                   })
               : Container(),
-          PrimaryContainer(
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.only(top: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.objective.title.toString(),
-                  style: AppTextTheme.lexendBold16,
-                ),
-                const SizedBox(height: 10),
-                Text(
-                    'Due date: ${DateTimeUtils.formatDate(DateTime.now().toString())}')
+          Expanded(
+            child: PrimaryContainer(
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 15,
+                    color: Colors.black.withOpacity(0.1),
+                    offset: const Offset(1, 1),
+                    spreadRadius: 1)
               ],
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.only(top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: AppColor.blue50,
+                        borderRadius: BorderRadius.circular(15)),
+                    padding: const EdgeInsets.all(15),
+                    child: Row(children: [
+                      CircularPercentIndicator(
+                        center:
+                            const Text('60%', style: AppTextTheme.robotoBold16),
+                        lineWidth: 7,
+                        percent: 0.6,
+                        progressColor: AppColor.green200,
+                        radius: context.screenWidth * 55 / 428,
+                      ),
+                      const SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('${widget.objective.title}',
+                              style: AppTextTheme.lexendBold16
+                                  .copyWith(color: AppColor.green400)),
+                          const SizedBox(height: 10),
+                          Text('${widget.objective.description}',
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextTheme.robotoLight12)
+                        ],
+                      ),
+                      // const Flexible(child: Spacer()),
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Due date:',
+                              style: AppTextTheme.robotoRegular14
+                                  .copyWith(color: AppColor.gray300)),
+                          Text(
+                            DateTimeUtils.formatDate(DateTime.now().toString()),
+                            style: AppTextTheme.robotoMedium14
+                                .copyWith(color: AppColor.black),
+                          )
+                        ],
+                      ),
+                      const Spacer(),
+                      const Text('10 người khác')
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ]),
