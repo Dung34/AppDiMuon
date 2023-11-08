@@ -12,6 +12,8 @@ import '../event_page/event_page.dart';
 import '../membership/membership_page.dart';
 import '../select_tenant/select_tenant_page.dart';
 import '../setting_page/setting_page.dart';
+import '../task_management/to_do_screen/manage_to_do.dart';
+import '../task_management/to_do_screen/to_do_screen.dart';
 import '../unit_page/unit_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -57,7 +59,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     const MembershipPage(),
     //const SelectTenant(),
     // const CalendarPage(),
-    const EventPage(),
+    const ManageToDoTask(),
     //const SkillPage(),
     SettingPage(),
   ];

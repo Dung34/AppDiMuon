@@ -22,6 +22,7 @@ class SelectTenant extends StatefulWidget {
 class _SelectTenantState extends BasePageState<SelectTenant, TenantCubit> {
   @override
   void didChangeDependencies() {
+    userCubit.getUser();
     cubit.getAllTenant();
     super.didChangeDependencies();
     listTenants = cubit.listTenants;
