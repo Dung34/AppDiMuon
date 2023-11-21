@@ -14,7 +14,7 @@ import '../../data/repository/remote/repository.dart';
 import '../../data/resources/resources.dart';
 import '../../di/di.dart';
 import '../../domain/entity/skill/skill.dart';
-import '../../shared/widgets/list_view/animation_listview.dart';
+
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
@@ -31,7 +31,7 @@ class SkillPage extends StatefulWidget {
 class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
   final UserRepository userRepository = getIt.get<UserRepository>();
   final LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
-  RefreshController _refreshController =
+  final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   @override
   void didChangeDependencies() {
@@ -77,10 +77,10 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
         if (listSkill.isNotEmpty) {
           return SmartRefresher(
             controller: _refreshController,
-            header: WaterDropMaterialHeader(),
+            header: const WaterDropMaterialHeader(),
             onRefresh: () async {
               cubit.getAllSkill();
-              await Future.delayed(Duration(milliseconds: 1000));
+              await Future.delayed(const Duration(milliseconds: 1000));
               _refreshController.refreshCompleted();
             },
             child: ListView.builder(
@@ -90,7 +90,7 @@ class _SkillPageState extends BasePageState<SkillPage, SkillCubit> {
             ),
           );
         }
-        return NoData();
+        return const NoData();
       },
     );
   }

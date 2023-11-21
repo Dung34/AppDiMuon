@@ -6,7 +6,7 @@ import '../../data/repository/local/local_data_access.dart';
 import '../../data/resources/colors.dart';
 import '../../data/resources/themes.dart';
 import '../../di/di.dart';
-import '../../shared/etx/app_ext.dart';
+
 import '../../shared/widgets/button/back_button.dart';
 import '../../shared/widgets/list_view/animation_listview.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -44,8 +44,8 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
               top: 20, bottom: 8.0, left: 8.0, right: 8.0),
           child: Row(
             children: [
-              BackButtonCustom(),
-              Text(
+              const BackButtonCustom(),
+              const Text(
                 "Báo cáo hằng ngày",
                 style: AppTextTheme.robotoMedium18,
               ),
@@ -54,7 +54,7 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoute.addReport);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add,
                     color: AppColor.fourth700,
                   ))
@@ -75,7 +75,7 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ReportItems(reportDaily: reportDaily),
-                    Divider(thickness: 2.0, color: AppColor.fourth300),
+                    const Divider(thickness: 2.0, color: AppColor.fourth300),
                     if (index == listReport.length - 1)
                       const SizedBox(height: 100),
                   ],
@@ -104,7 +104,7 @@ class _ReportPageState extends BasePageState<ReportPage, ReportCubit> {
               //   },
               // );
             } else {
-              return NoData();
+              return const NoData();
             }
           },
         ))

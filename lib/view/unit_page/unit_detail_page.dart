@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,7 +34,6 @@ class UnitDetailPage extends StatefulWidget {
 class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
   late final UnitDetailPageArgs args;
   late Unit unit;
-
   @override
   bool get isUseLoading => true;
 
@@ -71,6 +72,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
             current is UnitResetState,
         builder: (context, state) {
           if (state is UnitGetUnitDetailSuccessState) {
+            log(state.toString());
             unit = state.unit;
             totalMembersCount = unit.totalMemberCount ?? 0;
 
@@ -292,6 +294,7 @@ class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
                                         context: context,
                                         icon: Icons.add_outlined,
                                         onPressed: () {
+                                          log(state.toString());
                                           _onCreateObjectivePressed(
                                               unit.okRsId!,
                                               args.id,

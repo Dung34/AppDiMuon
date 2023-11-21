@@ -6,8 +6,7 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../config/routes.dart';
 import '../../domain/entity/target/target.dart';
-import '../../shared/widgets/list_view/animation_listview.dart';
-import '../../shared/widgets/something/no_data.dart';
+
 import '../../shared/widgets/something/primary_app_bar.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/target/target_cubit.dart';
@@ -21,11 +20,10 @@ class TargetPage extends StatefulWidget {
 }
 
 class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
-  RefreshController _refreshController =
+  final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     cubit.getAllTarget();
     setAppBar = PrimaryAppBar(
@@ -37,7 +35,7 @@ class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
               Navigator.pushNamed(context, AppRoute.targetUpdatePage,
                   arguments: TargetPageArgs(addNew: true, targetCubit: cubit));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.add,
               color: Colors.black,
             ))
@@ -67,11 +65,11 @@ class _TargetPageState extends BasePageState<TargetPage, TargetCubit> {
 
         return SmartRefresher(
           controller: _refreshController,
-          header: WaterDropMaterialHeader(),
+          header: const WaterDropMaterialHeader(),
           onRefresh: () async {
             cubit.getAllTarget();
 
-            await Future.delayed(Duration(milliseconds: 1000));
+            await Future.delayed(const Duration(milliseconds: 1000));
             _refreshController.refreshCompleted();
           },
           child: ListView.builder(
