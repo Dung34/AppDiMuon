@@ -11,7 +11,7 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    // final screenWidth = MediaQuery.of(context).size.width;
     final controller = PageController();
     return Scaffold(
       backgroundColor: AppColor.primaryBackgroundColor,
@@ -22,12 +22,12 @@ class IntroPage extends StatelessWidget {
           children: [
             SizedBox(
               child: Padding(
-                padding: EdgeInsets.only(left: 240, top: 10),
+                padding: const EdgeInsets.only(left: 240, top: 10),
                 child: TextButton(
                   onPressed: (() {
                     Navigator.pushNamed(context, AppRoute.login);
                   }),
-                  child: Text("Bỏ qua"),
+                  child: const Text("Bỏ qua"),
                 ),
               ),
             ),

@@ -32,8 +32,7 @@ abstract class OKRRepository {
   Future<ResponseWrapper<int>> deleteUserInUnit(
       String unitId, List<String>? memberIds);
 
-  Future<ResponseWrapper<OKR>> getOKRDetail(
-      {required String okrId, required String unitId});
+  Future<ResponseWrapper<OKR>> getOKRDetail({String? okrId, String? unitId});
 
   Future<ResponseWrapper<List<Objective>>> getAllChildObjectiveOfAnObjective();
 
@@ -61,7 +60,8 @@ abstract class OKRRepository {
 
   Future<ResponseWrapper<List<Task>>> getAllTaskOfSubtask();
 
-  Future<ResponseWrapper<List<Unit>>> getAllUnits();
+  Future<ResponseWrapper<List<Unit>>> getAllUnits(
+      {String? tenantId, String? owner, int? status});
 
   Future<ResponseWrapper<List<UserEntity>>> getAllUsersInUnit(
       {String? unitId, required int page, int pageSize = 100});

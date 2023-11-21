@@ -36,7 +36,7 @@ class TenantRepositoryImplement implements TenantRepository {
     accessToken = await localDataAccess.getAccessToken();
     final userId = localDataAccess.getUserId();
     try {
-      final response = await dio.get("/get-all-tenant-by-userID",
+      final response = await dio.get(EndPoints.getAllTenant,
           queryParameters: {"UserId": userId},
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       if (response.statusCode == 200) {
@@ -46,6 +46,27 @@ class TenantRepositoryImplement implements TenantRepository {
       } else {
         return ResponseWrapper.error(message: "");
       }
+    } catch (e) {
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<Tenant>> getTenantDetail() async {
+    accessToken = await localDataAccess.getAccessToken();
+    final tenantId = localDataAccess.getTenantId();
+
+    try {
+      final response = await dio.get(EndPoints.getTenantDetail,
+          queryParameters: {"TenantId": tenantId},
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: _tenatMapper
+                .mapToEntity(TenantResponse.fromJson(response.data)));
+      }
+      return ResponseWrapper.error(message: "");
     } catch (e) {
       return ResponseWrapper.error(message: "");
     }

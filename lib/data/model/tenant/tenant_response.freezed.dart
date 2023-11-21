@@ -22,8 +22,8 @@ TenantResponse _$TenantResponseFromJson(Map<String, dynamic> json) {
 mixin _$TenantResponse {
   String? get tenantName => throw _privateConstructorUsedError;
   set tenantName(String? value) => throw _privateConstructorUsedError;
-  String? get tenantId => throw _privateConstructorUsedError;
-  set tenantId(String? value) => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  set id(String? value) => throw _privateConstructorUsedError;
   String? get redirecUrl => throw _privateConstructorUsedError;
   set redirecUrl(String? value) => throw _privateConstructorUsedError;
   String? get createBy => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $TenantResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {String? tenantName,
-      String? tenantId,
+      String? id,
       String? redirecUrl,
       String? createBy,
       String? createDate});
@@ -65,7 +65,7 @@ class _$TenantResponseCopyWithImpl<$Res, $Val extends TenantResponse>
   @override
   $Res call({
     Object? tenantName = freezed,
-    Object? tenantId = freezed,
+    Object? id = freezed,
     Object? redirecUrl = freezed,
     Object? createBy = freezed,
     Object? createDate = freezed,
@@ -75,9 +75,9 @@ class _$TenantResponseCopyWithImpl<$Res, $Val extends TenantResponse>
           ? _value.tenantName
           : tenantName // ignore: cast_nullable_to_non_nullable
               as String?,
-      tenantId: freezed == tenantId
-          ? _value.tenantId
-          : tenantId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       redirecUrl: freezed == redirecUrl
           ? _value.redirecUrl
@@ -105,7 +105,7 @@ abstract class _$$TenantResponseImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? tenantName,
-      String? tenantId,
+      String? id,
       String? redirecUrl,
       String? createBy,
       String? createDate});
@@ -123,7 +123,7 @@ class __$$TenantResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tenantName = freezed,
-    Object? tenantId = freezed,
+    Object? id = freezed,
     Object? redirecUrl = freezed,
     Object? createBy = freezed,
     Object? createDate = freezed,
@@ -133,9 +133,9 @@ class __$$TenantResponseImplCopyWithImpl<$Res>
           ? _value.tenantName
           : tenantName // ignore: cast_nullable_to_non_nullable
               as String?,
-      tenantId: freezed == tenantId
-          ? _value.tenantId
-          : tenantId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       redirecUrl: freezed == redirecUrl
           ? _value.redirecUrl
@@ -158,7 +158,7 @@ class __$$TenantResponseImplCopyWithImpl<$Res>
 class _$TenantResponseImpl implements _TenantResponse {
   _$TenantResponseImpl(
       {this.tenantName,
-      this.tenantId,
+      this.id,
       this.redirecUrl,
       this.createBy,
       this.createDate});
@@ -169,7 +169,7 @@ class _$TenantResponseImpl implements _TenantResponse {
   @override
   String? tenantName;
   @override
-  String? tenantId;
+  String? id;
   @override
   String? redirecUrl;
   @override
@@ -179,7 +179,7 @@ class _$TenantResponseImpl implements _TenantResponse {
 
   @override
   String toString() {
-    return 'TenantResponse(tenantName: $tenantName, tenantId: $tenantId, redirecUrl: $redirecUrl, createBy: $createBy, createDate: $createDate)';
+    return 'TenantResponse(tenantName: $tenantName, id: $id, redirecUrl: $redirecUrl, createBy: $createBy, createDate: $createDate)';
   }
 
   @JsonKey(ignore: true)
@@ -200,7 +200,7 @@ class _$TenantResponseImpl implements _TenantResponse {
 abstract class _TenantResponse implements TenantResponse {
   factory _TenantResponse(
       {String? tenantName,
-      String? tenantId,
+      String? id,
       String? redirecUrl,
       String? createBy,
       String? createDate}) = _$TenantResponseImpl;
@@ -212,8 +212,8 @@ abstract class _TenantResponse implements TenantResponse {
   String? get tenantName;
   set tenantName(String? value);
   @override
-  String? get tenantId;
-  set tenantId(String? value);
+  String? get id;
+  set id(String? value);
   @override
   String? get redirecUrl;
   set redirecUrl(String? value);

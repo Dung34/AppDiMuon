@@ -20,15 +20,22 @@ UnitResponse _$UnitResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UnitResponse {
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get parentId => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get coverImage => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
-  String? get createdDate => throw _privateConstructorUsedError;
   int? get totalMemberCount => throw _privateConstructorUsedError;
   List<Unit>? get subUnit => throw _privateConstructorUsedError;
   String? get okRsId => throw _privateConstructorUsedError;
+  String? get tenantId => throw _privateConstructorUsedError;
+  String? get startDate => throw _privateConstructorUsedError;
+  String? get endDate => throw _privateConstructorUsedError;
+  int? get totalTask => throw _privateConstructorUsedError;
+  int? get taskDone => throw _privateConstructorUsedError;
+  String? get owner => throw _privateConstructorUsedError; // dynamic status,
+  String? get createdBy => throw _privateConstructorUsedError;
+  String? get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,15 +50,22 @@ abstract class $UnitResponseCopyWith<$Res> {
       _$UnitResponseCopyWithImpl<$Res, UnitResponse>;
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? parentId,
       String? description,
       String? coverImage,
-      String? id,
-      String? createdDate,
       int? totalMemberCount,
       List<Unit>? subUnit,
-      String? okRsId});
+      String? okRsId,
+      String? tenantId,
+      String? startDate,
+      String? endDate,
+      int? totalTask,
+      int? taskDone,
+      String? owner,
+      String? createdBy,
+      String? createdDate});
 }
 
 /// @nodoc
@@ -67,17 +81,28 @@ class _$UnitResponseCopyWithImpl<$Res, $Val extends UnitResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? parentId = freezed,
     Object? description = freezed,
     Object? coverImage = freezed,
-    Object? id = freezed,
-    Object? createdDate = freezed,
     Object? totalMemberCount = freezed,
     Object? subUnit = freezed,
     Object? okRsId = freezed,
+    Object? tenantId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? totalTask = freezed,
+    Object? taskDone = freezed,
+    Object? owner = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -94,14 +119,6 @@ class _$UnitResponseCopyWithImpl<$Res, $Val extends UnitResponse>
           ? _value.coverImage
           : coverImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
       totalMemberCount: freezed == totalMemberCount
           ? _value.totalMemberCount
           : totalMemberCount // ignore: cast_nullable_to_non_nullable
@@ -113,6 +130,38 @@ class _$UnitResponseCopyWithImpl<$Res, $Val extends UnitResponse>
       okRsId: freezed == okRsId
           ? _value.okRsId
           : okRsId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tenantId: freezed == tenantId
+          ? _value.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTask: freezed == totalTask
+          ? _value.totalTask
+          : totalTask // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taskDone: freezed == taskDone
+          ? _value.taskDone
+          : taskDone // ignore: cast_nullable_to_non_nullable
+              as int?,
+      owner: freezed == owner
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -127,15 +176,22 @@ abstract class _$$UnitResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? parentId,
       String? description,
       String? coverImage,
-      String? id,
-      String? createdDate,
       int? totalMemberCount,
       List<Unit>? subUnit,
-      String? okRsId});
+      String? okRsId,
+      String? tenantId,
+      String? startDate,
+      String? endDate,
+      int? totalTask,
+      int? taskDone,
+      String? owner,
+      String? createdBy,
+      String? createdDate});
 }
 
 /// @nodoc
@@ -149,17 +205,28 @@ class __$$UnitResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? parentId = freezed,
     Object? description = freezed,
     Object? coverImage = freezed,
-    Object? id = freezed,
-    Object? createdDate = freezed,
     Object? totalMemberCount = freezed,
     Object? subUnit = freezed,
     Object? okRsId = freezed,
+    Object? tenantId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? totalTask = freezed,
+    Object? taskDone = freezed,
+    Object? owner = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
   }) {
     return _then(_$UnitResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -176,14 +243,6 @@ class __$$UnitResponseImplCopyWithImpl<$Res>
           ? _value.coverImage
           : coverImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as String?,
       totalMemberCount: freezed == totalMemberCount
           ? _value.totalMemberCount
           : totalMemberCount // ignore: cast_nullable_to_non_nullable
@@ -196,6 +255,38 @@ class __$$UnitResponseImplCopyWithImpl<$Res>
           ? _value.okRsId
           : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
+      tenantId: freezed == tenantId
+          ? _value.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTask: freezed == totalTask
+          ? _value.totalTask
+          : totalTask // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taskDone: freezed == taskDone
+          ? _value.taskDone
+          : taskDone // ignore: cast_nullable_to_non_nullable
+              as int?,
+      owner: freezed == owner
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -204,20 +295,29 @@ class __$$UnitResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UnitResponseImpl implements _UnitResponse {
   _$UnitResponseImpl(
-      {this.name,
+      {this.id,
+      this.name,
       this.parentId,
       this.description,
       this.coverImage,
-      this.id,
-      this.createdDate,
       this.totalMemberCount,
       final List<Unit>? subUnit,
-      this.okRsId})
+      this.okRsId,
+      this.tenantId,
+      this.startDate,
+      this.endDate,
+      this.totalTask,
+      this.taskDone,
+      this.owner,
+      this.createdBy,
+      this.createdDate})
       : _subUnit = subUnit;
 
   factory _$UnitResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$UnitResponseImplFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String? name;
   @override
@@ -226,10 +326,6 @@ class _$UnitResponseImpl implements _UnitResponse {
   final String? description;
   @override
   final String? coverImage;
-  @override
-  final String? id;
-  @override
-  final String? createdDate;
   @override
   final int? totalMemberCount;
   final List<Unit>? _subUnit;
@@ -244,10 +340,27 @@ class _$UnitResponseImpl implements _UnitResponse {
 
   @override
   final String? okRsId;
+  @override
+  final String? tenantId;
+  @override
+  final String? startDate;
+  @override
+  final String? endDate;
+  @override
+  final int? totalTask;
+  @override
+  final int? taskDone;
+  @override
+  final String? owner;
+// dynamic status,
+  @override
+  final String? createdBy;
+  @override
+  final String? createdDate;
 
   @override
   String toString() {
-    return 'UnitResponse(name: $name, parentId: $parentId, description: $description, coverImage: $coverImage, id: $id, createdDate: $createdDate, totalMemberCount: $totalMemberCount, subUnit: $subUnit, okRsId: $okRsId)';
+    return 'UnitResponse(id: $id, name: $name, parentId: $parentId, description: $description, coverImage: $coverImage, totalMemberCount: $totalMemberCount, subUnit: $subUnit, okRsId: $okRsId, tenantId: $tenantId, startDate: $startDate, endDate: $endDate, totalTask: $totalTask, taskDone: $taskDone, owner: $owner, createdBy: $createdBy, createdDate: $createdDate)';
   }
 
   @override
@@ -255,6 +368,7 @@ class _$UnitResponseImpl implements _UnitResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UnitResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.parentId, parentId) ||
                 other.parentId == parentId) &&
@@ -262,28 +376,46 @@ class _$UnitResponseImpl implements _UnitResponse {
                 other.description == description) &&
             (identical(other.coverImage, coverImage) ||
                 other.coverImage == coverImage) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
             (identical(other.totalMemberCount, totalMemberCount) ||
                 other.totalMemberCount == totalMemberCount) &&
             const DeepCollectionEquality().equals(other._subUnit, _subUnit) &&
-            (identical(other.okRsId, okRsId) || other.okRsId == okRsId));
+            (identical(other.okRsId, okRsId) || other.okRsId == okRsId) &&
+            (identical(other.tenantId, tenantId) ||
+                other.tenantId == tenantId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.totalTask, totalTask) ||
+                other.totalTask == totalTask) &&
+            (identical(other.taskDone, taskDone) ||
+                other.taskDone == taskDone) &&
+            (identical(other.owner, owner) || other.owner == owner) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       parentId,
       description,
       coverImage,
-      id,
-      createdDate,
       totalMemberCount,
       const DeepCollectionEquality().hash(_subUnit),
-      okRsId);
+      okRsId,
+      tenantId,
+      startDate,
+      endDate,
+      totalTask,
+      taskDone,
+      owner,
+      createdBy,
+      createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -301,19 +433,28 @@ class _$UnitResponseImpl implements _UnitResponse {
 
 abstract class _UnitResponse implements UnitResponse {
   factory _UnitResponse(
-      {final String? name,
+      {final String? id,
+      final String? name,
       final String? parentId,
       final String? description,
       final String? coverImage,
-      final String? id,
-      final String? createdDate,
       final int? totalMemberCount,
       final List<Unit>? subUnit,
-      final String? okRsId}) = _$UnitResponseImpl;
+      final String? okRsId,
+      final String? tenantId,
+      final String? startDate,
+      final String? endDate,
+      final int? totalTask,
+      final int? taskDone,
+      final String? owner,
+      final String? createdBy,
+      final String? createdDate}) = _$UnitResponseImpl;
 
   factory _UnitResponse.fromJson(Map<String, dynamic> json) =
       _$UnitResponseImpl.fromJson;
 
+  @override
+  String? get id;
   @override
   String? get name;
   @override
@@ -323,15 +464,27 @@ abstract class _UnitResponse implements UnitResponse {
   @override
   String? get coverImage;
   @override
-  String? get id;
-  @override
-  String? get createdDate;
-  @override
   int? get totalMemberCount;
   @override
   List<Unit>? get subUnit;
   @override
   String? get okRsId;
+  @override
+  String? get tenantId;
+  @override
+  String? get startDate;
+  @override
+  String? get endDate;
+  @override
+  int? get totalTask;
+  @override
+  int? get taskDone;
+  @override
+  String? get owner;
+  @override // dynamic status,
+  String? get createdBy;
+  @override
+  String? get createdDate;
   @override
   @JsonKey(ignore: true)
   _$$UnitResponseImplCopyWith<_$UnitResponseImpl> get copyWith =>

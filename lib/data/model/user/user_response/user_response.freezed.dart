@@ -24,6 +24,7 @@ mixin _$UserResponse {
   String? get login => throw _privateConstructorUsedError;
   String? get referralCode => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $UserResponseCopyWith<$Res> {
       String? login,
       String? referralCode,
       String? firstName,
+      String? lastName,
       String? fullName,
       String? email,
       String? phoneNumber,
@@ -85,6 +87,7 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
     Object? login = freezed,
     Object? referralCode = freezed,
     Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
@@ -114,6 +117,10 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       fullName: freezed == fullName
           ? _value.fullName
@@ -180,6 +187,7 @@ abstract class _$$UserReponseImplCopyWith<$Res>
       String? login,
       String? referralCode,
       String? firstName,
+      String? lastName,
       String? fullName,
       String? email,
       String? phoneNumber,
@@ -209,6 +217,7 @@ class __$$UserReponseImplCopyWithImpl<$Res>
     Object? login = freezed,
     Object? referralCode = freezed,
     Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
@@ -238,6 +247,10 @@ class __$$UserReponseImplCopyWithImpl<$Res>
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       fullName: freezed == fullName
           ? _value.fullName
@@ -299,6 +312,7 @@ class _$UserReponseImpl implements _UserReponse {
       this.login,
       this.referralCode,
       this.firstName,
+      this.lastName,
       this.fullName,
       this.email,
       this.phoneNumber,
@@ -324,6 +338,8 @@ class _$UserReponseImpl implements _UserReponse {
   final String? referralCode;
   @override
   final String? firstName;
+  @override
+  final String? lastName;
   @override
   final String? fullName;
   @override
@@ -359,7 +375,7 @@ class _$UserReponseImpl implements _UserReponse {
 
   @override
   String toString() {
-    return 'UserResponse(id: $id, login: $login, referralCode: $referralCode, firstName: $firstName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities, membershipType: $membershipType)';
+    return 'UserResponse(id: $id, login: $login, referralCode: $referralCode, firstName: $firstName, lastName: $lastName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl, activated: $activated, langKey: $langKey, createdBy: $createdBy, createdDate: $createdDate, lastModifiedBy: $lastModifiedBy, lastModifiedDate: $lastModifiedDate, authorities: $authorities, membershipType: $membershipType)';
   }
 
   @override
@@ -373,6 +389,8 @@ class _$UserReponseImpl implements _UserReponse {
                 other.referralCode == referralCode) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.email, email) || other.email == email) &&
@@ -405,6 +423,7 @@ class _$UserReponseImpl implements _UserReponse {
       login,
       referralCode,
       firstName,
+      lastName,
       fullName,
       email,
       phoneNumber,
@@ -438,6 +457,7 @@ abstract class _UserReponse implements UserResponse {
       final String? login,
       final String? referralCode,
       final String? firstName,
+      final String? lastName,
       final String? fullName,
       final String? email,
       final String? phoneNumber,
@@ -462,6 +482,8 @@ abstract class _UserReponse implements UserResponse {
   String? get referralCode;
   @override
   String? get firstName;
+  @override
+  String? get lastName;
   @override
   String? get fullName;
   @override

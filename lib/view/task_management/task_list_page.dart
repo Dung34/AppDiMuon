@@ -30,7 +30,7 @@ class _TaskListPageState extends BasePageState<TaskListPage, TaskCubit> {
   // @override
   // void initState() {
   //   super.initState();
-  //   // cubit.getAllTask(page: 1);
+  //   cubit.getAllTask(page: 1);
   // }
 
   @override
@@ -60,8 +60,7 @@ class _TaskListPageState extends BasePageState<TaskListPage, TaskCubit> {
             context,
             AppRoute.taskCreate,
             arguments: TaskCreatePageArgs(
-              taskCubit: cubit,
-            ),
+                taskCubit: cubit, keyResultId: args.keyResultId),
           );
         },
         child: const Icon(

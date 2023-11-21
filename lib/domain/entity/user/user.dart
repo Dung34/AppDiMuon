@@ -8,6 +8,8 @@ class UserEntity with _$UserEntity {
   factory UserEntity({
     String? id,
     String? login,
+    String? firstName,
+    String? lastName,
     String? fullName,
     String? email,
     String? phoneNumber,

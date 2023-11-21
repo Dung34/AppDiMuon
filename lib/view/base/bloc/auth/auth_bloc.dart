@@ -115,6 +115,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         localDataAccess.setRefreshToken(response.data?.refreshToken ?? '');
         localDataAccess.setUsername(event.username.toString());
         localDataAccess.setAccountRemember(_rememberMe);
+
+        final idResponse = await userRepository.getUser();
+        localDataAccess.setUserId(idResponse.data?.id ?? '');
+
         emit(AuthLoginSuccessState());
       } else if (response.status == ResponseStatus.error) {
         emit(AuthLoginFailedState(message: response.message));

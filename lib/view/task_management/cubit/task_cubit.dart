@@ -10,6 +10,7 @@ part 'task_state.dart';
 
 class TaskCubit extends Cubit<TaskState> {
   final OKRRepository _okrRepository = getIt.get();
+  final String userId = "";
 
   TaskCubit() : super(TaskInitial());
 

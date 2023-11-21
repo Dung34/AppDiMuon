@@ -46,6 +46,7 @@ class SharedPreferenceKey {
   static const String rememberMe = "rememberMe";
   static const String userId = "userId";
   static const String tenantId = "tenantId";
+  static const String tenantName = "tenantName";
 }
 
 class ProjectStatus {
@@ -85,3 +86,27 @@ class TaskPriorityStr {
   static const String high = 'High';
   static const String immediate = 'Immediate';
 }
+
+final List<String> statusTabs = [
+      'Status',
+      'PROCESSING',
+      'DONE',
+      'AT RISK',
+      'BEHIND',
+      'POSTPONED'
+    ],
+    ownerTabs = ['Owner       '],
+    processingTabs = [
+      'Processing',
+      '0%',
+      '10%',
+      '20%',
+      '30%',
+      '40%',
+      '50%',
+      '60%',
+      '70%',
+      '80%',
+      '90%',
+      '100%'
+    ];

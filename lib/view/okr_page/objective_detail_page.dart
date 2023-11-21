@@ -5,8 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../config/routes.dart';
 import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/key_result/key_result.dart';
+import '../../domain/entity/okr/objective/objective.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
+import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -45,24 +47,15 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
       appBar: PrimaryAppBar(
         actions: args.isAdmin
             ? [
-                Center(
-                  child: Text(
-                    '${args.appBarArgs?.totalMembersCount}',
-                    style: AppTextTheme.robotoMedium14
-                        .copyWith(color: AppColor.green200),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(width: 5),
                 PrimaryIconButton(
                   context: context,
-                  icon: Assets.icPeople,
-                  iconColor: AppColor.green200,
+                  icon: Assets.icMenuDot,
                   onPressed: () {},
                 ),
               ]
             : null,
         backgroundColor: AppColor.white,
+        elevation: 2,
         leading: Row(
           children: [
             const SizedBox(width: 10),
@@ -73,191 +66,284 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
                 Navigator.pop(context);
               },
             ),
-            const SizedBox(width: 10),
-            Container(
-              decoration: const BoxDecoration(
-                  border: Border.fromBorderSide(
-                      BorderSide(color: AppColor.green200))),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: PrimaryNetworkImage(
-                      imageUrl: args.appBarArgs?.imageUrl,
-                      height: context.screenWidth * 0.093,
-                      width: context.screenWidth * 0.093)),
+          ],
+        ),
+        leadingWidth: context.screenWidth * 0.093,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('${args.name}', style: AppTextTheme.lexendBold18),
+            Row(
+              children: [
+                SvgPicture.asset(Assets.icArrowActionForward2),
+                const Text(' Objective ', style: AppTextTheme.lexend),
+                Text('from ',
+                    style: AppTextTheme.lexendRegular14
+                        .copyWith(color: AppColor.gray200)),
+                Text('${args.parentUnit}', style: AppTextTheme.lexendBold14)
+              ],
             )
           ],
         ),
-        leadingWidth: context.screenWidth * 0.093 + 50,
-        title: args.appBarArgs?.title,
       ),
       backgroundColor: AppColor.gray50,
-      body: BlocProvider.value(
-        value: cubit,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: AppColor.white),
-            padding: const EdgeInsets.all(12.0),
+      body: Stack(children: [
+        Positioned(
+            left: -16,
+            top: context.screenHeight * 0.19,
+            child: Image.asset(Assets.bgObjectiveDetail,
+                height: context.screenHeight * 0.56,
+                width: context.screenWidth * 0.7)),
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocBuilder<OkrCubit, OkrState>(
-                    buildWhen: (previous, current) =>
-                        current is OkrInitial ||
-                        current is OkrGetObjectiveDetailsSuccessState,
-                    builder: (context, state) {
-                      if (state is OkrGetObjectiveDetailsSuccessState) {
-                        final objectives = state.objective.relatedObjective;
-
-                        return Column(
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 1,
+                            color: AppColor.black.withOpacity(0.1),
+                            offset: const Offset(1, 1),
+                            spreadRadius: 1)
+                      ],
+                      color: AppColor.white),
+                  padding: const EdgeInsets.only(
+                      top: 20, bottom: 20, left: 10, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          PrimaryNetworkImage(
+                              height: 46, imageUrl: '', width: 46),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Tạm thời API chưa sửa xong',
+                                    style: AppTextTheme.lexendBold16
+                                        .copyWith(color: AppColor.darkGray)),
+                                SizedBox(
+                                  width: context.screenWidth * 0.7,
+                                  child: Text(
+                                    'Project manager     ID: Tạm thời API chưa sửa xong',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextTheme.lexendLight14,
+                                  ),
+                                )
+                              ]),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          const Expanded(
+                              child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 9),
-                              Row(
-                                children: [
-                                  CircularPercentIndicator(
-                                    center: const Text('60%',
-                                        style: AppTextTheme.robotoBold16),
-                                    lineWidth: 7,
-                                    percent: 0.6,
-                                    progressColor: AppColor.green200,
-                                    radius: context.screenWidth * 55 / 428,
-                                  ),
-                                  const SizedBox(width: 15),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(state.objective.title ?? '',
-                                          style: AppTextTheme.lexendBold16
-                                              .copyWith(
-                                                  color: AppColor.green400)),
-                                      Text(state.objective.description ?? '',
-                                          style: AppTextTheme.robotoLight12)
-                                    ],
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 12.0),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(Assets.icObjective),
-                                  const Text('Objectives liên quan',
-                                      style: AppTextTheme.robotoMedium14),
-                                ],
-                              ),
-                              objectives!.isNotEmpty
-                                  ? ListView.builder(
+                              Text('Start Date',
+                                  style: AppTextTheme.lexendLight14),
+                              SizedBox(height: 4),
+                              Text('End Date',
+                                  style: AppTextTheme.lexendLight14),
+                              SizedBox(height: 4),
+                              Text('Target', style: AppTextTheme.lexendLight14)
+                            ],
+                          )),
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Tạm thời API chưa sửa xong',
+                                  style: AppTextTheme.lexendRegular14),
+                              const SizedBox(height: 4),
+                              Text('Tạm thời API chưa sửa xong',
+                                  style: AppTextTheme.lexendRegular14),
+                              const SizedBox(height: 4),
+                              Text('Tạm thời API chưa sửa xong',
+                                  style: AppTextTheme.lexendRegular14)
+                            ],
+                          ))
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text('SCORE', style: AppTextTheme.lexendBold18),
+                const SizedBox(height: 8),
+                BlocProvider.value(
+                  value: cubit,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BlocBuilder<OkrCubit, OkrState>(
+                          buildWhen: (previous, current) =>
+                              current is OkrInitial ||
+                              current is OkrGetObjectiveDetailsSuccessState,
+                          builder: (context, state) {
+                            if (state is OkrGetObjectiveDetailsSuccessState) {
+                              final objectives =
+                                  state.objective.relatedObjective;
+
+                              return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(height: 9),
+                                    Score(objective: state.objective),
+                                    const SizedBox(height: 12.0),
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(Assets.icObjective),
+                                        const Text('Objectives liên quan',
+                                            style: AppTextTheme.robotoMedium14),
+                                      ],
+                                    ),
+                                    objectives!.isNotEmpty
+                                        ? ListView.builder(
+                                            itemBuilder: (context, index) {
+                                              final objective =
+                                                  objectives[index];
+
+                                              return InkWell(
+                                                onTap: () {
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    AppRoute.objectiveDetail,
+                                                    arguments:
+                                                        ObjectiveDetailPageArgs(
+                                                            objectiveId: objective
+                                                                .objectiveId!,
+                                                            okrsId: args.okrsId,
+                                                            cubit: cubit,
+                                                            isAdmin:
+                                                                args.isAdmin),
+                                                  );
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    ObjectiveItem(
+                                                      cubit: cubit,
+                                                      objective: objective,
+                                                      slidable: true,
+                                                      isAdmin: args.isAdmin,
+                                                    ),
+                                                    const SizedBox(
+                                                        height: 10.0),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                            itemCount: objectives.length,
+                                            shrinkWrap: true,
+                                          )
+                                        : const NoData()
+                                  ]);
+                            } else {
+                              return const Loading();
+                            }
+                          }),
+                      Row(
+                        children: [
+                          const Text('KEY RESULT',
+                              style: AppTextTheme.lexendBold18),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {},
+                            child: Row(
+                              children: [
+                                Text('More',
+                                    style: AppTextTheme.robotoRegular16
+                                        .copyWith(color: AppColor.green400)),
+                                const Icon(Icons.arrow_right_outlined),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      BlocBuilder<OkrCubit, OkrState>(
+                          buildWhen: (previous, current) =>
+                              current is OkrGetAllKeyResultSuccessState ||
+                              current is OkrCreateKeyResultSuccessState ||
+                              current is OkrDeleteKeyResultSuccessState ||
+                              current is OkrUpdateKeyResultSuccessState,
+                          builder: (context, state) {
+                            if (state is OkrGetAllKeyResultSuccessState) {
+                              keyResults = state.keyResults ?? [];
+                            } else if (state
+                                is OkrCreateKeyResultSuccessState) {
+                              keyResults.add(state.keyResult);
+                            } else if (state
+                                is OkrDeleteKeyResultSuccessState) {
+                              keyResults.removeWhere(
+                                  (element) => element.id == state.id);
+                            } else if (state
+                                is OkrUpdateKeyResultSuccessState) {
+                              keyResults.removeWhere((element) =>
+                                  element.id == state.keyResult.id);
+                              keyResults.add(state.keyResult);
+                            } else {
+                              return const Loading();
+                            }
+                            return keyResults.isNotEmpty
+                                ? Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: AppColor.white),
+                                    padding: const EdgeInsets.all(10),
+                                    child: ListView.builder(
                                       itemBuilder: (context, index) {
-                                        final objective = objectives[index];
+                                        final keyResult = keyResults[index];
 
                                         return InkWell(
                                           onTap: () {
-                                            Navigator.pushNamed(
-                                              context,
-                                              AppRoute.objectiveDetail,
-                                              arguments:
-                                                  ObjectiveDetailPageArgs(
-                                                      appBarArgs:
-                                                          args.appBarArgs,
-                                                      objectiveId: objective
-                                                          .objectiveId!,
-                                                      okrsId: args.okrsId,
-                                                      cubit: cubit,
-                                                      isAdmin: args.isAdmin),
-                                            );
+                                            // Navigator.pushNamed(
+                                            //     context, AppRoute.taskManager,
+                                            //     arguments: TaskListPageArgs(
+                                            //         keyResultId:
+                                            //             keyResult.id!));
+                                            Navigator.pushNamed(context,
+                                                AppRoute.keyResultDetail,
+                                                arguments:
+                                                    KeyResultDetailPageArgs(
+                                                        keyResult: keyResult,
+                                                        isAdmin: true,
+                                                        parentObjective:
+                                                            args.name));
                                           },
                                           child: Column(
                                             children: [
-                                              ObjectiveItem(
+                                              KeyResultItem(
                                                 cubit: cubit,
-                                                objective: objective,
-                                                slidable: true,
-                                                isAdmin: args.isAdmin,
+                                                keyResult: keyResult,
                                               ),
-                                              const SizedBox(height: 10.0),
+                                              const Divider(
+                                                  color: AppColor.gray200,
+                                                  height: 16,
+                                                  thickness: 0.5),
                                             ],
                                           ),
                                         );
                                       },
-                                      itemCount: objectives.length,
+                                      itemCount: keyResults.length,
                                       shrinkWrap: true,
-                                    )
-                                  : const NoData()
-                            ]);
-                      } else {
-                        return const Loading();
-                      }
-                    }),
-                Row(
-                  children: [
-                    SvgPicture.asset(Assets.icKeyResult),
-                    const Text('Key - Result',
-                        style: AppTextTheme.robotoMedium14),
-                    const Spacer(),
-                    args.isAdmin
-                        ? PrimaryIconButton(
-                            iconColor: AppColor.yellow,
-                            context: context,
-                            icon: Icons.add,
-                            onPressed: () {
-                              _onCreateKeyResultPressed(
-                                  args.okrsId, args.objectiveId);
-                            })
-                        : Container(),
-                    const SizedBox(width: 10.0),
-                  ],
+                                    ),
+                                  )
+                                : const NoData();
+                          }),
+                    ],
+                  ),
                 ),
-                BlocBuilder<OkrCubit, OkrState>(
-                    buildWhen: (previous, current) =>
-                        current is OkrGetAllKeyResultSuccessState ||
-                        current is OkrCreateKeyResultSuccessState ||
-                        current is OkrDeleteKeyResultSuccessState ||
-                        current is OkrUpdateKeyResultSuccessState,
-                    builder: (context, state) {
-                      if (state is OkrGetAllKeyResultSuccessState) {
-                        keyResults = state.keyResults ?? [];
-                      } else if (state is OkrCreateKeyResultSuccessState) {
-                        keyResults.add(state.keyResult);
-                      } else if (state is OkrDeleteKeyResultSuccessState) {
-                        keyResults
-                            .removeWhere((element) => element.id == state.id);
-                      } else if (state is OkrUpdateKeyResultSuccessState) {
-                        keyResults.removeWhere(
-                            (element) => element.id == state.keyResult.id);
-                        keyResults.add(state.keyResult);
-                      } else {
-                        return const Loading();
-                      }
-                      return keyResults.isNotEmpty
-                          ? ListView.builder(
-                              itemBuilder: (context, index) {
-                                final keyResult = keyResults[index];
-
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoute.taskManager,
-                                        arguments: TaskListPageArgs(
-                                            keyResultId: keyResult.id));
-                                  },
-                                  child: KeyResultItem(
-                                    cubit: cubit,
-                                    keyResult: keyResult,
-                                  ),
-                                );
-                              },
-                              itemCount: keyResults.length,
-                              shrinkWrap: true,
-                            )
-                          : const NoData();
-                    }),
               ],
             ),
           ),
         ),
-      ),
+      ]),
     );
   }
 
@@ -267,5 +353,65 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
       okrsId: okrsId,
       objectiveId: objectiveId,
     ));
+  }
+}
+
+class Detail extends StatelessWidget {
+  const Detail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: const [
+            BoxShadow(blurRadius: 1, offset: Offset(1, 1), spreadRadius: 1)
+          ],
+          color: AppColor.white),
+    );
+  }
+}
+
+class Score extends StatelessWidget {
+  final Objective objective;
+
+  const Score({super.key, required this.objective});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(minWidth: context.screenWidth),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+                blurRadius: 1,
+                color: AppColor.black.withOpacity(0.1),
+                offset: const Offset(1, 1),
+                spreadRadius: 1)
+          ],
+          color: AppColor.white),
+      padding: const EdgeInsets.all(8),
+      child: Column(children: [
+        CircularPercentIndicator(
+          center: Text('...%', style: AppTextTheme.robotoBold18),
+          lineWidth: 9,
+          percent: 0.6,
+          progressColor: AppColor.green200,
+          radius: 53,
+        ),
+        const SizedBox(height: 12),
+        Text('PROCESSING',
+            style:
+                AppTextTheme.robotoBold16.copyWith(color: AppColor.green200)),
+        const SizedBox(height: 6),
+        Text(
+          '${objective.description}',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextTheme.robotoLight14,
+        ),
+        const SizedBox(height: 16),
+      ]),
+    );
   }
 }

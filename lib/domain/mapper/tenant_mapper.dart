@@ -9,7 +9,7 @@ class TenatMapper extends BaseDataMapper<TenantResponse, Tenant>
   TenantResponse mapToData(Tenant entity) {
     return TenantResponse(
       tenantName: entity.tenantName,
-      tenantId: entity.tenantId,
+      id: entity.tenantId,
       redirecUrl: entity.redirecUrl,
       createBy: entity.createBy,
       createDate: entity.createDate,
@@ -20,7 +20,7 @@ class TenatMapper extends BaseDataMapper<TenantResponse, Tenant>
   Tenant mapToEntity(TenantResponse? data) {
     return Tenant(
       tenantName: data?.tenantName,
-      tenantId: data?.tenantId,
+      tenantId: data?.id,
       redirecUrl: data?.redirecUrl,
       createBy: data?.createBy,
       createDate: data?.createDate,

@@ -52,9 +52,10 @@ class UnitCubit extends Cubit<UnitState> {
     }
   }
 
-  getAllUnit() async {
+  getAllUnit({String? tenantId, String? owner, int? status}) async {
     emit(UnitInitialState());
-    final response = await _okrRepository.getAllUnits();
+    final response = await _okrRepository.getAllUnits(
+        tenantId: tenantId, owner: owner, status: status);
 
     if (response.status == ResponseStatus.success) {
       units.clear();

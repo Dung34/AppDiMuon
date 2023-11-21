@@ -7,7 +7,7 @@ part 'tenant_response.freezed.dart';
 class TenantResponse with _$TenantResponse {
   factory TenantResponse({
     String? tenantName,
-    String? tenantId,
+    String? id,
     String? redirecUrl,
     String? createBy,
     String? createDate,

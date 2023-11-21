@@ -6,7 +6,7 @@ import '../button/back_button.dart';
 
 // ignore: must_be_immutable
 class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
-  final String? title;
+  final dynamic title;
   final List<Widget>? actions;
   final Widget? leading;
   final double? leadingWidth;
@@ -46,7 +46,7 @@ class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _PrimaryAppBarState extends State<PrimaryAppBar> {
-  String? title;
+  dynamic title;
 
   _PrimaryAppBarState({this.title});
 
@@ -55,7 +55,13 @@ class _PrimaryAppBarState extends State<PrimaryAppBar> {
     return AppBar(
       backgroundColor:
           widget.backgroundColor ?? AppColor.primaryBackgroundColor,
-      title: Text(title ?? '', style: AppTextTheme.lexendBold24),
+      title: title is String
+          ? Text(title ?? '',
+              style:
+                  AppTextTheme.lexendBold18.copyWith(color: AppColor.darkGray))
+          : title is Widget
+              ? title
+              : Container(),
       elevation: widget.elevation ?? 0,
       leading: widget.leading ??
           (widget.canPop

@@ -235,7 +235,7 @@ class OKRRepositoryImpl extends OKRRepository {
         EndPoints.createUnit,
         data: {
           "name": unit.name,
-          "parentId": unit.parrentId,
+          "parentId": unit.parentId,
           "description": unit.description,
           "coverImage": unit.coverImage
         },
@@ -489,12 +489,18 @@ class OKRRepositoryImpl extends OKRRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<Unit>>> getAllUnits() async {
+  Future<ResponseWrapper<List<Unit>>> getAllUnits(
+      {String? tenantId, String? owner, int? status}) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get(
           '${EndPoints.getAllUnit}?Page=1&PageSize=100',
-          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+          queryParameters: {
+            'TenantId': tenantId,
+            'Owner': owner,
+            'Status': status
+          });
 
       if (response.statusCode == 200) {
         return ResponseWrapper.success(
@@ -699,12 +705,12 @@ class OKRRepositoryImpl extends OKRRepository {
 
   @override
   Future<ResponseWrapper<OKR>> getOKRDetail(
-      {required String okrId, required String unitId}) async {
+      {String? okrId, String? unitId}) async {
     accessToken = await localDataAccess.getAccessToken();
     try {
       final response = await dio.get(EndPoints.detailOKR,
           queryParameters: {
-            "OKRId": okrId,
+            "OKRsId": okrId,
             "UnitId": unitId,
           },
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));

@@ -53,9 +53,8 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
       ],
     );
     task = Task(
-      priority: 3,
-      status: 0,
-      point: 0,
+      keyResultId: args.keyResultId,
+      priority: 3, status: 0, point: 0,
       // priorityStr:
     );
   }
@@ -95,21 +94,13 @@ class _TaskCreatePageState extends BasePageState<TaskCreatePage, TaskCubit> {
               formKey: titleFormKey,
               validator: ValidationUtils.textEmptyValidator,
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             PrimaryTextField(
-              controller: descriptionController,
-              label: 'description',
-              minLines: 3,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-              'Assignee',
-              style: AppTextTheme.robotoMedium16,
-            ),
+                controller: descriptionController,
+                label: 'description',
+                minLines: 3),
+            const SizedBox(height: 20),
+            const Text('Assignee', style: AppTextTheme.robotoMedium16),
             const SizedBox(height: 10),
             Row(
               children: [
