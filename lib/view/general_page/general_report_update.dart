@@ -51,7 +51,6 @@ class _GenReportUpdateState
       listener: (context, state) {},
       builder: (context, state) {
         if (state is GetGeneralReportSuccess) {
-          GeneralReport report = state.generalReport;
           return Scaffold(
             backgroundColor: AppColor.primaryBackgroundColor,
             appBar: PrimaryAppBar(

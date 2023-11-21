@@ -16,6 +16,7 @@ class PrimaryDropdownButton extends StatefulWidget {
   final String? hintText;
   final Color? fillColor;
   final Color? borderColor;
+  final double? width;
 
   const PrimaryDropdownButton(
       {Key? key,
@@ -27,7 +28,8 @@ class PrimaryDropdownButton extends StatefulWidget {
       this.decoration,
       this.hintText,
       this.fillColor,
-      this.borderColor})
+      this.borderColor,
+      this.width})
       : super(key: key);
 
   @override
@@ -51,7 +53,7 @@ class _PrimaryDropdownButtonState extends State<PrimaryDropdownButton> {
         isDense: true,
         customButton: Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-          width: double.infinity,
+          width: widget.width ?? double.infinity,
           decoration: widget.decorationButton,
           child: Row(
             children: [
@@ -120,6 +122,7 @@ class _PrimaryDropdownButtonState extends State<PrimaryDropdownButton> {
             color: AppColor.white,
             borderRadius: BorderRadius.circular(AppConfig.defaultRadius),
           ),
+          width: double.infinity,
           maxHeight: context.screenHeight * 2 / 3,
         ),
       ),

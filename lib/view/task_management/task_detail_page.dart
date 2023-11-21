@@ -34,6 +34,14 @@ class _TaskDetailPageState extends BasePageState<TaskDetailPage, TaskCubit> {
   @override
   bool get isUseLoading => true;
 
+  @override
+  // TODO: implement padding
+  EdgeInsets get padding => EdgeInsets.zero;
+
+  @override
+  // TODO: implement useSafeArea
+  bool get useSafeArea => true;
+
   late Task? taskUpdate;
 
   @override

@@ -1,4 +1,5 @@
 import '../../../domain/entity/target/target.dart';
+// ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'list_target_response.g.dart';

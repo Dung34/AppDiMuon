@@ -1,17 +1,19 @@
-import 'dart:developer';
-
+import 'package:active_plus/view/task_management/task_detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../config/routes.dart';
 import '../../../data/repository/local/local_data_access.dart';
+import '../../../data/resources/resources.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../shared/etx/app_ext.dart';
 import '../../../shared/utils/date_time_utils.dart';
-import '../../../shared/widgets/something/no_data.dart';
+
 import '../../base/base_page_sate.dart';
-import '../../okr_page/cubit/okr_cubit.dart';
+
 import '../cubit/task_cubit.dart';
+import 'component/to_do_task_item.dart';
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({super.key});
@@ -23,16 +25,18 @@ class ToDoScreen extends StatefulWidget {
 class _ToDoScreenState extends BasePageState<ToDoScreen, TaskCubit> {
   LocalDataAccess localDataAccess = getIt.get<LocalDataAccess>();
   String userId = " ";
+  late ToDoArgs args;
   List<Task> listTask = [];
   @override
   void didChangeDependencies() {
     userId = localDataAccess.getUserId();
-    cubit.getAllTask(userId: userId);
+    args = context.arguments as ToDoArgs;
     super.didChangeDependencies();
   }
 
   @override
   Widget buildPage(BuildContext context) {
+    listTask = args.listTask;
     return SingleChildScrollView(
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -92,9 +96,10 @@ class _ToDoScreenState extends BasePageState<ToDoScreen, TaskCubit> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Container(
+                      child: SvgPicture.asset(Assets.icBoi),
                       width: 80,
                       height: 80,
-                      decoration: BoxDecoration(color: Colors.amber)),
+                      decoration: const BoxDecoration(color: Colors.amber)),
                 )
               ],
             ),
@@ -103,80 +108,21 @@ class _ToDoScreenState extends BasePageState<ToDoScreen, TaskCubit> {
             height: 10,
           ),
           Padding(
-              padding: EdgeInsets.symmetric(vertical: 15),
+              padding: const EdgeInsets.symmetric(vertical: 15),
               child: Text(
                 DateTimeUtils.formatDate(DateTime.now().toIso8601String(),
                     showTime: false),
               )),
           SizedBox(
-            width: context.screenWidth,
-            height: context.screenHeight * 3 / 4,
-            child: BlocConsumer<TaskCubit, TaskState>(
-              listener: (context, state) {
-                log(state.toString());
-              },
-              builder: (context, state) {
-                if (state is TaskGetAllTaskSuccessState) {
-                  listTask = state.taskList;
-                  return ListView.builder(
-                    itemBuilder: (context, index) =>
-                        TodoItem(task: listTask[index]),
-                    itemCount: listTask.length,
-                  );
-                } else {
-                  return const NoData();
-                }
-              },
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class TodoItem extends StatelessWidget {
-  final Task task;
-  const TodoItem({super.key, required this.task});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            task.title ?? " ",
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("TrueConnect - Agency"),
-              // Text(task.description ?? "")
-              Text("Hoàn thành sản phẩm")
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Due date'),
-              //Text(DateTimeUtils.formatDate(task.endDate ?? ""))
-              Text("30 Aug 2023")
-            ],
-          ),
-          const Divider(
-            thickness: 1.0,
-          )
+              width: context.screenWidth,
+              height: context.screenHeight * 3 / 4,
+              child: ListView.builder(
+                itemBuilder: (context, index) => TodoItem(
+                  task: listTask[index],
+                  taskCubit: cubit,
+                ),
+                itemCount: listTask.length,
+              ))
         ],
       ),
     );

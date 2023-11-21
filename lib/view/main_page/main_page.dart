@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,12 +6,12 @@ import '../../data/resources/resources.dart';
 import '../../shared/widgets/animated_bottom_navigation/animated_bottom_navigation_bar.dart';
 import '../base/base_page_sate.dart';
 import '../base/bloc/common/common_cubit.dart';
-import '../event_page/event_page.dart';
+
 import '../membership/membership_page.dart';
-import '../select_tenant/select_tenant_page.dart';
+
 import '../setting_page/setting_page.dart';
 import '../task_management/to_do_screen/manage_to_do.dart';
-import '../task_management/to_do_screen/to_do_screen.dart';
+
 import '../unit_page/unit_page.dart';
 
 class MainPage extends StatefulWidget {

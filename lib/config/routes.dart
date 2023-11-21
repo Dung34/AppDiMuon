@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
+import '../domain/entity/okr/task/task.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
 import '../domain/entity/target/target.dart';
@@ -51,14 +52,13 @@ import '../view/skill_page/target_page.dart';
 import '../view/skill_page/update_target_page.dart';
 import '../view/splash_screen/intro.dart';
 import '../view/splash_screen/splash_screen.dart';
+import '../view/task_management/to_do_screen/to_do_screen.dart';
 import '../view/unit_page/cubit/unit_cubit.dart';
 import '../view/unit_page/unit_add.dart';
 import '../view/unit_page/unit_detail_page.dart';
 import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
-
-import '../shared/widgets/something/primary_app_bar.dart';
 
 class AppRoute {
   static const String intro = "/intro";
@@ -106,6 +106,9 @@ class AppRoute {
 
   static const String targetUpdatePage = "/targetUpdatePage";
   static const String targetPage = "/targetPage";
+
+  // to do
+  static const String todotask = "/todotask";
 
   static dynamic generateRoute() => {
         AppRoute.intro: (context) => const IntroPage(),
@@ -156,6 +159,8 @@ class AppRoute {
         //target
         AppRoute.targetPage: (context) => const TargetPage(),
         AppRoute.targetUpdatePage: (context) => const TargetUpdatePage(),
+        //todo
+        AppRoute.todotask: (context) => ToDoScreen(),
       };
 
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -325,4 +330,9 @@ class LoginArgs {
   final AuthBloc authBloc;
   final bool isSignIn;
   LoginArgs({required this.authBloc, required this.isSignIn});
+}
+
+class ToDoArgs {
+  final List<Task> listTask;
+  ToDoArgs(this.listTask);
 }
