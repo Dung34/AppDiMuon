@@ -53,6 +53,9 @@ class Assets {
   static const String icStar = '$iconPrefix/ic_star.svg';
   static const String icSuccess = '$iconPrefix/ic_success.svg';
   static const String icTask = '$iconPrefix/ic_task.svg';
+
+  static const String icBoi = '$iconPrefix/ic_boi.svg';
+  static const String icDoubleArrow = '$iconPrefix/ic_double_arrow.svg';
   // image
   static const String imagePrefix = 'assets/images';
   static const String imSplash = '$imagePrefix/im_logo_active.png';

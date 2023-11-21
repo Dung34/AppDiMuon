@@ -32,7 +32,7 @@ class SplashScreen extends StatelessWidget {
             if (state is AuthSessionValidState) {
               Timer(const Duration(seconds: 1), () {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, AppRoute.selectTenant, (route) => false);
+                    context, AppRoute.main, (route) => false);
               });
             } else if (state is AuthSessionInvalidState) {
               Future.delayed(const Duration(seconds: 1), () {

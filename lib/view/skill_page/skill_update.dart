@@ -21,7 +21,6 @@ class SkillUpdatePage extends StatefulWidget {
 }
 
 class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
-  @override
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController iconController = TextEditingController();
@@ -88,7 +87,7 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
           validator: ValidationUtils.textEmptyValidator,
           textCapitalization: TextCapitalization.words,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         PrimaryTextField(
@@ -100,7 +99,7 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
           validator: ValidationUtils.textEmptyValidator,
           textCapitalization: TextCapitalization.words,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         PrimaryTextField(
@@ -109,7 +108,7 @@ class _SkillUpdatePageState extends BasePageState<SkillUpdatePage, SkillCubit> {
           isRequired: true,
           hintText: "Icon",
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         PrimaryTextField(
