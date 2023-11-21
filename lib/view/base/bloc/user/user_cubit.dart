@@ -41,11 +41,9 @@ class UserCubit extends Cubit<UserState> {
     final response = await _userRepository.getUserById(userId: userId);
     if (response.status == ResponseStatus.success) {
       emit(UserGetUserSuccessState(userEntity: response.data!));
-
       return response.data ?? UserEntity();
     } else {
       emit(UserGetUserFailedState());
-
       return UserEntity();
     }
   }

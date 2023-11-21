@@ -80,16 +80,6 @@ class EndPoints {
   static const String getAllProject = "/project/view-all-project";
   static const String getProjectDetail = "/project/view-detail-project";
 
-  //unit
-  static const String addMemberToUnit = "/unit/add-member-to-unit";
-  static const String createUnit = "/unit/create-unit";
-  static const String deleteMemberFromUnit = '/unit/delete-member-from-unit';
-  static const String deleteUnit = "/unit/delete-unit";
-  static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
-  static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
-  static const String updateUnit = '/unit/update-unit';
-  static const String viewUnit = '/unit/get-detail-unit';
-
   //skill
   static const String getAllSkill = "/account/get-all-skills";
   static const String getDetailSkill = "/account/get-detail-skill";
@@ -110,6 +100,20 @@ class EndPoints {
   static const String getTaskDetail = "/taskOKR/get-detail-task";
   static const String updateTask = "/taskOKR/update-taskORK";
   static const String deleteTask = "/taskOKR/delete-taskORK";
+
+  //tenant
+  static const String getAllTenant = "/get-all-tenant-by-userID";
+  static const String getTenantDetail = "/get-detail-tenant";
+
+  //unit
+  static const String addMemberToUnit = "/unit/add-member-to-unit";
+  static const String createUnit = "/unit/create-unit";
+  static const String deleteMemberFromUnit = '/unit/delete-member-from-unit';
+  static const String deleteUnit = "/unit/delete-unit";
+  static const String getAllUnit = "/unit/get-All-Unit-ByUserId";
+  static const String getAllUserInUnit = '/unit/get-all-user-in-unit';
+  static const String updateUnit = '/unit/update-unit';
+  static const String viewUnit = '/unit/get-detail-unit';
 }
 
 class SSOConfig {

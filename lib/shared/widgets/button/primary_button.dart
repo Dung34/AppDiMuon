@@ -17,6 +17,7 @@ class PrimaryButton extends StatelessWidget {
     this.borderColor,
     this.textStyle = AppTextTheme.textButtonPrimary,
     this.icon,
+    this.rightIcon,
     this.isLoading = false,
     this.isClickable = true,
     this.isCircle = false,
@@ -31,6 +32,7 @@ class PrimaryButton extends StatelessWidget {
   final Color? borderColor;
   final TextStyle textStyle;
   final dynamic icon;
+  final dynamic rightIcon;
   final bool isLoading;
   final bool isClickable;
   final bool isCircle;
@@ -55,7 +57,7 @@ class PrimaryButton extends StatelessWidget {
           fixedSize:
               isCircle ? MaterialStateProperty.all(const Size(0, 0)) : null,
           backgroundColor: MaterialStateProperty.all(
-            backgroundColor ?? AppColor.secondary400,
+            backgroundColor ?? AppColor.green400,
           ),
           padding: MaterialStateProperty.all(EdgeInsets.all(contentPadding)),
           elevation: MaterialStateProperty.all(0),
@@ -99,6 +101,7 @@ class PrimaryButton extends StatelessWidget {
                     label,
                     style: textStyle,
                   ),
+            rightIcon ?? Container(),
           ],
         ),
       ),

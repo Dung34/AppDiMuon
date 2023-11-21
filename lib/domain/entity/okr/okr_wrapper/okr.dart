@@ -12,7 +12,7 @@ class OKR with _$OKR {
     String? name,
     String? description,
     String? unitId,
-    String? process,
+    double? process,
     int? totalObjective,
     int? totalKR,
     int? totalTask,

@@ -24,6 +24,10 @@ mixin _$UserEntity {
   set id(String? value) => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
   set login(String? value) => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  set firstName(String? value) => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  set lastName(String? value) => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   set fullName(String? value) => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -58,6 +62,8 @@ abstract class $UserEntityCopyWith<$Res> {
   $Res call(
       {String? id,
       String? login,
+      String? firstName,
+      String? lastName,
       String? fullName,
       String? email,
       String? phoneNumber,
@@ -84,6 +90,8 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
@@ -102,6 +110,14 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       login: freezed == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       fullName: freezed == fullName
           ? _value.fullName
@@ -154,6 +170,8 @@ abstract class _$$UserEntityImplCopyWith<$Res>
   $Res call(
       {String? id,
       String? login,
+      String? firstName,
+      String? lastName,
       String? fullName,
       String? email,
       String? phoneNumber,
@@ -178,6 +196,8 @@ class __$$UserEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? login = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? fullName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
@@ -196,6 +216,14 @@ class __$$UserEntityImplCopyWithImpl<$Res>
       login: freezed == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       fullName: freezed == fullName
           ? _value.fullName
@@ -243,6 +271,8 @@ class _$UserEntityImpl implements _UserEntity {
   _$UserEntityImpl(
       {this.id,
       this.login,
+      this.firstName,
+      this.lastName,
       this.fullName,
       this.email,
       this.phoneNumber,
@@ -260,6 +290,10 @@ class _$UserEntityImpl implements _UserEntity {
   String? id;
   @override
   String? login;
+  @override
+  String? firstName;
+  @override
+  String? lastName;
   @override
   String? fullName;
   @override
@@ -281,7 +315,7 @@ class _$UserEntityImpl implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, login: $login, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, avatar: $avatar, coverImage: $coverImage, activated: $activated, rank: $rank, role: $role, membershipType: $membershipType)';
+    return 'UserEntity(id: $id, login: $login, firstName: $firstName, lastName: $lastName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, avatar: $avatar, coverImage: $coverImage, activated: $activated, rank: $rank, role: $role, membershipType: $membershipType)';
   }
 
   @JsonKey(ignore: true)
@@ -302,6 +336,8 @@ abstract class _UserEntity implements UserEntity {
   factory _UserEntity(
       {String? id,
       String? login,
+      String? firstName,
+      String? lastName,
       String? fullName,
       String? email,
       String? phoneNumber,
@@ -321,6 +357,12 @@ abstract class _UserEntity implements UserEntity {
   @override
   String? get login;
   set login(String? value);
+  @override
+  String? get firstName;
+  set firstName(String? value);
+  @override
+  String? get lastName;
+  set lastName(String? value);
   @override
   String? get fullName;
   set fullName(String? value);

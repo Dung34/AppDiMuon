@@ -16,6 +16,7 @@ class TenantCubit extends Cubit<TenantState> {
   TenantCubit() : super(TenantInitial());
   Tenant? tenant;
   List<Tenant> listTenants = [];
+
   getAllTenant() async {
     final response = await _tenantRepository.getAllTenantByUserId();
 
@@ -26,6 +27,18 @@ class TenantCubit extends Cubit<TenantState> {
       log("message");
     } else {
       emit(GetAllTenantByUserIdFailed());
+    }
+  }
+
+  getTenantDetail() async {
+    emit(TenantInitial());
+
+    final response = await _tenantRepository.getTenantDetail();
+
+    if (response.status == ResponseStatus.success) {
+      emit(GetTenantDetailSuccessState(response.data!));
+    } else {
+      emit(GetTenantDetailFailedState());
     }
   }
 }

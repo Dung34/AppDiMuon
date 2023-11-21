@@ -9,7 +9,9 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
     return UserEntity(
       id: data?.id,
       login: data?.login,
-      fullName: data?.fullName,
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+      fullName: '${data?.firstName} ${data?.lastName}',
       email: data?.email,
       phoneNumber: data?.phoneNumber,
       avatar: data?.imageUrl,
@@ -29,7 +31,8 @@ class UserDataMapper extends BaseDataMapper<UserResponse, UserEntity>
     return UserResponse(
       id: entity.id,
       login: entity.login,
-      firstName: entity.fullName,
+      firstName: entity.firstName,
+      lastName: entity.lastName,
       email: entity.email,
       phoneNumber: entity.phoneNumber,
       activated: entity.activated,

@@ -125,7 +125,7 @@ class OkrCubit extends Cubit<OkrState> {
     }
   }
 
-  getOKRDetail({required String okrId, required String unitId}) async {
+  getOKRDetail({String? okrId, String? unitId}) async {
     emit(OkrInitial());
 
     final response =

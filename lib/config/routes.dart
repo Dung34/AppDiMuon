@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
+import '../domain/entity/okr/key_result/key_result.dart';
+import '../domain/entity/okr/unit/unit.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
 import '../domain/entity/target/target.dart';
@@ -30,6 +32,7 @@ import '../view/general_page/general_report_update.dart';
 import '../view/home_screen/home_screen.dart';
 import '../view/main_page/main_page.dart';
 import '../view/okr_page/cubit/okr_cubit.dart';
+import '../view/okr_page/key_result_detail_page.dart';
 import '../view/okr_page/objective_detail_page.dart';
 import '../view/project_page/cubit/project_cubit.dart';
 import '../view/project_page/project_detail_page.dart';
@@ -58,8 +61,6 @@ import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
 
-import '../shared/widgets/something/primary_app_bar.dart';
-
 class AppRoute {
   static const String intro = "/intro";
   static const String splash = "/";
@@ -81,6 +82,7 @@ class AppRoute {
   static const String eventSetting = "/eventSetting";
   static const String qrScanner = "/qrScanner";
   static const String eventMemberHistory = "/eventMemberHistory";
+  static const String keyResultDetail = '/keyResultDetail';
   static const String profileUpdate = "/profileUpdate";
   static const String projectDetail = "/projectDetail";
   static const String projectMembers = "/projectMembers";
@@ -129,6 +131,7 @@ class AppRoute {
         AppRoute.qrScanner: (context) => const QrScannerPage(),
         AppRoute.eventMemberHistory: (context) =>
             const EventMemberHistoryPage(),
+        AppRoute.keyResultDetail: (context) => const KeyResultDetailPage(),
         AppRoute.profileUpdate: (context) => const ProfileUpdatePage(),
         AppRoute.projectDetail: (context) => const ProjectDetailPage(),
         AppRoute.projectMembers: (context) => const ProjectMemberPage(),
@@ -221,13 +224,22 @@ class EventMemberHistoryPageArgs {
   EventMemberHistoryPageArgs({required this.userId});
 }
 
+class KeyResultDetailPageArgs {
+  final KeyResult keyResult;
+  final bool isAdmin;
+  final String? parentObjective;
+
+  const KeyResultDetailPageArgs(
+      {required this.keyResult, required this.isAdmin, this.parentObjective});
+}
+
 class ObjectiveDetailPageArgs {
   final String? name;
   final String objectiveId;
   final String okrsId;
+  final String? parentUnit;
   final OkrCubit cubit;
   final bool isAdmin;
-  final AppBarArgs? appBarArgs;
 
   const ObjectiveDetailPageArgs(
       {this.name,
@@ -235,7 +247,7 @@ class ObjectiveDetailPageArgs {
       required this.okrsId,
       required this.cubit,
       required this.isAdmin,
-      this.appBarArgs});
+      this.parentUnit});
 }
 
 class ProjectDetailPageArgs {
@@ -264,12 +276,12 @@ class UnitAddPageArgs {
 }
 
 class UnitDetailPageArgs {
-  final String id;
-  final UnitCubit unitCubit;
+  final Unit unit;
   final bool isAdmin;
+  final String? parrentName;
 
   UnitDetailPageArgs(
-      {required this.id, required this.unitCubit, required this.isAdmin});
+      {required this.unit, required this.isAdmin, this.parrentName});
 }
 
 class ReportDailyPageArgs {
@@ -294,7 +306,7 @@ class TargetPageArgs {
 }
 
 class TaskListPageArgs {
-  final String? keyResultId;
+  final String keyResultId;
 
   TaskListPageArgs({required this.keyResultId});
 }
@@ -318,7 +330,10 @@ class GeneralReportArgs {
 class TaskCreatePageArgs {
   final String? taskId;
   final TaskCubit taskCubit;
-  TaskCreatePageArgs({this.taskId, required this.taskCubit});
+  final String keyResultId;
+
+  TaskCreatePageArgs(
+      {this.taskId, required this.taskCubit, required this.keyResultId});
 }
 
 class LoginArgs {

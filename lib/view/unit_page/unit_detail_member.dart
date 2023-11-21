@@ -37,7 +37,7 @@ class _UnitDetailMember extends BasePageState<UnitDetailMember, UnitCubit> {
 
     setCubit = widget.cubit;
 
-    cubit.getAllUser(unitId: widget.unit.parrentId ?? widget.unit.id);
+    cubit.getAllUser(unitId: widget.unit.parentId ?? widget.unit.id);
   }
 
   @override
