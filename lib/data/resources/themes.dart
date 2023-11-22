@@ -87,12 +87,12 @@ class AppTextTheme {
     fontSize: 12,
   );
   static const TextStyle robotoRegular14 = TextStyle(
-    color: AppColor.primary500,
+    color: AppColor.black,
     fontWeight: FontWeight.w400,
     fontSize: 14,
   );
   static const TextStyle robotoRegular16 = TextStyle(
-    color: AppColor.primary500,
+    color: AppColor.gray300,
     fontWeight: FontWeight.w400,
     fontSize: 16,
   );
@@ -132,12 +132,12 @@ class AppTextTheme {
     fontSize: 12,
   );
   static const TextStyle robotoMedium14 = TextStyle(
-    color: AppColor.gray300,
+    color: AppColor.green400,
     fontWeight: FontWeight.w500,
     fontSize: 14,
   );
   static const TextStyle robotoMedium16 = TextStyle(
-    color: AppColor.primary500,
+    color: AppColor.green400,
     fontWeight: FontWeight.w500,
     fontSize: 16,
   );
@@ -151,6 +151,11 @@ class AppTextTheme {
     fontWeight: FontWeight.w500,
     fontSize: 24,
   );
+  static const TextStyle robotoBold12 = TextStyle(
+    color: AppColor.green200,
+    fontWeight: FontWeight.w700,
+    fontSize: 12,
+  );
   static const TextStyle robotoBold14 = TextStyle(
     color: AppColor.primary500,
     fontWeight: FontWeight.w700,
@@ -162,7 +167,7 @@ class AppTextTheme {
     fontSize: 16,
   );
   static const TextStyle robotoBold18 = TextStyle(
-    color: AppColor.black,
+    color: AppColor.green400,
     fontWeight: FontWeight.w700,
     fontSize: 18,
   );
@@ -186,9 +191,34 @@ class AppTextTheme {
     fontStyle: FontStyle.italic,
   );
 
+  static const TextStyle lexend = TextStyle(
+    fontFamily: 'lexend',
+    color: AppColor.gray300,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+  );
+
+  static const TextStyle lexendLight12 = TextStyle(
+    fontFamily: 'Lexend',
+    color: AppColor.gray300,
+    fontWeight: FontWeight.w300,
+    fontSize: 12,
+  );
+  static const TextStyle lexendLight14 = TextStyle(
+    fontFamily: 'Lexend',
+    color: AppColor.gray300,
+    fontWeight: FontWeight.w300,
+    fontSize: 14,
+  );
+  static const TextStyle lexendRegular12 = TextStyle(
+    fontFamily: 'Lexend',
+    color: AppColor.gray500,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+  );
   static const TextStyle lexendRegular14 = TextStyle(
     fontFamily: 'Lexend',
-    color: AppColor.primary500,
+    color: AppColor.gray500,
     fontWeight: FontWeight.w400,
     fontSize: 14,
   );
@@ -204,6 +234,14 @@ class AppTextTheme {
     fontWeight: FontWeight.w500,
     fontSize: 16,
   );
+
+  static const TextStyle lexendBold14 = TextStyle(
+    fontFamily: 'lexend',
+    color: AppColor.green200,
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+  );
+
   static const TextStyle lexendBold16 = TextStyle(
     fontFamily: 'Lexend',
     color: AppColor.green100,
@@ -212,7 +250,7 @@ class AppTextTheme {
   );
   static const TextStyle lexendBold18 = TextStyle(
     fontFamily: 'Lexend',
-    color: AppColor.black,
+    color: AppColor.green400,
     fontWeight: FontWeight.w700,
     fontSize: 18,
   );
@@ -224,7 +262,7 @@ class AppTextTheme {
   );
   static const TextStyle lexendBold30 = TextStyle(
     fontFamily: 'Lexend',
-    color: AppColor.green100,
+    color: AppColor.green400,
     fontWeight: FontWeight.w700,
     fontSize: 30,
   );

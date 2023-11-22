@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/resources/colors.dart';
 import '../../domain/entity/tenant/tenant.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
@@ -18,15 +19,19 @@ class SelectTenant extends StatefulWidget {
 
 class _SelectTenantState extends BasePageState<SelectTenant, TenantCubit> {
   @override
+  Color get backgroundColor => AppColor.green10;
+
+  @override
+  EdgeInsets get padding => const EdgeInsets.all(20);
+
+  @override
   void didChangeDependencies() {
     userCubit.getUser();
     cubit.getAllTenant();
     super.didChangeDependencies();
     listTenants = cubit.listTenants;
-    setAppBar = PrimaryAppBar(
-      title: "Chọn Công ty",
-      canPop: true,
-    );
+    setAppBar =
+        PrimaryAppBar(backgroundColor: AppColor.green10, title: "Chọn Công ty");
   }
 
   late List<Tenant> listTenants = [];

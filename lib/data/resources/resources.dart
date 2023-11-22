@@ -6,6 +6,8 @@ class Assets {
   static const String iconPrefix = 'assets/icons';
   static const String icAdd = '$iconPrefix/ic_add.svg';
   static const String iconAppError = '$iconPrefix/ic_app_error.svg';
+  static const String icArrowActionForward2 =
+      '$iconPrefix/ic_arrow_action_forward2.svg';
   static const String icArrowRight = '$iconPrefix/ic_arrow_right.svg';
   static const String icCalendar = '$iconPrefix/ic_calendar.svg';
   static const String icCalendarShadow = '$iconPrefix/ic_calendar_shadow.svg';
@@ -67,4 +69,12 @@ class Assets {
   static const String icCoin = "$imagePrefix/ic_coin.svg";
   static const String imBoi = "$imagePrefix/im_boi_task.png";
   static const String imGirl = "$imagePrefix/im_girl_task.png";
+
+  // background
+  static const String backgroundPrefix = 'assets/backgrounds';
+  static const String bgObjectiveDetail =
+      '$backgroundPrefix/bg_objective_detail.png';
+  static const String bgUnitDetailPage =
+      '$backgroundPrefix/bg_unit_detail_page.png';
+  static const String bgUnitPage = '$backgroundPrefix/bg_unit_page.png';
 }

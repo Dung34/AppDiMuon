@@ -52,7 +52,7 @@ class UnitAddPage extends StatelessWidget {
           unit.name = titleController.text;
           unit.description = descriptionController.text;
           if (context.arguments != null) {
-            unit.parrentId = args.id;
+            unit.parentId = args.id;
           }
           if (state is GetImageGetSingleImageUrlSuccessState) {
             unit.coverImage = state.imageUrl;

@@ -32,6 +32,8 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
 
   EdgeInsets get padding => const EdgeInsets.symmetric(horizontal: 16);
 
+  Color get backgroundColor => AppColor.primaryBackgroundColor;
+
   PreferredSizeWidget? get appBar => _appBar;
   set setAppBar(PreferredSizeWidget ab) => _appBar = ab;
 
@@ -132,7 +134,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, C extends Cubit>
   Widget buildPage(BuildContext context) => const SizedBox();
 
   Widget _baseScaffoldPage() => Scaffold(
-        backgroundColor: AppColor.primaryBackgroundColor,
+        backgroundColor: backgroundColor,
         extendBodyBehindAppBar: true,
         extendBody: true,
         appBar: _appBar,

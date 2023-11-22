@@ -130,7 +130,7 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
       children: [
         widget.label != null
             ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     children: [

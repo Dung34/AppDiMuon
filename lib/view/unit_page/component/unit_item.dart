@@ -6,7 +6,9 @@ import '../../../config/routes.dart';
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../shared/etx/app_ext.dart';
-import '../../../shared/widgets/image/primary_image.dart';
+import '../../../shared/utils/date_time_utils.dart';
+import '../../base/bloc/user/user_cubit.dart';
+import '../../okr_page/component/key_result_item.dart';
 import '../cubit/unit_cubit.dart';
 import '../unit_update_page.dart';
 
@@ -26,15 +28,20 @@ class UnitItem extends StatefulWidget {
 }
 
 class _UnitItemState extends State<UnitItem> {
+  final UserCubit userCubit = UserCubit();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, AppRoute.unitDetail,
-            arguments: UnitDetailPageArgs(
-                id: widget.unit.id!,
-                unitCubit: context.read<UnitCubit>(),
-                isAdmin: widget.isAdmin));
+            arguments:
+                UnitDetailPageArgs(unit: widget.unit, isAdmin: widget.isAdmin));
       },
       child: Slidable(
         endActionPane: widget.isAdmin
@@ -71,45 +78,120 @@ class _UnitItemState extends State<UnitItem> {
             : null,
         child: Center(
           child: Container(
+            constraints: BoxConstraints(minHeight: context.screenWidth * 0.25),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 1,
+                      color: Colors.black.withOpacity(0.1),
+                      offset: const Offset(1, 1),
+                      spreadRadius: 1),
+                ],
                 color: AppColor.white),
-            height: context.screenWidth * 0.25,
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(16),
             width: context.screenWidth - 20,
-            child: Row(children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(color: AppColor.green100, width: 1)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: PrimaryNetworkImage(
-                    imageUrl: widget.unit.coverImage,
-                    height: context.screenWidth * 0.093,
-                    width: context.screenWidth * 0.093,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16.0),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              // Container(
+              //   decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(10.0),
+              //       border: Border.all(color: AppColor.green100, width: 1)),
+              //   child: ClipRRect(
+              //     borderRadius: BorderRadius.circular(10),
+              //     child: PrimaryNetworkImage(
+              //       imageUrl: widget.unit.coverImage,
+              //       height: context.screenWidth * 0.093,
+              //       width: context.screenWidth * 0.093,
+              //     ),
+              //   ),
+              // ),
               Flexible(
                 flex: 10,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      widget.unit.name ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextTheme.robotoBold24,
-                    ),
-                    Text(
-                      '${widget.unit.totalMemberCount} thành viên',
-                      style: AppTextTheme.robotoLight12,
-                    ),
+                    RichText(
+                        text: TextSpan(
+                            text: '• ',
+                            style: AppTextTheme.robotoBold18
+                                .copyWith(color: AppColor.green200),
+                            children: const [
+                          TextSpan(
+                              text: 'PROCESSING',
+                              style: AppTextTheme.robotoBold12)
+                        ])),
+                    const SizedBox(height: 6),
+                    Text(widget.unit.name ?? '',
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextTheme.lexendBold18),
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        const Expanded(
+                          flex: 77,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Owner', style: AppTextTheme.lexendLight12),
+                              SizedBox(height: 4),
+                              Text('Start Date',
+                                  style: AppTextTheme.lexendLight12),
+                              SizedBox(height: 4),
+                              Text('End Date',
+                                  style: AppTextTheme.lexendLight12),
+                              SizedBox(height: 4),
+                              Text('Target', style: AppTextTheme.lexendLight12),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 196,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('${widget.unit.owner}',
+                                  style: AppTextTheme.lexendRegular12),
+                              const SizedBox(height: 4),
+                              Text(
+                                  DateTimeUtils.formatDate(
+                                      '${widget.unit.startDate}',
+                                      showTime: false),
+                                  style: AppTextTheme.lexendRegular12),
+                              const SizedBox(height: 4),
+                              Text(
+                                  DateTimeUtils.formatDate(
+                                      '${widget.unit.startDate}',
+                                      showTime: false),
+                                  style: AppTextTheme.lexendRegular12),
+                              const SizedBox(height: 4),
+                              const Text('40/50 KRs',
+                                  style: AppTextTheme.lexendRegular12)
+                            ],
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),
+              Column(
+                children: [
+                  const SizedBox(height: 8),
+                  CircularPercentIndicator(
+                    center: Text(
+                      '65%',
+                      style: AppTextTheme.robotoBold16,
+                    ),
+                    lineWidth: 9,
+                    percent: 0.65,
+                    progressColor: AppColor.green200,
+                    radius: 50,
+                  ),
+                ],
+              )
             ]),
           ),
         ),
