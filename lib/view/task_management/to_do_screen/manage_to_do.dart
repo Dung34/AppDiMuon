@@ -47,7 +47,7 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
     cubit.getAllTask();
     super.didChangeDependencies();
     unitCubit.getAllUnit();
-    okrCubit.getAllObjectives();
+    //okrCubit.getAllObjectives();
     listTaskDone.clear();
     listTaskLost.clear();
     listObj.clear();

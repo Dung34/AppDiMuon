@@ -334,5 +334,6 @@ class LoginArgs {
 
 class ToDoArgs {
   final List<Task> listTask;
-  ToDoArgs(this.listTask);
+  final bool isLate;
+  ToDoArgs(this.listTask, this.isLate);
 }
