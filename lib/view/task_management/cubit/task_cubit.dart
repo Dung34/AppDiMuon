@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/okr_repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/okr/task/activity/activity.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../domain/entity/user/user.dart';
 
@@ -88,5 +89,14 @@ class TaskCubit extends Cubit<TaskState> {
 
   changeAssignee(UserEntity user) {
     emit(TaskChangeAssignee(user: user));
+  }
+
+  getActitivy(String? taskId) async {
+    final response = await _okrRepository.getActivityOfTask(taskId!);
+    if (response.status == ResponseStatus.success) {
+      emit(TaskGetActivitySuccess(listActivities: response.data!));
+    } else {
+      emit(TaskGetActivityFailed());
+    }
   }
 }

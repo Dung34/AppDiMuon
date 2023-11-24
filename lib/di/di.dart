@@ -22,6 +22,7 @@ import '../data/repository/remote/target_repository.dart';
 import '../data/repository/remote/target_repository_impl.dart';
 import '../data/repository/remote/tenant_repository.dart';
 import '../data/repository/remote/tenant_repository_impl.dart';
+import '../domain/mapper/activity_data_mapper.dart';
 import '../domain/mapper/event_data_mapper.dart';
 
 import '../domain/mapper/general_report_mapper.dart';
@@ -137,7 +138,7 @@ configureInjection() async {
   getIt.registerFactory<ListSkillMapper>(() => ListSkillMapper());
   getIt.registerFactory<TargetDataMapper>(() => TargetDataMapper());
   getIt.registerFactory<ListTargetMapper>(() => ListTargetMapper());
-
+  getIt.registerFactory<ActivityMapper>(() => ActivityMapper());
   // bloc
   getIt.registerSingleton<AuthBloc>(AuthBloc());
   getIt.registerSingleton<CommonCubit>(CommonCubit());

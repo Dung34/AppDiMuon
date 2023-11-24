@@ -1,9 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../data/model/old_login/login_response.dart';
 import '../../../data/resources/resources.dart';
+import '../../../domain/entity/okr/task/activity/activity.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../shared/etx/app_ext.dart';
 import '../../../shared/utils/date_time_utils.dart';
@@ -13,6 +16,7 @@ import '../components/task_priority_item.dart';
 import '../components/task_status_item.dart';
 import '../cubit/task_cubit.dart';
 import '../task_detail_page.dart';
+import 'list_activities_screen.dart';
 
 class ToDoTaskDetail extends StatefulWidget {
   final Task task;
@@ -307,6 +311,96 @@ class _ToDoTaskDetailState extends State<ToDoTaskDetail> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BottomSheetTask extends StatefulWidget {
+  final Task task;
+  final TaskCubit taskCubit;
+  final bool isAdmin;
+  const BottomSheetTask({
+    Key? key,
+    required this.task,
+    required this.taskCubit,
+    required this.isAdmin,
+  }) : super(key: key);
+
+  @override
+  State<BottomSheetTask> createState() => _BottomSheetTaskState();
+}
+
+class _BottomSheetTaskState extends State<BottomSheetTask> {
+  final _controller = PageController();
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => widget.taskCubit,
+      child: Container(
+        height: context.screenHeight * 5 / 6,
+        child: Column(
+          children: [
+            SizedBox(
+              height: context.screenHeight * 5 / 6,
+              child: PageView(
+                controller: _controller,
+                children: [
+                  ToDoTaskDetail(
+                    task: widget.task,
+                    taskCubit: widget.taskCubit,
+                  ),
+                  ListActivities(task: widget.task, taskCubit: widget.taskCubit)
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ActivityItem extends StatelessWidget {
+  final Activity activity;
+  const ActivityItem({super.key, required this.activity});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: [
+          Column(children: [
+            Text(
+              activity.fullname ?? " ",
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            ),
+            Text(
+              activity.action ?? "",
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+            )
+          ]),
+          Column(
+            children: [
+              Text(
+                DateTimeUtils.formatDate(activity.dateTimeAct ?? "",
+                    showOnlyTime: true),
+                style: TextStyle(
+                    color: Color(0xFFAFAFB0),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400),
+              ),
+              Text(
+                DateTimeUtils.formatDate(activity.dateTimeAct ?? "",
+                    showTime: false),
+                style: TextStyle(
+                    color: Color(0xFFAFAFB0),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

@@ -111,8 +111,11 @@ class LostTaskItem extends StatelessWidget {
       onTap: () {
         showBottomSheet(
           context: context,
-          builder: (context) =>
-              ToDoTaskDetail(task: task, taskCubit: taskCubit),
+          builder: (context) => BottomSheetTask(
+            task: task,
+            taskCubit: taskCubit,
+            isAdmin: true,
+          ),
         );
       },
       child: Container(

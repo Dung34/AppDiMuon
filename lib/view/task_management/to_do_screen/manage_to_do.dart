@@ -11,11 +11,13 @@ import '../../../shared/etx/app_ext.dart';
 import '../../../shared/widgets/button/primary_button.dart';
 import '../../../shared/widgets/dropdown/base_dropdown_value.dart';
 
+import '../../../shared/widgets/image/primary_image.dart';
 import '../../base/base_page_sate.dart';
 import '../../base/bloc/user/user_cubit.dart';
 
 import '../../okr_page/component/objective_item.dart';
 import '../../okr_page/cubit/okr_cubit.dart';
+import '../../unit_page/component/unit_item.dart';
 import '../../unit_page/cubit/unit_cubit.dart';
 import '../cubit/task_cubit.dart';
 import 'component/number_task.dart';
@@ -221,12 +223,13 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                     child: SizedBox(
                       width: context.screenWidth - 20,
-                      height: context.screenHeight / 6,
+                      height: context.screenHeight / 4.8,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => UnitItem2(
-                                unit: listUnits[index],
-                              ),
+                          itemBuilder: (context, index) => UnitItem(
+                              unit: listUnits[index],
+                              cubit: unitCubit,
+                              isAdmin: false),
                           itemCount: listUnits.length),
                     ),
                   );
@@ -302,42 +305,6 @@ class UnitItem2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        width: context.screenWidth - 50,
-        decoration: BoxDecoration(
-            border: Border.all(), borderRadius: BorderRadius.circular(24)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CircleAvatar(),
-                ),
-                Column(
-                  children: [
-                    Text(
-                      unit.name ?? " ",
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    Text(unit.description ?? ""),
-                  ],
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: PrimaryButton(
-                  context: context, onPressed: () {}, label: "Update process"),
-            )
-          ],
-        ),
-      ),
-    );
+    return Container();
   }
 }

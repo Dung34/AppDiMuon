@@ -17,9 +17,10 @@ class TodoItem extends StatelessWidget {
         showBottomSheet(
           context: context,
           builder: (context) {
-            return ToDoTaskDetail(
+            return BottomSheetTask(
               task: task,
               taskCubit: taskCubit,
+              isAdmin: true,
             );
           },
         );
