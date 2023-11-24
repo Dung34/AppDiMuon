@@ -15,6 +15,7 @@ class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onBackPressed;
   final Color? backgroundColor;
   final double? elevation;
+  final double? toolbarHeight;
   final Function(String)? onChangeText;
   _PrimaryAppBarState? _primaryAppBarState;
 
@@ -29,7 +30,8 @@ class PrimaryAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.onChangeText,
       this.centerTitle = false,
       this.backgroundColor,
-      this.elevation}) {
+      this.elevation,
+      this.toolbarHeight}) {
     _primaryAppBarState = _PrimaryAppBarState(title: title);
   }
 
@@ -72,6 +74,7 @@ class _PrimaryAppBarState extends State<PrimaryAppBar> {
       leadingWidth: widget.leadingWidth,
       actions: widget.actions,
       centerTitle: widget.centerTitle,
+      toolbarHeight: widget.toolbarHeight,
     );
   }
 

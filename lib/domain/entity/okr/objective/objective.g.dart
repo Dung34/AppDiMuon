@@ -17,6 +17,7 @@ _$ObjectiveImpl _$$ObjectiveImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       unitId: json['unitId'] as String?,
       unitName: json['unitName'] as String?,
+      process: (json['process'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$ObjectiveImplToJson(_$ObjectiveImpl instance) =>
@@ -28,4 +29,5 @@ Map<String, dynamic> _$$ObjectiveImplToJson(_$ObjectiveImpl instance) =>
       'relatedObjective': instance.relatedObjective,
       'unitId': instance.unitId,
       'unitName': instance.unitName,
+      'process': instance.process,
     };

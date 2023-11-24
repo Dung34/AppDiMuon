@@ -33,8 +33,6 @@ class _KeyresultDetailPageState extends State<KeyResultDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<KeyResult> keyResults = [];
-
     return Scaffold(
       appBar: PrimaryAppBar(
         actions: args.isAdmin
@@ -82,11 +80,11 @@ class _KeyresultDetailPageState extends State<KeyResultDetailPage> {
       backgroundColor: AppColor.gray50,
       body: Stack(children: [
         Positioned(
-            left: -16,
-            top: context.screenHeight * 0.19,
-            child: Image.asset(Assets.bgObjectiveDetail,
+            right: -20,
+            top: context.screenHeight * 0.09,
+            child: Image.asset(Assets.bgKeyResultDetail,
                 height: context.screenHeight * 0.56,
-                width: context.screenWidth * 0.7)),
+                width: context.screenWidth * 0.717)),
         SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),

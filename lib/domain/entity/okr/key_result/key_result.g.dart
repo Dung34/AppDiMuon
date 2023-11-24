@@ -18,6 +18,9 @@ _$KeyResultImpl _$$KeyResultImplFromJson(Map<String, dynamic> json) =>
       actual: (json['actual'] as num?)?.toDouble(),
       objectiveId: json['objectiveId'] as String?,
       okRsId: json['okRsId'] as String?,
+      dueDate: json['dueDate'] as String?,
+      totalTask: json['totalTask'] as int?,
+      doneTask: json['doneTask'] as int?,
     );
 
 Map<String, dynamic> _$$KeyResultImplToJson(_$KeyResultImpl instance) =>
@@ -32,4 +35,7 @@ Map<String, dynamic> _$$KeyResultImplToJson(_$KeyResultImpl instance) =>
       'actual': instance.actual,
       'objectiveId': instance.objectiveId,
       'okRsId': instance.okRsId,
+      'dueDate': instance.dueDate,
+      'totalTask': instance.totalTask,
+      'doneTask': instance.doneTask,
     };

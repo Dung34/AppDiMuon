@@ -15,11 +15,11 @@ class IhaveTask extends StatelessWidget {
   Widget build(BuildContext context) {
     int n = listTask.length;
     return Container(
-      height: context.screenHeight / 13,
+      height: 50,
       width: context.screenWidth,
       decoration: BoxDecoration(
           color: (isDone)
-              ? const Color(0xFFDEF2EC)
+              ? AppColor.green50
               : const Color(0xFFD4EEFF), //rgb(212, 238, 255)
           borderRadius: BorderRadius.circular(24)),
       child: InkWell(
@@ -32,18 +32,37 @@ class IhaveTask extends StatelessWidget {
           children: [
             Row(
               children: [
-                const SizedBox(
-                  width: 10,
-                ),
-                SvgPicture.asset((isDone) ? Assets.icClock : Assets.icLock),
-                Text(
-                  (isDone)
-                      ? "You have $n tasks to complete "
-                      : "Oops!!! You lost $n tasks ",
-                ),
+                const SizedBox(width: 10),
+                SvgPicture.asset((isDone) ? Assets.icClock : Assets.icSecurity),
+                isDone
+                    ? RichText(
+                        text: TextSpan(
+                            text: 'You have ',
+                            style: AppTextTheme.robotoMedium16,
+                            children: <TextSpan>[
+                            TextSpan(
+                                text: '$n Tasks ',
+                                style: AppTextTheme.lexendBold16
+                                    .copyWith(color: AppColor.green200)),
+                            const TextSpan(
+                                text: ' to complete',
+                                style: AppTextTheme.robotoMedium16)
+                          ]))
+                    : RichText(
+                        text: TextSpan(
+                            text: 'Oops! You lost ',
+                            style: AppTextTheme.robotoMedium16,
+                            children: <TextSpan>[
+                            TextSpan(
+                                text: '$n Tasks ',
+                                style: AppTextTheme.lexendBold16
+                                    .copyWith(color: AppColor.blue200)),
+                          ]))
               ],
             ),
-            SvgPicture.asset(Assets.icArrowRight)
+            const Spacer(),
+            SvgPicture.asset(Assets.icArrowRight),
+            const SizedBox(width: 10)
           ],
         ),
       ),

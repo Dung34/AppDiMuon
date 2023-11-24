@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,9 +12,12 @@ import '../../../shared/etx/app_ext.dart';
 import '../../../shared/widgets/button/primary_button.dart';
 import '../../../shared/widgets/dropdown/base_dropdown_value.dart';
 
+import '../../../shared/widgets/image/primary_image.dart';
+import '../../../shared/widgets/something/no_data.dart';
 import '../../base/base_page_sate.dart';
 import '../../base/bloc/user/user_cubit.dart';
 
+import '../../okr_page/component/key_result_item.dart';
 import '../../okr_page/component/objective_item.dart';
 import '../../okr_page/cubit/okr_cubit.dart';
 import '../../unit_page/cubit/unit_cubit.dart';
@@ -41,256 +45,228 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
     const BaseDropdownValue(valueStr: "Eztek"),
     const BaseDropdownValue(valueStr: "Active +")
   ];
+
   @override
   void didChangeDependencies() {
     userCubit.getUser();
     cubit.getAllTask();
+
     super.didChangeDependencies();
+
     unitCubit.getAllUnit();
     okrCubit.getAllObjectives();
     listTaskDone.clear();
     listTaskLost.clear();
     listObj.clear();
     listUnits.clear();
+
+    setAppBar = AppBar(
+      actions: [
+        IconButton(
+            onPressed: () {}, icon: SvgPicture.asset(Assets.icNotification)),
+        IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icSearch))
+      ],
+      backgroundColor: AppColor.white,
+      leading: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+        return state is UserGetUserSuccessState
+            ? CircleAvatar(
+                child: PrimaryNetworkImage(
+                imageUrl: state.userEntity.avatar,
+                height: context.screenWidth * 0.108,
+                width: context.screenWidth * 0.108,
+              ))
+            : Container();
+      }),
+      title: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+        return state is UserGetUserSuccessState
+            ? Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                          (state.userEntity.role) == 1
+                              ? "Admin"
+                              : state.userEntity.fullName ?? "",
+                          style: AppTextTheme.robotoBold16),
+                      Text("ID: ${state.userEntity.id}",
+                          style: AppTextTheme.robotoLight12)
+                    ],
+                  ),
+                ],
+              )
+            : Container();
+      }),
+      toolbarHeight: context.screenHeight / 12,
+    );
   }
 
   @override
   Widget buildPage(BuildContext context) {
-    return SingleChildScrollView(
-      physics:
-          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: context.screenHeight / 12,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                bottom: BorderSide(width: 4, color: Color(0xFFE0E1E2)),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: BlocBuilder<UserCubit, UserState>(
-                builder: (context, state) {
-                  if (state is UserGetUserSuccessState) {
-                    return Row(
-                      children: [
-                        const CircleAvatar(),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              (state.userEntity.role) == 1
-                                  ? "Admin"
-                                  : state.userEntity.fullName ?? "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                            ),
-                            const Text(
-                              "ID: 92839",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: context.screenWidth * 2 / 5,
-                        ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(Assets.icNotification)),
-                        IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(Assets.icSearch))
-                      ],
-                    );
-                  } else {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Không có dữ liệu"),
-                        Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(Assets.icNotification)),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(Assets.icSearch))
-                          ],
-                        ),
-                      ],
-                    );
-                  }
-                },
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            child: Text(
-              'To-do',
-              style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Lexend'),
-            ),
-          ),
-          BlocConsumer<TaskCubit, TaskState>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              if (state is TaskGetAllTaskSuccessState) {
-                int n = state.taskList.length;
-                for (var i = 0; i < n; i++) {
-                  if (state.taskList[i].status == 0) {
-                    listTaskDone.add(state.taskList[i]);
-                  }
-
-                  if (state.taskList[i].status == 1) {
-                    listTaskLost.add(state.taskList[i]);
-                  }
-                }
-                return SizedBox(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: IhaveTask(isDone: true, listTask: listTaskDone),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: IhaveTask(isDone: false, listTask: listTaskLost),
-                      )
-                    ],
-                  ),
-                );
-              } else {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  child: Text('No Data'),
-                );
-              }
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            child: Container(
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    color: const Color(0xFF6751F2),
-                    borderRadius: BorderRadius.circular(24)),
-                child: const Text(
-                  "My Unit >",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700),
-                )),
-          ),
-          BlocProvider(
-            create: (context) => unitCubit,
-            child: BlocConsumer<UnitCubit, UnitState>(
-              listener: (context, state) {
-                if (listUnits.isEmpty) {
-                  unitCubit.getAllUnit();
-                  if (state is UnitGetAllUnitSuccessState) {
-                    listUnits = state.units;
-                  }
-                }
-              },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('To-do',
+                style: AppTextTheme.lexendBold24
+                    .copyWith(color: AppColor.green400)),
+            BlocConsumer<TaskCubit, TaskState>(
+              listener: (context, state) {},
               builder: (context, state) {
-                if (state is UnitGetAllUnitSuccessState) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                    child: SizedBox(
-                      width: context.screenWidth - 20,
-                      height: context.screenHeight / 6,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => UnitItem2(
-                                unit: listUnits[index],
-                              ),
-                          itemCount: listUnits.length),
+                if (state is TaskGetAllTaskSuccessState) {
+                  int n = state.taskList.length;
+                  for (var i = 0; i < n; i++) {
+                    if (state.taskList[i].status == 0) {
+                      listTaskDone.add(state.taskList[i]);
+                    }
+
+                    if (state.taskList[i].status == 1) {
+                      listTaskLost.add(state.taskList[i]);
+                    }
+                  }
+                  return SizedBox(
+                    child: Column(
+                      children: [
+                        IhaveTask(isDone: true, listTask: listTaskDone),
+                        const SizedBox(height: 10),
+                        IhaveTask(isDone: false, listTask: listTaskLost)
+                      ],
                     ),
                   );
                 } else {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("Không có dữ liệu !!!"),
-                  );
+                  return const Text('No Data');
                 }
               },
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  "Objectives",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                ),
+            const SizedBox(height: 15),
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              PrimaryButton(
+                backgroundColor: AppColor.purple,
+                contentPadding: 0,
+                context: context,
+                label: '   Units',
+                onPressed: () {},
+                rightIcon: SvgPicture.asset(Assets.icArrowRight,
+                    color: AppColor.white),
+                textStyle:
+                    AppTextTheme.lexendBold16.copyWith(color: AppColor.white),
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "More  > ",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ))
-            ],
-          ),
-          BlocProvider(
-            create: (context) => okrCubit,
-            child: SizedBox(
-              width: context.screenWidth,
-              height: context.screenHeight * 0.5,
-              child: BlocConsumer<OkrCubit, OkrState>(
+            ]),
+            const SizedBox(height: 15),
+            BlocProvider(
+              create: (context) => unitCubit,
+              child: BlocConsumer<UnitCubit, UnitState>(
                 listener: (context, state) {
-                  if (listObj.isEmpty) {
-                    for (var i = 0; i < listUnits.length; i++) {
-                      okrCubit.getAllObjectives(
-                          okrId: listUnits[i].okRsId, unitId: listUnits[i].id);
-                      if (state is OkrGetAllObjectivesSuccessState) {
-                        listObj.addAll(state.objectives!);
-                      }
+                  if (listUnits.isEmpty) {
+                    unitCubit.getAllUnit();
+                    if (state is UnitGetAllUnitSuccessState) {
+                      listUnits = state.units;
                     }
                   }
                 },
                 builder: (context, state) {
-                  if (state is OkrGetAllObjectivesSuccessState) {
-                    return ListView.builder(
-                      itemBuilder: (context, index) => ObjectiveItem(
-                          objective: listObj[index],
-                          cubit: okrCubit,
-                          isAdmin: false),
+                  if (state is UnitGetAllUnitSuccessState) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 1,
+                                color: AppColor.black.withOpacity(0.1),
+                                offset: const Offset(1, 1),
+                                spreadRadius: 1)
+                          ],
+                          color: AppColor.white),
+                      height: context.screenHeight * 165 / 926,
+                      padding: const EdgeInsets.all(12),
+                      child: CarouselSlider(
+                          items:
+                              listUnits.map((e) => UnitItem2(unit: e)).toList(),
+                          options: CarouselOptions(
+                              aspectRatio: 16 / 9,
+                              autoPlay: true,
+                              autoPlayInterval: const Duration(seconds: 5),
+                              height: 400,
+                              viewportFraction: 1)),
                     );
-                  } else {}
-                  return const Center(
-                    child: Text("Không có dữ liệu !!!!"),
-                  );
+                  } else {
+                    return const NoData();
+                  }
                 },
               ),
             ),
-          )
-        ],
+            const SizedBox(height: 8),
+            Text('Fulfill',
+                style: AppTextTheme.lexendBold24
+                    .copyWith(color: AppColor.green400)),
+            Center(child: Image.asset(Assets.imPlantGrowingUp)),
+            const SizedBox(height: 12),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                    text: 'YOUR PLAN ',
+                    style: AppTextTheme.lexendBold24
+                        .copyWith(color: AppColor.green400),
+                    children: const <TextSpan>[
+                      TextSpan(
+                          text: 'IS GROW UP', style: AppTextTheme.lexendBold24)
+                    ]),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Objectives",
+                    style: AppTextTheme.lexendBold24
+                        .copyWith(color: AppColor.green400)),
+                TextButton(
+                    onPressed: () {},
+                    child: const Text("More  > ",
+                        style: AppTextTheme.robotoMedium16))
+              ],
+            ),
+            BlocProvider(
+              create: (context) => okrCubit,
+              child: SizedBox(
+                width: context.screenWidth,
+                height: context.screenHeight * 0.5,
+                child: BlocConsumer<OkrCubit, OkrState>(
+                  listener: (context, state) {
+                    if (listObj.isEmpty) {
+                      for (var i = 0; i < listUnits.length; i++) {
+                        okrCubit.getAllObjectives(
+                            okrId: listUnits[i].okRsId,
+                            unitId: listUnits[i].id);
+                        if (state is OkrGetAllObjectivesSuccessState) {
+                          listObj.addAll(state.objectives!);
+                        }
+                      }
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is OkrGetAllObjectivesSuccessState) {
+                      return ListView.builder(
+                        itemBuilder: (context, index) => ObjectiveItem(
+                            objective: listObj[index],
+                            cubit: okrCubit,
+                            isAdmin: false),
+                      );
+                    } else {}
+                    return const Center(
+                      child: Text("Không có dữ liệu !!!!"),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -302,41 +278,43 @@ class UnitItem2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        width: context.screenWidth - 50,
-        decoration: BoxDecoration(
-            border: Border.all(), borderRadius: BorderRadius.circular(24)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CircleAvatar(),
-                ),
-                Column(
-                  children: [
-                    Text(
-                      unit.name ?? " ",
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    Text(unit.description ?? ""),
-                  ],
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: PrimaryButton(
-                  context: context, onPressed: () {}, label: "Update process"),
-            )
-          ],
-        ),
+    double percent = ((unit.taskDone ?? 0) + 0.0) /
+        (unit.totalTask == null || unit.totalTask == 0 ? 1 : unit.totalTask!);
+
+    return Container(
+      constraints: BoxConstraints(maxWidth: context.screenWidth - 36),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 9),
+          Row(
+            children: [
+              const SizedBox(width: 9),
+              CircularPercentIndicator(
+                center: Text('${(percent * 100).floor()}%',
+                    style: AppTextTheme.robotoBold18),
+                lineWidth: 9,
+                percent: percent,
+                radius: 44,
+              ),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(unit.name ?? " ", style: AppTextTheme.lexendBold18),
+                  Text(unit.description ?? "",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextTheme.robotoLight12),
+                ],
+              )
+            ],
+          ),
+          const SizedBox(height: 16),
+          PrimaryButton(
+              context: context, onPressed: () {}, label: "Update process")
+        ],
       ),
     );
   }
