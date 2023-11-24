@@ -30,6 +30,9 @@ mixin _$KeyResult {
   double? get actual => throw _privateConstructorUsedError;
   String? get objectiveId => throw _privateConstructorUsedError;
   String? get okRsId => throw _privateConstructorUsedError;
+  String? get dueDate => throw _privateConstructorUsedError;
+  int? get totalTask => throw _privateConstructorUsedError;
+  int? get doneTask => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +55,10 @@ abstract class $KeyResultCopyWith<$Res> {
       double? target,
       double? actual,
       String? objectiveId,
-      String? okRsId});
+      String? okRsId,
+      String? dueDate,
+      int? totalTask,
+      int? doneTask});
 }
 
 /// @nodoc
@@ -78,6 +84,9 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
     Object? actual = freezed,
     Object? objectiveId = freezed,
     Object? okRsId = freezed,
+    Object? dueDate = freezed,
+    Object? totalTask = freezed,
+    Object? doneTask = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -120,6 +129,18 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
           ? _value.okRsId
           : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
+      dueDate: freezed == dueDate
+          ? _value.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTask: freezed == totalTask
+          ? _value.totalTask
+          : totalTask // ignore: cast_nullable_to_non_nullable
+              as int?,
+      doneTask: freezed == doneTask
+          ? _value.doneTask
+          : doneTask // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -142,7 +163,10 @@ abstract class _$$KeyResultImplCopyWith<$Res>
       double? target,
       double? actual,
       String? objectiveId,
-      String? okRsId});
+      String? okRsId,
+      String? dueDate,
+      int? totalTask,
+      int? doneTask});
 }
 
 /// @nodoc
@@ -166,6 +190,9 @@ class __$$KeyResultImplCopyWithImpl<$Res>
     Object? actual = freezed,
     Object? objectiveId = freezed,
     Object? okRsId = freezed,
+    Object? dueDate = freezed,
+    Object? totalTask = freezed,
+    Object? doneTask = freezed,
   }) {
     return _then(_$KeyResultImpl(
       id: freezed == id
@@ -208,6 +235,18 @@ class __$$KeyResultImplCopyWithImpl<$Res>
           ? _value.okRsId
           : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
+      dueDate: freezed == dueDate
+          ? _value.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTask: freezed == totalTask
+          ? _value.totalTask
+          : totalTask // ignore: cast_nullable_to_non_nullable
+              as int?,
+      doneTask: freezed == doneTask
+          ? _value.doneTask
+          : doneTask // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -225,7 +264,10 @@ class _$KeyResultImpl implements _KeyResult {
       this.target,
       this.actual,
       this.objectiveId,
-      this.okRsId});
+      this.okRsId,
+      this.dueDate,
+      this.totalTask,
+      this.doneTask});
 
   factory _$KeyResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$KeyResultImplFromJson(json);
@@ -250,10 +292,16 @@ class _$KeyResultImpl implements _KeyResult {
   final String? objectiveId;
   @override
   final String? okRsId;
+  @override
+  final String? dueDate;
+  @override
+  final int? totalTask;
+  @override
+  final int? doneTask;
 
   @override
   String toString() {
-    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, status: $status, target: $target, actual: $actual, objectiveId: $objectiveId, okRsId: $okRsId)';
+    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, status: $status, target: $target, actual: $actual, objectiveId: $objectiveId, okRsId: $okRsId, dueDate: $dueDate, totalTask: $totalTask, doneTask: $doneTask)';
   }
 
   @override
@@ -272,13 +320,31 @@ class _$KeyResultImpl implements _KeyResult {
             (identical(other.actual, actual) || other.actual == actual) &&
             (identical(other.objectiveId, objectiveId) ||
                 other.objectiveId == objectiveId) &&
-            (identical(other.okRsId, okRsId) || other.okRsId == okRsId));
+            (identical(other.okRsId, okRsId) || other.okRsId == okRsId) &&
+            (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
+            (identical(other.totalTask, totalTask) ||
+                other.totalTask == totalTask) &&
+            (identical(other.doneTask, doneTask) ||
+                other.doneTask == doneTask));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description, key,
-      result, status, target, actual, objectiveId, okRsId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      key,
+      result,
+      status,
+      target,
+      actual,
+      objectiveId,
+      okRsId,
+      dueDate,
+      totalTask,
+      doneTask);
 
   @JsonKey(ignore: true)
   @override
@@ -305,7 +371,10 @@ abstract class _KeyResult implements KeyResult {
       final double? target,
       final double? actual,
       final String? objectiveId,
-      final String? okRsId}) = _$KeyResultImpl;
+      final String? okRsId,
+      final String? dueDate,
+      final int? totalTask,
+      final int? doneTask}) = _$KeyResultImpl;
 
   factory _KeyResult.fromJson(Map<String, dynamic> json) =
       _$KeyResultImpl.fromJson;
@@ -330,6 +399,12 @@ abstract class _KeyResult implements KeyResult {
   String? get objectiveId;
   @override
   String? get okRsId;
+  @override
+  String? get dueDate;
+  @override
+  int? get totalTask;
+  @override
+  int? get doneTask;
   @override
   @JsonKey(ignore: true)
   _$$KeyResultImplCopyWith<_$KeyResultImpl> get copyWith =>

@@ -46,6 +46,7 @@ class Assets {
   static const String icQrCode = '$iconPrefix/ic_qr_code.svg';
   static const String icScanner = '$iconPrefix/ic_scanner.svg';
   static const String icSearch = '$iconPrefix/ic_search.svg';
+  static const String icSecurity = '$iconPrefix/ic_security.svg';
   static const String icSetting = '$iconPrefix/ic_setting.svg';
   static const String icShare = '$iconPrefix/ic_share.svg';
   static const String icSquareAltArrowRight =
@@ -66,12 +67,17 @@ class Assets {
   static const String imAppLogoHorizontalWhite =
       '$imagePrefix/im_logo_active.png';
   static const String imQrBounder = '$imagePrefix/im_qr_bounder.png';
+
   static const String icCoin = "$imagePrefix/ic_coin.svg";
   static const String imBoi = "$imagePrefix/im_boi_task.png";
   static const String imGirl = "$imagePrefix/im_girl_task.png";
 
+  static const String imPlantGrowingUp = '$imagePrefix/im_plan_growing_up.png';
+
   // background
   static const String backgroundPrefix = 'assets/backgrounds';
+  static const String bgKeyResultDetail =
+      '$backgroundPrefix/bg_keyResult_detail.png';
   static const String bgObjectiveDetail =
       '$backgroundPrefix/bg_objective_detail.png';
   static const String bgUnitDetailPage =

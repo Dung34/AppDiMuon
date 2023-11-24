@@ -29,7 +29,9 @@ mixin _$KeyResultResponse {
   double? get target => throw _privateConstructorUsedError;
   double? get actual => throw _privateConstructorUsedError;
   String? get okRsId => throw _privateConstructorUsedError;
-  int? get status => throw _privateConstructorUsedError;
+  String? get dueDate => throw _privateConstructorUsedError;
+  int? get totalTask => throw _privateConstructorUsedError;
+  int? get doneTask => throw _privateConstructorUsedError;
   String? get createdBy => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +56,9 @@ abstract class $KeyResultResponseCopyWith<$Res> {
       double? target,
       double? actual,
       String? okRsId,
-      int? status,
+      String? dueDate,
+      int? totalTask,
+      int? doneTask,
       String? createdBy});
 }
 
@@ -80,7 +84,9 @@ class _$KeyResultResponseCopyWithImpl<$Res, $Val extends KeyResultResponse>
     Object? target = freezed,
     Object? actual = freezed,
     Object? okRsId = freezed,
-    Object? status = freezed,
+    Object? dueDate = freezed,
+    Object? totalTask = freezed,
+    Object? doneTask = freezed,
     Object? createdBy = freezed,
   }) {
     return _then(_value.copyWith(
@@ -120,9 +126,17 @@ class _$KeyResultResponseCopyWithImpl<$Res, $Val extends KeyResultResponse>
           ? _value.okRsId
           : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      dueDate: freezed == dueDate
+          ? _value.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTask: freezed == totalTask
+          ? _value.totalTask
+          : totalTask // ignore: cast_nullable_to_non_nullable
+              as int?,
+      doneTask: freezed == doneTask
+          ? _value.doneTask
+          : doneTask // ignore: cast_nullable_to_non_nullable
               as int?,
       createdBy: freezed == createdBy
           ? _value.createdBy
@@ -150,7 +164,9 @@ abstract class _$$KeyResultResponseImplCopyWith<$Res>
       double? target,
       double? actual,
       String? okRsId,
-      int? status,
+      String? dueDate,
+      int? totalTask,
+      int? doneTask,
       String? createdBy});
 }
 
@@ -174,7 +190,9 @@ class __$$KeyResultResponseImplCopyWithImpl<$Res>
     Object? target = freezed,
     Object? actual = freezed,
     Object? okRsId = freezed,
-    Object? status = freezed,
+    Object? dueDate = freezed,
+    Object? totalTask = freezed,
+    Object? doneTask = freezed,
     Object? createdBy = freezed,
   }) {
     return _then(_$KeyResultResponseImpl(
@@ -214,9 +232,17 @@ class __$$KeyResultResponseImplCopyWithImpl<$Res>
           ? _value.okRsId
           : okRsId // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      dueDate: freezed == dueDate
+          ? _value.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTask: freezed == totalTask
+          ? _value.totalTask
+          : totalTask // ignore: cast_nullable_to_non_nullable
+              as int?,
+      doneTask: freezed == doneTask
+          ? _value.doneTask
+          : doneTask // ignore: cast_nullable_to_non_nullable
               as int?,
       createdBy: freezed == createdBy
           ? _value.createdBy
@@ -239,7 +265,9 @@ class _$KeyResultResponseImpl implements _KeyResultResponse {
       this.target,
       this.actual,
       this.okRsId,
-      this.status,
+      this.dueDate,
+      this.totalTask,
+      this.doneTask,
       this.createdBy});
 
   factory _$KeyResultResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -264,13 +292,17 @@ class _$KeyResultResponseImpl implements _KeyResultResponse {
   @override
   final String? okRsId;
   @override
-  final int? status;
+  final String? dueDate;
+  @override
+  final int? totalTask;
+  @override
+  final int? doneTask;
   @override
   final String? createdBy;
 
   @override
   String toString() {
-    return 'KeyResultResponse(id: $id, title: $title, description: $description, objectiveId: $objectiveId, key: $key, result: $result, target: $target, actual: $actual, okRsId: $okRsId, status: $status, createdBy: $createdBy)';
+    return 'KeyResultResponse(id: $id, title: $title, description: $description, objectiveId: $objectiveId, key: $key, result: $result, target: $target, actual: $actual, okRsId: $okRsId, dueDate: $dueDate, totalTask: $totalTask, doneTask: $doneTask, createdBy: $createdBy)';
   }
 
   @override
@@ -289,15 +321,32 @@ class _$KeyResultResponseImpl implements _KeyResultResponse {
             (identical(other.target, target) || other.target == target) &&
             (identical(other.actual, actual) || other.actual == actual) &&
             (identical(other.okRsId, okRsId) || other.okRsId == okRsId) &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
+            (identical(other.totalTask, totalTask) ||
+                other.totalTask == totalTask) &&
+            (identical(other.doneTask, doneTask) ||
+                other.doneTask == doneTask) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description,
-      objectiveId, key, result, target, actual, okRsId, status, createdBy);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      objectiveId,
+      key,
+      result,
+      target,
+      actual,
+      okRsId,
+      dueDate,
+      totalTask,
+      doneTask,
+      createdBy);
 
   @JsonKey(ignore: true)
   @override
@@ -325,7 +374,9 @@ abstract class _KeyResultResponse implements KeyResultResponse {
       final double? target,
       final double? actual,
       final String? okRsId,
-      final int? status,
+      final String? dueDate,
+      final int? totalTask,
+      final int? doneTask,
       final String? createdBy}) = _$KeyResultResponseImpl;
 
   factory _KeyResultResponse.fromJson(Map<String, dynamic> json) =
@@ -350,7 +401,11 @@ abstract class _KeyResultResponse implements KeyResultResponse {
   @override
   String? get okRsId;
   @override
-  int? get status;
+  String? get dueDate;
+  @override
+  int? get totalTask;
+  @override
+  int? get doneTask;
   @override
   String? get createdBy;
   @override

@@ -18,7 +18,9 @@ _$KeyResultResponseImpl _$$KeyResultResponseImplFromJson(
       target: (json['target'] as num?)?.toDouble(),
       actual: (json['actual'] as num?)?.toDouble(),
       okRsId: json['okRsId'] as String?,
-      status: json['status'] as int?,
+      dueDate: json['dueDate'] as String?,
+      totalTask: json['totalTask'] as int?,
+      doneTask: json['doneTask'] as int?,
       createdBy: json['createdBy'] as String?,
     );
 
@@ -34,6 +36,8 @@ Map<String, dynamic> _$$KeyResultResponseImplToJson(
       'target': instance.target,
       'actual': instance.actual,
       'okRsId': instance.okRsId,
-      'status': instance.status,
+      'dueDate': instance.dueDate,
+      'totalTask': instance.totalTask,
+      'doneTask': instance.doneTask,
       'createdBy': instance.createdBy,
     };

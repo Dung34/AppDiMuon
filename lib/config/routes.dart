@@ -6,6 +6,7 @@ import '../domain/entity/event/event_wrapper/event.dart';
 import '../domain/entity/okr/key_result/key_result.dart';
 import '../domain/entity/okr/task/task.dart';
 import '../domain/entity/okr/unit/unit.dart';
+import '../domain/entity/okr/task/task.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
 import '../domain/entity/target/target.dart';

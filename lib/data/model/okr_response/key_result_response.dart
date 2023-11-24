@@ -15,7 +15,9 @@ class KeyResultResponse with _$KeyResultResponse {
     double? target,
     double? actual,
     String? okRsId,
-    int? status,
+    String? dueDate,
+    int? totalTask,
+    int? doneTask,
     String? createdBy,
   }) = _KeyResultResponse;
 

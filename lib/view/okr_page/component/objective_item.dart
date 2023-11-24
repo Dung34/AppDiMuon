@@ -116,9 +116,10 @@ class _ObjectiveItemState extends State<ObjectiveItem> {
                   ),
                 ),
                 CircularPercentIndicator(
-                  center: const Text('60%', style: AppTextTheme.robotoBold16),
+                  center: Text('${(widget.objective.process ?? 0.0).ceil()}%',
+                      style: AppTextTheme.robotoBold16),
                   lineWidth: 9,
-                  percent: 0.6,
+                  percent: widget.objective.process ?? 0,
                   progressColor: AppColor.green200,
                   radius: context.screenWidth * 50 / 428,
                 ),

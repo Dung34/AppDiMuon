@@ -8,7 +8,6 @@ import '../../domain/entity/okr/key_result/key_result.dart';
 import '../../domain/entity/okr/objective/objective.dart';
 import '../../shared/etx/app_ext.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
-import '../../shared/widgets/container/primary_container.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
@@ -393,9 +392,10 @@ class Score extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: Column(children: [
         CircularPercentIndicator(
-          center: Text('...%', style: AppTextTheme.robotoBold18),
+          center: Text('${objective.process ?? 0}%',
+              style: AppTextTheme.robotoBold18),
           lineWidth: 9,
-          percent: 0.6,
+          percent: objective.process ?? 0,
           progressColor: AppColor.green200,
           radius: 53,
         ),

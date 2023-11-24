@@ -35,6 +35,8 @@ mixin _$Objective {
   set unitId(String? value) => throw _privateConstructorUsedError;
   String? get unitName => throw _privateConstructorUsedError;
   set unitName(String? value) => throw _privateConstructorUsedError;
+  double? get process => throw _privateConstructorUsedError;
+  set process(double? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +56,8 @@ abstract class $ObjectiveCopyWith<$Res> {
       String? okrId,
       List<Objective>? relatedObjective,
       String? unitId,
-      String? unitName});
+      String? unitName,
+      double? process});
 }
 
 /// @nodoc
@@ -77,6 +80,7 @@ class _$ObjectiveCopyWithImpl<$Res, $Val extends Objective>
     Object? relatedObjective = freezed,
     Object? unitId = freezed,
     Object? unitName = freezed,
+    Object? process = freezed,
   }) {
     return _then(_value.copyWith(
       objectiveId: freezed == objectiveId
@@ -107,6 +111,10 @@ class _$ObjectiveCopyWithImpl<$Res, $Val extends Objective>
           ? _value.unitName
           : unitName // ignore: cast_nullable_to_non_nullable
               as String?,
+      process: freezed == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -126,7 +134,8 @@ abstract class _$$ObjectiveImplCopyWith<$Res>
       String? okrId,
       List<Objective>? relatedObjective,
       String? unitId,
-      String? unitName});
+      String? unitName,
+      double? process});
 }
 
 /// @nodoc
@@ -147,6 +156,7 @@ class __$$ObjectiveImplCopyWithImpl<$Res>
     Object? relatedObjective = freezed,
     Object? unitId = freezed,
     Object? unitName = freezed,
+    Object? process = freezed,
   }) {
     return _then(_$ObjectiveImpl(
       objectiveId: freezed == objectiveId
@@ -177,6 +187,10 @@ class __$$ObjectiveImplCopyWithImpl<$Res>
           ? _value.unitName
           : unitName // ignore: cast_nullable_to_non_nullable
               as String?,
+      process: freezed == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -191,7 +205,8 @@ class _$ObjectiveImpl implements _Objective {
       this.okrId,
       this.relatedObjective,
       this.unitId,
-      this.unitName});
+      this.unitName,
+      this.process});
 
   factory _$ObjectiveImpl.fromJson(Map<String, dynamic> json) =>
       _$$ObjectiveImplFromJson(json);
@@ -210,10 +225,12 @@ class _$ObjectiveImpl implements _Objective {
   String? unitId;
   @override
   String? unitName;
+  @override
+  double? process;
 
   @override
   String toString() {
-    return 'Objective(objectiveId: $objectiveId, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName)';
+    return 'Objective(objectiveId: $objectiveId, title: $title, description: $description, okrId: $okrId, relatedObjective: $relatedObjective, unitId: $unitId, unitName: $unitName, process: $process)';
   }
 
   @JsonKey(ignore: true)
@@ -238,7 +255,8 @@ abstract class _Objective implements Objective {
       String? okrId,
       List<Objective>? relatedObjective,
       String? unitId,
-      String? unitName}) = _$ObjectiveImpl;
+      String? unitName,
+      double? process}) = _$ObjectiveImpl;
 
   factory _Objective.fromJson(Map<String, dynamic> json) =
       _$ObjectiveImpl.fromJson;
@@ -264,6 +282,9 @@ abstract class _Objective implements Objective {
   @override
   String? get unitName;
   set unitName(String? value);
+  @override
+  double? get process;
+  set process(double? value);
   @override
   @JsonKey(ignore: true)
   _$$ObjectiveImplCopyWith<_$ObjectiveImpl> get copyWith =>

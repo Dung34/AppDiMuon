@@ -26,6 +26,13 @@ class _KeyResultItemState extends State<KeyResultItem> {
 
   @override
   Widget build(BuildContext context) {
+    double doneTask = 0.0 + (widget.keyResult.doneTask ?? 0);
+    double totalTask = widget.keyResult.totalTask == null
+        ? 1.0
+        : widget.keyResult.totalTask == 0
+            ? 1.0
+            : (widget.keyResult.totalTask! + 0.0);
+
     return Slidable(
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
@@ -97,9 +104,10 @@ class _KeyResultItemState extends State<KeyResultItem> {
             ),
           ),
           CircularPercentIndicator(
-            center: const Text('60%', style: AppTextTheme.robotoBold16),
+            center: Text('${doneTask / totalTask}%',
+                style: AppTextTheme.robotoBold16),
             lineWidth: 9,
-            percent: 0.6,
+            percent: doneTask / totalTask,
             progressColor: AppColor.green200,
             radius: context.screenWidth * 50 / 428,
           ),
