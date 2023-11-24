@@ -66,6 +66,9 @@ class Assets {
   static const String imAppLogoHorizontalWhite =
       '$imagePrefix/im_logo_active.png';
   static const String imQrBounder = '$imagePrefix/im_qr_bounder.png';
+  static const String icCoin = "$imagePrefix/ic_coin.svg";
+  static const String imBoi = "$imagePrefix/im_boi_task.png";
+  static const String imGirl = "$imagePrefix/im_girl_task.png";
 
   // background
   static const String backgroundPrefix = 'assets/backgrounds';

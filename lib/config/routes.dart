@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
 import '../domain/entity/okr/key_result/key_result.dart';
+import '../domain/entity/okr/task/task.dart';
 import '../domain/entity/okr/unit/unit.dart';
 import '../domain/entity/project/project.dart';
 import '../domain/entity/skill/skill.dart';
@@ -350,5 +351,6 @@ class LoginArgs {
 
 class ToDoArgs {
   final List<Task> listTask;
-  ToDoArgs(this.listTask);
+  final bool isLate;
+  ToDoArgs(this.listTask, this.isLate);
 }

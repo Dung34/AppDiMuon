@@ -25,7 +25,7 @@ class IhaveTask extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, AppRoute.todotask,
-              arguments: ToDoArgs(listTask));
+              arguments: ToDoArgs(listTask, !isDone));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

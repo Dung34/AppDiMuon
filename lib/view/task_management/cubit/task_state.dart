@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'task_cubit.dart';
 
 class TaskState {
@@ -62,3 +63,12 @@ class TaskChangeAssigneer extends TaskState {
 
   TaskChangeAssigneer({required this.user});
 }
+
+class TaskGetActivitySuccess extends TaskState {
+  final List<Activity> listActivities;
+  const TaskGetActivitySuccess({required this.listActivities});
+  @override
+  List<Object> get props => [];
+}
+
+class TaskGetActivityFailed extends TaskState {}

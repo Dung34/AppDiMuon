@@ -7,14 +7,17 @@ import '../../../di/di.dart';
 import '../../../domain/entity/okr/key_result/key_result.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
 import '../../../domain/entity/okr/okr_wrapper/okr.dart';
+import '../../../domain/entity/okr/task/activity/activity.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../domain/entity/okr/task/task.dart';
 import '../../../domain/entity/user/user.dart';
+import '../../../domain/mapper/activity_data_mapper.dart';
 import '../../../domain/mapper/okr_data_mapper.dart';
 import '../../../domain/mapper/unit_data_mapper.dart';
 import '../../../domain/mapper/user_data_mapper.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../../domain/mapper/task_data_mapper.dart';
+import '../../model/activities/activities_response.dart';
 import '../../model/api/base_response.dart';
 import '../../model/okr_response/key_result_response.dart';
 import '../../model/okr_response/objective_response.dart';
@@ -40,6 +43,7 @@ class OKRRepositoryImpl extends OKRRepository {
   final TaskDataMapper _taskDataMapper = getIt.get();
   final UserDataMapper _userDataMapper = getIt.get();
   final AppInterceptor appInterceptor = getIt.get<AppInterceptor>();
+  final ActivityMapper _activityMapper = getIt.get<ActivityMapper>();
 
   OKRRepositoryImpl() {
     dio.interceptors.add(PrettyDioLogger(
@@ -723,6 +727,26 @@ class OKRRepositoryImpl extends OKRRepository {
       return ResponseWrapper.error(message: "");
     } catch (e) {
       handleException(e);
+      return ResponseWrapper.error(message: "");
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<List<Activity>>> getActivityOfTask(
+      String taskId) async {
+    accessToken = await localDataAccess.getAccessToken();
+    try {
+      final response = await dio.get('taskOKR/get-activity-task',
+          queryParameters: {"TaskId": taskId, "Page": 1, "PageSize": 10},
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      if (response.statusCode == 200) {
+        return ResponseWrapper.success(
+            data: List.from((response.data as List).map((e) =>
+                _activityMapper.mapToEntity(ActivityResponse.fromJson(e)))));
+      } else {
+        return ResponseWrapper.error(message: "");
+      }
+    } catch (e) {
       return ResponseWrapper.error(message: "");
     }
   }
