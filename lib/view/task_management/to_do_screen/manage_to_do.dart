@@ -120,8 +120,9 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, OkrCubit> {
             Text('To-do',
                 style: AppTextTheme.lexendBold24
                     .copyWith(color: AppColor.green400)),
-            BlocConsumer<OkrCubit, OkrState>(
-              listener: (context, state) {},
+            BlocBuilder<OkrCubit, OkrState>(
+              buildWhen: (previous, current) =>
+                  current is TaskGetAllTaskSuccessState,
               builder: (context, state) {
                 if (state is TaskGetAllTaskSuccessState) {
                   int n = state.taskList.length;
@@ -167,17 +168,12 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, OkrCubit> {
             const SizedBox(height: 15),
             BlocProvider(
               create: (context) => unitCubit,
-              child: BlocConsumer<UnitCubit, UnitState>(
-                listener: (context, state) {
-                  if (listUnits.isEmpty) {
-                    unitCubit.getAllUnit();
-                    if (state is UnitGetAllUnitSuccessState) {
-                      listUnits = state.units;
-                    }
-                  }
-                },
+              child: BlocBuilder<UnitCubit, UnitState>(
+                buildWhen: (previous, current) =>
+                    current is UnitGetAllUnitSuccessState,
                 builder: (context, state) {
                   if (state is UnitGetAllUnitSuccessState) {
+                    listUnits = state.units;
                     return UnitSlide(listUnits: listUnits);
                   } else {
                     return const NoData();
@@ -225,11 +221,11 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, OkrCubit> {
                   listener: (context, state) {
                     if (listObj.isEmpty) {
                       for (var i = 0; i < listUnits.length; i++) {
-                        okrCubit.getAllObjectives(
-                            okrId: listUnits[i].okRsId,
-                            unitId: listUnits[i].id);
+                        // okrCubit.getAllObjectives(
+                        //     okrId: listUnits[i].okRsId,
+                        //     unitId: listUnits[i].id);
                         if (state is OkrGetAllObjectivesSuccessState) {
-                          listObj.addAll(state.objectives!);
+                          // listObj.addAll(state.objectives!);
                         }
                       }
                     }
@@ -270,52 +266,59 @@ class UnitSlideState extends State<UnitSlide> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 1,
-                    color: AppColor.black.withOpacity(0.1),
-                    offset: const Offset(1, 1),
-                    spreadRadius: 1)
-              ],
-              color: AppColor.white),
-          height: context.screenHeight * 165 / 926,
-          padding: const EdgeInsets.all(12),
-          child: CarouselSlider.builder(
-              itemCount:
-                  widget.listUnits.length < 8 ? widget.listUnits.length : 7,
-              itemBuilder: (context, index, realIndex) =>
-                  UnitItem2(unit: widget.listUnits[index]),
-              options: CarouselOptions(
-                  aspectRatio: 16 / 9,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 5),
-                  height: 400,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      dotActiveIndex = index;
-                    });
-                  },
-                  viewportFraction: 1)),
-        ),
-        const SizedBox(height: 8),
-        Center(
-          child: AnimatedSmoothIndicator(
-            activeIndex: dotActiveIndex,
-            count: widget.listUnits.length < 8 ? widget.listUnits.length : 7,
-            effect: const SlideEffect(
-                activeDotColor: AppColor.green200,
-                dotColor: Color(0xFFB1DAC6),
-                dotHeight: 8,
-                dotWidth: 8),
-          ),
-        ),
-      ],
-    );
+    return widget.listUnits.isEmpty
+        ? Container(
+            color: AppColor.white,
+            child: const Text('Không có Unit nào',
+                style: AppTextTheme.robotoRegular14))
+        : Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 1,
+                          color: AppColor.black.withOpacity(0.1),
+                          offset: const Offset(1, 1),
+                          spreadRadius: 1)
+                    ],
+                    color: AppColor.white),
+                height: context.screenHeight * 165 / 926,
+                padding: const EdgeInsets.all(12),
+                child: CarouselSlider.builder(
+                    itemCount: widget.listUnits.length < 8
+                        ? widget.listUnits.length
+                        : 7,
+                    itemBuilder: (context, index, realIndex) =>
+                        UnitItem2(unit: widget.listUnits[index]),
+                    options: CarouselOptions(
+                        aspectRatio: 16 / 9,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 5),
+                        height: 400,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            dotActiveIndex = index;
+                          });
+                        },
+                        viewportFraction: 1)),
+              ),
+              const SizedBox(height: 8),
+              Center(
+                child: AnimatedSmoothIndicator(
+                  activeIndex: dotActiveIndex,
+                  count:
+                      widget.listUnits.length < 8 ? widget.listUnits.length : 7,
+                  effect: const SlideEffect(
+                      activeDotColor: AppColor.green200,
+                      dotColor: Color(0xFFB1DAC6),
+                      dotHeight: 8,
+                      dotWidth: 8),
+                ),
+              ),
+            ],
+          );
   }
 }
 
