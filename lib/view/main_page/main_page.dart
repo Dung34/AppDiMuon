@@ -47,17 +47,17 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
     Assets.icSetting,
   ];
   final titles = [
-    'Trang chủ',
-    'Danh thiếp',
+    'To-do',
+    'Unit',
     'Dự án',
     'Hồ sơ',
   ];
   final tabs = [
+    const ManageToDoTask(),
     const UnitPage(),
     const MembershipPage(),
     //const SelectTenant(),
     // const CalendarPage(),
-    const ManageToDoTask(),
     //const SkillPage(),
     SettingPage(),
   ];
@@ -115,7 +115,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
                 SvgPicture.asset(
                   icons[index],
                   color: _bottomNavIndex == index
-                      ? AppColor.primary500
+                      ? AppColor.green200
                       : AppColor.fourth700,
                 ),
                 const SizedBox(height: 4),
@@ -123,7 +123,7 @@ class _MainPageState extends BasePageState<MainPage, CommonCubit>
                   titles[index],
                   style: _bottomNavIndex == index
                       ? AppTextTheme.textLabelSmall
-                          .copyWith(color: AppColor.primaryColor)
+                          .copyWith(color: AppColor.green200)
                       : AppTextTheme.textLabelSmallInactive,
                 ),
               ],

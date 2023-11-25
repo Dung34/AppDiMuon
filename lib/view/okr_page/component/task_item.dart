@@ -1,36 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
-import '../../../domain/entity/okr/key_result/key_result.dart';
-import '../../../shared/etx/app_ext.dart';
+import '../../../domain/entity/okr/task/task.dart';
 import '../../../shared/utils/date_time_utils.dart';
 import '../cubit/okr_cubit.dart';
-import '../key_result_update_page.dart';
 
 // ignore: must_be_immutable
-class KeyResultItem extends StatefulWidget {
+class TaskItem extends StatefulWidget {
   final OkrCubit cubit;
-  final KeyResult keyResult;
+  final Task task;
 
-  const KeyResultItem(
-      {super.key, required this.keyResult, required this.cubit});
+  const TaskItem({super.key, required this.task, required this.cubit});
 
   @override
-  State<KeyResultItem> createState() => _KeyResultItemState();
+  State<TaskItem> createState() => _TaskItemState();
 }
 
-class _KeyResultItemState extends State<KeyResultItem> {
+class _TaskItemState extends State<TaskItem> {
   bool checked = false;
 
   @override
   Widget build(BuildContext context) {
-    double doneTask = 0.0 + (widget.keyResult.doneTask ?? 0);
-    double totalTask = widget.keyResult.totalTask == null
-        ? 1.0
-        : widget.keyResult.totalTask == 0
-            ? 1.0
-            : (widget.keyResult.totalTask! + 0.0);
+    // double doneTask = 0.0 + (widget.task.doneTask ?? 0);
+    // double totalTask = widget.task.totalTask == null
+    //     ? 1.0
+    //     : widget.task.totalTask == 0
+    //         ? 1.0
+    //         : (widget.task.totalTask! + 0.0);
 
     return Slidable(
         endActionPane: ActionPane(
@@ -45,7 +43,7 @@ class _KeyResultItemState extends State<KeyResultItem> {
               icon: Icons.delete,
               label: 'Sửa',
               onPressed: (context) {
-                _onUpdateKeyResultPressed();
+                _onUpdatetaskPressed();
               },
             ),
             const SizedBox(width: 5.0),
@@ -58,7 +56,7 @@ class _KeyResultItemState extends State<KeyResultItem> {
               icon: Icons.delete,
               label: 'Xóa',
               onPressed: (context) {
-                widget.cubit.deleteKeyResult(widget.keyResult.id!);
+                // widget.cubit.deletetask(widget.task.id!);
               },
             )
           ],
@@ -68,7 +66,8 @@ class _KeyResultItemState extends State<KeyResultItem> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('${widget.keyResult.title}',
+                statusText[widget.task.status ?? 0],
+                Text('${widget.task.title}',
                     style: AppTextTheme.lexendBold16
                         .copyWith(color: AppColor.green400)),
                 const SizedBox(height: 8),
@@ -78,43 +77,39 @@ class _KeyResultItemState extends State<KeyResultItem> {
                         child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Owner', style: AppTextTheme.lexendLight14),
+                        Text('Assignee', style: AppTextTheme.lexendLight14),
                         SizedBox(height: 8),
                         Text('Due Date', style: AppTextTheme.lexendLight14)
                       ],
                     )),
                     Expanded(
                         child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(''),
+                        Text('${widget.task.assignee?.fullName}',
+                            style: AppTextTheme.lexendRegular14
+                                .copyWith(color: AppColor.darkGray)),
                         const SizedBox(height: 8),
                         Text(
-                          DateTimeUtils.formatDate(DateTime.now().toString()),
-                          style: AppTextTheme.robotoMedium14
-                              .copyWith(color: AppColor.black),
-                        )
+                            DateTimeUtils.formatDate('${widget.task.endDate}',
+                                showTime: false),
+                            style: AppTextTheme.lexendRegular14
+                                .copyWith(color: AppColor.darkGray))
                       ],
-                    ))
+                    )),
+                    const SizedBox(width: 6),
                   ],
                 ),
                 const SizedBox(height: 6)
               ],
             ),
           ),
-          CircularPercentIndicator(
-              center: Text('${(doneTask / totalTask * 100).floor()}%',
-                  style: AppTextTheme.robotoBold16),
-              lineWidth: 9,
-              percent: doneTask / totalTask,
-              progressColor: AppColor.green200,
-              radius: context.screenWidth * 50 / 428),
         ]));
   }
 
-  _onUpdateKeyResultPressed() {
-    context.showAppBottomSheet(
-        KeyResultUpdatePage(keyResult: widget.keyResult, cubit: widget.cubit));
+  _onUpdatetaskPressed() {
+    // context.showAppBottomSheet(
+    //     taskUpdatePage(task: widget.task, cubit: widget.cubit));
   }
 }
 

@@ -122,3 +122,69 @@ class OkrUpdateObjectiveSuccessState extends OkrState {
 }
 
 class OkrUpdateObjectiveFailedState extends OkrState {}
+
+class TaskInitial extends OkrState {}
+
+class TaskCreateSuccessState extends OkrState {
+  final Task task;
+
+  const TaskCreateSuccessState({required this.task});
+}
+
+class TaskCreateFailedState extends OkrState {}
+
+class TaskGetDetailSuccessState extends OkrState {
+  final Task task;
+
+  const TaskGetDetailSuccessState({required this.task});
+}
+
+class TaskGetDetailFailedState extends OkrState {}
+
+class TaskUpdateSuccessState extends OkrState {
+  final Task task;
+
+  const TaskUpdateSuccessState({required this.task});
+}
+
+class TaskUpdateFailedState extends OkrState {}
+
+class TaskDeleteSuccessState extends OkrState {
+  final Task task;
+
+  const TaskDeleteSuccessState({required this.task});
+}
+
+class TaskDeleteFailedState extends OkrState {}
+
+class TaskGetAllTaskSuccessState extends OkrState {
+  final List<Task> taskList;
+
+  const TaskGetAllTaskSuccessState({required this.taskList});
+
+  @override
+  List<Object> get props => [taskList];
+}
+
+class TaskGetAllTaskFailedState extends OkrState {}
+
+class TaskChangeAssignee extends OkrState {
+  final UserEntity user;
+
+  const TaskChangeAssignee({required this.user});
+}
+
+class TaskChangeAssigneer extends OkrState {
+  final UserEntity user;
+
+  const TaskChangeAssigneer({required this.user});
+}
+
+class TaskGetActivitySuccess extends OkrState {
+  final List<Activity> listActivities;
+  const TaskGetActivitySuccess({required this.listActivities});
+  @override
+  List<Object> get props => [];
+}
+
+class TaskGetActivityFailed extends OkrState {}

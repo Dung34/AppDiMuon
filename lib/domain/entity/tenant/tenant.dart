@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'tenant.g.dart';
 part 'tenant.freezed.dart';
+part 'tenant.g.dart';
 
 @unfreezed
 class Tenant with _$Tenant {

@@ -33,6 +33,8 @@ mixin _$KeyResult {
   String? get dueDate => throw _privateConstructorUsedError;
   int? get totalTask => throw _privateConstructorUsedError;
   int? get doneTask => throw _privateConstructorUsedError;
+  String? get createdBy => throw _privateConstructorUsedError;
+  String? get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +60,9 @@ abstract class $KeyResultCopyWith<$Res> {
       String? okRsId,
       String? dueDate,
       int? totalTask,
-      int? doneTask});
+      int? doneTask,
+      String? createdBy,
+      String? createdDate});
 }
 
 /// @nodoc
@@ -87,6 +91,8 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
     Object? dueDate = freezed,
     Object? totalTask = freezed,
     Object? doneTask = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -141,6 +147,14 @@ class _$KeyResultCopyWithImpl<$Res, $Val extends KeyResult>
           ? _value.doneTask
           : doneTask // ignore: cast_nullable_to_non_nullable
               as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -166,7 +180,9 @@ abstract class _$$KeyResultImplCopyWith<$Res>
       String? okRsId,
       String? dueDate,
       int? totalTask,
-      int? doneTask});
+      int? doneTask,
+      String? createdBy,
+      String? createdDate});
 }
 
 /// @nodoc
@@ -193,6 +209,8 @@ class __$$KeyResultImplCopyWithImpl<$Res>
     Object? dueDate = freezed,
     Object? totalTask = freezed,
     Object? doneTask = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
   }) {
     return _then(_$KeyResultImpl(
       id: freezed == id
@@ -247,6 +265,14 @@ class __$$KeyResultImplCopyWithImpl<$Res>
           ? _value.doneTask
           : doneTask // ignore: cast_nullable_to_non_nullable
               as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -267,7 +293,9 @@ class _$KeyResultImpl implements _KeyResult {
       this.okRsId,
       this.dueDate,
       this.totalTask,
-      this.doneTask});
+      this.doneTask,
+      this.createdBy,
+      this.createdDate});
 
   factory _$KeyResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$KeyResultImplFromJson(json);
@@ -298,10 +326,14 @@ class _$KeyResultImpl implements _KeyResult {
   final int? totalTask;
   @override
   final int? doneTask;
+  @override
+  final String? createdBy;
+  @override
+  final String? createdDate;
 
   @override
   String toString() {
-    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, status: $status, target: $target, actual: $actual, objectiveId: $objectiveId, okRsId: $okRsId, dueDate: $dueDate, totalTask: $totalTask, doneTask: $doneTask)';
+    return 'KeyResult(id: $id, title: $title, description: $description, key: $key, result: $result, status: $status, target: $target, actual: $actual, objectiveId: $objectiveId, okRsId: $okRsId, dueDate: $dueDate, totalTask: $totalTask, doneTask: $doneTask, createdBy: $createdBy, createdDate: $createdDate)';
   }
 
   @override
@@ -325,7 +357,11 @@ class _$KeyResultImpl implements _KeyResult {
             (identical(other.totalTask, totalTask) ||
                 other.totalTask == totalTask) &&
             (identical(other.doneTask, doneTask) ||
-                other.doneTask == doneTask));
+                other.doneTask == doneTask) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate));
   }
 
   @JsonKey(ignore: true)
@@ -344,7 +380,9 @@ class _$KeyResultImpl implements _KeyResult {
       okRsId,
       dueDate,
       totalTask,
-      doneTask);
+      doneTask,
+      createdBy,
+      createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -374,7 +412,9 @@ abstract class _KeyResult implements KeyResult {
       final String? okRsId,
       final String? dueDate,
       final int? totalTask,
-      final int? doneTask}) = _$KeyResultImpl;
+      final int? doneTask,
+      final String? createdBy,
+      final String? createdDate}) = _$KeyResultImpl;
 
   factory _KeyResult.fromJson(Map<String, dynamic> json) =
       _$KeyResultImpl.fromJson;
@@ -405,6 +445,10 @@ abstract class _KeyResult implements KeyResult {
   int? get totalTask;
   @override
   int? get doneTask;
+  @override
+  String? get createdBy;
+  @override
+  String? get createdDate;
   @override
   @JsonKey(ignore: true)
   _$$KeyResultImplCopyWith<_$KeyResultImpl> get copyWith =>

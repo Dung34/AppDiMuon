@@ -103,6 +103,7 @@ class EndPoints {
 
   //tenant
   static const String getAllTenant = "/get-all-tenant-by-userID";
+  static const String getPositionForUser = "/get--position-for-user-in-tenant";
   static const String getTenantDetail = "/get-detail-tenant";
 
   //unit

@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../data/model/api/base_response.dart';
 import '../../../data/repository/remote/tenant_repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/entity/tenant/claim.dart';
 import '../../../domain/entity/tenant/tenant.dart';
 
 part 'tenant_state.dart';
@@ -27,6 +29,16 @@ class TenantCubit extends Cubit<TenantState> {
       log("message");
     } else {
       emit(GetAllTenantByUserIdFailed());
+    }
+  }
+
+  getPositionForUser(String? userId) async {
+    final response = await _tenantRepository.getPositionForUser(userId);
+
+    if (response.status == ResponseStatus.success) {
+      emit(GetPositionForUserSuccessState(response.data!));
+    } else {
+      emit(GetPositionForUserFailedState());
     }
   }
 

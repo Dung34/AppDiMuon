@@ -22,6 +22,7 @@ _$KeyResultResponseImpl _$$KeyResultResponseImplFromJson(
       totalTask: json['totalTask'] as int?,
       doneTask: json['doneTask'] as int?,
       createdBy: json['createdBy'] as String?,
+      createdDate: json['createdDate'] as String?,
     );
 
 Map<String, dynamic> _$$KeyResultResponseImplToJson(
@@ -40,4 +41,5 @@ Map<String, dynamic> _$$KeyResultResponseImplToJson(
       'totalTask': instance.totalTask,
       'doneTask': instance.doneTask,
       'createdBy': instance.createdBy,
+      'createdDate': instance.createdDate,
     };

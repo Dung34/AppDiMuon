@@ -120,6 +120,7 @@ configureInjection() async {
   getIt.registerLazySingleton<OKRDataMapper>(() => OKRDataMapper());
   getIt.registerLazySingleton<UnitDataMapper>(() => UnitDataMapper());
 
+  getIt.registerLazySingleton<ClaimMapper>(() => ClaimMapper());
   getIt.registerLazySingleton<TenatMapper>(() => TenatMapper());
 
   getIt.registerFactory<EventDataMapper>(() => EventDataMapper());

@@ -70,6 +70,22 @@ android {
         ]
     }
 
+    // productFlavors {
+    //     development {
+    //         applicationId "vn.eztek.active_dev"
+    //         versionNameSuffix '-DEV'
+    //         manifestPlaceholders = [(APP_LINKS_HOST_NAME): "dev.domain.com"]
+    //         buildConfigField "String", URL_END_POINT, "\"https://api.dev.domain.com\""
+    //     }
+        
+    //     product {
+    //         applicationId "vn.eztek.active_plus"
+    //         versionNameSuffix '-STG'
+    //         manifestPlaceholders = [(APP_LINKS_HOST_NAME): "staging.domain.com"]
+    //         buildConfigField "String", URL_END_POINT, "\"https://api.staging.domain.com\""
+    //     }
+    // }
+
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']

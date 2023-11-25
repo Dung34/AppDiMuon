@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import '../resources/resources.dart';
+
 enum UIState {
   init,
   loading,
@@ -110,3 +114,52 @@ final List<String> statusTabs = [
       '90%',
       '100%'
     ];
+final List<RichText> statusText = [
+  RichText(text: const TextSpan()),
+  RichText(
+      text: TextSpan(children: [
+    TextSpan(
+      text: '• ',
+      style: AppTextTheme.robotoBold18.copyWith(color: AppColor.green200),
+    ),
+    TextSpan(
+        text: 'PROCESSING',
+        style: AppTextTheme.robotoBold14.copyWith(color: AppColor.green200))
+  ])),
+  RichText(
+      text: TextSpan(
+          text: '• ',
+          style: AppTextTheme.robotoBold18.copyWith(color: AppColor.blue200),
+          children: [
+        TextSpan(
+            text: 'DONE',
+            style: AppTextTheme.robotoBold14.copyWith(color: AppColor.blue200))
+      ])),
+  RichText(
+      text: TextSpan(
+          text: '• ',
+          style: AppTextTheme.robotoBold18.copyWith(color: AppColor.yellow),
+          children: [
+        TextSpan(
+            text: 'AT RISK',
+            style: AppTextTheme.robotoBold14.copyWith(color: AppColor.yellow))
+      ])),
+  RichText(
+      text: TextSpan(
+          text: '• ',
+          style: AppTextTheme.robotoBold18.copyWith(color: AppColor.red200),
+          children: [
+        TextSpan(
+            text: 'BEHIND',
+            style: AppTextTheme.robotoBold14.copyWith(color: AppColor.red200))
+      ])),
+  RichText(
+      text: TextSpan(
+          text: '• ',
+          style: AppTextTheme.robotoBold18.copyWith(color: AppColor.red200),
+          children: [
+        TextSpan(
+            text: 'POSTPONED',
+            style: AppTextTheme.robotoBold14.copyWith(color: AppColor.red200))
+      ])),
+];

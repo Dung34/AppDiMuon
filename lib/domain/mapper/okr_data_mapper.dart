@@ -82,7 +82,9 @@ class KeyResultDataMapper extends BaseDataMapper<KeyResultResponse, KeyResult>
         objectiveId: data?.objectiveId,
         dueDate: data?.dueDate,
         totalTask: data?.totalTask,
-        doneTask: data?.doneTask);
+        doneTask: data?.doneTask,
+        createdBy: data?.createdBy,
+        createdDate: data?.createdDate);
   }
 
   @override

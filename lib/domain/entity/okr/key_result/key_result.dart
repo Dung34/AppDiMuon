@@ -19,6 +19,8 @@ class KeyResult with _$KeyResult {
     String? dueDate,
     int? totalTask,
     int? doneTask,
+    String? createdBy,
+    String? createdDate,
   }) = _KeyResult;
 
   factory KeyResult.fromJson(Map<String, dynamic> json) =>

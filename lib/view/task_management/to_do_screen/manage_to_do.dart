@@ -2,7 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../config/routes.dart';
 import '../../../data/resources/resources.dart';
 import '../../../di/di.dart';
 import '../../../domain/entity/okr/objective/objective.dart';
@@ -20,9 +22,7 @@ import '../../base/bloc/user/user_cubit.dart';
 import '../../okr_page/component/key_result_item.dart';
 import '../../okr_page/component/objective_item.dart';
 import '../../okr_page/cubit/okr_cubit.dart';
-import '../../unit_page/component/unit_item.dart';
 import '../../unit_page/cubit/unit_cubit.dart';
-import '../cubit/task_cubit.dart';
 import 'component/number_task.dart';
 
 class ManageToDoTask extends StatefulWidget {
@@ -32,13 +32,14 @@ class ManageToDoTask extends StatefulWidget {
   State<ManageToDoTask> createState() => _ManageToDoTaskState();
 }
 
-class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
+class _ManageToDoTaskState extends BasePageState<ManageToDoTask, OkrCubit> {
   List<Task> listTaskDone = [];
   List<Task> listTaskLost = [];
   List<Objective> listObj = [];
   List<Unit> listUnits = [];
   OkrCubit okrCubit = getIt.get<OkrCubit>();
   UnitCubit unitCubit = getIt.get();
+
   @override
   EdgeInsets get padding => EdgeInsets.zero;
   List<BaseDropdownValue> listItem = [
@@ -69,14 +70,17 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
       ],
       backgroundColor: AppColor.white,
       leading: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-        return state is UserGetUserSuccessState
-            ? CircleAvatar(
-                child: PrimaryNetworkImage(
-                imageUrl: state.userEntity.avatar,
-                height: context.screenWidth * 0.108,
-                width: context.screenWidth * 0.108,
-              ))
-            : Container();
+        return Row(children: [
+          const SizedBox(width: 8),
+          state is UserGetUserSuccessState
+              ? CircleAvatar(
+                  child: PrimaryNetworkImage(
+                  imageUrl: state.userEntity.avatar,
+                  height: context.screenWidth * 0.108,
+                  width: context.screenWidth * 0.108,
+                ))
+              : Container()
+        ]);
       }),
       title: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
         return state is UserGetUserSuccessState
@@ -116,7 +120,7 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
             Text('To-do',
                 style: AppTextTheme.lexendBold24
                     .copyWith(color: AppColor.green400)),
-            BlocConsumer<TaskCubit, TaskState>(
+            BlocConsumer<OkrCubit, OkrState>(
               listener: (context, state) {},
               builder: (context, state) {
                 if (state is TaskGetAllTaskSuccessState) {
@@ -151,7 +155,9 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
                 contentPadding: 0,
                 context: context,
                 label: '   Units',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoute.unit);
+                },
                 rightIcon: SvgPicture.asset(Assets.icArrowRight,
                     color: AppColor.white),
                 textStyle:
@@ -172,29 +178,7 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
                 },
                 builder: (context, state) {
                   if (state is UnitGetAllUnitSuccessState) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 1,
-                                color: AppColor.black.withOpacity(0.1),
-                                offset: const Offset(1, 1),
-                                spreadRadius: 1)
-                          ],
-                          color: AppColor.white),
-                      height: context.screenHeight * 165 / 926,
-                      padding: const EdgeInsets.all(12),
-                      child: CarouselSlider(
-                          items:
-                              listUnits.map((e) => UnitItem2(unit: e)).toList(),
-                          options: CarouselOptions(
-                              aspectRatio: 16 / 9,
-                              autoPlay: true,
-                              autoPlayInterval: const Duration(seconds: 5),
-                              height: 400,
-                              viewportFraction: 1)),
-                    );
+                    return UnitSlide(listUnits: listUnits);
                   } else {
                     return const NoData();
                   }
@@ -269,6 +253,68 @@ class _ManageToDoTaskState extends BasePageState<ManageToDoTask, TaskCubit> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class UnitSlide extends StatefulWidget {
+  final List<Unit> listUnits;
+
+  const UnitSlide({super.key, required this.listUnits});
+  @override
+  State<UnitSlide> createState() => UnitSlideState();
+}
+
+class UnitSlideState extends State<UnitSlide> {
+  int dotActiveIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 1,
+                    color: AppColor.black.withOpacity(0.1),
+                    offset: const Offset(1, 1),
+                    spreadRadius: 1)
+              ],
+              color: AppColor.white),
+          height: context.screenHeight * 165 / 926,
+          padding: const EdgeInsets.all(12),
+          child: CarouselSlider.builder(
+              itemCount:
+                  widget.listUnits.length < 8 ? widget.listUnits.length : 7,
+              itemBuilder: (context, index, realIndex) =>
+                  UnitItem2(unit: widget.listUnits[index]),
+              options: CarouselOptions(
+                  aspectRatio: 16 / 9,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5),
+                  height: 400,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      dotActiveIndex = index;
+                    });
+                  },
+                  viewportFraction: 1)),
+        ),
+        const SizedBox(height: 8),
+        Center(
+          child: AnimatedSmoothIndicator(
+            activeIndex: dotActiveIndex,
+            count: widget.listUnits.length < 8 ? widget.listUnits.length : 7,
+            effect: const SlideEffect(
+                activeDotColor: AppColor.green200,
+                dotColor: Color(0xFFB1DAC6),
+                dotHeight: 8,
+                dotWidth: 8),
+          ),
+        ),
+      ],
     );
   }
 }

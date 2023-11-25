@@ -157,7 +157,7 @@ class AppTextTheme {
     fontSize: 12,
   );
   static const TextStyle robotoBold14 = TextStyle(
-    color: AppColor.primary500,
+    color: AppColor.green200,
     fontWeight: FontWeight.w700,
     fontSize: 14,
   );

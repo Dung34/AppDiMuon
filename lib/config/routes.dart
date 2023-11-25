@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:flutter/cupertino.dart';
 
 import '../domain/entity/event/event_wrapper/event.dart';
@@ -63,6 +62,7 @@ import '../view/unit_page/unit_detail_page.dart';
 import '../view/task_management/cubit/task_cubit.dart';
 import '../view/task_management/task_create_page.dart';
 import '../view/task_management/task_list_page.dart';
+import '../view/unit_page/unit_page.dart';
 
 class AppRoute {
   static const String intro = "/intro";
@@ -99,6 +99,7 @@ class AppRoute {
 
   static const String objectiveDetail = "/objectiveDetail";
 
+  static const String unit = "/unit";
   static const String unitAdd = "/unitAdd";
   static const String unitDetail = "/unitDetail";
 
@@ -153,6 +154,7 @@ class AppRoute {
         // OKR
         AppRoute.objectiveDetail: (context) => const ObjectiveDetailPage(),
 
+        AppRoute.unit: (context) => const UnitPage(),
         AppRoute.unitAdd: (context) => UnitAddPage(),
         AppRoute.unitDetail: (context) => const UnitDetailPage(),
 

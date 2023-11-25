@@ -26,6 +26,7 @@ import '../okr_page/component/objective_item.dart';
 import '../okr_page/cubit/okr_cubit.dart';
 import '../okr_page/objective_add_page.dart';
 import '../okr_page/okr_create_page.dart';
+import '../select_tenant/tenant_cubit/tenant_cubit.dart';
 import 'component/subunit_item.dart';
 import 'cubit/unit_cubit.dart';
 
@@ -39,6 +40,7 @@ class UnitDetailPage extends StatefulWidget {
 class _UnitDetailPage extends BasePageState<UnitDetailPage, UnitCubit> {
   late final UnitDetailPageArgs args;
   late Unit unit;
+
   @override
   bool get isUseLoading => true;
 
@@ -371,16 +373,21 @@ class OKRDetail extends StatefulWidget {
 }
 
 class _OKRDetailState extends State<OKRDetail> {
+  final TenantCubit tenantCubit = TenantCubit();
   final UserCubit userCubit = UserCubit();
 
   @override
   void initState() {
     super.initState();
-    userCubit.getUserById(userId: '${widget.unit.createdBy}');
+
+    userCubit.getUserById(userId: widget.unit.createdBy);
+    tenantCubit.getPositionForUser(widget.unit.createdBy);
   }
 
   @override
   Widget build(BuildContext context) {
+    String? name;
+
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -396,42 +403,50 @@ class _OKRDetailState extends State<OKRDetail> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BlocProvider(
-            create: (context) => userCubit,
-            child: BlocBuilder<UserCubit, UserState>(
-              buildWhen: (previous, current) =>
-                  current is UserGetUserSuccessState,
-              builder: (context, state) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    state is UserGetUserSuccessState
-                        ? PrimaryNetworkImage(
-                            height: 46,
-                            imageUrl: state.userEntity.coverImage,
-                            width: 46)
-                        : const SizedBox(height: 24, width: 24),
-                    state is UserGetUserSuccessState
+          Row(
+            children: [
+              BlocProvider(
+                  create: (context) => userCubit,
+                  child: BlocConsumer<UserCubit, UserState>(
+                      listener: (context, state) {
+                        if (state is UserGetUserSuccessState) {
+                          name = state.userEntity.fullName;
+                        }
+                      },
+                      builder: (context, state) =>
+                          state is UserGetUserSuccessState
+                              ? PrimaryNetworkImage(
+                                  height: 46,
+                                  imageUrl: "${state.userEntity.avatar}",
+                                  width: 46)
+                              : Container())),
+              BlocProvider(
+                create: (context) => tenantCubit,
+                child: BlocBuilder<TenantCubit, TenantState>(
+                  buildWhen: (previous, current) =>
+                      current is GetPositionForUserSuccessState,
+                  builder: (context, state) {
+                    return (state is GetPositionForUserSuccessState)
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                                Text('${state.userEntity.fullName}',
+                                Text('$name',
                                     style: AppTextTheme.lexendBold16
                                         .copyWith(color: AppColor.darkGray)),
                                 SizedBox(
                                   width: context.screenWidth * 0.7,
                                   child: Text(
-                                    'Project manager     ID: ${state.userEntity.id}',
+                                    '${state.claim.department}     ID: ${widget.unit.createdBy}}',
                                     overflow: TextOverflow.ellipsis,
                                     style: AppTextTheme.lexendLight14,
                                   ),
                                 )
                               ])
-                        : Container(),
-                  ],
-                );
-              },
-            ),
+                        : Container();
+                  },
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
           Row(

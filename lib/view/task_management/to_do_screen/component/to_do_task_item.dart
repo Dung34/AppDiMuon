@@ -25,44 +25,42 @@ class TodoItem extends StatelessWidget {
           },
         );
       },
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              task.title ?? " ",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("TrueConnect - Agency"),
-                // Text(task.description ?? "")
-                Text("Hoàn thành sản phẩm")
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Due date'),
-                //Text(DateTimeUtils.formatDate(task.endDate ?? ""))
-                Text("30 Aug 2023")
-              ],
-            ),
-            const Divider(
-              thickness: 1.0,
-            )
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            task.title ?? " ",
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("TrueConnect - Agency"),
+              // Text(task.description ?? "")
+              Text("Hoàn thành sản phẩm")
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Due date'),
+              //Text(DateTimeUtils.formatDate(task.endDate ?? ""))
+              Text("30 Aug 2023")
+            ],
+          ),
+          const Divider(
+            thickness: 1.0,
+          )
+        ],
       ),
     );
   }

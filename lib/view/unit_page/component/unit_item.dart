@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../config/routes.dart';
+import '../../../data/constant/constants.dart';
 import '../../../data/resources/resources.dart';
 import '../../../domain/entity/okr/unit/unit.dart';
 import '../../../shared/etx/app_ext.dart';
@@ -111,16 +111,7 @@ class _UnitItemState extends State<UnitItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RichText(
-                        text: TextSpan(
-                            text: '• ',
-                            style: AppTextTheme.robotoBold18
-                                .copyWith(color: AppColor.green200),
-                            children: const [
-                          TextSpan(
-                              text: 'PROCESSING',
-                              style: AppTextTheme.robotoBold12)
-                        ])),
+                    statusText[1],
                     const SizedBox(height: 6),
                     Text(widget.unit.name ?? '',
                         overflow: TextOverflow.ellipsis,

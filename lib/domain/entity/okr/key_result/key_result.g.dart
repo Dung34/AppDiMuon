@@ -21,6 +21,8 @@ _$KeyResultImpl _$$KeyResultImplFromJson(Map<String, dynamic> json) =>
       dueDate: json['dueDate'] as String?,
       totalTask: json['totalTask'] as int?,
       doneTask: json['doneTask'] as int?,
+      createdBy: json['createdBy'] as String?,
+      createdDate: json['createdDate'] as String?,
     );
 
 Map<String, dynamic> _$$KeyResultImplToJson(_$KeyResultImpl instance) =>
@@ -38,4 +40,6 @@ Map<String, dynamic> _$$KeyResultImplToJson(_$KeyResultImpl instance) =>
       'dueDate': instance.dueDate,
       'totalTask': instance.totalTask,
       'doneTask': instance.doneTask,
+      'createdBy': instance.createdBy,
+      'createdDate': instance.createdDate,
     };

@@ -7,11 +7,14 @@ import '../../data/resources/resources.dart';
 import '../../domain/entity/okr/key_result/key_result.dart';
 import '../../domain/entity/okr/objective/objective.dart';
 import '../../shared/etx/app_ext.dart';
+import '../../shared/utils/date_time_utils.dart';
 import '../../shared/widgets/button/primary_icon_button.dart';
 import '../../shared/widgets/image/primary_image.dart';
 import '../../shared/widgets/something/loading.dart';
 import '../../shared/widgets/something/no_data.dart';
 import '../../shared/widgets/something/primary_app_bar.dart';
+import '../base/bloc/user/user_cubit.dart';
+import '../select_tenant/tenant_cubit/tenant_cubit.dart';
 import 'component/key_result_item.dart';
 import 'component/objective_item.dart';
 import 'cubit/okr_cubit.dart';
@@ -79,7 +82,12 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
                 Text('from ',
                     style: AppTextTheme.lexendRegular14
                         .copyWith(color: AppColor.gray200)),
-                Text('${args.parentUnit}', style: AppTextTheme.lexendBold14)
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('${args.parentUnit}',
+                        style: AppTextTheme.lexendBold14))
               ],
             )
           ],
@@ -355,21 +363,126 @@ class _ObjectiveDetailPageState extends State<ObjectiveDetailPage> {
   }
 }
 
-class Detail extends StatelessWidget {
-  const Detail({super.key});
+// class ObjectiveDetail extends StatefulWidget {
+//   final Objective objective;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: const [
-            BoxShadow(blurRadius: 1, offset: Offset(1, 1), spreadRadius: 1)
-          ],
-          color: AppColor.white),
-    );
-  }
-}
+//   const ObjectiveDetail({super.key, required this.objective});
+
+//   @override
+//   State<ObjectiveDetail> createState() => _ObjectiveDetailState();
+// }
+
+// class _ObjectiveDetailState extends State<ObjectiveDetail> {
+//   final TenantCubit tenantCubit = TenantCubit();
+//   final UserCubit userCubit = UserCubit();
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     userCubit.getUserById(userId: widget.objective.createdBy);
+//     tenantCubit.getPositionForUser(widget.objective.createdBy);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     String? name;
+
+//     return Container(
+//       decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(15),
+//           boxShadow: [
+//             BoxShadow(
+//                 blurRadius: 1,
+//                 color: AppColor.black.withOpacity(0.1),
+//                 offset: const Offset(1, 1),
+//                 spreadRadius: 1)
+//           ],
+//           color: AppColor.white),
+//       padding: const EdgeInsets.all(8),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Row(
+//             children: [
+//               BlocProvider(
+//                   create: (context) => userCubit,
+//                   child: BlocConsumer<UserCubit, UserState>(
+//                       listener: (context, state) {
+//                         if (state is UserGetUserSuccessState) {
+//                           name = state.userEntity.fullName;
+//                         }
+//                       },
+//                       builder: (context, state) =>
+//                           state is UserGetUserSuccessState
+//                               ? PrimaryNetworkImage(
+//                                   height: 46,
+//                                   imageUrl: "${state.userEntity.avatar}",
+//                                   width: 46)
+//                               : Container())),
+//               BlocProvider(
+//                 create: (context) => tenantCubit,
+//                 child: BlocBuilder<TenantCubit, TenantState>(
+//                   buildWhen: (previous, current) =>
+//                       current is GetPositionForUserSuccessState,
+//                   builder: (context, state) {
+//                     return (state is GetPositionForUserSuccessState)
+//                         ? Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                                 Text('$name',
+//                                     style: AppTextTheme.lexendBold16
+//                                         .copyWith(color: AppColor.darkGray)),
+//                                 SizedBox(
+//                                   width: context.screenWidth * 0.7,
+//                                   child: Text(
+//                                     '${state.claim.department}  ID: ${widget.unit.createdBy}}',
+//                                     overflow: TextOverflow.ellipsis,
+//                                     style: AppTextTheme.lexendLight14,
+//                                   ),
+//                                 )
+//                               ])
+//                         : Container();
+//                   },
+//                 ),
+//               ),
+//             ],
+//           ),
+//           const SizedBox(height: 10),
+//           Row(
+//             children: [
+//               const Expanded(
+//                   child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text('Start Date', style: AppTextTheme.lexendLight14),
+//                   SizedBox(height: 4),
+//                   Text('End Date', style: AppTextTheme.lexendLight14),
+//                   SizedBox(height: 4),
+//                   Text('Target', style: AppTextTheme.lexendLight14)
+//                 ],
+//               )),
+//               Expanded(
+//                   child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(DateTimeUtils.formatDate(widget.unit.startDate ?? ''),
+//                       style: AppTextTheme.lexendRegular14),
+//                   const SizedBox(height: 4),
+//                   Text(DateTimeUtils.formatDate(widget.unit.endDate ?? ''),
+//                       style: AppTextTheme.lexendRegular14),
+//                   const SizedBox(height: 4),
+//                   Text('${widget.unit.taskDone}/${widget.unit.totalTask}',
+//                       style: AppTextTheme.lexendRegular14)
+//                 ],
+//               ))
+//             ],
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class Score extends StatelessWidget {
   final Objective objective;

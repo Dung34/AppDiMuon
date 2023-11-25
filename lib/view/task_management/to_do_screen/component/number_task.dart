@@ -34,6 +34,7 @@ class IhaveTask extends StatelessWidget {
               children: [
                 const SizedBox(width: 10),
                 SvgPicture.asset((isDone) ? Assets.icClock : Assets.icSecurity),
+                const SizedBox(width: 10),
                 isDone
                     ? RichText(
                         text: TextSpan(
