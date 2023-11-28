@@ -1,3 +1,9 @@
+enum AppFlavor {
+  dev,
+  staging,
+  prod,
+}
+
 enum AppInputType { dropDown, datePicker, popUpShow, timePicker }
 
 enum AppStringFormatType { sequence, title, allCaps, allLowerCase }

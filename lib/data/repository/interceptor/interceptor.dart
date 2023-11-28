@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../../../di/di.dart';
-import '../../../main.dart';
 import '../../../shared/utils/dialog_helper.dart';
+import '../../../shared/utils/view_utils.dart';
 import '../../../view/auth/login/login_page.dart';
 import '../../exceptions/handle_exception.dart';
 import '../../model/api/base_response.dart';
@@ -54,10 +54,12 @@ class AppInterceptor {
                   message:
                       'Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục sử dụng',
                   callbackWhenDismiss: (value) {
-                    navigatorKey.currentState?.pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => LoginScreen()),
-                      (route) => false,
-                    );
+                    ViewUtils.getRootNavigatorKey()
+                        .currentState
+                        ?.pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => LoginScreen()),
+                          (route) => false,
+                        );
                   });
               localDataAccess.clearAccessToken();
               localDataAccess.clearRefreshToken();

@@ -2,11 +2,23 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../data/constant/enum.dart';
 import '../data/resources/colors.dart';
 
 class Environment {
-  static String fileName =
-      kDebugMode ? 'app_config_test.env' : 'app_config_product.env';
+  final AppFlavor flavor;
+
+  Environment({this.flavor = AppFlavor.dev});
+  String get fileName => (kDebugMode && flavor == AppFlavor.dev)
+      ? 'app_config_test.env'
+      : (kDebugMode && flavor == AppFlavor.prod)
+          ? 'app_config_product.env'
+          : (kReleaseMode && flavor == AppFlavor.prod)
+              ? 'app_config_product.env'
+              : (kReleaseMode && flavor == AppFlavor.dev)
+                  ? 'app_config_test.env'
+                  : '';
+
   static String domain = dotenv.env['DOMAIN'] ?? '';
   static String resourcesBaseUrl = dotenv.env['BASE_RESOURCE_URL'] ?? '';
   static String ssoBaseUrl = dotenv.env['SSO_BASE_URL'] ?? '';

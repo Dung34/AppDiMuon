@@ -17,7 +17,7 @@ import 'view/base/bloc/user/user_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: Environment(flavor: AppFlavor.dev).fileName);
+  await dotenv.load(fileName: Environment(flavor: AppFlavor.prod).fileName);
   await configureInjection();
   GestureBinding.instance.resamplingEnabled = true;
   runApp(const MyApp());

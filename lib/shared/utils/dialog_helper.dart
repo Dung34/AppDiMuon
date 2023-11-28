@@ -4,10 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../data/constant/enum.dart';
 import '../../data/model/public_api/location.dart';
 import '../../data/resources/resources.dart';
-import '../../main.dart';
 import '../widgets/button/primary_button.dart';
 import '../widgets/something/loading.dart';
 import '../widgets/text_field/primary_search_text_field.dart';
+import 'view_utils.dart';
 
 Dialog getAddressDialog({required List<dynamic> data}) {
   return Dialog(
@@ -276,7 +276,7 @@ void showGlobalDialog(
   switch (dialogType) {
     case DialogType.alert:
       await showDialog(
-        context: navigatorKey.currentContext!,
+        context: ViewUtils.getRootNavigatorKey().currentContext!,
         builder: (context) => getErrorDialog(
           context: context,
           message: message,

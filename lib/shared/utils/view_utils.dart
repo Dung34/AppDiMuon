@@ -8,6 +8,10 @@ import '../../data/constant/enum.dart';
 import '../../data/resources/resources.dart';
 
 class ViewUtils {
+  static GlobalKey<NavigatorState>? _rootNavigatorKey;
+  static GlobalKey<NavigatorState> getRootNavigatorKey() =>
+      _rootNavigatorKey ??= GlobalKey<NavigatorState>();
+
   static void unFocusView() {
     FocusManager.instance.primaryFocus?.unfocus();
   }
